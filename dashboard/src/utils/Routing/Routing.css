@@ -1,0 +1,17 @@
+.sbd-container {
+  padding: 20px;
+}
+
+.sbd-page-content-title {
+  font-weight: 600;
+  font-size: 28px !important;
+  line-height: 33px !important;
+}
+
+.sbd-layout-container {
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  margin: 60px 40px 20px 40px;
+  /* width: 100%; */
+}
