@@ -11,7 +11,7 @@
   }
 }
 .App-header {
-  background-color: #282C34;
+  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@
   color: white;
 }
 .App-link {
-  color: #61DAFB;
+  color: #61dafb;
 }
 .Primary-container-style {
   background-color: #fff;
@@ -31,7 +31,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
 }
 .Primary-color {
-  color: #00B4D8;
+  color: #00b4d8;
 }
 .Secondary-color {
   color: grey;
