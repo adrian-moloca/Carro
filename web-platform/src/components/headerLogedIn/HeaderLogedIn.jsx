@@ -1,54 +1,99 @@
 import React from 'react';
-import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import useStyles from './headerStyle';
 import CaroLogo from '../../assets/logo/CaroLogo.png';
-import AutentificareIcon from '../../assets/icon/AutentificareIcon.png';
 import cautaPachetIcon from '../../assets/icon/cautaPachetIcon.png';
 import cautaTransportIcon from '../../assets/icon/cautaTransportIcon.png';
-import InregistrareIcongo from '../../assets/icon/InregistrareIcon.png';
 import navRoFlag from '../../assets/icon/navRoFlag.png';
 import navEnFlag from '../../assets/icon/navEnFlag.png';
+import BadgeVisibility from '../NotificationsComponent/notificomp';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
+import LocalShippingOutlinedIcon from '@material-ui/icons/LocalShippingOutlined';
+import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
+import CreditCardOutlinedIcon from '@material-ui/icons/CreditCardOutlined';
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
+import DirectionsCarOutlinedIcon from '@material-ui/icons/DirectionsCarOutlined';
 
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [accountAnchorEl, setAccountAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
+  const isAccountMenuOpen = Boolean(accountAnchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  // for lang
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
-
+  // for mobile
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
+  //  for my account
+  const handleProfileAccountMenuOpen = (event) => {
+    setAccountAnchorEl(event.currentTarget);
+  };
+  const handleMenuAccountClose = () => {
+    setAccountAnchorEl(null);
+    handleMobileMenuClose();
+  };
+
 
   const menuId = 'primary-search-account-menu';
+  const menuIdAccount = 'primary-search-account-menu-sbd';
+  // menu for my account
+  const renderMenuAccount = (
+    <Menu
+      anchorEl={accountAnchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuIdAccount}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isAccountMenuOpen}
+      onClose={handleMenuAccountClose}
+    >
+      <MenuItem onClick={handleMenuClose}>
+        <LocalMallOutlinedIcon className={classes.accountIconsColorAndSpacing}/>
+        Pachetele mele
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <LocalShippingOutlinedIcon className={classes.accountIconsColorAndSpacing}/>
+        Transporturile mele
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <AccountCircleOutlinedIcon className={classes.accountIconsColorAndSpacing}/>
+        Profil
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <CreditCardOutlinedIcon className={classes.accountIconsColorAndSpacing}/>
+        Metoda de plata
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <CancelOutlinedIcon className={classes.accountIconsColorAndSpacingRed}/>
+        Iesire din cont
+      </MenuItem>
+    </Menu>
+  );
+  // menu for language
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -84,63 +129,52 @@ export default function PrimarySearchAppBar() {
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
             edge="start"
-            className={classes.menuButtonMobile}
+            // className={classes.menuButtonMobile}
             color="inherit"
             aria-label="account of current user"
             aria-controls={menuId}
             aria-haspopup="true"
           >
-            <img src={cautaPachetIcon} className={classes.iconSpacing10pxMobile}></img>
+            <SearchOutlinedIcon/>
             Cauta Pachet
         </IconButton>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
             edge="start"
-            className={classes.menuButtonMobile}
+            // className={classes.menuButtonMobile}
             color="inherit"
             aria-label="account of current user"
             aria-controls={menuId}
             aria-haspopup="true"
           >
-            <img src={cautaTransportIcon}  className={classes.iconSpacing10pxMobile}></img>
+            <DirectionsCarOutlinedIcon/>
             Cauta Transport
         </IconButton>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem onClick={handleProfileAccountMenuOpen}>
         <IconButton
-            edge="start"
-            className={classes.menuButtonMobile}
-            color="inherit"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-          >
-            <img src={AutentificareIcon} className={classes.iconSpacing10pxMobile}></img>
-            Autentificare
-        </IconButton>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-            edge="start"
-            className={classes.menuButtonMobile}
-            color="inherit"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-          >
-            <img src={InregistrareIcongo} className={classes.iconSpacing10pxMobile}></img>
-            Inregistrare
-        </IconButton>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
+          edge="start"
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
         >
           <AccountCircle />
+          Contul meu
+          <ExpandMoreIcon/>
+        </IconButton>
+      </MenuItem>
+      <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          edge="start"
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <img src={navRoFlag}></img>
+          <ExpandMoreIcon/>
         </IconButton>
       </MenuItem>
     </Menu>
@@ -171,28 +205,6 @@ export default function PrimarySearchAppBar() {
             <img src={cautaTransportIcon}  className={classes.iconSpacing10px}></img>
             Cauta Transport
           </IconButton>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-          >
-            <img src={AutentificareIcon} className={classes.iconSpacing10px}></img>
-            Autentificare
-          </IconButton>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-          >
-            <img src={InregistrareIcongo} className={classes.iconSpacing10px}></img>
-            Inregistrare
-          </IconButton>
       </div>
     );
   };
@@ -205,7 +217,7 @@ export default function PrimarySearchAppBar() {
             <div>
               <IconButton
                 edge="start"
-                className={classes.menuButton}
+                className={classes.menuButtonLogo}
                 color="inherit"
                 aria-label="open drawer"
               >
@@ -216,6 +228,20 @@ export default function PrimarySearchAppBar() {
               {renderMenuSBD()}
             </div>
             <div className={classes.sectionDesktop}>
+              <BadgeVisibility/>
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuIdAccount}
+                aria-haspopup="true"
+                onClick={handleProfileAccountMenuOpen}
+                color="inherit"
+                className={classes.textFontSize}
+              >
+                <AccountCircle  className={classes.spacing10px}/>
+                Contul meu
+                <ExpandMoreIcon/>
+              </IconButton>
               <IconButton
                 edge="end"
                 aria-label="account of current user"
@@ -223,8 +249,10 @@ export default function PrimarySearchAppBar() {
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
                 color="inherit"
-              >
-                <AccountCircle />
+                className={classes.textFontSize}
+              >Ro
+                <img src={navRoFlag}></img>
+                <ExpandMoreIcon/>
               </IconButton>
             </div>
             <div className={classes.sectionMobile}>
@@ -242,6 +270,7 @@ export default function PrimarySearchAppBar() {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
+      {renderMenuAccount}
       {renderMenu}
     </div>
   );

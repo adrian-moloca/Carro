@@ -83,6 +83,26 @@ const useStyles = makeStyles((theme) => ({
   },
   iconSpacing10pxMobile:{
     color: "#000"
+  },
+  spacing10px: {
+    marginRight: 5,
+  },
+  textFontSize: {
+    fontFamily: "Arial",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 18
+  },
+  accountIconsColorAndSpacing: {
+    marginRight: 10,
+    color: '#00B4D8',
+  },
+  accountIconsColorAndSpacingRed: {
+    marginRight: 10,
+    color: '#F50057',
+  },
+  menuButtonLogo: {
+    marginLeft: 50
   }
 }));
 
