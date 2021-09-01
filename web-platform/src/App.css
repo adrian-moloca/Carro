@@ -40,6 +40,10 @@
   color: #00b4d8;
 }
 
+.Secondary-color {
+  color: grey;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
