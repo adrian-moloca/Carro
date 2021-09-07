@@ -47,9 +47,11 @@ const Routes = () => {
                 //         {/* <Route path="/forgotpassword" exact component={ForgotPassword}/> */}
                 //     </Switch>
                 // ) : (
-                    <div className="sbd-div-background-side-linear">
-                        <HeaderLogedIn/>
-                        <div className="sbd-container">
+                    <div className="sbd-container">
+                        <div className="sbd-container-header">
+                            <HeaderLogedIn/>
+                        </div>
+                        <div className="sbd-container-content">
                             <Switch>
                                 <Route path="/" exact component={HomePage}/>
                                 <Route path="/add-package" exact component={AddPackage}/>
@@ -66,7 +68,9 @@ const Routes = () => {
                                 <Route component={HomePage} />
                             </Switch>
                         </div>
-                        <Footer/>
+                        <div className="sbd-container-footer">
+                            <Footer/>
+                        </div>
                     </div>
                 // )
             }

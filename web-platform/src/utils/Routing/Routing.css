@@ -17,10 +17,19 @@
  
 } */
 
+.sbd-container {
+    margin: 0;
+    padding: 0;
+}
 
-.sbd-div-background-side-linear {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 100vh;
+.sbd-container-footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.sbd-container-header {
+    width: 100%;
+    position: absolute;
+    top: 0;
 }
