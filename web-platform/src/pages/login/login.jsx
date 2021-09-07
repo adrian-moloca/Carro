@@ -4,34 +4,13 @@ import useStyles from './loginStyles';
 import { Container, Box, TextField, Grid, Checkbox, FormControlLabel, Button, Typography, withStyles } from '@material-ui/core';
 import googleicon from '../../assets/images/GoogleIcon.png';
 import fbicon from '../../assets/images/fbicon.png';
+import CarroTextField from '../../components/textField/CarroTextField.jsx';
+import PrimaryButton from '../../components/buttons/primaryButton/primaryButton.jsx';
 
 
 const Login = () => { 
 
   const classes = useStyles();
-  const CarroTextField = withStyles({
-    root: {
-      '& label.Mui-focused': {
-        color: '#00b4d8',
-      },
-
-      '& .MuiInput-underline:after':{
-        borderBottomColor: '#00b4d8',
-      },
-
-      '& .MuiOutlinedInput-root': {
-        '&:hover fieldset': {
-          borderColor: '#00b4d8',
-        },
-
-        '&.Mui-focused fieldset': {
-          borderColor: '#00b4d8',
-        },
-      },
-
-
-    }
-  })(TextField);
 
   return (
     <Container className={'Primary-container-style'}>
@@ -59,9 +38,9 @@ const Login = () => {
         </Grid>  
       </Box>
       <Box mt={4} alignContent='center' textAlign='center' px={30}>  
-        <Button size='large' variant = 'contained' className={'primarybutton'}>
+        <PrimaryButton size = 'large' variant='contained'>
           AUTENTIFICARE
-        </Button>
+        </PrimaryButton>
       </Box>
       <Box mt={4} borderTop={1} borderColor={'grey.500'} alignContent='center' textAlign='center'>
         <Box className={['Secondary-color', classes.textBoxStyle]}>
