@@ -64,6 +64,7 @@ const Routes = () => {
                                     <Route path="/register" exact component={Register}/>
                                     <Route path="/register/select-plan" exact component={SelectPlan}/>
                                     <Route path="/register/select-plan/add-card" exact component={AddCard}/>
+                                    <Route component={HomePage} />
                                 </Switch>
                             </div>
                             <Footer/>
