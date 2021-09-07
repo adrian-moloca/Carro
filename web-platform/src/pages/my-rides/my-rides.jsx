@@ -1,9 +1,16 @@
 import React from 'react'
 import useStyles from './my-ridesStyle'
-import {AccordionDetails, AccordionSummary, Container, Typography, Accordion, Box, Card, List, ListItem, ListItemText, CardMedia} from '@material-ui/core' 
+import {AccordionDetails, AccordionSummary, Container, Typography, Accordion, Box, Card, List, ListItem, ListItemText, CardMedia, Paper, SvgIcon, Button} from '@material-ui/core' 
 import {ExpandMore, ArrowForward} from '@material-ui/icons'
 import { spacing, typography, borders, shadows, flexbox,  } from '@material-ui/system'
-import '../../App.css'
+//import '../../App.css'
+
+import packageImg from '../../assets/images/box-small.png'
+import {ReactComponent as fragileIco} from '../../assets/icon/fragile.svg'
+import {ReactComponent as fishIco} from '../../assets/icon/fish.svg' 
+import {ReactComponent as fireIco} from '../../assets/icon/fire.svg' 
+import {ReactComponent as handboxIco} from '../../assets/icon/handbox.svg'
+import {ReactComponent as animalprintsIco} from '../../assets/icon/animalprints.svg'
 import { grey } from '@material-ui/core/colors'
 
 const MyRides = () => {
@@ -71,7 +78,42 @@ const MyRides = () => {
                 </Box>
                 <Box mx={-2} mt={1} borderTop={1} borderColor= 'grey.400' >
                   <Box width = '23%' ml = {2} mt={2} border={2} borderColor='grey.400' borderRadius='10px'>
-                      <Box className={classes.SmallBoxImage}/>
+                    <Box display='flex' justifyContent='center' mt={2} pb={1} borderBottom={1.5} borderColor='grey.400'>
+                       <img src={packageImg}/>
+                    </Box>
+                    <Box p={1} fontSize={10} borderBottom={1.5} borderColor='grey.400'>
+                      <Box>Cantitate: 1</Box>
+                      <Box>Dimensiuni(m): 0x0x0</Box>
+                      <Box>Greutate: 1Kg</Box>
+                    </Box>
+                    <Box p={1} fontSize={10} borderBottom={1.5} borderColor='grey.400'>
+                      <Box>Data ridicare: 26/08/2021 04:30 AM</Box>
+                      <Box>Adresa ridicare: Lorem Ipsium Street</Box>
+                      <Box>Adresa destinatie: Lorem Ipsium Street</Box>
+                    </Box>
+                    <Box p={1} borderBottom={1.5} borderColor='grey.400'>
+                      <Box display ='flex' justifyContent='center' fontSize={14}>PRET</Box>
+                      <Box display ='flex' justifyContent='center' fontSize={20}>15 LEI</Box>  
+                    </Box>
+                    <Box display='flex' justifyContent='center' mx={1} my ={2} borderColor='grey.400'>
+                      <Box px={0.3}><SvgIcon component={fragileIco} viewBox='0 0 322 512'/></Box>
+                      <Box px={0.3}><SvgIcon component={fishIco} viewBox='0 0 18 19'/></Box>
+                      <Box px={0.3}><SvgIcon component={fireIco} viewBox='0 0 23 22'/></Box>
+                      <Box px={0.3}><SvgIcon component={handboxIco} viewBox='0 0 21 21'/></Box>
+                      <Box px={0.3}><SvgIcon component={animalprintsIco} viewBox='0 0 20 20'/></Box>
+                    </Box>
+                    <Box display='flex' flexDirection='column' alignItems='center' my={2} px={2}>
+                      <Box>
+                        <Button variant = 'contained'>
+                          PREDARE
+                        </Button>
+                      </Box>
+                      <Box py ={1}>
+                        <Button variant = 'contained'>
+                          DETALII
+                        </Button>
+                      </Box>
+                    </Box>
                   </Box>
                 </Box>
             </AccordionDetails>
