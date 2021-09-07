@@ -48,20 +48,6 @@ const useStyles = makeStyles({
     marginBottom: '10px',
     marginTop: '20px'
   },
-  PrimaryButton:{
-    display: 'flex',
-    justifyContent: 'center',
-    width: '225px',
-    height: '42px',
-    backgroundColor: '#00B4D8',
-    margin: 'auto',
-    marginTop: '20px',
-    marginBottom: '20px',
-    '&:hover': {
-      backgroundColor: '#FFFFFF',
-      color: '#00B4D8',
-    },
-  },
   
  
 });

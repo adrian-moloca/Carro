@@ -159,8 +159,9 @@ const Register = () => {
         </FormGroup>
 
         <Grid item xs={12} className={classes.ButtonWidth}>
-        <Button variant="contained" color="primary" className={classes.PrimaryButton} >
-            SELECTEAZA
+        <Button variant="contained" color="primary" className={'primarybutton'} >
+            INREGISTRARE
+
           </Button>
         </Grid>
         <Grid

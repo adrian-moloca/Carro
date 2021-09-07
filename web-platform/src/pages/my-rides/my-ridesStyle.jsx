@@ -13,14 +13,16 @@ const useStyles = makeStyles({
         flexDirection: 'column',
     },
 
-    SmallBoxImage:{
-        position: 'absolute',
-        height: '71px',
-        width:'59px',
-        left: '472px',
-        top:'407px',
-        backgroundImage: 'url(../../assets/images/box-small.png)',
+    GreenButton:{
+        backgroundColor: '#34D02D',     
+        color: '#fff',
+        fontWeight: '600', 
+        '&:hover':{
+            backgroundColor:'#fff',
+            color: '#34D02D',
+        },
     },
+
 
     /* box-small 1 */
 

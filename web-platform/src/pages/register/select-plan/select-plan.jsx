@@ -56,7 +56,7 @@ const SelectPlan = () => {
             {" "}
             GRATIS
           </Typography>
-          <Button variant="contained" color="primary" className={classes.PrimaryButton} >
+          <Button variant="contained" color="primary" className={'primarybutton'} >
             SELECTEAZA
           </Button>
         </Grid>
@@ -105,7 +105,7 @@ const SelectPlan = () => {
             {" "}
             GRATIS
           </Typography>
-          <Button variant="contained" color="primary" className={classes.PrimaryButton} >
+          <Button variant="contained" color="primary" className={'primarybutton'} >
             SELECTEAZA
           </Button>
         </Grid>
