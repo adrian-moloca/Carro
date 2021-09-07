@@ -1,5 +1,5 @@
-import React from 'react';
-import './home-pageStyles.jsx';
+import React from "react";
+import "./home-pageStyles.jsx";
 import {
   Container,
   Box,
@@ -8,22 +8,18 @@ import {
   Checkbox,
   Typography,
   Button,
-  
 } from "@material-ui/core";
 import useStyles from "./home-pageStyles";
-const HomePage = () => { 
-
+const HomePage = () => {
   const classes = useStyles();
 
   return (
-    <Container className={classes.FirstSection} >
-      <Grid >
-    <Grid item xs={12} className={classes.BgImg}>
-poza
-    </Grid>
+    <Container className={classes.FirstSection}>
+      <Grid className={classes.MaxWidth}>
+        <Grid item xs={12} className={classes.BgImg}></Grid>
       </Grid>
     </Container>
-  )
-}
+  );
+};
 
 export default HomePage;
