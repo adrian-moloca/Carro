@@ -48,27 +48,25 @@ const Routes = () => {
                 //     </Switch>
                 // ) : (
                     <div className="sbd-div-background-side-linear">
-                        <div>
-                            <HeaderLogedIn/>
-                            <div className="sbd-container">
-                                <Switch>
-                                    <Route path="/" exact component={HomePage}/>
-                                    <Route path="/add-package" exact component={AddPackage}/>
-                                    <Route path="/my-packages" exact component={MyPackages}/>
-                                    <Route path="/my-rides" exact component={MyRides}/>
-                                    <Route path="/notifications" exact component={Notifications}/>
-                                    <Route path="/payment-method" exact component={PaymentMethod}/>
-                                    <Route path="/profile" exact component={Profile}/>
-                                    <Route path="/search-package" exact component={SearchPackage}/>
-                                    <Route path="/search-ride" exact component={SearchRide}/>
-                                    <Route path="/register" exact component={Register}/>
-                                    <Route path="/register/select-plan" exact component={SelectPlan}/>
-                                    <Route path="/register/select-plan/add-card" exact component={AddCard}/>
-                                    <Route component={HomePage} />
-                                </Switch>
-                            </div>
-                            <Footer/>
+                        <HeaderLogedIn/>
+                        <div className="sbd-container">
+                            <Switch>
+                                <Route path="/" exact component={HomePage}/>
+                                <Route path="/add-package" exact component={AddPackage}/>
+                                <Route path="/my-packages" exact component={MyPackages}/>
+                                <Route path="/my-rides" exact component={MyRides}/>
+                                <Route path="/notifications" exact component={Notifications}/>
+                                <Route path="/payment-method" exact component={PaymentMethod}/>
+                                <Route path="/profile" exact component={Profile}/>
+                                <Route path="/search-package" exact component={SearchPackage}/>
+                                <Route path="/search-ride" exact component={SearchRide}/>
+                                <Route path="/register" exact component={Register}/>
+                                <Route path="/register/select-plan" exact component={SelectPlan}/>
+                                <Route path="/register/select-plan/add-card" exact component={AddCard}/>
+                                <Route component={HomePage} />
+                            </Switch>
                         </div>
+                        <Footer/>
                     </div>
                 // )
             }
