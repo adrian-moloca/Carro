@@ -53,22 +53,6 @@
     }
 }
 
-.Primary-container-style {
-    background-color: #fff;
-    padding: 20px;
-    width: 50% !important;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
-}
-
-.Primary-color {
-    color: #00b4d8;
-}
-
-.Secondary-color {
-    color: grey;
-}
-
 .primarybutton {
     color: #fff !important;
     display: flex !important;
