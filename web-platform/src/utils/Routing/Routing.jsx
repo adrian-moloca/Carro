@@ -69,6 +69,7 @@ const Routes = () => {
                             </div>
                             <Footer/>
                         </div>
+                        <Footer/>
                     </div>
                 // )
             }
