@@ -4,6 +4,7 @@ import {AccordionDetails, AccordionSummary, Container, Typography, Accordion, Bo
 import {ExpandMore, ArrowForward} from '@material-ui/icons';
 import { spacing, typography, borders, shadows, flexbox,  } from '@material-ui/system';
 //import '../../App.css'
+import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
 import packageImg from '../../assets/images/box-small.png';
 import {ReactComponent as fragileIco} from '../../assets/icon/fragile.svg';
 import {ReactComponent as fishIco} from '../../assets/icon/fish.svg';
@@ -108,9 +109,9 @@ const MyRides = () => {
                         </Button>
                       </Box>
                       <Box py ={1}>
-                        <Button size='small' variant = 'contained' className={'primarybutton'}>
+                        <PrimaryButton size='small' variant = 'contained'>
                           DETALII
-                        </Button>
+                        </PrimaryButton>
                       </Box>
                     </Box>
                   </Box>
@@ -207,9 +208,9 @@ const MyRides = () => {
                         </Button>
                       </Box>
                       <Box py ={1}>
-                        <Button size='small' variant = 'contained' className={'primarybutton'}>
+                        <PrimaryButton size='small' variant = 'contained'>
                           DETALII
-                        </Button>
+                        </PrimaryButton>
                       </Box>
                     </Box>
                   </Box>
@@ -306,9 +307,9 @@ const MyRides = () => {
                         </Button>
                       </Box>
                       <Box py ={1}>
-                        <Button size='small' variant = 'contained' className={'primarybutton'}>
+                        <PrimaryButton size='small' variant = 'contained'>
                           DETALII
-                        </Button>
+                        </PrimaryButton>
                       </Box>
                     </Box>
                   </Box>

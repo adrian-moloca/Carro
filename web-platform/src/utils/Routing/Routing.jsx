@@ -6,6 +6,8 @@ import HeaderLogedIn from '../../components/headerLogedIn/HeaderLogedIn';
 import Footer from '../../components/footer/footer';
 import Login from '../../pages/login/login';
 import ForgotPassword from '../../pages/login/forgot-password/forgot-password';
+import EmailSent from '../../pages/login/forgot-password/email-sent/email-sent';
+import ResetPassword from '../../pages/login/reset-password/reset-password';
 import Register from '../../pages/register/register';
 import SelectPlan from '../../pages/register/select-plan/select-plan';
 import AddCard from '../../pages/register/select-plan/add-card/add-card';
@@ -63,6 +65,9 @@ const Routes = () => {
                                 <Route path="/search-package" exact component={SearchPackage}/>
                                 <Route path="/search-ride" exact component={SearchRide}/>
                                 <Route path="/login" exact component={Login}/>
+                                <Route path="/login/forgot-password" exact component={ForgotPassword}/>
+                                <Route path="/login/reset-password" exact component={ResetPassword}/>
+                                <Route path="/login/forgot-password/email-sent" exact component={EmailSent}/>
                                 <Route path="/register" exact component={Register}/>
                                 <Route path="/register/select-plan" exact component={SelectPlan}/>
                                 <Route path="/register/select-plan/add-card" exact component={AddCard}/>
