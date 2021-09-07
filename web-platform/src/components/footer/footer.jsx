@@ -1,90 +1,102 @@
-import React from 'react'
+import React from 'react';
+import { Link } from "react-router-dom";
+import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
-
 import facebook from "../../assets/icon/facebookIcon.png"
 import instagram from "../../assets/icon/instagramIcon.png"
 import twitter from "../../assets/icon/twitterIcon.png"
-import { Link } from "react-router-dom";
-import './footerStyle'
+import Grid from '@material-ui/core/Grid';
+import useStyles from'./footerStyle'
 
-const Footer = () => { 
+export default function NestedGrid() {
+  const classes = useStyles();
+
+  function FormRow() {
+    return (
+      <React.Fragment>
+        <Grid item >
+          <Paper className={classes.paper}>Cum functioneaza</Paper>
+        </Grid>
+        <Grid item >
+          <Paper className={classes.paper}>Despre noi</Paper>
+        </Grid>
+        <Grid item >
+          <Paper className={classes.paper}>Intrebari frecvente</Paper>
+        </Grid>
+        <Grid item >
+          <Paper className={classes.paper}>Noutati si planuri de viitor</Paper>
+        </Grid>
+      </React.Fragment>
+    );
+  }
+  function FormRow1() {
+    return (
+      <React.Fragment>
+        <Grid item >
+          <Paper className={classes.paper}>Contact</Paper>
+        </Grid>
+        <Grid item >
+          <Paper className={classes.paper}>Termeni si conditii</Paper>
+        </Grid>
+        <Grid item >
+          <Paper className={classes.paper}>Presa</Paper>
+        </Grid>
+        <Grid item >
+          <Paper className={classes.paper}>Recenzii</Paper>
+        </Grid>
+      </React.Fragment>
+    );
+  }
+  function FormRow2() {
+    return (
+      <React.Fragment>
+        <Grid item >
+          <Paper className={classes.paper}>Cariera</Paper>
+        </Grid>
+        <Grid item >
+          <Paper className={classes.paper}>Aplicatie pentru mobil</Paper>
+        </Grid>
+        <Grid item >
+          <Paper className={classes.paper}>De ce sa folosesti serviciile noastre</Paper>
+        </Grid>
+        <Grid item >
+          <Paper className={classes.paper}>Vouchere</Paper>
+        </Grid>
+      </React.Fragment>
+    );
+  }
+  function FormRowMediaButtons() {
+    return (
+      <div className={classes.mediaButtonsContainer}>
+            <IconButton>
+              <img src={facebook}></img>
+            </IconButton>
+            <IconButton>
+              <img src={instagram}></img>
+            </IconButton>
+            <IconButton>
+              <img src={twitter}></img>
+            </IconButton>
+      </div>
+    );
+  }
+  
+
   return (
-    <div className="footer">
-      <div className="sbd-footer-media-buttons">
-        <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="account of current user"
-            aria-haspopup="true"
-          >
-            <img src={facebook} alt=""/>
-        </IconButton>
-        <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="account of current user"
-            aria-haspopup="true"
-          >
-            <img src={instagram} alt=""/> 
-        </IconButton>
-        <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="account of current user"
-            aria-haspopup="true"
-          >
-            <img src={twitter} alt=""/>
-        </IconButton>
-      </div>
-      <div className="sbd-footer-separation-border"></div>
-      <div className="container footer-container">
-        <div className="row">
-          <div className="col-sm-12 col-md-12 col-lg-4">
-            <Link to="/how-works"><p>Cum functioneaza</p></Link>
-          </div>
-          <div className="col-sm-12 col-md-12 col-lg-4">
-            <Link to="/contact"><p>Contact</p></Link>
-          </div>
-          <div className="col-sm-12 col-md-12 col-lg-4">
-            <Link to="/"><p>Cariera</p></Link>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-12 col-md-12 col-lg-4">
-            <Link to="/about"><p>Despre noi</p></Link>
-          </div>
-          <div className="col-sm-12 col-md-12 col-lg-4">
-            <Link ><p>Termeni si conditii</p></Link>
-          </div>
-          <div className="col-sm-12 col-md-12 col-lg-4">
-            <Link to="/"><p>Aplicatie pentru mobil</p></Link>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-12 col-md-12 col-lg-4">
-            <Link to="/"><p>Intrebari frecvente</p></Link>
-          </div>
-          <div className="col-sm-12 col-md-12 col-lg-4">
-            <Link to="/"><p>Presa</p></Link> 
-          </div>
-          <div className="col-sm-12 col-md-12 col-lg-4">
-            <Link to="/"><p>De ce sa folosesti serviciile noastre</p></Link>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-12 col-md-12 col-lg-4">
-            <Link to="/"><p>Noutati si planuri de viitor</p></Link>
-          </div>
-          <div className="col-sm-12 col-md-12 col-lg-4">
-            <Link to="/"><p>Recenzii</p></Link>
-          </div>
-          <div className="col-sm-12 col-md-12 col-lg-4">
-            <Link to="/"><p>Vouchere</p></Link>
-          </div>
-        </div>
-      </div>
+    <div className={classes.root}>
+      <FormRowMediaButtons />
+      <div className={classes.footerSeparationLine}></div>
+      <Grid className={classes.footerLinksContainer} spacing={1} >
+        <Grid container direction="column" item xs={3} spacing={2} className={classes.noMargin}>
+          <FormRow />
+        </Grid>
+        <Grid container direction="column" item xs={3} spacing={2} className={classes.noMargin}>
+          <FormRow1 />
+        </Grid>
+        <Grid container item  direction="column"xs={3} spacing={2} className={classes.noMargin}>
+          <FormRow2 />
+        </Grid>        
+      </Grid>
     </div>
   );
 }
-
-export default Footer;
