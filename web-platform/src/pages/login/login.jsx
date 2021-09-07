@@ -6,6 +6,7 @@ import googleicon from '../../assets/images/GoogleIcon.png';
 import fbicon from '../../assets/images/fbicon.png';
 import CarroTextField from '../../components/textField/CarroTextField.jsx';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton.jsx';
+import { Link } from 'react-router-dom';
 
 
 const Login = () => { 
@@ -33,14 +34,16 @@ const Login = () => {
               label='Remind Me'/>
           </Grid>
           <Grid item xs= {6} justifyContent='flex-end'>
-            <Button className={'Primary-color'}>Am uitat parola</Button>
+            <Link to='/login/forgot-password' style={{ textDecoration: 'none' }}>
+              <Button className={'Primary-color'}>Am uitat parola</Button>
+            </Link>
           </Grid>
         </Grid>  
       </Box>
       <Box mt={4} alignContent='center' textAlign='center' px={30}>  
-        <PrimaryButton size = 'large' variant='contained'>
-          AUTENTIFICARE
-        </PrimaryButton>
+          <PrimaryButton size = 'large' variant='contained'>
+            AUTENTIFICARE
+          </PrimaryButton>
       </Box>
       <Box mt={4} borderTop={1} borderColor={'grey.500'} alignContent='center' textAlign='center'>
         <Box className={['Secondary-color', classes.textBoxStyle]}>

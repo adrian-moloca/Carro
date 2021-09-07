@@ -66,7 +66,7 @@ const Routes = () => {
                                 <Route path="/search-ride" exact component={SearchRide}/>
                                 <Route path="/login" exact component={Login}/>
                                 <Route path="/login/forgot-password" exact component={ForgotPassword}/>
-                                <Route path="/login/reset-password" exact component={ResetPassword}/>
+                                <Route path="/reset-password" exact component={ResetPassword}/>
                                 <Route path="/login/forgot-password/email-sent" exact component={EmailSent}/>
                                 <Route path="/register" exact component={Register}/>
                                 <Route path="/register/select-plan" exact component={SelectPlan}/>

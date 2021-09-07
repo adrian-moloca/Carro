@@ -47,6 +47,14 @@
   color: grey;
 }
 
+.Green-carro {
+  color: #34d02d;
+}
+
+.Pink-carro {
+  color: #f50057;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
