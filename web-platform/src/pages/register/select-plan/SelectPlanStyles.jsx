@@ -10,6 +10,9 @@ const useStyles = makeStyles({
   },
   SelectPlanContainterWidth: {
     width: "50%",
+    marginTop: '100px',
+    marginBottom: '90px',
+
   },
   SmallContainerContent: {
     display: "flex",
