@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {BrowserRouter as Router , Route, Switch} from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import Header from '../../components/header/header';
+import HeaderLogedOut from '../../components/headerLogedOut/HeaderLogedOut';
+import HeaderLogedIn from '../../components/headerLogedIn/HeaderLogedIn';
 import Footer from '../../components/footer/footer';
 import Login from '../../pages/login/login';
 import ForgotPassword from '../../pages/login/forgot-password/forgot-password';
@@ -48,7 +49,7 @@ const Routes = () => {
                 // ) : (
                     <div className="sbd-div-background-side-linear">
                         <div>
-                            <Header />
+                            <HeaderLogedIn/>
                             <div className="sbd-container">
                                 <Switch>
                                     <Route path="/" exact component={HomePage}/>
