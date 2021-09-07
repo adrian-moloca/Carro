@@ -18,18 +18,25 @@
 } */
 
 .sbd-container {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
 }
 
 .sbd-container-footer {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
+  width: 100%;
+}
+
+.sbd-container-content {
+  width: 100%;
+  height: 100%;
+  background-color: #ededed;
+  flex: auto;
 }
 
 .sbd-container-header {
-    width: 100%;
-    position: absolute;
-    top: 0;
+  width: 100%;
 }
