@@ -5,6 +5,7 @@ import "../../../App.css";
 import useStyles from "./SelectPlanStyles";
 import CheckIcon from "../../../assets/images/check.png";
 import DeclinedIcon from "../../../assets/images/decline.png";
+import PrimaryButton from "../../../components/buttons/primaryButton/primaryButton";
 
 const SelectPlan = () => {
   const classes = useStyles();
@@ -56,9 +57,15 @@ const SelectPlan = () => {
             {" "}
             GRATIS
           </Typography>
-          <Button variant="contained" color="primary" className={'primarybutton'} >
-            SELECTEAZA
-          </Button>
+          <Grid
+            container
+            xs={12}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <PrimaryButton variant="contained"> SELECTEAZA</PrimaryButton>
+          </Grid>
         </Grid>
         <Grid xs={5} className={classes.SmallContainer}>
           <Typography className={classes.SmallContainerContent}>
@@ -105,13 +112,17 @@ const SelectPlan = () => {
             {" "}
             500 RON
           </Typography>
-          <Button variant="contained" color="primary" className={'primarybutton'} >
-            SELECTEAZA
-          </Button>
+          <Grid
+            container
+            xs={12}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            direction="column"
+          >
+            <PrimaryButton variant="contained"> SELECTEAZA</PrimaryButton>
+          </Grid>
         </Grid>
-
-        
-       
       </Grid>
     </Container>
   );
