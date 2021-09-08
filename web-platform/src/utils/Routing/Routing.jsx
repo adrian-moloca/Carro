@@ -6,6 +6,8 @@ import HeaderLogedIn from '../../components/headerLogedIn/HeaderLogedIn';
 import Footer from '../../components/footer/footer';
 import Login from '../../pages/login/login';
 import ForgotPassword from '../../pages/login/forgot-password/forgot-password';
+import EmailSent from '../../pages/login/forgot-password/email-sent/email-sent';
+import ResetPassword from '../../pages/login/reset-password/reset-password';
 import Register from '../../pages/register/register';
 import SelectPlan from '../../pages/register/select-plan/select-plan';
 import AddCard from '../../pages/register/select-plan/add-card/add-card';
@@ -47,9 +49,11 @@ const Routes = () => {
                 //         {/* <Route path="/forgotpassword" exact component={ForgotPassword}/> */}
                 //     </Switch>
                 // ) : (
-                    <div className="sbd-div-background-side-linear">
-                        <HeaderLogedIn/>
-                        <div className="sbd-container">
+                    <div className="sbd-container">
+                        <div className="sbd-container-header">
+                            <HeaderLogedIn/>
+                        </div>
+                        <div className="sbd-container-content">
                             <Switch>
                                 <Route path="/" exact component={HomePage}/>
                                 <Route path="/add-package" exact component={AddPackage}/>
@@ -60,13 +64,19 @@ const Routes = () => {
                                 <Route path="/profile" exact component={Profile}/>
                                 <Route path="/search-package" exact component={SearchPackage}/>
                                 <Route path="/search-ride" exact component={SearchRide}/>
+                                <Route path="/login" exact component={Login}/>
+                                <Route path="/login/forgot-password" exact component={ForgotPassword}/>
+                                <Route path="/reset-password" exact component={ResetPassword}/>
+                                <Route path="/login/forgot-password/email-sent" exact component={EmailSent}/>
                                 <Route path="/register" exact component={Register}/>
                                 <Route path="/register/select-plan" exact component={SelectPlan}/>
                                 <Route path="/register/select-plan/add-card" exact component={AddCard}/>
                                 <Route component={HomePage} />
                             </Switch>
                         </div>
-                        <Footer/>
+                        <div className="sbd-container-footer">
+                            <Footer/>
+                        </div>
                     </div>
                 // )
             }

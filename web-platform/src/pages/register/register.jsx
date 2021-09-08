@@ -41,6 +41,8 @@ const Register = () => {
 
         <Grid item xs={6}>
           <TextField
+          className={classes.TextFieldOutline}
+          id="outlined-full-width"
             label="Nume"
             id="outlined-margin-none"
             placeholder="Nume utilizator"
@@ -76,8 +78,19 @@ const Register = () => {
           />
         </Grid>
         <Grid item xs={6}>
-          
-          <TextField
+        <form className={classes.container} noValidate>
+      <TextField
+        id="datetime-local"
+        label="Next appointment"
+        type="datetime-local"
+        defaultValue="2017-05-24T10:30"
+        className={classes.textField}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+    </form>
+          {/* <TextField
             id="date"
             label="Data de nastere"
             type="date"
@@ -86,13 +99,13 @@ const Register = () => {
             InputLabelProps={{
               shrink: true,
             }}
-          />
+          /> */}
         </Grid>
         <Grid item xs={12}>
           <TextField
+            className={classes.TextFieldOutline}
             id="outlined-full-width"
             label="Adresa de mail"
-            style={{ margin: 8 }}
             placeholder="user@mail.com"
             fullWidth
             margin="normal"
@@ -145,8 +158,9 @@ const Register = () => {
         </FormGroup>
 
         <Grid item xs={12} className={classes.ButtonWidth}>
-        <Button variant="contained" color="primary" className={classes.PrimaryButton} >
+        <Button variant="contained" color="primary" className={'primarybutton'} >
             INREGISTRARE
+
           </Button>
         </Grid>
         <Grid
