@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/styles';
 const ListItemPersonalized = withStyles({
     root:{
         fontSize: '15px',
-        marginTop: '-16px',
+        marginTop: '-12px',
         fontWeight:'400',
     },
 
