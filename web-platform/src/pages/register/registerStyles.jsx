@@ -6,6 +6,9 @@ const useStyles = makeStyles(
     AccordionBorderRadius: {
       borderRadius: "10px",
     },
+    label: {
+fontSize: '16px',
+    },
 
     AccordionDetailsFlex: {
       display: "flex",
@@ -22,6 +25,8 @@ const useStyles = makeStyles(
     },
     ButtonWidth: {
       width: '100%',
+      display: 'flex',
+      justifyContent: 'center'
     },
     PrimaryButton:{
       display: 'flex',
@@ -42,6 +47,9 @@ const useStyles = makeStyles(
         
       
     },
+    CheckBoxStyle:{
+      fontSize: '16px',
+    }
   },
 }
   /* box-small 1 */

@@ -30,6 +30,15 @@ const HomePage = () => {
             <Box className={classes.HomescreenPrimaryBox}><img src={CarIcon}></img>Ofera Transport</Box>
           </Grid>
         </Grid>
+        <Typography className={classes.HomePageText}>Cele mai cautate transporturi:</Typography>
+        <Grid item xs={12} className={classes.TopTransport}>
+            <Box className={classes.TopTransportRoute}><Typography className={classes.TopTransportRouteText}>Bucuresti - Constanta</Typography>
+            <Typography className={classes.TopTransportRouteText}>20 RON</Typography></Box>
+            <Box className={classes.TopTransportRoute}><Typography className={classes.TopTransportRouteText}>Cluj-Napoca - Brasov</Typography>
+            <Typography className={classes.TopTransportRouteText}>35 RON</Typography></Box>
+            <Box className={classes.TopTransportRoute}><Typography className={classes.TopTransportRouteText}>Timisoara - Sibiu</Typography>
+            <Typography className={classes.TopTransportRouteText}>30 RON</Typography></Box>
+          </Grid>
       </Grid>
     </Container>
   );
