@@ -5,15 +5,11 @@ import { withStyles } from '@material-ui/core';
 const SecondaryButton = withStyles({
     root:{
        fontWeight: 'bold',
-       border: '1px solid ',
-       borderRadius: '4px',
-       color: "rgba(245, 0, 87, 0.5)",
-       background: 'transparent',
-
+       color: "#F50057",
+       backgroundColor:'#fff',
        '&:hover': {
            color:'#fff',
-           backgroundColor: 'rgba(245, 0, 87, 0.5)',
-           border: 'rgba(245, 0, 87, 0.5)',
+           backgroundColor: '#F50057',
        },
     },
 

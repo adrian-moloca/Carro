@@ -14,6 +14,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import CarroTextField from "../../../../components/textField/CarroTextField"
 import PrimaryButton from "../../../../components/buttons/primaryButton/primaryButton"
 import SecondaryButton from "../../../../components/buttons/secondaryButton/secondaryButton"
+import { Link } from "react-router-dom";
 const AddCard = () => {
   const [state, setState] = React.useState({
     checkedA: true,
@@ -26,8 +27,8 @@ const AddCard = () => {
     <Container className={"Primary-container-style"}>
       <Grid container spacing={3} className={"RegisterBoxAlign"}>
         <Grid item xs={12}>
-          <Box mb={2} fontWeight={400} fontSize={21} textAlign={"center"}>
-            ADAUGA CARD
+          <Box mb={2} fontWeight={400} fontSize={25} textAlign={"center"}>
+            Adauga card
           </Box>
         </Grid>
 
@@ -74,12 +75,14 @@ const AddCard = () => {
           </FormGroup>
         </Grid>
         <Grid item xs={6} className={classes.ButtonWidth}>
-         <SecondaryButton variant="contained" fullWidth> ANULEAZA </SecondaryButton> 
-         
+         <Link to='/payment-method' style={{textDecoration: 'none'}}> 
+          <SecondaryButton variant="contained" fullWidth> ANULEAZA </SecondaryButton> 
+         </Link>
         </Grid>
         <Grid item xs={6} className={classes.ButtonWidth}>
-        <PrimaryButton variant="contained" fullWidth> SELECTEAZA</PrimaryButton>
-         
+        <Link to='/payment-method/card-selected' style={{textDecoration: 'none'}}>
+          <PrimaryButton variant="contained" fullWidth> SELECTEAZA</PrimaryButton>
+        </Link> 
         </Grid>
       </Grid>
     </Container>
