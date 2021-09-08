@@ -54,19 +54,19 @@ const MyRides = () => {
                     </List>
                     <List dense ='true' disablePadding='true'>
                       <ListItem>
-                        <Box mt = {1}fontSize={18} fontWeight={500}>Destinatie: Bucuresti</Box>
+                        <Box>Destinatie: Bucuresti</Box>
                         {/* <ListItemText disableTypography='true' primary='Destinatie: Bucuresti'/> */}                      
                       </ListItem>
                       <ListItem>
-                        <Box mt={-2} fontSize={18} fontWeight={500}>Adresa destinatie: Lorem Ipsium Street</Box>
+                        <Box>Adresa destinatie: Lorem Ipsium Street</Box>
                         {/* <ListItemText disableTypography='true' primary='Adresa destinatie: Lorem Ipsium Street'/> */}                      
                       </ListItem>
                       <ListItem>
-                        <Box mt={-2} fontSize={18} fontWeight={500}>Numarul estimat de ore: 5 ore</Box>  
+                        <Box>Numarul estimat de ore: 5 ore</Box>  
                         {/* <ListItemText disableTypography='true' primary='Numarul estimat de ore: 5 ore'/> */}                      
                       </ListItem>
                       <ListItem>
-                        <Box mt={-2} fontSize={18} fontWeight={500}>Telefon: 0888888888</Box>
+                        <Box>Telefon: 0888888888</Box>
                         {/* <ListItemText disableTypography='true' primary='Telefon: 0888888888'/> */}                      
                       </ListItem>
                     </List>

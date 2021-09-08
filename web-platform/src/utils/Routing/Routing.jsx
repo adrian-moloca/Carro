@@ -20,8 +20,7 @@ import PaymentMethod from '../../pages/payment-method/payment-method';
 import Profile from '../../pages/profile/profile';
 import SearchPackage from '../../pages/search-package/search-package';
 import SearchRide from '../../pages/search-ride/search-ride';
-import './Routing.css'
-
+import './Routing.css';
 const Routes = () => {
     
     const [isLoggedIn, setIsLoggedIn] = useState(false);
