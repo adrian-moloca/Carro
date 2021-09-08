@@ -38,6 +38,7 @@ const Register = () => {
           <Box mb={2} fontWeight={400} fontSize={21} textAlign={"center"}>
             Profile
           </Box>
+          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.large} />
         </Grid>
         <Grid item xs={6}>
           <TextField
