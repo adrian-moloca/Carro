@@ -18,6 +18,10 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import GoogleIcon from "../../assets/images/GoogleIcon.png";
 import FacebookIcon from "../../assets/images/facebook-icon.png";
+import CarroTextField from "../../components/textField/CarroTextField";
+import PrimaryButton from "../../components/buttons/primaryButton/primaryButton"
+
+
 
 const Register = () => {
   const classes = useStyles();
@@ -41,128 +45,63 @@ const Register = () => {
         </Grid>
 
         <Grid item xs={6}>
-          <TextField
-          className={classes.TextFieldOutline}
-          id="outlined-full-width"
-            label="Nume"
-            id="outlined-margin-none"
-            placeholder="Nume utilizator"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
+          <CarroTextField variant= "outlined" label= "Nume" />
+          
         </Grid>
         <Grid item xs={6}>
-          <TextField
-            label=" Prenume"
-            id="outlined-margin-none"
-            placeholder="Prenume utilizator"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
+        <CarroTextField variant= "outlined" label= "Prenume" />
+        
         </Grid>
         <Grid item xs={6}>
-          <TextField
-            label="Adresa"
-            id="outlined-margin-none"
-            placeholder="Adresa de preluare"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
+          <CarroTextField variant= "outlined" label= "Adresa de preluare" />
         </Grid>
         <Grid item xs={6}>
         <form className={classes.container} noValidate>
-      <TextField
-        id="datetime-local"
-        label="Next appointment"
-        type="datetime-local"
-        defaultValue="2017-05-24T10:30"
-        className={classes.textField}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
+    
     </form>
-          {/* <TextField
+          <TextField
             id="date"
             label="Data de nastere"
             type="date"
-            defaultValue="2017-05-24"
+            defaultValue="aaaa-ll-zz"
             className={classes.textField}
             InputLabelProps={{
               shrink: true,
             }}
-          /> */}
+          />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            className={classes.TextFieldOutline}
-            id="outlined-full-width"
-            label="Adresa de mail"
-            placeholder="user@mail.com"
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
+        <CarroTextField variant= "outlined" label= "Adresa de email" fullWidth />
+         
         </Grid>
         <Grid item xs={6}>
-          <TextField
-            label="Password"
-            label="Password"
-            type="password"
-            id="outlined-margin-none"
-            placeholder="password"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
+        <CarroTextField variant= "outlined" label= "Password" type="password" />
+         
         </Grid>
         <Grid item xs={6}>
-          <TextField
-            label="Password"
-            label="Password"
-            type="password"
-            id="outlined-margin-none"
-            placeholder="password"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
+        <CarroTextField variant= "outlined" label= "Confirm Password" type="password" />
+         
         </Grid>
+        
         <FormGroup row>
-          <FormControlLabel
+          <FormControlLabel 
+            classes={{ label: classes.label }}
             control={
               <Checkbox
+                // className={classes.CheckBoxStyle}
                 checked={state.checkedA}
                 onChange={handleChange}
                 name="checkedA"
-                color="primary"
+                color="default"
               />
             }
+            // className={classes.label}
             label="TERMENI SI CONDITII"
           />
         </FormGroup>
 
         <Grid item xs={12} className={classes.ButtonWidth}>
-        <Button variant="contained" color="primary" className={'primarybutton'} >
-            INREGISTRARE
-
-          </Button>
+          <PrimaryButton variant="contained" fullWidth> INREGISTRARE</PrimaryButton>
         </Grid>
         <Grid
           container
