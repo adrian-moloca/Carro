@@ -37,7 +37,6 @@ const MyCardTD =(props)=>{
                             <ListItemPersonalized >Plecare: {props.plecare}</ListItemPersonalized>
                             <ListItemPersonalized>Destinatie: {props.destinatie}</ListItemPersonalized>
                             <ListItemPersonalized>Telefon: {props.telefon}</ListItemPersonalized>
-                            <ListItemPersonalized>{props.children}</ListItemPersonalized>
                         </List>
                     </Box>
                     <Box ml='25%' width='50%' display='flex' justifyItems='spacebetween'>
@@ -55,10 +54,12 @@ const MyCardTD =(props)=>{
                     <BackdropSelectDriver 
                     open={open} 
                     clicked={handleCloseBd}
-                    image={profilePhotoLeft}
-                    name='Marius Popescu'
-                    destinatie= 'Bucuresti'
-                    telefon = '0788888888'/>
+                    image={props.image}
+                    name={props.name}
+                    plecare={props.plecare}
+                    destinatie= {props.destinatie}
+                    telefon = {props.telefon}
+                    dataPlecare = {props.dataPlecare}/>
                 </Box>
         );
 };

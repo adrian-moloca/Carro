@@ -1,7 +1,7 @@
 import React from 'react';
 import useStyles from './my-packagesStyle';
 import { Link } from 'react-router-dom';
-import { Container, Box, Typography, AccordionSummary, AccordionDetails, Accordion, Grid, List, ListItem, Card, CardActionArea, CardMedia, CardContent,} from '@material-ui/core';
+import { Container, Box, Typography, AccordionSummary, AccordionDetails, Accordion, Grid, List} from '@material-ui/core';
 import {ExpandMore, ArrowForward, Delete, Create} from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core';
 import MyCardTD from '../../components/cards/MyCardTD';
@@ -13,6 +13,7 @@ import animalPrints from '../../assets/images/animalPrints.png';
 import profilePhotoLeft from '../../assets/images/photoprofile1.png';
 import profilePhotoMiddle from '../../assets/images/photoprofile2.png';
 import profilePhotoRight from '../../assets/images/photoprofile3.png';
+import ListItemPersonalized from '../../components/list/listItemad/listItemPersonalized';
 
 const MyPackages = () => {
   
@@ -55,38 +56,18 @@ const MyPackages = () => {
                 <Box fontSize={20} m={1} >Detalii pachet</Box>
                 <Box display='flex' justifyContent='space-between' px='2%'>
                     <List dense='true'  disablePadding='true'>
-                      <ListItem>
-                        <Box mt = {1} fontSize={18} fontWeight={400}>Plecare: Timisoara, Romania</Box>                      
-                      </ListItem>
-                      <ListItem>
-                        <Box mt={-2} fontSize={18} fontWeight={400}>Adresa de preluare: Lorem impsium Street</Box>                    
-                      </ListItem>
-                      <ListItem>
-                        <Box mt={-2} fontSize={18} fontWeight={400}>Tip Colet: mic</Box>                  
-                      </ListItem>
-                      <ListItem>
-                        <Box mt={-2} fontSize={18} fontWeight={400}>Greutate: 1Kg</Box>                      
-                      </ListItem>
-                      <ListItem>
-                        <Box mt={-2} fontSize={18} fontWeight={400}>Pret: 150 LEI</Box>                      
-                      </ListItem>
+                      <ListItemPersonalized>Plecare: Timisoara, Romania</ListItemPersonalized>
+                      <ListItemPersonalized>Adresa de preluare: Lorem impsium Street</ListItemPersonalized>
+                      <ListItemPersonalized>Tip Colet: mic</ListItemPersonalized>
+                      <ListItemPersonalized>Greutate: 1Kg</ListItemPersonalized>
+                      <ListItemPersonalized>Pret: 150 LEI</ListItemPersonalized>
                     </List>
                     <List dense ='true' disablePadding='true'>
-                      <ListItem>
-                        <Box mt = {1}fontSize={18} fontWeight={400}>Destinatie: Bucuresti</Box>                     
-                      </ListItem>
-                      <ListItem>
-                        <Box mt={-2} fontSize={18} fontWeight={400}>Adresa destinatie: Lorem Ipsium Street</Box>
-                      </ListItem>
-                      <ListItem>
-                        <Box mt={-2} fontSize={18} fontWeight={400}>Dimensiuni: 0x0x0</Box>                      
-                      </ListItem>
-                      <ListItem>
-                        <Box mt={-2} fontSize={18} fontWeight={400}>Descriere: -</Box>                  
-                      </ListItem>
-                      <ListItem>
-                        <Box mt={-2} fontSize={18} fontWeight={400}>Nume: Pachetul meu</Box>                  
-                      </ListItem>
+                      <ListItemPersonalized>Destinatie: Bucuresti</ListItemPersonalized>
+                      <ListItemPersonalized>Adresa destinatie: Lorem Ipsium Street</ListItemPersonalized>
+                      <ListItemPersonalized>Dimensiuni: 0x0x0</ListItemPersonalized>
+                      <ListItemPersonalized>Descriere:</ListItemPersonalized>
+                      <ListItemPersonalized>Nume: Pachetul meu</ListItemPersonalized>
                     </List>
                   </Box>
                   <Box my={2} height='33px' ml='37.5%' width='25%' display='flex' justifyContent='space-between'>
@@ -103,21 +84,21 @@ const MyPackages = () => {
                       plecare='Timisoara'
                       destinatie='Bucuresti'
                       telefon='0888888888'
-                      rating='4.0'/>
+                      dataPlecare='26/08/2021 02:00 AM'/>
                      <MyCardTD 
                       image={profilePhotoMiddle} 
                       name='Marius popescu'
                       plecare='Timisoara'
                       destinatie='Bucuresti'
                       telefon='0888888888'
-                      rating='4.0'/>
+                      dataPlecare='26/08/2021 02:00 AM'/>
                      <MyCardTD 
                       image={profilePhotoRight} 
                       name='Marius popescu'
                       plecare='Timisoara'
                       destinatie='Bucuresti'
                       telefon='0888888888'
-                      rating='4.0'/>
+                      dataPlecare='26/08/2021 02:00 AM'/>
                   </Box>
               </Box>
             </AccordionDetails>
