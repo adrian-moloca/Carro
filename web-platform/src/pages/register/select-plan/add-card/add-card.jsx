@@ -6,15 +6,15 @@ import {
   TextField,
   Grid,
   Checkbox,
-  Typography,
   Button,
-  Divider,
-  StepConnector,
-  Avatar,
+ 
 } from "@material-ui/core";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-
+import CarroTextField from "../../../../components/textField/CarroTextField"
+import PrimaryButton from "../../../../components/buttons/primaryButton/primaryButton"
+import SecondaryButton from "../../../../components/buttons/secondaryButton/secondaryButton"
+import { Link } from "react-router-dom";
 const AddCard = () => {
   const [state, setState] = React.useState({
     checkedA: true,
@@ -27,24 +27,14 @@ const AddCard = () => {
     <Container className={"Primary-container-style"}>
       <Grid container spacing={3} className={"RegisterBoxAlign"}>
         <Grid item xs={12}>
-          <Box mb={2} fontWeight={400} fontSize={21} textAlign={"center"}>
-            ADAUGA CARD
+          <Box mb={2} fontWeight={400} fontSize={25} textAlign={"center"}>
+            Adauga card
           </Box>
         </Grid>
 
         <Grid item xs={6}>
-          <TextField
-            className={classes.TextFieldOutline}
-            id="outlined-full-width"
-            label="Numar card"
-            id="outlined-margin-none"
-            placeholder="XXXX XXXX XXXXX"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
+           <CarroTextField variant= "outlined" label= "Numar card" />
+          
         </Grid>
         <Grid item xs={6}>
           <form className={classes.container} noValidate>
@@ -61,28 +51,12 @@ const AddCard = () => {
           </form>
         </Grid>
         <Grid item xs={6}>
-          <TextField
-            label="Nume Complet"
-            id="outlined-margin-none"
-            placeholder="Joe Doe"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
+        <CarroTextField variant= "outlined" label= "Nume Complet" />
+          
         </Grid>
         <Grid item xs={6}>
-          <TextField
-            label=" CVV"
-            id="outlined-margin-none"
-            placeholder="XXX"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
+        <CarroTextField variant= "outlined" label= "CVV" />
+          
         </Grid>
 
         <Grid item xs={12}>
@@ -93,7 +67,7 @@ const AddCard = () => {
                   checked={state.checkedA}
                   onChange={handleChange}
                   name="checkedA"
-                  color="primary"
+                  color="default"
                 />
               }
               label="Salveaza card "
@@ -101,22 +75,14 @@ const AddCard = () => {
           </FormGroup>
         </Grid>
         <Grid item xs={6} className={classes.ButtonWidth}>
-          <Button
-            variant="outlined"
-            color="secondary"
-            className={classes.SecondaryButton}
-          >
-            ANULEAZA
-          </Button>
+         <Link to='/payment-method' style={{textDecoration: 'none'}}> 
+          <SecondaryButton variant="contained" fullWidth> ANULEAZA </SecondaryButton> 
+         </Link>
         </Grid>
         <Grid item xs={6} className={classes.ButtonWidth}>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.PrimaryButton}
-          >
-            SELECTEAZA
-          </Button>
+        <Link to='/payment-method/card-selected' style={{textDecoration: 'none'}}>
+          <PrimaryButton variant="contained" fullWidth> SELECTEAZA</PrimaryButton>
+        </Link> 
         </Grid>
       </Grid>
     </Container>

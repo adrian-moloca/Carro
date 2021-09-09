@@ -17,11 +17,11 @@ import MyPackages from '../../pages/my-packages/my-packages';
 import MyRides from '../../pages/my-rides/my-rides';
 import Notifications from '../../pages/notifications/notifications';
 import PaymentMethod from '../../pages/payment-method/payment-method';
+import CardSelected from '../../pages/payment-method/card-selected/card-selected';
 import Profile from '../../pages/profile/profile';
 import SearchPackage from '../../pages/search-package/search-package';
 import SearchRide from '../../pages/search-ride/search-ride';
-import './Routing.css'
-
+import './Routing.css';
 const Routes = () => {
     
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -61,6 +61,8 @@ const Routes = () => {
                                 <Route path="/my-rides" exact component={MyRides}/>
                                 <Route path="/notifications" exact component={Notifications}/>
                                 <Route path="/payment-method" exact component={PaymentMethod}/>
+                                <Route path="/payment-method/add-method" exact component={AddCard}/>
+                                <Route path="/payment-method/card-selected" exact component={CardSelected}/>
                                 <Route path="/profile" exact component={Profile}/>
                                 <Route path="/search-package" exact component={SearchPackage}/>
                                 <Route path="/search-ride" exact component={SearchRide}/>

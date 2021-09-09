@@ -5,9 +5,8 @@ import { withStyles } from '@material-ui/core';
 const SecondaryButton = withStyles({
     root:{
        fontWeight: 'bold',
-       color: '#F50057',
-       borderColor:'#F50057',
-
+       color: "#F50057",
+       backgroundColor:'#fff',
        '&:hover': {
            color:'#fff',
            backgroundColor: '#F50057',

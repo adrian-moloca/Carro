@@ -7,10 +7,10 @@ const PrimaryButton = withStyles({
        fontWeight: 'bold',
        color: '#fff',
        backgroundColor: '#00b4d8',
-
        '&:hover': {
-            backgroundColor: '#0088a3',
-       },
+        backgroundColor: '#FFFFFF',
+        color: '#00B4D8',
+      },
     },
 
 })(Button);
