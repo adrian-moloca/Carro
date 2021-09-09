@@ -59,8 +59,9 @@ const Register = () => {
         <form className={classes.container} noValidate>
     
     </form>
-          <TextField
+          <CarroTextField
             id="date"
+            variant="outlined"
             label="Data de nastere"
             type="date"
             defaultValue="aaaa-ll-zz"
