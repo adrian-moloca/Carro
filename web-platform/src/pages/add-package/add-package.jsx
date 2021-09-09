@@ -4,18 +4,47 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import {Container, TextField, Box, Grid} from "@material-ui/core";
+import {Container, TextField, Box, Grid, Checkbox,} from "@material-ui/core";
 import primaryButton from '../../components/buttons/primaryButton/primaryButton';
 import useStyles from './add-packageStyle.jsx'
 import { classes } from 'istanbul-lib-coverage';
 import CarroTextField from '../../components/textField/CarroTextField'
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 
 function getSteps() {
   return ['step1', 'step2', 'step3', 'step4'];
 }
 
-function getStepContent(stepIndex) {
+const GetStepContent = (stepIndex) => {
+
+  const [stateCheckedInflamabil, setStateCheckedInflamabil] = React.useState({
+    checkedA: false,
+  });
+  const [stateCheckedFragil, setStateCheckedFragil] = React.useState({
+    checkedA: false,
+  });
+  const [stateCheckedPerisabil, setStateCheckedPerisabil] = React.useState({
+    checkedA: false,
+  });
+  const [stateCheckedAnimal, setStateCheckedAnimal] = React.useState({
+    checkedA: false,
+  });
+
+  const handleChangeInflamabil = (event) => {
+    setStateCheckedInflamabil({ ...stateCheckedInflamabil, [event.target.name]: event.target.checked });
+  };
+  const handleChangeFragil = (event) => {
+    setStateCheckedFragil({ ...stateCheckedFragil, [event.target.name]: event.target.checked });
+  };
+  const handleChangePerisabil = (event) => {
+    setStateCheckedPerisabil({ ...stateCheckedPerisabil, [event.target.name]: event.target.checked });
+  };
+  const handleChangeAnimal = (event) => {
+    setStateCheckedAnimal({ ...stateCheckedAnimal, [event.target.name]: event.target.checked });
+  };
+   
   switch (stepIndex) {
     case 0:
       return (
@@ -163,8 +192,75 @@ function getStepContent(stepIndex) {
       );
     case 2:
       return (
-        <Container className={"Primary-container-style"}>
-
+        <Container className="addPackagesContainer">
+          <Box my={4}>
+            <Grid 
+              container
+              direction="row"
+              justifyContent="space-around"
+              alignItems="center" >
+                <Grid item xs={3}>
+                  <FormGroup row>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={stateCheckedInflamabil.checkedA}
+                          onChange={handleChangeInflamabil}
+                          name="checkedA"
+                          color="default"
+                        />
+                      }
+                      label="Inflamabil"
+                    />
+                  </FormGroup>
+                </Grid>
+                <Grid item xs={3}>
+                  <FormGroup row>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={stateCheckedFragil.checkedA}
+                          onChange={handleChangeFragil}
+                          name="checkedA"
+                          color="default"
+                        />
+                      }
+                      label="Fragil"
+                    />
+                  </FormGroup>
+                </Grid>
+                <Grid item xs={3}>
+                  <FormGroup row>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={stateCheckedPerisabil.checkedA}
+                          onChange={handleChangePerisabil}
+                          name="checkedA"
+                          color="default"
+                        />
+                      }
+                      label="Perisabil"
+                    />
+                  </FormGroup>
+                </Grid>
+                <Grid item xs={3}>
+                  <FormGroup row>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={stateCheckedAnimal.checkedA}
+                          onChange={handleChangeAnimal}
+                          name="checkedA"
+                          color="default"
+                        />
+                      }
+                      label="Animal"
+                    />
+                  </FormGroup>
+                </Grid>
+            </Grid>
+          </Box>
         </Container>
       );
     case 3:
@@ -212,7 +308,7 @@ export default function HorizontalLabelPositionBelowStepper() {
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Typography className={classes.instructions}>{GetStepContent(activeStep)}</Typography>
             <div className={classes.buttonsSpacing}>
               <Button
                 disabled={activeStep === 0}
