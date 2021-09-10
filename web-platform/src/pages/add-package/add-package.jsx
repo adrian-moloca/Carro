@@ -1,3 +1,4 @@
+
 import React, {Fragment, useState} from 'react';
 import { Container, Box, Stepper, Step, StepLabel, Grid, FormControlLabel, Button, Radio, RadioGroup, MenuItem, InputAdornment, Select} from '@material-ui/core';
 import CarroTextField from '../../components/textField/CarroTextField';
@@ -127,5 +128,3 @@ const AddPackage = () => {
     </Container>
   );
 };
-
-export default AddPackage;
