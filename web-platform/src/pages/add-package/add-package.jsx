@@ -128,3 +128,5 @@ const AddPackage = () => {
     </Container>
   );
 };
+
+export default AddPackage;
