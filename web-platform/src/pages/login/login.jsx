@@ -16,13 +16,13 @@ const Login = () => {
   return (
     <Container className={'Primary-container-style'}>
       <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>Autentificare</Box>
-      <Box mt={6} alignContent='center' textAlign='center' ml='1%' >
-        <Grid container xs direction='column' alignItems='center' spacing={2} >
-          <Grid item xs={12}>
-            <CarroTextField required label='Email' variant='outlined'/>
+      <Box mt={6} alignContent='center' textAlign='center'  mx='30%'>
+        <Grid container xs direction='column' alignItems='center' spacing={2}>
+          <Grid container item xs={12} >
+            <CarroTextField required label='Email' variant='outlined' fullWidth/>
           </Grid>
-          <Grid item xs={12}>
-            <CarroTextField required label='Password' variant='outlined'/>
+          <Grid container item xs={12}>
+            <CarroTextField required label='Password' variant='outlined' fullWidth/>
           </Grid>
         </Grid>
       </Box>  
