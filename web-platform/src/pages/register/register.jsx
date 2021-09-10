@@ -1,5 +1,4 @@
 import React from "react";
-import "./registerStyles.jsx";
 import {
   Container,
   Box,
