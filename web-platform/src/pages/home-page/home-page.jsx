@@ -10,6 +10,7 @@ import {
   Checkbox,
   Typography,
   Button,
+  Link
 } from "@material-ui/core";
 import useStyles from "./home-pageStyles";
 const HomePage = () => {
@@ -26,8 +27,11 @@ const HomePage = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} className={classes.HomescreenButtons}>
-            <Box className={classes.HomescreenPrimaryBox}><img src={BoxIcon}></img> Trimite Pachet</Box>
-            <Box className={classes.HomescreenPrimaryBox}><img src={CarIcon}></img>Ofera Transport</Box>
+            <Box className={classes.HomescreenPrimaryBox}><img src={BoxIcon}></img> <Link href="/search-package" undeline= 'none' color= 'inherit'>
+            Trimite Pachet
+  </Link> </Box>
+            <Box className={classes.HomescreenPrimaryBox}><img src={CarIcon}></img> <Link href="/search-ride" undeline= 'none'>
+            Ofera Transport </Link></Box>
           </Grid>
         </Grid>
         <Typography className={classes.HomePageText}>Cele mai cautate transporturi:</Typography>
