@@ -32,10 +32,28 @@
   background-color: white;
   margin: 1% 0;
   padding: 20px;
-  width: 50% !important;
+  width: 60% !important;
   min-height: 62vh;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
+}
+
+@media screen and (max-width: 1280px) {
+  .Primary-container-style {
+    width: 80% !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .Primary-container-style {
+    width: 95% !important;
+  }
+}
+
+@media screen and (max-width: 806px) {
+  .Primary-container-style {
+    width: 100% !important;
+  }
 }
 
 .Primary-color {

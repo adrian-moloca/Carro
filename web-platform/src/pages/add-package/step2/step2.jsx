@@ -4,7 +4,7 @@ import CarroTextField from "../../../components/textField/CarroTextField";
 
 const StepTwo = () =>{
     return(
-        <Box display='flex' justifyContent='center' mt='12%'>
+        <Box display='flex' justifyContent='center' mt='5%'>
             <Grid container xs={12} spacing={3} >
             <Grid container item xs={6} justifyContent="center">
                 <CarroTextField variant ='outlined' label='Nume destinatar' fullWidth/>
