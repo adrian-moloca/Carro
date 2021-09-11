@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Container, Box, Typography, AccordionSummary, AccordionDetails, Accordion, Grid, List} from '@material-ui/core';
 import {ExpandMore, ArrowForward, Delete, Create} from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core';
-import MyCardTD from '../../components/cards/MyCardTD';
+import DriverCard from '../../components/cards/DriverCard/DriverCard';
 import fragile from '../../assets/images/fragile.png';
 import environmentdang from '../../assets/images/environmentdang.png';
 import firedang from '../../assets/images/firedang.png';
@@ -78,21 +78,21 @@ const MyPackages = () => {
                     <img src={animalPrints}/>
                   </Box>
                   <Box mt = {1} mb={2} display='flex'justifyContent='space-between'>
-                    <MyCardTD 
+                    <DriverCard 
                       image={profilePhotoLeft} 
                       name='Marius popescu'
                       plecare='Timisoara'
                       destinatie='Bucuresti'
                       telefon='0888888888'
                       dataPlecare='26/08/2021 02:00 AM'/>
-                     <MyCardTD 
+                     <DriverCard 
                       image={profilePhotoMiddle} 
                       name='Marius popescu'
                       plecare='Timisoara'
                       destinatie='Bucuresti'
                       telefon='0888888888'
                       dataPlecare='26/08/2021 02:00 AM'/>
-                     <MyCardTD 
+                     <DriverCard 
                       image={profilePhotoRight} 
                       name='Marius popescu'
                       plecare='Timisoara'

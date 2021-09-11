@@ -71,12 +71,6 @@
   }
 }
 
-@media screen and (max-width: 806px) {
-  .Primary-container-style {
-    width: 100% !important;
-  }
-}
-
 .Primary-color {
   color: #00b4d8 !important;
 }

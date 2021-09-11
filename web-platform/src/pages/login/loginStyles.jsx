@@ -4,10 +4,17 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles({
 
     textBoxStyle: {
-        width: '14%',
+        display:'flex',
+        justifyContent:'center',
+        width: '150px',
         backgroundColor: '#fff',
-        marginTop: '-1.5%',
+        marginTop: '-2%',
         marginLeft:'42.5%',
+    },
+
+    greyLinesStyle:{
+        height:'1px',
+        width: '100%',
     },
 
 

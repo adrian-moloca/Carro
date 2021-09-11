@@ -1,15 +1,15 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {Box, ListItem, List, Backdrop} from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
-import profilePhotoLeft from '../../assets/images/photoprofile1.png'
+import profilePhotoLeft from '../../../assets/images/photoprofile1.png'
 import {Star, StarBorder, StarHalf} from '@material-ui/icons';
-import useStyles from './cardsTransporturiDisbonibileStyles';
-import ListItemPersonalized from '../list/listItemad/listItemPersonalized';
-import PrimaryButton from '../buttons/primaryButton/primaryButton';
-import BackdropSelectDriver from '../backdrop/backDrop';
+import useStyles from './DriverCardStyle';
+import ListItemPersonalized from '../../list/listItemad/listItemPersonalized';
+import PrimaryButton from '../../buttons/primaryButton/primaryButton';
+import BackdropSelectDriver from '../../backdrop/backDrop';
 
-const MyCardTD =(props)=>{
+const DriverCard =(props)=>{
 
 
     const classes = useStyles();
@@ -67,4 +67,4 @@ const MyCardTD =(props)=>{
 
 
 
-export default MyCardTD;
+export default DriverCard;
