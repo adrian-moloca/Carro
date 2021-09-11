@@ -33,7 +33,7 @@ const StepLabelPersonalized = withStyles({
 
 const AddPackage = () => { 
 
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(3);
 
   const classes = useStyles();
 
@@ -93,7 +93,7 @@ const AddPackage = () => {
       </Stepper>
       <Box>
         { activeStep===(steps.length-1) ? (
-              <Box px='20%'>
+              <Box className='Primary-container-padding'>
                 {getStepContent(activeStep)}
                 <Box mt={10} mb={2} display ='flex' justifyContent='center'>
                   <Grid container xs={12} spacing={7}>
@@ -107,7 +107,7 @@ const AddPackage = () => {
                 </Box>
               </Box>
         ) : (
-              <Box px='20%' >
+              <Box className='Primary-container-padding' >
                 {getStepContent(activeStep)}
                 <Box mt={10} mb={2} display ='flex' justifyContent='center'>
                   <Grid container xs={12} spacing={7}>
