@@ -59,6 +59,10 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
 }
 
+.mobile-width-full {
+  width: 30%;
+}
+
 @media screen and (max-width: 1280px) {
   .Primary-container-style {
     width: 80% !important;
@@ -71,9 +75,13 @@
   }
 }
 
-@media screen and (max-width: 806px) {
-  .Primary-container-style {
-    width: 100% !important;
+@media screen and (max-width: 630px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  .mobile-width-full {
+    width: 100%;
   }
 }
 
@@ -116,9 +124,4 @@
 .primarybutton:hover {
   background-color: #ffffff !important;
   color: #00b4d8 !important;
-}
-
-.RegisterBoxAlign {
-  width: 50% !important;
-  margin: auto !important;
 }

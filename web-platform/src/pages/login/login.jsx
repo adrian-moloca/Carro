@@ -5,8 +5,11 @@ import { Container, Box, TextField, Grid, Checkbox, FormControlLabel, Button, Ty
 import googleicon from '../../assets/images/GoogleIcon.png';
 import fbicon from '../../assets/images/fbicon.png';
 import CarroTextField from '../../components/textField/CarroTextField.jsx';
+import CarroCheckbox from '../../components/checkbox/CarroCheckbox.jsx';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton.jsx';
 import { Link } from 'react-router-dom';
+import { Stepper } from '@material-ui/core';
+import greyLine from '../../assets/images/greyLine.png';
 
 
 const Login = () => { 
@@ -15,43 +18,51 @@ const Login = () => {
 
   return (
     <Container className={'Primary-container-style'}>
-      <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>Autentificare</Box>
-      <Box mt={6} alignContent='center' textAlign='center'  mx='30%'>
-        <Grid container xs direction='column' alignItems='center' spacing={2}>
-          <Grid container item xs={12} >
-            <CarroTextField required label='Email' variant='outlined' fullWidth/>
-          </Grid>
-          <Grid container item xs={12}>
-            <CarroTextField required label='Password' variant='outlined' fullWidth/>
-          </Grid>
+      <Box display= 'flex' flexDirection='column' justifyContent ='center' alignItems='center'>
+        <Grid container xs={12}  spacing={3} justifyContent='center'>
+          <Grid container item xs={12} justifyContent='center'> 
+              <Box mt='5%' fontWeight={400} fontSize={21} textAlign={'center'}>Autentificare</Box>
+            </Grid>  
+            <Grid container item xs={8} >
+              <CarroTextField required label='Email' variant='outlined' fullWidth/>
+            </Grid>
+            <Grid container item xs={8}>
+              <CarroTextField required label='Password' variant='outlined' fullWidth/>
+            </Grid>    
+            <Grid container item xs= {6} justifyContent='center'>
+              <FormControlLabel 
+                control={<CarroCheckbox color='default'/>}
+                label='Remind Me'/>
+            </Grid>
+            <Grid container item xs= {6} justifyContent='center'>
+              <Link to='/login/forgot-password' style={{ textDecoration: 'none' }}>
+                <Button className={'Primary-color'}>Am uitat parola</Button>
+              </Link>
+            </Grid>
+            <Grid container item xs={6} justifyContent='center'>  
+                <PrimaryButton size = 'large' variant='contained' fullWidth>
+                  AUTENTIFICARE
+                </PrimaryButton>
+            </Grid>
         </Grid>
-      </Box>  
-      <Box mt={4} alignContent='center' textAlign='center' px={30} className={'Primary-color'}>  
-        <Grid container xs direction='row'  spacing={2}>
-          <Grid item xs= {6} justifyContent='flex-start'>
-            <FormControlLabel 
-              control={<Checkbox color='default'/>}
-              label='Remind Me'/>
+        <Box display='flex' justifyContent='center' mt='4%'>
+          <Grid container xs={12} justifyContent='center' spacing={3}>
+            <Grid container item xs={5} alignItems='center'>
+              <img src={greyLine} className={classes.greyLinesStyle}/>
+            </Grid>
+            <Grid container item xs={2} justifyContent='center'>
+                <Box textAlign='center'>
+                  Autentificare cu
+                </Box>
+            </Grid>
+            <Grid container item xs={5} alignItems='center'>
+              <img src={greyLine}  className={classes.greyLinesStyle}/>
+            </Grid>
+            <Grid container item xs={3} justifyContent='space-between'>
+                <img src={googleicon}/>
+                <img src={fbicon}/>
+            </Grid>
           </Grid>
-          <Grid item xs= {6} justifyContent='flex-end'>
-            <Link to='/login/forgot-password' style={{ textDecoration: 'none' }}>
-              <Button className={'Primary-color'}>Am uitat parola</Button>
-            </Link>
-          </Grid>
-        </Grid>  
-      </Box>
-      <Box mt={4} alignContent='center' textAlign='center' px={30}>  
-          <PrimaryButton size = 'large' variant='contained'>
-            AUTENTIFICARE
-          </PrimaryButton>
-      </Box>
-      <Box mt={4} borderTop={1} borderColor={'grey.500'} alignContent='center' textAlign='center'>
-        <Box className={['Secondary-color', classes.textBoxStyle]}>
-          Autentificare cu
-        </Box>
-        <Box ml ='40%' mt='3%' width= '20%' display='flex' direction='row' justifyContent='space-between'>
-          <img src={googleicon}/>
-          <img src={fbicon}/>
         </Box>
       </Box>
     </Container>

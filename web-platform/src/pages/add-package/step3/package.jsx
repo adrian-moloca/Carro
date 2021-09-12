@@ -124,20 +124,20 @@ const Package = (props)=>{
                         </InputAdornment>}}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label='Numar pachete' fullWidth/>
+                    <CarroTextField variant ='outlined' label='Numar pachete' fullWidth/>
                 </Grid>
                 <Grid container item xs={12} justifyContent='center' multiline maxRows={5}>
-                <CarroTextField variant ='outlined' label='Descriere' fullWidth/>
+                    <CarroTextField variant ='outlined' label='Descriere' fullWidth/>
                 </Grid>
                 <Grid container item xs={12} justifyContent='space-between'>            
-                <FormControlLabel onChange = {handleInflamabilCheckboxClick} control={<CarroCheckbox/>} 
-                label='Inflamabil'/>
-                <FormControlLabel onChange = {handleFragilCheckboxClick} control={<CarroCheckbox/>} 
-                label='Fragil'/>
-                <FormControlLabel onChange = {handlePerisabilCheckboxClick} control={<CarroCheckbox/>} 
-                label='Perisabil'/>
-                <FormControlLabel onChange = {handleAnimalCheckboxClick} control={<CarroCheckbox/>} 
-                label='Animal'/>
+                    <FormControlLabel onChange = {handleInflamabilCheckboxClick} control={<CarroCheckbox/>} 
+                                    label='Inflamabil'/>
+                    <FormControlLabel onChange = {handleFragilCheckboxClick} control={<CarroCheckbox/>} 
+                                    label='Fragil'/>
+                    <FormControlLabel onChange = {handlePerisabilCheckboxClick} control={<CarroCheckbox/>} 
+                                    label='Perisabil'/>
+                    <FormControlLabel onChange = {handleAnimalCheckboxClick} control={<CarroCheckbox/>} 
+                                    label='Animal'/>
                 </Grid>
             </Grid>
     );
