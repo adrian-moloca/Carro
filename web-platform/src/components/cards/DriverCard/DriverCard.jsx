@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {Box, ListItem, List, Backdrop} from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
-import profilePhotoLeft from '../../../assets/images/photoprofile1.png'
+import {Box, List, Grid} from '@material-ui/core';
 import {Star, StarBorder, StarHalf} from '@material-ui/icons';
 import useStyles from './DriverCardStyle';
 import ListItemPersonalized from '../../list/listItemad/listItemPersonalized';
@@ -27,30 +25,38 @@ const DriverCard =(props)=>{
     console.log(open);
    
             return(
-                <Box display='flex' flexDirection='column' width='0.3' p={1} borderRadius='10px'  boxShadow={3}>
-                    <Box display ='flex' flexDirection= 'column' alignItems='center'>
-                        <img src={props.image} className={classes.profileImg}/>
-                        <Box mt = {1} fontSize='20px' fontWeight='500'>{props.name}</Box>
-                    </Box>
-                    <Box mt ={2}>
-                        <List>
-                            <ListItemPersonalized >Plecare: {props.plecare}</ListItemPersonalized>
-                            <ListItemPersonalized>Destinatie: {props.destinatie}</ListItemPersonalized>
-                            <ListItemPersonalized>Telefon: {props.telefon}</ListItemPersonalized>
-                        </List>
-                    </Box>
-                    <Box ml='25%' width='50%' display='flex' justifyItems='spacebetween'>
-                        <Star className={classes.starsStyle}/>
-                        <Star className={classes.starsStyle}/>
-                        <Star className={classes.starsStyle}/>
-                        <StarHalf className={classes.starsStyle}/>
-                        <StarBorder className={classes.starsStyle}/>
-                    </Box>
-                    <Box ml='22%'mt={2} width={0.5 }>
-                            <PrimaryButton variant='contained'  onClick={handleBtn}>
-                                SELECTEAZA
-                            </PrimaryButton>
-                    </Box>
+                <Box m='2%' display='flex' width='0.26' p={1} borderRadius='10px' boxShadow={3}>
+                    <Grid container xs={12} justifyContent='center'>
+                        <Grid container item xs={12} justifyContent='center'>
+                            <img src={props.image} className={classes.profileImg}/>
+                        </Grid>
+                        <Grid container item xs={12} justifyContent='center'>
+                            <Box fontSize='20px' fontWeight='500'>{props.name}</Box>
+                        </Grid>
+                        <Grid container item xs={12} justifyContent='center'>
+                            <Box marginTop='5%'>Plecare: {props.plecare}</Box>
+                        </Grid>
+                        <Grid container item xs={12} justifyContent='center'>
+                            <Box>Destinatie: {props.destinatie}</Box>
+                        </Grid>
+                        <Grid container item xs={12} justifyContent='center'>
+                            <Box marginBottom='5%'>Telefon: {props.telefon}</Box>
+                        </Grid>
+                        <Grid container item xs={8} justifyContent='space-around'>
+                            <Star className={classes.starsStyle}/>
+                            <Star className={classes.starsStyle}/>
+                            <Star className={classes.starsStyle}/>
+                            <StarHalf className={classes.starsStyle}/>
+                            <StarBorder className={classes.starsStyle}/>
+                        </Grid>
+                        <Grid container item xs={8} justifyContent='center'>
+                            <Box mt='15%' mb='2%' width={1}>
+                                <PrimaryButton variant='contained'  onClick={handleBtn} fullWidth>
+                                    SELECTEAZA
+                                </PrimaryButton>
+                            </Box>
+                        </Grid>
+                    </Grid>
                     <BackdropSelectDriver 
                     open={open} 
                     clicked={handleCloseBd}

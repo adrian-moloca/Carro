@@ -48,7 +48,7 @@ const StepFour = () =>{
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
                             <CarroDatePicker dateValue={expDate} handleDateSelect={handleExpDate}
-                                views={["month","year"]} defaultShow={expDate} format="mm/yyyy" openTo='month' label='Data expirare'/>  
+                                views={["month","year"]} defaultShow={expDate} format="MM/yyyy" openTo='month' label='Data expirare'/>  
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
                   <CarroTextField variant ='outlined' label='Nume complet' fullWidth/>

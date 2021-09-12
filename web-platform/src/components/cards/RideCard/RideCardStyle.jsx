@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 
     greyLinesStyle:{
         height:'1px',
-        maxWidth:'110%',
+        width:'100%',
         
     },
 
