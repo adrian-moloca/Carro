@@ -1,14 +1,9 @@
 import React from 'react'
-import { 
-  Box, 
-  Grid, 
-  Button
-} from '@material-ui/core';
+import {  Box, Grid } from '@material-ui/core';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
-import MessageIcon from '@material-ui/icons/Message';
+import SendMessageBtn from '../../buttons/textOnlyButtons/sendMessageBtn/sendMessageBtn'
 import HalfRating from '../../rating/rating';
-import { CallMissedSharp } from '@material-ui/icons';
 import useStyles from './NotificationsAcordionFieldsStyle.jsx';
 
 const NotificationsAcordionFields = () => {
@@ -37,12 +32,7 @@ const NotificationsAcordionFields = () => {
         </Box>
       </Grid>
       <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">
-        <Button>
-          <Box mt={2} lineHeight="143%" fontSize={12} className={'Primary-color'}>
-              <MessageIcon/>
-              Trimite mesaj
-          </Box>
-        </Button>
+        <SendMessageBtn/>
       </Grid>
       <Grid container display='flex' justifyContent='space-around' direction="row" alignItems="center">                      
         <Grid container item xs={6} justifyContent='center'>
@@ -78,14 +68,7 @@ const NotificationsAcordionFields = () => {
         </Box>
       </Grid>
       <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">
-        <Button>
-          <Box display='flex' alignItems="center" mt={2} lineHeight="143%" fontSize={12} className={'Primary-color'}>
-              <MessageIcon/>
-              <p className={classes.messageIconSpacing}>
-                Trimite mesaj
-              </p>
-          </Box>
-        </Button>
+         <SendMessageBtn/>
       </Grid>
       <Grid container direction="column" alignItems="center" justifyContent='center'>  
         <Grid item xs={3} justifyContent='center' >

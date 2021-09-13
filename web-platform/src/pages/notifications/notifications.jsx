@@ -6,18 +6,14 @@ import {
   AccordionDetails,
   Accordion, 
   Grid, 
-  List, 
   Button
 } from '@material-ui/core';
 import {Delete} from '@material-ui/icons';
 import profilePhotoMiddle from '../../assets/images/photoprofile2.png';
-import ListItemPersonalized from '../../components/list/listItemad/listItemPersonalized';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';
-import GreenCaroButton from '../../components/buttons/GreenCaroButton/GreenCaroButton';
 import Pagination from '@material-ui/lab/Pagination';
 import DriverCardNotifications from '../../components/cards/DriverCardNotifications/DriverCardNotifications';
-import MessageIcon from '@material-ui/icons/Message';
 import NotificationsAcordionFields from '../../components/cards/NotificationsAcordionFields/NotificationsAcordionFields'
 import useStyles from './notificationsStyle.jsx';
 
@@ -129,7 +125,6 @@ const Notifications = () => {
                             destinatie='Bucuresti'
                             telefon='0888888888'
                             dataPlecare='26/08/2021 02:00 AM'>
-                        <Button className={'Primary-color'}>Vezi Profilul</Button>
                       </DriverCardNotifications>
                     </Grid>
                     <NotificationsAcordionFields/>
