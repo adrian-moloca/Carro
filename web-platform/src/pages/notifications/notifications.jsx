@@ -1,18 +1,23 @@
 import React from 'react'
-import { Container, Box, Typography, AccordionSummary, AccordionDetails, Accordion, Grid, List, Button} from '@material-ui/core';
+import { 
+  Container, 
+  Box, 
+  AccordionSummary,
+  AccordionDetails,
+  Accordion, 
+  Grid, 
+  List, 
+  Button
+} from '@material-ui/core';
 import {Delete} from '@material-ui/icons';
-import MyCardTD from '../../components/cards/MyCardTD';
-import fragile from '../../assets/images/fragile.png';
-import environmentdang from '../../assets/images/environmentdang.png';
-import firedang from '../../assets/images/firedang.png';
-import boxHands from '../../assets/images/boxHands.png';
-import animalPrints from '../../assets/images/animalPrints.png';
-import profilePhotoLeft from '../../assets/images/photoprofile1.png';
 import profilePhotoMiddle from '../../assets/images/photoprofile2.png';
-import profilePhotoRight from '../../assets/images/photoprofile3.png';
 import ListItemPersonalized from '../../components/list/listItemad/listItemPersonalized';
-import PrimaryButton from '../../components/buttons/primaryButton/primaryButton'
+import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
+import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';
+import GreenCaroButton from '../../components/buttons/GreenCaroButton/GreenCaroButton';
 import Pagination from '@material-ui/lab/Pagination';
+import DriverCardNotifications from '../../components/cards/DriverCardNotifications/DriverCardNotifications';
+import MessageIcon from '@material-ui/icons/Message';
 import useStyles from './notificationsStyle.jsx';
 
 const Notifications = () => { 
@@ -108,53 +113,64 @@ const Notifications = () => {
             </AccordionSummary>
             <AccordionDetails className={classes.AccordionDetailsFlex}>
               <Box borderRadius='10px'  boxShadow={3} display ='flex' flexDirection='column' mt = '-1%' mx='3%'px='2%'>
-                <Box fontSize={20} m={1} >Detalii pachet</Box>
-                <Box display='flex' justifyContent='space-between' px='2%'>
-                    <List dense='true'  disablePadding='true'>
-                      <ListItemPersonalized>Plecare: Timisoara, Romania</ListItemPersonalized>
-                      <ListItemPersonalized>Adresa de preluare: Lorem impsium Street</ListItemPersonalized>
-                      <ListItemPersonalized>Tip Colet: mic</ListItemPersonalized>
-                      <ListItemPersonalized>Greutate: 1Kg</ListItemPersonalized>
-                      <ListItemPersonalized>Pret: 150 LEI</ListItemPersonalized>
-                    </List>
-                    <List dense ='true' disablePadding='true'>
-                      <ListItemPersonalized>Destinatie: Bucuresti</ListItemPersonalized>
-                      <ListItemPersonalized>Adresa destinatie: Lorem Ipsium Street</ListItemPersonalized>
-                      <ListItemPersonalized>Dimensiuni: 0x0x0</ListItemPersonalized>
-                      <ListItemPersonalized>Descriere:</ListItemPersonalized>
-                      <ListItemPersonalized>Nume: Pachetul meu</ListItemPersonalized>
-                    </List>
-                  </Box>
-                  <Box my={2} height='33px' ml='37.5%' width='25%' display='flex' justifyContent='space-between'>
-                    <img src={fragile}/>
-                    <img src={environmentdang}/>
-                    <img src={firedang}/>
-                    <img src={boxHands}/>
-                    <img src={animalPrints}/>
-                  </Box>
-                  <Box mt = {1} mb={2} display='flex'justifyContent='space-between'>
-                    <MyCardTD 
-                      image={profilePhotoLeft} 
-                      name='Marius popescu'
-                      plecare='Timisoara'
-                      destinatie='Bucuresti'
-                      telefon='0888888888'
-                      dataPlecare='26/08/2021 02:00 AM'/>
-                     <MyCardTD 
-                      image={profilePhotoMiddle} 
-                      name='Marius popescu'
-                      plecare='Timisoara'
-                      destinatie='Bucuresti'
-                      telefon='0888888888'
-                      dataPlecare='26/08/2021 02:00 AM'/>
-                     <MyCardTD 
-                      image={profilePhotoRight} 
-                      name='Marius popescu'
-                      plecare='Timisoara'
-                      destinatie='Bucuresti'
-                      telefon='0888888888'
-                      dataPlecare='26/08/2021 02:00 AM'/>
-                  </Box>
+                <Box display='flex' justifyContent='space-around' px='2%'>
+                  <List dense='true'  disablePadding='true'>
+                    <DriverCardNotifications 
+                          image={profilePhotoMiddle} 
+                          name='Marius popescu'
+                          plecare='Timisoara'
+                          destinatie='Bucuresti'
+                          telefon='0888888888'
+                          dataPlecare='26/08/2021 02:00 AM'>
+                      <Button className={'Primary-color'}>Vezi Profilul</Button>
+                    </DriverCardNotifications>
+                  </List>
+                  <List dense ='true' disablePadding='true'>
+                    <Grid 
+                      container 
+                      direction="column"
+                      justifyContent="center"
+                      alignItems="center">
+                      <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">
+                        <Box lineHeight="143%" fontSize={12} className={'Primary-color'}>
+                          <p>
+                            Ai primit o noua cerere de transport pentru coletul tau!
+                          </p>
+                        </Box>
+                      </Grid>
+                      <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">
+                        <Box mt={2} lineHeight="143%" fontSize={11} className={'Secondary-color'}>
+                          <p>
+                            Marius Popescu efectueaza o cursa Bucuresti - Timisoara si doreste sa livreze coletul tau
+                          </p>
+                        </Box>
+                      </Grid>
+                      <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">
+                        <Button>
+                          <Box mt={2} lineHeight="143%" fontSize={12} className={'Primary-color'}>
+                              <MessageIcon/>
+                              Trimite mesaj
+                          </Box>
+                        </Button>
+                      </Grid>
+                      <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">                      
+                        <Box display="flex" justifyContent='center' mt={2} fontSize={12} fontWeight={500} mt={2}>
+                          <GreenCaroButton>
+                            <Box>
+                              Accepta
+                            </Box>
+                          </GreenCaroButton>
+                          <SecondaryButton>
+                            Anuleaza
+                          </SecondaryButton>
+                        </Box>
+                      </Grid>
+                    </Grid>
+                  </List>
+                </Box>
+                <Box my={2} height='33px' ml='37.5%' width='25%' display='flex' justifyContent='space-between'>
+                   <SecondaryButton>Arata mai putin</SecondaryButton>
+                </Box>
               </Box>
             </AccordionDetails>
           </Accordion>

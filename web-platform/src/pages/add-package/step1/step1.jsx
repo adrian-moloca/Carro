@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, FormControl, Grid, InputLabel,Menu, MenuItem, Select,} from "@material-ui/core";
 import CarroTextField from "../../../components/textField/CarroTextField";
 import CarroDatePicker from "../../../components/datePicker/CarroDatePicker";
-import { Country, State, City }  from 'country-state-city';
+// import { Country, State, City }  from './countryList';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const StepOne = () =>{
@@ -38,12 +38,12 @@ const StepOne = () =>{
     }
 
     const getCountries = ()=> {
-        return Country.getAllCountries();
+        // return Country.getAllCountries();
     }
 
     const getCities = (country) =>{
         const cities = [];
-        City.getCitiesOfCountry(country).map((city)=>(cities.push(city.name)));
+        // City.getCitiesOfCountry(country).map((city)=>(cities.push(city.name)));
         return cities;
     }
 
