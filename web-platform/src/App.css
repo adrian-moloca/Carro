@@ -1,51 +1,51 @@
 .App {
-    text-align: center;
+  text-align: center;
 }
 
 .App-logo {
-    height: 40vmin;
-    pointer-events: none;
+  height: 40vmin;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
 .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-link {
-    color: #61dafb;
+  color: #61dafb;
 }
 
 .Primary-container-style {
-    background-color: white;
-    margin: 1% 0;
-    padding: 20px;
-    width: 50% !important;
-    min-height: 62vh;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
+  background-color: white;
+  margin: 1% 0;
+  padding: 20px;
+  width: 50% !important;
+  min-height: 62vh;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
 }
 
 .Pack-container-style {
-    background-color: white;
-    margin: 1% 0;
-    padding: 20px;
-    width: 100% !important;
-    min-height: 62vh;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
+  background-color: white;
+  margin: 1% 0;
+  padding: 20px;
+  width: 100% !important;
+  min-height: 62vh;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
 }
 
 .addPackagesContainer {
@@ -59,48 +59,69 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
 }
 
+.mobile-width-full {
+  width: 30%;
+}
+
+@media screen and (max-width: 1280px) {
+  .Primary-container-style {
+    width: 80% !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .Primary-container-style {
+    width: 95% !important;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  .mobile-width-full {
+    width: 100%;
+  }
+}
+
 .Primary-color {
-    color: #00b4d8 !important;
+  color: #00b4d8 !important;
 }
 
 .Secondary-color {
-    color: grey;
+  color: grey;
 }
 
 .Green-carro {
-    color: #34d02d;
+  color: #34d02d;
 }
 
 .Pink-carro {
-    color: #f50057;
+  color: #f50057;
 }
 
 @keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .primarybutton {
-    color: #fff !important;
-    display: flex !important;
-    font-weight: bold;
-    justify-content: center;
-    background-color: #00b4d8 !important;
-    margin: auto !important;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  color: #fff !important;
+  display: flex !important;
+  font-weight: bold;
+  justify-content: center;
+  background-color: #00b4d8 !important;
+  margin: auto !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .primarybutton:hover {
-    background-color: #ffffff !important;
-    color: #00b4d8 !important;
-}
-
-.RegisterBoxAlign {
-    width: 50% !important;
-    margin: auto !important;
+  background-color: #ffffff !important;
+  color: #00b4d8 !important;
 }

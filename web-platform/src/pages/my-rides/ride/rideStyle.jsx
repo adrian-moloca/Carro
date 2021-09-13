@@ -1,7 +1,7 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles=makeStyles({
+const useStyles = makeStyles({
 
     AccordionBorderRadius : {
         borderRadius: '10px',
@@ -20,12 +20,6 @@ const useStyles=makeStyles({
             backgroundColor:'#fff',
             color: '#34D02D',
         },
-    },
-
-    advStyle:{
-        height:'33px',
-        paddingTop:'5%',
-        paddingBottom: '5%',
     },
 
 });

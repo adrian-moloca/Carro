@@ -250,7 +250,7 @@ export default function PrimarySearchAppBar() {
                 onClick={handleProfileMenuOpen}
                 color="inherit"
                 className={classes.textFontSize}
-              >Ro
+              >{'Ro '}
                 <img src={navRoFlag}></img>
                 <ExpandMoreIcon/>
               </IconButton>

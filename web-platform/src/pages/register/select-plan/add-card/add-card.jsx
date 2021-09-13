@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import useStyles from "./AddCardStyles";
 import {
   Container,
@@ -6,83 +6,65 @@ import {
   TextField,
   Grid,
   Checkbox,
-  Button,
  
 } from "@material-ui/core";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import CarroTextField from "../../../../components/textField/CarroTextField"
+import CarroDatePicker from '../../../../components/datePicker/CarroDatePicker'
+import CarroCheckbox from "../../../../components/checkbox/CarroCheckbox";
 import PrimaryButton from "../../../../components/buttons/primaryButton/primaryButton"
 import SecondaryButton from "../../../../components/buttons/secondaryButton/secondaryButton"
 import { Link } from "react-router-dom";
 const AddCard = () => {
-  const [state, setState] = React.useState({
-    checkedA: true,
-  });
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+
+  const [savingCard, setSavingCard] = useState();
+
+  const[expDate, setExpDate] = useState(new Date());
+  
+  const handleSavingCard = (event) => {
+     event.target.checked ? setSavingCard(false) : setSavingCard(true);
   };
+
+  const handleExpDate =(date)=>{
+    setExpDate(date);
+  };
+  
   const classes = useStyles();
   return (
     <Container className={"Primary-container-style"}>
-      <Grid container spacing={3} className={"RegisterBoxAlign"}>
-        <Grid item xs={12}>
-          <Box mb={2} fontWeight={400} fontSize={25} textAlign={"center"}>
-            Adauga card
+      <Grid container xs = {12} spacing={3} justifyContent='center'>
+        <Grid container item xs={12} justifyContent='center'>
+          <Box mt={2} mb={2} fontWeight={400} fontSize={25}>
+              Adauga card
           </Box>
         </Grid>
-
-        <Grid item xs={6}>
-           <CarroTextField variant= "outlined" label= "Numar card" />
-          
+        <Grid container item xs={5} justifyContent='flex-end'>
+           <CarroTextField variant= "outlined" label= "Numar card" fullWidth/>
         </Grid>
-        <Grid item xs={6}>
-          <form className={classes.container} noValidate>
-            <TextField
-              id="date"
-              label="Data expirare"
-              type="date"
-              defaultValue="zz/ll/aaaa"
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </form>
+        <Grid container item xs={5} justifyContent='flex-start'>
+            <CarroDatePicker dateValue={expDate} handleDateSelect={handleExpDate}
+                    views={["month","year"]} defaultShow={expDate} format="MM/yyyy" openTo='month' label='Data expirare'/>
         </Grid>
-        <Grid item xs={6}>
-        <CarroTextField variant= "outlined" label= "Nume Complet" />
-          
+        <Grid container item xs={5} justifyContent='flex-end'>
+          <CarroTextField variant= "outlined" label= "Nume Complet" fullWidth/>
         </Grid>
-        <Grid item xs={6}>
-        <CarroTextField variant= "outlined" label= "CVV" />
-          
+        <Grid container item xs={5} justifyContent='flex-start'>
+          <CarroTextField variant= "outlined" label= "CVV" fullWidth/>
         </Grid>
-
-        <Grid item xs={12}>
-          <FormGroup row>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={state.checkedA}
-                  onChange={handleChange}
-                  name="checkedA"
-                  color="default"
-                />
-              }
-              label="Salveaza card "
-            />
-          </FormGroup>
+        <Grid container item xs={10} justifyContent='flex-start'>
+            <FormControlLabel onChange = {handleSavingCard} control={<CarroCheckbox/>} 
+                                    label='Salveaza card'/>
         </Grid>
-        <Grid item xs={6} className={classes.ButtonWidth}>
-         <Link to='/payment-method' style={{textDecoration: 'none'}}> 
+        <Grid container item xs={4} justifyContent='center'>
+         <Link to='/payment-method' style={{textDecoration: 'none', width:'100%'}}> 
           <SecondaryButton variant="contained" fullWidth> ANULEAZA </SecondaryButton> 
          </Link>
         </Grid>
-        <Grid item xs={6} className={classes.ButtonWidth}>
-        <Link to='/payment-method/card-selected' style={{textDecoration: 'none'}}>
-          <PrimaryButton variant="contained" fullWidth> SELECTEAZA</PrimaryButton>
-        </Link> 
+        <Grid container item xs={4} justifyContent='center'>
+          <Link to='/payment-method/card-selected' style={{textDecoration: 'none', width:'100%'}}>
+            <PrimaryButton variant="contained" fullWidth> SELECTEAZA</PrimaryButton>
+          </Link> 
         </Grid>
       </Grid>
     </Container>
