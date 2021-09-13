@@ -19,13 +19,13 @@ const DriverCardNotifications =(props)=>{
     };
 
     return(
-        <Box m='2%' display='flex' width='0.5' p={1} borderRadius='10px' boxShadow={3}>
+        <Box m='2%' display='flex' width='0.8' p={1} borderRadius='10px' boxShadow={3}>
             <Grid container xs={12} justifyContent='center'>
                 <Grid container item xs={12} justifyContent='flex-end'>
                     <img src={props.image} className={classes.profileImg}/>
                     <Button>
                         <Box alignItmes="end" fontSize='12px' fontWeight='143'  className={'Primary-color'}>
-                                Vezi profilul
+                            Vezi profilul
                         </Box>
                     </Button>
                 </Grid>

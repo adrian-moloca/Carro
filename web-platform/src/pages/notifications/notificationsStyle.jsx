@@ -18,10 +18,7 @@ const useStyles = makeStyles((theme) =>({
         backgroundColor:'#fff',
         color: '#34D02D',
     },
-    // paginationPosition: {
-    //   marginTop: theme.spacing(20)
-    // }
-},
+  },
 
 }));
 

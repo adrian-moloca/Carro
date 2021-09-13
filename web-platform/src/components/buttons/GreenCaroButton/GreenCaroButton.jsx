@@ -9,7 +9,7 @@ const GreenCaroButton = withStyles({
        backgroundColor: '#34D02D',
        '&:hover': {
         backgroundColor: '#FFFFFF',
-        color: '#000',
+        color: '#34D02D',
       },
     },
 

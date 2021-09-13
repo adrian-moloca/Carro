@@ -18,6 +18,7 @@ import GreenCaroButton from '../../components/buttons/GreenCaroButton/GreenCaroB
 import Pagination from '@material-ui/lab/Pagination';
 import DriverCardNotifications from '../../components/cards/DriverCardNotifications/DriverCardNotifications';
 import MessageIcon from '@material-ui/icons/Message';
+import NotificationsAcordionFields from '../../components/cards/NotificationsAcordionFields/NotificationsAcordionFields'
 import useStyles from './notificationsStyle.jsx';
 
 const Notifications = () => { 
@@ -112,62 +113,28 @@ const Notifications = () => {
               </Grid>
             </AccordionSummary>
             <AccordionDetails className={classes.AccordionDetailsFlex}>
-              <Box borderRadius='10px'  boxShadow={3} display ='flex' flexDirection='column' mt = '-1%' mx='3%'px='2%'>
-                <Box display='flex' justifyContent='space-around' px='2%'>
-                  <List dense='true'  disablePadding='true'>
-                    <DriverCardNotifications 
-                          image={profilePhotoMiddle} 
-                          name='Marius popescu'
-                          plecare='Timisoara'
-                          destinatie='Bucuresti'
-                          telefon='0888888888'
-                          dataPlecare='26/08/2021 02:00 AM'>
-                      <Button className={'Primary-color'}>Vezi Profilul</Button>
-                    </DriverCardNotifications>
-                  </List>
-                  <List dense ='true' disablePadding='true'>
+              <Box borderRadius='10px' boxShadow={3} display ='flex' flexDirection='column' mt = '-1%' mx='3%'px='2%'>
+                <Grid 
+                    container 
+                    direction="column">
+                  <Box display='flex' justifyContent='space-around' px='2%'>
                     <Grid 
-                      container 
-                      direction="column"
-                      justifyContent="center"
-                      alignItems="center">
-                      <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">
-                        <Box lineHeight="143%" fontSize={12} className={'Primary-color'}>
-                          <p>
-                            Ai primit o noua cerere de transport pentru coletul tau!
-                          </p>
-                        </Box>
-                      </Grid>
-                      <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">
-                        <Box mt={2} lineHeight="143%" fontSize={11} className={'Secondary-color'}>
-                          <p>
-                            Marius Popescu efectueaza o cursa Bucuresti - Timisoara si doreste sa livreze coletul tau
-                          </p>
-                        </Box>
-                      </Grid>
-                      <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">
-                        <Button>
-                          <Box mt={2} lineHeight="143%" fontSize={12} className={'Primary-color'}>
-                              <MessageIcon/>
-                              Trimite mesaj
-                          </Box>
-                        </Button>
-                      </Grid>
-                      <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">                      
-                        <Box display="flex" justifyContent='center' mt={2} fontSize={12} fontWeight={500} mt={2}>
-                          <GreenCaroButton>
-                            <Box>
-                              Accepta
-                            </Box>
-                          </GreenCaroButton>
-                          <SecondaryButton>
-                            Anuleaza
-                          </SecondaryButton>
-                        </Box>
-                      </Grid>
+                        container
+                        item xs={6} 
+                        >
+                      <DriverCardNotifications 
+                            image={profilePhotoMiddle} 
+                            name='Marius popescu'
+                            plecare='Timisoara'
+                            destinatie='Bucuresti'
+                            telefon='0888888888'
+                            dataPlecare='26/08/2021 02:00 AM'>
+                        <Button className={'Primary-color'}>Vezi Profilul</Button>
+                      </DriverCardNotifications>
                     </Grid>
-                  </List>
-                </Box>
+                    <NotificationsAcordionFields/>
+                  </Box>
+                </Grid>
                 <Box my={2} height='33px' ml='37.5%' width='25%' display='flex' justifyContent='space-between'>
                    <SecondaryButton>Arata mai putin</SecondaryButton>
                 </Box>
@@ -180,7 +147,6 @@ const Notifications = () => {
             direction="row"
             justifyContent="center"
             alignItems="flex-end"
-            // className={classes.paginationPosition}
             >
         <Box>
           <Pagination count={10} variant="outlined" shape="rounded" />
