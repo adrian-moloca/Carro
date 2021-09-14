@@ -11,6 +11,7 @@ import ResetPassword from '../../pages/login/reset-password/reset-password';
 import Register from '../../pages/register/register';
 import SelectPlan from '../../pages/register/select-plan/select-plan';
 import AddCard from '../../pages/register/select-plan/add-card/add-card';
+import AddCardPaymentMethod from '../../pages/payment-method/add-card/add-card';
 import HomePage from '../../pages/home-page/home-page';
 import AddPackage from '../../pages/add-package/add-package';
 import MyPackages from '../../pages/my-packages/my-packages';
@@ -61,8 +62,7 @@ const Routes = () => {
                                 <Route path="/my-rides" exact component={MyRides}/>
                                 <Route path="/notifications" exact component={Notifications}/>
                                 <Route path="/payment-method" exact component={PaymentMethod}/>
-                                <Route path="/payment-method/add-method" exact component={AddCard}/>
-                                <Route path="/payment-method/card-selected" exact component={CardSelected}/>
+                                <Route path="/payment-method/add-card" exact component={AddCardPaymentMethod}/>
                                 <Route path="/profile" exact component={Profile}/>
                                 <Route path="/search-package" exact component={SearchPackage}/>
                                 <Route path="/search-ride" exact component={SearchRide}/>
