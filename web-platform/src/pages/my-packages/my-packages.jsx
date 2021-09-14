@@ -1,6 +1,4 @@
 import React from 'react';
-import useStyles from './my-packagesStyle';
-import { Link } from 'react-router-dom';
 import { Container, Box, Typography, AccordionSummary, AccordionDetails, Accordion, Grid, List} from '@material-ui/core';
 import {ExpandMore, ArrowForward, Delete, Create} from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core';
@@ -14,6 +12,7 @@ import profilePhotoLeft from '../../assets/images/photoprofile1.png';
 import profilePhotoMiddle from '../../assets/images/photoprofile2.png';
 import profilePhotoRight from '../../assets/images/photoprofile3.png';
 import ListItemPersonalized from '../../components/list/listItemad/listItemPersonalized';
+import useStyles from './my-packagesStyle';
 
 const MyPackages = () => {
   
