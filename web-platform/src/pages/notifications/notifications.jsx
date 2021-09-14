@@ -12,9 +12,9 @@ import {Delete} from '@material-ui/icons';
 import profilePhotoMiddle from '../../assets/images/photoprofile2.png';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';
-import Pagination from '@material-ui/lab/Pagination';
 import DriverCardNotifications from '../../components/cards/DriverCardNotifications/DriverCardNotifications';
-import NotificationsAcordionFields from '../../components/cards/NotificationsAcordionFields/NotificationsAcordionFields'
+import NotificationsAcordionFields from '../../components/cards/NotificationsAcordionFields/NotificationsAcordionFields';
+import PaginationSBD from '../../components/pagination/pagination';
 import useStyles from './notificationsStyle.jsx';
 
 const Notifications = () => { 
@@ -137,16 +137,7 @@ const Notifications = () => {
             </AccordionDetails>
           </Accordion>
       </Box>
-      <Grid 
-            container
-            direction="row"
-            justifyContent="center"
-            alignItems="flex-end"
-            >
-        <Box>
-          <Pagination count={10} variant="outlined" shape="rounded" />
-        </Box>
-      </Grid>
+      <PaginationSBD/>
     </Container> 
   );
 };
