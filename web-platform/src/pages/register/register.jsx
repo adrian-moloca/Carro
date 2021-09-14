@@ -18,9 +18,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import GoogleIcon from "../../assets/images/GoogleIcon.png";
 import FacebookIcon from "../../assets/images/facebook-icon.png";
 import CarroTextField from "../../components/textField/CarroTextField";
-import PrimaryButton from "../../components/buttons/primaryButton/primaryButton"
-
-
+import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
+import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
 
 const Register = () => {
   const classes = useStyles();
@@ -36,55 +35,65 @@ const Register = () => {
 
   return (
     <Container className={"Primary-container-style"}>
-      <Grid container spacing={3} className={"RegisterBoxAlign"}>
-        <Grid item xs={12}>
-          <Box mb={2} fontWeight={400} fontSize={21} textAlign={"center"}>
-            INREGISTRARE
-          </Box>
-        </Grid>
-
-        <Grid item xs={6}>
-          <CarroTextField variant= "outlined" label= "Nume" />
+      <Grid container xs={12} display="flex" justifyContent="center">
+        <Box mt={3} mb={2} fontWeight={400} fontSize={21} textAlign={"center"}>
+          Inregistrare
+        </Box>
+      </Grid>
+      <Box display="flex" justifyContent="space-evenly" mt="1%">
+        <Grid container xs={8} spacing={3} display="flex" justifyContent="center">
+          <Grid container item xs={6} justifyContent="center">
+            <CarroTextField variant="outlined" label="Nume" fullWidth />
+          </Grid>
+          <Grid container item xs={6} justifyContent="center">
+            <CarroTextField variant="outlined" label="Prenume" fullWidth />
+          </Grid>
+          <Grid container item xs={6} justifyContent="center">
+            <CarroTextField
+              variant="outlined"
+              label="Adresa de preluare"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CarroDatePicker
+              label="Data de nastere"
+              InputLabelProps={{
+                style: { fontSize: "17px", marginTop: "3px" },
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <CarroTextField
+              variant="outlined"
+              label="Adresa de email"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CarroTextField
+              variant="outlined"
+              label="Password"
+              type="password"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CarroTextField
+              variant="outlined"
+              label="Confirm Password"
+              type="password"
+              fullWidth
+            />
+          </Grid>
           
         </Grid>
-        <Grid item xs={6}>
-        <CarroTextField variant= "outlined" label= "Prenume" />
-        
-        </Grid>
-        <Grid item xs={6}>
-          <CarroTextField variant= "outlined" label= "Adresa de preluare" />
-        </Grid>
-        <Grid item xs={6}>
-        <form className={classes.container} noValidate>
-    
-    </form>
-          <CarroTextField
-            id="date"
-            variant="outlined"
-            label="Data de nastere"
-            type="date"
-            defaultValue="aaaa-ll-zz"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </Grid>
-        <Grid item xs={12}>
-        <CarroTextField variant= "outlined" label= "Adresa de email" fullWidth />
-         
-        </Grid>
-        <Grid item xs={6}>
-        <CarroTextField variant= "outlined" label= "Password" type="password" />
-         
-        </Grid>
-        <Grid item xs={6}>
-        <CarroTextField variant= "outlined" label= "Confirm Password" type="password" />
-         
-        </Grid>
-        
+      </Box>
+      <Box display="flex" justifyContent="center" ml="1%">
+      <Grid  container xs={8}> 
+      
         <FormGroup row>
-          <FormControlLabel 
+          <FormControlLabel
             classes={{ label: classes.label }}
             control={
               <Checkbox
@@ -99,35 +108,41 @@ const Register = () => {
             label="TERMENI SI CONDITII"
           />
         </FormGroup>
+      </Grid>
+      </Box>
+      <Box display="flex" justifyContent="center" mt="3%" mb="5%">
 
-        <Grid item xs={12} className={classes.ButtonWidth}>
-          <PrimaryButton variant="contained" fullWidth> INREGISTRARE</PrimaryButton>
-        </Grid>
-        <Grid
-          container
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <StepConnector />
-          <Box fontWeight={400} fontSize={16} textAlign={"center"}>
-            INREGISTRARE PRIN
-          </Box>
-          <StepConnector />
-        </Grid>
-        <Box className={classes.SocialMediaAlign} justifyContent="space-evenly" >
-          <Box display="flex" justifyContent="center">
-            <Avatar alt="Google" src={GoogleIcon} className={classes.large} />
-          </Box>
-          <Box display="flex" justifyContent="center">
-            <Avatar
-              alt="Facebook"
-              src={FacebookIcon}
-              className={classes.large}
-            />
-          </Box>
+      <Grid container item xs={8}>
+        <PrimaryButton fullWidth variant="contained">
+          CAUTA
+        </PrimaryButton>
+      </Grid>
+      </Box>
+      <Box display="flex" justifyContent="center" mb="3%">
+      <Grid
+        xs={8}
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <StepConnector />
+        <Box fontWeight={400} fontSize={16} textAlign={"center"}>
+          INREGISTRARE PRIN
+        </Box>
+        <StepConnector />
+      </Grid>
+      </Box>
+      <Box display="flex" justifyContent="center" mb="1%">
+      <Grid container xs={8} justifyContent="space-evenly" mx="auto">
+        <Box display="flex" justifyContent="center">
+          <Avatar alt="Google" src={GoogleIcon} className={classes.large} />
+        </Box>
+        <Box display="flex" justifyContent="center">
+          <Avatar alt="Facebook" src={FacebookIcon} className={classes.large} />
         </Box>
       </Grid>
+      </Box>
     </Container>
   );
 };
