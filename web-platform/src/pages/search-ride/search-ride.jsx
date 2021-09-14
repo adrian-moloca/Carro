@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchRideStyle.jsx";
 import {
   Container,
@@ -9,154 +9,227 @@ import {
   Typography,
   Button,
   MenuItem,
+  SvgIcon,
 } from "@material-ui/core";
+import PaginationSBD from "../../components/pagination/pagination";
 
+import Pagination from "@material-ui/lab/Pagination";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import { makeStyles } from "@material-ui/core/styles";
 import CarroTextField from "../../components/textField/CarroTextField";
+import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
+import packageImg from "../../assets/images/box-small.png";
+import { ReactComponent as fragileIco } from "../../assets/icon/fragile.svg";
+import { ReactComponent as fishIco } from "../../assets/icon/fish.svg";
+import { ReactComponent as fireIco } from "../../assets/icon/fire.svg";
+import { ReactComponent as handboxIco } from "../../assets/icon/handbox.svg";
+import { ReactComponent as animalprintsIco } from "../../assets/icon/animalprints.svg";
+import { Country, State, City } from "country-state-city";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import useStyles from "./SearchRideStyle";
+import profilePhotoMiddle from "../../assets/images/photoprofile1.png";
+import profilePhotoMiddleSecond from "../../assets/images/photoprofile2.png";
+import DriverCard from "../../components/cards//DriverCard/DriverCard";
 
-const countries = [
-  {
-    value: "Romania",
-    label: "RO",
-  },
-  {
-    value: "Germany",
-    label: "GER",
-  },
-  {
-    value: "United States of America",
-    label: "USA",
-  },
-  {
-    value: "Japan",
-    label: "JPN",
-  },
-];
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-   
-  },
-}));
-
-export default function SearchRides() {
+const SearchRide = () => {
   const classes = useStyles();
-  const [countries, setCountry] = React.useState("RO");
+  const [departureDate, setDepartureDate] = useState(null);
 
-  const handleChange = (event) => {
-    setCountry(event.target.value);
+  const [departureCountry, setDepartureCountry] = useState(null);
+
+  const [destinationCountry, setDestinationCountry] = useState(null);
+
+  const [departureCity, setDepartureCity] = useState(null);
+
+  const [destinationCity, setDestinationCity] = useState(null);
+
+  const handleChangeDepartureDate = (date) => {
+    setDepartureDate(date);
+  };
+
+  const handleChangeDepartureCountry = (event) => {
+    setDepartureCountry(event.target.value);
+  };
+
+  const handleChangeDestinationCountry = (event) => {
+    setDestinationCountry(event.target.value);
+  };
+
+  const handleChangeDepartureCity = (event) => {
+    setDepartureCity(event.target.textContent);
+  };
+
+  const handleChangeDestinationCity = (event) => {
+    setDestinationCity(event.target.textContent);
+  };
+
+  const getCountries = () => {
+    return Country.getAllCountries();
+  };
+
+  const getCities = (country) => {
+    const cities = [];
+    City.getCitiesOfCountry(country).map((city) => cities.push(city.name));
+    return cities;
   };
 
   return (
-    <Container className={"Primary-container-style"}>
+    <Container className={"Pack-container-style"}>
       <Grid item xs={12}>
         <Box mb={2} fontWeight={400} fontSize={21} textAlign={"center"}>
           Cauta transport
         </Box>
       </Grid>
-      <form className={classes.root} noValidate autoComplete="off">
-        <Grid
-          xs={12}
-          justifyContent="center"
-          alignItems="center"
-          direction="column"
-          container
-          className={classes.SearchPackagesContent}
-        >
-          <Grid item className={classes.SelectBoxes}>
+
+      <Box display="flex" justifyContent="space-evenly" mt="3%">
+        <Grid container xs={12} spacing={3} justifyContent="space-between">
+          <Grid container item xs justifyContent="center">
             <CarroTextField
-              select
               variant="outlined"
               label="Tara de plecare"
-              value={countries}
+              InputLabelProps={{
+                style: { fontSize: "17px", marginTop: "3px" },
+              }}
+              fullWidth
+              select
+              value={departureCountry}
+              onChange={handleChangeDepartureCountry}
             >
-              {/* {countries.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))} */}
+              {getCountries().map((country) => (
+                <MenuItem key={country.isoCode} value={country.isoCode}>
+                  {country.name}
+                </MenuItem>
+              ))}
             </CarroTextField>
           </Grid>
-          <Grid item>
-            <CarroTextField
-              select
-              variant="outlined"
-              label="Oras de plecare"
-              value={countries}
-            >
-              {/* {countries.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))} */}
-            </CarroTextField>
+          <Grid container item xs justifyContent="center">
+            <Autocomplete
+              options={getCities(departureCountry)}
+              autoHighlight
+              autoSelect
+              getOptionLabel={(option) => option}
+              renderOption={(option) => (
+                <React.Fragment>{option}</React.Fragment>
+              )}
+              renderInput={(params) => (
+                <CarroTextField
+                  {...params}
+                  label="Oras de plecare"
+                  InputLabelProps={{
+                    style: { fontSize: "17px", marginTop: "3px" },
+                  }}
+                  variant="outlined"
+                  inputProps={{
+                    ...params.inputProps,
+                    autoComplete: "new-password", // disable autocomplete and autofill
+                  }}
+                  fullWidth
+                />
+              )}
+              onChange={handleChangeDepartureCity}
+              fullWidth
+            />
           </Grid>
-          <Grid item>
+          <Grid container item xs justifyContent="center">
             <CarroTextField
-              select
               variant="outlined"
               label="Tara destinatie"
-              value={countries}
-            >
-              {/* {countries.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))} */}
-            </CarroTextField>
-          </Grid>
-          <Grid item>
-            <CarroTextField
-              select
-              variant="outlined"
-              label="Oras destinatie"
-              value={countries}
-            >
-              {/* {countries.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))} */}
-            </CarroTextField>
-          </Grid>
-          <Grid item>
-            <CarroTextField
-              id="date"
-              variant="outlined"
-              label="Data"
-              type="date"
-              defaultValue="aaaa-ll-zz"
-              className={classes.textField}
               InputLabelProps={{
-                shrink: true,
+                style: { fontSize: "17px", marginTop: "3px" },
+              }}
+              fullWidth
+              select
+              value={destinationCountry}
+              onChange={handleChangeDestinationCountry}
+            >
+              {getCountries().map((country) => (
+                <MenuItem key={country.isoCode} value={country.isoCode}>
+                  {country.name}
+                </MenuItem>
+              ))}
+            </CarroTextField>
+          </Grid>
+          <Grid container item xs justifyContent="center">
+            <Autocomplete
+              options={getCities(destinationCountry)}
+              autoHighlight
+              autoSelect
+              getOptionLabel={(option) => option}
+              renderOption={(option) => (
+                <React.Fragment>{option}</React.Fragment>
+              )}
+              renderInput={(params) => (
+                <CarroTextField
+                  {...params}
+                  label="Oras destinatie"
+                  InputLabelProps={{
+                    style: { fontSize: "17px", marginTop: "3px" },
+                  }}
+                  variant="outlined"
+                  inputProps={{
+                    ...params.inputProps,
+                    autoComplete: "new-password", // disable autocomplete and autofill
+                  }}
+                  fullWidth
+                />
+              )}
+              onChange={handleChangeDestinationCity}
+              fullWidth
+            />
+          </Grid>
+
+          <Grid container item xs justifyContent="center">
+            <CarroDatePicker
+              label="Data"
+              dateValue={departureDate}
+              handleDateSelect={handleChangeDepartureDate}
+              InputLabelProps={{
+                style: { fontSize: "17px", marginTop: "3px" },
               }}
             />
           </Grid>
-          <Grid item>
-            <PrimaryButton variant="contained"> CAUTA</PrimaryButton>
-          </Grid>
         </Grid>
-      </form>
-     
-
-
-      <Grid container>
-        <div className={classes.RiderBox}>
-          fsdfsdf
-        </div>
-        <Grid item  className={classes.RiderBox}>
-          <Box className={classes.RiderBox}>SDSD</Box>
+      </Box>
+      <Box display="flex" justifyContent="space-evenly" mt="3%">
+        <Grid container item xs={2}>
+          <PrimaryButton fullWidth variant="contained">
+            {" "}
+            CAUTA
+          </PrimaryButton>
         </Grid>
-        
+      </Box>
+      <Grid container xs={12}>
+        <DriverCard
+          image={profilePhotoMiddle}
+          name="Marius popescu"
+          plecare="Timisoara"
+          destinatie="Bucuresti"
+          telefon="0888888888"
+          dataPlecare="26/08/2021 02:00 AM"
+        ></DriverCard>
+        <DriverCard
+          image={profilePhotoMiddleSecond}
+          name="Marius popescu"
+          plecare="Timisoara"
+          destinatie="Bucuresti"
+          telefon="0888888888"
+          dataPlecare="26/08/2021 02:00 AM"
+        ></DriverCard>
+        <DriverCard
+          image={profilePhotoMiddle}
+          name="Marius popescu"
+          plecare="Timisoara"
+          destinatie="Bucuresti"
+          telefon="0888888888"
+          dataPlecare="26/08/2021 02:00 AM"
+        ></DriverCard>
+       
       </Grid>
 
-
+      <Box display="flex" justifyContent="space-evenly" mt="3%">
+        <PaginationSBD />
+      </Box>
     </Container>
-    
   );
-}
+};
+export default SearchRide;
