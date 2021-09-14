@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Box, FormControl, Grid, InputLabel,Menu, MenuItem, Select,} from "@material-ui/core";
 import CarroTextField from "../../../components/textField/CarroTextField";
 import CarroDatePicker from "../../../components/datePicker/CarroDatePicker";
-// import { Country, State, City }  from './countryList';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import CarroAutocomplete from "../../../components/autocomplete/CarroAutocomplete";
+import { Country, State, City }  from 'country-state-city';
+
 
 const StepOne = () =>{
 
@@ -60,32 +61,7 @@ const StepOne = () =>{
             </CarroTextField>
         </Grid>
         <Grid container item xs={6} justifyContent="center">
-                    <Autocomplete
-                        options={getCities(departureCountry)}
-                        autoHighlight
-                        autoSelect
-                        getOptionLabel={(option) => option}
-                        renderOption={(option) => (
-                            <React.Fragment>
-                                {option}
-                              
-                            </React.Fragment>
-                          )}
-                        renderInput={(params) => (
-                            <CarroTextField
-                            {...params}
-                                label="Oras de plecare"
-                                variant="outlined"
-                                inputProps={{
-                                    ...params.inputProps,
-                                    autoComplete: 'new-password', // disable autocomplete and autofill
-                                }}
-                                fullWidth
-                            />
-                        )}
-                        onChange={handleChangeDepartureCity}
-                        fullWidth
-                    />
+                    <CarroAutocomplete options={getCities(departureCountry)} label="Oras de plecare" onChange={handleChangeDepartureCity}/>
         </Grid>
         <Grid container item xs={6} justifyContent='center'>
             <CarroTextField variant ='outlined' label='Tara destinatie' fullWidth
@@ -96,32 +72,7 @@ const StepOne = () =>{
             </CarroTextField>
         </Grid>
         <Grid container item xs={6} justifyContent='center'>
-                <Autocomplete
-                        options={getCities(destinationCountry)}
-                        autoHighlight
-                        autoSelect
-                        getOptionLabel={(option) => option}
-                        renderOption={(option) => (
-                            <React.Fragment>
-                                {option}
-                              
-                            </React.Fragment>
-                          )}
-                        renderInput={(params) => (
-                            <CarroTextField
-                            {...params}
-                                label="Oras destinatie"
-                                variant="outlined"
-                                inputProps={{
-                                    ...params.inputProps,
-                                    autoComplete: 'new-password', // disable autocomplete and autofill
-                                }}
-                                fullWidth
-                            />
-                        )}
-                        onChange={handleChangeDestinationCity}
-                        fullWidth
-                />
+                <CarroAutocomplete options={getCities(destinationCountry)} label="Oras destinatie" onChange={handleChangeDestinationCity}/>
         </Grid>
         <Grid container item xs={6} justifyContent='center'>
             <CarroTextField variant ='outlined' label='Adresa de preluare' fullWidth/>

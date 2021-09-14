@@ -45,6 +45,13 @@ const CardSelected = () =>{
                         </Grid>
                     </Box>
                 </Grid>
+                <Grid container item xs={12} justifyContent='center'>
+                    <Box width='35%'display='flex' justifyContent='center' mt={7}>
+                        <Link to='/payment-method/add-card' style={{textDecoration: 'none', width:'100%'}}>
+                            <PrimaryButton size='large' endIcon={<CreditCard/>} fullWidth>Adauga card nou</PrimaryButton>
+                        </Link>
+                    </Box>
+                </Grid>
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
                 <MenuItem onClick={handleClose}>Editeaza</MenuItem>
                 <Link to='/payment-method' style={{textDecoration: 'none', color: 'black'}}>

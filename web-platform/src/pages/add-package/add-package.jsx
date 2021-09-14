@@ -95,7 +95,7 @@ const AddPackage = () => {
         { activeStep===(steps.length-1) ? (
               <Box className='Primary-container-padding'>
                 {getStepContent(activeStep)}
-                <Box mt={10} mb={2} display ='flex' justifyContent='center'>
+                <Box mt={5} mb={2} display ='flex' justifyContent='center'>
                   <Grid container xs={12} spacing={7}>
                     <Grid container item xs  justifyContent='center'>
                       <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>INAPOI</SecondaryButton>

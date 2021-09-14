@@ -20,15 +20,10 @@ import { Link } from "react-router-dom";
 const AddCardPaymentMethod = () => {
 
   const[expDate, setExpDate] = useState(new Date());
-  const[saveCard, setSaveCard] = useState(false);
 
   const handleExpDate =(date)=>{
     setExpDate(date);
   };
-
-  const handleSaveCard = () => {
-    return;
-  }
   
   const classes = useStyles();
   return (
@@ -53,14 +48,14 @@ const AddCardPaymentMethod = () => {
           <CarroTextField variant= "outlined" label= "CVV" fullWidth/>
         </Grid>
         <Grid container item xs={4} justifyContent='center'>
-         <Box mt='10%'>
+         <Box width={1} mt='10%'>
           <Link to='/payment-method' style={{textDecoration: 'none', width:'100%'}}> 
             <SecondaryButton variant="contained" fullWidth> ANULEAZA </SecondaryButton> 
           </Link>
          </Box>
         </Grid>
         <Grid container item xs={4} justifyContent='center'>
-          <Box mt='10%'>
+          <Box width={1} mt='10%'>
             <Link to='/payment-method' style={{textDecoration: 'none'}}>
               <PrimaryButton variant="contained" fullWidth onClick={() => localStorage.setItem("paymentMethodExist", true)}> SALVEAZA</PrimaryButton>
             </Link>
