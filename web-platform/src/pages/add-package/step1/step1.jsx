@@ -5,6 +5,7 @@ import CarroDatePicker from "../../../components/datePicker/CarroDatePicker";
 import CarroAutocomplete from "../../../components/autocomplete/CarroAutocomplete";
 import { Country, State, City }  from 'country-state-city';
 
+
 const StepOne = () =>{
 
     const [departureDate, setDepartureDate] = useState(null);
@@ -38,12 +39,12 @@ const StepOne = () =>{
     }
 
     const getCountries = ()=> {
-        return Country.getAllCountries();
+        // return Country.getAllCountries();
     }
 
     const getCities = (country) =>{
         const cities = [];
-        City.getCitiesOfCountry(country).map((city)=>(cities.push(city.name)));
+        // City.getCitiesOfCountry(country).map((city)=>(cities.push(city.name)));
         return cities;
     }
 

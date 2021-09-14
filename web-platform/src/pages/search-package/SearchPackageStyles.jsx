@@ -8,6 +8,12 @@ const useStyles = makeStyles({
     flexDirection: "column",
     alignItems: "center",
   },
+  root: {
+    "& .MuiTextField-root": {
+      margin: 1,
+      width: "18ch",
+    },
+  }
 
 });
 export default useStyles;
