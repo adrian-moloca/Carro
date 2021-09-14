@@ -33,7 +33,7 @@ const StepLabelPersonalized = withStyles({
 
 const AddPackage = () => { 
 
-  const [activeStep, setActiveStep] = useState(3);
+  const [activeStep, setActiveStep] = useState(0);
 
   const classes = useStyles();
 

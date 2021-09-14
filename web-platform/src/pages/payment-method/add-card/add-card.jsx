@@ -10,25 +10,25 @@ import {
 } from "@material-ui/core";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import CarroTextField from "../../../../components/textField/CarroTextField"
-import CarroDatePicker from '../../../../components/datePicker/CarroDatePicker'
-import CarroCheckbox from "../../../../components/checkbox/CarroCheckbox";
-import PrimaryButton from "../../../../components/buttons/primaryButton/primaryButton"
-import SecondaryButton from "../../../../components/buttons/secondaryButton/secondaryButton"
+import CarroTextField from "../../../components/textField/CarroTextField"
+import CarroDatePicker from '../../../components/datePicker/CarroDatePicker'
+import CarroCheckbox from "../../../components/checkbox/CarroCheckbox";
+import PrimaryButton from "../../../components/buttons/primaryButton/primaryButton"
+import SecondaryButton from "../../../components/buttons/secondaryButton/secondaryButton"
 import { Link } from "react-router-dom";
-const AddCard = () => {
 
-  const [savingCard, setSavingCard] = useState();
+const AddCardPaymentMethod = () => {
 
   const[expDate, setExpDate] = useState(new Date());
-  
-  const handleSavingCard = (event) => {
-     event.target.checked ? setSavingCard(false) : setSavingCard(true);
-  };
+  const[saveCard, setSaveCard] = useState(false);
 
   const handleExpDate =(date)=>{
     setExpDate(date);
   };
+
+  const handleSaveCard = () => {
+    return;
+  }
   
   const classes = useStyles();
   return (
@@ -52,23 +52,23 @@ const AddCard = () => {
         <Grid container item xs={5} justifyContent='flex-start'>
           <CarroTextField variant= "outlined" label= "CVV" fullWidth/>
         </Grid>
-        <Grid container item xs={10} justifyContent='flex-start'>
-            <FormControlLabel onChange = {handleSavingCard} control={<CarroCheckbox/>} 
-                                    label='Salveaza card'/>
+        <Grid container item xs={4} justifyContent='center'>
+         <Box mt='10%'>
+          <Link to='/payment-method' style={{textDecoration: 'none', width:'100%'}}> 
+            <SecondaryButton variant="contained" fullWidth> ANULEAZA </SecondaryButton> 
+          </Link>
+         </Box>
         </Grid>
         <Grid container item xs={4} justifyContent='center'>
-         <Link to='/payment-method' style={{textDecoration: 'none', width:'100%'}}> 
-          <SecondaryButton variant="contained" fullWidth> ANULEAZA </SecondaryButton> 
-         </Link>
-        </Grid>
-        <Grid container item xs={4} justifyContent='center'>
-          <Link to='/payment-method/card-selected' style={{textDecoration: 'none', width:'100%'}}>
-            <PrimaryButton variant="contained" fullWidth> PLATESTE</PrimaryButton>
-          </Link> 
+          <Box mt='10%'>
+            <Link to='/payment-method' style={{textDecoration: 'none'}}>
+              <PrimaryButton variant="contained" fullWidth onClick={() => localStorage.setItem("paymentMethodExist", true)}> SALVEAZA</PrimaryButton>
+            </Link>
+          </Box>
         </Grid>
       </Grid>
     </Container>
   );
 };
 
-export default AddCard;
+export default AddCardPaymentMethod;

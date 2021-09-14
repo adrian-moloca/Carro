@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Container, Box, Button, Menu, MenuItem, Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import masterCard from '../../../assets/images/mastercard.png';
@@ -23,13 +23,9 @@ const CardSelected = () =>{
     };
 
     return(
-        <Container className={'Primary-container-style'}>
-            <Grid container xs={12} justifyContent='center' spacing={1}>
-                <Grid container item xs={12} justifyContent='center'> 
-                    <Box fontSize={22} justifyContent='center' mt='3%'>Metoda de plata</Box>
-                </Grid>
+        <Fragment>
                 <Grid container item xs={8} justifyContent='center'>
-                    <Box borderRadius='10px'  boxShadow={3} display ='flex' flexDirection='column' mt ={8} p={2}>
+                    <Box borderRadius='10px'  boxShadow={3} display ='flex' flexDirection='column' mt ='5%' p={2}>
                         <Grid container xs={12} justifyContent='center'>
                             <Grid item xs={6} justifyContent='flex-start'>
                                 <img src={masterCard} className={classes.masterCardIco}/>    
@@ -49,21 +45,13 @@ const CardSelected = () =>{
                         </Grid>
                     </Box>
                 </Grid>
-                <Grid container item xs={12} justifyContent='center'>
-                    <Box display='flex' justifyContent='center' mt={8}>
-                        <Link to='/payment-method/add-method' style={{textDecoration: 'none'}}>
-                        <PrimaryButton size='large' endIcon={<CreditCard/>} fullWidth>Adauga metoda de plata</PrimaryButton>
-                        </Link>
-                    </Box>
-                </Grid>
-            </Grid>
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
                 <MenuItem onClick={handleClose}>Editeaza</MenuItem>
-                <MenuItem onClick={handleClose}>Sterge</MenuItem>       
+                <Link to='/payment-method' style={{textDecoration: 'none', color: 'black'}}>
+                    <MenuItem onClick={() => localStorage.setItem("paymentMethodExist", false)}>Sterge</MenuItem>       
+                </Link>
             </Menu>
-
-        </Container>
-
+        </Fragment>
     );
 };
 

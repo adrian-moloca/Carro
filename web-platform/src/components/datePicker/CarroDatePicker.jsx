@@ -1,9 +1,13 @@
 import React from "react";
+import {registerLocale} from 'react-datepicker';
 import { ThemeProvider } from "@material-ui/styles";
 import { createTheme } from "@material-ui/core";
 import DateFnsUtils from '@date-io/date-fns';
 import {  MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import CarroTextField from "../textField/CarroTextField";
+import {ro} from "date-fns/locale";
+
+registerLocale('ro', ro);
 
 const DatePickerTh = createTheme({
     palette:{
@@ -17,7 +21,7 @@ const DatePickerTh = createTheme({
 const CarroDatePicker = (props)=>{
 
     return(
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ro}>
                 <ThemeProvider theme={DatePickerTh}>
                     <KeyboardDatePicker
                             disableToolbar

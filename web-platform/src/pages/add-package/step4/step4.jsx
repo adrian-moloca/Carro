@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Box, Grid, FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
 import { withStyles } from "@material-ui/core";
 import CarroTextField from "../../../components/textField/CarroTextField";
@@ -38,24 +38,28 @@ const StepFour = () =>{
                 </Grid>
                 <Grid container item xs={12} justifyContent="center">
                     <RadioGroupPersonalized row value = {payment} onChange={handlePayment} >                   
-                        <FormControlLabel value = 'cardOnline' control={<CarroRadio/>} label='card Online'/>
-                        <FormControlLabel value = 'ordinDePlata' control={<CarroRadio/>} label='ordin de Plata'/>
+                        <FormControlLabel value = 'cardOnline' control={<CarroRadio/>} label='Card online'/>
+                        <FormControlLabel value = 'ordinDePlata' control={<CarroRadio/>} label='Ordin de plata'/>
                         <FormControlLabel value = 'ramburs' control={<CarroRadio/>} label='Ramburs'/>
                     </RadioGroupPersonalized>
                 </Grid>
-                <Grid container item xs={6} justifyContent='center'>
-                  <CarroTextField variant ='outlined' label='Numar card' fullWidth/>
-                </Grid>
-                <Grid container item xs={6} justifyContent='center'>
-                            <CarroDatePicker dateValue={expDate} handleDateSelect={handleExpDate}
-                                views={["month","year"]} defaultShow={expDate} format="MM/yyyy" openTo='month' label='Data expirare'/>  
-                </Grid>
-                <Grid container item xs={6} justifyContent='center'>
-                  <CarroTextField variant ='outlined' label='Nume complet' fullWidth/>
-                </Grid>
-                <Grid container item xs={6} justifyContent='center'>
-                  <CarroTextField variant ='outlined' label='CVV/CVC' fullWidth/>
-                </Grid>
+                {payment === 'cardOnline' ? (
+                    <Fragment>
+                      <Grid container item xs={6} justifyContent='center'>
+                        <CarroTextField variant ='outlined' label='Numar card' fullWidth/>
+                      </Grid>
+                      <Grid container item xs={6} justifyContent='center'>
+                                  <CarroDatePicker dateValue={expDate} handleDateSelect={handleExpDate}
+                                      views={["month","year"]} defaultShow={expDate} format="MM/yyyy" openTo='month' label='Data expirare'/>  
+                      </Grid>
+                      <Grid container item xs={6} justifyContent='center'>
+                        <CarroTextField variant ='outlined' label='Nume complet' fullWidth/>
+                      </Grid>
+                      <Grid container item xs={6} justifyContent='center'>
+                        <CarroTextField variant ='outlined' label='CVV/CVC' fullWidth/>
+                      </Grid>
+                    </Fragment>
+                    ) : null}
               </Grid>
           </Box>
     );
