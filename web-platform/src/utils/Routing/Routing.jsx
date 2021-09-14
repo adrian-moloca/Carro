@@ -22,6 +22,7 @@ import CardSelected from '../../pages/payment-method/card-selected/card-selected
 import Profile from '../../pages/profile/profile';
 import SearchPackage from '../../pages/search-package/search-package';
 import SearchRide from '../../pages/search-ride/search-ride';
+import AddTransport from '../../pages/add-transport/add-transport';
 import './Routing.css';
 const Routes = () => {
     
@@ -73,6 +74,7 @@ const Routes = () => {
                                 <Route path="/register" exact component={Register}/>
                                 <Route path="/register/select-plan" exact component={SelectPlan}/>
                                 <Route path="/register/select-plan/add-card" exact component={AddCard}/>
+                                <Route path="/add-transport" exact component={AddTransport}/>
                                 <Route component={HomePage} />
                             </Switch>
                         </div>
