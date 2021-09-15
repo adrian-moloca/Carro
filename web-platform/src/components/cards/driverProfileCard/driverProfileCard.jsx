@@ -9,18 +9,8 @@ const DriverProfileCard =(props)=>{
 
   const classes = useStyles();
 
-  const[open, setOpen]=useState(false);
-
-  const handleBtn =()=>{
-      setOpen(!open);
-  };
-
-  const handleCloseBd=()=>{
-      setOpen(false);
-  };
-
   return(
-    <Box mt='7%'  width='0.92' p={1}>
+    <Box mt='7%'  fullWidth p={1}>
       <Grid 
         container 
         justifyContent="center"
@@ -58,8 +48,6 @@ const DriverProfileCard =(props)=>{
                 <StarBorder className={classes.starsStyle}/>
             </Grid> */}
         <BackdropSelectDriver 
-            open={open} 
-            clicked={handleCloseBd}
             image={props.image}
             masina={props.masina}
             an={props.an}

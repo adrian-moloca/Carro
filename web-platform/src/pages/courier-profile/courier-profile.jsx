@@ -25,6 +25,7 @@ const AddTransport = () =>{
           totalCurse='10'/>
         <Box mb={2} className={'Secondary-color'} fontWeight={"normal"} fontSize={18}>Comentarii</Box>
         <CommentCard/>
+        <CommentCard/>
         <PaginationSBD/>
         <Box mt={3} display='flex' justifyContent='center'  width='1' >
           <CarroTextField  
