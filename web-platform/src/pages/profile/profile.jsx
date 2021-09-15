@@ -18,8 +18,13 @@ import {
 } from "@material-ui/core";
 import "../../App.css";
 import useStyles from "./profileStyle";
+import CarroTextField from "../../components/textField/CarroTextField";
+import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
+import SeeProfileBtn from "../../components/buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn"
+import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
+import profilePhotoMiddle from "../../assets/images/photoprofile1.png";
 
-const Register = () => {
+const Profile = () => {
   const classes = useStyles();
 
   const [checked, setChecked] = React.useState(true);
@@ -33,149 +38,168 @@ const Register = () => {
 
   return (
     <Container className={"Primary-container-style"}>
-      <Grid container spacing={3} className={"RegisterBoxAlign"}>
-        <Grid item xs={12}>
-          <Box mb={2} fontWeight={400} fontSize={21} textAlign={"center"}>
-            Profile
+      <Box display="flex" justifyContent="end">
+        <Grid xs={2}>
+          <Box
+            mt={3}
+            color={"#00B4D8"}
+            fontWeight={500}
+            fontSize={22}
+            textAlign={"center"}
+          >
+            VIZUALIZEAZA PROFILUL
           </Box>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.large} />
         </Grid>
-        <Grid item xs={6}>
-          <TextField
-            label="Nume"
-            id="outlined-margin-none"
-            placeholder="Nume utilizator"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            label=" Prenume"
-            id="outlined-margin-none"
-            placeholder="Prenume utilizator"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            label="Adresa"
-            id="outlined-margin-none"
-            placeholder="Adresa de preluare"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            id="date"
-            label="Data de nastere"
-            type="date"
-            defaultValue="2017-05-24"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="outlined-full-width"
-            label="Adresa de mail"
-            style={{ margin: 8 }}
-            placeholder="user@mail.com"
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            label="Password"
-            label="Password"
-            type="password"
-            id="outlined-margin-none"
-            placeholder="password"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            label="Password"
-            label="Password"
-            type="password"
-            id="outlined-margin-none"
-            placeholder="password"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
-        </Grid>
-        <FormGroup row>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={state.checkedA}
-                onChange={handleChange}
-                name="checkedA"
-                color="primary"
-              />
-            }
-            label="TERMENI SI CONDITII"
-          />
-        </FormGroup>
-
-        <Grid item xs={12} className={classes.ButtonWidth}>
-        <Button variant="contained" color="primary" className={classes.PrimaryButton} >
-            INREGISTRARE
-          </Button>
-        </Grid>
-        <Grid
-          container
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <StepConnector />
-          <Box fontWeight={400} fontSize={16} textAlign={"center"}>
-            INREGISTRARE PRIN
-          </Box>
-          <StepConnector />
-        </Grid>
-        <Box className={classes.SocialMediaAlign} justifyContent="space-evenly" >
-          <Box display="flex" justifyContent="center">
-            <Avatar alt="Google" src={GoogleIcon} className={classes.large} />
-          </Box>
-          <Box display="flex" justifyContent="center">
-            <Avatar
-              alt="Facebook"
-              src={FacebookIcon}
-              className={classes.large}
-            />
-          </Box>
+      </Box>
+      <Grid container xs={12} display="flex" justifyContent="center">
+        <Box mt={1} mb={2} fontWeight={400} fontSize={22} textAlign={"center"}>
+          Profil
         </Box>
       </Grid>
+      <Box display="flex" justifyContent="center" mb="3%">
+        <img src={profilePhotoMiddle} />
+      </Box>
+
+      <Box display="flex" justifyContent="space-evenly" mt="1%">
+        <Grid
+          container
+          xs={8}
+          spacing={3}
+          display="flex"
+          justifyContent="center"
+        >
+          <Grid container item xs={6} justifyContent="center">
+            <CarroTextField variant="outlined" label="Nume" fullWidth />
+          </Grid>
+          <Grid container item xs={6} justifyContent="center">
+            <CarroTextField variant="outlined" label="Prenume" fullWidth />
+          </Grid>
+          <Grid item xs={12}>
+            <CarroTextField variant="outlined" label="Adresa" fullWidth />
+          </Grid>
+
+          <Grid container item xs={6} justifyContent="center">
+            <CarroTextField
+              variant="outlined"
+              label="Numar de telefon"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CarroDatePicker
+              label="Data de nastere"
+              InputLabelProps={{
+                style: { fontSize: "17px", marginTop: "3px" },
+              }}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <CarroTextField
+              variant="outlined"
+              label="Limbi cunoscute"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CarroTextField
+              variant="outlined"
+              label="Adresa de email"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <CarroTextField
+              variant="outlined"
+              label="Particularitati"
+              fullWidth
+            />
+          </Grid>
+        </Grid>
+      </Box>
+      <Grid xs={12}>
+        <Box
+          mt={3}
+          mb={3}
+          color={"#00B4D8"}
+          fontWeight={500}
+          fontSize={22}
+          textAlign={"center"}
+        >
+          INCARCA DOCUMENTELE OBLIGATORII
+        </Box>
+      </Grid>
+      <Box display="flex" justifyContent="center" ml="1%">
+        <Grid container xs={8}>
+          <FormGroup row>
+            <FormControlLabel
+              classes={{ label: classes.label }}
+              control={
+                <Checkbox
+                  // className={classes.CheckBoxStyle}
+                  checked={state.checkedA}
+                  onChange={handleChange}
+                  name="checkedA"
+                  color="default"
+                />
+              }
+              // className={classes.label}
+              label="Persoana Juridica"
+            />
+          </FormGroup>
+        </Grid>
+      </Box>
+      <Grid xs={9}>
+        <Box
+          mt={3}
+          mb={3}
+          color={"#A0A0A0"}
+          fontWeight={500}
+          fontSize={22}
+          textAlign={"center"}
+        >
+          INFORMATII AUTOTURISM (OPTIONAL)
+        </Box>
+      </Grid>
+      <Box display="flex" justifyContent="space-evenly" mt="1%">
+        <Grid
+          container
+          xs={8}
+          spacing={3}
+          display="flex"
+          justifyContent="center"
+        >
+          <Grid container item xs={6} justifyContent="center">
+            <CarroTextField variant="outlined" label="Marca" fullWidth />
+          </Grid>
+          <Grid container item xs={6} justifyContent="center">
+            <CarroTextField variant="outlined" label="Model" fullWidth />
+          </Grid>
+          <Grid container item xs={6} justifyContent="center">
+            <CarroTextField
+              variant="outlined"
+              label="Numar de inmatriculare"
+              fullWidth
+            />
+          </Grid>
+          <Grid container item xs={6} justifyContent="center">
+            <CarroTextField variant="outlined" label="Culoare" fullWidth />
+          </Grid>
+        </Grid>
+      </Box>
+
+      <Box display="flex" justifyContent="center" mt="3%" mb="5%">
+        <Grid container item xs={3}>
+          <PrimaryButton fullWidth variant="contained">
+            EDITEAZA
+          </PrimaryButton>
+          
+        </Grid>
+      </Box>
+      
+
     </Container>
   );
 };
 
-export default Register;
+export default Profile;
