@@ -15,7 +15,9 @@ import {
   Divider,
   StepConnector,
   Avatar,
+  
 } from "@material-ui/core";
+import EditIcon from '@material-ui/icons/Edit';
 import "../../App.css";
 import useStyles from "./profileStyle";
 import CarroTextField from "../../components/textField/CarroTextField";
@@ -190,7 +192,7 @@ const Profile = () => {
 
       <Box display="flex" justifyContent="center" mt="3%" mb="5%">
         <Grid container item xs={3}>
-          <PrimaryButton fullWidth variant="contained">
+          <PrimaryButton fullWidth variant="contained" endIcon={<EditIcon />}>
             EDITEAZA
           </PrimaryButton>
           

@@ -20,6 +20,8 @@ import FacebookIcon from "../../assets/images/facebook-icon.png";
 import CarroTextField from "../../components/textField/CarroTextField";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import { DonutLargeOutlined } from "@material-ui/icons";
 
 const Register = () => {
   const classes = useStyles();
@@ -113,8 +115,9 @@ const Register = () => {
       <Box display="flex" justifyContent="center" mt="3%" mb="5%">
 
       <Grid container item xs={8}>
-        <PrimaryButton fullWidth variant="contained">
-          CAUTA
+        <PrimaryButton fullWidth variant="contained" endIcon={<PersonAddIcon />}>
+        
+          Inregistrare
         </PrimaryButton>
       </Grid>
       </Box>

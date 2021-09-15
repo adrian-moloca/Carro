@@ -12,7 +12,7 @@ import {
   SvgIcon,
 } from "@material-ui/core";
 import PaginationSBD from "../../components/pagination/pagination";
-
+import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
 import Pagination from "@material-ui/lab/Pagination";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import { makeStyles } from "@material-ui/core/styles";
@@ -198,7 +198,7 @@ const SearchPackages = () => {
       </Box>
       <Box display="flex" justifyContent="space-evenly" mt="3%">
         <Grid container item xs={2}>
-          <PrimaryButton fullWidth variant="contained">
+          <PrimaryButton fullWidth variant="contained" endIcon={<FindInPageRoundedIcon />}>
             {" "}
             CAUTA
           </PrimaryButton>
