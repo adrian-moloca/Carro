@@ -23,7 +23,9 @@ import Profile from '../../pages/profile/profile';
 import SearchPackage from '../../pages/search-package/search-package';
 import SearchRide from '../../pages/search-ride/search-ride';
 import AddTransport from '../../pages/add-transport/add-transport';
+import CourierProfile from '../../pages/courier-profile/courier-profile';
 import './Routing.css';
+
 const Routes = () => {
     
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -75,6 +77,7 @@ const Routes = () => {
                                 <Route path="/register/select-plan" exact component={SelectPlan}/>
                                 <Route path="/register/select-plan/add-card" exact component={AddCard}/>
                                 <Route path="/add-transport" exact component={AddTransport}/>
+                                <Route path="/courier-profile" exact component={CourierProfile}/>
                                 <Route component={HomePage} />
                             </Switch>
                         </div>
