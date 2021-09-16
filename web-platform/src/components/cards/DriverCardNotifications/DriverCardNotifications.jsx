@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Box, Grid} from '@material-ui/core';
+import {Box, Grid, Link} from '@material-ui/core';
 import {Star, StarBorder, StarHalf} from '@material-ui/icons';
 import BackdropSelectDriver from '../../backdrop/backDrop';
 import SeeProfileBtn from '../../buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn'
@@ -24,7 +24,11 @@ const DriverCardNotifications =(props)=>{
             <Grid container xs={12} justifyContent='center'>
                 <Grid container item xs={12} justifyContent='flex-end'>
                     <img src={props.image} className={classes.profileImg}/>
-                    <SeeProfileBtn>Vezi Profilul</SeeProfileBtn>
+                    <SeeProfileBtn>
+                        <Link href="/courier-profile" undeline= 'none' color= 'inherit'>
+                            Vezi Profilul
+                        </Link>
+                    </SeeProfileBtn>
                 </Grid>
                 <Grid container item xs={12} justifyContent='center'>
                     <Box fontSize='20px' fontWeight='500'>{props.name}</Box>

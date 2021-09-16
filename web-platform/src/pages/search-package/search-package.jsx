@@ -29,46 +29,32 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import useStyles from "./SearchPackageStyles";
 import RideCard from "../../components/cards/RideCard/RideCard";
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     "& .MuiTextField-root": {
-//       margin: theme.spacing(1),
-//       width: "18ch",
-//     },
-//   },
-// }));
 const SearchPackages = () => {
+
+
+  // state
   const classes = useStyles();
   const [departureDate, setDepartureDate] = useState(null);
-
   const [departureCountry, setDepartureCountry] = useState(null);
-
   const [destinationCountry, setDestinationCountry] = useState(null);
-
   const [departureCity, setDepartureCity] = useState(null);
-
   const [destinationCity, setDestinationCity] = useState(null);
 
   const handleChangeDepartureDate = (date) => {
     setDepartureDate(date);
   };
-
   const handleChangeDepartureCountry = (event) => {
     setDepartureCountry(event.target.value);
   };
-
   const handleChangeDestinationCountry = (event) => {
     setDestinationCountry(event.target.value);
   };
-
   const handleChangeDepartureCity = (event) => {
     setDepartureCity(event.target.textContent);
   };
-
   const handleChangeDestinationCity = (event) => {
     setDestinationCity(event.target.textContent);
   };
-
   const getCountries = () => {
     return Country.getAllCountries();
   };
@@ -79,6 +65,7 @@ const SearchPackages = () => {
     return cities;
   };
 
+  // render
   return (
     <Container className={"Pack-container-style"}>
       <Grid item xs={12}>
@@ -86,7 +73,6 @@ const SearchPackages = () => {
           Cauta pachete
         </Box>
       </Grid>
-
       <Box display="flex" justifyContent="space-evenly" mt="3%">
         <Grid container xs={12} spacing={3} justifyContent="space-between">
           <Grid container item xs justifyContent="center">
@@ -183,7 +169,6 @@ const SearchPackages = () => {
               fullWidth
             />
           </Grid>
-
           <Grid container item xs justifyContent="center">
             <CarroDatePicker
               label="Data"
@@ -209,9 +194,8 @@ const SearchPackages = () => {
         <RideCard />
         <RideCard />
       </Box>
-
       <Box display="flex" justifyContent="space-evenly" mt="3%">
-        <PaginationSBD />
+        <PaginationSBD /> 
       </Box>
     </Container>
   );
