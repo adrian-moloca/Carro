@@ -1,12 +1,10 @@
 
-import React, {Fragment, useState} from 'react';
-import { Container, Box, Stepper, Step, StepLabel, Grid, FormControlLabel, Button, Radio, RadioGroup, MenuItem, InputAdornment, Select} from '@material-ui/core';
-import CarroTextField from '../../components/textField/CarroTextField';
+import React, {useState} from 'react';
+import { Container, Box, Stepper, Step, StepLabel, Grid,} from '@material-ui/core';
 import useStyles from './add-packageStyle';
 import { withStyles } from '@material-ui/styles';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';
-import CarroCheckbox from '../../components/checkbox/CarroCheckbox';
 import {ArrowBackIos, ArrowForwardIos, Add} from '@material-ui/icons';
 import StepOne from './step1/step1';
 import StepTwo from './step2/step2';
@@ -93,7 +91,7 @@ const AddPackage = () => {
       </Stepper>
       <Box>
         { activeStep===(steps.length-1) ? (
-              <Box className='Primary-container-padding'>
+              <Box>
                 {getStepContent(activeStep)}
                 <Box mt={5} mb={2} display ='flex' justifyContent='center'>
                   <Grid container xs={12} spacing={7}>
@@ -107,9 +105,9 @@ const AddPackage = () => {
                 </Box>
               </Box>
         ) : (
-              <Box className='Primary-container-padding' >
+              <Box>
                 {getStepContent(activeStep)}
-                <Box mt={10} mb={2} display ='flex' justifyContent='center'>
+                <Box mt={5} mb={2} display ='flex' justifyContent='center'>
                   <Grid container xs={12} spacing={7}>
                     <Grid container item xs  justifyContent='center'>
                     {activeStep === 0 ? 
@@ -117,7 +115,7 @@ const AddPackage = () => {
                       <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>INAPOI</SecondaryButton> }
                     </Grid>
                     <Grid container item xs  justifyContent='center'>
-                      <PrimaryButton onClick={handleNext} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>URMATORUL PAS</PrimaryButton>
+                      <PrimaryButton onClick={handleNext} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth color="primary">URMATORUL PAS</PrimaryButton>
                     </Grid>
                   </Grid>
                 </Box>

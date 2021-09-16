@@ -1,15 +1,15 @@
 import React, { Fragment, useState } from "react";
-import { Box, Grid, FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
+import { Box, Grid, FormControlLabel, RadioGroup } from "@material-ui/core";
 import { withStyles } from "@material-ui/core";
 import CarroRadio from "../../../components/radio/CarroRadio";
-import AddCardInStep from "./add-card-in-step";
-import CardSelected from "../../payment-method/card-selected/card-selected";
+import CarroCheckbox from "../../../components/checkbox/CarroCheckbox";
+import AddCard from "../../../components/add-card/add-card";
+import CardSelected from "../../../components/card-selected/card-selected";
 
 const RadioGroupPersonalized = withStyles({
     root:{
           width:'60%',
           justifyContent:'space-between',
-          marginBottom:'3%',
       },
   
   })(RadioGroup);
@@ -18,15 +18,21 @@ const StepFour = () =>{
 
     const[payment, setPayment] = useState('cardOnline');
 
-    const [cardSetted, setCardSetted] =  useState(localStorage.getItem("paymentMethodExist"));
+    const [cardSetted, setCardSetted] =  useState(localStorage.getItem('paymentMethodExist'));
+
+    const[saveData, setSaveData] = useState(false);
 
     const handlePayment = (event)=>{
         setPayment(event.target.value);
       };
 
+    const handleSaveData = () =>{
+        !saveData ? setSaveData(true) : setSaveData(false);
+    }
+
     return(
         <Box display='flex' justifyContent='center' mt='3%'>
-              <Grid container xs={12} spacing={3} justifyContent='center'>
+              <Grid container xs={12} spacing={4} justifyContent='center'>
                 <Grid container item xs={12} justifyContent="center">
                   <Box fontWeight={500} fontSize={22}>Modalitati de plata</Box>
                 </Grid>
@@ -39,9 +45,16 @@ const StepFour = () =>{
                 </Grid>
                 {payment === 'cardOnline' ? (
                   cardSetted ?
-                    <CardSelected/>
-                    : <AddCardInStep/> 
-                    ) : null}
+                    <CardSelected cardSelected={localStorage.getItem("paymentMethodExist")}/>
+                    : 
+                    (<Fragment>
+                        <AddCard/>
+                        <Grid container item xs={12} justifyContent='flex-end'>
+                            <FormControlLabel onChange = {handleSaveData} control={<CarroCheckbox/>} 
+                                    label='Salveaza Datele'/>
+                        </Grid>
+                      </Fragment>)
+                ) : null}
               </Grid>
           </Box>
     );

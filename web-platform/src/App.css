@@ -38,16 +38,6 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
 }
 
-.Pack-container-style {
-  background-color: white;
-  margin: 1% 0;
-  padding: 20px;
-  width: 100% !important;
-  min-height: 62vh;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
-}
-
 .addPackagesContainer {
   background-color: white;
   margin: 1% 0;

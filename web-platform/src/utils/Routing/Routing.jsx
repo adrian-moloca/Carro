@@ -11,14 +11,13 @@ import ResetPassword from '../../pages/login/reset-password/reset-password';
 import Register from '../../pages/register/register';
 import SelectPlan from '../../pages/register/select-plan/select-plan';
 import AddCard from '../../pages/register/select-plan/add-card/add-card';
-import AddCardPaymentMethod from '../../pages/payment-method/add-card/add-card';
 import HomePage from '../../pages/home-page/home-page';
 import AddPackage from '../../pages/add-package/add-package';
 import MyPackages from '../../pages/my-packages/my-packages';
 import MyRides from '../../pages/my-rides/my-rides';
 import Notifications from '../../pages/notifications/notifications';
 import PaymentMethod from '../../pages/payment-method/payment-method';
-import CardSelected from '../../pages/payment-method/card-selected/card-selected';
+import AddPaymentMethod from '../../pages/payment-method/add-payment-method/add-payment-method';
 import Profile from '../../pages/profile/profile';
 import SearchPackage from '../../pages/search-package/search-package';
 import SearchRide from '../../pages/search-ride/search-ride';
@@ -62,7 +61,7 @@ const Routes = () => {
                                 <Route path="/my-rides" exact component={MyRides}/>
                                 <Route path="/notifications" exact component={Notifications}/>
                                 <Route path="/payment-method" exact component={PaymentMethod}/>
-                                <Route path="/payment-method/add-card" exact component={AddCardPaymentMethod}/>
+                                <Route path="/payment-method/add-payment-method" exact component={AddPaymentMethod}/>
                                 <Route path="/profile" exact component={Profile}/>
                                 <Route path="/search-package" exact component={SearchPackage}/>
                                 <Route path="/search-ride" exact component={SearchRide}/>
