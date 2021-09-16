@@ -21,7 +21,10 @@ import AddPaymentMethod from '../../pages/payment-method/add-payment-method/add-
 import Profile from '../../pages/profile/profile';
 import SearchPackage from '../../pages/search-package/search-package';
 import SearchRide from '../../pages/search-ride/search-ride';
+import AddTransport from '../../pages/add-transport/add-transport';
+import CourierProfile from '../../pages/courier-profile/courier-profile';
 import './Routing.css';
+
 const Routes = () => {
     
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -56,15 +59,16 @@ const Routes = () => {
                         <div className="sbd-container-content">
                             <Switch>
                                 <Route path="/" exact component={HomePage}/>
-                                <Route path="/add-package" exact component={AddPackage}/>
-                                <Route path="/my-packages" exact component={MyPackages}/>
-                                <Route path="/my-rides" exact component={MyRides}/>
-                                <Route path="/notifications" exact component={Notifications}/>
+                                <Route path="/add-package" exact component={AddPackage}/>  {/* checked */}
+                                <Route path="/my-packages" exact component={MyPackages}/>  {/* checked */}
+                                <Route path="/my-rides" exact component={MyRides}/>  {/* checked */}
+                                <Route path="/notifications" exact component={Notifications}/>  {/* checked */}
                                 <Route path="/payment-method" exact component={PaymentMethod}/>
                                 <Route path="/payment-method/add-payment-method" exact component={AddPaymentMethod}/>
                                 <Route path="/profile" exact component={Profile}/>
                                 <Route path="/search-package" exact component={SearchPackage}/>
                                 <Route path="/search-ride" exact component={SearchRide}/>
+
                                 <Route path="/login" exact component={Login}/>
                                 <Route path="/login/forgot-password" exact component={ForgotPassword}/>
                                 <Route path="/reset-password" exact component={ResetPassword}/>
@@ -72,6 +76,8 @@ const Routes = () => {
                                 <Route path="/register" exact component={Register}/>
                                 <Route path="/register/select-plan" exact component={SelectPlan}/>
                                 <Route path="/register/select-plan/add-card" exact component={AddCard}/>
+                                <Route path="/add-transport" exact component={AddTransport}/>  {/* checked */}
+                                <Route path="/courier-profile" exact component={CourierProfile}/>
                                 <Route component={HomePage} />
                             </Switch>
                         </div>
