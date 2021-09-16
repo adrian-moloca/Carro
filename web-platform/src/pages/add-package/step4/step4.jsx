@@ -32,7 +32,7 @@ const StepFour = () =>{
 
     return(
         <Box display='flex' justifyContent='center' mt='3%'>
-              <Grid container xs={12} spacing={4} justifyContent='center'>
+              <Grid container xs={12} spacing={3} justifyContent='center'>
                 <Grid container item xs={12} justifyContent="center">
                   <Box fontWeight={500} fontSize={22}>Modalitati de plata</Box>
                 </Grid>

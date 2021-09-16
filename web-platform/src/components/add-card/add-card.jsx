@@ -29,7 +29,8 @@ const AddCard = (props) =>{
             </Grid>
             <Grid container item xs={12} justifyContent='center'>
                 <Box display={props.showSaveButton ? props.showSaveButton : 'none'} width={0.3} marginBottom={2}>
-                    <PrimaryButton variant = 'contained' onClick={props.clickedSaveButton} fullWidth>Salveaza</PrimaryButton>
+                    <PrimaryButton disabled = {props.cardNumber && props.expDate && props.completeName && props.cvv ? false : true} 
+                                variant = 'contained' onClick={props.clickedSaveButton} fullWidth>Salveaza</PrimaryButton>
                 </Box>
             </Grid>
         </Fragment>

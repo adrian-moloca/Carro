@@ -109,26 +109,26 @@ const Package = (props)=>{
                     </Fragment>
                 ):(null)}
                 <Grid container item xs={12} justifyContent='center'>
-                <CarroTextField variant ='outlined' label='Scurta descriere' fullWidth/>
+                    <CarroTextField variant ='outlined' label='Scurta descriere' fullWidth/>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label='Pret' fullWidth
-                    InputProps={{startAdornment: 
-                        <InputAdornment position="start">
-                        <Select value={currency} onChange={handleCurrencySelect}>
-                            {currencies.map((option)=>(
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                            ))}
-                        </Select>
-                        </InputAdornment>}}/>
+                    <CarroTextField variant ='outlined' label='Pret' fullWidth
+                        InputProps={{startAdornment: 
+                            <InputAdornment position="start">
+                            <Select value={currency} onChange={handleCurrencySelect}>
+                                {currencies.map((option)=>(
+                                <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                                ))}
+                            </Select>
+                            </InputAdornment>}}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
                     <CarroTextField variant ='outlined' label='Numar pachete' fullWidth/>
                 </Grid>
-                <Grid container item xs={12} justifyContent='center' multiline maxRows={5}>
-                    <CarroTextField variant ='outlined' label='Descriere' fullWidth/>
+                <Grid container item xs={12} justifyContent='center' maxRows={5}>
+                    <CarroTextField variant ='outlined' label='Descriere' multiline={4} rows={4} fullWidth/>
                 </Grid>
                 <Grid container item xs={12} justifyContent='space-between'>            
                     <FormControlLabel onChange = {handleInflamabilCheckboxClick} control={<CarroCheckbox/>} 

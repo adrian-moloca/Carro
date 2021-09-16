@@ -31,8 +31,8 @@ const CardSelected = (props) =>{
             name:'cardOnline1',
             cardProvider: masterCard,
             cardHolder: 'Card Holder Name',
-            cardNumber:'4333 1234 1234 1234',
-            dateSaved: '25/08/2021',
+            cardNumber:'5333 1234 1234 1236',
+            dateSaved: '25/08/21',
             expDate: '08/24',
             cvv: '111',
         },
@@ -58,7 +58,7 @@ const CardSelected = (props) =>{
 
     const cardProviderSearch=(cardNumber)=>{
         const cardNetwork = parseInt(cardNumber.charAt(0));
-        {console.log(cardNetwork)}
+
         switch(cardNetwork){
             case 3:{
                 return americanExpress;
@@ -81,14 +81,14 @@ const CardSelected = (props) =>{
         const date = newDate.getDate().toString();
         const month = newDate.getMonth() + 1;
         const year = newDate.getFullYear().toString();
-        const stringDate = date + '/' + month.toString() + '/' + year
+        const stringDate = date + '/' + month.toString() + '/' + year.substr(year.length-2);
         return stringDate;
     }
 
     const getExpDate = (date) =>{
         const month = date.getMonth() + 1;
-        const year = date.getFullYear();
-        const stringExp = month.toString() + '/' + year;
+        const year = date.getFullYear().toString();
+        const stringExp = month.toString() + '/' + year.substr(year.length-2);
         return stringExp;
     }
 
@@ -177,7 +177,6 @@ const CardSelected = (props) =>{
                                 showSaveButton={props.showSaveButtonAddCard} clickedSaveButton={()=>handleSaveButtonAddCard(cardNumber, cardHolder, expDate, cardCVV)}
                                 cardNumber={cardNumber} cardNumberSet={handleCardNumber} expDate={expDate} expDateSet={handleExpDate}
                                 completeName={cardHolder} completeNameSet={handleCardHolder} cvv={cardCVV} cvvSet={handleCardCVV}/>
-                                {console.log(cardNumber)}
                     </Fragment>
                 ) : (
                     <Grid container item xs={8} justifyContent='flex-end'>

@@ -9,7 +9,7 @@ import CardSelected from '../../components/card-selected/card-selected';
 
 const PaymentMethod = () => {
   
-  const [cardSetted, setCardSetted] =  useState(false);
+  const [cardSetted, setCardSetted] =  useState(localStorage.getItem('paymentMethodExist'));
 
   const [paymentMethod, setPaymenthMethod] = useState('no assignment');
 
