@@ -15,6 +15,7 @@
     "browserlist": "^1.0.1",
     "country-state-city": "^3.0.1",
     "date-fns": "^2.23.0",
+    "mui-phone-textfield": "^3.1.0",
     "react": "^17.0.2",
     "react-datepicker": "^4.2.1",
     "react-dom": "^17.0.2",

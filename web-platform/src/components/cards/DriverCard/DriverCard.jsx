@@ -18,8 +18,13 @@ const DriverCard =(props)=>{
         setOpen(!open);
     };
 
-    const handleCloseBd=()=>{
-        setOpen(false);
+    const handleCloseBd=(event)=>{
+        if(event.target === document.getElementById('backdrop'))
+            setOpen(false)
+    };
+
+    const handleCloseBdByBtn=(event)=>{
+            setOpen(false)
     };
 
     console.log(open);
@@ -58,14 +63,15 @@ const DriverCard =(props)=>{
                         </Grid>
                     </Grid>
                     <BackdropSelectDriver 
-                    open={open} 
-                    clicked={handleCloseBd}
-                    image={props.image}
-                    name={props.name}
-                    plecare={props.plecare}
-                    destinatie= {props.destinatie}
-                    telefon = {props.telefon}
-                    dataPlecare = {props.dataPlecare}/>
+                        open={open} 
+                        clicked={handleCloseBd}
+                        clickedBackBtn={handleCloseBdByBtn}
+                        image={props.image}
+                        name={props.name}
+                        plecare={props.plecare}
+                        destinatie= {props.destinatie}
+                        telefon = {props.telefon}
+                        dataPlecare = {props.dataPlecare}/>
                 </Box>
         );
 };

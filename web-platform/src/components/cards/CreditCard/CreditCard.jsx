@@ -39,10 +39,10 @@ const CarroCreditCard = (props)=>{
                         <Box mt={2} fontSize={25} fontWeight='500'>{props.cardNumber}</Box>
                     </Grid>
                     <Grid container item xs={6} justifyContent='flex-start'>
-                        <Box mx={2} mt={2} className={'Secondary-color'}>{props.dateEmission}</Box>
+                        <Box mx={2} mt={2} className={'Secondary-color'}>{'Adaugat la ' + props.dateEmission}</Box>
                     </Grid>
                     <Grid container item xs={6} justifyContent='flex-end'>
-                        <Box mx={2} mt={2} className={'Secondary-color'}>{props.dateExp}</Box>
+                        <Box mx={2} mt={2} className={'Secondary-color'}>{'Expira la ' + props.dateExp}</Box>
                     </Grid>
                 </Grid>
             </Box>
