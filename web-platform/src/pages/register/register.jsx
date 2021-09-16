@@ -2,14 +2,11 @@ import React from "react";
 import {
   Container,
   Box,
-  TextField,
   Grid,
   Checkbox,
-  Typography,
-  Button,
-  Divider,
   StepConnector,
   Avatar,
+  Link
 } from "@material-ui/core";
 import "../../App.css";
 import useStyles from "./registerStyles";
@@ -65,10 +62,17 @@ const Register = () => {
               }}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6}>
             <CarroTextField
               variant="outlined"
               label="Adresa de email"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CarroTextField
+              variant="outlined"
+              label="Numar de telefon"
               fullWidth
             />
           </Grid>
@@ -116,8 +120,9 @@ const Register = () => {
 
       <Grid container item xs={8}>
         <PrimaryButton fullWidth variant="contained" endIcon={<PersonAddIcon />}>
-        
-          Inregistrare
+          <Link href="/register/select-plan" undeline= 'none' color= 'inherit'>
+            Inregistrare
+          </Link>
         </PrimaryButton>
       </Grid>
       </Box>

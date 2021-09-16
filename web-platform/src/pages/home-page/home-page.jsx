@@ -27,11 +27,16 @@ const HomePage = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} className={classes.HomescreenButtons}>
-            <Box className={classes.HomescreenPrimaryBox}><img src={BoxIcon}></img> <Link href="/search-package" undeline= 'none' color= 'inherit'>
-            Trimite Pachet
-  </Link> </Box>
-            <Box className={classes.HomescreenPrimaryBox}><img src={CarIcon}></img> <Link href="/search-ride" undeline= 'none'>
-            Ofera Transport </Link></Box>
+          <Link href="/add-package" undeline= 'none' color= 'inherit'>
+            <Box className={classes.HomescreenPrimaryBox}><img src={BoxIcon}></img> 
+                Trimite Pachet
+            </Box>
+          </Link> 
+          <Link href="/add-transport" undeline= 'none' color= 'inherit'>
+            <Box className={classes.HomescreenPrimaryBox}><img src={CarIcon}></img>
+              Ofera Transport
+            </Box>
+          </Link> 
           </Grid>
         </Grid>
         <Typography className={classes.HomePageText}>Cele mai cautate transporturi:</Typography>
