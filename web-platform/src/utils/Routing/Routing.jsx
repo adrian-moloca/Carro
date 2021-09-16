@@ -66,6 +66,7 @@ const Routes = () => {
                                 <Route path="/notifications" exact component={Notifications}/>  {/* checked */}
                                 <Route path="/payment-method" exact component={PaymentMethod}/>
                                 <Route path="/payment-method/add-card" exact component={AddCardPaymentMethod}/>
+                                <Route path="/add-card" exact component={AddCardPaymentMethod}/>
                                 <Route path="/profile" exact component={Profile}/>  {/* checked */}
                                 <Route path="/search-package" exact component={SearchPackage}/>  {/* checked */}
                                 <Route path="/search-ride" exact component={SearchRide}/>  {/* checked */}
