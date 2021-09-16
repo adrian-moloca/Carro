@@ -23,11 +23,11 @@ const StepOne = () =>{
     }
 
     const handleChangeDepartureCountry=(event)=>{
-        setDepartureCountry(event.target.value);
+        setDepartureCountry(event.target.value.isoCode);
     }
 
     const handleChangeDestinationCountry=(event)=>{
-        setDestinationCountry(event.target.value);
+        setDestinationCountry(event.target.value.isoCode);
     }
 
     const handleChangeDepartureCity=(event)=>{
@@ -39,7 +39,10 @@ const StepOne = () =>{
     }
 
     const getCountries = ()=> {
-        return Country.getAllCountries();
+        const countries = [];
+        Country.getAllCountries().map((country)=>(countries.push(country.isoCode)));
+        console.log(countries);
+        return countries;
     }
 
     const getCities = (country) =>{
@@ -53,26 +56,16 @@ const StepOne = () =>{
     <Box display='flex' justifyContent='center' mt='5%'>
         <Grid container xs={12} spacing={3} >
         <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant ='outlined' label='Tara de plecare' fullWidth
-                select value={departureCountry} onChange={handleChangeDepartureCountry}>
-                    {getCountries().map((country)=>(
-                        <MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>
-                    ))}
-            </CarroTextField>
+                    <CarroAutocomplete options={getCountries()} label="Tara de plecare" onChange={handleChangeDepartureCountry}/>
         </Grid>
         <Grid container item xs={6} justifyContent="center">
             <CarroAutocomplete options={getCities(departureCountry)} label="Oras de plecare" onChange={handleChangeDepartureCity}/>
         </Grid>
         <Grid container item xs={6} justifyContent='center'>
-            <CarroTextField variant ='outlined' label='Tara destinatie' fullWidth
-                select value={destinationCountry} onChange={handleChangeDestinationCountry}>
-                    {getCountries().map((country)=>(
-                        <MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>
-                    ))}
-            </CarroTextField>
+                    <CarroAutocomplete options={getCountries()} label="Tara destinatie" onChange={handleChangeDestinationCountry}/>
         </Grid>
         <Grid container item xs={6} justifyContent='center'>
-                <CarroAutocomplete options={getCities(destinationCountry)} label="Oras destinatie" onChange={handleChangeDestinationCity}/>
+                    <CarroAutocomplete options={getCities(destinationCountry)} label="Oras destinatie" onChange={handleChangeDestinationCity}/>
         </Grid>
         <Grid container item xs={6} justifyContent='center'>
             <CarroTextField variant ='outlined' label='Adresa de preluare' fullWidth/>

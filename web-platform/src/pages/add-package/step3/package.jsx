@@ -3,7 +3,8 @@ import { Box, Grid, InputAdornment, Select, MenuItem, FormControlLabel} from "@m
 import { Fragment } from "react";
 import CarroTextField from "../../../components/textField/CarroTextField";
 import CarroCheckbox from "../../../components/checkbox/CarroCheckbox";
-import { PinDropSharp } from '@material-ui/icons';
+import { Edit } from '@material-ui/icons';
+import PrimaryButton from '../../../components/buttons/primaryButton/primaryButton';
 
 const packageSizes = [
     {
@@ -75,21 +76,21 @@ const Package = (props)=>{
     }    
 
     return(
-            <Grid container xs={12} spacing={3} >
+            <Grid container xs={12} spacing={3}>
                 {console.log(Inflamabil, Fragil, Perisabil, Animal)}
                 <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label='Marimea pachetului' fullWidth
-                    select value={packageSize} onChange={handleSizeSelect}>
-                        {packageSizes.map((option)=>(
-                            <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                            </MenuItem>
-                        ))}
-                </CarroTextField>
+                    <CarroTextField variant ='outlined' label='Marimea pachetului' fullWidth
+                        select value={packageSize} onChange={handleSizeSelect}>
+                            {packageSizes.map((option)=>(
+                                <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                                </MenuItem>
+                            ))}
+                    </CarroTextField>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label='Greutatea pachetului' fullWidth
-                    InputProps={{startAdornment: <InputAdornment position="start">Kg</InputAdornment>}}/>
+                    <CarroTextField variant ='outlined' label='Greutatea pachetului' fullWidth
+                        InputProps={{startAdornment: <InputAdornment position="start">Kg</InputAdornment>}}/>
                 </Grid>
                 {packageSize==='big' ? (
                     <Fragment>

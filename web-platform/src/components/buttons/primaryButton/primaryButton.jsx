@@ -3,15 +3,15 @@ import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core';
 
 const PrimaryButton = withStyles({
-    root:{
-       fontWeight: 'bold',
-       color: '#fff',
-       backgroundColor: '#00b4d8',
-       '&:hover': {
-        backgroundColor: '#FFFFFF',
-        color: '#00B4D8',
-      },
-    },
+
+    contained:{
+      color: '#fff',
+      backgroundColor: '#00b4d8',
+      '&:hover': {
+        color: '#00b4d8',
+        backgroundColor: '#fff',
+      }
+    }
 
 })(Button);
 

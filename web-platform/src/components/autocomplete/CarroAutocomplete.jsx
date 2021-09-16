@@ -11,11 +11,10 @@ const CarroAutocomplete =(props)=>{
                         autoSelect
                         getOptionLabel={(option) => option}
                         renderOption={(option) => (
-                            <React.Fragment>
-                                {option}
-                              
-                            </React.Fragment>
-                          )}
+                                 <React.Fragment>
+                                        {option} 
+                                    </React.Fragment>
+                            )}
                         renderInput={(params) => (
                             <CarroTextField
                             {...params}

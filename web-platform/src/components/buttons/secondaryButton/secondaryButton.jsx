@@ -3,15 +3,23 @@ import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core';
 
 const SecondaryButton = withStyles({
-    root:{
-       fontWeight: 'bold',
-       color: "#F50057",
-       backgroundColor:'#fff',
-       borderColor: '#F50057',
-       '&:hover': {
+    contained:{
+        color: '#fff',
+        backgroundColor: '#F50057',
+        '&:hover': {
+            color: '#F50057',
+            backgroundColor: '#fff',
+        },
+    },
+
+    outlined:{
+        color: '#F50057',
+        backgroundColor: '#FFF',
+        borderColor:'#F50057',
+        '&:hover': {
+            color: '#FFF',
             backgroundColor: '#F50057',
-            color:'#fff',
-       },
+        },
     },
 
 })(Button);
