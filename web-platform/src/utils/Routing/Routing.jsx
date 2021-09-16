@@ -23,6 +23,8 @@ import SearchPackage from '../../pages/search-package/search-package';
 import SearchRide from '../../pages/search-ride/search-ride';
 import AddTransport from '../../pages/add-transport/add-transport';
 import CourierProfile from '../../pages/courier-profile/courier-profile';
+import Conversations from '../../pages/conversations/conversations';
+import Chat from '../../pages/conversations/chat/chat';
 import './Routing.css';
 
 const Routes = () => {
@@ -68,7 +70,8 @@ const Routes = () => {
                                 <Route path="/profile" exact component={Profile}/>
                                 <Route path="/search-package" exact component={SearchPackage}/>
                                 <Route path="/search-ride" exact component={SearchRide}/>
-
+                                <Route path="/conversations" exact component={Conversations}/>
+                                <Route path="/conversations/chat" exact component={Chat}/>
                                 <Route path="/login" exact component={Login}/>
                                 <Route path="/login/forgot-password" exact component={ForgotPassword}/>
                                 <Route path="/reset-password" exact component={ResetPassword}/>
