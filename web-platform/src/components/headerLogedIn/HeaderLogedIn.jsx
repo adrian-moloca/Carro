@@ -21,6 +21,7 @@ import CreditCardOutlinedIcon from '@material-ui/icons/CreditCardOutlined';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import DirectionsCarOutlinedIcon from '@material-ui/icons/DirectionsCarOutlined';
+import { Link } from "@material-ui/core";
 
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
@@ -73,23 +74,33 @@ export default function PrimarySearchAppBar() {
     >
       <MenuItem onClick={handleMenuClose}>
         <LocalMallOutlinedIcon className={classes.accountIconsColorAndSpacing}/>
-        Pachetele mele
+        <Link href="/my-packages" undeline= 'none' color= 'inherit'>
+          Pachetele mele
+        </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <LocalShippingOutlinedIcon className={classes.accountIconsColorAndSpacing}/>
-        Transporturile mele
+        <Link href="/my-rides" undeline= 'none' color= 'inherit'>
+          Transporturile mele
+        </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <AccountCircleOutlinedIcon className={classes.accountIconsColorAndSpacing}/>
-        Profil
+        <Link href="/Profil" undeline= 'none' color= 'inherit'>
+          Profil
+        </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <CreditCardOutlinedIcon className={classes.accountIconsColorAndSpacing}/>
-        Metoda de plata
+        <Link href="/payment-method" undeline= 'none' color= 'inherit'>
+          Metoda de plata
+        </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <CancelOutlinedIcon className={classes.accountIconsColorAndSpacingRed}/>
-        Iesire din cont
+        <Link href="/" undeline= 'none' color= 'inherit'>
+          Iesire din cont
+        </Link>
       </MenuItem>
     </Menu>
   );
@@ -126,31 +137,33 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-            edge="start"
-            // className={classes.menuButtonMobile}
-            color="inherit"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-          >
-            <SearchOutlinedIcon/>
-            Cauta Pachet
-        </IconButton>
+      <MenuItem>
+        <Link href="/search-package" undeline= 'none' color= 'inherit'>
+          <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+            >
+              <SearchOutlinedIcon/>
+                Cauta Pachet
+          </IconButton>
+        </Link> 
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-            edge="start"
-            // className={classes.menuButtonMobile}
-            color="inherit"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-          >
-            <DirectionsCarOutlinedIcon/>
-            Cauta Transport
-        </IconButton>
+      <MenuItem>
+        <Link href="/search-ride" undeline= 'none' color= 'inherit'>
+          <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+            >
+              <DirectionsCarOutlinedIcon/>
+              Cauta Transport
+          </IconButton>
+        </Link> 
       </MenuItem>
       <MenuItem onClick={handleProfileAccountMenuOpen}>
         <IconButton
@@ -183,28 +196,32 @@ export default function PrimarySearchAppBar() {
   const renderMenuSBD = () => {
     return (
       <div>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-          >
-            <img src={cautaPachetIcon} className={classes.iconSpacing10px}></img>
-            Cauta Pachet
-          </IconButton>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-          >
-            <img src={cautaTransportIcon}  className={classes.iconSpacing10px}></img>
-            Cauta Transport
-          </IconButton>
+          <Link href="/search-package" undeline= 'none' color= 'inherit'>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              href="/search-package">
+              <img src={cautaPachetIcon} className={classes.iconSpacing10px}></img>
+                Cauta Pachet
+            </IconButton>
+          </Link>
+          <Link href="/search-ride" undeline= 'none' color= 'inherit'>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+            >
+              <img src={cautaTransportIcon}  className={classes.iconSpacing10px}></img>
+              Cauta Transport
+            </IconButton>
+          </Link>
       </div>
     );
   };
@@ -215,20 +232,24 @@ export default function PrimarySearchAppBar() {
         <Toolbar  className={classes.rootPosition}>
           <div className={classes.headerAlign}>
             <div>
-              <IconButton
-                edge="start"
-                className={classes.menuButtonLogo}
-                color="inherit"
-                aria-label="open drawer"
-              >
-                <img src={CaroLogo}></img>
-              </IconButton>
+              <Link href="/" undeline= 'none' color= 'inherit'>
+                <IconButton
+                  edge="start"
+                  className={classes.menuButtonLogo}
+                  color="inherit"
+                  aria-label="open drawer"
+                >
+                  <img src={CaroLogo}></img>
+                </IconButton>
+              </Link>
             </div>
             <div className={classes.sectionDesktop}>
               {renderMenuSBD()}
             </div>
             <div className={classes.sectionDesktop}>
-              <BadgeVisibility/>
+              <Link href="/notifications" undeline= 'none' color= 'inherit'>
+                <BadgeVisibility/>
+              </Link>
               <IconButton
                 edge="end"
                 aria-label="account of current user"
@@ -256,6 +277,9 @@ export default function PrimarySearchAppBar() {
               </IconButton>
             </div>
             <div className={classes.sectionMobile}>
+              <Link href="/notifications" undeline= 'none' color= 'inherit'>
+                <BadgeVisibility/>
+              </Link>
               <IconButton
                 aria-label="show more"
                 aria-controls={mobileMenuId}

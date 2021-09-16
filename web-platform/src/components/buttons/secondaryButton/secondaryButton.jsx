@@ -3,7 +3,6 @@ import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core';
 
 const SecondaryButton = withStyles({
-
     contained:{
         color: '#fff',
         backgroundColor: '#F50057',

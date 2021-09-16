@@ -3,7 +3,6 @@ import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
 import useStyles from './notificompstyle'
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
-// import '../../App.css'
 
 export default function BadgeVisibility() {
   const classes = useStyles();

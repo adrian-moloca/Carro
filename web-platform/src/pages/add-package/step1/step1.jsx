@@ -4,7 +4,7 @@ import CarroTextField from "../../../components/textField/CarroTextField";
 import CarroDatePicker from "../../../components/datePicker/CarroDatePicker";
 import CarroAutocomplete from "../../../components/autocomplete/CarroAutocomplete";
 import { Country, State, City }  from 'country-state-city';
-
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const StepOne = () =>{
 
@@ -59,7 +59,7 @@ const StepOne = () =>{
                     <CarroAutocomplete options={getCountries()} label="Tara de plecare" onChange={handleChangeDepartureCountry}/>
         </Grid>
         <Grid container item xs={6} justifyContent="center">
-                    <CarroAutocomplete options={getCities(departureCountry)} label="Oras de plecare" onChange={handleChangeDepartureCity}/>
+            <CarroAutocomplete options={getCities(departureCountry)} label="Oras de plecare" onChange={handleChangeDepartureCity}/>
         </Grid>
         <Grid container item xs={6} justifyContent='center'>
                     <CarroAutocomplete options={getCountries()} label="Tara destinatie" onChange={handleChangeDestinationCountry}/>
