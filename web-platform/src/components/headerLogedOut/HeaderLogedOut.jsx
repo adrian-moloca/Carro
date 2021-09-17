@@ -1,35 +1,23 @@
 import React from 'react';
-import { alpha, makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import useStyles from '../headerLogedIn/headerStyle';
-import CaroLogo from '../../assets/logo/CaroLogo.png';
+import { Link, AppBar, Toolbar, IconButton, MenuItem, Menu, Grid, Box } from "@material-ui/core";
 import AutentificareIcon from '../../assets/icon/AutentificareIcon.png';
 import cautaPachetIcon from '../../assets/icon/cautaPachetIcon.png';
 import cautaTransportIcon from '../../assets/icon/cautaTransportIcon.png';
 import InregistrareIcongo from '../../assets/icon/InregistrareIcon.png';
-import navRoFlag from '../../assets/icon/navRoFlag.png';
-import navEnFlag from '../../assets/icon/navEnFlag.png';
-import { Link } from "@material-ui/core";
+import BasicSelect from '../../components/buttons/languageButton/languageButton';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import CaroLogo from '../../assets/logo/CaroLogo.png';
+import useStyles from '../headerLogedIn/headerStyle';
+import SearchIcon from '@material-ui/icons/Search';
+// import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// import LoginIcon from '@mui/icons-material/Login';
 
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
@@ -40,118 +28,94 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
   const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>
-        <img src={navRoFlag}></img>
-        Ro
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <img src={navEnFlag}></img>
-        En
-      </MenuItem>
-    </Menu>
-  );
-
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: 'top', horizontal: 'left' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton
-            edge="start"
-            className={classes.menuButtonMobile}
-            color="inherit"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-          >
-            <img src={cautaPachetIcon} className={classes.iconSpacing10pxMobile}></img>
-            <Link href="/login" undeline= 'none' color= 'inherit'>
-              Cauta Pachet
+      <Grid container display="flex" justifyContent="center" alignItems="center" flexDirection="column" fullWidth>
+        <Grid item xs={12}>
+          <MenuItem>
+          <Link href="/login" underline= 'none' color= 'inherit'>
+            <IconButton
+                color="inherit"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+              >
+                <Box>
+                  <SearchIcon/>
+                  {/* <img src={cautaPachetIcon}></img> */}
+                </Box>
+                <Box>
+                  Cauta Pachet
+                </Box>
+            </IconButton>
             </Link>
-        </IconButton>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-            edge="start"
-            className={classes.menuButtonMobile}
-            color="inherit"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-          >
-            <img src={cautaTransportIcon}  className={classes.iconSpacing10pxMobile}></img>
-              <Link href="/login" undeline= 'none' color= 'inherit'>
-                Cauta Transport
-              </Link>
-        </IconButton>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-            edge="start"
-            className={classes.menuButtonMobile}
-            color="inherit"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-          >
-            <img src={AutentificareIcon} className={classes.iconSpacing10pxMobile}></img>
-            <Link href="/login" undeline= 'none' color= 'inherit'>
-              Autentificare
-            </Link>
-        </IconButton>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-            edge="start"
-            className={classes.menuButtonMobile}
-            color="inherit"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-          >
-            <img src={InregistrareIcongo} className={classes.iconSpacing10pxMobile}></img>
-            <Link href="/register" undeline= 'none' color= 'inherit'>
-              Inregistrare
-            </Link>
-        </IconButton>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-      </MenuItem>
+          </MenuItem>
+        </Grid>
+        <Grid item xs={12}>
+        <MenuItem>
+          <IconButton
+              color="inherit"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+            >
+              <img src={cautaTransportIcon} ></img>
+                <Link href="/login" underline= 'none' color= 'inherit'>
+                  Cauta Transport
+                </Link>
+          </IconButton>
+        </MenuItem>
+        </Grid>
+        <Grid item xs={12}>
+          <MenuItem>
+            <IconButton
+                color="inherit"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+              >
+                <img src={AutentificareIcon}></img>
+                <Link href="/login" underline= 'none' color= 'inherit'>
+                  Autentificare
+                </Link>
+            </IconButton>
+          </MenuItem>
+        </Grid>
+        <Grid item xs={12}>
+          <MenuItem>
+            <IconButton
+                color="inherit"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+              >
+                <img src={InregistrareIcongo}></img>
+                <Link href="/register" underline= 'none' color= 'inherit'>
+                  Inregistrare
+                </Link>
+            </IconButton>
+          </MenuItem>
+        </Grid>
+        <Grid item xs={12}>
+          <MenuItem onClick={handleProfileMenuOpen}>
+            <BasicSelect/>
+          </MenuItem>
+        </Grid>
+      </Grid> 
     </Menu>
   );
 
@@ -167,7 +131,7 @@ export default function PrimarySearchAppBar() {
             aria-haspopup="true"
           >
             <img src={cautaPachetIcon} className={classes.iconSpacing10px}></img>
-            <Link href="/login" undeline= 'none' color= 'inherit'>
+            <Link href="/login" underline= 'none' color= 'inherit'>
               Cauta Pachet
             </Link>
           </IconButton>
@@ -180,7 +144,7 @@ export default function PrimarySearchAppBar() {
             aria-haspopup="true"
           >
             <img src={cautaTransportIcon}  className={classes.iconSpacing10px}></img>
-            <Link href="/login" undeline= 'none' color= 'inherit'>
+            <Link href="/login" underline= 'none' color= 'inherit'>
               Cauta Transport
             </Link>
           </IconButton>
@@ -193,7 +157,7 @@ export default function PrimarySearchAppBar() {
             aria-haspopup="true"
           >
             <img src={AutentificareIcon} className={classes.iconSpacing10px}></img>
-            <Link href="/login" undeline= 'none' color= 'inherit'>
+            <Link href="/login" underline= 'none' color= 'inherit'>
               Autentificare
             </Link>
           </IconButton>
@@ -206,7 +170,7 @@ export default function PrimarySearchAppBar() {
             aria-haspopup="true"
           >
             <img src={InregistrareIcongo} className={classes.iconSpacing10px}></img>
-            <Link href="/register" undeline= 'none' color= 'inherit'>
+            <Link href="/register" underline= 'none' color= 'inherit'>
               Inregistrare
             </Link>
           </IconButton>
@@ -220,7 +184,7 @@ export default function PrimarySearchAppBar() {
         <Toolbar  className={classes.rootPosition}>
           <div className={classes.headerAlign}>
             <div>
-              <Link href="/" undeline= 'none' color= 'inherit'>
+              <Link href="/" underline= 'none' color= 'inherit'>
                 <IconButton
                   edge="start"
                   className={classes.menuButton}
@@ -235,16 +199,7 @@ export default function PrimarySearchAppBar() {
               {renderMenuSBD()}
             </div>
             <div className={classes.sectionDesktop}>
-              <IconButton
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              <BasicSelect/>
             </div>
             <div className={classes.sectionMobile}>
               <IconButton
@@ -261,7 +216,6 @@ export default function PrimarySearchAppBar() {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
     </div>
   );
 }

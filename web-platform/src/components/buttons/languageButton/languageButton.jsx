@@ -1,31 +1,67 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import React from 'react'
+import { 
+  Box, 
+  FormControl,
+  MenuItem, 
+  Select,
+  Grid 
+} from '@material-ui/core';
+import navRoFlag from '../../../assets/icon/navRoFlag.png';
+import navEnFlag from '../../../assets/icon/navEnFlag.png';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import useStyles from './languageButtonStyle';
 
 export default function BasicSelect() {
-  const [language, setLanguage] = React.useState('');
+
+  const classes = useStyles();
+
+  const [language, setLanguage] = React.useState('ro');
 
   const handleChange = (event) => {
     setLanguage(event.target.value);
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box  sx={{ minWidth: 120 }} display="flex" alignItems="center" justifyContent="flex-end" flexDirection="row">
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={language}
-          label="Age"
-          onChange={handleChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>\
-        </Select>
+        <Grid
+          container
+          alignItems="center" 
+          justifyContent="center" 
+          flexDirection="row">
+            <Grid item xs={8}>
+              <Select
+                value={language}
+                defaultValue={"lagnguage"}
+                onChange={handleChange}
+                className={classes.langsStyle}
+                labelId="demo-simple-select-error-label"
+                id="demo-simple-select-error"
+                disableUnderline 
+                IconComponent={() => (
+                  <Box ml={-2} justifyContent="center">
+                    <ExpandMoreIcon />
+                  </Box>
+                )}>
+                <MenuItem value={"ro"}>
+                  <Box display="flex"  alignItems="center">
+                    <img src={navRoFlag}></img>
+                    <Box ml={1} >
+                      RO
+                    </Box>
+                  </Box>
+                </MenuItem>
+                <MenuItem value={"en"}>
+                  <Box display="flex"  alignItems="center">
+                    <img src={navEnFlag}></img>
+                    <Box ml={1} >
+                      EN
+                    </Box>
+                  </Box>
+                </MenuItem>
+              </Select>
+            </Grid>
+        </Grid>
       </FormControl>
     </Box>
   );
