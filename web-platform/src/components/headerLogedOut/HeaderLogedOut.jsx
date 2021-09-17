@@ -22,6 +22,7 @@ import cautaTransportIcon from '../../assets/icon/cautaTransportIcon.png';
 import InregistrareIcongo from '../../assets/icon/InregistrareIcon.png';
 import navRoFlag from '../../assets/icon/navRoFlag.png';
 import navEnFlag from '../../assets/icon/navEnFlag.png';
+import { Link } from "@material-ui/core";
 
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
@@ -81,7 +82,7 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem>
         <IconButton
             edge="start"
             className={classes.menuButtonMobile}
@@ -91,10 +92,12 @@ export default function PrimarySearchAppBar() {
             aria-haspopup="true"
           >
             <img src={cautaPachetIcon} className={classes.iconSpacing10pxMobile}></img>
-            Cauta Pachet
+            <Link href="/login" undeline= 'none' color= 'inherit'>
+              Cauta Pachet
+            </Link>
         </IconButton>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem>
         <IconButton
             edge="start"
             className={classes.menuButtonMobile}
@@ -104,10 +107,12 @@ export default function PrimarySearchAppBar() {
             aria-haspopup="true"
           >
             <img src={cautaTransportIcon}  className={classes.iconSpacing10pxMobile}></img>
-            Cauta Transport
+              <Link href="/login" undeline= 'none' color= 'inherit'>
+                Cauta Transport
+              </Link>
         </IconButton>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem>
         <IconButton
             edge="start"
             className={classes.menuButtonMobile}
@@ -117,10 +122,12 @@ export default function PrimarySearchAppBar() {
             aria-haspopup="true"
           >
             <img src={AutentificareIcon} className={classes.iconSpacing10pxMobile}></img>
-            Autentificare
+            <Link href="/login" undeline= 'none' color= 'inherit'>
+              Autentificare
+            </Link>
         </IconButton>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem>
         <IconButton
             edge="start"
             className={classes.menuButtonMobile}
@@ -130,7 +137,9 @@ export default function PrimarySearchAppBar() {
             aria-haspopup="true"
           >
             <img src={InregistrareIcongo} className={classes.iconSpacing10pxMobile}></img>
-            Inregistrare
+            <Link href="/register" undeline= 'none' color= 'inherit'>
+              Inregistrare
+            </Link>
         </IconButton>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
@@ -158,7 +167,9 @@ export default function PrimarySearchAppBar() {
             aria-haspopup="true"
           >
             <img src={cautaPachetIcon} className={classes.iconSpacing10px}></img>
-            Cauta Pachet
+            <Link href="/login" undeline= 'none' color= 'inherit'>
+              Cauta Pachet
+            </Link>
           </IconButton>
           <IconButton
             edge="start"
@@ -169,7 +180,9 @@ export default function PrimarySearchAppBar() {
             aria-haspopup="true"
           >
             <img src={cautaTransportIcon}  className={classes.iconSpacing10px}></img>
-            Cauta Transport
+            <Link href="/login" undeline= 'none' color= 'inherit'>
+              Cauta Transport
+            </Link>
           </IconButton>
           <IconButton
             edge="start"
@@ -180,7 +193,9 @@ export default function PrimarySearchAppBar() {
             aria-haspopup="true"
           >
             <img src={AutentificareIcon} className={classes.iconSpacing10px}></img>
-            Autentificare
+            <Link href="/login" undeline= 'none' color= 'inherit'>
+              Autentificare
+            </Link>
           </IconButton>
           <IconButton
             edge="start"
@@ -191,7 +206,9 @@ export default function PrimarySearchAppBar() {
             aria-haspopup="true"
           >
             <img src={InregistrareIcongo} className={classes.iconSpacing10px}></img>
-            Inregistrare
+            <Link href="/register" undeline= 'none' color= 'inherit'>
+              Inregistrare
+            </Link>
           </IconButton>
       </div>
     );
@@ -203,14 +220,16 @@ export default function PrimarySearchAppBar() {
         <Toolbar  className={classes.rootPosition}>
           <div className={classes.headerAlign}>
             <div>
-              <IconButton
-                edge="start"
-                className={classes.menuButton}
-                color="inherit"
-                aria-label="open drawer"
-              >
-                <img src={CaroLogo}></img>
-              </IconButton>
+              <Link href="/" undeline= 'none' color= 'inherit'>
+                <IconButton
+                  edge="start"
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="open drawer"
+                >
+                  <img src={CaroLogo}></img>
+                </IconButton>
+              </Link>
             </div>
             <div className={classes.sectionDesktop}>
               {renderMenuSBD()}
