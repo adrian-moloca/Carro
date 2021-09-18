@@ -28,8 +28,7 @@ const StepLabelPersonalized = withStyles({
 })(StepLabel);
 
 
-
-const AddPackage = () => { 
+const AddPackage = () => {
 
   const [activeStep, setActiveStep] = useState(0);
 
@@ -37,20 +36,16 @@ const AddPackage = () => {
 
   const steps = getSteps();
 
-
   const handleNext = ()=>{
 
-     const nextActiveStep = activeStep === steps.length-1 ? activeStep : activeStep + 1;
-     setActiveStep(nextActiveStep);
+    const nextActiveStep = activeStep === steps.length-1 ? activeStep : activeStep + 1;
+    setActiveStep(nextActiveStep);
   
   };
 
   const handleBack = ()=>{
     setActiveStep(activeStep-1);
   };
-  
-  
-
 
   function getSteps(){
       return ['Step 1','Step 2','Step 3','Step 4'];    
@@ -60,7 +55,7 @@ const AddPackage = () => {
     switch (step) {
       case 0:
         return (
-         <StepOne/>
+         <StepOne />
         );
       case 1:
         return (
@@ -115,7 +110,8 @@ const AddPackage = () => {
                       <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>INAPOI</SecondaryButton> }
                     </Grid>
                     <Grid container item xs  justifyContent='center'>
-                      <PrimaryButton onClick={handleNext} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth color="primary">URMATORUL PAS</PrimaryButton>
+                      <PrimaryButton onClick={handleNext} endIcon={<ArrowForwardIos/>}
+                       variant='contained' fullWidth color="primary">URMATORUL PAS</PrimaryButton>
                     </Grid>
                   </Grid>
                 </Box>

@@ -120,7 +120,7 @@ const Register = () => {
 
       <Grid container item xs={8}>
         <PrimaryButton fullWidth variant="contained" endIcon={<PersonAddIcon />}>
-          <Link href="/register/select-plan" undeline= 'none' color= 'inherit'>
+          <Link href="/register/phone-number-verification" underline= 'none' color= 'inherit'>
             Inregistrare
           </Link>
         </PrimaryButton>

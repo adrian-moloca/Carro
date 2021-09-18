@@ -10,6 +10,7 @@ import EmailSent from '../../pages/login/forgot-password/email-sent/email-sent';
 import ResetPassword from '../../pages/login/reset-password/reset-password';
 import Register from '../../pages/register/register';
 import SelectPlan from '../../pages/register/select-plan/select-plan';
+import PhoneNumberVerification from '../../pages/register/phone-number-verification/phone-number-verification';
 import AddCard from '../../pages/register/select-plan/add-card/add-card';
 import HomePage from '../../pages/home-page/home-page';
 import AddPackage from '../../pages/add-package/add-package';
@@ -68,12 +69,12 @@ const Routes = () => {
                                 <Route path="/profile" exact component={Profile}/>
                                 <Route path="/search-package" exact component={SearchPackage}/>
                                 <Route path="/search-ride" exact component={SearchRide}/>
-
                                 <Route path="/login" exact component={Login}/>
                                 <Route path="/login/forgot-password" exact component={ForgotPassword}/>
                                 <Route path="/reset-password" exact component={ResetPassword}/>
                                 <Route path="/login/forgot-password/email-sent" exact component={EmailSent}/>
                                 <Route path="/register" exact component={Register}/>
+                                <Route path="/register/phone-number-verification" exact component={PhoneNumberVerification}/>
                                 <Route path="/register/select-plan" exact component={SelectPlan}/>
                                 <Route path="/register/select-plan/add-card" exact component={AddCard}/>
                                 <Route path="/add-transport" exact component={AddTransport}/>  {/* checked */}

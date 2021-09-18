@@ -23,7 +23,7 @@ const MyPackages = () => {
       <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>Pachetele mele</Box>
       <Box mb={1.5} borderRadius='10px' boxShadow={3} >
           <Accordion square='true' className={classes.AccordionBorderRadius}>
-            <AccordionSummary aria-controls="transport-content" id="transport-header">
+            <AccordionSummary id="transport-header">
               <Grid container justifyContent='space-between'>
                 <Grid container item xs = {1} justifyContent='flex-starts'>
                   <Typography >1.</Typography>
