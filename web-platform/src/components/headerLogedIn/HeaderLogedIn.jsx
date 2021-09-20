@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import useStyles from './headerStyle';
+import useStyles from './HeaderLogedInStyle';
 import CaroLogo from '../../assets/logo/CaroLogo.png';
 import cautaPachetIcon from '../../assets/icon/cautaPachetIcon.png';
 import cautaTransportIcon from '../../assets/icon/cautaTransportIcon.png';
