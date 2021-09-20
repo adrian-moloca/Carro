@@ -16,18 +16,46 @@ const RadioGroupPersonalized = withStyles({
 
 const StepFour = () =>{
 
+    const [cardNumber, setCardNumber] = useState(null);
+
+    const[expDate, setExpDate] = useState(null);
+
+    const[completeName, setCompleteName] = useState(null);
+
+    const[CVV, setCVV] = useState(null);
+
     const[payment, setPayment] = useState('cardOnline');
 
     const [cardSetted, setCardSetted] =  useState(localStorage.getItem('paymentMethodExist'));
 
-    const[saveData, setSaveData] = useState(false);
+    const[savingData, setSavingData] = useState(false);
 
     const handlePayment = (event)=>{
         setPayment(event.target.value);
       };
 
-    const handleSaveData = () =>{
-        !saveData ? setSaveData(true) : setSaveData(false);
+    const handleSaveData = (event) =>{
+        !event.target.checked ? setSavingData(false) : setSavingData(true);
+    }
+
+    const handleSetCompleteName = (event) =>{
+      if(savingData)
+        setCompleteName(event.target.value)
+    }
+  
+    const handleSetCardNumber = (event) =>{
+      if(savingData)
+        setCardNumber(event.target.value)
+    }
+  
+    const handleSetExpDate=(date)=>{
+      if(savingData)
+        setExpDate(date);
+    }
+  
+    const handleSetCVV = (event) =>{
+      if(savingData)
+        setCVV(event.target.value);
     }
 
     return(
@@ -48,7 +76,9 @@ const StepFour = () =>{
                     <CardSelected cardSelected={localStorage.getItem("paymentMethodExist")}/>
                     : 
                     (<Fragment>
-                        <AddCard/>
+                        <AddCard cardNumber = {cardNumber} cardNumberSet = {(e)=>handleSetCardNumber(e)} 
+                                  expDate={expDate} expDateSet={handleSetExpDate} completeName = {completeName} 
+                                  completeNameSet={(e)=>handleSetCompleteName(e)} cvv={CVV} cvvSet={(e)=>handleSetCVV(e)}/>
                         <Grid container item xs={12} justifyContent='flex-end'>
                             <FormControlLabel onChange = {handleSaveData} control={<CarroCheckbox/>} 
                                     label='Salveaza Datele'/>

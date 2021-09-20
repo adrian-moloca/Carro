@@ -5,70 +5,90 @@ import {
   Box,
   TextField,
   Grid,
-  Checkbox,
- 
+  Checkbox, 
 } from "@material-ui/core";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import AddCard from '../../../../components/add-card/add-card';
 import CarroTextField from "../../../../components/textField/CarroTextField"
 import CarroDatePicker from '../../../../components/datePicker/CarroDatePicker'
 import CarroCheckbox from "../../../../components/checkbox/CarroCheckbox";
 import PrimaryButton from "../../../../components/buttons/primaryButton/primaryButton"
 import SecondaryButton from "../../../../components/buttons/secondaryButton/secondaryButton"
 import { Link } from "react-router-dom";
-const AddCard = () => {
+import { withStyles } from "@material-ui/styles";
 
-  const [savingCard, setSavingCard] = useState();
+const MyGrid = withStyles({
 
-  const[expDate, setExpDate] = useState(new Date());
+  'spacing-xs-3':{
+      margin: 0,
+  },
+
+
+})(Grid);
+
+const PremiumPlanPayment = () => {
+
+  const [savingCard, setSavingCard] = useState(false);
+
+  const [cardNumber, setCardNumber] = useState(null);
+
+  const[expDate, setExpDate] = useState(null);
+
+  const[completeName, setCompleteName] = useState(null);
+
+  const[CVV, setCVV] = useState(null);
+
+
   
-  const handleSavingCard = (event) => {
-     event.target.checked ? setSavingCard(false) : setSavingCard(true);
+  const handleSaveData = (event) => {
+     !event.target.checked ? setSavingCard(false) : setSavingCard(true);
   };
 
-  const handleExpDate =(date)=>{
-    setExpDate(date);
-  };
+  const handleSetCompleteName = (event) =>{
+    if(savingCard)
+      setCompleteName(event.target.value)
+  }
+
+  const handleSetCardNumber = (event) =>{
+    if(savingCard)
+      setCardNumber(event.target.value)
+  }
+
+  const handleSetExpDate=(date)=>{
+    if(savingCard)
+      setExpDate(date);
+  }
+
+  const handleSetCVV = (event) =>{
+    if(savingCard)
+      setCVV(event.target.value);
+  }
   
   const classes = useStyles();
   return (
     <Container className={"Primary-container-style"}>
-      <Grid container xs = {12} spacing={3} justifyContent='center'>
-        <Grid container item xs={12} justifyContent='center'>
-          <Box mt={2} mb={2} fontWeight={400} fontSize={25}>
-              Adauga card
-          </Box>
-        </Grid>
-        <Grid container item xs={5} justifyContent='flex-end'>
-           <CarroTextField variant= "outlined" label= "Numar card" fullWidth/>
-        </Grid>
-        <Grid container item xs={5} justifyContent='flex-start'>
-            <CarroDatePicker dateValue={expDate} handleDateSelect={handleExpDate}
-                    views={["month","year"]} defaultShow={expDate} format="MM/yyyy" openTo='month' label='Data expirare'/>
-        </Grid>
-        <Grid container item xs={5} justifyContent='flex-end'>
-          <CarroTextField variant= "outlined" label= "Nume Complet" fullWidth/>
-        </Grid>
-        <Grid container item xs={5} justifyContent='flex-start'>
-          <CarroTextField variant= "outlined" label= "CVV" fullWidth/>
-        </Grid>
-        <Grid container item xs={10} justifyContent='flex-start'>
-            <FormControlLabel onChange = {handleSavingCard} control={<CarroCheckbox/>} 
-                                    label='Salveaza card'/>
+      <MyGrid container xs = {12} spacing={3} justifyContent='center'>
+        <AddCard cardNumber = {cardNumber} cardNumberSet = {(e)=>handleSetCardNumber(e)} 
+                expDate={expDate} expDateSet={handleSetExpDate} completeName = {completeName} completeNameSet={(e)=>handleSetCompleteName(e)}
+                cvv={CVV} cvvSet={(e)=>handleSetCVV(e)}/>
+        <Grid container item xs={10} justifyContent='flex-end'>
+          <FormControlLabel onChange = {(e)=>handleSaveData(e)} control={<CarroCheckbox/>} 
+                  label='Salveaza Datele'/>
         </Grid>
         <Grid container item xs={4} justifyContent='center'>
-         <Link to='/payment-method' style={{textDecoration: 'none', width:'100%'}}> 
+         <Link to='/register/select-plan' style={{textDecoration: 'none', width:'100%'}}> 
           <SecondaryButton variant="contained" fullWidth> ANULEAZA </SecondaryButton> 
          </Link>
         </Grid>
         <Grid container item xs={4} justifyContent='center'>
-          <Link to='/payment-method/card-selected' style={{textDecoration: 'none', width:'100%'}}>
+          <Link to='/payment-method' style={{textDecoration: 'none', width:'100%'}}>
             <PrimaryButton variant="contained" fullWidth> PLATESTE</PrimaryButton>
           </Link> 
         </Grid>
-      </Grid>
+      </MyGrid>
     </Container>
   );
 };
 
-export default AddCard;
+export default PremiumPlanPayment;

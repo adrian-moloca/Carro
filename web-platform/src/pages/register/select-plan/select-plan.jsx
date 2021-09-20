@@ -121,7 +121,7 @@ const SelectPlan = () => {
             direction="column"
           >
             <PrimaryButton variant="contained"> 
-              <Link href="/add-card" undeline= 'none' color= 'inherit'>
+              <Link href="/register/select-plan/add-card" underline= 'none' color= 'inherit'>
                 SELECTEAZA
               </Link>
             </PrimaryButton>
