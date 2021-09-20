@@ -10,7 +10,8 @@ import EmailSent from '../../pages/login/forgot-password/email-sent/email-sent';
 import ResetPassword from '../../pages/login/reset-password/reset-password';
 import Register from '../../pages/register/register';
 import SelectPlan from '../../pages/register/select-plan/select-plan';
-import AddCard from '../../pages/register/select-plan/add-card/add-card';
+import PhoneNumberVerification from '../../pages/register/phone-number-verification/phone-number-verification';
+import PremiumPlanPayment from '../../pages/register/select-plan/add-card/add-card';
 import HomePage from '../../pages/home-page/home-page';
 import AddPackage from '../../pages/add-package/add-package';
 import MyPackages from '../../pages/my-packages/my-packages';
@@ -78,8 +79,9 @@ const Routes = () => {
                                 <Route path="/reset-password" exact component={ResetPassword}/>
                                 <Route path="/login/forgot-password/email-sent" exact component={EmailSent}/>
                                 <Route path="/register" exact component={Register}/>
+                                <Route path="/register/phone-number-verification" exact component={PhoneNumberVerification}/>
                                 <Route path="/register/select-plan" exact component={SelectPlan}/>
-                                <Route path="/register/select-plan/add-card" exact component={AddCard}/>
+                                <Route path="/register/select-plan/add-card" exact component={PremiumPlanPayment}/>
                                 <Route path="/add-transport" exact component={AddTransport}/>  {/* checked */}
                                 <Route path="/courier-profile" exact component={CourierProfile}/>
                                 <Route component={HomePage} />

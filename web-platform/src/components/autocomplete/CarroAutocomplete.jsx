@@ -8,7 +8,7 @@ const CarroAutocomplete =(props)=>{
         <Autocomplete
                         options={props.options}
                         autoHighlight
-                        autoSelect
+                        value={props.value}
                         getOptionLabel={(option) => option}
                         renderOption={(option) => (
                                  <React.Fragment>
@@ -21,8 +21,7 @@ const CarroAutocomplete =(props)=>{
                                 label={props.label}
                                 variant="outlined"
                                 inputProps={{
-                                    ...params.inputProps,
-                                    autoComplete: 'new-password', // disable autocomplete and autofill
+                                    ...params.inputProps, // disable autocomplete and autofill
                                 }}
                                 fullWidth
                             />
