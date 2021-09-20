@@ -16,6 +16,7 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 import useStyles from '../headerLogedIn/headerStyle';
 
 export default function PrimarySearchAppBar() {
+  
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
