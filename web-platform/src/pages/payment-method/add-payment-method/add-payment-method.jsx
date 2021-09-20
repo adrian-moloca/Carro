@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box, Container, Grid } from '@material-ui/core';
+import { Box, Container, Grid } from '@mui/material';
 import AddCard from '../../../components/add-card/add-card';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 
 const GridCarro = withStyles({
     

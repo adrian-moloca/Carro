@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import GoogleIcon from "../../assets/images/GoogleIcon.png";
 import FacebookIcon from "../../assets/images/facebook-icon.png";
 import { Country, State, City }  from 'country-state-city';
@@ -14,8 +14,8 @@ import {
   AccordionSummary,
   AccordionDetails,
   Accordion, 
-} from "@material-ui/core";
-import EditIcon from '@material-ui/icons/Edit';
+} from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
 import "../../App.css";
 import useStyles from "./profileStyle";
 import CarroTextField from "../../components/textField/CarroTextField";

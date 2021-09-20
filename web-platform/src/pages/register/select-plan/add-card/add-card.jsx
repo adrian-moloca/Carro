@@ -7,9 +7,9 @@ import {
   Grid,
   Checkbox,
  
-} from "@material-ui/core";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+} from "@mui/material";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import CarroTextField from "../../../../components/textField/CarroTextField"
 import CarroDatePicker from '../../../../components/datePicker/CarroDatePicker'
 import CarroCheckbox from "../../../../components/checkbox/CarroCheckbox";

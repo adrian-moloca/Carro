@@ -1,9 +1,9 @@
 import React from "react";
-import { Box, Grid, Container } from "@material-ui/core";
+import { Box, Grid, Container } from "@mui/material";
 import ChatConversationCard from '../../components/cards/chatConversationCard/chatConversationCard';
 import PaginationSBD from '../../components/pagination/pagination';
 import CarroTextField from '../../components/textField/CarroTextField'
-// import SearchIcon from '@material-ui/icons/Search';
+// import SearchIcon from '@mui/icons-material/Search';
 import useStyles from './conversationsStyle';
 
 const Conversations = () =>{

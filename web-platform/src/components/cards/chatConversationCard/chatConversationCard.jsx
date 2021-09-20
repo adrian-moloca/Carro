@@ -1,6 +1,6 @@
 import React from 'react';
-import {Box, Grid, IconButton, Link } from '@material-ui/core';
-import {Delete} from '@material-ui/icons';
+import {Box, Grid, IconButton, Link } from '@mui/material';
+import {Delete} from '@mui/icons-material';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import useStyles from './chatConversationCardStyle';
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Container } from "@material-ui/core";
+import { Box, Grid, Container } from "@mui/material";
 import SecondaryButton from '../../../components/buttons/secondaryButton/secondaryButton';
 import useStyles from './chatStyle';
 

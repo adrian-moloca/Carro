@@ -1,11 +1,11 @@
 
 import React, {useState} from 'react';
-import { Container, Box, Stepper, Step, StepLabel, Grid,} from '@material-ui/core';
+import { Container, Box, Stepper, Step, StepLabel, Grid,} from '@mui/material';
 import useStyles from './add-packageStyle';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';
-import {ArrowBackIos, ArrowForwardIos, Add} from '@material-ui/icons';
+import {ArrowBackIos, ArrowForwardIos, Add} from '@mui/icons-material';
 import StepOne from './step1/step1';
 import StepTwo from './step2/step2';
 import StepThree from './step3/step3';

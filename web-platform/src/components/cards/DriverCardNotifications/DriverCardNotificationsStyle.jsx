@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, List, ListItem} from '@material-ui/core';
+import { makeStyles, List, ListItem} from '@mui/styles';
 
 const useStyles = makeStyles({
     cardStyle:{

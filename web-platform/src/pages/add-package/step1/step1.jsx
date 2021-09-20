@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Box, FormControl, Grid, InputLabel,Menu, MenuItem, Select,} from "@material-ui/core";
+import { Box, FormControl, Grid, InputLabel,Menu, MenuItem, Select,} from "@mui/material";
 import CarroTextField from "../../../components/textField/CarroTextField";
 import CarroDatePicker from "../../../components/datePicker/CarroDatePicker";
 import CarroAutocomplete from "../../../components/autocomplete/CarroAutocomplete";
 import { Country, State, City }  from 'country-state-city';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@mui/lab/Autocomplete';
 
 const StepOne = () =>{
 

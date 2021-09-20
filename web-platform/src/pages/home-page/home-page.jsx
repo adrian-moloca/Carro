@@ -11,7 +11,7 @@ import {
   Typography,
   Button,
   Link
-} from "@material-ui/core";
+} from "@mui/material";
 import useStyles from "./home-pageStyles";
 const HomePage = () => {
   const classes = useStyles();

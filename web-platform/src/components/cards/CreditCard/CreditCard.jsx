@@ -1,8 +1,8 @@
 import React, {useState, Fragment} from 'react';
 import useStyles from './CreditCardStyle';
-import {Box, Button, Grid, Menu, MenuItem} from '@material-ui/core';
+import {Box, Button, Grid, Menu, MenuItem} from '@mui/material';
 import { Link } from 'react-router-dom';
-import { Edit } from '@material-ui/icons';
+import { Edit } from '@mui/icons-material';
 
 const CarroCreditCard = (props)=>{
 

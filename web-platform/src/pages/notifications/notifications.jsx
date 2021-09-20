@@ -7,8 +7,8 @@ import {
   Accordion, 
   Grid, 
   Button
-} from '@material-ui/core';
-import {Delete} from '@material-ui/icons';
+} from '@mui/material';
+import {Delete} from '@mui/icons-material';
 import profilePhotoMiddle from '../../assets/images/photoprofile2.png';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';

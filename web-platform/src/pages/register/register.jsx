@@ -7,18 +7,18 @@ import {
   StepConnector,
   Avatar,
   Link
-} from "@material-ui/core";
+} from "@mui/material";
 import "../../App.css";
 import useStyles from "./registerStyles";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import GoogleIcon from "../../assets/images/GoogleIcon.png";
 import FacebookIcon from "../../assets/images/facebook-icon.png";
 import CarroTextField from "../../components/textField/CarroTextField";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import { DonutLargeOutlined } from "@material-ui/icons";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import { DonutLargeOutlined } from "@mui/icons-material";
 
 const Register = () => {
   const classes = useStyles();

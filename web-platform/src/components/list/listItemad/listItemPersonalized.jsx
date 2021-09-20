@@ -1,6 +1,6 @@
 import React from 'react';
-import { ListItem } from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
+import { ListItem } from '@mui/material';
+import { withStyles } from '@mui/styles';
 
 const ListItemPersonalized = withStyles({
     root:{

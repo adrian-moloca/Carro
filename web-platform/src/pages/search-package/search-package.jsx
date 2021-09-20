@@ -10,12 +10,12 @@ import {
   Button,
   MenuItem,
   SvgIcon,
-} from "@material-ui/core";
+} from "@mui/material";
 import PaginationSBD from "../../components/pagination/pagination";
-import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
-import Pagination from "@material-ui/lab/Pagination";
+import FindInPageRoundedIcon from '@mui/icons-material/FindInPageRounded';
+import Pagination from "@mui/lab/Pagination";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import CarroTextField from "../../components/textField/CarroTextField";
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
 import packageImg from "../../assets/images/box-small.png";
@@ -25,7 +25,7 @@ import { ReactComponent as fireIco } from "../../assets/icon/fire.svg";
 import { ReactComponent as handboxIco } from "../../assets/icon/handbox.svg";
 import { ReactComponent as animalprintsIco } from "../../assets/icon/animalprints.svg";
 import { Country, State, City } from "country-state-city";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import Autocomplete from "@mui/lab/Autocomplete";
 import useStyles from "./SearchPackageStyles";
 import RideCard from "../../components/cards/RideCard/RideCard";
 

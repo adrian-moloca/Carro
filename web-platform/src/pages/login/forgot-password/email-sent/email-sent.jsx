@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Container, Box, Grid} from '@material-ui/core';
+import {Container, Box, Grid} from '@mui/material';
 import PrimaryButton from '../../../../components/buttons/primaryButton/primaryButton';
 
 const EmailSent = () => { 

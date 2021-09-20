@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Box } from '@material-ui/core';
-import MessageIcon from '@material-ui/icons/Message';
+import { Button, Box } from '@mui/material';
+import MessageIcon from '@mui/icons-material/Message';
 import useStyles from './sendMessageBtnStyle';
 
 const SendMessageBtn = () => {

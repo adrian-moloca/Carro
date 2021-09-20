@@ -1,6 +1,6 @@
 import React from "react";
 import "./SelectPlanStyles";
-import { Container, Grid, Typography, Button, Box, Link } from "@material-ui/core";
+import { Container, Grid, Typography, Button, Box, Link } from "@mui/material";
 import "../../../App.css";
 import useStyles from "./SelectPlanStyles";
 import CheckIcon from "../../../assets/images/check.png";

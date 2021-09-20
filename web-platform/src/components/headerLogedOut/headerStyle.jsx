@@ -1,4 +1,5 @@
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { alpha, makeStyles } from '@mui/styles';
+import { ThemeProvider } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -83,7 +84,11 @@ const useStyles = makeStyles((theme) => ({
   },
   iconSpacing10pxMobile:{
     color: "#000"
-  }
+  },
+
+  // bgDark:{
+  //   backgroundColor: "#fff"
+  // }
 }));
 
 export default useStyles;

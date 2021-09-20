@@ -5,10 +5,10 @@ import {
   MenuItem, 
   Select,
   Grid 
-} from '@material-ui/core';
+} from '@mui/material';
 import navRoFlag from '../../../assets/icon/navRoFlag.png';
 import navEnFlag from '../../../assets/icon/navEnFlag.png';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import useStyles from './languageButtonStyle';
 
 export default function BasicSelect() {
@@ -35,14 +35,13 @@ export default function BasicSelect() {
                 defaultValue={"lagnguage"}
                 onChange={handleChange}
                 className={classes.langsStyle}
-                labelId="demo-simple-select-error-label"
-                id="demo-simple-select-error"
                 disableUnderline 
                 IconComponent={() => (
                   <Box ml={-2} justifyContent="center">
                     <ExpandMoreIcon />
                   </Box>
-                )}>
+                )}
+                >
                 <MenuItem value={"ro"}>
                   <Box display="flex"  alignItems="center">
                     <img src={navRoFlag}></img>

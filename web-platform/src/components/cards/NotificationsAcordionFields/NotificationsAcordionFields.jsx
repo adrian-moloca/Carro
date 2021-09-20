@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Box, Grid } from '@material-ui/core';
+import {  Box, Grid } from '@mui/material';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import SendMessageBtn from '../../buttons/textOnlyButtons/sendMessageBtn/sendMessageBtn'

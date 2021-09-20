@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import {Box, Grid} from '@material-ui/core';
-import {Star, StarBorder, StarHalf} from '@material-ui/icons';
+import {Box, Grid} from '@mui/material';
+import {Star, StarBorder, StarHalf} from '@mui/icons-material';
 import HalfRating from '../../rating/rating';
 import BackdropSelectDriver from '../../backdrop/backDrop';
 import useStyles from './driverProfileCardStyle';

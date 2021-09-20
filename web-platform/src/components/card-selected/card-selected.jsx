@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Box, Button, Grid, FormControlLabel, RadioGroup } from '@material-ui/core';
+import { Box, Button, Grid, FormControlLabel, RadioGroup } from '@mui/material';
 import { Link } from 'react-router-dom';
 import masterCard from '../../assets/images/mastercard.png';
 import visa from '../../assets/images/visa.png';
@@ -10,7 +10,7 @@ import CarroRadio from '../radio/CarroRadio';
 import CarroCreditCard from '../cards/CreditCard/CreditCard';
 import PrimaryButton from '../buttons/primaryButton/primaryButton';
 import AddCard from '../add-card/add-card';
-import {Add} from '@material-ui/icons';
+import {Add} from '@mui/icons-material';
 
 const CardSelected = (props) =>{
 

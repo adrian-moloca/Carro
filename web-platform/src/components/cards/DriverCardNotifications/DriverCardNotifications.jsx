@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import {Box, Grid, Link} from '@material-ui/core';
-import {Star, StarBorder, StarHalf} from '@material-ui/icons';
+import {Box, Grid, Link} from '@mui/material';
+import {Star, StarBorder, StarHalf} from '@mui/icons-material';
 import BackdropSelectDriver from '../../backdrop/backDrop';
 import SeeProfileBtn from '../../buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn'
 import useStyles from './DriverCardNotificationsStyle';

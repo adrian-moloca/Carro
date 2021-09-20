@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Grid, Accordion, AccordionSummary, AccordionDetails, ListItem, List, SvgIcon, Button, Typography} from '@material-ui/core'; 
-import {ExpandMore, ArrowForward} from '@material-ui/icons';
+import { Box, Grid, Accordion, AccordionSummary, AccordionDetails, ListItem, List, SvgIcon, Button, Typography} from '@mui/material'; 
+import {ExpandMore, ArrowForward} from '@mui/icons-material';
 import useStyles from './rideStyle';
 import RideCard from '../../../components/cards/RideCard/RideCard';
 

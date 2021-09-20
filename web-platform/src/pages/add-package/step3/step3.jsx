@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from "react";
-import { Box, Grid, Button} from "@material-ui/core";
-import { Add } from "@material-ui/icons";
+import { Box, Grid, Button} from "@mui/material";
+import { Add } from "@mui/icons-material";
 import Package from './package';
 import SecondaryButton from "../../../components/buttons/secondaryButton/secondaryButton";
 

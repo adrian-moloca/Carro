@@ -1,6 +1,6 @@
 import React from 'react';
 import CarroTextField from '../textField/CarroTextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@mui/lab/Autocomplete';
 
 const CarroAutocomplete =(props)=>{
 

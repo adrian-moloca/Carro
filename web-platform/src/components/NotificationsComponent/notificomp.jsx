@@ -1,8 +1,8 @@
 import React from 'react';
-import Badge from '@material-ui/core/Badge';
-import IconButton from '@material-ui/core/IconButton';
+import Badge from '@mui/material/Badge';
+import IconButton from '@mui/material/IconButton';
 import useStyles from './notificompstyle'
-import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 
 export default function BadgeVisibility() {
   const classes = useStyles();

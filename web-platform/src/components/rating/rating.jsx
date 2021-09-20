@@ -1,5 +1,5 @@
 import React from 'react';
-import Rating from '@material-ui/lab/Rating';
+import Rating from '@mui/lab/Rating';
 import useStyles from './ratingStyle';
 
 const HalfRating = () => {

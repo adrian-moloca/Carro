@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import { Box, Grid, InputAdornment, Select, MenuItem, FormControlLabel} from "@material-ui/core";
+import { Box, Grid, InputAdornment, Select, MenuItem, FormControlLabel} from "@mui/material";
 import { Fragment } from "react";
 import CarroTextField from "../../../components/textField/CarroTextField";
 import CarroCheckbox from "../../../components/checkbox/CarroCheckbox";
-import { Edit } from '@material-ui/icons';
+import { Edit } from '@mui/icons-material';
 import PrimaryButton from '../../../components/buttons/primaryButton/primaryButton';
 
 const packageSizes = [

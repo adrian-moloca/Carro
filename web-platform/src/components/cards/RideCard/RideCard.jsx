@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Grid, SvgIcon, Button } from '@material-ui/core';
+import {Box, Grid, SvgIcon, Button } from '@mui/material';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';
 import packageImg from '../../../assets/images/box-small.png';
 import {ReactComponent as fragileIco} from '../../../assets/icon/fragile.svg';

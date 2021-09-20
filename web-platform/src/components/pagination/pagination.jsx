@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box, Grid } from '@material-ui/core';
-import Pagination from '@material-ui/lab/Pagination';
+import { Box, Grid } from '@mui/material';
+import Pagination from '@mui/lab/Pagination';
 
 
 const PaginationSBD = () => {

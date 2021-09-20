@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {Box, List, Grid} from '@material-ui/core';
-import {Star, StarBorder, StarHalf} from '@material-ui/icons';
+import {Box, List, Grid} from '@mui/material';
+import {Star, StarBorder, StarHalf} from '@mui/icons-material';
 import useStyles from './DriverCardStyle';
 import ListItemPersonalized from '../../list/listItemad/listItemPersonalized';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';

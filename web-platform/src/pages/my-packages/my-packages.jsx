@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Box, Typography, AccordionSummary, AccordionDetails, Accordion, Grid, List} from '@material-ui/core';
-import {ExpandMore, ArrowForward, Delete, Create} from '@material-ui/icons';
-import { makeStyles } from '@material-ui/core';
+import { Container, Box, Typography, AccordionSummary, AccordionDetails, Accordion, Grid, List} from '@mui/material';
+import {ExpandMore, ArrowForward, Delete, Create} from '@mui/icons-material';
+import { makeStyles } from '@mui/styles';
 import DriverCard from '../../components/cards/DriverCard/DriverCard';
 import fragile from '../../assets/images/fragile.png';
 import environmentdang from '../../assets/images/environmentdang.png';

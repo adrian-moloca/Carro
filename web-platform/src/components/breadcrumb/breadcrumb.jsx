@@ -1,6 +1,6 @@
 import React from "react";
-import { Box } from "@material-ui/core";
-import { CheckCircle } from '@material-ui/icons';
+import { Box } from "@mui/material";
+import { CheckCircle } from '@mui/icons-material';
 import baseStepTwo from '../../assets/images/baseStepTwo.png';
 import baseStepThree from '../../assets/images/baseStepThree.png';
 import baseStepFour from '../../assets/images/baseStepFour.png';

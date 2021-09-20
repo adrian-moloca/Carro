@@ -1,14 +1,14 @@
 import React from 'react';
 import './loginStyles.jsx';
 import useStyles from './loginStyles';
-import { Container, Box, TextField, Grid, Checkbox, FormControlLabel, Button, Typography, withStyles } from '@material-ui/core';
+import { Container, Box, TextField, Grid, Checkbox, FormControlLabel, Button, Typography, withStyles } from '@mui/material';
 import googleicon from '../../assets/images/GoogleIcon.png';
 import fbicon from '../../assets/images/fbicon.png';
 import CarroTextField from '../../components/textField/CarroTextField.jsx';
 import CarroCheckbox from '../../components/checkbox/CarroCheckbox.jsx';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton.jsx';
 import { Link } from 'react-router-dom';
-import { Stepper } from '@material-ui/core';
+import { Stepper } from '@mui/material';
 import greyLine from '../../assets/images/greyLine.png';
 
 
