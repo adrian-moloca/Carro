@@ -1,5 +1,5 @@
 import React from 'react'
-import './register.css'
+import './registerStyle.jsx'
 
 const Register = () => { 
   return (

@@ -1,11 +1,11 @@
 import React from 'react'
-import './my-packages.css'
+import './location.jsx'
 
-const MyPackages = () => { 
+const LocationPage = () => { 
   return (
     <div>
       <p>
-      my-packages
+        location
       </p>
     </div>
   )
