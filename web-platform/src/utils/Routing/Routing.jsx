@@ -57,8 +57,8 @@ const Routes = () => {
                 // ) : (
                     <div className="sbd-container">
                         <div className="sbd-container-header">
-                            <HeaderLogedOut/>
-                            {/* <HeaderLogedIn/> */}
+                            {/* <HeaderLogedOut/> */}
+                            <HeaderLogedIn/>
                         </div>
                         <div className="sbd-container-content">
                             <Switch>
