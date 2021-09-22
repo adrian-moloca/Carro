@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   Container,
   Box,
@@ -6,7 +6,8 @@ import {
   Checkbox,
   StepConnector,
   Avatar,
-  Link
+  Link,
+  InputAdornment
 } from "@material-ui/core";
 import "../../App.css";
 import useStyles from "./registerStyles";
@@ -19,6 +20,8 @@ import PrimaryButton from "../../components/buttons/primaryButton/primaryButton"
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { DonutLargeOutlined } from "@material-ui/icons";
+import CarroPhoneTextField from "../../components/telephoneNumberField/telephoneNumberField";
+
 
 const Register = () => {
   const classes = useStyles();
@@ -27,6 +30,21 @@ const Register = () => {
   const [state, setState] = React.useState({
     checkedA: true,
   });
+
+  const[phoneNumber, setPhoneNumber] = useState();
+  const[phoneNumberValue, setPhoneNumberValue] = useState();
+  const [countryNumber, setCountryNumber] = useState('RO');
+
+  const handleCountrySelect = ({country, formattedValue, phoneNumber}) =>{
+      setPhoneNumberValue(formattedValue);
+      setCountryNumber(country);
+      setPhoneNumber(phoneNumber);
+  }
+
+  const handlePhoneNumber = ({formattedValue, phoneNumber})=>{
+      setPhoneNumberValue(formattedValue);
+      setPhoneNumber(phoneNumber);
+  }
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
@@ -70,11 +88,7 @@ const Register = () => {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <CarroTextField
-              variant="outlined"
-              label="Numar de telefon"
-              fullWidth
-            />
+          
           </Grid>
           <Grid item xs={12} sm={6}>
             <CarroTextField

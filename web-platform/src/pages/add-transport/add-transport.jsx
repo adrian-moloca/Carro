@@ -81,26 +81,26 @@ const AddTransport = () =>{
               </CarroTextField>
           </Grid>
           <Grid container item xs={6} justifyContent="center">
-            <CarroAutocomplete options={getCities(departureCountry)} label="Oras de plecare" onChange={handleChangeDepartureCity}/>
+            <CarroAutocomplete options={getCities(departureCountry)} label="Oras de plecare" onChange={(e)=>handleChangeDepartureCity(e)}/>
           </Grid>
           <Grid container item xs={6} justifyContent='center'>
-            <CarroTextField variant ='outlined' label='Tara destinatie' fullWidth select value={destinationCountry} onChange={handleChangeDestinationCountry}>
+            <CarroTextField variant ='outlined' label='Tara destinatie' fullWidth select value={destinationCountry} onChange={(e)=>handleChangeDestinationCountry(e)}>
               {getCountries().map((country)=>(
                   <MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>
               ))}
             </CarroTextField>
           </Grid>
           <Grid container item xs={6} justifyContent='center'>
-              <CarroAutocomplete options={getCities(destinationCountry)} label="Oras destinatie" onChange={handleChangeDestinationCity}/>
+              <CarroAutocomplete options={getCities(destinationCountry)} label="Oras destinatie" onChange={(e)=>handleChangeDestinationCity(e)}/>
           </Grid>
           <Grid container item xs={6} justifyContent='center'>
               <CarroTextField variant ='outlined' label='Adresa de plecare' fullWidth/>
           </Grid>
           <Grid container item xs={6} justifyContent='center'>
-            <CarroDatePicker label='Data si ora de plecare' dateValue={departureDate} handleDateSelect={handleChangeDepartureDate}/>
+            <CarroDatePicker label='Data si ora de plecare' dateValue={departureDate} handleDateSelect={(e)=>handleChangeDepartureDate(e)}/>
           </Grid>
           <Grid container item xs={6} justifyContent='center'>
-            <CarroTextField select variant ='outlined' label='Tipul de transport' fullWidth value={transportType} onChange={handleChangeTransportType}>
+            <CarroTextField select variant ='outlined' label='Tipul de transport' fullWidth value={transportType} onChange={(e)=>handleChangeTransportType(e)}>
               {getTransportType().map((transport)=>(<MenuItem value={transport}>{transport}</MenuItem>))}
             </CarroTextField>
           </Grid>
