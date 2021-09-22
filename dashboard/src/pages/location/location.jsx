@@ -11,4 +11,4 @@ const LocationPage = () => {
   )
 }
 
-export default MyPackages;
+export default LocationPage;
