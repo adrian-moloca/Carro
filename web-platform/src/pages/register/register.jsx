@@ -20,7 +20,7 @@ import PrimaryButton from "../../components/buttons/primaryButton/primaryButton"
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { DonutLargeOutlined } from "@material-ui/icons";
-import CarroPhoneTextField from "../../components/telephoneNumberField/telephoneNumberField";
+import PhoneTextField from "../../components/telephoneNumberField/PhoneTextField";
 
 
 const Register = () => {
@@ -31,20 +31,9 @@ const Register = () => {
     checkedA: true,
   });
 
-  const[phoneNumber, setPhoneNumber] = useState();
-  const[phoneNumberValue, setPhoneNumberValue] = useState();
-  const [countryNumber, setCountryNumber] = useState('RO');
-
-  const handleCountrySelect = ({country, formattedValue, phoneNumber}) =>{
-      setPhoneNumberValue(formattedValue);
-      setCountryNumber(country);
-      setPhoneNumber(phoneNumber);
-  }
-
-  const handlePhoneNumber = ({formattedValue, phoneNumber})=>{
-      setPhoneNumberValue(formattedValue);
-      setPhoneNumber(phoneNumber);
-  }
+  const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState(null);
+  
+  const [countryPhoneCode, setCountryPhoneCode] = useState(null);
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
@@ -88,7 +77,8 @@ const Register = () => {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-          
+            <PhoneTextField number={inputValuePhoneNumber} handleChangeNumber = {(e)=>setInputValuePhoneNumber(e.target.value)}
+                            countryPhoneCode={countryPhoneCode} handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}/>
           </Grid>
           <Grid item xs={12} sm={6}>
             <CarroTextField

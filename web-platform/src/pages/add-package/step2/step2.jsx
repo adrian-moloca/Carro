@@ -1,25 +1,12 @@
 import React, { useState } from "react";
 import { Box, Grid, } from "@material-ui/core";
 import CarroTextField from "../../../components/textField/CarroTextField";
-import TelephoneNumberField from "../../../components/telephoneNumberField/telephoneNumberField";
-import CarroPhoneTextField from '../../../components/telephoneNumberField/telephoneNumberField';
+import PhoneTextField from "../../../components/telephoneNumberField/PhoneTextField";
 
 const StepTwo = (props) =>{
 
-    const[phoneNumber, setPhoneNumber] = useState();
-    const[phoneNumberValue, setPhoneNumberValue] = useState();
-    const [countryNumber, setCountryNumber] = useState('RO');
-
-    const handleCountrySelect = ({country, formattedValue, phoneNumber}) =>{
-        setPhoneNumberValue(formattedValue);
-        setCountryNumber(country);
-        setPhoneNumber(phoneNumber);
-    }
-
-    const handlePhoneNumber = ({formattedValue, phoneNumber})=>{
-        setPhoneNumberValue(formattedValue);
-        setPhoneNumber(phoneNumber);
-    }
+    const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState(null);
+    const [countryPhoneCode, setCountryPhoneCode] = useState(null);
 
     return(
         <Box display='flex' justifyContent='center' mt='5%'>
@@ -28,8 +15,8 @@ const StepTwo = (props) =>{
                 <CarroTextField variant ='outlined' label='Nume destinatar' fullWidth/>
             </Grid>
             <Grid container item xs={6} justifyContent="center">
-                <CarroPhoneTextField variant='outlined' label='Numar de telefon' error={Boolean(phoneNumberValue && phoneNumber?.country !== countryNumber)} 
-                          value={phoneNumberValue} onChange={handlePhoneNumber} country={countryNumber} onCountrySelect={handleCountrySelect} fullWidth/>
+                <PhoneTextField number={inputValuePhoneNumber} handleChangeNumber = {(e)=>setInputValuePhoneNumber(e.target.value)}
+                                countryPhoneCode={countryPhoneCode} handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}/>
             </Grid>
             <Grid container item xs={12} justifyContent='center'>
                 <CarroTextField value = {props.destinataryAddress} onChange={props.handleChangeDestinataryAddress}
