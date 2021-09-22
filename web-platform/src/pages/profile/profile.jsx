@@ -184,14 +184,14 @@ const Profile = (props) => {
               </Grid>
               <Grid container item xs={6} justifyContent="center">
                 <CarroTextField variant ='outlined' label='Tara' fullWidth
-                  select value={departureCountry} onChange={handleChangeDepartureCountry}>
+                  select value={departureCountry} onChange={(e)=>handleChangeDepartureCountry(e)}>
                       {getCountries().map((country)=>(
                           <MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>
                       ))}
                 </CarroTextField>
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-              <CarroAutocomplete options={getCities(departureCountry)} label="Oras" onChange={handleChangeDepartureCity}/>
+              <CarroAutocomplete options={getCities(departureCountry)} label="Oras" onChange={(e)=>handleChangeDepartureCity(e)}/>
               </Grid>
               <Grid container item xs={6} justifyContent="center">
                 <CarroTextField variant="outlined" label="Email firma" fullWidth />
