@@ -11,6 +11,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#000',
     margin: '0',
     color: '#fff',
+    fontSize: '17px',
+    textAlign:'center',
   },
   mediaButtonsContainer: {
     display: 'flex',
