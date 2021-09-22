@@ -86,14 +86,14 @@ export default function NestedGrid() {
     <div className={classes.root}>
       <FormRowMediaButtons />
       <div className={classes.footerSeparationLine}></div>
-      <Grid className={classes.footerLinksContainer} spacing={1} >
-        <Grid container direction="column" item xs={3} spacing={2} className={classes.noMargin}>
+      <Grid container className={classes.footerLinksContainer} spacing={1} >
+        <Grid container direction="column" item xs={12} sm={3} md={3} lg ={3} xl={3}  spacing={2} /* className={classes.noMargin} */>
           <FormRow />
         </Grid>
-        <Grid container direction="column" item xs={3} spacing={2} className={classes.noMargin}>
+        <Grid container direction="column" item xs={12} sm={3} md={3} lg ={3} xl={3} spacing={2} /* className={classes.noMargin} */>
           <FormRow1 />
         </Grid>
-        <Grid container item  direction="column"xs={3} spacing={2} className={classes.noMargin}>
+        <Grid container direction="column"xs={12} sm={3} md={3} lg ={3} xl={3} spacing={2} /* className={classes.noMargin} */>
           <FormRow2 />
         </Grid>        
       </Grid>
