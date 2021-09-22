@@ -99,19 +99,3 @@
     transform: rotate(360deg);
   }
 }
-
-.primarybutton {
-  color: #fff !important;
-  display: flex !important;
-  font-weight: bold;
-  justify-content: center;
-  background-color: #00b4d8 !important;
-  margin: auto !important;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.primarybutton:hover {
-  background-color: #ffffff !important;
-  color: #00b4d8 !important;
-}
