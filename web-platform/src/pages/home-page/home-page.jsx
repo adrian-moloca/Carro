@@ -16,26 +16,14 @@ import useStyles from "./home-pageStyles";
 import { withStyles } from "@material-ui/styles";
 import { grey } from "@material-ui/core/colors";
 
-const MyGrid = withStyles ({
-
-  'spacing-xs-5':{
-    margin:0,
-    padding:0,
-  },
-
-  'spacing-xs-3':{
-    margin:0,
-  }
-
-})(Grid)
 
 const HomePage = () => {
   const classes = useStyles();
 
   return (
     <Container className={classes.FirstSection}>
-      <MyGrid container className={classes.BgImg} justifyContent='center' spacing={5}>
-        <Grid container item xs={12} justifyContent='center'>
+      <Grid container className={classes.BgImg} justifyContent='center' >
+        <Grid container item xs={10} justifyContent='center'>
             <Box mt='6%' fontSize={50} fontWeight={700} color='white' textAlign='center' justifyContent='center'>
               FUTURE DELIVERY
             </Box>
@@ -58,33 +46,33 @@ const HomePage = () => {
             </Box>
           </Link> 
         </Grid>
-      </MyGrid>
-      <MyGrid container spacing={3} justifyContent="center">
+      </Grid>
+      <Grid container justifyContent="center">
         <Grid container item xs={12} justifyContent='flex-start'>
-            <Box px={2} fontSize={25} color={'grey.700'} fontWeight={700} fontStyle='italic' textAlign=''>Cele mai cautate transporturi:</Box>
+            <Box px={2} m={1} fontSize={25} color={'grey.700'} fontWeight={700} fontStyle='italic' textAlign=''>Cele mai cautate transporturi:</Box>
         </Grid>
         <Grid container item xs={12} md={3} lg={3} xl={3} justifyContent='center'>
-            <Box minWidth='200px' display ='flex'  flexDirection='column' boxShadow={4} borderRadius='8px' 
+            <Box m={2} minWidth='200px' display ='flex'  flexDirection='column' boxShadow={4} borderRadius='8px' 
             className={classes.BgColorBtnBlue} justifyContent='center' alignItems='center' p={2}>
               <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center'>Bucuresti - Constanta</Box>
               <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center'>20 RON</Box>
             </Box>
-          </Grid>
-          <Grid container item xs={12} md={3} lg={3} xl={3} justifyContent='center'>
-            <Box minWidth='200px' display ='flex' flexDirection='column' boxShadow={4} borderRadius='8px' 
+        </Grid>
+        <Grid container item xs={12} md={3} lg={3} xl={3} justifyContent='center'>
+            <Box m={2} minWidth='200px' display ='flex' flexDirection='column' boxShadow={4} borderRadius='8px' 
             className={classes.BgColorBtnBlue} justifyContent='center' alignItems='center' p={2}>
               <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center'>Cluj-Napoca - Brasov</Box>
               <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center'>35 RON</Box>
             </Box>
-          </Grid>
-          <Grid container item xs={12} md={3} lg={3} xl={3} justifyContent='center'>
-            <Box minWidth='200px' display ='flex'  flexDirection='column' boxShadow={4} borderRadius='8px' 
+        </Grid>
+        <Grid container item xs={12} md={3} lg={3} xl={3} justifyContent='center'>
+            <Box m={2} minWidth='200px' display ='flex'  flexDirection='column' boxShadow={4} borderRadius='8px' 
             className={classes.BgColorBtnBlue} justifyContent='center' alignItems='center' p={2}>
               <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center'>Timisoara - Sibiu</Box>
               <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center'>30 RON</Box>
             </Box>
-          </Grid>
-        </MyGrid>
+        </Grid>
+      </Grid>
     </Container>
   );
 };

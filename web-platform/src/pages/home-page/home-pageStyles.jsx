@@ -20,6 +20,9 @@ const useStyles = makeStyles({
   },
 
   FirstSection: {
+    display:'flex',
+    flexDirection: 'column',
+    justifyContent:'center',
     maxWidth: "100%",
     margin: "0",
     padding: "0",
