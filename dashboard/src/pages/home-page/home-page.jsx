@@ -1,6 +1,6 @@
 import React from 'react';
 import './home-pageStyle.jsx';
-import CarroPermanentDrawer from '../../components/drawer/carro-permanent-drawer.jsx';
+import CarroPermanentDrawer from '../../components/side-menu/side-menu.jsx';
 
 const HomePage = () => { 
   return (

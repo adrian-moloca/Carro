@@ -7,7 +7,7 @@ import StatisticsPage from '../../pages/statistics/statistics';
 import UsersPage from '../../pages/users/users';
 import LocationPage from '../../pages/location/location';
 import ResetPassword from '../../pages/reset-password/reset-password';
-import CarroPermanentDrawer from '../../components/drawer/carro-permanent-drawer';
+import SideMenu from '../../components/side-menu/side-menu';
 import './Routing.css';
 
 const Routes = () => {
@@ -41,7 +41,7 @@ const Routes = () => {
                     </Switch>
                 ) : ( 
                         <div className='sbd-layout-container'>
-                                <CarroPermanentDrawer currentPage={currentPage} onChangePage={()=>setCurrentPage(window.location.pathname.substr(1))}/>
+                                <SideMenu currentPage={currentPage} onChangePage={()=>setCurrentPage(window.location.pathname.substr(1))}/>
                                 <Switch>
                                     <Route path={["/home", "/"]} exact component={HomePage}/>
                                     <Route path="/statistics" exact component={StatisticsPage}/>

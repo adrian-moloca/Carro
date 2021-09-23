@@ -25,7 +25,7 @@ const MyContainer = withStyles({
 
 })(Container);
 
-const DrawerContainer = (props) =>{
+const SideMenuContainer = (props) =>{
     return(
         <MyContainer>
             <Box maxWidth='100%'  padding={5} display='flex' justifyContent='center'>
@@ -38,4 +38,4 @@ const DrawerContainer = (props) =>{
     );
 }
 
-export default DrawerContainer;
+export default SideMenuContainer;

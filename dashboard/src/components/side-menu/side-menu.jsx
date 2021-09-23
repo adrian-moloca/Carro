@@ -1,7 +1,7 @@
 import React from 'react';
 import {useHistory, withRouter } from "react-router-dom";
 import {Drawer, Grid, Box} from '@material-ui/core';
-import DrawerContainer from '../container/drawer/drawer-container';
+import SideMenuContainer from '../container/side-menu/side-menu-container';
 import { withStyles } from '@material-ui/core';
 import {Home, Computer, Person, NotListedLocation} from '@material-ui/icons';
 import {ToggleButton , ToggleButtonGroup} from '@material-ui/lab';
@@ -44,14 +44,14 @@ const MyButtonGroup = withStyles({
 
 })(ToggleButtonGroup);
 
-const CarroPermanentDrawer = (props) =>{
+const SideMenu = (props) =>{
 
     const history = useHistory();
 
     return(
 
         <MyDrawer variant='permanent' anchor='left'>
-            <DrawerContainer>
+            <SideMenuContainer>
                 <Box mt='25%' width='100%'>
                     <MyButtonGroup value={props.currentPage}
                                    exclusive
@@ -91,10 +91,10 @@ const CarroPermanentDrawer = (props) =>{
                         </MyButton>
                     </MyButtonGroup>
                 </Box>
-            </DrawerContainer>
+            </SideMenuContainer>
         </MyDrawer>
 
     );
 }
 
-export default withRouter(CarroPermanentDrawer);
+export default withRouter(SideMenu);
