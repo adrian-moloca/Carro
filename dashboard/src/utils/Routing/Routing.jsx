@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter as Router , Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router , Route, Switch, Redirect} from 'react-router-dom';
 import Login from '../../pages/login/login';
 import ForgotPassword from '../../pages/login/forgot-password/forgot-password';
 import HomePage from '../../pages/home-page/home-page';
@@ -43,7 +43,17 @@ const Routes = () => {
                         <div className='sbd-layout-container'>
                                 <SideMenu currentPage={currentPage} onChangePage={()=>setCurrentPage(window.location.pathname.substr(1))}/>
                                 <Switch>
-                                    <Route path={["/home", "/"]} exact component={HomePage}/>
+                                    <Route exact path="/" render={() => {
+                                                return ( isLoggedIn ?
+                                                            <Redirect to="/home" /> :
+                                                            <Redirect to="/login" />
+                                    )}}/>
+                                    <Route exact path="" render={() => {
+                                                return ( isLoggedIn ?
+                                                            <Redirect to="/home" /> :
+                                                            <Redirect to="/login" />
+                                    )}}/>
+                                    <Route path="/home" exact component={HomePage}/>
                                     <Route path="/statistics" exact component={StatisticsPage}/>
                                     <Route path="/users" exact component={UsersPage}/>
                                     <Route path="/location" exact component={LocationPage}/>
