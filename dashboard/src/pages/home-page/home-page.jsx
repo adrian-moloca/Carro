@@ -1,12 +1,10 @@
-import React from 'react'
-import './home-pageStyle.jsx'
+import React from 'react';
+import './home-pageStyle.jsx';
+import CarroPermanentDrawer from '../../components/drawer/carro-permanent-drawer.jsx';
 
 const HomePage = () => { 
   return (
     <div>
-      <p>
-       home-page 
-      </p>
     </div>
   )
 }
