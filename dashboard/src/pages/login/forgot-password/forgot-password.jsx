@@ -20,28 +20,28 @@ const ForgotPassword = () => {
               Resetare parola
           </Box>
           { !emailSent ? (
-            <Grid container xl={7} spacing={4}>
+            <Grid container xl={7} lg={7} md={7} spacing={4}>
                 <Grid container item xl={12}>
                   <CarroTextField value = {Email} onChange = {(e)=> setEmail(e.target.value)} 
                                   label='Email' variant='outlined' fullWidth/>
                 </Grid>
-                <Grid container item xl={6} justifyContent='flex-end' alignItems='center'>
+                <Grid container item xl={6} lg={6} md={6} justifyContent='flex-end' alignItems='center'>
                   <Link to='/login' style={{textDecoration:'none', width:'100%'}}>
                     <SecondaryButton variant='outlined' fullWidth>INAPOI</SecondaryButton>
                   </Link>
                 </Grid>
-                <Grid container item xl={6}>
+                <Grid container item xl={6} lg={6} md={6}>
                   <PrimaryButton variant='contained' onClick={()=>setEmailSent(true)} fullWidth>TRIMITE</PrimaryButton>
                 </Grid>
             </Grid>
           ) : (
-            <Grid container xl={12} spacing={4} justifyContent='center'>
-                <Grid container item xl={12} justifyContent='center'>
+            <Grid container xl={12} lg={12} md={12} spacing={4} justifyContent='center'>
+                <Grid container item xl={12} lg={12} md={12} justifyContent='center'>
                   <Box fontSize={18}>
                     Un link cu resetarea parolei a fost trimis la adresa de email!
                   </Box>
                 </Grid>
-                <Grid container item xl={7}>
+                <Grid container item xl={7} lg={7} md={7}>
                   <Link to='/login' style={{textDecoration:'none', width:'100%'}}>
                     <PrimaryButton variant='contained' fullWidth>INAPOI LA AUTENTIFICARE</PrimaryButton>
                   </Link>

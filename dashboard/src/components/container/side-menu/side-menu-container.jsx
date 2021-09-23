@@ -9,17 +9,14 @@ const MyContainer = withStyles({
     root:{
         display:'flex',
         flexDirection:'column',
-        justifyContent:'center',
         alignContent: 'center',
         alignItems: 'center',
         backgroundColor:'#00b4d8',
         //minHeight:'100vh',
-        position: 'fixed',
-        top: 0,
-        left: 0,
         height: '100%',
         width: '100%',
-        px:'10px',
+        paddingLeft: 0,
+        paddingRight: 0,
     },
 
     maxWidthLg :{
@@ -28,17 +25,17 @@ const MyContainer = withStyles({
 
 })(Container);
 
-const LoginContainer = (props) =>{
+const SideMenuContainer = (props) =>{
     return(
         <MyContainer>
-            <Box maxWidth='100%' position='absolute' top={0} left={0} right={0} padding={5} display='flex' justifyContent='center'>
+            <Box maxWidth='100%'  padding={5} display='flex' justifyContent='center'>
                 <img src={CarroLogo}/>
             </Box>
-            <Box display='flex' width='40%' minWidth='400px'>
+            <Box width='100%' display='flex' alignSelf='center'>
                 {props.children}
             </Box>
         </MyContainer>
     );
 }
 
-export default LoginContainer;
+export default SideMenuContainer;

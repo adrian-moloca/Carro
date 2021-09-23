@@ -20,21 +20,21 @@ const ResetPassword = () => {
           <Box marginBottom={8} fontSize={25}>
                 Resetare parola
           </Box>
-          <Grid container xl={7} spacing={3}>
-            <Grid container item xl={12}>
+          <Grid container xl={7} lg={7} md={7} spacing={3}>
+            <Grid container item xl={12} lg={12} md={12}>
                 <CarroTextField value = {Password} onChange = {(e)=> setPassword(e.target.value)} 
                             label='Parola' variant='outlined' fullWidth/>
             </Grid>
-            <Grid container item xl={12}>
+            <Grid container item xl={12} lg={12} md={12}>
                 <CarroTextField value= {ConfirmPassword} onChange = {(e)=> setConfirmPassword(e.target.value)} 
                             label='Confirmare parola' variant='outlined' fullWidth/>
             </Grid>
-            <Grid container item xl={6} justifyContent='flex-end' alignItems='center'>
+            <Grid container item xl={6} lg={6} md={6} justifyContent='flex-end' alignItems='center'>
                 <Link to='/login' style={{textDecoration:'none', width:'100%'}}>
                     <SecondaryButton variant='outlined' fullWidth>INAPOI</SecondaryButton>
                 </Link>
             </Grid>
-            <Grid container item xl={6}>
+            <Grid container item xl={6} lg={6} md={6}>
                 <Link to='/login' style={{textDecoration:'none', width:'100%'}}>
                     <PrimaryButton variant='contained' fullWidth>TRIMITE</PrimaryButton>
                 </Link>
