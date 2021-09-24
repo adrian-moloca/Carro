@@ -34,7 +34,7 @@ const SideMenuContainer = (props) =>{
             <Box width='100%' display='flex' alignSelf='center'>
                 {props.children}
             </Box>
-            <Box position='absolute' bottom={0} width='100%' height='8%' borderTop={2} paddingTop={1} color='white' 
+            <Box position='absolute' bottom={0} width='100%' height='5%' borderTop={2} paddingTop={1} color='white' 
                 textAlign='center' fontStyle='italic' fontWeight={500}>
                 2021 CARRO TRANSPORT
             </Box>

@@ -9,7 +9,9 @@ const LoginBox = withStyles({
         alignItems:'center',
         backgroundColor:'white',
         width:'100%',
+        boxSizing:'border-box',
         padding: '40px',
+        zIndex:'0',
         borderRadius: '15px',
         boxShadow: ' 0 15px 20px rgba(0, 0, 0, 0.31)',
     }
