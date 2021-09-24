@@ -14,6 +14,8 @@ const MyDrawer = withStyles({
 
     paper:{
         width:'300px',
+        border: 0,
+        boxShadow: ' 5px 0 0 rgba(0, 0, 0, 0.31)',
     },
 
 })(Drawer);

@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import {BrowserRouter as Router , Route, Switch, Redirect} from 'react-router-dom';
+import React, {useState, useEffect, Fragment} from 'react';
+import {BrowserRouter , Route, Switch, Redirect} from 'react-router-dom';
+import ProtectedRoute from '../protected-route/protected-route';
 import Login from '../../pages/login/login';
 import ForgotPassword from '../../pages/login/forgot-password/forgot-password';
 import HomePage from '../../pages/home-page/home-page';
@@ -11,57 +12,26 @@ import SideMenu from '../../components/side-menu/side-menu';
 import './Routing.css';
 
 const Routes = () => {
-    
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const [collapsed, setCollapsed] = useState(false);
 
     const onCollapse = () => {
         setCollapsed(!collapsed);
-      };
-
-    if(isLoggedIn === false) {
-        window.location.pathname.replace(window.location.pathname ,'/login');
-    }
-    
-    useEffect(() => {
-        setIsLoggedIn(false)
-    }, [isLoggedIn])
-
-    const[currentPage, setCurrentPage] = useState(window.location.pathname.substr(1));
+    };
 
     return(
-        <Router>
-            {
-                window.location.pathname.includes('/login') ||  window.location.pathname.includes('/reset-password') && isLoggedIn === false ? (
+        <BrowserRouter>
                     <Switch>
-                        <Route path="/login" exact component={Login}/>
-                        <Route path="/login/forgot-password" exact component={ForgotPassword}/>
-                        <Route path="/reset-password" exact component={ResetPassword}/>
+                        <Route exact path="/login" component={Login}/>
+                        <Route exact path="/login/forgot-password" component={ForgotPassword}/>
+                        <Route exact path="/reset-password" component={ResetPassword}/>
+                        <ProtectedRoute exact path="/home" component={HomePage} />
+                        <ProtectedRoute exact path="/statistics" component={StatisticsPage} />
+                        <ProtectedRoute exact path="/users" component={UsersPage} />
+                        <ProtectedRoute exact path="/location" component={LocationPage} />
+                        <ProtectedRoute path="*" render={()=> <Redirect to='/home'/>}/>
                     </Switch>
-                ) : ( 
-                        <div className='sbd-layout-container'>
-                                <SideMenu currentPage={currentPage} onChangePage={()=>setCurrentPage(window.location.pathname.substr(1))}/>
-                                <Switch>
-                                    <Route exact path="/" render={() => {
-                                                return ( isLoggedIn ?
-                                                            <Redirect to="/home" /> :
-                                                            <Redirect to="/login" />
-                                    )}}/>
-                                    <Route exact path="" render={() => {
-                                                return ( isLoggedIn ?
-                                                            <Redirect to="/home" /> :
-                                                            <Redirect to="/login" />
-                                    )}}/>
-                                    <Route path="/home" exact component={HomePage}/>
-                                    <Route path="/statistics" exact component={StatisticsPage}/>
-                                    <Route path="/users" exact component={UsersPage}/>
-                                    <Route path="/location" exact component={LocationPage}/>
-                                </Switch>
-                        </div>
-                )
-            }
-        </Router>
+        </BrowserRouter>
     )
 }
 
