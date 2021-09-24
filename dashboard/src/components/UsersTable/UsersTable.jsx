@@ -14,9 +14,9 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 
 const columns = [
-  { id: "localitate", label: "Localitate", minWidth: 170 },
-  { id: "tara", label: "Tara", minWidth: 100 },
-  { id: "data", label: "Data", minWidth: 100 },
+  { id: "nume", label: "Nume", minWidth: 170 },
+  { id: "email", label: "Email", minWidth: 100 },
+  { id: "rol", label: "Rol", minWidth: 100 },
   { id: "actions", label: "Actiuni", minWidth: 100 },
 ];
 var deleteIcon = (
@@ -30,15 +30,15 @@ const editIcon = (
     <EditIcon style={{ color: "#00B4D8" }} />
   </IconButton>
 );
-function createData(localitate, tara, data, actions) {
-  return { localitate, tara, data, actions };
+function createData(nume, email, rol, actions) {
+  return { nume, email, rol, actions };
 }
 
 const rows = [
   createData(
     "Table Cell",
     "Table Cell",
-    "20/09/2021",
+    "Table Cell",
     <>
       {editIcon}
       {deleteIcon}
@@ -47,7 +47,7 @@ const rows = [
   createData(
     "Table Cell",
     "Table Cell",
-    "20/09/2021",
+    "Table Cell",
     <>
       {editIcon}
       {deleteIcon}
@@ -56,7 +56,7 @@ const rows = [
   createData(
     "Table Cell",
     "Table Cell",
-    "20/09/2021",
+    "Table Cell",
     <>
       {editIcon}
       {deleteIcon}
@@ -65,7 +65,7 @@ const rows = [
   createData(
     "Table Cell",
     "Table Cell",
-    "20/09/2021",
+    "Table Cell",
     <>
       {editIcon}
       {deleteIcon}
@@ -74,7 +74,7 @@ const rows = [
   createData(
     "Table Cell",
     "Table Cell",
-    "20/09/2021",
+    "Table Cell",
     <>
       {editIcon}
       {deleteIcon}
@@ -83,7 +83,7 @@ const rows = [
   createData(
     "Table Cell",
     "Table Cell",
-    "20/09/2021",
+    "Table Cell",
     <>
       {editIcon}
       {deleteIcon}
@@ -92,7 +92,7 @@ const rows = [
   createData(
     "Table Cell",
     "Table Cell",
-    "20/09/2021",
+    "Table Cell",
     <>
       {editIcon}
       {deleteIcon}
@@ -101,7 +101,7 @@ const rows = [
   createData(
     "Table Cell",
     "Table Cell",
-    "20/09/2021",
+    "Table Cell",
     <>
       {editIcon}
       {deleteIcon}
@@ -110,7 +110,7 @@ const rows = [
   createData(
     "Table Cell",
     "Table Cell",
-    "20/09/2021",
+    "Table Cell",
     <>
       {editIcon}
       {deleteIcon}
@@ -119,7 +119,7 @@ const rows = [
   createData(
     "Table Cell",
     "Table Cell",
-    "20/09/2021",
+    "Table Cell",
     <>
       {editIcon}
       {deleteIcon}
@@ -128,7 +128,7 @@ const rows = [
   createData(
     "Table Cell",
     "Table Cell",
-    "20/09/2021",
+    "Table Cell",
     <>
       {editIcon}
       {deleteIcon}
@@ -137,7 +137,7 @@ const rows = [
   createData(
     "Table Cell",
     "Table Cell",
-    "20/09/2021",
+    "Table Cell",
     <>
       {editIcon}
       {deleteIcon}
@@ -146,7 +146,7 @@ const rows = [
   createData(
     "Table Cell",
     "Table Cell",
-    "20/09/2021",
+    "Table Cell",
     <>
       {editIcon}
       {deleteIcon}

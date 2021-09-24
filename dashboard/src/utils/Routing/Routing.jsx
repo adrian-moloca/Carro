@@ -27,7 +27,7 @@ const Routes = () => {
                         <Route exact path="/reset-password" component={ResetPassword}/>
                         <Route exact path="/home" component={HomePage} />
                         <ProtectedRoute exact path="/statistics" component={StatisticsPage} />
-                        <ProtectedRoute exact path="/users" component={UsersPage} />
+                        <Route exact path="/users" component={UsersPage} />
                         <Route exact path="/location" component={LocationPage} />
                         <ProtectedRoute path="*" render={()=> <Redirect to='/home'/>}/>
                     </Switch>
