@@ -9,11 +9,11 @@ import {ToggleButton , ToggleButtonGroup} from '@material-ui/lab';
 const MyDrawer = withStyles({
 
     root:{
-        width: '300px',
+        width: '18%',
     },
 
     paper:{
-        width:'300px',
+        width:'18%',
         border: 0,
         boxShadow: ' 5px 0 0 rgba(0, 0, 0, 0.31)',
     },

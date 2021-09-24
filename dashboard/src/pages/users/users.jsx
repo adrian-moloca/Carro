@@ -15,7 +15,6 @@ const UsersPage = () => {
         display="flex"
         justifyContent="space-between"
         alignItems="baseline"
-        paddingTop="4%"
         paddingBottom="2%"
       >
         <Box textAlign="left" fontSize="35px">
