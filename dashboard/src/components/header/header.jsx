@@ -37,7 +37,7 @@ const Header = () => {
     };
 
     return(
-        <MyAppBar position="static">
+        <MyAppBar position="fixed">
             <MyToolbar variant="dense">
                 <ButtonBase onClick={handleClick}>
                     <Box color='white' display='flex'>

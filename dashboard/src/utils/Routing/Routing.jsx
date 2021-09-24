@@ -27,9 +27,9 @@ const Routes = () => {
                         <Route exact path="/reset-password" component={ResetPassword}/>
                         <Route exact path="/home" component={HomePage} />
                         <ProtectedRoute exact path="/statistics" component={StatisticsPage} />
-                        <Route exact path="/users" component={UsersPage} />
-                        <Route exact path="/location" component={LocationPage} />
-                        <ProtectedRoute path="*" render={()=> <Redirect to='/home'/>}/>
+                        <ProtectedRoute exact path="/users" component={UsersPage} />
+                        <ProtectedRoute exact path="/location" component={LocationPage} />
+                        <ProtectedRoute path="*" component={HomePage}/>
                     </Switch>
         </BrowserRouter>
     )

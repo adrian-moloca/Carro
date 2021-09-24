@@ -54,7 +54,7 @@ const SideMenu = (props) =>{
 
         <MyDrawer variant='permanent' anchor='left'>
             <SideMenuContainer>
-                <Box mt='25%' width='100%'>
+                <Box mt='10%' width='100%'>
                     <MyButtonGroup value={props.currentPage}
                                    exclusive
                                    onChange={props.onChangePage} 

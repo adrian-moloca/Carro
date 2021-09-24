@@ -1,25 +1,30 @@
 import React from 'react';
+import {RemoveScrollBar} from 'react-remove-scroll-bar';
 import {Box} from '@material-ui/core';
 import PageContainer from '../../components/container/page-container/page-container.jsx';
 import GeneralStatistics from './general-statistics/general-statistics.jsx';
+import LastRides from './last-rides/last-rides';
 
 const HomePage = () => { 
-  
+
   return (
     <PageContainer>
-      <Box width='90%' display='flex' flexDirection='column' justifyContent='center' paddingTop='2%' paddingBottom='2%'>
-        <Box textAlign='left' fontSize='35px'>
-          Statistici generale
+        <Box width='90%' display='flex' flexDirection='column' justifyContent='center' paddingTop='5%' paddingBottom='2%'>
+          <Box textAlign='left' fontWeight='500' color='grey.600' fontSize='35px'>
+            Statistici generale
+          </Box>
+          <Box paddingTop='4%'>
+            <GeneralStatistics/>
+          </Box>
         </Box>
-        <Box paddingTop='4%'>
-          <GeneralStatistics/>
+        <Box width='90%' display='flex' flexDirection='column' justifyContent='center' paddingTop='2%'>
+          <Box textAlign='left' fontWeight='500' color='grey.600' fontSize='35px'>
+            Ultimele curse
+          </Box>
+          <Box paddingTop='4%' paddingBottom='5%' alignSelf='center'>
+            <LastRides/>
+          </Box>
         </Box>
-      </Box>
-      <Box width='90%' display='flex' flexDirection='column' justifyContent='center' paddingTop='2%'>
-        <Box textAlign='left' fontSize='35px'>
-          Ultimele curse
-        </Box>
-      </Box>
     </PageContainer>
   )
 }

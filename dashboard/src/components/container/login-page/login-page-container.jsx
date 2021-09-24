@@ -9,12 +9,10 @@ const MyContainer = withStyles({
     root:{
         display:'flex',
         flexDirection:'column',
-        justifyContent:'center',
-        alignContent: 'center',
         alignItems: 'center',
         backgroundColor:'#00b4d8',
         //minHeight:'100vh',
-        position: 'fixed',
+        position: 'absolute',
         top: 0,
         left: 0,
         height: '100%',
@@ -31,10 +29,10 @@ const MyContainer = withStyles({
 const LoginContainer = (props) =>{
     return(
         <MyContainer>
-            <Box maxWidth='100%' position='absolute' top={0} left={0} right={0} padding={5} display='flex' justifyContent='center'>
+            <Box maxWidth='100%' height='120px' top={0} left={0} right={0} padding={5} paddingBottom='5%' display='flex' justifyContent='center' >
                 <img src={CarroLogo}/>
             </Box>
-            <Box display='flex' width='40%' minWidth='400px'>
+            <Box width='650px' display='flex' alignSelf='center'>
                 {props.children}
             </Box>
         </MyContainer>
