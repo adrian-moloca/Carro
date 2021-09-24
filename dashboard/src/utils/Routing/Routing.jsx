@@ -8,16 +8,13 @@ import StatisticsPage from '../../pages/statistics/statistics';
 import UsersPage from '../../pages/users/users';
 import LocationPage from '../../pages/location/location';
 import ResetPassword from '../../pages/reset-password/reset-password';
-import SideMenu from '../../components/side-menu/side-menu';
 import './Routing.css';
 
 const Routes = () => {
 
     const [collapsed, setCollapsed] = useState(false);
 
-    const onCollapse = () => {
-        setCollapsed(!collapsed);
-    };
+    const onCollapse = () =>  setCollapsed(!collapsed);
 
     return(
         <BrowserRouter>
@@ -32,7 +29,7 @@ const Routes = () => {
                         <ProtectedRoute path="*" component={HomePage}/>
                     </Switch>
         </BrowserRouter>
-    )
-}
+    );
+};
 
 export default Routes;
