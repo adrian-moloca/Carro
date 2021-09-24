@@ -25,10 +25,10 @@ const Routes = () => {
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/login/forgot-password" component={ForgotPassword}/>
                         <Route exact path="/reset-password" component={ResetPassword}/>
-                        <ProtectedRoute exact path="/home" component={HomePage} />
+                        <Route exact path="/home" component={HomePage} />
                         <ProtectedRoute exact path="/statistics" component={StatisticsPage} />
                         <ProtectedRoute exact path="/users" component={UsersPage} />
-                        <ProtectedRoute exact path="/location" component={LocationPage} />
+                        <Route exact path="/location" component={LocationPage} />
                         <ProtectedRoute path="*" render={()=> <Redirect to='/home'/>}/>
                     </Switch>
         </BrowserRouter>
