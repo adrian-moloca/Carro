@@ -1,24 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {useHistory, withRouter, Redirect } from 'react-router-dom';
 import {Box, Grid, FormControlLabel} from '@material-ui/core';
 import LoginContainer from '../../components/container/login-page/login-page-container';
 import LoginBox from '../../components/box/login-page/primary-box-login-page';
-import CarroTextField from '../../components/textField/CarroTextField';
+import CarroTextField from '../../components/text-field/carro-text-field';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
-import CarroCheckbox from '../../components/checkbox/CarroCheckbox';
+import CarroCheckbox from '../../components/checkbox/carro-checkbox';
 import { Link } from 'react-router-dom';
 
 const Login = () => { 
 
   const[remindMe, setRemindMe] = useState(false);
 
-  const[Email, setEmail] = useState(null);
+  const[Email, setEmail] = useState("");
 
-  const[Password, setPassword] = useState(null);
+  const[Password, setPassword] = useState("");
+
+  const history = useHistory();
 
   const handleRemindMe = (event) =>{
 
     !event.target.checked ? setRemindMe(false) : setRemindMe(true)
   }
+
+  useEffect(()=>{
+    if((localStorage.getItem('isLoggedIn')==='true')) 
+                history.push('/home')
+  }, [])
 
   return (
       <LoginContainer>
@@ -26,7 +34,7 @@ const Login = () => {
           <Box marginBottom={8} fontSize={25}>
             Autentificare
           </Box>
-          <Grid container xl={7} lg={7} md={7} spacing={3}>
+          <Grid container item xl={7} lg={7} md={7} spacing={3}>
               <Grid container item xl={12} lg={12} md={12}>
                 <CarroTextField value = {Email} onChange = {(e)=> setEmail(e.target.value)} 
                                 label='Email' variant='outlined' fullWidth/>
@@ -45,7 +53,9 @@ const Login = () => {
                 </Link>
               </Grid>
               <Grid container item xl={12} lg={12} md={12} >
-                <PrimaryButton variant='contained' fullWidth>AUTENTIFICARE</PrimaryButton>
+                <Link to='/home' style={{textDecoration: 'none', width:'100%'}}>
+                  <PrimaryButton variant='contained' onClick={() => localStorage.setItem('isLoggedIn', true)} fullWidth>AUTENTIFICARE</PrimaryButton>
+                </Link>
               </Grid>
           </Grid>
         </LoginBox>
@@ -53,4 +63,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default withRouter(Login);

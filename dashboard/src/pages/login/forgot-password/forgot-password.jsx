@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory, withRouter } from 'react-router-dom';
 import {Box, Grid, FormControlLabel} from '@material-ui/core';
 import LoginContainer from '../../../components/container/login-page/login-page-container';
 import LoginBox from '../../../components/box/login-page/primary-box-login-page';
-import CarroTextField from '../../../components/textField/CarroTextField';
+import CarroTextField from '../../../components/text-field/carro-text-field';
 import PrimaryButton from '../../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../../components/buttons/secondaryButton/secondaryButton';
 import { Link } from 'react-router-dom';
@@ -12,6 +13,13 @@ const ForgotPassword = () => {
   const[Email, setEmail] = useState(null);
 
   const[emailSent, setEmailSent] = useState(false);
+
+  const history = useHistory();
+
+  useEffect(()=>{
+    if((localStorage.getItem('isLoggedIn')==='true')) 
+                history.push('/home')
+  }, [])
 
   return (
       <LoginContainer>
