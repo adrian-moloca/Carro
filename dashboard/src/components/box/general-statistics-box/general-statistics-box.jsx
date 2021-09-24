@@ -6,7 +6,7 @@ const MyBox = withStyles({
     root:{
         display:'flex', 
         flexDirection:'column',
-        width:'330px',
+        width:'80%',
         border: '0.5px solid rgba(0, 0, 0, 0.1)',
         borderRadius:'15px',
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',

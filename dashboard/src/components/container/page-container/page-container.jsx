@@ -12,9 +12,11 @@ const PageContainer = withStyles({
         right:0,
         bottom: 0,
         margin: 0,
-        marginTop: '10px',
-        paddingLeft:'310px',
+        marginTop: 0,
+        paddingLeft:'17%',
         padding: 0,
+        paddingTop: '80px',
+        paddingBottom: '20px',
         alignItems:'center',
         backgroundColor: 'white',
         maxWidth:'none',
@@ -22,4 +24,4 @@ const PageContainer = withStyles({
 
 })(Container)
 
-export default PageContainer
+export default PageContainer;
