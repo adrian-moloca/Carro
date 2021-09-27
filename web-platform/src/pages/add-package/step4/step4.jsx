@@ -72,16 +72,19 @@ const StepFour = () =>{
                     </RadioGroupPersonalized>
                 </Grid>
                 {payment === 'cardOnline' ? (
-                  cardSetted ?
-                    <CardSelected cardSelected={localStorage.getItem("paymentMethodExist")}/>
-                    : 
-                    (<Fragment>
-                        <AddCard cardNumber = {cardNumber} cardNumberSet = {(e)=>handleSetCardNumber(e)} 
-                                  expDate={expDate} expDateSet={handleSetExpDate} completeName = {completeName} 
-                                  completeNameSet={(e)=>handleSetCompleteName(e)} cvv={CVV} cvvSet={(e)=>handleSetCVV(e)}/>
+                  cardSetted 
+                    ? <CardSelected cardSelected={localStorage.getItem("paymentMethodExist")}/>
+                    :(<Fragment>
+                        <AddCard 
+                          cardNumber = {cardNumber} 
+                          cardNumberSet = {(e)=>handleSetCardNumber(e)} 
+                          expDate={expDate} 
+                          expDateSet={handleSetExpDate} 
+                          completeName = {completeName} 
+                          completeNameSet={(e)=>handleSetCompleteName(e)} cvv={CVV} cvvSet={(e)=>handleSetCVV(e)}
+                        />
                         <Grid container item xs={12} justifyContent='flex-end'>
-                            <FormControlLabel onChange = {handleSaveData} control={<CarroCheckbox/>} 
-                                    label='Salveaza Datele'/>
+                            <FormControlLabel onChange = {handleSaveData} control={<CarroCheckbox/>} label='Salveaza Datele'/>
                         </Grid>
                       </Fragment>)
                 ) : null}

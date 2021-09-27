@@ -11,17 +11,26 @@ const StepTwo = (props) =>{
     return(
         <Box display='flex' justifyContent='center' mt='5%'>
             <Grid container xs={12} spacing={3} >
-            <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label='Nume destinatar' fullWidth/>
-            </Grid>
-            <Grid container item xs={6} justifyContent="center">
-                <PhoneTextField number={inputValuePhoneNumber} handleChangeNumber = {(e)=>setInputValuePhoneNumber(e.target.value)}
-                                countryPhoneCode={countryPhoneCode} handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}/>
-            </Grid>
-            <Grid container item xs={12} justifyContent='center'>
-                <CarroTextField value = {props.destinataryAddress} onChange={props.handleChangeDestinataryAddress}
-                                variant ='outlined' label='Adresa destinatar' fullWidth/>
-            </Grid>
+                <Grid container item xs={6} justifyContent="center">
+                    <CarroTextField variant ='outlined' label='Nume destinatar' fullWidth/>
+                </Grid>
+                <Grid container item xs={6} justifyContent="center">
+                    <PhoneTextField 
+                        number={inputValuePhoneNumber} 
+                        handleChangeNumber = {(e)=>setInputValuePhoneNumber(e.target.value)}
+                        countryPhoneCode={countryPhoneCode} 
+                        handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
+                    />
+                </Grid>
+                <Grid container item xs={12} justifyContent='center'>
+                    <CarroTextField 
+                        value = {props.destinataryAddress} 
+                        onChange={props.handleChangeDestinataryAddress}
+                        variant ='outlined' 
+                        label='Adresa destinatar' 
+                        fullWidth
+                    />
+                </Grid>
             </Grid>
         </Box>
     );

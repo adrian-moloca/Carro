@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import { Box, Grid, InputAdornment, Select, MenuItem, FormControlLabel} from "@material-ui/core";
+import { Grid, InputAdornment, Select, MenuItem, FormControlLabel} from "@material-ui/core";
 import { Fragment } from "react";
 import CarroTextField from "../../../components/textField/CarroTextField";
 import CarroCheckbox from "../../../components/checkbox/CarroCheckbox";
-import { Edit } from '@material-ui/icons';
-import PrimaryButton from '../../../components/buttons/primaryButton/primaryButton';
 
 const packageSizes = [
     {
@@ -76,71 +74,60 @@ const Package = (props)=>{
     }    
 
     return(
-            <Grid container xs={12} spacing={3}>
-                {console.log(Inflamabil, Fragil, Perisabil, Animal)}
-                <Grid container item xs={6} justifyContent="center">
-                    <CarroTextField variant ='outlined' label='Marimea pachetului' fullWidth
-                        select value={packageSize} onChange={handleSizeSelect}>
-                            {packageSizes.map((option)=>(
-                                <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                                </MenuItem>
-                            ))}
-                    </CarroTextField>
-                </Grid>
-                <Grid container item xs={6} justifyContent="center">
-                    <CarroTextField variant ='outlined' label='Greutatea pachetului' fullWidth
-                        InputProps={{startAdornment: <InputAdornment position="start">Kg</InputAdornment>}}/>
-                </Grid>
-                {packageSize==='big' ? (
-                    <Fragment>
-                    <Grid  container item xs={4} justifyContent="center">
-                        <CarroTextField variant ='outlined' label='Latime' fullWidth
-                            InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
-                    </Grid>
-                    <Grid  container item xs={4} justifyContent="center">
-                        <CarroTextField variant ='outlined' label='Inaltime' fullWidth
-                        InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
-                    </Grid>
-                    <Grid  container item xs={4} justifyContent="center">
-                        <CarroTextField variant ='outlined' label='Lungime' fullWidth
-                            InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
-                    </Grid>
-                    </Fragment>
-                ):(null)}
-                <Grid container item xs={12} justifyContent='center'>
-                    <CarroTextField variant ='outlined' label='Scurta descriere' fullWidth/>
-                </Grid>
-                <Grid container item xs={6} justifyContent="center">
-                    <CarroTextField variant ='outlined' label='Pret' fullWidth
-                        InputProps={{startAdornment: 
-                            <InputAdornment position="start">
-                            <Select value={currency} onChange={handleCurrencySelect}>
-                                {currencies.map((option)=>(
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                                ))}
-                            </Select>
-                            </InputAdornment>}}/>
-                </Grid>
-                <Grid container item xs={6} justifyContent="center">
-                    <CarroTextField variant ='outlined' label='Numar pachete' fullWidth/>
-                </Grid>
-                <Grid container item xs={12} justifyContent='center' maxRows={5}>
-                    <CarroTextField variant ='outlined' label='Descriere' multiline={4} rows={4} fullWidth/>
-                </Grid>
-                <Grid container item xs={12} justifyContent='space-between'>            
-                    <FormControlLabel onChange = {handleInflamabilCheckboxClick} control={<CarroCheckbox/>} 
-                                    label='Inflamabil'/>
-                    <FormControlLabel onChange = {handleFragilCheckboxClick} control={<CarroCheckbox/>} 
-                                    label='Fragil'/>
-                    <FormControlLabel onChange = {handlePerisabilCheckboxClick} control={<CarroCheckbox/>} 
-                                    label='Perisabil'/>
-                    <FormControlLabel onChange = {handleAnimalCheckboxClick} control={<CarroCheckbox/>} 
-                                    label='Animal'/>
-                </Grid>
+        <Grid container xs={12} spacing={3}>
+            {console.log(Inflamabil, Fragil, Perisabil, Animal)}
+            <Grid container item xs={6} justifyContent="center">
+                <CarroTextField variant ='outlined' label='Marimea pachetului' fullWidth select value={packageSize} onChange={handleSizeSelect}>
+                    {packageSizes.map((option)=>(
+                        <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                        </MenuItem>
+                    ))}
+                </CarroTextField>
             </Grid>
+            <Grid container item xs={6} justifyContent="center">
+                <CarroTextField variant ='outlined' label='Greutatea pachetului' fullWidth
+                    InputProps={{startAdornment: <InputAdornment position="start">Kg</InputAdornment>}}/>
+            </Grid>
+            {packageSize==='big' ? (
+                <Fragment>
+                <Grid  container item xs={4} justifyContent="center">
+                    <CarroTextField variant ='outlined' label='Latime' fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                </Grid>
+                <Grid  container item xs={4} justifyContent="center">
+                    <CarroTextField variant ='outlined' label='Inaltime' fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                </Grid>
+                <Grid  container item xs={4} justifyContent="center">
+                    <CarroTextField variant ='outlined' label='Lungime' fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                </Grid>
+                </Fragment>
+            ):(null)}
+            <Grid container item xs={12} justifyContent='center'>
+                <CarroTextField variant ='outlined' label='Scurta descriere' fullWidth/>
+            </Grid>
+            <Grid container item xs={6} justifyContent="center">
+                <CarroTextField variant ='outlined' label='Pret' fullWidth InputProps={{startAdornment: 
+                    <InputAdornment position="start">
+                        <Select value={currency} onChange={handleCurrencySelect}> {currencies.map((option)=>(
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>))}
+                        </Select>
+                    </InputAdornment>}}/>
+            </Grid>
+            <Grid container item xs={6} justifyContent="center">
+                <CarroTextField variant ='outlined' label='Numar pachete' fullWidth/>
+            </Grid>
+            <Grid container item xs={12} justifyContent='center' maxRows={5}>
+                <CarroTextField variant ='outlined' label='Descriere' multiline={4} rows={4} fullWidth/>
+            </Grid>
+            <Grid container item xs={12} justifyContent='space-between'>            
+                <FormControlLabel onChange = {handleInflamabilCheckboxClick} control={<CarroCheckbox/>} label='Inflamabil'/>
+                <FormControlLabel onChange = {handleFragilCheckboxClick} control={<CarroCheckbox/>} label='Fragil'/>
+                <FormControlLabel onChange = {handlePerisabilCheckboxClick} control={<CarroCheckbox/>} label='Perisabil'/>
+                <FormControlLabel onChange = {handleAnimalCheckboxClick} control={<CarroCheckbox/>} label='Animal'/>
+            </Grid>
+        </Grid>
     );
 
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Grid, MenuItem, Container, Link } from "@material-ui/core";
 import CarroTextField from "../../components/textField/CarroTextField";
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
-import { Country, State, City }  from 'country-state-city';
+import { Country, City }  from 'country-state-city';
 import CarroAutocomplete from "../../components/autocomplete/CarroAutocomplete";
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';
@@ -12,60 +12,33 @@ import useStyles from './add-transportStyle';
 
 const AddTransport = () =>{
 
-  const classes = useStyles();
-
-  const [departureDate, setDepartureDate] = useState(null);
-
-  const [departureCountry, setDepartureCountry] = useState(null);
-
-  const [destinationCountry, setDestinationCountry] = useState(null);
-
-  const [departureCity, setDepartureCity] = useState(null);
-
-  const [destinationCity, setDestinationCity] = useState(null);
-
-  const [transportType, setTransportType] = useState(null);
-
-  const handleChangeDepartureDate=(date)=>{
-      setDepartureDate(date);
-  }
-
-  const handleChangeDepartureCountry=(event)=>{
-      setDepartureCountry(event.target.value);
-  }
-
-  const handleChangeDestinationCountry=(event)=>{
-      setDestinationCountry(event.target.value);
-  }
-
-  const handleChangeDepartureCity=(event)=>{
-      setDepartureCity(event.target.textContent);   
-  }
-
-  const handleChangeDestinationCity=(event)=>{
-      setDestinationCity(event.target.textContent);   
-  }
-
-  const handleChangeTransportType=(event)=>{
-    setTransportType(event.target.value);   
-  }
-
   const transports = ["Transport public", "Masina", "Tir", "Camion", "Microbus"]; 
 
-  const getTransportType = ()=> {
-    return transports;
-  }
+  const classes = useStyles();
 
-  const getCountries = ()=> {
-    return Country.getAllCountries();
-  }
+  // state
+  const [departureDate, setDepartureDate] = useState(null);
+  const [departureCountry, setDepartureCountry] = useState(null);
+  const [destinationCountry, setDestinationCountry] = useState(null);
+  const [departureCity, setDepartureCity] = useState(null);
+  const [destinationCity, setDestinationCity] = useState(null);
+  const [transportType, setTransportType] = useState(null);
+  // event lisenters
+  const handleChangeDepartureDate=(date)=> setDepartureDate(date);
+  const handleChangeDepartureCountry=(event)=> setDepartureCountry(event.target.value);
+  const handleChangeDestinationCountry=(event)=> setDestinationCountry(event.target.value);
+  const handleChangeDepartureCity=(event)=> setDepartureCity(event.target.textContent);
+  const handleChangeDestinationCity=(event)=> setDestinationCity(event.target.textContent);
+  const handleChangeTransportType=(event)=> setTransportType(event.target.value)
+
+  const getTransportType = ()=> { return transports };
+  const getCountries = ()=> { return Country.getAllCountries()};
 
   const getCities = (country) =>{
       const cities = [];
       City.getCitiesOfCountry(country).map((city)=>(cities.push(city.name)));
       return cities;
   }
-
 
   return(
     <Container className='Primary-container-style'>
@@ -112,19 +85,17 @@ const AddTransport = () =>{
       <Box mt={7}>
         <Grid container display='flex' direction="row" alignItems="center">                      
           <Grid container item xs={6} justifyContent='center' alignItems="center">
-            <SecondaryButton variant="contained">
-            <Link href="/" underline= 'none' color= 'inherit'>
-
-              <Box display="flex" justifyContent='center' alignItems="center">
-                <ArrowBackIosIcon className={classes.arrowsSpacingRight}/>
-                <text className={classes.textSpacingRight}>Acasa</text>
-              </Box>
+            <SecondaryButton variant="contained" size="large">
+              <Link href="/" underline= 'none' color= 'inherit'>
+                <Box display="flex" justifyContent='center' alignItems="center">
+                  <ArrowBackIosIcon className={classes.arrowsSpacingRight}/>
+                  <text className={classes.textSpacingRight}>Acasa</text>
+                </Box>
               </Link>
-
             </SecondaryButton>
           </Grid>
           <Grid container item xs={6} justifyContent='center' alignItems="center">
-            <PrimaryButton>
+            <PrimaryButton variant='contained' size="large" color="primary">
               <Box display="flex" justifyContent='center' alignItems="center">
                 <text className={classes.textSpacingLeft}>Adauga</text>
                 <ArrowForwardIosIcon className={classes.arrowsSpacingLeft}/>

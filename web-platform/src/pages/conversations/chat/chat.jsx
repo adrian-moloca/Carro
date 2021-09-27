@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Container } from "@material-ui/core";
+import { Box, Grid, Container, Link } from "@material-ui/core";
 import SecondaryButton from '../../../components/buttons/secondaryButton/secondaryButton';
 import useStyles from './chatStyle';
 
@@ -18,7 +18,9 @@ const Chat = () =>{
           direction="column">
           <Box mt={3}>
             <SecondaryButton variant="outlined" size="large">
-              Inapoi
+              <Link href="/conversations" underline= 'none' color= 'inherit'>
+                Inapoi
+              </Link>
             </SecondaryButton>
           </Box>
         </Grid>
