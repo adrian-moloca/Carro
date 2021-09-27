@@ -4,11 +4,8 @@ import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import SendMessageBtn from '../../buttons/textOnlyButtons/sendMessageBtn/sendMessageBtn'
 import HalfRating from '../../rating/rating';
-import useStyles from './NotificationsAcordionFieldsStyle.jsx';
 
 const NotificationsAcordionFields = () => {
-
-  const classes = useStyles();
 
   return (
     <Grid container xs={6} >

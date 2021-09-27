@@ -1,15 +1,14 @@
 
 import React, {useState} from 'react';
 import { Container, Box, Stepper, Step, StepLabel, Grid,} from '@material-ui/core';
-import useStyles from './add-packageStyle';
-import { withStyles } from '@material-ui/styles';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';
-import {ArrowBackIos, ArrowForwardIos, Add} from '@material-ui/icons';
+import {ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
 import StepOne from './step1/step1';
 import StepTwo from './step2/step2';
 import StepThree from './step3/step3';
 import StepFour from './step4/step4';
+import { withStyles } from '@material-ui/styles';
 
 const StepLabelPersonalized = withStyles({
       root:{
@@ -27,29 +26,18 @@ const StepLabelPersonalized = withStyles({
 
 })(StepLabel);
 
-
 const AddPackage = () => {
 
   const [activeStep, setActiveStep] = useState(0);
 
-  const classes = useStyles();
-
-  const steps = getSteps();
-
   const handleNext = ()=>{
-
     const nextActiveStep = activeStep === steps.length-1 ? activeStep : activeStep + 1;
     setActiveStep(nextActiveStep);
-  
   };
+  const handleBack = () => setActiveStep(activeStep-1);
 
-  const handleBack = ()=>{
-    setActiveStep(activeStep-1);
-  };
-
-  function getSteps(){
-      return ['Step 1','Step 2','Step 3','Step 4'];    
-  };
+  const steps = getSteps();
+  function getSteps(){return ['Step 1','Step 2','Step 3','Step 4']};
 
   function getStepContent(step) {
     switch (step) {

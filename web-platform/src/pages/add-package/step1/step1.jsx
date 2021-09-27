@@ -3,7 +3,7 @@ import { Box, Grid } from "@material-ui/core";
 import CarroTextField from "../../../components/textField/CarroTextField";
 import CarroDatePicker from "../../../components/datePicker/CarroDatePicker";
 import CarroAutocomplete from "../../../components/autocomplete/CarroAutocomplete";
-import { Country, State, City }  from 'country-state-city';
+import { Country, City }  from 'country-state-city';
 
 const StepOne = (props) =>{
 

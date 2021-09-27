@@ -1,11 +1,11 @@
 import React from 'react';
-import './forgot-passwordStyles.jsx';
 import { Link } from 'react-router-dom';
 import {Container, Box, Grid} from '@material-ui/core';
 import CarroTextField from '../../../components/textField/CarroTextField.jsx';
 import PrimaryButton from '../../../components/buttons/primaryButton/primaryButton.jsx';
 import SecondaryButton from '../../../components/buttons/secondaryButton/secondaryButton.jsx';
 import {ArrowBackIos, ArrowForwardIos} from '@material-ui/icons';
+import './forgot-passwordStyles.jsx';
 
 const ForgotPassword = () => { 
   return (

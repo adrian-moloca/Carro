@@ -6,31 +6,31 @@ const CarroAutocomplete =(props)=>{
 
     return(
         <Autocomplete
-                        options={props.options}
-                        autoHighlight
-                        value={props.value}
-                        getOptionLabel={(option) => option}
-                        renderOption={(option) => (
-                                 <React.Fragment>
-                                        {option} 
-                                    </React.Fragment>
-                            )}
-                        renderInput={(params) => (
-                            <CarroTextField
-                            {...params}
-                                label={props.label}
-                                variant="outlined"
-                                inputProps={{
-                                    ...params.inputProps, // disable autocomplete and autofill
-                                }}
-                                fullWidth
-                            />
-                        )}
-                        onChange={props.onChange}
-                        fullWidth
-                    />
+            options={props.options}
+            autoHighlight
+            value={props.value}
+            getOptionLabel={(option) => option}
+            renderOption={(option) => (
+                        <React.Fragment>
+                            {option} 
+                        </React.Fragment>
+            )}
+            renderInput={(params) => (
+                <CarroTextField
+                    {...params}
+                    label={props.label}
+                    variant="outlined"
+                    inputProps={{
+                        ...params.inputProps, // disable autocomplete and autofill
+                    }}
+                    fullWidth
+                />
+            )}
+            onChange={props.onChange}
+            fullWidth
+        />
     );
 
-}
+};
 
 export default CarroAutocomplete;

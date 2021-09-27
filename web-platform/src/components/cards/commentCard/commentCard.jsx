@@ -7,7 +7,7 @@ const CommentCard = (props) => {
   const classes = useStyles();
   
   return(
-    <Box display='flex' m='2%' display='flex' fullWidth p={1} borderRadius='10px' boxShadow={3}>
+    <Box display='flex' m='2%' fullWidth p={1} borderRadius='10px' boxShadow={3}>
       <Grid 
         container 
         justifyContent="center"
@@ -24,7 +24,7 @@ const CommentCard = (props) => {
           <Grid container item xs={12} justifyContent='center' alignItems='center'> 
             <Grid container item xs={3} justifyContent='center'>
               <Box mb={4} fontWeight={400} fontSize={22} textAlign={'center'}>
-                <img src={props.image} className={classes.profileImg}/>
+                <img src={props.image} className={classes.profileImg} alt={""}/>
               </Box>
             </Grid>
             <Grid container item xs={9} justifyContent='center'>

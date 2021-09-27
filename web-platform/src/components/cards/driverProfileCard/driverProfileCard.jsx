@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Box, Grid} from '@material-ui/core';
-import {Star, StarBorder, StarHalf} from '@material-ui/icons';
 import HalfRating from '../../rating/rating';
 import BackdropSelectDriver from '../../backdrop/backDrop';
 import useStyles from './driverProfileCardStyle';
@@ -18,7 +17,7 @@ const DriverProfileCard =(props)=>{
         direction="row">
         <Grid container item xs={6} justifyContent='center' direction="column">
           <Grid container item xs={12} justifyContent='center'>
-              <img src={props.image} className={classes.profileImg}/>
+              <img src={props.image} className={classes.profileImg}  alt={""}/>
           </Grid>
           <Grid container item xs={12} justifyContent='center'>
             <Box marginTop='7%'>
@@ -40,13 +39,6 @@ const DriverProfileCard =(props)=>{
               <Box className={'Secondary-color'} marginTop='3%'>Culoare: {props.culoare}</Box>
           </Grid>
         </Grid>
-            {/* <Grid container item xs={8} justifyContent='space-around'>
-                <Star className={classes.starsStyle}/>
-                <Star className={classes.starsStyle}/>
-                <Star className={classes.starsStyle}/>
-                <StarHalf className={classes.starsStyle}/>
-                <StarBorder className={classes.starsStyle}/>
-            </Grid> */}
         <BackdropSelectDriver 
             image={props.image}
             masina={props.masina}

@@ -1,11 +1,8 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import Paper from '@material-ui/core/Paper';
-import IconButton from '@material-ui/core/IconButton';
+import {Paper, Grid, IconButton} from '@material-ui/core';
 import facebook from "../../assets/icon/facebookIcon.png"
 import instagram from "../../assets/icon/instagramIcon.png"
 import twitter from "../../assets/icon/twitterIcon.png"
-import Grid from '@material-ui/core/Grid';
 import useStyles from'./footerStyle'
 
 export default function NestedGrid() {
@@ -69,18 +66,17 @@ export default function NestedGrid() {
     return (
       <div className={classes.mediaButtonsContainer}>
             <IconButton>
-              <img src={facebook}></img>
+              <img src={facebook} alt={""}></img>
             </IconButton>
             <IconButton>
-              <img src={instagram}></img>
+              <img src={instagram} alt={""}></img>
             </IconButton>
             <IconButton>
-              <img src={twitter}></img>
+              <img src={twitter} alt={""}></img>
             </IconButton>
       </div>
     );
   }
-  
 
   return (
     <div className={classes.root}>

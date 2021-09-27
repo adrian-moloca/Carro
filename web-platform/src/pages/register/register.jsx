@@ -1,16 +1,5 @@
 import React, {useState} from "react";
-import {
-  Container,
-  Box,
-  Grid,
-  Checkbox,
-  StepConnector,
-  Avatar,
-  Link,
-  InputAdornment
-} from "@material-ui/core";
-import "../../App.css";
-import useStyles from "./registerStyles";
+import { Container, Box, Grid, Checkbox, StepConnector, Avatar, Link } from "@material-ui/core";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import GoogleIcon from "../../assets/images/GoogleIcon.png";
@@ -19,25 +8,21 @@ import CarroTextField from "../../components/textField/CarroTextField";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import { DonutLargeOutlined } from "@material-ui/icons";
 import PhoneTextField from "../../components/telephoneNumberField/PhoneTextField";
-
+import useStyles from "./registerStyles";
+import "../../App.css";
 
 const Register = () => {
+
   const classes = useStyles();
 
   const [checked, setChecked] = React.useState(true);
-  const [state, setState] = React.useState({
-    checkedA: true,
-  });
+  const [state, setState] = React.useState({checkedA: true});
 
   const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState(null);
-  
   const [countryPhoneCode, setCountryPhoneCode] = useState(null);
 
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
+  const handleChange = (event) => {setState({ ...state, [event.target.name]: event.target.checked })};
 
   return (
     <Container className={"Primary-container-style"}>
@@ -55,73 +40,42 @@ const Register = () => {
             <CarroTextField variant="outlined" label="Prenume" fullWidth />
           </Grid>
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField
-              variant="outlined"
-              label="Adresa de preluare"
-              fullWidth
+            <CarroTextField variant="outlined" label="Adresa de preluare" fullWidth/>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CarroDatePicker label="Data de nastere" InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}}/>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CarroTextField variant="outlined" label="Adresa de email" fullWidth/>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <PhoneTextField 
+              number={inputValuePhoneNumber}
+              handleChangeNumber = {(e)=>setInputValuePhoneNumber(e.target.value)}
+              countryPhoneCode={countryPhoneCode} 
+              handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <CarroDatePicker
-              label="Data de nastere"
-              InputLabelProps={{
-                style: { fontSize: "17px", marginTop: "3px" },
-              }}
-            />
+            <CarroTextField variant="outlined" label="Password" type="password" fullWidth/>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <CarroTextField
-              variant="outlined"
-              label="Adresa de email"
-              fullWidth
-            />
+            <CarroTextField variant="outlined" label="Confirm Password" type="password" fullWidth/>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <PhoneTextField number={inputValuePhoneNumber} handleChangeNumber = {(e)=>setInputValuePhoneNumber(e.target.value)}
-                            countryPhoneCode={countryPhoneCode} handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}/>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <CarroTextField
-              variant="outlined"
-              label="Password"
-              type="password"
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <CarroTextField
-              variant="outlined"
-              label="Confirm Password"
-              type="password"
-              fullWidth
-            />
-          </Grid>
-          
         </Grid>
       </Box>
       <Box display="flex" justifyContent="center" ml="1%">
       <Grid  container xs={8}> 
-      
         <FormGroup row>
           <FormControlLabel
             classes={{ label: classes.label }}
-            control={
-              <Checkbox
-                // className={classes.CheckBoxStyle}
-                checked={state.checkedA}
-                onChange={handleChange}
-                name="checkedA"
-                color="default"
-              />
-            }
-            // className={classes.label}
+            control={<Checkbox checked={state.checkedA} onChange={handleChange} name="checkedA" color="default"/>}
             label="TERMENI SI CONDITII"
           />
         </FormGroup>
       </Grid>
       </Box>
       <Box display="flex" justifyContent="center" mt="3%" mb="5%">
-
       <Grid container item xs={8}>
         <PrimaryButton fullWidth variant="contained" endIcon={<PersonAddIcon />}>
           <Link href="/register/phone-number-verification" underline= 'none' color= 'inherit'>
@@ -131,13 +85,7 @@ const Register = () => {
       </Grid>
       </Box>
       <Box display="flex" justifyContent="center" mb="3%">
-      <Grid
-        xs={8}
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-      >
+      <Grid xs={8} container direction="row" justifyContent="center" alignItems="center">
         <StepConnector />
         <Box fontWeight={400} fontSize={16} textAlign={"center"}>
           INREGISTRARE PRIN

@@ -27,7 +27,7 @@ const CarroCreditCard = (props)=>{
             <Box minWidth='225px' maxWidth='450px' borderRadius='10px' boxShadow={3} display ='flex' flexDirection='column'  p={2}>
                 <Grid container xs={12} justifyContent='center'>
                     <Grid item xs={6} justifyContent='flex-start'>
-                        <img src={props.cardProvider} className={classes.cardProviderIco}/>    
+                        <img src={props.cardProvider} className={classes.cardProviderIco} alt={""}/>    
                     </Grid>
                     <Grid container item xs={5} justifyContent='flex-end'>
                         <Box mx={2} mt={2} className={'Secondary-color'}>{props.cardHolder}</Box>

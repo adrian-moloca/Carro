@@ -1,31 +1,21 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { Box, Button, Grid, FormControlLabel, RadioGroup } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useState } from 'react';
+import { Box, Button, Grid, FormControlLabel } from '@material-ui/core';
 import masterCard from '../../assets/images/mastercard.png';
 import visa from '../../assets/images/visa.png';
 import americanExpress from '../../assets/images/americanExpress.png';
 import discover from '../../assets/images/discover.png';
-import useStyles from './card-selectedStyle';
 import CarroRadio from '../radio/CarroRadio';
 import CarroCreditCard from '../cards/CreditCard/CreditCard';
-import PrimaryButton from '../buttons/primaryButton/primaryButton';
 import AddCard from '../add-card/add-card';
 import {Add} from '@material-ui/icons';
 
 const CardSelected = (props) =>{
 
-    const classes = useStyles(); 
-
     const[cardSelected, setCardSelected] = useState('cardOnline1');
-
     const[cardHolder, setCardHolder] = useState();
-
     const[cardNumber, setCardNumber] = useState();
-
     const[cardCVV, setCardCVV] = useState();
-
     const[expDate, setExpDate] = useState();
-
     const [savedCardsData, setSavedCardsData] = useState([
         {
             name:'cardOnline1',
@@ -37,7 +27,6 @@ const CardSelected = (props) =>{
             cvv: '111',
         },
     ]);
-    
     const [addCard, setAddCard] = useState(false);
 
     const handleAddCard = () =>{
@@ -47,7 +36,6 @@ const CardSelected = (props) =>{
          } 
          else setAddCard(false);
     }
-
     const handleCardSelect=(event)=>{
         if(event.target.checked){
              setCardSelected(event.target.value)
@@ -55,10 +43,8 @@ const CardSelected = (props) =>{
             }
          else setCardSelected('');
     }
-
     const cardProviderSearch=(cardNumber)=>{
         const cardNetwork = parseInt(cardNumber.charAt(0));
-
         switch(cardNetwork){
             case 3:{
                 return americanExpress;
@@ -72,6 +58,8 @@ const CardSelected = (props) =>{
             case 6:{
                 return discover;
             }
+            default:
+                return 'Unknown';
         }
         
     }
@@ -148,7 +136,7 @@ const CardSelected = (props) =>{
         var label = 'Selecteaza';
         var checked = false;
         if(cardSelected === value.name){
-             label='Selectat'
+             label='Selectat';
              checked=true;
             }
         return (
@@ -156,7 +144,8 @@ const CardSelected = (props) =>{
                 <Grid container item xs={9} justifyContent='flex-end'>
                     <CarroCreditCard cardProvider = {value.cardProvider} cardHolder = {value.cardHolder}
                         cardNumber = {'**** **** **** ' + value.cardNumber.substr(value.cardNumber.length - 4, value.cardNumber.length)} 
-                        dateEmission = {value.dateSaved} dateExp = {value.expDate} clickedDelete={()=>deleteCard(index, value.name)}/>
+                        dateEmission = {value.dateSaved} dateExp = {value.expDate} clickedDelete={()=>deleteCard(index, value.name)}
+                    />
                 </Grid>
                 <Grid container item xs={3} justifyContent='flex-start'>
                     <FormControlLabel onChange={handleCardSelect} value={value.name} control={<CarroRadio/>} label={label} checked={checked}/>        
@@ -167,24 +156,25 @@ const CardSelected = (props) =>{
 
     return(
         <Fragment>
-            {savedCardsData.map((card, index)=>(
-                fclabel(card, index)
-            ))}
-            {console.log(savedCardsData)}
-                {addCard ? (
+            {savedCardsData.map((card, index)=>(fclabel(card, index)))}
+            {addCard ? 
+                (
                     <Fragment>
                         <AddCard marginTop={props.marginTopAddCard} 
                                 showSaveButton={props.showSaveButtonAddCard} clickedSaveButton={()=>handleSaveButtonAddCard(cardNumber, cardHolder, expDate, cardCVV)}
                                 cardNumber={cardNumber} cardNumberSet={handleCardNumber} expDate={expDate} expDateSet={handleExpDate}
                                 completeName={cardHolder} completeNameSet={handleCardHolder} cvv={cardCVV} cvvSet={handleCardCVV}/>
                     </Fragment>
-                ) : (
+                ) 
+                : 
+                (
                     <Grid container item xs={8} justifyContent='flex-end'>
                         <Box>
                             <Button startIcon = {<Add/>} variant='default' className='Primary-color' onClick={handleAddCard} fullWidth>Adauga card</Button>
                         </Box>
                     </Grid>
-                )}
+                )
+            }
         </Fragment>
     );
 };

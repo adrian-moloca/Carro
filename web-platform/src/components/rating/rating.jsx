@@ -1,15 +1,13 @@
 import React from 'react';
+import {Box} from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
-import useStyles from './ratingStyle';
 
 const HalfRating = () => {
 
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box  display= 'flex' flexDirection= 'column' mt={0.5} >
       <Rating name="half-rating" defaultValue={0} precision={0.5} />
-    </div>
+    </Box>
   );
 }
 

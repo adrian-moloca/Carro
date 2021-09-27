@@ -1,11 +1,5 @@
 import React from 'react'
-import { 
-  Box, 
-  FormControl,
-  MenuItem, 
-  Select,
-  Grid 
-} from '@material-ui/core';
+import { Box, FormControl, MenuItem, Select, Grid } from '@material-ui/core';
 import navRoFlag from '../../../assets/icon/navRoFlag.png';
 import navEnFlag from '../../../assets/icon/navEnFlag.png';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -45,7 +39,7 @@ export default function BasicSelect() {
                 )}>
                 <MenuItem value={"ro"}>
                   <Box display="flex"  alignItems="center">
-                    <img src={navRoFlag}></img>
+                    <img src={navRoFlag} alt={""}></img>
                     <Box ml={1} >
                       RO
                     </Box>
@@ -53,7 +47,7 @@ export default function BasicSelect() {
                 </MenuItem>
                 <MenuItem value={"en"}>
                   <Box display="flex"  alignItems="center">
-                    <img src={navEnFlag}></img>
+                    <img src={navEnFlag} alt={""}></img>
                     <Box ml={1} >
                       EN
                     </Box>

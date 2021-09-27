@@ -1,8 +1,7 @@
-import Reeact, { Fragment, useState } from 'react';
-import {Grid, Backdrop, Box, Container, FormControlLabel, List, ListItem, Radio, RadioGroup} from '@material-ui/core';
+import React, { useState } from 'react';
+import {Grid, Backdrop, Box, Container, FormControlLabel, Radio, RadioGroup} from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import { Star, StarHalf, StarBorder, } from '@material-ui/icons';
-import ListItemPersonalized from '../list/listItemad/listItemPersonalized';
 import PrimaryButton from '../buttons/primaryButton/primaryButton';
 import SecondaryButton from '../buttons/secondaryButton/secondaryButton';
 import GreyLine from '../../assets/images/greyLine.png';
@@ -14,12 +13,10 @@ const MyBackdrop = withStyles({
     '& element.style':{
         visibility: 'visible',
     },
-
     /* '.MuiBackdrop-root' */
     root:{
         zIndex:'1',
         backgroundColor: 'black 0.7',
-        
     },
 
 })(Backdrop);
@@ -28,11 +25,9 @@ const MyGrid = withStyles({
     'spacing-xs-3':{
         margin: 0,
     },
-
     'spacing-xs-2':{
         margin: 0,
     },
-
     'spacing-xs-5':{
         margin: 0,
     },
@@ -40,13 +35,10 @@ const MyGrid = withStyles({
 
 const BackdropSelectDriver=(props)=>{
 
-    const[payment, setPayment] = useState('cardOnline');
-
     const classes = useStyles();
 
-    const handlePayment = (event)=>{
-        setPayment(event.target.value);
-    }
+    const[payment, setPayment] = useState('cardOnline');
+    const handlePayment = (event)=> setPayment(event.target.value);
 
     return(
         <MyBackdrop id='backdrop' open={props.open} onClick={props.clicked}>
@@ -58,10 +50,10 @@ const BackdropSelectDriver=(props)=>{
                         </Box>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center'>
-                            <img src={GreyLine}/>
+                            <img src={GreyLine} alt={""}/>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center'>
-                            <img src={props.image}/>
+                            <img src={props.image} alt={""}/>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center'>
                         <Box fontSize={22} fontWeight={600}>{props.name}</Box>
@@ -72,11 +64,11 @@ const BackdropSelectDriver=(props)=>{
                             <Grid container item xs={6}>Data plecare: {props.dataPlecare}</Grid>
                             <Grid container item xs={6}>Destinatie: {props.destinatie}</Grid>
                             <Grid container item xs={6}>
-                                    <Star className={classes.starsStyle}/>
-                                    <Star className={classes.starsStyle}/>
-                                    <Star className={classes.starsStyle}/>
-                                    <StarHalf className={classes.starsStyle}/>
-                                    <StarBorder className={classes.starsStyle}/>
+                                <Star className={classes.starsStyle}/>
+                                <Star className={classes.starsStyle}/>
+                                <Star className={classes.starsStyle}/>
+                                <StarHalf className={classes.starsStyle}/>
+                                <StarBorder className={classes.starsStyle}/>
                             </Grid>
                             <Grid container item xs={6} justifyContent='flex-start'>telefon: {props.telefon}</Grid>
                         </Grid>

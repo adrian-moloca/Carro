@@ -1,22 +1,17 @@
 import React from 'react';
-import Badge from '@material-ui/core/Badge';
-import IconButton from '@material-ui/core/IconButton';
-import useStyles from './notificompstyle'
+import { Badge, Box, IconButton } from '@material-ui/core';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 
 export default function BadgeVisibility() {
-  const classes = useStyles();
+
   const [count, setCount] = React.useState(1);
   const [invisible, setInvisible] = React.useState(false);
-
-  const handleBadgeVisibility = () => {
-    setInvisible(!invisible);
-  };
+  const handleBadgeVisibility = () => setInvisible(!invisible);
 
   return (
-    <div className={classes.root}>
-      <div className={classes.spacing10px}>
-        <IconButton className={classes.notificationButtonColor} >
+    <Box display='flex' alignSelf='center' flexDirection='column' className={"Primary-color"}>
+      <Box mr={1}>
+        <IconButton className={"Primary-color"} >
           <Badge color="secondary" badgeContent={count}>
             <NotificationsNoneIcon/>
           </Badge>
@@ -39,7 +34,7 @@ export default function BadgeVisibility() {
             <AddIcon fontSize="small" />
           </Button>
         </ButtonGroup> */}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

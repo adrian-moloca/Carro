@@ -1,16 +1,13 @@
 import React from 'react';
-import './loginStyles.jsx';
-import useStyles from './loginStyles';
-import { Container, Box, TextField, Grid, Checkbox, FormControlLabel, Button, Typography, withStyles } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { Container, Box, Grid, FormControlLabel, Button } from '@material-ui/core';
 import googleicon from '../../assets/images/GoogleIcon.png';
 import fbicon from '../../assets/images/fbicon.png';
+import greyLine from '../../assets/images/greyLine.png';
 import CarroTextField from '../../components/textField/CarroTextField.jsx';
 import CarroCheckbox from '../../components/checkbox/CarroCheckbox.jsx';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton.jsx';
-import { Link } from 'react-router-dom';
-import { Stepper } from '@material-ui/core';
-import greyLine from '../../assets/images/greyLine.png';
-
+import useStyles from './loginStyles';
 
 const Login = () => { 
 
@@ -48,7 +45,7 @@ const Login = () => {
         <Box display='flex' justifyContent='center' mt='4%'>
           <Grid container xs={12} justifyContent='center' spacing={3}>
             <Grid container item xs={5} alignItems='center'>
-              <img src={greyLine} className={classes.greyLinesStyle}/>
+              <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
             </Grid>
             <Grid container item xs={2} justifyContent='center'>
                 <Box textAlign='center'>
@@ -56,11 +53,11 @@ const Login = () => {
                 </Box>
             </Grid>
             <Grid container item xs={5} alignItems='center'>
-              <img src={greyLine}  className={classes.greyLinesStyle}/>
+              <img src={greyLine}  className={classes.greyLinesStyle} alt={""}/>
             </Grid>
             <Grid container item xs={3} justifyContent='space-between'>
-                <img src={googleicon}/>
-                <img src={fbicon}/>
+                <img src={googleicon} alt={""}/>
+                <img src={fbicon} alt={""}/>
             </Grid>
           </Grid>
         </Box>

@@ -1,14 +1,10 @@
-import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(
-  {
-    AccordionBorderRadius: {
-      borderRadius: "10px",
-    },
-    label: {
-fontSize: '16px',
-    },
+const useStyles = makeStyles({
+
+    AccordionBorderRadius: {borderRadius: "10px"},
+
+    label: {fontSize: '16px',},
 
     AccordionDetailsFlex: {
       display: "flex",
@@ -21,13 +17,14 @@ fontSize: '16px',
       width: "100%",
       alignItems: "center",
       marginTop: "35px",
-      
     },
+
     ButtonWidth: {
       width: '100%',
       display: 'flex',
       justifyContent: 'center'
     },
+
     PrimaryButton:{
       display: 'flex',
       justifyContent: 'center',
@@ -42,20 +39,10 @@ fontSize: '16px',
         color: '#00B4D8',
       },
       TextFieldOutline: {
-        '&.Mui-focused fieldset': {
-          borderColor: '#00B4D8',
-        
-      
+        '&.Mui-focused fieldset': {borderColor: '#00B4D8'},
+                                  CheckBoxStyle:{fontSize: '16px'},
+      },
     },
-    CheckBoxStyle:{
-      fontSize: '16px',
-    }
-  },
-}
-  /* box-small 1 */
-  // BoxImage:{
-  //     backgroundImage
-  // },
-    });
+});
 
 export default useStyles;

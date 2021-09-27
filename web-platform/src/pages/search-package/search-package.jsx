@@ -1,63 +1,29 @@
 import React, { useState } from "react";
-import "./SearchPackageStyles.jsx";
-import {
-  Container,
-  Box,
-  TextField,
-  Grid,
-  Checkbox,
-  Typography,
-  Button,
-  MenuItem,
-  SvgIcon,
-} from "@material-ui/core";
-import PaginationSBD from "../../components/pagination/pagination";
-import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
-import Pagination from "@material-ui/lab/Pagination";
-import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
-import { makeStyles } from "@material-ui/core/styles";
-import CarroTextField from "../../components/textField/CarroTextField";
-import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
-import packageImg from "../../assets/images/box-small.png";
-import { ReactComponent as fragileIco } from "../../assets/icon/fragile.svg";
-import { ReactComponent as fishIco } from "../../assets/icon/fish.svg";
-import { ReactComponent as fireIco } from "../../assets/icon/fire.svg";
-import { ReactComponent as handboxIco } from "../../assets/icon/handbox.svg";
-import { ReactComponent as animalprintsIco } from "../../assets/icon/animalprints.svg";
-import { Country, State, City } from "country-state-city";
+import { Container, Box, Grid, MenuItem } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import useStyles from "./SearchPackageStyles";
+import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
+import PaginationSBD from "../../components/pagination/pagination";
+import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
+import CarroTextField from "../../components/textField/CarroTextField";
 import RideCard from "../../components/cards/RideCard/RideCard";
+import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
+import { Country, City } from "country-state-city";
 
 const SearchPackages = () => {
 
-
   // state
-  const classes = useStyles();
   const [departureDate, setDepartureDate] = useState(null);
   const [departureCountry, setDepartureCountry] = useState(null);
   const [destinationCountry, setDestinationCountry] = useState(null);
   const [departureCity, setDepartureCity] = useState(null);
   const [destinationCity, setDestinationCity] = useState(null);
 
-  const handleChangeDepartureDate = (date) => {
-    setDepartureDate(date);
-  };
-  const handleChangeDepartureCountry = (event) => {
-    setDepartureCountry(event.target.value);
-  };
-  const handleChangeDestinationCountry = (event) => {
-    setDestinationCountry(event.target.value);
-  };
-  const handleChangeDepartureCity = (event) => {
-    setDepartureCity(event.target.textContent);
-  };
-  const handleChangeDestinationCity = (event) => {
-    setDestinationCity(event.target.textContent);
-  };
-  const getCountries = () => {
-    return Country.getAllCountries();
-  };
+  const handleChangeDepartureDate = (date) =>  setDepartureDate(date);
+  const handleChangeDepartureCountry = (event) => setDepartureCountry(event.target.value);
+  const handleChangeDestinationCountry = (event) => setDestinationCountry(event.target.value);
+  const handleChangeDepartureCity = (event) => setDepartureCity(event.target.textContent);
+  const handleChangeDestinationCity = (event) => setDestinationCity(event.target.textContent);
+  const getCountries = () => {return Country.getAllCountries()};
 
   const getCities = (country) => {
     const cities = [];

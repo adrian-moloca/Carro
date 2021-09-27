@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Box, Grid, Container, InputAdornment } from "@material-ui/core";
+import React from "react";
+import { Box, Container, InputAdornment } from "@material-ui/core";
 import DriverProfileCard from '../../components/cards/driverProfileCard/driverProfileCard';
 import CommentCard from '../../components/cards/commentCard/commentCard';
 import profilePhotoMiddle from '../../assets/images/photoprofile2.png';
@@ -7,11 +7,8 @@ import PaginationSBD from '../../components/pagination/pagination';
 import CarroTextField from '../../components/textField/CarroTextField'
 import SendSharpIcon from '@material-ui/icons/SendSharp';
 import SeeProfileBtn from '../../components/buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn';
-import useStyles from './courier-profileStyle';
 
 const AddTransport = () =>{
-
-  const classes = useStyles();
 
   return(
     <Container className='Primary-container-style'>

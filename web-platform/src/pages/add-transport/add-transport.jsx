@@ -8,13 +8,10 @@ import PrimaryButton from '../../components/buttons/primaryButton/primaryButton'
 import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import useStyles from './add-transportStyle';
 
 const AddTransport = () =>{
 
   const transports = ["Transport public", "Masina", "Tir", "Camion", "Microbus"]; 
-
-  const classes = useStyles();
 
   // state
   const [departureDate, setDepartureDate] = useState(null);
@@ -42,7 +39,7 @@ const AddTransport = () =>{
 
   return(
     <Container className='Primary-container-style'>
-      <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>Adauga transport</Box>
+      <Box mb={2} fontWeight={400} fontSize={30} textAlign={'center'}>Adauga transport</Box>
       <Box display='flex' justifyContent='center' mt='5%'>
           <Grid container xs={12} spacing={3} >
           <Grid container item xs={6} justifyContent="center">
@@ -88,8 +85,12 @@ const AddTransport = () =>{
             <SecondaryButton variant="contained" size="large">
               <Link href="/" underline= 'none' color= 'inherit'>
                 <Box display="flex" justifyContent='center' alignItems="center">
-                  <ArrowBackIosIcon className={classes.arrowsSpacingRight}/>
-                  <text className={classes.textSpacingRight}>Acasa</text>
+                  <Box mr={3} display="flex" alignItems="center">
+                    <ArrowBackIosIcon/>
+                  </Box>
+                  <Box mr={4} fontSize={20}>
+                      Acasa
+                  </Box>
                 </Box>
               </Link>
             </SecondaryButton>
@@ -97,8 +98,12 @@ const AddTransport = () =>{
           <Grid container item xs={6} justifyContent='center' alignItems="center">
             <PrimaryButton variant='contained' size="large" color="primary">
               <Box display="flex" justifyContent='center' alignItems="center">
-                <text className={classes.textSpacingLeft}>Adauga</text>
-                <ArrowForwardIosIcon className={classes.arrowsSpacingLeft}/>
+                <Box ml={4} fontSize={20}>
+                    Adauga
+                </Box>
+                <Box  ml={3} display="flex" alignItems="center">
+                  <ArrowForwardIosIcon/>
+                </Box>
               </Box>
             </PrimaryButton>
           </Grid>

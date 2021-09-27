@@ -1,5 +1,4 @@
-import React from 'react';
-import { makeStyles, List, ListItem} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
 
@@ -7,7 +6,6 @@ const useStyles = makeStyles({
       height: '44px',
       width:'44px',
   },
-  
 });
 
 export default useStyles;

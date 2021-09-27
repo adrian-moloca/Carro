@@ -20,7 +20,7 @@ export default function PrimarySearchAppBar() {
             <Box justifyContent="center" alignItems="center">
               <Link href="/" underline= 'none' color= 'inherit'>
                 <IconButton>
-                  <img src={CaroLogo}></img>
+                  <img src={CaroLogo} alt={""}></img>
                 </IconButton>
               </Link>
             </Box>

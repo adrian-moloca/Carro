@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Select, InputAdornment, MenuItem } from '@material-ui/core';
 import CarroTextField from '../textField/CarroTextField';
 import {Country} from 'country-state-city';
@@ -6,8 +6,12 @@ import {Country} from 'country-state-city';
 const PhoneTextField = (props) =>{
 
     return(
-        <CarroTextField label='Numar de telefon' variant='outlined' value={props.number} onChange={props.handleChangeNumber} 
-        InputProps={{startAdornment: 
+        <CarroTextField 
+            label='Numar de telefon' 
+            variant='outlined' 
+            value={props.number} 
+            onChange={props.handleChangeNumber} 
+            InputProps={{startAdornment: 
                     <InputAdornment position='start'>
                         <Select value={props.countryPhoneCode} onChange={props.handleSelectCountry}>
                             {Country.getAllCountries().map((country)=>(

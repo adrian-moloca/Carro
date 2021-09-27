@@ -1,16 +1,11 @@
-import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import BgImage from "../../assets/images/bgimg.png";
 
 const useStyles = makeStyles({
 
-  BgColorBtn:{
-    backgroundColor:'white',
-  },
+  BgColorBtn:{ backgroundColor:'white' },
 
-  BgColorBtnBlue:{
-    background: "linear-gradient(180deg, #00B4D8 0%, #00C8ED 100%)",
-  },
+  BgColorBtnBlue:{ background: "linear-gradient(180deg, #00B4D8 0%, #00C8ED 100%)" },
 
   BgImg: {
     backgroundImage: `url(${BgImage})`,
@@ -27,7 +22,5 @@ const useStyles = makeStyles({
     margin: "0",
     padding: "0",
   },
-
-
 });
 export default useStyles;

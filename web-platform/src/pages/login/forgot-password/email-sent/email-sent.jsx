@@ -17,7 +17,7 @@ const EmailSent = () => {
                     <Box mt = {10} display='flex' justifyContent='center'>
                         <Link to='/login/' style={{ textDecoration: 'none' }}>
                             <PrimaryButton variant='contained'>
-                                    INAPOI LA AUTENTIFICARE
+                                INAPOI LA AUTENTIFICARE
                             </PrimaryButton>
                         </Link>
                     </Box>

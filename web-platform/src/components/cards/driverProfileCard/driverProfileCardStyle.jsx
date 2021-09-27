@@ -1,8 +1,6 @@
-import React from 'react';
-import { makeStyles, List, ListItem} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
-
   profileImg:{
       height: '88px',
       width:'88px',
@@ -10,7 +8,6 @@ const useStyles = makeStyles({
   starsStyle:{
       color: '#FFD700',
   },
-  
 });
 
 export default useStyles;
