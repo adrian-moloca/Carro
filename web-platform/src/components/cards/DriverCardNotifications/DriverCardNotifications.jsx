@@ -10,20 +10,15 @@ const DriverCardNotifications =(props)=>{
     const classes = useStyles();
 
     const[open, setOpen]=useState(false);
-
-    const handleBtn =()=>{
-        setOpen(!open);
-    };
-
-    const handleCloseBd=()=>{
-        setOpen(false);
-    };
+    
+    const handleBtn =()=> setOpen(!open);
+    const handleCloseBd=()=>setOpen(false);
 
     return(
         <Box m='2%' display='flex' width='0.8' p={1} borderRadius='10px' boxShadow={3}>
             <Grid container xs={12} justifyContent='center'>
                 <Grid container item xs={12} justifyContent='flex-end'>
-                    <img src={props.image} className={classes.profileImg}/>
+                    <img src={props.image} className={classes.profileImg} alt={""}/>
                     <SeeProfileBtn>
                         <Link href="/courier-profile" undeline= 'none' color= 'inherit'>
                             Vezi Profilul

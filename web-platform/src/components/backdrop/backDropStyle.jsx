@@ -1,6 +1,4 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core';
-import { Directions } from '@material-ui/icons';
 
 const useStyles = makeStyles({
 

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Container, Box, Typography, AccordionSummary, AccordionDetails, Accordion, Grid, List} from '@material-ui/core';
+import { Container, Box, Typography, AccordionSummary, AccordionDetails, Accordion, Grid } from '@material-ui/core';
 import {ExpandMore, ArrowForward, Delete, Create} from '@material-ui/icons';
-import { makeStyles } from '@material-ui/core';
 import DriverCard from '../../components/cards/DriverCard/DriverCard';
 import fragile from '../../assets/images/fragile.png';
 import environmentdang from '../../assets/images/environmentdang.png';
@@ -11,7 +10,6 @@ import animalPrints from '../../assets/images/animalPrints.png';
 import profilePhotoLeft from '../../assets/images/photoprofile1.png';
 import profilePhotoMiddle from '../../assets/images/photoprofile2.png';
 import profilePhotoRight from '../../assets/images/photoprofile3.png';
-import ListItemPersonalized from '../../components/list/listItemad/listItemPersonalized';
 import useStyles from './my-packagesStyle';
 
 const MyPackages = () => {
@@ -85,11 +83,11 @@ const MyPackages = () => {
                     <Box>Nume: Pachetul meu</Box>
                   </Grid>
                   <Grid container item xs={6} justifyContent='space-around'>
-                      <img src={fragile} className={classes.advStyle}/>
-                      <img src={environmentdang} className={classes.advStyle}/>
-                      <img src={firedang} className={classes.advStyle}/>
-                      <img src={boxHands} className={classes.advStyle}/>
-                      <img src={animalPrints} className={classes.advStyle}/>
+                      <img src={fragile} className={classes.advStyle} alt={""}/>
+                      <img src={environmentdang} className={classes.advStyle} alt={""}/>
+                      <img src={firedang} className={classes.advStyle} alt={""}/>
+                      <img src={boxHands} className={classes.advStyle} alt={""}/>
+                      <img src={animalPrints} className={classes.advStyle} alt={""}/>
                   </Grid>
                   <Grid container item xs={12} justifyContent='space-around'>
                       <DriverCard 

@@ -4,11 +4,11 @@ import ChatConversationCard from '../../components/cards/chatConversationCard/ch
 import PaginationSBD from '../../components/pagination/pagination';
 import CarroTextField from '../../components/textField/CarroTextField'
 // import SearchIcon from '@material-ui/icons/Search';
-import useStyles from './conversationsStyle';
+// import useStyles from './conversationsStyle';
 
 const Conversations = () =>{
 
-  const classes = useStyles();
+  // const classes = useStyles();
 
   return(
     <Container className='Primary-container-style'>
@@ -16,11 +16,7 @@ const Conversations = () =>{
       <Box m='2%' display='flex' flexDirection='column' justifyContent="center"  fullWidth p={1} >
         <Box mx={1} my={6}>
           <Grid item xs={12} >
-            <CarroTextField
-              variant="outlined"
-              label="Cauta o conversatie"
-              fullWidth
-            />
+            <CarroTextField variant="outlined" label="Cauta o conversatie" fullWidth/>
           </Grid>
         </Box>
         <ChatConversationCard/>

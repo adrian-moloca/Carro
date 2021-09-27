@@ -1,23 +1,12 @@
 import React from "react";
-import "./home-pageStyles.jsx";
 import BoxIcon from "../../assets/images/box.png";
 import CarIcon from "../../assets/images/car.png";
-import {
-  Container,
-  Box,
-  TextField,
-  Grid,
-  Checkbox,
-  Typography,
-  Button,
-  Link
-} from "@material-ui/core";
+import { Container, Box, Grid, Link } from "@material-ui/core";
 import useStyles from "./home-pageStyles";
-import { withStyles } from "@material-ui/styles";
-import { grey } from "@material-ui/core/colors";
-
+import "./home-pageStyles.jsx";
 
 const HomePage = () => {
+  
   const classes = useStyles();
 
   return (
@@ -32,7 +21,7 @@ const HomePage = () => {
           <Link href="/add-package" underline= 'none' color= 'inherit'>
             <Box display='flex' alignItems='center' justifyContent='center' fontSize='22px'                    
                   borderRadius='15px' height='120px' width='100%' minWidth='220px' className={classes.BgColorBtn} >
-              <Box mx={2}><img src={BoxIcon}></img></Box> 
+              <Box mx={2}><img src={BoxIcon} alt={""}></img></Box> 
               <Box mx={2}>Trimite pachet</Box>
             </Box>
           </Link> 
@@ -41,7 +30,7 @@ const HomePage = () => {
           <Link href="/add-transport" underline= 'none' color= 'inherit' >
             <Box  display='flex' alignItems='center' justifyContent='center' fontSize='22px'
                   borderRadius='15px' height='120px' width='100%' minWidth='220px' className={classes.BgColorBtn} >
-              <Box mx={2}><img src={CarIcon}></img></Box>
+              <Box mx={2}><img src={CarIcon} alt={""}></img></Box>
               <Box mx={2}>Ofera transport</Box>
             </Box>
           </Link> 

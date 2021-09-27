@@ -1,4 +1,3 @@
-import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -12,7 +11,6 @@ const useStyles = makeStyles({
     width: "50%",
     marginTop: '100px',
     marginBottom: '90px',
-
   },
   SmallContainerContent: {
     display: "flex",
@@ -51,8 +49,6 @@ const useStyles = makeStyles({
     marginBottom: '10px',
     marginTop: '20px'
   },
-  
- 
 });
 
 export default useStyles;

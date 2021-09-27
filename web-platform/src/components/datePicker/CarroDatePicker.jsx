@@ -9,40 +9,31 @@ import {ro} from "date-fns/locale";
 
 registerLocale('ro', ro);
 
-const DatePickerTh = createTheme({
-    palette:{
-        primary: {
-            500:'#00b4d8',
-        }, 
-    },
-
-
-});
+const DatePickerTh = createTheme({palette:{primary: {500:'#00b4d8'}}});
 
 const CarroDatePicker = (props)=>{
 
     return(
-            <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ro}>
-                <ThemeProvider theme={DatePickerTh}>
-                    <KeyboardDatePicker
-                            disableToolbar
-                            value={props.dateValue}
-                            inputVariant="outlined"
-                            variant='inline'
-                            label={props.label}
-                            views={props.views}
-                            format={props.format}
-                            openTo={props.openTo}
-                            TextFieldComponent={CarroTextField}
-                            onChange={props.handleDateSelect}
-                            fullWidth
-                            defaultValue={props.defaultShow}
-                            disablePast
-                        />  
-                </ThemeProvider>
-            </MuiPickersUtilsProvider>
+        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ro}>
+            <ThemeProvider theme={DatePickerTh}>
+                <KeyboardDatePicker
+                    disableToolbar
+                    value={props.dateValue}
+                    inputVariant="outlined"
+                    variant='inline'
+                    label={props.label}
+                    views={props.views}
+                    format={props.format}
+                    openTo={props.openTo}
+                    TextFieldComponent={CarroTextField}
+                    onChange={props.handleDateSelect}
+                    fullWidth
+                    defaultValue={props.defaultShow}
+                    disablePast
+                />  
+            </ThemeProvider>
+        </MuiPickersUtilsProvider>
     );
-
 };
 
 export default CarroDatePicker;

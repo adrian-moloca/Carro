@@ -6,11 +6,7 @@ import PrimaryButton from '../../../components/buttons/primaryButton/primaryButt
 import SecondaryButton from '../../../components/buttons/secondaryButton/secondaryButton';
 import { withStyles } from '@material-ui/styles';
 
-const MyGrid = withStyles({
-    'spacing-xs-4':{
-        margin: 0,
-    }
-})(Grid)
+const MyGrid = withStyles({'spacing-xs-4':{margin: 0}})(Grid)
 
 const PhoneNumberVerification = ()=>{
 
@@ -51,6 +47,6 @@ const PhoneNumberVerification = ()=>{
             </MyGrid>
         </Container>
     );
-}
+};
 
 export default PhoneNumberVerification;

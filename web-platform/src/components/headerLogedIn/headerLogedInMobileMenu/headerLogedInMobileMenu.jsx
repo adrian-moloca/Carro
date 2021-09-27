@@ -5,7 +5,6 @@ import BasicSelect from '../../buttons/languageButton/languageButton';
 import SearchIcon from '@material-ui/icons/Search';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const RenderMobileMenu = () => {
 

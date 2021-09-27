@@ -1,55 +1,30 @@
 import React, { useState } from "react";
-import "./SearchRideStyle.jsx";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import { Container, Box, Grid, MenuItem } from "@material-ui/core";
 import PaginationSBD from "../../components/pagination/pagination";
-import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import CarroTextField from "../../components/textField/CarroTextField";
+import DriverCard from "../../components/cards//DriverCard/DriverCard";
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
-import { Country, State, City } from "country-state-city";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import profilePhotoMiddle from "../../assets/images/photoprofile1.png";
 import profilePhotoMiddleSecond from "../../assets/images/photoprofile2.png";
-import DriverCard from "../../components/cards//DriverCard/DriverCard";
-import useStyles from "./SearchRideStyle";
+import { Country, City } from "country-state-city";
 
 const SearchRide = () => {
-  const classes = useStyles();
-  
+  // state
   const [departureDate, setDepartureDate] = useState(null);
-
   const [departureCountry, setDepartureCountry] = useState(null);
-
   const [destinationCountry, setDestinationCountry] = useState(null);
-
   const [departureCity, setDepartureCity] = useState(null);
-
   const [destinationCity, setDestinationCity] = useState(null);
-
-  const handleChangeDepartureDate = (date) => {
-    setDepartureDate(date);
-  };
-
-  const handleChangeDepartureCountry = (event) => {
-    setDepartureCountry(event.target.value);
-  };
-
-  const handleChangeDestinationCountry = (event) => {
-    setDestinationCountry(event.target.value);
-  };
-
-  const handleChangeDepartureCity = (event) => {
-    setDepartureCity(event.target.textContent);
-  };
-
-  const handleChangeDestinationCity = (event) => {
-    setDestinationCity(event.target.textContent);
-  };
-
-  const getCountries = () => {
-    return Country.getAllCountries();
-  };
-
+  // handlers
+  const handleChangeDepartureDate = (date) => setDepartureDate(date);
+  const handleChangeDepartureCountry = (event) => setDepartureCountry(event.target.value);
+  const handleChangeDestinationCountry = (event) => setDestinationCountry(event.target.value);
+  const handleChangeDepartureCity = (event) => setDepartureCity(event.target.textContent);
+  const handleChangeDestinationCity = (event) => setDestinationCity(event.target.textContent);
+  const getCountries = () => {return Country.getAllCountries()};
   const getCities = (country) => {
     const cities = [];
     City.getCitiesOfCountry(country).map((city) => cities.push(city.name));
@@ -176,7 +151,6 @@ const SearchRide = () => {
       <Box display="flex" justifyContent="space-evenly" mt="3%">
         <Grid container item xs={2}>
           <PrimaryButton fullWidth variant="contained" endIcon={<DriveEtaIcon />}>
-         
             {" "}
             CAUTA
           </PrimaryButton>
@@ -206,14 +180,13 @@ const SearchRide = () => {
           destinatie="Bucuresti"
           telefon="0888888888"
           dataPlecare="26/08/2021 02:00 AM"
-        ></DriverCard>
-       
+        />
       </Grid>
-
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">
         <PaginationSBD />
       </Box>
     </Container>
   );
 };
+
 export default SearchRide;

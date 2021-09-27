@@ -9,7 +9,7 @@ const ChatConversationCard = (props) => {
   const classes = useStyles();
   
   return(
-    <Box display='flex' m='2%' display='flex' fullWidth p={1} borderRadius='10px' boxShadow={3}>
+    <Box display='flex' m='2%' fullWidth p={1} borderRadius='10px' boxShadow={3}>
       <Grid 
         container 
         justifyContent="center"
@@ -28,7 +28,7 @@ const ChatConversationCard = (props) => {
           <Grid container item xs={12} justifyContent='center' alignItems='center'> 
             <Grid container item xs={5} justifyContent='flex-start'>
               <Box ml={4}>
-                <img src={props.image} className={classes.profileImg}/>
+                <img src={props.image} className={classes.profileImg}  alt={""}/>
               </Box>
             </Grid>
             <Grid container item xs={7} justifyContent='flex-start'>

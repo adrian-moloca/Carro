@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import {Container, Box, Grid} from '@material-ui/core';
 import PrimaryButton from '../../../components/buttons/primaryButton/primaryButton';
 import CarroTextField from '../../../components/textField/CarroTextField';
+
 const ResetPassword = () =>{
+
     return(
         <Container className={'Primary-container-style'}>
             <Box>
@@ -14,7 +16,7 @@ const ResetPassword = () =>{
                     <Grid container item xs={8} justifyContent='center'>
                         <Link to='/login/' style={{ textDecoration: 'none', width:'80%' }}>
                             <PrimaryButton variant='contained' fullWidth>
-                                    SALVEAZA
+                                SALVEAZA
                             </PrimaryButton>
                         </Link>
                     </Grid>

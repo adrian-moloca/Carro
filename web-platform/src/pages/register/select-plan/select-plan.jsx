@@ -1,11 +1,10 @@
 import React from "react";
-import "./SelectPlanStyles";
-import { Container, Grid, Typography, Button, Box, Link } from "@material-ui/core";
-import "../../../App.css";
-import useStyles from "./SelectPlanStyles";
+import { Container, Grid, Typography, Box, Link } from "@material-ui/core";
 import CheckIcon from "../../../assets/images/check.png";
 import DeclinedIcon from "../../../assets/images/decline.png";
 import PrimaryButton from "../../../components/buttons/primaryButton/primaryButton";
+import useStyles from "./SelectPlanStyles";
+import "../../../App.css";
 
 const SelectPlan = () => {
   const classes = useStyles();
@@ -22,35 +21,35 @@ const SelectPlan = () => {
             sapien in molestie vulputate.
           </Typography>
           <Box className={classes.CheckingBox}>
-            <img src={CheckIcon} className={classes.small} />
+            <img src={CheckIcon} className={classes.small} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Box className={classes.CheckingBox}>
-            <img src={CheckIcon} className={classes.small} />
+            <img src={CheckIcon} className={classes.small} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Box className={classes.CheckingBox}>
-            <img src={CheckIcon} className={classes.small} />
+            <img src={CheckIcon} className={classes.small} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Box className={classes.CheckingBox}>
-            <img src={CheckIcon} className={classes.small} />
+            <img src={CheckIcon} className={classes.small} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Box className={classes.CheckingBox}>
-            <img src={DeclinedIcon} className={classes.DeclineIcon} />
+            <img src={DeclinedIcon} className={classes.DeclineIcon} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Box className={classes.CheckingBox}>
-            <img src={DeclinedIcon} className={classes.DeclineIcon} />
+            <img src={DeclinedIcon} className={classes.DeclineIcon} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Box className={classes.CheckingBox}>
-            <img src={DeclinedIcon} className={classes.DeclineIcon} />
+            <img src={DeclinedIcon} className={classes.DeclineIcon} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Box className={classes.CheckingBox}>
-            <img src={DeclinedIcon} className={classes.DeclineIcon} />
+            <img src={DeclinedIcon} className={classes.DeclineIcon} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Typography className={classes.SmallContainerPackage}>
@@ -77,35 +76,35 @@ const SelectPlan = () => {
             sapien in molestie vulputate.
           </Typography>
           <Box className={classes.CheckingBox}>
-            <img src={CheckIcon} className={classes.small} />
+            <img src={CheckIcon} className={classes.small} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Box className={classes.CheckingBox}>
-            <img src={CheckIcon} className={classes.small} />
+            <img src={CheckIcon} className={classes.small} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Box className={classes.CheckingBox}>
-            <img src={CheckIcon} className={classes.small} />
+            <img src={CheckIcon} className={classes.small} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Box className={classes.CheckingBox}>
-            <img src={CheckIcon} className={classes.small} />
+            <img src={CheckIcon} className={classes.small} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Box className={classes.CheckingBox}>
-            <img src={CheckIcon} className={classes.small} />
+            <img src={CheckIcon} className={classes.small} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Box className={classes.CheckingBox}>
-            <img src={CheckIcon} className={classes.small} />
+            <img src={CheckIcon} className={classes.small} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Box className={classes.CheckingBox}>
-            <img src={CheckIcon} className={classes.small} />
+            <img src={CheckIcon} className={classes.small} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Box className={classes.CheckingBox}>
-            <img src={CheckIcon} className={classes.small} />
+            <img src={CheckIcon} className={classes.small} alt={""}/>
             <Typography>Lorem ipsum dolor </Typography>
           </Box>
           <Typography className={classes.SmallContainerPackage}>

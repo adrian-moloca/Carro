@@ -1,30 +1,18 @@
 import React, { useState } from "react";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import GoogleIcon from "../../assets/images/GoogleIcon.png";
-import FacebookIcon from "../../assets/images/facebook-icon.png";
-import { Country, State, City }  from 'country-state-city';
-import CarroAutocomplete from "../../components/autocomplete/CarroAutocomplete";
-import {
-  Container,
-  Box,
-  Grid,
-  Checkbox,
-  MenuItem,
-  AccordionSummary,
-  AccordionDetails,
-  Accordion, 
-} from "@material-ui/core";
+import { Country, City }  from 'country-state-city';
+import { Container, Box, Grid, Checkbox, MenuItem, AccordionSummary, AccordionDetails, Accordion, FormControlLabel, FormGroup } from "@material-ui/core";
 import EditIcon from '@material-ui/icons/Edit';
-import "../../App.css";
-import useStyles from "./profileStyle";
+import CarroAutocomplete from "../../components/autocomplete/CarroAutocomplete";
 import CarroTextField from "../../components/textField/CarroTextField";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import SeeProfileBtn from "../../components/buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn"
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
 import profilePhotoMiddle from "../../assets/images/photoprofile1.png";
+import useStyles from "./profileStyle";
+import "../../App.css";
 
 const Profile = (props) => {
+
   const classes = useStyles();
 
   const [checked, setChecked] = React.useState(true);
@@ -70,7 +58,7 @@ const Profile = (props) => {
         </Grid>
       </Grid>
       <Box display="flex" justifyContent="center" mb="3%">
-        <img src={profilePhotoMiddle} />
+        <img src={profilePhotoMiddle} alt={""}/>
       </Box>
       <Box display="flex" justifyContent="space-evenly" mt="1%">
         <Grid
