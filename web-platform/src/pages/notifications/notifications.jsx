@@ -21,22 +21,13 @@ const Notifications = () => {
 
   const classes = useStyles();
 
-  {/* <Grid container item xs={2} justifyContent='center'>
-    <Box fontWeight= {600} fontStyle='italic'>Bucuresti, Romania</Box>
-  </Grid> */}
-  {/* <Grid container item xs={3} justifyContent='center'>
-    <Box >26/08/2021 02:00 AM</Box>
-  </Grid> */}
-
   return (
     <Container className='Primary-container-style'>
       <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>Notificari</Box>
       <Box mb={1.5} borderRadius='10px' boxShadow={10} >
           <Accordion square='true' className={classes.AccordionBorderRadius}>
             <AccordionSummary aria-controls="transport-content" id="transport-header">
-              <Grid 
-                  container 
-                  direction="column">
+              <Grid  container  direction="column">
                 <Grid 
                   container 
                   direction="row">
@@ -96,28 +87,20 @@ const Notifications = () => {
                     </Box>
                   </Grid>
                 </Grid>
-                <Grid 
-                  container 
-                  direction="row"
-                  justifyContent="center">
-                    <Box mt={3}>
-                      <PrimaryButton>
-                        Detalii
-                      </PrimaryButton>
-                    </Box>
+                <Grid  container  direction="row" justifyContent="center">
+                  <Box mt={3}>
+                    <PrimaryButton>
+                      Detalii
+                    </PrimaryButton>
+                  </Box>
                 </Grid>
               </Grid>
             </AccordionSummary>
             <AccordionDetails className={classes.AccordionDetailsFlex}>
               <Box borderRadius='10px' boxShadow={3} display ='flex' flexDirection='column' mt = '-1%' mx='3%'px='2%'>
-                <Grid 
-                    container 
-                    direction="column">
+                <Grid  container  direction="column">
                   <Box display='flex' justifyContent='space-around' px='2%'>
-                    <Grid 
-                        container
-                        item xs={6} 
-                        >
+                    <Grid  container item xs={6}>
                       <DriverCardNotifications 
                             image={profilePhotoMiddle} 
                             name='Marius popescu'
@@ -130,8 +113,8 @@ const Notifications = () => {
                     <NotificationsAcordionFields/>
                   </Box>
                 </Grid>
-                <Box my={2} height='33px' ml='37.5%' width='25%' display='flex' justifyContent='space-between'>
-                   <SecondaryButton>Arata mai putin</SecondaryButton>
+                <Box my={2} display="flex" justifyContent="center" alignItems="center">
+                   <SecondaryButton variant="contained">Arata mai putin</SecondaryButton>
                 </Box>
               </Box>
             </AccordionDetails>

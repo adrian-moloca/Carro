@@ -11,84 +11,82 @@ const NotificationsAcordionFields = () => {
   const classes = useStyles();
 
   return (
-    <Grid 
-      container
-      item xs={6} 
-      >
+    <Grid container xs={6} >
+
                                   {/* before delivery */}
 
-      <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">
+      <Grid item xs={12}>
         <Box lineHeight="143%" fontSize={12} className={'Primary-color'}>
           <p>
             Ai primit o noua cerere de transport pentru coletul tau!
           </p>
         </Box>
       </Grid>
-      <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">
+      <Grid item xs={12}>
         <Box mt={2} lineHeight="143%" fontSize={11} className={'Secondary-color'}>
           <p>
             Marius Popescu efectueaza o cursa Bucuresti - Timisoara si doreste sa livreze coletul tau
           </p>
         </Box>
       </Grid>
-      <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">
-        <SendMessageBtn/>
+      <Grid item xs={12}>
+        <Box display="flex" justifyContent='center' alignItems="center">
+          <SendMessageBtn/>
+        </Box>
       </Grid>
-      <Grid container display='flex' justifyContent='space-around' direction="row" alignItems="center">                      
-        <Grid container item xs={6} justifyContent='center'>
-          <GreenCaroButton>
+      <Grid item xs={12}>
+        <Box display="flex" justifyContent='space-around' alignItems="center">
+          <GreenCaroButton size="medium" >
             <Box>
               Accepta
             </Box>
           </GreenCaroButton>
-        </Grid>
-        <Grid container item xs={6} justifyContent='center'>
-          <SecondaryButton>
+          <SecondaryButton  variant="outlined" size="medium">
             <Box>
               Anuleaza
             </Box>
           </SecondaryButton>
-        </Grid>
+        </Box>
       </Grid>
 
                                   {/* after delivery */}
 
-      {/* <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">
+      {/* <Grid item xs={12}>
         <Box lineHeight="143%" fontSize={12} className={'Primary-color'}>
           <p>
             Coletul tau a ajuns cu bine!
           </p>
         </Box>
       </Grid>
-      <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">
+      <Grid item xs={12}>
         <Box mt={2} lineHeight="143%" fontSize={11} className={'Secondary-color'}>
           <p>
             Marius Popescu a efectuat livrarea coletului tau pe ruta Bucuresti - Timisoara. Lasa un review!
           </p>
         </Box>
       </Grid>
-      <Grid container item xs={12} justifyContent='center' direction="row" alignItems="center">
-         <SendMessageBtn/>
+      <Grid item xs={12}>
+        <Box display="flex" justifyContent='center' alignItems="center">
+          <SendMessageBtn/>
+        </Box>
       </Grid>
-      <Grid container direction="column" alignItems="center" justifyContent='center'>  
-        <Grid item xs={3} justifyContent='center' >
-          <Box  mb={3}>
-            <HalfRating/>
-          </Box>
-        </Grid>                    
-        <Grid item xs={3} justifyContent='center' >
-          <GreenCaroButton>
+      <Grid item xs={12}>
+        <Box display="flex" justifyContent='center' alignItems="center" mb={2}>
+          <HalfRating/>
+        </Box>
+      </Grid>
+      <Grid item xs={12}>
+        <Box display="flex" justifyContent='center' alignItems="center">
+          <GreenCaroButton size="large">
             <Box>
               Trimite
             </Box>
           </GreenCaroButton>
-        </Grid>
+        </Box>
       </Grid> */}
-
-
 
     </Grid>
   );
-}
+};
 
 export default NotificationsAcordionFields

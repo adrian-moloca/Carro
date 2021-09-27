@@ -194,7 +194,7 @@ const SearchPackages = () => {
         <RideCard />
         <RideCard />
       </Box>
-      <Box display="flex" justifyContent="space-evenly" mt="3%">
+      <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">
         <PaginationSBD /> 
       </Box>
     </Container>

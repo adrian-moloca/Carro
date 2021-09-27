@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import SideMenu from '../../components/side-menu/side-menu';
 import Header from '../../components/header/header';

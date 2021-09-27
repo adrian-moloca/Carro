@@ -1,5 +1,5 @@
-import React, {useState, useEffect, Fragment} from 'react';
-import {BrowserRouter , Route, Switch, Redirect} from 'react-router-dom';
+import React, {useState} from 'react';
+import {BrowserRouter , Route, Switch} from 'react-router-dom';
 import ProtectedRoute from '../protected-route/protected-route';
 import Login from '../../pages/login/login';
 import ForgotPassword from '../../pages/login/forgot-password/forgot-password';
@@ -18,16 +18,16 @@ const Routes = () => {
 
     return(
         <BrowserRouter>
-                    <Switch>
-                        <Route exact path="/login" component={Login}/>
-                        <Route exact path="/login/forgot-password" component={ForgotPassword}/>
-                        <Route exact path="/reset-password" component={ResetPassword}/>
-                        <ProtectedRoute exact path="/home" component={HomePage} />
-                        <ProtectedRoute exact path="/statistics" component={StatisticsPage} />
-                        <ProtectedRoute exact path="/users" component={UsersPage} />
-                        <ProtectedRoute exact path="/location" component={LocationPage} />
-                        <ProtectedRoute path="*" component={HomePage}/>
-                    </Switch>
+            <Switch>
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/login/forgot-password" component={ForgotPassword}/>
+                <Route exact path="/reset-password" component={ResetPassword}/>
+                <ProtectedRoute exact path="/home" component={HomePage} />
+                <ProtectedRoute exact path="/statistics" component={StatisticsPage} />
+                <ProtectedRoute exact path="/users" component={UsersPage} />
+                <ProtectedRoute exact path="/location" component={LocationPage} />
+                <ProtectedRoute path="*" component={HomePage}/>
+            </Switch>
         </BrowserRouter>
     );
 };

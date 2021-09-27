@@ -1,38 +1,21 @@
 import React, { useState } from "react";
 import "./SearchRideStyle.jsx";
-import {
-  Container,
-  Box,
-  TextField,
-  Grid,
-  Checkbox,
-  Typography,
-  Button,
-  MenuItem,
-  SvgIcon,
-} from "@material-ui/core";
+import { Container, Box, Grid, MenuItem } from "@material-ui/core";
 import PaginationSBD from "../../components/pagination/pagination";
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
-import Pagination from "@material-ui/lab/Pagination";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
-import { makeStyles } from "@material-ui/core/styles";
 import CarroTextField from "../../components/textField/CarroTextField";
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
-import packageImg from "../../assets/images/box-small.png";
-import { ReactComponent as fragileIco } from "../../assets/icon/fragile.svg";
-import { ReactComponent as fishIco } from "../../assets/icon/fish.svg";
-import { ReactComponent as fireIco } from "../../assets/icon/fire.svg";
-import { ReactComponent as handboxIco } from "../../assets/icon/handbox.svg";
-import { ReactComponent as animalprintsIco } from "../../assets/icon/animalprints.svg";
 import { Country, State, City } from "country-state-city";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import useStyles from "./SearchRideStyle";
 import profilePhotoMiddle from "../../assets/images/photoprofile1.png";
 import profilePhotoMiddleSecond from "../../assets/images/photoprofile2.png";
 import DriverCard from "../../components/cards//DriverCard/DriverCard";
+import useStyles from "./SearchRideStyle";
 
 const SearchRide = () => {
   const classes = useStyles();
+  
   const [departureDate, setDepartureDate] = useState(null);
 
   const [departureCountry, setDepartureCountry] = useState(null);
@@ -227,7 +210,7 @@ const SearchRide = () => {
        
       </Grid>
 
-      <Box display="flex" justifyContent="space-evenly" mt="3%">
+      <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">
         <PaginationSBD />
       </Box>
     </Container>
