@@ -15,35 +15,41 @@ const DriverCardNotifications =(props)=>{
     const handleCloseBd=()=>setOpen(false);
 
     return(
-        <Box m='2%' display='flex' width='0.8' p={1} borderRadius='10px' boxShadow={3}>
-            <Grid container xs={12} justifyContent='center'>
-                <Grid container item xs={12} justifyContent='flex-end'>
-                    <img src={props.image} className={classes.profileImg} alt={""}/>
-                    <SeeProfileBtn>
-                        <Link href="/courier-profile" undeline= 'none' color= 'inherit'>
-                            Vezi Profilul
+        <Box mr={2} mt={1} width='1' p={1} borderRadius='10px' boxShadow={3}>
+            <Grid container>
+                <Grid item xs={7} justifyContent="center" alignItems="center">
+                    <Box display="flex" justifyContent="flex-end" alignItems="center" >
+                        <img src={props.image} className={classes.profileImg} alt={""}/>
+                    </Box>
+                </Grid>
+                <Grid item xs={5}  justifyContent="center" alignItems="center">
+                    <Box display="flex" justifyContent="flex-end" alignItems="center" >
+                        <Link href="/courier-profile" underline='none' color='inherit'>
+                            <SeeProfileBtn>
+                                    Vezi Profilul
+                            </SeeProfileBtn>
                         </Link>
-                    </SeeProfileBtn>
+                    </Box>
                 </Grid>
-                <Grid container item xs={12} justifyContent='center'>
-                    <Box fontSize='20px' fontWeight='500'>{props.name}</Box>
-                </Grid>
-                <Grid container item xs={12} justifyContent='center'>
-                    <Box marginTop='5%'>Plecare: {props.plecare}</Box>
-                </Grid>
-                <Grid container item xs={12} justifyContent='center'>
-                    <Box>Destinatie: {props.destinatie}</Box>
-                </Grid>
-                <Grid container item xs={12} justifyContent='center'>
-                    <Box marginBottom='5%'>Telefon: {props.telefon}</Box>
-                </Grid>
-                <Grid container item xs={8} justifyContent='space-around'>
-                    <Star className={classes.starsStyle}/>
-                    <Star className={classes.starsStyle}/>
-                    <Star className={classes.starsStyle}/>
-                    <StarHalf className={classes.starsStyle}/>
-                    <StarBorder className={classes.starsStyle}/>
-                </Grid>
+            </Grid>
+            <Grid container justifyContent='center'>
+                <Box fontSize='20px' fontWeight='500'>{props.name}</Box>
+            </Grid>
+            <Grid container justifyContent='center'>
+                <Box marginTop='5%'>Plecare: {props.plecare}</Box>
+            </Grid>
+            <Grid container justifyContent='center'>
+                <Box>Destinatie: {props.destinatie}</Box>
+            </Grid>
+            <Grid container justifyContent='center'>
+                <Box marginBottom='5%'>Telefon: {props.telefon}</Box>
+            </Grid>
+            <Grid container justifyContent='space-evenly'>
+                <Star className={classes.starsStyle}/>
+                <Star className={classes.starsStyle}/>
+                <Star className={classes.starsStyle}/>
+                <StarHalf className={classes.starsStyle}/>
+                <StarBorder className={classes.starsStyle}/>
             </Grid>
             <BackdropSelectDriver 
                 open={open} 

@@ -1,7 +1,7 @@
 import React from 'react';
-import {Box, Grid, IconButton, Link } from '@material-ui/core';
-import {Delete} from '@material-ui/icons';
+import {Box, Grid, Link } from '@material-ui/core';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
+import DeleteModal from '../../modals/deleteModal/DeleteModal';
 import useStyles from './chatConversationCardStyle';
 
 const ChatConversationCard = (props) => {
@@ -20,9 +20,7 @@ const ChatConversationCard = (props) => {
               <Box mb={1} fontWeight={400} fontSize={22} textAlign={'center'}>Alex</Box>
             </Grid>
             <Grid container item xs={1} justifyContent='flex-end'>
-              <IconButton aria-label="delete" color="inherit" >
-                <Delete className={'Pink-carro'}/>
-              </IconButton>
+              <DeleteModal/>
             </Grid>
           </Grid>
           <Grid container item xs={12} justifyContent='center' alignItems='center'> 
@@ -34,7 +32,7 @@ const ChatConversationCard = (props) => {
             <Grid container item xs={7} justifyContent='flex-start'>
               <Box>
                 <GreenCaroButton>
-                  <Link href="/conversations/chat" undeline= 'none' color= 'inherit'>
+                  <Link href="/conversations/chat" underline= 'none' color= 'inherit'>
                     Deschide
                   </Link>
                 </GreenCaroButton>

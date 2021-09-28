@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Box, Typography, AccordionSummary, AccordionDetails, Accordion, Grid } from '@material-ui/core';
 import {ExpandMore, ArrowForward, Delete, Create} from '@material-ui/icons';
 import DriverCard from '../../components/cards/DriverCard/DriverCard';
+import DeleteModal from '../../components/modals/deleteModal/DeleteModal';
 import fragile from '../../assets/images/fragile.png';
 import environmentdang from '../../assets/images/environmentdang.png';
 import firedang from '../../assets/images/firedang.png';
@@ -23,28 +24,30 @@ const MyPackages = () => {
           <Accordion square='true' className={classes.AccordionBorderRadius}>
             <AccordionSummary id="transport-header">
               <Grid container justifyContent='space-between'>
-                <Grid container item xs = {1} justifyContent='flex-starts'>
+                <Grid container item xs = {1} justifyContent='flex-starts' alignItems="center">
                   <Typography >1.</Typography>
                 </Grid>
-                <Grid container item xs={2} justifyContent='center' className='hide-on-mobile'>
+                <Grid container item xs={2} justifyContent='center' className='hide-on-mobile' alignItems="center">
                   <Box fontWeight= {600} fontStyle='italic' >Timisoara, Romania</Box>
                 </Grid>
-                <Grid container  item xs={1} justifyContent='center' className='hide-on-mobile'>
+                <Grid container  item xs={1} justifyContent='center' className='hide-on-mobile' alignItems="center">
                     <ArrowForward className={'Primary-color'}/>
                 </Grid>
-                <Grid container item xs={2} justifyContent='center' className='hide-on-mobile'>
+                <Grid container item xs={2} justifyContent='center' className='hide-on-mobile' alignItems="center">
                   <Box fontWeight= {600} fontStyle='italic'>Bucuresti, Romania</Box>
                 </Grid>
-                <Grid container item xs={3} justifyContent='center' className='hide-on-mobile'>
+                <Grid container item xs={3} justifyContent='center' className='hide-on-mobile' alignItems="center">
                   <Box >26/08/2021 02:00 AM</Box>
                 </Grid>
-                <Grid container item xs={2} justifyContent='center'>
+                <Grid container item xs={1} justifyContent='center' alignItems="center">
                   <Box fontSize={16} className={'Green-carro'}>Active</Box>
                 </Grid>
-                <Grid container item xs={1} justifyContent='flex-end'>
-                  <Create className={'Primary-color'}/>
-                  <Delete className={'Pink-carro'}/>
-                  <ExpandMore className={'Primary-color'}/>
+                <Grid container item xs={2} justifyContent='flex-end'>
+                  <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center">
+                    <Create className={'Primary-color'}/>
+                    <DeleteModal/>
+                    <ExpandMore className={'Primary-color'}/>
+                  </Box>
                 </Grid>
               </Grid>
             </AccordionSummary>

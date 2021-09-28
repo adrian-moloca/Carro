@@ -35,7 +35,7 @@ export default function PrimarySearchAppBar() {
           <Grid item xs={3} container flexDirection="row" justifyContent="flex-end"> 
             {/* notifications */}
             <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
-              <Link href="/notifications" undeline= 'none' color= 'inherit'>
+              <Link href="/notifications" underline= 'none' color= 'inherit'>
                 <BadgeVisibility/>
               </Link>
             </Box>
@@ -51,7 +51,7 @@ export default function PrimarySearchAppBar() {
         </Grid>
         {/* mobile */}
         <Box className={classes.sectionMobile} display="flex" flexDirection="row">
-          <Link href="/notifications" undeline= 'none' color= 'inherit'>
+          <Link href="/notifications" underline= 'none' color= 'inherit'>
             <BadgeVisibility/>
           </Link>
           <RenderMobileMenu/>
