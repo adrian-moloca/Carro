@@ -1,5 +1,6 @@
 import React from 'react';
 import {Box, Grid} from '@material-ui/core';
+import DeleteModal from '../../modals/deleteModal/DeleteModal';
 import useStyles from './commentCardStyle';
 
 const CommentCard = (props) => {
@@ -13,12 +14,15 @@ const CommentCard = (props) => {
         justifyContent="center"
         alignItems="center"
         direction="row">
-          <Grid container item xs={12} justifyContent='center'> 
-            <Grid container item xs={11} justifyContent='center'>
+          <Grid container item xs={12} justifyContent='center'>
+            <Grid container item xs={1} justifyContent='center'>
+              <Box fontSize={10} className={'Secondary-color'}>22/10/2021{props.date}</Box>
+            </Grid>
+            <Grid container item xs={10} justifyContent='center'>
               <Box mb={4} fontWeight={400} fontSize={22} textAlign={'center'}>Nume Client{props.date}</Box>
             </Grid>
             <Grid container item xs={1} justifyContent='center'>
-              <Box fontSize={10} className={'Secondary-color'}>22/10/2021{props.date}</Box>
+              <DeleteModal/>
             </Grid>
           </Grid>
           <Grid container item xs={12} justifyContent='center' alignItems='center'> 

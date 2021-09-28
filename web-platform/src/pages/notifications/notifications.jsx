@@ -7,6 +7,7 @@ import SecondaryButton from '../../components/buttons/secondaryButton/secondaryB
 import DriverCardNotifications from '../../components/cards/DriverCardNotifications/DriverCardNotifications';
 import NotificationsAcordionFields from '../../components/cards/NotificationsAcordionFields/NotificationsAcordionFields';
 import PaginationSBD from '../../components/pagination/pagination';
+import DeleteModal from '../../components/modals/deleteModal/DeleteModal';
 import useStyles from './notificationsStyle.jsx';
 
 const Notifications = () => { 
@@ -38,7 +39,7 @@ const Notifications = () => {
                     </Box>
                   </Grid>
                   <Grid container item xs={1} justifyContent='flex-end'>
-                    <Delete className={'Pink-carro'}/>
+                    <DeleteModal/>
                   </Grid>
                 </Grid>
                 <Grid 
@@ -81,7 +82,7 @@ const Notifications = () => {
                 </Grid>
                 <Grid  container  direction="row" justifyContent="center">
                   <Box mt={3}>
-                    <PrimaryButton>
+                    <PrimaryButton variant="contained">
                       Detalii
                     </PrimaryButton>
                   </Box>
