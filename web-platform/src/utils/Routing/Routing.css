@@ -30,6 +30,7 @@
 }
 
 .sbd-container-content {
+  min-height: 69.9vh;
   margin: 0;
   background-color: #ededed;
 }
