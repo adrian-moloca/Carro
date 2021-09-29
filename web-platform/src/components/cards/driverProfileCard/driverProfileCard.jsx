@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box, Grid} from '@material-ui/core';
 import HalfRating from '../../rating/rating';
-import BackdropSelectDriver from '../../backdrop/backDrop';
+import BackdropSelectDriver from '../../backdrop/driver-select/backDrop';
 import useStyles from './driverProfileCardStyle';
 
 const DriverProfileCard =(props)=>{

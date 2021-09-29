@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {Box, Grid} from '@material-ui/core';
-import {Star, StarBorder, StarHalf} from '@material-ui/icons';
+import {Rating} from '@material-ui/lab';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';
-import BackdropSelectDriver from '../../backdrop/backDrop';
+import BackdropSelectDriver from '../../backdrop/driver-select/backDrop';
 import useStyles from './DriverCardStyle';
 
 const DriverCard =(props)=>{
@@ -16,7 +16,7 @@ const DriverCard =(props)=>{
         if(event.target === document.getElementById('backdrop'))
             setOpen(false)
     };
-    const handleCloseBdByBtn=(event)=> setOpen(false);
+    const handleCloseBdByBtn=(event)=>{ setOpen(false)};
    
     return(
         <Box m='2%' display='flex' width='0.26' p={1} borderRadius='10px' boxShadow={3}>
@@ -27,21 +27,17 @@ const DriverCard =(props)=>{
                 <Grid container item xs={12} justifyContent='center'>
                     <Box fontSize='20px' fontWeight='500'>{props.name}</Box>
                 </Grid>
-                <Grid container item xs={12} justifyContent='center'>
-                    <Box marginTop='5%'>Plecare: {props.plecare}</Box>
+                <Grid container item xs={12} justifyContent='left'>
+                    <Box marginTop='5%' fontSize='15px' fontWeight='500'>Plecare: {props.plecare}</Box>
                 </Grid>
-                <Grid container item xs={12} justifyContent='center'>
-                    <Box>Destinatie: {props.destinatie}</Box>
+                <Grid container item xs={12} justifyContent='left'>
+                    <Box fontSize='15px' fontWeight='500'>Destinatie: {props.destinatie}</Box>
                 </Grid>
-                <Grid container item xs={12} justifyContent='center'>
-                    <Box marginBottom='5%'>Telefon: {props.telefon}</Box>
+                <Grid container item xs={12} justifyContent='left'>
+                    <Box marginBottom='5%' fontSize='15px' fontWeight='500'>Tipul transportului: {props.transportType}</Box>
                 </Grid>
                 <Grid container item xs={8} justifyContent='space-around'>
-                    <Star className={classes.starsStyle}/>
-                    <Star className={classes.starsStyle}/>
-                    <Star className={classes.starsStyle}/>
-                    <StarHalf className={classes.starsStyle}/>
-                    <StarBorder className={classes.starsStyle}/>
+                    <Rating value={props.driverRate} readOnly precision={0.5}/>
                 </Grid>
                 <Grid container item xs={8} justifyContent='center'>
                     <Box mt='15%' mb='2%' width={1}>
@@ -57,9 +53,10 @@ const DriverCard =(props)=>{
                 clickedBackBtn={handleCloseBdByBtn}
                 image={props.image}
                 name={props.name}
+                driverRate={props.driverRate}
                 plecare={props.plecare}
                 destinatie= {props.destinatie}
-                telefon = {props.telefon}
+                tipTransport = {props.transportType}
                 dataPlecare = {props.dataPlecare}/>
         </Box>
     );

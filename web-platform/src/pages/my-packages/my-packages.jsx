@@ -1,223 +1,124 @@
-import React from 'react';
-import { Container, Box, Typography, AccordionSummary, AccordionDetails, Accordion, Grid } from '@material-ui/core';
-import {ExpandMore, ArrowForward, Delete, Create} from '@material-ui/icons';
-import DriverCard from '../../components/cards/DriverCard/DriverCard';
-import DeleteModal from '../../components/modals/deleteModal/DeleteModal';
-import fragile from '../../assets/images/fragile.png';
-import environmentdang from '../../assets/images/environmentdang.png';
-import firedang from '../../assets/images/firedang.png';
-import boxHands from '../../assets/images/boxHands.png';
-import animalPrints from '../../assets/images/animalPrints.png';
-import profilePhotoLeft from '../../assets/images/photoprofile1.png';
-import profilePhotoMiddle from '../../assets/images/photoprofile2.png';
-import profilePhotoRight from '../../assets/images/photoprofile3.png';
-import useStyles from './my-packagesStyle';
+import React, {useEffect, useState} from 'react';
+import { Container, Box } from '@material-ui/core';
+import Package from './package/package';
+
+const packages = [
+  {
+    departureDate: '26/08/2021 02:00 AM',
+    departure: 'Timisoara, Romania',
+    destination: 'Bucuresti, Romania',
+    departureAddress: 'Lorem impsium Street',
+    destinationAddress: 'Lorem Ipsium Street',
+    packageType: 'Mic',
+    dimensions: '0x0x0',
+    weight: '1 Kg',
+    description:'-',
+    price: '150 RON',
+    name: 'Pachetul meu',
+    status: 'Deschis',
+  },
+  {
+    departureDate: '26/08/2021 02:00 AM',
+    departure: 'Timisoara, Romania',
+    destination: 'Bucuresti, Romania',
+    departureAddress: 'Lorem impsium Street',
+    destinationAddress: 'Lorem Ipsium Street',
+    packageType: 'Mic',
+    dimensions: '0x0x0',
+    weight: '1 Kg',
+    description:'-',
+    price: '150 RON',
+    name: 'Pachetul meu',
+    status: 'Luat',
+  },
+  {
+    departureDate: '26/08/2021 02:00 AM',
+    departure: 'Timisoara, Romania',
+    destination: 'Bucuresti, Romania',
+    departureAddress: 'Lorem impsium Street',
+    destinationAddress: 'Lorem Ipsium Street',
+    packageType: 'Mic',
+    dimensions: '0x0x0',
+    weight: '1 Kg',
+    description:'-',
+    price: '150 RON',
+    name: 'Pachetul meu',
+    status: 'In livrare',
+    location: 'PITESTI',
+  },
+  {
+    departureDate: '26/08/2021 02:00 AM',
+    departure: 'Timisoara, Romania',
+    destination: 'Bucuresti, Romania',
+    departureAddress: 'Lorem impsium Street',
+    destinationAddress: 'Lorem Ipsium Street',
+    packageType: 'Mic',
+    dimensions: '0x0x0',
+    weight: '1 Kg',
+    description:'-',
+    price: '150 RON',
+    name: 'Pachetul meu',
+    status: 'In livrare',
+  },
+  {
+    departureDate: '26/08/2021 02:00 AM',
+    departure: 'Timisoara, Romania',
+    destination: 'Bucuresti, Romania',
+    departureAddress: 'Lorem impsium Street',
+    destinationAddress: 'Lorem Ipsium Street',
+    packageType: 'Mic',
+    dimensions: '0x0x0',
+    weight: '1 Kg',
+    description:'-',
+    price: '150 RON',
+    name: 'Pachetul meu',
+    status: 'Inchis',
+  },
+  {
+    departureDate: '26/08/2021 02:00 AM',
+    departure: 'Timisoara, Romania',
+    destination: 'Bucuresti, Romania',
+    departureAddress: 'Lorem impsium Street',
+    destinationAddress: 'Lorem Ipsium Street',
+    packageType: 'Mic',
+    dimensions: '0x0x0',
+    weight: '1 Kg',
+    description:'-',
+    price: '150 RON',
+    name: 'Pachetul meu',
+    status: 'Livrat',
+  },
+]
 
 const MyPackages = () => {
-  
-  const classes = useStyles();
+
+  const[packagesState, setPackagesState] = useState(packages)
+
+  const deletePackage = (event, index) =>{
+    event.stopPropagation();
+    const temp = packagesState.map((pack, i)=> {
+        if(i>index)
+            return pack-1;
+        else
+            return pack
+    });
+    temp.splice(index, 1);
+    setPackagesState(temp);
+  }
 
   return (
-    <Container className='Primary-container-style'>
-      <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>Pachetele mele</Box>
-      <Box mb={1.5} borderRadius='10px' boxShadow={3} >
-          <Accordion square='true' className={classes.AccordionBorderRadius}>
-            <AccordionSummary id="transport-header">
-              <Grid container justifyContent='space-between'>
-                <Grid container item xs = {1} justifyContent='flex-starts' alignItems="center">
-                  <Typography >1.</Typography>
-                </Grid>
-                <Grid container item xs={2} justifyContent='center' className='hide-on-mobile' alignItems="center">
-                  <Box fontWeight= {600} fontStyle='italic' >Timisoara, Romania</Box>
-                </Grid>
-                <Grid container  item xs={1} justifyContent='center' className='hide-on-mobile' alignItems="center">
-                    <ArrowForward className={'Primary-color'}/>
-                </Grid>
-                <Grid container item xs={2} justifyContent='center' className='hide-on-mobile' alignItems="center">
-                  <Box fontWeight= {600} fontStyle='italic'>Bucuresti, Romania</Box>
-                </Grid>
-                <Grid container item xs={3} justifyContent='center' className='hide-on-mobile' alignItems="center">
-                  <Box >26/08/2021 02:00 AM</Box>
-                </Grid>
-                <Grid container item xs={1} justifyContent='center' alignItems="center">
-                  <Box fontSize={16} className={'Green-carro'}>Active</Box>
-                </Grid>
-                <Grid container item xs={2} justifyContent='flex-end'>
-                  <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center">
-                    <Create className={'Primary-color'}/>
-                    <DeleteModal/>
-                    <ExpandMore className={'Primary-color'}/>
-                  </Box>
-                </Grid>
-              </Grid>
-            </AccordionSummary>
-            <AccordionDetails className={classes.AccordionDetailsFlex}>
-              <Box borderRadius='10px' alignItems='center'  boxShadow={3} display ='flex' flexDirection='column' mx='3%'px='2%'>
-                <Box my='2%' fontSize={20}>Detalii pachet</Box>
-                <Grid container  xs={12} spacing={0} justifyContent='center'>
-                  <Grid container item xs={6}>
-                    <Box>Plecare: Timisoara, Romania</Box>
-                  </Grid>
-                  <Grid container item xs={6}>
-                    <Box>Destinatie: Bucuresti</Box>
-                  </Grid>
-                  <Grid container item xs={6}>
-                    <Box>Adresa de preluare: Lorem impsium Street</Box>
-                  </Grid>
-                  <Grid container item xs={6}>
-                    <Box>Adresa destinatie: Lorem Ipsium Street</Box>
-                  </Grid>
-                  <Grid container item xs={6}>
-                    <Box>Tip Colet: mic</Box>
-                  </Grid>
-                  <Grid container item xs={6}>
-                    <Box>Dimensiuni: 0x0x0</Box>
-                  </Grid>
-                  <Grid container item xs={6}>
-                    <Box>Greutate: 1Kg</Box>
-                  </Grid>
-                  <Grid container item xs={6}>
-                    <Box>Descriere:</Box>
-                  </Grid>
-                  <Grid container item xs={6}>
-                    <Box>Pret: 150 LEI</Box>
-                  </Grid>
-                  <Grid container item xs={6}>
-                    <Box>Nume: Pachetul meu</Box>
-                  </Grid>
-                  <Grid container item xs={6} justifyContent='space-around'>
-                      <img src={fragile} className={classes.advStyle} alt={""}/>
-                      <img src={environmentdang} className={classes.advStyle} alt={""}/>
-                      <img src={firedang} className={classes.advStyle} alt={""}/>
-                      <img src={boxHands} className={classes.advStyle} alt={""}/>
-                      <img src={animalPrints} className={classes.advStyle} alt={""}/>
-                  </Grid>
-                  <Grid container item xs={12} justifyContent='space-around'>
-                      <DriverCard 
-                        image={profilePhotoLeft} 
-                        name='Marius popescu'
-                        plecare='Timisoara'
-                        destinatie='Bucuresti'
-                        telefon='0888888888'
-                        dataPlecare='26/08/2021 02:00 AM'/>
-                      <DriverCard 
-                        image={profilePhotoMiddle} 
-                        name='Marius popescu'
-                        plecare='Timisoara'
-                        destinatie='Bucuresti'
-                        telefon='0888888888'
-                        dataPlecare='26/08/2021 02:00 AM'/>
-                      <DriverCard 
-                        image={profilePhotoRight} 
-                        name='Marius popescu'
-                        plecare='Timisoara'
-                        destinatie='Bucuresti'
-                        telefon='0888888888'
-                        dataPlecare='26/08/2021 02:00 AM'/>
-                    </Grid>
-                  </Grid>
-              </Box>
-            </AccordionDetails>
-          </Accordion>
-      </Box>
-      <Box mb={1.5} borderRadius='10px' boxShadow={3} >
-          <Accordion square='true' className={classes.AccordionBorderRadius}>
-            <AccordionSummary aria-controls="transport-content" id="transport-header">
-              <Grid container justifyContent='space-between'>
-                <Grid container item xs = {1} justifyContent='flex-starts'>
-                  <Typography >1.</Typography>
-                </Grid>
-                <Grid container item xs={2} justifyContent='center' className='hide-on-mobile'>
-                  <Box fontWeight= {600} fontStyle='italic' >Timisoara, Romania</Box>
-                </Grid>
-                <Grid container  item xs={1} justifyContent='center' className='hide-on-mobile'>
-                    <ArrowForward className={'Primary-color'}/>
-                </Grid>
-                <Grid container item xs={2} justifyContent='center' className='hide-on-mobile'>
-                  <Box fontWeight= {600} fontStyle='italic'>Bucuresti, Romania</Box>
-                </Grid>
-                <Grid container item xs={3} justifyContent='center' className='hide-on-mobile'>
-                  <Box >26/08/2021 02:00 AM</Box>
-                </Grid>
-                <Grid container item xs={2} justifyContent='center'>
-                  <Box fontSize={16} className={'Green-carro'}>In Tranzit</Box>
-                </Grid>
-                <Grid container item xs={1} justifyContent='flex-end'>
-                  <Delete className={'Pink-carro'}/>
-                  <ExpandMore className={'Primary-color'}/>
-                </Grid>
-              </Grid>
-            </AccordionSummary>
-            <AccordionDetails className={classes.AccordionDetailsFlex}>
-            </AccordionDetails>
-          </Accordion>
-      </Box>
-      <Box mb={1.5} borderRadius='10px' boxShadow={3} >
-          <Accordion square='true' className={classes.AccordionBorderRadius}>
-            <AccordionSummary aria-controls="transport-content" id="transport-header">
-            <Grid container justifyContent='space-between'>
-                <Grid container item xs = {1} justifyContent='flex-starts'>
-                  <Typography >1.</Typography>
-                </Grid>
-                <Grid container item xs={2} justifyContent='center' className='hide-on-mobile'>
-                  <Box fontWeight= {600} fontStyle='italic' >Timisoara, Romania</Box>
-                </Grid>
-                <Grid container  item xs={1} justifyContent='center' className='hide-on-mobile'>
-                    <ArrowForward className={'Primary-color'}/>
-                </Grid>
-                <Grid container item xs={2} justifyContent='center' className='hide-on-mobile'>
-                  <Box fontWeight= {600} fontStyle='italic'>Bucuresti, Romania</Box>
-                </Grid>
-                <Grid container item xs={3} justifyContent='center' className='hide-on-mobile'>
-                  <Box >26/08/2021 02:00 AM</Box>
-                </Grid>
-                <Grid container item xs={2} justifyContent='center'>
-                  <Box fontSize={16} className={'Primary-color'}>Finalizata</Box>
-                </Grid>
-                <Grid container item xs={1} justifyContent='flex-end'>
-                  <Delete className={'Pink-carro'}/>
-                  <ExpandMore className={'Primary-color'}/>
-                </Grid>
-              </Grid>
-            </AccordionSummary>
-            <AccordionDetails className={classes.AccordionDetailsFlex}>
-            </AccordionDetails>
-          </Accordion>
-      </Box>
-      <Box mb={1.5} borderRadius='10px' boxShadow={3} >
-          <Accordion square='true' className={classes.AccordionBorderRadius}>
-            <AccordionSummary aria-controls="transport-content" id="transport-header">
-            <Grid container justifyContent='space-between'>
-                <Grid container item xs = {1} justifyContent='flex-starts'>
-                  <Typography >1.</Typography>
-                </Grid>
-                <Grid container item xs={2} justifyContent='center' className='hide-on-mobile'>
-                  <Box fontWeight= {600} fontStyle='italic' >Timisoara, Romania</Box>
-                </Grid>
-                <Grid container  item xs={1} justifyContent='center' className='hide-on-mobile'>
-                    <ArrowForward className={'Primary-color'}/>
-                </Grid>
-                <Grid container item xs={2} justifyContent='center' className='hide-on-mobile'>
-                  <Box fontWeight= {600} fontStyle='italic'>Bucuresti, Romania</Box>
-                </Grid>
-                <Grid container item xs={3} justifyContent='center' className='hide-on-mobile'>
-                  <Box >26/08/2021 02:00 AM</Box>
-                </Grid>
-                <Grid container item xs={2} justifyContent='center'>
-                  <Box fontSize={16} className={'Pink-carro'}>Anulata</Box>
-                </Grid>
-                <Grid container item xs={1} justifyContent='flex-end'>
-                  <Delete className={'Pink-carro'}/>
-                  <ExpandMore className={'Primary-color'}/>
-                </Grid>
-              </Grid>
-            </AccordionSummary>
-            <AccordionDetails className={classes.AccordionDetailsFlex}>
-            </AccordionDetails>
-          </Accordion>
-      </Box>
-    </Container>
-  );
-  };
+
+        <Container className='Primary-container-style'>
+          <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>Pachetele mele</Box>
+          {packagesState.map((packageinf, index)=>
+                <Package package={packageinf} packageIndex={index + 1} departureDate={packageinf.departureDate} departure={packageinf.departure} destination={packageinf.destination}
+                         departureAddress={packageinf.departureAddress} destinationAddress={packageinf.destinationAddress} packageType={packageinf.packageType}
+                         weight={packageinf.weight} description={packageinf.description} dimensions={packageinf.dimensions} price={packageinf.price} name={packageinf.name}
+                         status={packageinf.status} deletePackageClicked={(e, index)=>deletePackage(e, index)} packageLocation={packageinf.location}/>
+          )}
+        </Container>
+      );
+};
+
 
 export default MyPackages;

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import {Grid, Backdrop, Box, Container, FormControlLabel, Radio, RadioGroup} from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
-import { Star, StarHalf, StarBorder, } from '@material-ui/icons';
-import PrimaryButton from '../buttons/primaryButton/primaryButton';
-import SecondaryButton from '../buttons/secondaryButton/secondaryButton';
-import GreyLine from '../../assets/images/greyLine.png';
+import { Rating } from '@material-ui/lab';
+import PrimaryButton from '../../buttons/primaryButton/primaryButton';
+import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
+import GreyLine from '../../../assets/images/greyLine.png';
 import useStyles from './backDropStyle';
-import CardSelected from '../card-selected/card-selected';
-import AddCard from '../add-card/add-card';
+import CardSelected from '../../card-selected/card-selected';
+import AddCard from '../../add-card/add-card';
 
 const MyBackdrop = withStyles({
     '& element.style':{
@@ -15,7 +15,7 @@ const MyBackdrop = withStyles({
     },
     /* '.MuiBackdrop-root' */
     root:{
-        zIndex:'1',
+        zIndex: '2',
         backgroundColor: 'black 0.7',
     },
 
@@ -64,13 +64,9 @@ const BackdropSelectDriver=(props)=>{
                             <Grid container item xs={6}>Data plecare: {props.dataPlecare}</Grid>
                             <Grid container item xs={6}>Destinatie: {props.destinatie}</Grid>
                             <Grid container item xs={6}>
-                                <Star className={classes.starsStyle}/>
-                                <Star className={classes.starsStyle}/>
-                                <Star className={classes.starsStyle}/>
-                                <StarHalf className={classes.starsStyle}/>
-                                <StarBorder className={classes.starsStyle}/>
+                                <Rating value={props.driverRate} readOnly precision={0.5}/>
                             </Grid>
-                            <Grid container item xs={6} justifyContent='flex-start'>telefon: {props.telefon}</Grid>
+                            <Grid container item xs={6} justifyContent='flex-start'>Tipul transportului: {props.tipTransport}</Grid>
                         </Grid>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center'>

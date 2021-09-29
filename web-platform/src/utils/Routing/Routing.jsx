@@ -56,7 +56,7 @@ const Routes = () => {
                 //     </Switch>
                 // ) : (
                     <div className="sbd-container">
-                        <div className="sbd-container-header">
+                        <div className="sbd-header">
                             {/* <HeaderLogedOut/> */}
                             <HeaderLogedIn/>
                         </div>
@@ -87,8 +87,8 @@ const Routes = () => {
                                 <Route component={HomePage} />
                             </Switch>
                         </div>
-                        <div className="sbd-container-footer">
-                            <Footer/>
+                        <div className='sbd-footer'>
+                            <Footer />
                         </div>
                     </div>
                 // )
