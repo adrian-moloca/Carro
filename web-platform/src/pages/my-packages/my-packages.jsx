@@ -107,6 +107,7 @@ const MyPackages = () => {
   }
 
   return (
+
         <Container className='Primary-container-style'>
           <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>Pachetele mele</Box>
           {packagesState.map((packageinf, index)=>
@@ -118,5 +119,6 @@ const MyPackages = () => {
         </Container>
       );
 };
+
 
 export default MyPackages;
