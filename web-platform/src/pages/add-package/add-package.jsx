@@ -33,8 +33,10 @@ const AddPackage = () => {
   const handleNext = ()=>{
     const nextActiveStep = activeStep === steps.length-1 ? activeStep : activeStep + 1;
     setActiveStep(nextActiveStep);
+    
   };
   const handleBack = () => setActiveStep(activeStep-1);
+
 
   const steps = getSteps();
   function getSteps(){return ['Step 1','Step 2','Step 3','Step 4']};

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Grid } from "@material-ui/core";
 import CarroTextField from "../../../components/textField/CarroTextField";
 import CarroDatePicker from "../../../components/datePicker/CarroDatePicker";
@@ -7,12 +7,12 @@ import { Country, City }  from 'country-state-city';
 
 const StepOne = (props) =>{
 
-    const [departureDate, setDepartureDate] = useState(null);
-    const [departureCountry, setDepartureCountry] = useState(null);
-    const [destinationCountry, setDestinationCountry] = useState(null);
-    const [departureCity, setDepartureCity] = useState(null);
-    const [destinationCity, setDestinationCity] = useState(null);
-    const [pickUpAddress, setPickUpAddress] = useState(null);
+    const [departureDate, setDepartureDate] = useState(new Date());
+    const [departureCountry, setDepartureCountry] = useState('');
+    const [destinationCountry, setDestinationCountry] = useState('');
+    const [departureCity, setDepartureCity] = useState('');
+    const [destinationCity, setDestinationCity] = useState('');
+    const [pickUpAddress, setPickUpAddress] = useState('');
 
     const getCountries = ()=> {
         const countries = [];

@@ -1,11 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor: '#000',
-  },
   paper: {
     backgroundColor: '#000',
     margin: '0',
@@ -18,17 +13,16 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center'
   },
 
-  footerLinksContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: "20px",
-  },
   footerSeparationLine: {
     border: '1px solid #00B4D8;',
-    margin: '15px 0',
+    margin: ' 0',
     transform: 'rotate(-180deg);',
   },
+
+  verticalpadding: {
+    paddingY: '1%',
+  },
+  
   noMargin: {
     margin: '0'
   }

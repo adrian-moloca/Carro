@@ -79,10 +79,10 @@ export default function NestedGrid() {
   }
 
   return (
-    <div className={classes.root}>
+    <div>
       <FormRowMediaButtons />
       <div className={classes.footerSeparationLine}></div>
-      <Grid container className={classes.footerLinksContainer} spacing={1} >
+      <Grid container  justifyContent='center' spacing={1}>
         <Grid container direction="column" xs={12} sm={3} md={3} lg ={3} xl={3}  spacing={2} className={classes.noMargin}>
           <FormRow />
         </Grid>

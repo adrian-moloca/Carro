@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {Box, Grid, Link} from '@material-ui/core';
 import {Star, StarBorder, StarHalf} from '@material-ui/icons';
-import BackdropSelectDriver from '../../backdrop/backDrop';
+import BackdropSelectDriver from '../../backdrop/driver-select/backDrop';
 import SeeProfileBtn from '../../buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn'
 import useStyles from './DriverCardNotificationsStyle';
 
