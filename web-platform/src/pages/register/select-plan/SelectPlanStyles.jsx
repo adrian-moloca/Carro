@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles({
   SmallContainer: {
     backgroundColor: "#ffff",
+    textAlign:'center',
     padding: "20px",
     borderRadius: "15px",
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.31)",
