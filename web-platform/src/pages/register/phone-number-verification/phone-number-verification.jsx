@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Box, Grid } from '@material-ui/core';
+import Timer from '../../../components/timer/timer';
 import CarroTextField from '../../../components/textField/CarroTextField';
 import PrimaryButton from '../../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../../components/buttons/secondaryButton/secondaryButton';
@@ -11,6 +12,8 @@ const MyGrid = withStyles({'spacing-xs-4':{margin: 0}})(Grid)
 const PhoneNumberVerification = ()=>{
 
     const[sms, setSMS] = useState(null);
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 5);
 
     return(
         <Container className = 'Primary-container-style'>
@@ -26,21 +29,24 @@ const PhoneNumberVerification = ()=>{
                     </Box>
                 </Grid>
                 <Grid container item xs={12} justifyContent='center'>
-                    <Box mt = '3%' width='40%'>
+                    <Box mt = '3%' width='40%' >
                         <CarroTextField value = {sms} onChange={(e)=>setSMS(e.target.value)} variant ='outlined' label='SMS primit' fullWidth/>
                     </Box>
                 </Grid>
+                <Grid container item xs={12} justifyContent='center'>
+                    <Timer expiryTimestamp={time}/>
+                </Grid>
                <Grid container item xs={6} justifyContent='flex-end'>
-                    <Box width='50%' mt='10%'>
+                    <Box width='50%' mt='5%'>
                         <Link to='/register' style={{textDecoration:'none'}}>
                             <SecondaryButton variant='outlined' fullWidth>Inapoi</SecondaryButton>
                         </Link>
                     </Box>
                 </Grid>
                 <Grid container item xs={6} justifyContent='flex-start'>
-                    <Box width='50%' mt='10%'>
+                    <Box width='50%' mt='5%'>
                         <Link to='/register/select-plan' style={{textDecoration:'none'}}>
-                            <PrimaryButton variant='contained' onClick={()=><Link to='/register/select-plan'/>} fullWidth>Alege plan</PrimaryButton>
+                            <PrimaryButton variant='contained' onClick={()=><Link to='/register/select-plan'/>} fullWidth>ALEGE PLAN</PrimaryButton>
                         </Link>
                     </Box>
                 </Grid>
