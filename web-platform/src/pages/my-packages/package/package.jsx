@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { Box, Grid, Accordion, AccordionDetails, AccordionSummary, Typography, } from '@material-ui/core';
 import {ExpandMore, ArrowForward, Delete, Create} from '@material-ui/icons';
 import PackageDetails from './package-details/package-details';
+import PartialEditPackage from './partial-edit-package/partial-edit-package';
 import EditOpenPackage from './edit-open-package/edit-open-package';
 import TrackPackage from './track-package/track-package';
 import IconButtonNoVerticalPadding from '../../../components/buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
@@ -37,6 +38,43 @@ function getStatusColor(status){
     }
   }
 
+  function ActionsByStatus(status){
+
+    switch(status){
+        case 'Deschis':
+            return(
+              <Fragment>
+                <EditOpenPackage package= {props.package}/>
+                <IconButtonNoVerticalPadding onClick={props.deletePackageClicked}>
+                      <Delete className={'Pink-carro'}/>
+                </IconButtonNoVerticalPadding>
+              </Fragment>
+            );
+          case 'Luat':
+              return(
+                <Fragment>
+                    <PartialEditPackage package= {props.package}/>
+                    <TrackPackage departure={props.departure} destination={props.destination} 
+                                  departureDate={props.departureDate} packageLocation={props.packageLocation}/>
+                </Fragment>
+              );
+          case 'In livrare':
+              return(
+                <Fragment>
+                    <PartialEditPackage package= {props.package}/>
+                    <TrackPackage departure={props.departure} destination={props.destination} 
+                                  departureDate={props.departureDate} packageLocation={props.packageLocation}/>  
+                </Fragment>
+              );
+          case 'Inchis':
+            return('');
+          case 'Livrat':
+            return('');
+          default:
+              return('Unkown status');
+    }
+}
+
   const classes = useStyles();
 
   return(
@@ -63,12 +101,7 @@ function getStatusColor(status){
                 <Box fontSize={16} className={getStatusColor(props.status)} textAlign='center'>{props.status}</Box>
               </Grid>
               <Grid container item xs={2} justifyContent='flex-end'>
-                {props.status === 'Deschis' ? <EditOpenPackage package= {props.package}/> : null}
-                {props.status === 'In livrare' ? <TrackPackage departure={props.departure} destination={props.destination} 
-                                                              departureDate={props.departureDate} packageLocation={props.packageLocation}/> : null}
-                <IconButtonNoVerticalPadding onClick={props.deletePackageClicked}>
-                  <Delete className={'Pink-carro'}/>
-                </IconButtonNoVerticalPadding>
+                {ActionsByStatus(props.status)}
                 <ExpandMore className={'Primary-color'}/>
               </Grid>
             </Grid>

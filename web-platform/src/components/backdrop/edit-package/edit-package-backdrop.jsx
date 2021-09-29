@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container, Grid, Box, Backdrop } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
-import useStyles from './edi-package-backdrop-style';
+import useStyles from './edit-package-backdrop-style';
 import { Close } from '@material-ui/icons';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
