@@ -1,5 +1,5 @@
 import React from 'react';
-import {Paper, Grid, IconButton} from '@material-ui/core';
+import {Paper, Grid, IconButton, Box} from '@material-ui/core';
 import facebook from "../../assets/icon/facebookIcon.png"
 import instagram from "../../assets/icon/instagramIcon.png"
 import twitter from "../../assets/icon/twitterIcon.png"
@@ -10,7 +10,7 @@ export default function NestedGrid() {
 
   function FormRow() {
     return (
-      <React.Fragment>
+      <Box mt={2}>
         <Grid item >
           <Paper className={classes.paper}>Cum functioneaza</Paper>
         </Grid>
@@ -23,12 +23,12 @@ export default function NestedGrid() {
         <Grid item >
           <Paper className={classes.paper}>Noutati si planuri de viitor</Paper>
         </Grid>
-      </React.Fragment>
+      </Box>
     );
   }
   function FormRow1() {
     return (
-      <React.Fragment>
+      <Box mt={2}>
         <Grid item >
           <Paper className={classes.paper}>Contact</Paper>
         </Grid>
@@ -41,12 +41,12 @@ export default function NestedGrid() {
         <Grid item >
           <Paper className={classes.paper}>Recenzii</Paper>
         </Grid>
-      </React.Fragment>
+      </Box>
     );
   }
   function FormRow2() {
     return (
-      <React.Fragment>
+      <Box mt={2}>
         <Grid item >
           <Paper className={classes.paper}>Cariera</Paper>
         </Grid>
@@ -59,21 +59,21 @@ export default function NestedGrid() {
         <Grid item >
           <Paper className={classes.paper}>Vouchere</Paper>
         </Grid>
-      </React.Fragment>
+      </Box>
     );
   }
   function FormRowMediaButtons() {
     return (
       <div className={classes.mediaButtonsContainer}>
-            <IconButton>
-              <img src={facebook} alt={""}></img>
-            </IconButton>
-            <IconButton>
-              <img src={instagram} alt={""}></img>
-            </IconButton>
-            <IconButton>
-              <img src={twitter} alt={""}></img>
-            </IconButton>
+        <IconButton>
+          <img src={facebook} alt={""}></img>
+        </IconButton>
+        <IconButton>
+          <img src={instagram} alt={""}></img>
+        </IconButton>
+        <IconButton>
+          <img src={twitter} alt={""}></img>
+        </IconButton>
       </div>
     );
   }

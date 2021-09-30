@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
     fontSize: '17px',
     textAlign:'center',
+    marginTop: 20,
   },
   mediaButtonsContainer: {
     display: 'flex',
