@@ -13,7 +13,7 @@ const PhoneNumberVerification = ()=>{
 
     const[sms, setSMS] = useState(null);
     const time = new Date();
-    time.setSeconds(time.getSeconds() + 5);
+    time.setMinute(time.getMinute() + 5);
 
     return(
         <Container className = 'Primary-container-style'>
