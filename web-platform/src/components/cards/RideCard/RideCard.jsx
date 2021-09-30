@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Box, Grid, SvgIcon } from '@material-ui/core';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
+import BackdropDeliverPackage from '../../backdrop/deliver-package/deliver-package';
 import packageImg from '../../../assets/images/box-small.png';
 import {ReactComponent as fragileIco} from '../../../assets/icon/fragile.svg';
 import {ReactComponent as fishIco} from '../../../assets/icon/fish.svg';
@@ -11,9 +12,17 @@ import {ReactComponent as animalprintsIco} from '../../../assets/icon/animalprin
 import greyLine from '../../../assets/images/greyLine.png';
 import useStyles from './RideCardStyle';
 
-const RideCard = () =>{
+const RideCard = (props) =>{
 
     const classes = useStyles();
+
+    const[open, setOpen]=useState(false);
+    const handleBtn =()=> setOpen(!open);
+    const handleCloseBd=(event)=>{
+        if(event.target === document.getElementById('backdrop'))
+            setOpen(false)
+    };
+    const handleCloseBdByBtn=(event)=>{ setOpen(false)};
 
     return (
         <Box paddingBottom='3%' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center' className={'mobile-width-full'}>
@@ -44,7 +53,7 @@ const RideCard = () =>{
                     <Box width='100%' textAlign='center' fontSize={16}>PRET</Box>  
                     <Box width='100%' textAlign='center' fontSize={22}>15 LEI</Box>
                 </Grid>
-                <Grid container item xs={12} justifyContent = 'space-around' >
+                <Grid container item xs={12} xl={10} justifyContent = 'space-around' >
                     <SvgIcon component={fragileIco} viewBox='0 0 512 512'/>
                     <SvgIcon component={fishIco} viewBox='0 0 18 19'/>
                     <SvgIcon component={fireIco} viewBox='0 0 23 22'/>
@@ -52,16 +61,20 @@ const RideCard = () =>{
                     <SvgIcon component={animalprintsIco} viewBox='0 0 20 20'/>
                 </Grid>
                 <Grid container item xs={10} justifyContent = 'center'>
-                    <GreenCaroButton size='medium' fullWidth>
+                    <GreenCaroButton variant='contained' onClick={handleBtn} size='medium' fullWidth>
                         PREDARE
                     </GreenCaroButton>
                 </Grid>
                 <Grid container item xs={7}  spacing={1}justifyContent = 'center'>
-                    <PrimaryButton size='small' variant = 'contained' fullWidth>
+                    <PrimaryButton size='medium' variant = 'contained' fullWidth>
                         DETALII
                     </PrimaryButton>
                 </Grid>
             </Grid>
+            <BackdropDeliverPackage 
+                open={open} 
+                clicked={handleCloseBd}
+                clickedClose={handleCloseBdByBtn}/>
         </Box>
     );
 };
