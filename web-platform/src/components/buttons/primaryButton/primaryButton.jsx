@@ -9,8 +9,18 @@ const PrimaryButton = withStyles({
       '&:hover': {
         color: '#00b4d8',
         backgroundColor: '#fff',
-      }
-    }
+      },
+    },
+
+    outlined:{
+      color: '#00b4d8',
+      backgroundColor: '#fff',
+      borderColor: '#00b4d8',
+      '&:hover': {
+        color: '#fff',
+        backgroundColor: '#00b4d8',
+      },
+    },
 
 })(Button);
 

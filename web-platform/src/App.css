@@ -27,6 +27,10 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
 }
 
+.CardFlipContainer {
+  width: 29%;
+}
+
 .addPackagesContainer {
   background-color: white;
   margin: 1% 0;

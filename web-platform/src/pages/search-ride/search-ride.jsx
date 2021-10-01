@@ -5,7 +5,7 @@ import { Container, Box, Grid, MenuItem } from "@material-ui/core";
 import PaginationSBD from "../../components/pagination/pagination";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import CarroTextField from "../../components/textField/CarroTextField";
-import DriverCard from "../../components/cards//DriverCard/DriverCard";
+import Drivers from "../../components/drivers/drivers";
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
 import profilePhotoMiddle from "../../assets/images/photoprofile1.png";
 import profilePhotoMiddleSecond from "../../assets/images/photoprofile2.png";
@@ -32,7 +32,7 @@ const SearchRide = () => {
   };
 
   return (
-    <Container className={"Pack-container-style"}>
+    <Container className={"Primary-container-style"}>
       <Grid item xs={12}>
         <Box mb={2} fontWeight={400} fontSize={21} textAlign={"center"}>
           Cauta transport
@@ -157,30 +157,9 @@ const SearchRide = () => {
         </Grid>
       </Box>
       <Grid container xs={12}>
-        <DriverCard
-          image={profilePhotoMiddle}
-          name="Marius popescu"
-          plecare="Timisoara"
-          destinatie="Bucuresti"
-          telefon="0888888888"
-          dataPlecare="26/08/2021 02:00 AM"
-        ></DriverCard>
-        <DriverCard
-          image={profilePhotoMiddleSecond}
-          name="Marius popescu"
-          plecare="Timisoara"
-          destinatie="Bucuresti"
-          telefon="0888888888"
-          dataPlecare="26/08/2021 02:00 AM"
-        ></DriverCard>
-        <DriverCard
-          image={profilePhotoMiddle}
-          name="Marius popescu"
-          plecare="Timisoara"
-          destinatie="Bucuresti"
-          telefon="0888888888"
-          dataPlecare="26/08/2021 02:00 AM"
-        />
+            <Box marginTop='2%'>
+              <Drivers/>
+            </Box>
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">
         <PaginationSBD />
