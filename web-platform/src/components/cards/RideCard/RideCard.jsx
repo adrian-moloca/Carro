@@ -17,6 +17,7 @@ const RideCard = (props) =>{
     const classes = useStyles();
 
     const[open, setOpen]=useState(false);
+    const[status, setSatus] = useState(true);
     const handleBtn =()=> setOpen(!open);
     const handleCloseBd=(event)=>{
         if(event.target === document.getElementById('backdrop'))
@@ -61,9 +62,17 @@ const RideCard = (props) =>{
                     <SvgIcon component={animalprintsIco} viewBox='0 0 20 20'/>
                 </Grid>
                 <Grid container item xs={10} justifyContent = 'center'>
-                    <GreenCaroButton variant='contained' onClick={handleBtn} size='medium' fullWidth>
+                    {
+                        !status ? (<GreenCaroButton variant='contained' onClick={handleBtn} size='medium' fullWidth>
                         PREDARE
-                    </GreenCaroButton>
+                    </GreenCaroButton>) : 
+                    ( <Box width='100%' textAlign='center' fontSize={16} color="#9C9C9C">
+                    <h4>Respins cu motivul:</h4>
+                    <p>Nu mai plec</p>
+                    </Box>
+                    )
+                    }
+                    
                 </Grid>
                 <Grid container item xs={7}  spacing={1}justifyContent = 'center'>
                     <PrimaryButton size='medium' variant = 'contained' fullWidth>
