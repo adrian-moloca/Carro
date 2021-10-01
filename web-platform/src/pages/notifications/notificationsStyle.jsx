@@ -4,6 +4,7 @@ const useStyles = makeStyles((theme) =>({
   
   AccordionBorderRadius : {
     borderRadius: '10px',
+    marginTop: '20px',
   },  
   AccordionDetailsFlex : {
     display: 'flex',
