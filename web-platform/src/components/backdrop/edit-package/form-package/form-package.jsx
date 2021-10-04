@@ -42,7 +42,7 @@ const currencies = [
     },
 ];
 
-const FormPackage = (props) =>{
+const   FormPackage = (props) =>{
     const [departureDate, setDepartureDate] = useState(new Date());
     const [departureCountry, setDepartureCountry] = useState('');
     const [destinationCountry, setDestinationCountry] = useState('');

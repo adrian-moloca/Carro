@@ -20,8 +20,8 @@ const Notifications = () => {
       <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>Notificari</Box>
       <Box mb={1.5} borderRadius='10px' boxShadow={10} >
           <Accordion square='true' className={classes.AccordionBorderRadius}>
-            <AccordionSummary aria-controls="transport-content" id="transport-header">
-              <Grid  container  direction="column">
+            <AccordionSummary id="transport-header">
+              <Grid container direction="column">
                 <Grid 
                   container 
                   direction="row">

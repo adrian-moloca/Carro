@@ -6,19 +6,16 @@ import PaginationSBD from "../../components/pagination/pagination";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import CarroTextField from "../../components/textField/CarroTextField";
 import RideCard from "../../components/cards/RideCard/RideCard";
-import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
 import { Country, City } from "country-state-city";
 
 const SearchPackages = () => {
 
   // state
-  const [departureDate, setDepartureDate] = useState(null);
   const [departureCountry, setDepartureCountry] = useState(null);
   const [destinationCountry, setDestinationCountry] = useState(null);
   const [departureCity, setDepartureCity] = useState(null);
   const [destinationCity, setDestinationCity] = useState(null);
 
-  const handleChangeDepartureDate = (date) =>  setDepartureDate(date);
   const handleChangeDepartureCountry = (event) => setDepartureCountry(event.target.value);
   const handleChangeDestinationCountry = (event) => setDestinationCountry(event.target.value);
   const handleChangeDepartureCity = (event) => setDepartureCity(event.target.textContent);
@@ -133,16 +130,6 @@ const SearchPackages = () => {
               )}
               onChange={handleChangeDestinationCity}
               fullWidth
-            />
-          </Grid>
-          <Grid container item xs justifyContent="center">
-            <CarroDatePicker
-              label="Data"
-              dateValue={departureDate}
-              handleDateSelect={handleChangeDepartureDate}
-              InputLabelProps={{
-                style: { fontSize: "17px", marginTop: "3px" },
-              }}
             />
           </Grid>
         </Grid>

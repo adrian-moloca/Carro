@@ -89,7 +89,7 @@ function getStatusColor(status){
                 <Box fontWeight= {600} fontStyle='italic' >{props.departure}</Box>
               </Grid>
               <Grid container  item xs={1} justifyContent='center' className='hide-on-mobile'>
-                  <ArrowForward className={'Primary-color'}/>
+                <ArrowForward className={'Primary-color'}/>
               </Grid>
               <Grid container item xs={2} justifyContent='center' className='hide-on-mobile'>
                 <Box fontWeight= {600} fontStyle='italic'>{props.destination}</Box>
