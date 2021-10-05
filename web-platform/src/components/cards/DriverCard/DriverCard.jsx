@@ -51,6 +51,7 @@ const DriverCard =(props)=>{
                     <Grid container item xs={8} justifyContent='space-around'>
                         <Rating value={props.driverRate} readOnly precision={0.5}/>
                     </Grid>
+                    
                     <Grid container item xs={8} justifyContent='center'>
                         <Box mt='15%' mb='2%' width={1}>
                             <GreenCaroButton variant='contained'  onClick={handleBtn} fullWidth>
