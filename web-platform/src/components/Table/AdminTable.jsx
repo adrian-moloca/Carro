@@ -39,118 +39,118 @@ const rows = [
     "Table Cell",
     "Table Cell",
     "20/09/2021",
-    <>
+    <div>
       {editIcon}
       {deleteIcon}
-    </>
+    </div>
   ),
   createData(
     "Table Cell",
     "Table Cell",
     "20/09/2021",
-    <>
+    <div>
       {editIcon}
       {deleteIcon}
-    </>
+    </div>
   ),
   createData(
     "Table Cell",
     "Table Cell",
     "20/09/2021",
-    <>
+    <div>
       {editIcon}
       {deleteIcon}
-    </>
+    </div>
   ),
   createData(
     "Table Cell",
     "Table Cell",
     "20/09/2021",
-    <>
+    <div>
       {editIcon}
       {deleteIcon}
-    </>
+    </div>
   ),
   createData(
     "Table Cell",
     "Table Cell",
     "20/09/2021",
-    <>
+    <div>
       {editIcon}
       {deleteIcon}
-    </>
+    </div>
   ),
   createData(
     "Table Cell",
     "Table Cell",
     "20/09/2021",
-    <>
+    <div>
       {editIcon}
       {deleteIcon}
-    </>
+    </div>
   ),
   createData(
     "Table Cell",
     "Table Cell",
     "20/09/2021",
-    <>
+    <div>
       {editIcon}
       {deleteIcon}
-    </>
+    </div>
   ),
   createData(
     "Table Cell",
     "Table Cell",
     "20/09/2021",
-    <>
+    <div>
       {editIcon}
       {deleteIcon}
-    </>
+    </div>
   ),
   createData(
     "Table Cell",
     "Table Cell",
     "20/09/2021",
-    <>
+    <div>
       {editIcon}
       {deleteIcon}
-    </>
+    </div>
   ),
   createData(
     "Table Cell",
     "Table Cell",
     "20/09/2021",
-    <>
+    <div>
       {editIcon}
       {deleteIcon}
-    </>
+    </div>
   ),
   createData(
     "Table Cell",
     "Table Cell",
     "20/09/2021",
-    <>
+    <div>
       {editIcon}
       {deleteIcon}
-    </>
+    </div>
   ),
   createData(
     "Table Cell",
     "Table Cell",
     "20/09/2021",
-    <>
+    <div>
       {editIcon}
       {deleteIcon}
-    </>
+    </div>
   ),
   createData(
     "Table Cell",
     "Table Cell",
     "20/09/2021",
-    <>
+    <div>
       {editIcon}
       {deleteIcon}
-    </>
+    </div>
   ),
 ];
 
