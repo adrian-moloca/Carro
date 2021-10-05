@@ -30,7 +30,7 @@ const SearchPackages = () => {
 
   // render
   return (
-    <Container className={"Pack-container-style"}>
+    <Container className={"Primary-container-style"}>
       <Grid item xs={12}>
         <Box mb={2} fontWeight={400} fontSize={21} textAlign={"center"}>
           Cauta pachete
