@@ -26,6 +26,7 @@ import AddTransport from '../../pages/add-transport/add-transport';
 import CourierProfile from '../../pages/courier-profile/courier-profile';
 import Conversations from '../../pages/conversations/conversations';
 import Chat from '../../pages/conversations/chat/chat';
+import adminPanel from '../../pages/admin-panel/adminPanel';
 import './Routing.css';
 
 const Routes = () => {
@@ -84,6 +85,7 @@ const Routes = () => {
                                 <Route path="/register/select-plan/add-card" exact component={PremiumPlanPayment}/>
                                 <Route path="/add-transport" exact component={AddTransport}/>  {/* checked */}
                                 <Route path="/courier-profile" exact component={CourierProfile}/>
+                                <Route path="/admin-panel" exact component={adminPanel}/>
                                 <Route component={HomePage} />
                             </Switch>
                         </div>

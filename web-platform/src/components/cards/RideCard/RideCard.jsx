@@ -63,7 +63,7 @@ const RideCard = (props) =>{
                 </Grid>
                 <Grid container item xs={10} justifyContent = 'center'>
                     {
-                        !status ? (<GreenCaroButton variant='contained' onClick={handleBtn} size='medium' fullWidth>
+                        props.status ? (<GreenCaroButton variant='contained' onClick={handleBtn} size='medium' fullWidth>
                         PREDARE
                     </GreenCaroButton>) : 
                     ( <Box width='100%' textAlign='center' fontSize={16} color="#9C9C9C">
