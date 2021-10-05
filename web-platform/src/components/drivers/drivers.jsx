@@ -29,6 +29,7 @@ const drivers_a = [
         destinationAddress: 'Lorem Ipsium Street',
         departureDate: '26/08/2021 02:00 AM',
         rate: 4.5,
+        driverSelected: true,
     },
     {
         image: profilePhotoRight,
@@ -58,7 +59,8 @@ const Drivers = (props) =>{
                               dataPlecare={driver.departureDate}
                               departureAddress={driver.departureAddress}
                               destinationAddress={driver.destinationAddress}
-                              estimatedTime={driver.estimatedTime}/>
+                              estimatedTime={driver.estimatedTime}
+                              driverSelected= {driver.driverSelected}/>
             )}
         </Grid>
     );
