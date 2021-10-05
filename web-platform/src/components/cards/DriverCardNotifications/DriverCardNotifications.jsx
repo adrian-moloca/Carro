@@ -42,7 +42,7 @@ const DriverCardNotifications =(props)=>{
                 <Box>Destinatie: {props.destinatie}</Box>
             </Grid>
             <Grid container justifyContent='center'>
-                <Box marginBottom='5%'>Telefon: {props.telefon}</Box>
+                <Box marginBottom='5%'>Tip transport: {props.tipTransport}</Box>
             </Grid>
             <Grid container justifyContent='space-evenly'>
                 <Star className={classes.starsStyle}/>
@@ -58,7 +58,7 @@ const DriverCardNotifications =(props)=>{
                 name={props.name}
                 plecare={props.plecare}
                 destinatie= {props.destinatie}
-                telefon = {props.telefon}
+                tipTransport = {props.tipTransport}
                 dataPlecare = {props.dataPlecare}
             />
         </Box>
