@@ -41,7 +41,7 @@ const BackdropSelectDriver=(props)=>{
     const handlePayment = (event)=> setPayment(event.target.value);
 
     return(
-        <MyBackdrop id='backdrop' open={props.open} onClick={props.clicked}>
+        <MyBackdrop className='backdrop' open={props.open} onClick={props.clicked}>
             <Container className={classes.containerBackdrop}>
                 <MyGrid container xs = {12} justifyContent='center' spacing='3'>
                     <Grid container item xs={12} justifyContent='center'>
