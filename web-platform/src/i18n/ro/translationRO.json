@@ -28,7 +28,12 @@
     "PickupAddress": "Adresa ridicare:",
     "Price": "Pret",
     "DeliverButton": "Livreaza",
-    "Reason": "Respins cu motivul:"
+    "Reason": "Respins cu motivul:",
+    "AddPackageTitle": "Adauga pachet",
+    "Finish": "Finalizeaza",
+    "NextStep": "Pasul Urmator",
+    "PhoneNumber": "Numar de telefon",
+    "ReceiverNume": "Nume destinatar"
 
 
 

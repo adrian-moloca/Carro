@@ -25,7 +25,13 @@
     "Sizing": " Package size (m x m): ",
     "Weight": "Weight:",
     "PickupDate": "Pickup date:",
+    "PickupAddress": "Pickup address:",
     "Price": "Price",
     "DeliverButton": "Deliver",
-    "Reason": "Declined for reason:"
+    "Reason": "Declined for reason:",
+    "AddPackageTitle": "Add package",
+    "Finish": "Finish",
+    "NextStep": "Next Step",
+    "PhoneNumber": "Phone number",
+    "ReceiverNume": "Receiver name"
 }
