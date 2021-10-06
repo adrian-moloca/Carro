@@ -55,47 +55,24 @@ const DriverCard =(props)=>{
                             <Rating value={props.driverRate} readOnly precision={0.5}/>
                         </Grid>
                         {props.driverSelected ? (
-<<<<<<< Updated upstream
                             <Grid container item xs={8} justifyContent='center'>
                                 <Box my='22%' className='Secondary-color' fontSize='18px' fontWeight='500'>
-                                    In asteptare...
+                                {t('DriverCardWaitingStatus')}
                                 </Box>
                             </Grid>
                         ) : (
                             <Grid container item xs={8} justifyContent='center'>
                                 <Box mt='26%' mb='2%' width={1}>
                                     <GreenCaroButton variant='contained'  onClick={handleBtn} fullWidth>
-                                        SELECTEAZA
+                                    {t('DriverCardSelectButton')}
                                     </GreenCaroButton>
                                 </Box>
                             </Grid>
-=======
-                            <Box my='22%' className='Secondary-color' fontSize='18px' fontWeight='500'>
-                                {t('DriverCardWaitingStatus')}
-                            </Box>
-                        ) : (
-                            <Fragment>
-                                <Grid container item xs={8} justifyContent='center'>
-                                    <Box mt='26%' mb='2%' width={1}>
-                                        <GreenCaroButton variant='contained'  onClick={handleBtn} fullWidth>
-                                        {t('DriverCardSelectButton')}
-                                        </GreenCaroButton>
-                                    </Box>
-                                </Grid>
-                                <Grid container item xs={8} justifyContent='center'>
-                                    <Box mb='2%' width={1}>
-                                        <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
-                                        {t('DriverCardDetailsButton')}
-                                        </PrimaryButton>
-                                    </Box>
-                                </Grid>
-                            </Fragment>
->>>>>>> Stashed changes
                         )}
                         <Grid container item xs={8} justifyContent='center'>
                             <Box mb='2%' width={1}>
                                 <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
-                                    DETALII
+                                {t('DriverCardDetailsButton')}
                                 </PrimaryButton>
                             </Box>
                         </Grid>
