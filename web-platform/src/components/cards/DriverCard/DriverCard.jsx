@@ -4,6 +4,7 @@ import {Rating} from '@material-ui/lab';
 import ReactCardFlip from 'react-card-flip';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';
+import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import BackdropSelectDriver from '../../backdrop/driver-select/backDrop';
 import useStyles from './DriverCardStyle';
 
@@ -53,27 +54,27 @@ const DriverCard =(props)=>{
                             <Rating value={props.driverRate} readOnly precision={0.5}/>
                         </Grid>
                         {props.driverSelected ? (
-                            <Box my='22%' className='Secondary-color' fontSize='18px' fontWeight='500'>
-                                In asteptare...
-                            </Box>
+                            <Grid container item xs={8} justifyContent='center'>
+                                <Box my='22%' className='Secondary-color' fontSize='18px' fontWeight='500'>
+                                    In asteptare...
+                                </Box>
+                            </Grid>
                         ) : (
-                            <Fragment>
-                                <Grid container item xs={8} justifyContent='center'>
-                                    <Box mt='26%' mb='2%' width={1}>
-                                        <GreenCaroButton variant='contained'  onClick={handleBtn} fullWidth>
-                                            SELECTEAZA
-                                        </GreenCaroButton>
-                                    </Box>
-                                </Grid>
-                                <Grid container item xs={8} justifyContent='center'>
-                                    <Box mb='2%' width={1}>
-                                        <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
-                                            DETALII
-                                        </PrimaryButton>
-                                    </Box>
-                                </Grid>
-                            </Fragment>
+                            <Grid container item xs={8} justifyContent='center'>
+                                <Box mt='26%' mb='2%' width={1}>
+                                    <GreenCaroButton variant='contained'  onClick={handleBtn} fullWidth>
+                                        SELECTEAZA
+                                    </GreenCaroButton>
+                                </Box>
+                            </Grid>
                         )}
+                        <Grid container item xs={8} justifyContent='center'>
+                            <Box mb='2%' width={1}>
+                                <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
+                                    DETALII
+                                </PrimaryButton>
+                            </Box>
+                        </Grid>
                     </Grid>
                     
                 </Box>
@@ -101,22 +102,32 @@ const DriverCard =(props)=>{
                         <Grid container item xs={12} justifyContent='left'>
                             <Box fontSize='15px' fontWeight='500' paddingBottom='4%'>Numarul estimat de ore: {props.estimatedTime}</Box>
                         </Grid>
-                        <Grid container item xs={12} justifyContent='center'>
-                            <Box my='2%'>
-                                <PrimaryButton variant='outlined' fullWidth>
-                                    CERE TRANSPORT - CEVA MEDIU
-                                </PrimaryButton>
-                            </Box>
-                        </Grid>
-                        <Grid container item xs={12} justifyContent='center'>
-                            <Box my='2%'>
-                                <PrimaryButton variant='outlined' fullWidth>
-                                    CERE TRANSPORT - CEVA MEDIU
-                                </PrimaryButton>
-                            </Box>
-                        </Grid>
+                        {props.driverSelected ? (
+                            <Grid container item xs={8} justifyContent='center'>
+                                <Box mt='59%' width={1}>
+                                    <SecondaryButton variant='contained' fullWidth>REFUZA CU MOTIV</SecondaryButton>
+                                </Box>
+                            </Grid>
+                        ) : (
+                            <Fragment>
+                                <Grid container item xs={8} justifyContent='center'>
+                                    <Box my='2%'>
+                                        <PrimaryButton variant='outlined' fullWidth>
+                                            CERE TRANSPORT - CEVA MEDIU
+                                        </PrimaryButton>
+                                    </Box>
+                                </Grid>
+                                <Grid container item xs={8} justifyContent='center'>
+                                    <Box my='2%'>
+                                        <PrimaryButton variant='outlined' fullWidth>
+                                            CERE TRANSPORT - CEVA MEDIU
+                                        </PrimaryButton>
+                                    </Box>
+                                </Grid>
+                            </Fragment>
+                        )}
                         <Grid container item xs={8} justifyContent='center'>
-                            <Box mt='10%' mb='2%' width={1}>
+                            <Box mt='8%' mb='2%' width={1}>
                                 <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
                                     INAPOI
                                 </PrimaryButton>

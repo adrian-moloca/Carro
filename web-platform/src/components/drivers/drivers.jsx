@@ -56,7 +56,7 @@ const Drivers = (props) =>{
                               driverRate={driver.rate}
                               plecare={driver.departure}
                               destinatie={driver.destination}
-                              dataPlecare={driver.departureDate}
+                              departureDate={driver.departureDate}
                               departureAddress={driver.departureAddress}
                               destinationAddress={driver.destinationAddress}
                               estimatedTime={driver.estimatedTime}
