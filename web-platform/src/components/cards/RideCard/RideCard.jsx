@@ -11,11 +11,12 @@ import {ReactComponent as handboxIco} from '../../../assets/icon/handbox.svg';
 import {ReactComponent as animalprintsIco} from '../../../assets/icon/animalprints.svg';
 import greyLine from '../../../assets/images/greyLine.png';
 import useStyles from './RideCardStyle';
+import { useTranslation } from 'react-i18next';
 
 const RideCard = (props) =>{
 
     const classes = useStyles();
-
+    const { t } = useTranslation();
     const[open, setOpen]=useState(false);
     const[status, setSatus] = useState(true);
     const handleBtn =()=> setOpen(!open);
@@ -35,23 +36,23 @@ const RideCard = (props) =>{
                     <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
                 </Grid>
                 <Grid container item xs={12} spacing={1}justifyContent = 'flex-start'>
-                    <Box px={1} fontSize={14}>Cantitate: 1</Box>
-                    <Box px={1} fontSize={14}>Dimensiuni(m): 0x0x0</Box>
-                    <Box px={1} fontSize={14}>Greutate: 1Kg</Box>
+                    <Box px={1} fontSize={14}>{t('Quantity')} 1</Box>
+                    <Box px={1} fontSize={14}>{t('Sizing')} 0x0x0</Box>
+                    <Box px={1} fontSize={14}>{t('Weight')} 1Kg</Box>
                 </Grid>
                 <Grid container item xs={12} justifyContent = 'center'>
                     <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
                 </Grid>
                 <Grid container item xs={12} spacing={1}justifyContent = 'flex-start'>
-                    <Box px={1} fontSize={14}>Data ridicare: 26/08/2021 04:30 AM</Box>   
-                    <Box px={1} fontSize={14}>Adresa ridicare: Lorem Ipsium Street</Box>
-                    <Box px={1} fontSize={14}>Adresa destinatie: Lorem Ipsium Street</Box>
+                    <Box px={1} fontSize={14}>{t('PickupDate')} 26/08/2021 04:30 AM</Box>   
+                    <Box px={1} fontSize={14}>{t('PickupAddress')} Lorem Ipsium Street</Box>
+                    <Box px={1} fontSize={14}>{t('DriverCardDestinationAddress')} Lorem Ipsium Street</Box>
                 </Grid>
                 <Grid container item xs={12} justifyContent = 'center'>
                     <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
                 </Grid>
                 <Grid container item xs={12} justifyContent = 'center'>
-                    <Box width='100%' textAlign='center' fontSize={16}>PRET</Box>  
+                    <Box width='100%' textAlign='center' fontSize={16}>{t('Price')}</Box>  
                     <Box width='100%' textAlign='center' fontSize={22}>15 LEI</Box>
                 </Grid>
                 <Grid container item xs={12} xl={10} justifyContent = 'space-around' >
@@ -64,10 +65,10 @@ const RideCard = (props) =>{
                 <Grid container item xs={10} justifyContent = 'center'>
                     {
                         props.status ? (<GreenCaroButton variant='contained' onClick={handleBtn} size='medium' fullWidth>
-                        PREDARE
+                       {t('DeliverButton')}
                     </GreenCaroButton>) : 
                     ( <Box width='100%' textAlign='center' fontSize={16} color="#9C9C9C">
-                    <h4>Respins cu motivul:</h4>
+                    <h4> {t('Reason')}</h4>
                     <p>Nu mai plec</p>
                     </Box>
                     )
@@ -76,7 +77,7 @@ const RideCard = (props) =>{
                 </Grid>
                 <Grid container item xs={7}  spacing={1}justifyContent = 'center'>
                     <PrimaryButton size='medium' variant = 'contained' fullWidth>
-                        DETALII
+                    {t('DriverCardDetailsButton')}
                     </PrimaryButton>
                 </Grid>
             </Grid>
