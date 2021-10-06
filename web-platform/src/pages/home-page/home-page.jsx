@@ -4,17 +4,19 @@ import CarIcon from "../../assets/images/car.png";
 import { Container, Box, Grid, Link } from "@material-ui/core";
 import useStyles from "./home-pageStyles";
 import "./home-pageStyles.jsx";
+import { useTranslation } from 'react-i18next';
 
 const HomePage = () => {
   
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <Container className={classes.FirstSection}>
       <Grid container className={classes.BgImg} justifyContent='center' >
         <Grid container item xs={10} justifyContent='center'>
             <Box mt='6%' fontSize={50} fontWeight={700} color='white' textAlign='center' justifyContent='center'>
-              FUTURE DELIVERY
+              {t('title')}
             </Box>
           </Grid>
         <Grid container item xs={5} justifyContent='space-around' >
