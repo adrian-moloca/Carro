@@ -4,9 +4,9 @@ import CarroTextField from "../../../components/textField/CarroTextField";
 import CarroDatePicker from "../../../components/datePicker/CarroDatePicker";
 import CarroAutocomplete from "../../../components/autocomplete/CarroAutocomplete";
 import { Country, City }  from 'country-state-city';
-
+import { useTranslation } from 'react-i18next';
 const StepOne = (props) =>{
-
+    const { t } = useTranslation();
     const [departureDate, setDepartureDate] = useState(new Date());
     const [departureCountry, setDepartureCountry] = useState('');
     const [destinationCountry, setDestinationCountry] = useState('');
@@ -30,22 +30,22 @@ const StepOne = (props) =>{
         <Box display='flex' justifyContent='center' mt='5%'>
             <Grid container xs={12} spacing={3} >
                 <Grid container item xs={6} justifyContent="center">
-                            <CarroAutocomplete value={departureCountry} options={getCountries()}  label="Tara de plecare" onChange={(e)=>setDepartureCountry(e.target.textContent)}/>
+                            <CarroAutocomplete value={departureCountry} options={getCountries()}  label={t('SearchRideDepartureCountry')} onChange={(e)=>setDepartureCountry(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
-                            <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label="Oras de plecare" onChange={(e)=>setDepartureCity(e.target.textContent)}/>
+                            <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label={t('SearchRideDepartureCity')} onChange={(e)=>setDepartureCity(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
-                            <CarroAutocomplete value={destinationCountry} options={getCountries()} label="Tara destinatie" onChange={(e)=>setDestinationCountry(e.target.textContent)}/>
+                            <CarroAutocomplete value={destinationCountry} options={getCountries()} label={t('SearchRideDestinationCountry')} onChange={(e)=>setDestinationCountry(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
-                            <CarroAutocomplete value = {destinationCity} options={getCities(destinationCountry)} label="Oras destinatie" onChange={(e)=>setDestinationCity(e.target.textContent)}/>
+                            <CarroAutocomplete value = {destinationCity} options={getCities(destinationCountry)} label={t('SearchRideDestinationCity')} onChange={(e)=>setDestinationCity(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
-                            <CarroTextField value = {pickUpAddress} onChange={(e)=>setPickUpAddress(e.target.value)} variant ='outlined' label='Adresa de preluare' fullWidth/>
+                            <CarroTextField value = {pickUpAddress} onChange={(e)=>setPickUpAddress(e.target.value)} variant ='outlined' label={t('PickupAddress')} fullWidth/>
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
-                            <CarroDatePicker label='Data de plecare' format='dd/MM/yyyy'
+                            <CarroDatePicker label={t('PickupDate')} format='dd/MM/yyyy'
                                         dateValue={departureDate} handleDateSelect={(date)=>setDepartureDate(date)}/>
                 </Grid>
             </Grid>

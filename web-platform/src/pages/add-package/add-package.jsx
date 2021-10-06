@@ -9,6 +9,7 @@ import StepTwo from './step2/step2';
 import StepThree from './step3/step3';
 import StepFour from './step4/step4';
 import { withStyles } from '@material-ui/styles';
+import { useTranslation } from 'react-i18next';
 
 const StepLabelPersonalized = withStyles({
       root:{
@@ -27,7 +28,7 @@ const StepLabelPersonalized = withStyles({
 })(StepLabel);
 
 const AddPackage = () => {
-
+  const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = ()=>{
@@ -66,7 +67,7 @@ const AddPackage = () => {
 
   return (
     <Container className={'Primary-container-style'}>
-      <Box display='flex' justifyContent='center' fontSize={22} fontWeight={400}>Adauga pachet</Box>
+      <Box display='flex' justifyContent='center' fontSize={22} fontWeight={400}>{t('AddPackageTitle')}</Box>
       <Stepper activeStep={activeStep}>
           {steps.map((label) => (
               <Step key={label}>
@@ -81,10 +82,10 @@ const AddPackage = () => {
                 <Box mt={5} mb={2} display ='flex' justifyContent='center'>
                   <Grid container xs={12} spacing={7}>
                     <Grid container item xs  justifyContent='center'>
-                      <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>INAPOI</SecondaryButton>
+                      <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton>
                     </Grid>
                     <Grid container item xs  justifyContent='center'>
-                      <PrimaryButton endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>FINALIZEAZA</PrimaryButton>
+                      <PrimaryButton endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Finish')}</PrimaryButton>
                     </Grid>
                   </Grid>
                 </Box>
@@ -96,12 +97,12 @@ const AddPackage = () => {
                   <Grid container xs={12} spacing={7}>
                     <Grid container item xs  justifyContent='center'>
                     {activeStep === 0 ? 
-                      <SecondaryButton disabled startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>INAPOI</SecondaryButton> :
-                      <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>INAPOI</SecondaryButton> }
+                      <SecondaryButton disabled startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton> :
+                      <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton> }
                     </Grid>
                     <Grid container item xs  justifyContent='center'>
                       <PrimaryButton onClick={handleNext} endIcon={<ArrowForwardIos/>}
-                       variant='contained' fullWidth color="primary">URMATORUL PAS</PrimaryButton>
+                       variant='contained' fullWidth color="primary">{t('NextStep')}</PrimaryButton>
                     </Grid>
                   </Grid>
                 </Box>
