@@ -19,6 +19,13 @@
     "DriverCardDestinationAddress": "Destination address:",
     "DriverCardDepartureDate": "Departure Date:",
     "DriverCardEstimatedHours": "Estimated hours:",
-    "DriverCardBackButton": "Back"
-
+    "DriverCardBackButton": "Back",
+    "SearchPackageTitle": "Search package",
+    "Quantity": "Quantity:",
+    "Sizing": " Package size (m x m): ",
+    "Weight": "Weight:",
+    "PickupDate": "Pickup date:",
+    "Price": "Price",
+    "DeliverButton": "Deliver",
+    "Reason": "Declined for reason:"
 }

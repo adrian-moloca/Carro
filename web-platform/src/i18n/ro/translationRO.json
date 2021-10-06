@@ -19,5 +19,17 @@
     "DriverCardDestinationAddress": "Adresa de destinatie:",
     "DriverCardDepartureDate": "Data plecarii:",
     "DriverCardEstimatedHours": "Numar estimat de ore:",
-    "DriverCardBackButton": "Inapoi"
+    "DriverCardBackButton": "Inapoi",
+    "SearchPackageTitle": "Cauta Pachet",
+    "Quantity": "Cantitate:",
+    "Sizing": "Dimensiuni (m x m):",
+    "Weight": "Greutate:",
+    "PickupDate": "Data ridicare:",
+    "PickupAddress": "Adresa ridicare:",
+    "Price": "Pret",
+    "DeliverButton": "Livreaza",
+    "Reason": "Respins cu motivul:"
+
+
+
 }
