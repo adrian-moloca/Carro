@@ -86,6 +86,7 @@ const Routes = () => {
                                 <Route path="/add-transport" exact component={AddTransport}/>  {/* checked */}
                                 <Route path="/courier-profile" exact component={CourierProfile}/>
                                 <Route path="/admin-panel" exact component={adminPanel}/>
+        
                                 <Route component={HomePage} />
                             </Switch>
                         </div>

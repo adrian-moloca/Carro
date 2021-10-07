@@ -11,9 +11,10 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import PhoneTextField from "../../components/telephoneNumberField/PhoneTextField";
 import useStyles from "./registerStyles";
 import "../../App.css";
+import { useTranslation } from "react-i18next";
 
 const Register = () => {
-
+  const { t } = useTranslation();
   const classes = useStyles();
 
   const [checked, setChecked] = React.useState(true);
@@ -28,25 +29,25 @@ const Register = () => {
     <Container className={"Primary-container-style"}>
       <Grid container xs={12} display="flex" justifyContent="center">
         <Box mt={3} mb={2} fontWeight={400} fontSize={21} textAlign={"center"}>
-          Inregistrare
+        {t("Register")}
         </Box>
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="1%">
         <Grid container xs={8} spacing={3} display="flex" justifyContent="center">
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant="outlined" label="Nume" fullWidth />
+            <CarroTextField variant="outlined" label={t("LastName")} fullWidth />
           </Grid>
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant="outlined" label="Prenume" fullWidth />
+            <CarroTextField variant="outlined" label={t("FirstName")} fullWidth />
           </Grid>
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant="outlined" label="Adresa de preluare" fullWidth/>
+            <CarroTextField variant="outlined" label={t("PickupAddress")} fullWidth/>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <CarroDatePicker label="Data de nastere" InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}}/>
+            <CarroDatePicker label={t("Birthday")} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}}/>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <CarroTextField variant="outlined" label="Adresa de email" fullWidth/>
+            <CarroTextField variant="outlined" label={t("Mail")} fullWidth/>
           </Grid>
           <Grid item xs={12} sm={6}>
             <PhoneTextField 
@@ -57,10 +58,10 @@ const Register = () => {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <CarroTextField variant="outlined" label="Password" type="password" fullWidth/>
+            <CarroTextField variant="outlined" label={t("Password")} type="password" fullWidth/>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <CarroTextField variant="outlined" label="Confirm Password" type="password" fullWidth/>
+            <CarroTextField variant="outlined" label={t("ConfirmPassword")} type="password" fullWidth/>
           </Grid>
         </Grid>
       </Box>
@@ -70,7 +71,7 @@ const Register = () => {
           <FormControlLabel
             classes={{ label: classes.label }}
             control={<Checkbox checked={state.checkedA} onChange={handleChange} name="checkedA" color="default"/>}
-            label="TERMENI SI CONDITII"
+            label={t("TermsAndConditions")}
           />
         </FormGroup>
       </Grid>
@@ -79,7 +80,7 @@ const Register = () => {
       <Grid container item xs={8}>
         <PrimaryButton fullWidth variant="contained" endIcon={<PersonAddIcon />}>
           <Link href="/register/phone-number-verification" underline= 'none' color= 'inherit'>
-            Inregistrare
+          {t("Register")}
           </Link>
         </PrimaryButton>
       </Grid>
@@ -88,7 +89,7 @@ const Register = () => {
       <Grid xs={8} container direction="row" justifyContent="center" alignItems="center">
         <StepConnector />
         <Box fontWeight={400} fontSize={16} textAlign={"center"}>
-          INREGISTRARE PRIN
+        {t("RegisterThrough")}
         </Box>
         <StepConnector />
       </Grid>
