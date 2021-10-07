@@ -167,7 +167,7 @@ const DriverCard =(props)=>{
                             <Box fontSize='15px' fontWeight='500'>{t('DriverCardDepartureAddress')} {props.departureAddress}</Box>
                         </Grid>
                         <Grid container item xs={12} justifyContent='left'>
-                            <Box fontSize='15px' fontWeight='500'>{t('DriverCardDeparture')} {props.plecare}</Box>
+                            <Box fontSize='15px' fontWeight='500'>{t('DriverCardDestination')} {props.destinatie}</Box>
                         </Grid>
                         <Grid container item xs={12} justifyContent='left'>
                             <Box fontSize='15px' fontWeight='500'>{t('DriverCardDestinationAddress')}  {props.destinationAddress}</Box>
