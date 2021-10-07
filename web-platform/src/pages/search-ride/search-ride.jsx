@@ -143,9 +143,9 @@ const SearchRide = () => {
         </Grid>
       </Box>
       <Grid container xs={12}>
-            <Box marginTop='2%'>
-              <Drivers/>
-            </Box>
+        <Box marginTop='2%'>
+          <Drivers/>
+        </Box>
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">
         <PaginationSBD />
