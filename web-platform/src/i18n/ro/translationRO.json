@@ -63,7 +63,15 @@
     "Password": "Parola",
     "ConfirmPassword": "Confirma parola",
     "TermsAndConditions": "Termeni si conditii",
-    "RegisterThrough": "Inregistrare prin"
+    "RegisterThrough": "Inregistrare prin",
+    "ConfirmPhoneNumber": "Confirmare numar de telefon",
+    "PhoneSMS": "Introdu codul primit prin SMS",
+    "SmsReceived": "SMS primit",
+    "ChoosePlan": "Alege plan",
+    "ValidationTimeCode": "Time de validare",
+    "ResendCode": "Retrimitere cod",
+    "Cancel": "Anuleaza",
+    "Pay": "Plateste"
 
 
 
