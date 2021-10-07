@@ -5,7 +5,7 @@ import CarroRadio from "../../../components/radio/CarroRadio";
 import CarroCheckbox from "../../../components/checkbox/CarroCheckbox";
 import AddCard from "../../../components/add-card/add-card";
 import CardSelected from "../../../components/card-selected/card-selected";
-
+import { useTranslation } from "react-i18next";
 const RadioGroupPersonalized = withStyles({
     root:{
           width:'60%',
@@ -15,7 +15,7 @@ const RadioGroupPersonalized = withStyles({
   })(RadioGroup);
 
 const StepFour = () =>{
-
+  const { t } = useTranslation();
     const [cardNumber, setCardNumber] = useState(null);
 
     const[expDate, setExpDate] = useState(null);
@@ -62,13 +62,13 @@ const StepFour = () =>{
         <Box display='flex' justifyContent='center' mt='3%'>
               <Grid container xs={12} spacing={3} justifyContent='center'>
                 <Grid container item xs={12} justifyContent="center">
-                  <Box fontWeight={500} fontSize={22}>Modalitati de plata</Box>
+                  <Box fontWeight={500} fontSize={22}>{t("PaymentMethod")}</Box>
                 </Grid>
                 <Grid container item xs={12} justifyContent="center">
                     <RadioGroupPersonalized row value = {payment} onChange={handlePayment} >                   
-                        <FormControlLabel value = 'cardOnline' control={<CarroRadio/>} label='Card online'/>
-                        <FormControlLabel value = 'ordinDePlata' control={<CarroRadio/>} label='Ordin de plata'/>
-                        <FormControlLabel value = 'ramburs' control={<CarroRadio/>} label='Ramburs'/>
+                        <FormControlLabel value = 'cardOnline' control={<CarroRadio/>} label={t("Card")}/>
+                        <FormControlLabel value = 'ordinDePlata' control={<CarroRadio/>} label={t("PaymentOrder")}/>
+                        <FormControlLabel value = 'ramburs' control={<CarroRadio/>} label={t("CashOnDelivery")}/>
                     </RadioGroupPersonalized>
                 </Grid>
                 {payment === 'cardOnline' ? (
@@ -84,7 +84,7 @@ const StepFour = () =>{
                           completeNameSet={(e)=>handleSetCompleteName(e)} cvv={CVV} cvvSet={(e)=>handleSetCVV(e)}
                         />
                         <Grid container item xs={12} justifyContent='flex-end'>
-                            <FormControlLabel onChange = {handleSaveData} control={<CarroCheckbox/>} label='Salveaza Datele'/>
+                            <FormControlLabel onChange = {handleSaveData} control={<CarroCheckbox/>} label={t("SaveData")}/>
                         </Grid>
                       </Fragment>)
                 ) : null}

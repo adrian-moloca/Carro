@@ -3,13 +3,14 @@ import { Box, Grid, Button} from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import Package from './package';
 import SecondaryButton from "../../../components/buttons/secondaryButton/secondaryButton";
+import { useTranslation } from 'react-i18next';
 
 function renderPackages () {
     return (<Package/>);
 };
 
 const StepThree = (props) =>{
-
+    const { t } = useTranslation();
     const[numberOfPackages, setNumberOfPackages] = useState(1);
 
     const[packages, setPackages] = useState([1,]);
@@ -17,7 +18,7 @@ const StepThree = (props) =>{
     const errorMessage =()=> {
         return(
             <Box display='flex' justifyContent='center' fontSize={22} fontWeight={400}>
-                A aparut o problema! Va rugam sa reincarcati pagina.
+               {t('ErrorMessage')}
             </Box>
         );
     }
@@ -51,9 +52,9 @@ const StepThree = (props) =>{
                   <Box mt='5%' display='flex' flexDirection ='column' alignItems='center' fontSize={18} fontWeight={400}>
                       {pack !==1 ? ( 
                       <Box display='inline-flex' flexDirection='row' justifyContent='space-between' mb={3} width='80%'>
-                            Pachet suplimentar
+                            {t('AdditionalPackage')}
                           <Box display='flex' width='15%' justifyContent='flex-end'>
-                              <SecondaryButton onClick={()=>deletePackage(index)} size='small' variant='outlined' fullWidth>STERGE</SecondaryButton>
+                              <SecondaryButton onClick={()=>deletePackage(index)} size='small' variant='outlined' fullWidth>{t('DeleteButton')}</SecondaryButton>
                             </Box>
                       </Box> ) : null}  
                     {renderPackages()}
@@ -63,7 +64,7 @@ const StepThree = (props) =>{
                         </Fragment>)}
           <Grid container xs={12} justifyContent='flex-end'>
                <Box mt={3}>
-                   <Button startIcon = {<Add/>} variant='default' className='Primary-color' onClick={increaseNumberOfpackages}>Add package</Button>
+                   <Button startIcon = {<Add/>} variant='default' className='Primary-color' onClick={increaseNumberOfpackages}>{t('AddPackageButton')}</Button>
                 </Box>
           </Grid>
       </Box>
