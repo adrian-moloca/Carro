@@ -23,6 +23,7 @@
     "SearchPackageTitle": "Cauta Pachet",
     "Quantity": "Cantitate:",
     "Sizing": "Dimensiuni (m x m):",
+    "PackageSize": "Dimensiunea pachetului",
     "Weight": "Greutate:",
     "PickupDate": "Data ridicare:",
     "PickupAddress": "Adresa ridicare:",
@@ -33,7 +34,29 @@
     "Finish": "Finalizeaza",
     "NextStep": "Pasul Urmator",
     "PhoneNumber": "Numar de telefon",
-    "ReceiverNume": "Nume destinatar"
+    "PackageNumbers": "Numar de pachete",
+    "ReceiverNume": "Nume destinatar",
+    "ErrorMessage": "   A aparut o problema! Va rugam sa reincarcati pagina",
+    "DeleteButton": "Sterge",
+    "AddPackageButton": "Adauga pachet",
+    "AdditionalPackage": "Pachet suplimentar",
+    "Small": "Mic",
+    "Medium": "Mediu",
+    "Big": "Mare",
+    "SmallDescription": "Scurta descriere",
+    "Description": "Descriere",
+    "Inflammable": "Inflamabil",
+    "Fragile": "Fragil",
+    "Perishable": "Perisabil",
+    "PaymentMethod": "Modalitati de plata",
+    "Card": "Card",
+    "PaymentOrder": "Ordin de plata",
+    "CashOnDelivery": "Ramburs",
+    "SaveData": "Salveaza datele",
+    "AddCard": "Adauga card",
+    "CardNumber": "Numar card",
+    "LastDate": "Data expirare",
+    "CardName": "Nume"
 
 
 
