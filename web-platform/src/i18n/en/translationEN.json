@@ -59,5 +59,14 @@
     "AddCard": "Add card",
     "CardNumber": "Card number",
     "LastDate": "Expiration date",
-    "CardName": "Name"
+    "CardName": "Name",
+    "Register": "Register",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "Birthday": "Birthday date",
+    "Mail": "Email address",
+    "Password": "Password",
+    "ConfirmPassword": "Confirm password",
+    "TermsAndConditions": "Terms and conditions",
+    "RegisterThrough": "Register through"
 }
