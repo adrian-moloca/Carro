@@ -7,9 +7,10 @@ import PrimaryButton from "../../components/buttons/primaryButton/primaryButton"
 import CarroTextField from "../../components/textField/CarroTextField";
 import RideCard from "../../components/cards/RideCard/RideCard";
 import { Country, City } from "country-state-city";
+import { useTranslation } from 'react-i18next';
 
 const SearchPackages = () => {
-
+  const { t } = useTranslation();
   // state
   const [departureCountry, setDepartureCountry] = useState(null);
   const [destinationCountry, setDestinationCountry] = useState(null);
@@ -33,7 +34,7 @@ const SearchPackages = () => {
     <Container className={"Primary-container-style"}>
       <Grid item xs={12}>
         <Box mb={2} fontWeight={400} fontSize={21} textAlign={"center"}>
-          Cauta pachete
+        {t('SearchPackageTitle')}
         </Box>
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%">
@@ -41,7 +42,7 @@ const SearchPackages = () => {
           <Grid container item xs justifyContent="center">
             <CarroTextField
               variant="outlined"
-              label="Tara de plecare"
+              label= {t('SearchRideDepartureCountry')}
               InputLabelProps={{
                 style: { fontSize: "17px", marginTop: "3px" },
               }}
@@ -69,7 +70,7 @@ const SearchPackages = () => {
               renderInput={(params) => (
                 <CarroTextField
                   {...params}
-                  label="Oras de plecare"
+                  label={t('SearchRideDepartureCity')}
                   InputLabelProps={{
                     style: { fontSize: "17px", marginTop: "3px" },
                   }}
@@ -88,7 +89,7 @@ const SearchPackages = () => {
           <Grid container item xs justifyContent="center">
             <CarroTextField
               variant="outlined"
-              label="Tara destinatie"
+              label={t('SearchRideDestinationCountry')}
               InputLabelProps={{
                 style: { fontSize: "17px", marginTop: "3px" },
               }}
@@ -116,7 +117,7 @@ const SearchPackages = () => {
               renderInput={(params) => (
                 <CarroTextField
                   {...params}
-                  label="Oras destinatie"
+                  label={t('SearchRideDestinationCity')}
                   InputLabelProps={{
                     style: { fontSize: "17px", marginTop: "3px" },
                   }}
@@ -138,7 +139,7 @@ const SearchPackages = () => {
         <Grid container item xs={2}>
           <PrimaryButton fullWidth variant="contained" endIcon={<FindInPageRoundedIcon />}>
             {" "}
-            CAUTA
+            {t('SearchRideButton')}
           </PrimaryButton>
         </Grid>
       </Box>

@@ -10,6 +10,7 @@ import PaginationSBD from '../../components/pagination/pagination';
 import DeleteModal from '../../components/modals/deleteModal/DeleteModal';
 import useStyles from './notificationsStyle.jsx';
 import RideCard from '../../components/cards/RideCard/RideCard'
+import NotificationsFieldsTransport from './notificationsFieldsTransport/NotificationsFieldsTransport'
 
 
 const status = [false, true, false]
@@ -22,76 +23,19 @@ const Notifications = () => {
     <Container className='Primary-container-style'>
       <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>Notificari</Box>
       <Box mb={1.5} borderRadius='10px' boxShadow={10} >
+
           <Accordion square='true' className={classes.AccordionBorderRadius}>
             <AccordionSummary id="transport-header">
-              <Grid container direction="column">
-                <Grid 
-                  container 
-                  direction="row">
-                  <Grid direction="row" container item xs={8} >
-                    <Box fontWeight= {600} fontStyle='italic' >
-                      Nume doreste sa iti transporte coletul!
-                    </Box>
-                  </Grid>
-                  <Grid container item xs={3} justifyContent='center'>
-                    <Box fontSize={7} className={'Green-carro'}>
-                      <Button variant="default">
-                        <Box fontSize={8} className={'Primary-color'}>
-                          Marcheaza ca citit
-                        </Box>
-                      </Button>
-                    </Box>
-                  </Grid>
-                  <Grid container item xs={1} justifyContent='flex-end'>
-                    <DeleteModal/>
-                  </Grid>
-                </Grid>
-                <Grid 
-                  container 
-                  direction="row">
-                  <Grid direction="row" container item xs={4} >
-                    <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-                      Ruta: Bucuresti - Timisoara
-                    </Box>
-                  </Grid>
-                  <Grid direction="row" container item xs={4} >
-                    <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-                      Adresa de ridicare: Narnia
-                    </Box>
-                  </Grid>
-                  <Grid direction="row" container item xs={4} >
-                    <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-                      Pret: 15 RON
-                    </Box>
-                  </Grid>
-                </Grid>
-                <Grid 
-                  container 
-                  direction="row">
-                  <Grid direction="row" container item xs={4} >
-                    <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-                      Data: 30/08/2021 12:00
-                    </Box>
-                  </Grid>
-                  <Grid direction="row" container item xs={4} >
-                    <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-                      Adresa de livrare: Narnia
-                    </Box>
-                  </Grid>
-                  <Grid direction="row" container item xs={4} >
-                    <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-                      Telefon: 0742871643
-                    </Box>
-                  </Grid>
-                </Grid>
-                <Grid  container  direction="row" justifyContent="center">
-                  <Box mt={3}>
-                    <PrimaryButton variant="contained">
-                      Detalii
-                    </PrimaryButton>
-                  </Box>
-                </Grid>
-              </Grid>
+              <NotificationsFieldsTransport
+                  name='Marius popescu'
+                  plecare='Timisoara'
+                  destinatie='Bucuresti'
+                  tipTransport='Masina'
+                  dataPlecare='26/08/2021 02:00 AM'
+                  pickUpAdress="1 decembrie"
+                  dropOffAdress="2 mai"
+                  price="20 Ron"
+                />
             </AccordionSummary>
             <AccordionDetails className={classes.AccordionDetailsFlex}>
               <Box borderRadius='10px' boxShadow={3} display ='flex' flexDirection='column' mt = '-1%' mx='3%'px='2%'>
@@ -103,7 +47,7 @@ const Notifications = () => {
                             name='Marius popescu'
                             plecare='Timisoara'
                             destinatie='Bucuresti'
-                            telefon='0888888888'
+                            tipTransport='Masina'
                             dataPlecare='26/08/2021 02:00 AM'>
                       </DriverCardNotifications>
                     </Grid>
@@ -116,8 +60,6 @@ const Notifications = () => {
               </Box>
             </AccordionDetails>
           </Accordion>
-
-
 
           <Accordion square='true' className={classes.AccordionBorderRadius}>
             <AccordionSummary aria-controls="transport-content" id="transport-header">

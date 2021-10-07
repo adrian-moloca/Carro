@@ -4,6 +4,7 @@ import navRoFlag from '../../../assets/icon/navRoFlag.png';
 import navEnFlag from '../../../assets/icon/navEnFlag.png';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import useStyles from './languageButtonStyle';
+import i18n  from '../../../i18n/config';
 
 export default function BasicSelect() {
 
@@ -13,6 +14,7 @@ export default function BasicSelect() {
 
   const handleChange = (event) => {
     setLanguage(event.target.value);
+    i18n.changeLanguage(event.target.value);
   };
 
   return (
