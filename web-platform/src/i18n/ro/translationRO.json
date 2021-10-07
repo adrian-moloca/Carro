@@ -64,6 +64,7 @@
     "ConfirmPassword": "Confirma parola",
     "TermsAndConditions": "Termeni si conditii",
     "RegisterThrough": "Inregistrare prin",
+    "LoginThrough": "Autentificare prin",
     "ConfirmPhoneNumber": "Confirmare numar de telefon",
     "PhoneSMS": "Introdu codul primit prin SMS",
     "SmsReceived": "SMS primit",
@@ -71,7 +72,18 @@
     "ValidationTimeCode": "Time de validare",
     "ResendCode": "Retrimitere cod",
     "Cancel": "Anuleaza",
-    "Pay": "Plateste"
+    "Pay": "Plateste",
+    "Car": "Masina",
+    "Truck": "Camion",
+    "Minibus": "Microbus",
+    "PublicTransport": "Transport public",
+    "AddTransport": "Adauga transport",
+    "Home": "Acasa",
+    "Add": "Adauga",
+    "Login": "Autentificare",
+    "ForgotPassword": "Am uitat parola"
+
+
 
 
 

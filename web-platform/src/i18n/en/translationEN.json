@@ -69,6 +69,7 @@
     "ConfirmPassword": "Confirm password",
     "TermsAndConditions": "Terms and conditions",
     "RegisterThrough": "Register through",
+    "LoginThrough": "Login through",
     "ConfirmPhoneNumber": "Confirm phone number",
     "PhoneSMS": "Write the SMS code",
     "SmsReceived": "Received SMS",
@@ -76,6 +77,15 @@
     "ValidationTimeCode": "Validation Time",
     "ResendCode": "Resend code",
     "Cancel": "Cancel",
-    "Pay": "Pay"
+    "Pay": "Pay",
+    "Car": "Car",
+    "Truck": "Truck",
+    "Minibus": "Minibus",
+    "PublicTransport": "Public transport",
+    "AddTransport": "Add transport",
+    "Home": "Home",
+    "Add": "Add",
+    "Login": "Login",
+    "ForgotPassword": "Forgot password"
 
 }
