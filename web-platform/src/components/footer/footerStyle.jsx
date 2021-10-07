@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
   footerSeparationLine: {
     border: '1px solid #00B4D8;',
     margin: ' 0',
-    transform: 'rotate(-180deg);',
   },
 
   verticalpadding: {

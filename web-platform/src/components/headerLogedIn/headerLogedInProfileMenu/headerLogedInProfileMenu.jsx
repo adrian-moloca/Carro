@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import { Link, IconButton, MenuItem, Menu, Grid, Box } from "@material-ui/core";
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
 import LocalShippingOutlinedIcon from '@material-ui/icons/LocalShippingOutlined';
@@ -7,6 +7,8 @@ import CreditCardOutlinedIcon from '@material-ui/icons/CreditCardOutlined';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MessageIcon from '@material-ui/icons/Message';
+import SecurityIcon from '@material-ui/icons/Security';
+import useStyles from './headerLogedInProfileMenuStyle'
 
 const HeaderLogedInProfileMenu = () => {
 
@@ -16,6 +18,17 @@ const HeaderLogedInProfileMenu = () => {
   const handleProfileAccountMenuOpen = (event) => setAccountAnchorEl(event.currentTarget);
   const handleMenuAccountClose = () =>  setAccountAnchorEl(null);
 
+  const [userType, setUserType] = useState(null);
+  
+  const classes = useStyles();
+
+  const users = [
+    {
+      value: "userAdmin",
+      label: "Profil admin",
+    },
+  ]
+  
   const profile = () => {
     return (
       <Menu
@@ -111,6 +124,27 @@ const HeaderLogedInProfileMenu = () => {
               </Link>
             </MenuItem>
           </Grid>
+          {/* {userType === "userAdmin" ? ( */}
+            <Grid item xs={12}>
+              <Box className={classes.borderForAdmin} fullWidth></Box>
+            </Grid>
+          {/* ): null}  */}
+          {/* {userType === "userAdmin" ? ( */}
+            <Grid item xs={12}>
+              <MenuItem>
+                <Link href="/admin-panel" underline= 'none' color= 'inherit'>
+                  <IconButton color="inherit">
+                    <Box mr={2} className={"Primary-color"}>
+                      <SecurityIcon/>
+                    </Box>
+                    <Box>
+                      Panou admin
+                    </Box>
+                  </IconButton>
+                </Link>
+              </MenuItem>
+            </Grid>
+          {/* ): null}  */}
         </Grid> 
       </Menu>
     );
