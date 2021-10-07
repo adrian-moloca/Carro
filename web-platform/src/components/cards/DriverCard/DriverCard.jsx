@@ -29,6 +29,7 @@ const DriverCard =(props)=>{
     };
 
     const handleCloseBdByBtn=(event)=>{ setOpen(false)};
+    
 
     function getFrontCardBtns(driverSelected, requestStatus){
         if(driverSelected)
