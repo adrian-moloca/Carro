@@ -14,6 +14,7 @@ const SearchRide = () => {
   const [destinationCountry, setDestinationCountry] = useState(null);
   const [departureCity, setDepartureCity] = useState(null);
   const [destinationCity, setDestinationCity] = useState(null);
+  const [packageExists, setPackageExists] = useState(true);
   // handlers
   const handleChangeDepartureCountry = (event) => setDepartureCountry(event.target.value);
   const handleChangeDestinationCountry = (event) => setDestinationCountry(event.target.value);
@@ -142,7 +143,7 @@ const SearchRide = () => {
       </Box>
       <Grid container xs={12}>
             <Box marginTop='2%'>
-              <Drivers/>
+              <Drivers packageExists={packageExists}/>
             </Box>
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">

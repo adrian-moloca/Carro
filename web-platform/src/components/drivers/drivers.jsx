@@ -30,6 +30,7 @@ const drivers_a = [
         departureDate: '26/08/2021 02:00 AM',
         rate: 4.5,
         driverSelected: true,
+        requestStatus: 'sent',
     },
     {
         image: profilePhotoRight,
@@ -42,6 +43,9 @@ const drivers_a = [
         destinationAddress: 'Lorem Ipsium Street',
         departureDate: '26/08/2021 02:00 AM',
         rate: 4.5,
+        driverSelected: true,
+        requestStatus: 'accepted',
+        packageTaked: true,
     },
 ]
 
@@ -60,7 +64,11 @@ const Drivers = (props) =>{
                               departureAddress={driver.departureAddress}
                               destinationAddress={driver.destinationAddress}
                               estimatedTime={driver.estimatedTime}
-                              driverSelected= {driver.driverSelected}/>
+                              driverSelected= {driver.driverSelected}
+                              requestStatus= {driver.requestStatus}
+                              packageTaked= {driver.packageTaked}
+                              packageExists= {props.packageExists}
+                             />
             )}
         </Grid>
     );

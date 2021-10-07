@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Box, Grid} from '@material-ui/core';
 import fragile from '../../../../assets/images/fragile.png';
 import environmentdang from '../../../../assets/images/environmentdang.png';
@@ -9,6 +9,8 @@ import Drivers from '../../../../components/drivers/drivers';
 import useStyles from './package-details-style';
 
 const PackageDetails = (props)=>{
+
+    const[packageExists, setPackageExists] = useState(true);
 
     const classes = useStyles();
 
@@ -56,7 +58,7 @@ const PackageDetails = (props)=>{
         </Grid>
         <Box my='2%' fontSize={20}>Transporturi disponibile</Box>
         <Grid container  xs={12} spacing={0} justifyContent='center'>
-            <Drivers/>
+            <Drivers packageExists={packageExists}/>
         </Grid>
     </Box>  
     );
