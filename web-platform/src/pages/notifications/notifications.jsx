@@ -23,9 +23,19 @@ const Notifications = () => {
     <Container className='Primary-container-style'>
       <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>Notificari</Box>
       <Box mb={1.5} borderRadius='10px' boxShadow={10} >
+
           <Accordion square='true' className={classes.AccordionBorderRadius}>
             <AccordionSummary id="transport-header">
-              <NotificationsFieldsTransport/>
+              <NotificationsFieldsTransport
+                  name='Marius popescu'
+                  plecare='Timisoara'
+                  destinatie='Bucuresti'
+                  tipTransport='Masina'
+                  dataPlecare='26/08/2021 02:00 AM'
+                  pickUpAdress="1 decembrie"
+                  dropOffAdress="2 mai"
+                  price="20 Ron"
+                />
             </AccordionSummary>
             <AccordionDetails className={classes.AccordionDetailsFlex}>
               <Box borderRadius='10px' boxShadow={3} display ='flex' flexDirection='column' mt = '-1%' mx='3%'px='2%'>
@@ -50,6 +60,7 @@ const Notifications = () => {
               </Box>
             </AccordionDetails>
           </Accordion>
+
           <Accordion square='true' className={classes.AccordionBorderRadius}>
             <AccordionSummary aria-controls="transport-content" id="transport-header">
               <Grid  container  direction="column">

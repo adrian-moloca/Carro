@@ -60,6 +60,8 @@ const DriverCardNotifications =(props)=>{
                 destinatie= {props.destinatie}
                 tipTransport = {props.tipTransport}
                 dataPlecare = {props.dataPlecare}
+                pickUpAdress ={props.pickUpAdress}
+                dropOffAdress ={props.dropOffAdress}
             />
         </Box>
     );

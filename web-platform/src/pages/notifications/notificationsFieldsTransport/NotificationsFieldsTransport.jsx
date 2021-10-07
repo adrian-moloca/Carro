@@ -2,9 +2,9 @@ import React from 'react'
 import { Box, Grid, Button } from '@material-ui/core';
 import PrimaryButton from '../../../components/buttons/primaryButton/primaryButton';
 import DeleteModal from '../../../components/modals/deleteModal/DeleteModal';
+import BackdropSelectDriver from '../../../components/backdrop/driver-select/backDrop';
 
-
-const NotificationsFieldsTransport = () => {
+const NotificationsFieldsTransport = (props) => {
 
   return (
     <Grid container direction="column">
@@ -13,7 +13,7 @@ const NotificationsFieldsTransport = () => {
         direction="row">
         <Grid direction="row" container item xs={8} >
           <Box fontWeight= {600} fontStyle='italic' >
-            Nume doreste sa iti transporte coletul!
+          {props.name} doreste sa iti transporte coletul!
           </Box>
         </Grid>
         <Grid container item xs={3} justifyContent='center'>
@@ -34,17 +34,17 @@ const NotificationsFieldsTransport = () => {
         direction="row">
         <Grid direction="row" container item xs={4} >
           <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-            Ruta: Bucuresti - Timisoara
+            Ruta: {props.plecare} - {props.destinatie}
           </Box>
         </Grid>
         <Grid direction="row" container item xs={4} >
           <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-            Adresa de ridicare: Narnia
+            Adresa de ridicare: {props.pickUpAdress}
           </Box>
         </Grid>
         <Grid direction="row" container item xs={4} >
           <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-            Pret: 15 RON
+            Pret: {props.price}
           </Box>
         </Grid>
       </Grid>
@@ -53,17 +53,17 @@ const NotificationsFieldsTransport = () => {
         direction="row">
         <Grid direction="row" container item xs={4} >
           <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-            Data: 30/08/2021 12:00
+            Data: {props.dataPlecare}
           </Box>
         </Grid>
         <Grid direction="row" container item xs={4} >
           <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-            Adresa de livrare: Narnia
+            Adresa de livrare: {props.dropOffAdress}
           </Box>
         </Grid>
         <Grid direction="row" container item xs={4} >
           <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-            Telefon: 0742871643
+            Tip transport: {props.tipTransport}
           </Box>
         </Grid>
       </Grid>
@@ -74,6 +74,17 @@ const NotificationsFieldsTransport = () => {
           </PrimaryButton>
         </Box>
       </Grid>
+      <BackdropSelectDriver 
+        image={props.image}
+        name={props.name}
+        plecare={props.plecare}
+        destinatie= {props.destinatie}
+        tipTransport = {props.tipTransport}
+        dataPlecare = {props.dataPlecare}
+        pickUpAdress ={props.pickUpAdress}
+        dropOffAdress ={props.dropOffAdress}
+        price ={props.price}
+      />
     </Grid>
   );
 };
