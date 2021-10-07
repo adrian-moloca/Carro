@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Grid, InputAdornment, Select, MenuItem, FormControlLabel} from "@material-ui/core";
+import { Grid, InputAdornment, Select, MenuItem, FormControlLabel, Box} from "@material-ui/core";
 import { Fragment } from "react";
 import CarroTextField from "../../../components/textField/CarroTextField";
 import CarroCheckbox from "../../../components/checkbox/CarroCheckbox";
@@ -89,17 +89,32 @@ const Package = (props)=>{
                 <CarroTextField variant ='outlined' label='Greutatea pachetului' fullWidth
                     InputProps={{startAdornment: <InputAdornment position="start">Kg</InputAdornment>}}/>
             </Grid>
+            {packageSize==='small' ? (
+                <Grid  container xs={12} justifyContent="center">
+                    <Box fontSize={12} color={"#9C9C9C"}>{"Pachet mic - Latimea<=30cm, Lungimea<=30cm, Inaltimea<=30cm (ex. plicuri,cutii pantofi,cutii bijuterii, etc.)"}</Box>
+                </Grid>
+            ):(null)}
+            {packageSize==='medium' ? (
+                <Fragment>
+                    <Grid  container xs={12} justifyContent="center">
+                        <Box fontSize={12} color={"#9C9C9C"}>{"Pachet mediu - 30cm<Latimea<=100cm, 30cm<Lungimea<=100cm, 30cm<Inaltimea<=100cm (ex. bagaje de cala, cutii cu scaune, etc.)"}</Box>
+                    </Grid>
+                </Fragment>
+            ):(null)}
             {packageSize==='big' ? (
                 <Fragment>
-                <Grid  container item xs={4} justifyContent="center">
-                    <CarroTextField variant ='outlined' label='Latime' fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
-                </Grid>
-                <Grid  container item xs={4} justifyContent="center">
-                    <CarroTextField variant ='outlined' label='Inaltime' fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
-                </Grid>
-                <Grid  container item xs={4} justifyContent="center">
-                    <CarroTextField variant ='outlined' label='Lungime' fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
-                </Grid>
+                    <Grid  container item xs={4} justifyContent="center">
+                        <CarroTextField variant ='outlined' label='Latime' fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                    </Grid>
+                    <Grid  container item xs={4} justifyContent="center">
+                        <CarroTextField variant ='outlined' label='Inaltime' fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                    </Grid>
+                    <Grid  container item xs={4} justifyContent="center">
+                        <CarroTextField variant ='outlined' label='Lungime' fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                    </Grid>
+                    <Grid  container xs={12} justifyContent="center">
+                        <CarroTextField label='Pachet Mare - Depaseste un metru cub' fullWidth />
+                    </Grid>
                 </Fragment>
             ):(null)}
             <Grid container item xs={12} justifyContent='center'>
