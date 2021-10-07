@@ -68,5 +68,14 @@
     "Password": "Password",
     "ConfirmPassword": "Confirm password",
     "TermsAndConditions": "Terms and conditions",
-    "RegisterThrough": "Register through"
+    "RegisterThrough": "Register through",
+    "ConfirmPhoneNumber": "Confirm phone number",
+    "PhoneSMS": "Write the SMS code",
+    "SmsReceived": "Received SMS",
+    "ChoosePlan": "Choose plan",
+    "ValidationTimeCode": "Validation Time",
+    "ResendCode": "Resend code",
+    "Cancel": "Cancel",
+    "Pay": "Pay"
+
 }
