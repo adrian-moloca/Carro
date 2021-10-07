@@ -1,4 +1,40 @@
 {
-    "title": "Test RO",
-    "subtitle": "test RO 2"
+    "title": "VIITORUL LIVRARILOR",
+    "HomePageLeftButtonText": "Trimite pachet",
+    "HomePageRightButtonText": "Ofera transport",
+    "subtitle": "Cele mai cautate transporturi",
+    "SearchRideTitle": "Cauta transport",
+    "SearchRideDepartureCountry": "Tara de plecare",
+    "SearchRideDepartureCity": "Oras de plecare",
+    "SearchRideDestinationCountry": "Tara destinatie",
+    "SearchRideDestinationCity": "Oras destinatie",
+    "SearchRideButton": "Cauta",
+    "DriverCardDeparture": "Plecare:",
+    "DriverCardDestination": "Destinatie:",
+    "DriverCardType": "Tipul transportului:",
+    "DriverCardWaitingStatus": "In asteptare...",
+    "DriverCardSelectButton": "Selecteaza",
+    "DriverCardDetailsButton": "Detalii",
+    "DriverCardDepartureAddress": "Adresa de plecare:",
+    "DriverCardDestinationAddress": "Adresa de destinatie:",
+    "DriverCardDepartureDate": "Data plecarii:",
+    "DriverCardEstimatedHours": "Numar estimat de ore:",
+    "DriverCardBackButton": "Inapoi",
+    "SearchPackageTitle": "Cauta Pachet",
+    "Quantity": "Cantitate:",
+    "Sizing": "Dimensiuni (m x m):",
+    "Weight": "Greutate:",
+    "PickupDate": "Data ridicare:",
+    "PickupAddress": "Adresa ridicare:",
+    "Price": "Pret",
+    "DeliverButton": "Livreaza",
+    "Reason": "Respins cu motivul:",
+    "AddPackageTitle": "Adauga pachet",
+    "Finish": "Finalizeaza",
+    "NextStep": "Pasul Urmator",
+    "PhoneNumber": "Numar de telefon",
+    "ReceiverNume": "Nume destinatar"
+
+
+
 }

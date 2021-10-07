@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Box, Grid, } from "@material-ui/core";
 import CarroTextField from "../../../components/textField/CarroTextField";
 import PhoneTextField from "../../../components/telephoneNumberField/PhoneTextField";
-
+import { useTranslation } from 'react-i18next';
 const StepTwo = (props) =>{
-
+    const { t } = useTranslation();
     const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState(null);
     const [countryPhoneCode, setCountryPhoneCode] = useState(null);
 
@@ -12,7 +12,7 @@ const StepTwo = (props) =>{
         <Box display='flex' justifyContent='center' mt='5%'>
             <Grid container xs={12} spacing={3} >
                 <Grid container item xs={6} justifyContent="center">
-                    <CarroTextField variant ='outlined' label='Nume destinatar' fullWidth/>
+                    <CarroTextField variant ='outlined' label={t('ReceiverNume')}  fullWidth/>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
                     <PhoneTextField 
@@ -27,7 +27,7 @@ const StepTwo = (props) =>{
                         value = {props.destinataryAddress} 
                         onChange={props.handleChangeDestinataryAddress}
                         variant ='outlined' 
-                        label='Adresa destinatar' 
+                        label={t('DriverCardDestinationAddress')} 
                         fullWidth
                     />
                 </Grid>

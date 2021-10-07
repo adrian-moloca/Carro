@@ -4,11 +4,13 @@ import {Rating} from '@material-ui/lab';
 import ReactCardFlip from 'react-card-flip';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';
+import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import BackdropSelectDriver from '../../backdrop/driver-select/backDrop';
 import useStyles from './DriverCardStyle';
+import { useTranslation } from 'react-i18next';
 
 const DriverCard =(props)=>{
-
+    const { t } = useTranslation();
     const classes = useStyles();
 
     const[open, setOpen]=useState(false);
@@ -41,39 +43,39 @@ const DriverCard =(props)=>{
                             <Box fontSize='20px' fontWeight='500'>{props.name}</Box>
                         </Grid>
                         <Grid container item xs={12} justifyContent='left'>
-                            <Box marginTop='5%' fontSize='15px' fontWeight='500'>Plecare: {props.plecare}</Box>
+                            <Box marginTop='5%' fontSize='15px' fontWeight='500'> {t('DriverCardDeparture')} {props.plecare}</Box>
                         </Grid>
                         <Grid container item xs={12} justifyContent='left'>
-                            <Box fontSize='15px' fontWeight='500'>Destinatie: {props.destinatie}</Box>
+                            <Box fontSize='15px' fontWeight='500'>{t('DriverCardDestination')} {props.destinatie}</Box>
                         </Grid>
                         <Grid container item xs={12} justifyContent='left'>
-                            <Box marginBottom='5%' fontSize='15px' fontWeight='500'>Tipul transportului: {props.transportType}</Box>
+                            <Box marginBottom='5%' fontSize='15px' fontWeight='500'>{t('DriverCardType')} {props.transportType}</Box>
                         </Grid>
                         <Grid container item xs={8} justifyContent='space-around'>
                             <Rating value={props.driverRate} readOnly precision={0.5}/>
                         </Grid>
                         {props.driverSelected ? (
-                            <Box my='22%' className='Secondary-color' fontSize='18px' fontWeight='500'>
-                                In asteptare...
-                            </Box>
+                            <Grid container item xs={8} justifyContent='center'>
+                                <Box my='22%' className='Secondary-color' fontSize='18px' fontWeight='500'>
+                                {t('DriverCardWaitingStatus')}
+                                </Box>
+                            </Grid>
                         ) : (
-                            <Fragment>
-                                <Grid container item xs={8} justifyContent='center'>
-                                    <Box mt='26%' mb='2%' width={1}>
-                                        <GreenCaroButton variant='contained'  onClick={handleBtn} fullWidth>
-                                            SELECTEAZA
-                                        </GreenCaroButton>
-                                    </Box>
-                                </Grid>
-                                <Grid container item xs={8} justifyContent='center'>
-                                    <Box mb='2%' width={1}>
-                                        <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
-                                            DETALII
-                                        </PrimaryButton>
-                                    </Box>
-                                </Grid>
-                            </Fragment>
+                            <Grid container item xs={8} justifyContent='center'>
+                                <Box mt='26%' mb='2%' width={1}>
+                                    <GreenCaroButton variant='contained'  onClick={handleBtn} fullWidth>
+                                    {t('DriverCardSelectButton')}
+                                    </GreenCaroButton>
+                                </Box>
+                            </Grid>
                         )}
+                        <Grid container item xs={8} justifyContent='center'>
+                            <Box mb='2%' width={1}>
+                                <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
+                                {t('DriverCardDetailsButton')}
+                                </PrimaryButton>
+                            </Box>
+                        </Grid>
                     </Grid>
                     
                 </Box>
@@ -81,44 +83,54 @@ const DriverCard =(props)=>{
                 <Box  display='flex' width='1' height='400px' p={1} borderRadius='10px' boxShadow={3}>
                     <Grid container xs={12} justifyContent='center'>
                         <Grid container item xs={12} justifyContent='left'>
-                            <Box fontSize='15px' fontWeight='500'>Plecare: {props.plecare}</Box>
+                            <Box fontSize='15px' fontWeight='500'>{t('DriverCardDeparture')} {props.plecare}</Box>
                         </Grid>
                         <Grid container item xs={12} justifyContent='left'>
-                            <Box fontSize='15px' fontWeight='500'>Adresa de plecare: {props.departureAddress}</Box>
+                            <Box fontSize='15px' fontWeight='500'>{t('DriverCardDepartureAddress')} {props.departureAddress}</Box>
                         </Grid>
                         <Grid container item xs={12} justifyContent='left'>
-                            <Box fontSize='15px' fontWeight='500'>Plecare: {props.plecare}</Box>
+                            <Box fontSize='15px' fontWeight='500'>{t('DriverCardDeparture')} {props.plecare}</Box>
                         </Grid>
                         <Grid container item xs={12} justifyContent='left'>
-                            <Box fontSize='15px' fontWeight='500'>Adresa de destinatie: {props.destinationAddress}</Box>
+                            <Box fontSize='15px' fontWeight='500'>{t('DriverCardDestinationAddress')}  {props.destinationAddress}</Box>
                         </Grid>
                         <Grid container item xs={12} justifyContent='left'>
-                            <Box fontSize='15px' fontWeight='500'>Tipul transportului: {props.transportType}</Box>
+                            <Box fontSize='15px' fontWeight='500'>{t('DriverCardType')} {props.transportType}</Box>
                         </Grid>
                         <Grid container item xs={12} justifyContent='left'>
-                            <Box fontSize='15px' fontWeight='500'>Data plecarii: {props.departureDate}</Box>
+                            <Box fontSize='15px' fontWeight='500'>{t('DriverCardDepartureDate')}  {props.departureDate}</Box>
                         </Grid>
                         <Grid container item xs={12} justifyContent='left'>
-                            <Box fontSize='15px' fontWeight='500' paddingBottom='4%'>Numarul estimat de ore: {props.estimatedTime}</Box>
+                            <Box fontSize='15px' fontWeight='500' paddingBottom='4%'>{t('DriverCardEstimatedHours')} {props.estimatedTime}</Box>
                         </Grid>
-                        <Grid container item xs={12} justifyContent='center'>
-                            <Box my='2%'>
-                                <PrimaryButton variant='outlined' fullWidth>
-                                    CERE TRANSPORT - CEVA MEDIU
-                                </PrimaryButton>
-                            </Box>
-                        </Grid>
-                        <Grid container item xs={12} justifyContent='center'>
-                            <Box my='2%'>
-                                <PrimaryButton variant='outlined' fullWidth>
-                                    CERE TRANSPORT - CEVA MEDIU
-                                </PrimaryButton>
-                            </Box>
-                        </Grid>
+                        {props.driverSelected ? (
+                            <Grid container item xs={8} justifyContent='center'>
+                                <Box mt='59%' width={1}>
+                                    <SecondaryButton variant='contained' fullWidth>REFUZA CU MOTIV</SecondaryButton>
+                                </Box>
+                            </Grid>
+                        ) : (
+                            <Fragment>
+                                <Grid container item xs={8} justifyContent='center'>
+                                    <Box my='2%'>
+                                        <PrimaryButton variant='outlined' fullWidth>
+                                            CERE TRANSPORT - CEVA MEDIU
+                                        </PrimaryButton>
+                                    </Box>
+                                </Grid>
+                                <Grid container item xs={8} justifyContent='center'>
+                                    <Box my='2%'>
+                                        <PrimaryButton variant='outlined' fullWidth>
+                                            CERE TRANSPORT - CEVA MEDIU
+                                        </PrimaryButton>
+                                    </Box>
+                                </Grid>
+                            </Fragment>
+                        )}
                         <Grid container item xs={8} justifyContent='center'>
-                            <Box mt='10%' mb='2%' width={1}>
+                            <Box mt='8%' mb='2%' width={1}>
                                 <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
-                                    INAPOI
+                                {t('DriverCardBackButton')}
                                 </PrimaryButton>
                             </Box>
                         </Grid>
