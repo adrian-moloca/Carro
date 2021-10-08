@@ -40,8 +40,6 @@
     "DeleteButton": "Sterge",
     "AddPackageButton": "Adauga pachet",
     "AdditionalPackage": "Pachet suplimentar",
-    "Weight": "Width",
-
     "Width": "Latime",
     "Height": "Inaltime",
     "Length": "Lungime",
@@ -100,7 +98,9 @@
     "YourPackage": "Pachetul dumneavoastra cu ruta",
     "PackageAddInDate": "adaugat in",
     "LocationPlace": "se afla in: ",
-    "MyPackages": "Pachetele mele"
+    "MyPackages": "Pachetele mele",
+    "NoPayment": " Nu aveti nici o metoda de plata adaugata!",
+    "AddPayment": "Adauga metoda de plata"
 
 
 
