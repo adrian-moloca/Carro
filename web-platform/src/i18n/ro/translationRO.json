@@ -16,7 +16,7 @@
     "DriverCardSelectButton": "Selecteaza",
     "DriverCardDetailsButton": "Detalii",
     "DriverCardDepartureAddress": "Adresa de plecare:",
-    "DriverCardDestinationAddress": "Adresa de destinatie:",
+    "DriverCardDestinationAddress": "Adresa destinatie:",
     "DriverCardDepartureDate": "Data plecarii:",
     "DriverCardEstimatedHours": "Numar estimat de ore:",
     "DriverCardBackButton": "Inapoi",
@@ -40,6 +40,11 @@
     "DeleteButton": "Sterge",
     "AddPackageButton": "Adauga pachet",
     "AdditionalPackage": "Pachet suplimentar",
+    "Weight": "Width",
+
+    "Width": "Latime",
+    "Height": "Inaltime",
+    "Length": "Lungime",
     "Small": "Mic",
     "Medium": "Mediu",
     "Big": "Mare",
@@ -81,7 +86,21 @@
     "Home": "Acasa",
     "Add": "Adauga",
     "Login": "Autentificare",
-    "ForgotPassword": "Am uitat parola"
+    "ForgotPassword": "Am uitat parola",
+    "Open": "Deschis",
+    "PackageDetails": "Detalii pachet",
+    "PackageType": "Tipul coletului:",
+    "AvailableTransports": "Transporturi disponibile",
+    "EditButton": "Editeaza",
+    "CloseButton": "Inchide",
+    "SaveButton": "Salveaza",
+    "TrackPackage": "Urmareste coletul",
+    "ContactCourier": "Va rugam sa va contactati curierul.",
+    "NoPackageInfo": "Nu exista informatii despre locatia coletului dumneavoastra.",
+    "YourPackage": "Pachetul dumneavoastra cu ruta",
+    "PackageAddInDate": "adaugat in",
+    "LocationPlace": "se afla in: ",
+    "MyPackages": "Pachetele mele"
 
 
 

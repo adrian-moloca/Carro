@@ -7,42 +7,45 @@ import CarroDatePicker from '../../../datePicker/CarroDatePicker';
 import PhoneTextField from '../../../telephoneNumberField/PhoneTextField';
 import { FormControlLabel } from '@material-ui/core';
 import { Country, City }  from 'country-state-city';
-
-const packageSizes = [
-    {
-      value: 'small',
-      label: 'Mic',
-    },
-    {
-      value: 'medium',
-      label: 'Mediu',
-    },
-    {
-      value: 'big',
-      label: 'Mare',
-    },
-];
-  
-const currencies = [
-    {
-        value: 'ron',
-        label: 'RON',
-    },
-    {
-        value: 'eur',
-        label: '€',
-    },
-    {
-        value: 'usd',
-        label: '$',
-    },
-    {
-        value: 'gbp',
-        label: '£',
-    },
-];
+import { useTranslation } from "react-i18next";
 
 const   FormPackage = (props) =>{
+    const { t } = useTranslation();
+
+    const packageSizes = [
+        {
+          value: 'small',
+          label: t("Small"),
+        },
+        {
+          value: 'medium',
+          label: t("Medium"),
+        },
+        {
+          value: 'big',
+          label: t("Big"),
+        },
+    ];
+      
+    const currencies = [
+        {
+            value: 'ron',
+            label: 'RON',
+        },
+        {
+            value: 'eur',
+            label: '€',
+        },
+        {
+            value: 'usd',
+            label: '$',
+        },
+        {
+            value: 'gbp',
+            label: '£',
+        },
+    ];
+
     const [departureDate, setDepartureDate] = useState(new Date());
     const [departureCountry, setDepartureCountry] = useState('');
     const [destinationCountry, setDestinationCountry] = useState('');
@@ -99,26 +102,26 @@ const   FormPackage = (props) =>{
         <Box display='flex' justifyContent='center' mt='5%'>
             <Grid container xs={12} spacing={3} >
                 <Grid container item xs={6} justifyContent="center">
-                            <CarroAutocomplete value={departureCountry} options={getCountries()}  label="Tara de plecare" onChange={(e)=>setDepartureCountry(e.target.textContent)}/>
+                            <CarroAutocomplete value={departureCountry} options={getCountries()}  label= {t("SearchRideDepartureCountry")} onChange={(e)=>setDepartureCountry(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
-                            <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label="Oras de plecare" onChange={(e)=>setDepartureCity(e.target.textContent)}/>
+                            <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label={t("SearchRideDepartureCity")} onChange={(e)=>setDepartureCity(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
-                            <CarroAutocomplete value={destinationCountry} options={getCountries()} label="Tara destinatie" onChange={(e)=>setDestinationCountry(e.target.textContent)}/>
+                            <CarroAutocomplete value={destinationCountry} options={getCountries()} label={t("SearchRideDestinationCountry")} onChange={(e)=>setDestinationCountry(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
-                            <CarroAutocomplete value = {destinationCity} options={getCities(destinationCountry)} label="Oras destinatie" onChange={(e)=>setDestinationCity(e.target.textContent)}/>
+                            <CarroAutocomplete value = {destinationCity} options={getCities(destinationCountry)} label={t("SearchRideDestinationCity")} onChange={(e)=>setDestinationCity(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
-                            <CarroTextField value = {pickUpAddress} onChange={(e)=>setPickUpAddress(e.target.value)} variant ='outlined' label='Adresa de preluare' fullWidth/>
+                            <CarroTextField value = {pickUpAddress} onChange={(e)=>setPickUpAddress(e.target.value)} variant ='outlined' label={t("DriverCardDepartureAddress")} fullWidth/>
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
-                            <CarroDatePicker label='Data de plecare' format='dd/MM/yyyy'
+                            <CarroDatePicker label={t("DriverCardDepartureDate")} format='dd/MM/yyyy'
                                         dateValue={departureDate} handleDateSelect={(date)=>setDepartureDate(date)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
-                    <CarroTextField variant ='outlined' label='Nume destinatar' fullWidth/>
+                    <CarroTextField variant ='outlined' label={t("ReceiverNume")} fullWidth/>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
                     <PhoneTextField 
@@ -133,12 +136,12 @@ const   FormPackage = (props) =>{
                         value = {props.destinataryAddress} 
                         onChange={props.handleChangeDestinataryAddress}
                         variant ='outlined' 
-                        label='Adresa destinatar' 
+                        label={t("DriverCardDestinationAddress")}
                         fullWidth
                     />
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label='Marimea pachetului' fullWidth select value={packageSize} onChange={handleSizeSelect}>
+                <CarroTextField variant ='outlined' label={t("Sizing")} fullWidth select value={packageSize} onChange={handleSizeSelect}>
                     {packageSizes.map((option)=>(
                         <MenuItem key={option.value} value={option.value}>
                         {option.label}
@@ -147,27 +150,27 @@ const   FormPackage = (props) =>{
                 </CarroTextField>
             </Grid>
             <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label='Greutatea pachetului' fullWidth
+                <CarroTextField variant ='outlined' label={t("Weight")} fullWidth
                     InputProps={{startAdornment: <InputAdornment position="start">Kg</InputAdornment>}}/>
             </Grid>
             {packageSize==='big' ? (
                 <Fragment>
                 <Grid  container item xs={4} justifyContent="center">
-                    <CarroTextField variant ='outlined' label='Latime' fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                    <CarroTextField variant ='outlined' label={t("Width")}  fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
                 </Grid>
                 <Grid  container item xs={4} justifyContent="center">
-                    <CarroTextField variant ='outlined' label='Inaltime' fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                    <CarroTextField variant ='outlined' label={t("Height")}  fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
                 </Grid>
                 <Grid  container item xs={4} justifyContent="center">
-                    <CarroTextField variant ='outlined' label='Lungime' fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                    <CarroTextField variant ='outlined' label={t("Length")} fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
                 </Grid>
                 </Fragment>
             ):(null)}
             <Grid container item xs={12} justifyContent='center'>
-                <CarroTextField variant ='outlined' label='Scurta descriere' fullWidth/>
+                <CarroTextField variant ='outlined' label={t("SmallDescription")} fullWidth/>
             </Grid>
             <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label='Pret' fullWidth InputProps={{startAdornment: 
+                <CarroTextField variant ='outlined' label={t("Price")} fullWidth InputProps={{startAdornment: 
                     <InputAdornment position="start">
                         <Select value={currency} onChange={handleCurrencySelect}> {currencies.map((option)=>(
                             <MenuItem key={option.value} value={option.value}>
@@ -177,15 +180,15 @@ const   FormPackage = (props) =>{
                     </InputAdornment>}}/>
             </Grid>
             <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label='Numar pachete' fullWidth/>
+                <CarroTextField variant ='outlined' label={t("PackageNumbers")} fullWidth/>
             </Grid>
             <Grid container item xs={12} justifyContent='center' maxRows={5}>
-                <CarroTextField variant ='outlined' label='Descriere' multiline={4} rows={4} fullWidth/>
+                <CarroTextField variant ='outlined' label={t("Description")} multiline={4} rows={4} fullWidth/>
             </Grid>
             <Grid container item xs={12} justifyContent='space-between'>            
-                <FormControlLabel onChange = {handleInflamabilCheckboxClick} control={<CarroCheckbox/>} label='Inflamabil'/>
-                <FormControlLabel onChange = {handleFragilCheckboxClick} control={<CarroCheckbox/>} label='Fragil'/>
-                <FormControlLabel onChange = {handlePerisabilCheckboxClick} control={<CarroCheckbox/>} label='Perisabil'/>
+                <FormControlLabel onChange = {handleInflamabilCheckboxClick} control={<CarroCheckbox/>} label={t("Inflammable")}/>
+                <FormControlLabel onChange = {handleFragilCheckboxClick} control={<CarroCheckbox/>} label={t("Fragile")}/>
+                <FormControlLabel onChange = {handlePerisabilCheckboxClick} control={<CarroCheckbox/>} label={t("Perishable")}/>
                 <FormControlLabel onChange = {handleAnimalCheckboxClick} control={<CarroCheckbox/>} label='Animal'/>
             </Grid>
         </Grid>
