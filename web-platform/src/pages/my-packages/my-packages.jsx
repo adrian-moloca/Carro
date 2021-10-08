@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import { Container, Box } from '@material-ui/core';
 import Package from './package/package';
+import { useTranslation } from "react-i18next";
 
+
+const MyPackages = () => {
+  const { t } = useTranslation();
 const packages = [
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -15,7 +19,7 @@ const packages = [
     description:'-',
     price: '150 RON',
     name: 'Pachetul meu',
-    status: 'Deschis',
+    status: t("Open"),
   },
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -89,9 +93,6 @@ const packages = [
     status: 'Livrat',
   },
 ]
-
-const MyPackages = () => {
-
   const[packagesState, setPackagesState] = useState(packages)
 
   const deletePackage = (event, index) =>{
@@ -109,7 +110,7 @@ const MyPackages = () => {
   return (
 
         <Container className='Primary-container-style'>
-          <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>Pachetele mele</Box>
+          <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t("MyPackages")}</Box>
           {packagesState.map((packageinf, index)=>
                 <Package package={packageinf} packageIndex={index + 1} departureDate={packageinf.departureDate} departure={packageinf.departure} destination={packageinf.destination}
                          departureAddress={packageinf.departureAddress} destinationAddress={packageinf.destinationAddress} packageType={packageinf.packageType}
