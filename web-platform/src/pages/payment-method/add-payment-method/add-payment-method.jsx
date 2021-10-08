@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import { Box, Container, Grid } from '@material-ui/core';
 import AddCard from '../../../components/add-card/add-card';
 import { withStyles } from '@material-ui/styles';
-
+import { useTranslation } from "react-i18next";
 const GridCarro = withStyles({'spacing-xs-5':{margin: 0}})(Grid);
 
 const AddPaymentMethod = () =>{
-    
+    const { t } = useTranslation();
     // state
     const [cardNumber, setCardNumber] = useState(null);
     const [expDate, setExpDate] = useState(null);
@@ -23,7 +23,7 @@ const AddPaymentMethod = () =>{
             <GridCarro container xs={12} spacing={5} justifyContent='center' >
                 <Grid container item xs={12} justifyContent='center'>
                     <Box mb={3} fontSize={22} justifyContent='center' mt='3%'>
-                        Metoda de plata
+                    {t("PaymentMethod")}
                     </Box>
                 </Grid>
                 <AddCard 
