@@ -8,37 +8,40 @@ import CarroTextField from '../../components/textField/CarroTextField.jsx';
 import CarroCheckbox from '../../components/checkbox/CarroCheckbox.jsx';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton.jsx';
 import useStyles from './loginStyles';
-
+import { useTranslation } from "react-i18next";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 const Login = () => { 
 
   const classes = useStyles();
-
+  const { t } = useTranslation();
   return (
     <Container className={'Primary-container-style'}>
       <Box display= 'flex' flexDirection='column' justifyContent ='center' alignItems='center'>
         <Grid container xs={12}  spacing={3} justifyContent='center'>
           <Grid container item xs={12} justifyContent='center'> 
-              <Box mt='5%' fontWeight={400} fontSize={21} textAlign={'center'}>Autentificare</Box>
+              <Box mt='5%' fontWeight={400} fontSize={21} textAlign={'center'}>{t("Login")}</Box>
             </Grid>  
             <Grid container item xs={8} >
-              <CarroTextField required label='Email' variant='outlined' fullWidth/>
+              <CarroTextField required label={t("Mail")} variant='outlined' fullWidth/>
             </Grid>
             <Grid container item xs={8}>
-              <CarroTextField required label='Password' variant='outlined' fullWidth/>
-            </Grid>    
-            <Grid container item xs= {6} justifyContent='center'>
+              <CarroTextField required label={t("Password")} variant='outlined' fullWidth/>
+            </Grid>  
+            <Grid  container item xs={8} justifyContent='space-between'>  
+            <Box container  justifyContent='flex-start'>
               <FormControlLabel 
                 control={<CarroCheckbox color='default'/>}
-                label='Remind Me'/>
-            </Grid>
-            <Grid container item xs= {6} justifyContent='center'>
+                label={t("SaveData")}/>
+            </Box>
+            <Box container  justifyContent='flex-end'>
               <Link to='/login/forgot-password' style={{ textDecoration: 'none' }}>
-                <Button className={'Primary-color'}>Am uitat parola</Button>
+                <Button className={'Primary-color'}>{t("ForgotPassword")}</Button>
               </Link>
+            </Box>
             </Grid>
             <Grid container item xs={6} justifyContent='center'>  
-                <PrimaryButton size = 'large' variant='contained' fullWidth>
-                  AUTENTIFICARE
+                <PrimaryButton size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
+                {t("Login")}
                 </PrimaryButton>
             </Grid>
         </Grid>
@@ -49,7 +52,8 @@ const Login = () => {
             </Grid>
             <Grid container item xs={2} justifyContent='center'>
                 <Box textAlign='center'>
-                  Autentificare cu
+                
+                {t("LoginThrough")}
                 </Box>
             </Grid>
             <Grid container item xs={5} alignItems='center'>

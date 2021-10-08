@@ -6,11 +6,11 @@ import PrimaryButton from "../../../../components/buttons/primaryButton/primaryB
 import SecondaryButton from "../../../../components/buttons/secondaryButton/secondaryButton"
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
-
+import { useTranslation } from "react-i18next";
 const MyGrid = withStyles({'spacing-xs-3':{margin: 0}})(Grid);
 
 const PremiumPlanPayment = () => {
-
+  const { t } = useTranslation();
   const [savingCard, setSavingCard] = useState(false);
 
   const [cardNumber, setCardNumber] = useState(null);
@@ -57,16 +57,16 @@ const PremiumPlanPayment = () => {
           cvv={CVV} cvvSet={(e)=>handleSetCVV(e)}
         />
         <Grid container item xs={10} justifyContent='flex-end'>
-          <FormControlLabel onChange = {(e)=>handleSaveData(e)} control={<CarroCheckbox/>} label='Salveaza Datele'/>
+          <FormControlLabel onChange = {(e)=>handleSaveData(e)} control={<CarroCheckbox/>} label={t("SaveData")}/>
         </Grid>
         <Grid container item xs={4} justifyContent='center'>
           <Link to='/register/select-plan' style={{textDecoration: 'none', width:'100%'}}> 
-            <SecondaryButton variant="contained" fullWidth> ANULEAZA </SecondaryButton> 
+            <SecondaryButton variant="contained" fullWidth>{t("Cancel")} </SecondaryButton> 
           </Link>
         </Grid>
         <Grid container item xs={4} justifyContent='center'>
           <Link to='/payment-method' style={{textDecoration: 'none', width:'100%'}}>
-            <PrimaryButton variant="contained" fullWidth> PLATESTE</PrimaryButton>
+            <PrimaryButton variant="contained" fullWidth> {t("Pay")}</PrimaryButton>
           </Link>
         </Grid>
       </MyGrid>
