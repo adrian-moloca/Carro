@@ -100,6 +100,8 @@
     "YourPackage": "Your package with route",
     "PackageAddInDate": "added in",
     "LocationPlace": "is in: ",
-    "MyPackages": "My packages"
+    "MyPackages": "My packages",
+    "NoPayment": "You have no added payment method!",
+    "AddPayment": "Add payment method"
 
 }
