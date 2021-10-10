@@ -10,10 +10,10 @@ import {ReactComponent as fireIco} from '../../../assets/icon/fire.svg';
 import {ReactComponent as handboxIco} from '../../../assets/icon/handbox.svg';
 import {ReactComponent as animalprintsIco} from '../../../assets/icon/animalprints.svg';
 import greyLine from '../../../assets/images/greyLine.png';
-import useStyles from './RideCardStyle';
+import useStyles from './package-card-style';
 import { useTranslation } from 'react-i18next';
 
-const RideCard = (props) =>{
+const PackageCard = (props) =>{
 
     const classes = useStyles();
     const { t } = useTranslation();
@@ -36,24 +36,24 @@ const RideCard = (props) =>{
                     <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
                 </Grid>
                 <Grid container item xs={12} spacing={1}justifyContent = 'flex-start'>
-                    <Box px={1} fontSize={14}>{t('Quantity')} 1</Box>
-                    <Box px={1} fontSize={14}>{t('Sizing')} 0x0x0</Box>
-                    <Box px={1} fontSize={14}>{t('Weight')} 1Kg</Box>
+                    <Box px={1} fontSize={14}>{t('Quantity')} {props.packageQuantity}</Box>
+                    <Box px={1} fontSize={14}>{t('Sizing')} {props.packageDimensions}</Box>
+                    <Box px={1} fontSize={14}>{t('Weight')} {props.packageWeight}</Box>
                 </Grid>
                 <Grid container item xs={12} justifyContent = 'center'>
                     <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
                 </Grid>
                 <Grid container item xs={12} spacing={1}justifyContent = 'flex-start'>
-                    <Box px={1} fontSize={14}>{t('PickupDate')} 26/08/2021 04:30 AM</Box>   
-                    <Box px={1} fontSize={14}>{t('PickupAddress')} Lorem Ipsium Street</Box>
-                    <Box px={1} fontSize={14}>{t('DriverCardDestinationAddress')} Lorem Ipsium Street</Box>
+                    <Box px={1} fontSize={14}>{t('PickupDate')} {props.departureDate}</Box>   
+                    <Box px={1} fontSize={14}>{t('PickupAddress')} {props.departureAddress}</Box>
+                    <Box px={1} fontSize={14}>{t('DriverCardDestinationAddress')} {props.destinationAddress}</Box>
                 </Grid>
                 <Grid container item xs={12} justifyContent = 'center'>
                     <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
                 </Grid>
                 <Grid container item xs={12} justifyContent = 'center'>
                     <Box width='100%' textAlign='center' fontSize={16}>{t('Price')}</Box>  
-                    <Box width='100%' textAlign='center' fontSize={22}>15 LEI</Box>
+                    <Box width='100%' textAlign='center' fontSize={22}>{props.price}</Box>
                 </Grid>
                 <Grid container item xs={12} xl={10} justifyContent = 'space-around' >
                     <SvgIcon component={fragileIco} viewBox='0 0 512 512'/>
@@ -89,4 +89,4 @@ const RideCard = (props) =>{
     );
 };
 
-export default RideCard;
+export default PackageCard;

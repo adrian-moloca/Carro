@@ -9,7 +9,7 @@ import NotificationsAcordionFields from '../../components/cards/NotificationsAco
 import PaginationSBD from '../../components/pagination/pagination';
 import DeleteModal from '../../components/modals/deleteModal/DeleteModal';
 import useStyles from './notificationsStyle.jsx';
-import RideCard from '../../components/cards/RideCard/RideCard'
+import Packages from '../../components/packages/packages';
 import NotificationsFieldsTransport from './notificationsFieldsTransport/NotificationsFieldsTransport'
 
 
@@ -133,7 +133,7 @@ const Notifications = () => {
               </Grid>
             </AccordionSummary>
             <AccordionDetails className={classes.AccordionDetailsFlex}>
-              <RideCard/>
+              <Packages/>
               <Box  display ='flex' flexDirection='column' mt = '-1%' mx='3%'px='2%'>
                 
                 <Box my={2} display="flex" justifyContent="center" alignItems="center">
@@ -216,7 +216,7 @@ const Notifications = () => {
               </Grid>
             </AccordionSummary>
             <AccordionDetails className={classes.AccordionDetailsFlex}>
-              <RideCard status="true"/>
+              <Packages status="true"/>
               <Box  display ='flex' flexDirection='column' mt = '-1%' mx='3%'px='2%'>
                 
                 <Box my={2} display="flex" justifyContent="center" alignItems="center">
