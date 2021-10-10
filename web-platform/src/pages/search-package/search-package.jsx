@@ -5,7 +5,7 @@ import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
 import PaginationSBD from "../../components/pagination/pagination";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import CarroTextField from "../../components/textField/CarroTextField";
-import RideCard from "../../components/cards/RideCard/RideCard";
+import Packages from "../../components/packages/packages";
 import { Country, City } from "country-state-city";
 import { useTranslation } from 'react-i18next';
 
@@ -144,9 +144,7 @@ const SearchPackages = () => {
         </Grid>
       </Box>
       <Box display="flex" justifyContent="space-between" mt="3%">
-        <RideCard />
-        <RideCard />
-        <RideCard />
+        <Packages/>
       </Box>
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">
         <PaginationSBD /> 

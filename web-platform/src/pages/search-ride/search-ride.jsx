@@ -16,7 +16,7 @@ const SearchRide = () => {
   const [destinationCountry, setDestinationCountry] = useState(null);
   const [departureCity, setDepartureCity] = useState(null);
   const [destinationCity, setDestinationCity] = useState(null);
-  const [packageExists, setPackageExists] = useState(true);
+  const [packageExists, setPackageExists] = useState(false);
   // handlers
   const handleChangeDepartureCountry = (event) => setDepartureCountry(event.target.value);
   const handleChangeDestinationCountry = (event) => setDestinationCountry(event.target.value);

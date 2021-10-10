@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import { Box, Grid, Accordion, AccordionDetails, AccordionSummary, Typography, } from '@material-ui/core';
-import {ExpandMore, ArrowForward, Delete, Create} from '@material-ui/icons';
+import {ExpandMore, ArrowForward, Delete} from '@material-ui/icons';
 import PackageDetails from './package-details/package-details';
 import PartialEditPackage from './partial-edit-package/partial-edit-package';
 import EditOpenPackage from './edit-open-package/edit-open-package';

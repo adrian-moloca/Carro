@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
 import {Box, Grid} from '@material-ui/core';
 import {Rating} from '@material-ui/lab';
 import ReactCardFlip from 'react-card-flip';
@@ -119,10 +120,10 @@ const DriverCard =(props)=>{
             {
                 return(
                     <Grid container item xs={8} justifyContent='center'>
-                        <Box my='2%'>
-                            <PrimaryButton variant='outlined' fullWidth>
-                                ADAUGA PACHET
-                            </PrimaryButton>
+                        <Box mt='59%' width={1}>
+                            <Link to='/add-package' style={{textDecoration: 'none'}}>
+                                <PrimaryButton variant='outlined' fullWidth>ADAUGA PACHET</PrimaryButton>
+                            </Link>
                         </Box>
                     </Grid>
                 );
