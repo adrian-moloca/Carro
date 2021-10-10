@@ -7,46 +7,45 @@ import boxHands from '../../../../assets/images/boxHands.png';
 import animalPrints from '../../../../assets/images/animalPrints.png';
 import Drivers from '../../../../components/drivers/drivers';
 import useStyles from './package-details-style';
-
+import { useTranslation } from "react-i18next";
 const PackageDetails = (props)=>{
-
     const[packageExists, setPackageExists] = useState(true);
-
+    const { t } = useTranslation();
     const classes = useStyles();
 
     return(
     <Box borderRadius='10px' alignItems='center'  boxShadow={3} display ='flex' flexDirection='column' mx='3%' p='2%'>
-        <Box my='2%' fontSize={20}>Detalii pachet</Box>
+        <Box my='2%' fontSize={20}>{t("PackageDetails")}</Box>
         <Grid container  xs={12} spacing={0} justifyContent='center'>
             <Grid container item xs={6}>
-                <Box>Plecare: {props.departure}</Box>
+                <Box>{t("DriverCardDeparture")} {props.departure}</Box>
             </Grid>
             <Grid container item xs={6}>
-                <Box>Destinatie: {props.destination}</Box>
+                <Box>{t("DriverCardDestination")} {props.destination}</Box>
             </Grid>
             <Grid container item xs={6}>
-                <Box>Adresa de preluare: {props.departureAddress}</Box>
+                <Box>{t("PickupAddress")} {props.departureAddress}</Box>
             </Grid>
             <Grid container item xs={6}>
-                <Box>Adresa destinatie: {props.destinationAddress}</Box>
+                <Box>{t("DriverCardDestinationAddress")} {props.destinationAddress}</Box>
             </Grid>
             <Grid container item xs={6}>
-                <Box>Tip Colet: {props.packageType}</Box>
+                <Box>{t("PackageType")} {props.packageType}</Box>
             </Grid>
             <Grid container item xs={6}>
-                <Box>Dimensiuni: {props.dimensions}</Box>
+                <Box>{t("Sizing")} {props.dimensions}</Box>
             </Grid>
             <Grid container item xs={6}>
-                <Box>Greutate: {props.weight}</Box>
+                <Box>{t("Weight")} {props.weight}</Box>
             </Grid>
             <Grid container item xs={6}>
-                <Box>Descriere: {props.description}</Box>
+                <Box>{t("Description")} {props.description}</Box>
             </Grid>
             <Grid container item xs={6}>
-                <Box>Pret: {props.price}</Box>
+                <Box>{t("Price")} {props.price}</Box>
             </Grid>
             <Grid container item xs={6}>
-                <Box>Nume: {props.name}</Box>
+                <Box>{t("CardName")} {props.name}</Box>
             </Grid>
             <Grid container item xs={6} justifyContent='space-around'>
                 <img src={fragile} className={classes.advStyle} alt={""}/>
@@ -56,7 +55,7 @@ const PackageDetails = (props)=>{
                 <img src={animalPrints} className={classes.advStyle} alt={""}/>
             </Grid>
         </Grid>
-        <Box my='2%' fontSize={20}>Transporturi disponibile</Box>
+        <Box my='2%' fontSize={20}>{t("AvailableTransports")}</Box>
         <Grid container  xs={12} spacing={0} justifyContent='center'>
             <Drivers packageExists={packageExists}/>
         </Grid>

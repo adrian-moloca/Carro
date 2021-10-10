@@ -5,7 +5,7 @@ import {Close} from '@material-ui/icons';
 import useStyles from './track-package-backdrop-style';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import IconButtonNoVerticalPadding from '../../buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
-
+import { useTranslation } from "react-i18next";
 const MyBackdrop = withStyles({
     '& element.style':{
         visibility: 'visible',
@@ -20,7 +20,7 @@ const MyBackdrop = withStyles({
 
 
 const BackdropTrackPackage = (props) =>{
-
+    const { t } = useTranslation();
     const classes = useStyles();
 
     return(
@@ -30,7 +30,7 @@ const BackdropTrackPackage = (props) =>{
                 <Box borderBottom='2px'>
                     <Grid container xs={12}>
                         <Grid container item xs={10} justifyContent='flex-start'>
-                            <Box fontSize='18px' color='grey.500'>Urmareste coletul</Box>
+                            <Box fontSize='18px' color='grey.500'>{t("TrackPackage")}</Box>
                             </Grid>
                         <Grid container item xs={2} justifyContent='flex-end'>
                             <IconButtonNoVerticalPadding onClick={props.clickedClose}>
@@ -44,7 +44,7 @@ const BackdropTrackPackage = (props) =>{
                         <Fragment>
                             <Grid container item xs={5} justifyContent='center'>
                                 <Box textAlign='center' fontSize='22px' paddingY='5%'>
-                                    Pachetul dumneavoastra cu ruta '{props.departure}-{props.destination}' adaugat in {props.departureDate} se afla in:
+                                    {t("YourPackage")} '{props.departure}-{props.destination}' {t("PackageAddInDate")} {props.departureDate}{t("LocationPlace")}
                                 </Box>    
                             </Grid>    
                             <Grid container item xs={10} justifyContent='center'>
@@ -55,17 +55,17 @@ const BackdropTrackPackage = (props) =>{
                         </Fragment> :   <Fragment>
                                             <Grid container item xs={12} justifyContent='center'>
                                                 <Box textAlign='center' fontSize='22px' paddingY='5%' width='50%'>
-                                                    Nu exista informatii despre locatia coletului dumneavoastra.
+                                                    {t("NoPackageInfo")}
                                                 </Box>    
                                             </Grid>
                                             <Grid container item xs={12} justifyContent='center' >
                                                 <Box textAlign='center' fontSize='22px' paddingY='5%' width='50%'>
-                                                    Va rugam sa va contactati curierul.
+                                                    {t("ContactCourier")}
                                                 </Box>    
                                             </Grid>
                                         </Fragment>}
                     <Grid container item xs={6} justifyContent="center">
-                                <SecondaryButton variant='outlined' onClick={props.clickedClose}>INCHIDE</SecondaryButton>     
+                                <SecondaryButton variant='outlined' onClick={props.clickedClose}>{t("CloseButton")}</SecondaryButton>     
                     </Grid>
                </Grid>
             </Container>

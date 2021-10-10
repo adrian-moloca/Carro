@@ -8,7 +8,7 @@ import SecondaryButton from '../../../buttons/secondaryButton/secondaryButton';
 import GreenCaroButton from '../../../buttons/GreenCaroButton/GreenCaroButton';
 import IconButtonNoVerticalPadding from '../../../buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 import { Country, City }  from 'country-state-city';
-
+import { useTranslation } from "react-i18next";
 const MyBackdrop = withStyles({
     '& element.style':{
         visibility: 'visible',
@@ -23,7 +23,7 @@ const MyBackdrop = withStyles({
 
 
 const BackdropEditDestinatary = (props) =>{
-
+    const { t } = useTranslation();
     const [destinationCountry, setDestinationCountry] = useState('');
     const [destinationCity, setDestinationCity] = useState('');
 
@@ -47,7 +47,7 @@ const BackdropEditDestinatary = (props) =>{
                 <Box borderBottom='2px' borderColor='black'>
                     <Grid container xs={12}>
                         <Grid container item xs={10} justifyContent='flex-start'>
-                            <Box fontSize='18px' color='grey.500'>Editeaza pachetul</Box>
+                            <Box fontSize='18px' color='grey.500'>{t("EditButton")}</Box>
                             </Grid>
                         <Grid container item xs={2} justifyContent='flex-end'>
                             <IconButtonNoVerticalPadding onClick={props.clickedClose}>
@@ -59,19 +59,19 @@ const BackdropEditDestinatary = (props) =>{
                 <Box paddingY='10%'>
                     <Grid container xs={12} justifyContent='center' spacing={3}>
                         <Grid container item xs={6} justifyContent='center'>
-                                    <CarroAutocomplete value={destinationCountry} options={getCountries()} label="Tara destinatie" onChange={(e)=>setDestinationCountry(e.target.textContent)}/>
+                                    <CarroAutocomplete value={destinationCountry} options={getCountries()} label={t("SearchRideDestinationCountry")} onChange={(e)=>setDestinationCountry(e.target.textContent)}/>
                         </Grid>
                         <Grid container item xs={6} justifyContent='center'>
-                                    <CarroAutocomplete value = {destinationCity} options={getCities(destinationCountry)} label="Oras destinatie" onChange={(e)=>setDestinationCity(e.target.textContent)}/>
+                                    <CarroAutocomplete value = {destinationCity} options={getCities(destinationCountry)} label={t("SearchRideDestinationCity")} onChange={(e)=>setDestinationCity(e.target.textContent)}/>
                         </Grid>
                     </Grid>
                 </Box>
                <Grid container xs={12} justifyContent='space-around'>
                     <Grid container item xs={3} justifyContent="center">
-                                <SecondaryButton variant='outlined' onClick={props.clickedClose} fullWidth>INCHIDE</SecondaryButton>     
+                                <SecondaryButton variant='outlined' onClick={props.clickedClose} fullWidth>{t("CloseButton")}</SecondaryButton>     
                     </Grid>
                     <Grid container item xs={3} justifyContent="center">
-                                <GreenCaroButton variant='contained' fullWidth>SALVEAZA</GreenCaroButton>
+                                <GreenCaroButton variant='contained' fullWidth>{t("SaveButton")}</GreenCaroButton>
                     </Grid>
                </Grid>
             </Container>

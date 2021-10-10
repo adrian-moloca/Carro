@@ -8,10 +8,11 @@ import PrimaryButton from '../../components/buttons/primaryButton/primaryButton'
 import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { useTranslation } from "react-i18next";
 
 const AddTransport = () =>{
-
-  const transports = ["Transport public", "Masina", "Tir", "Camion", "Microbus"]; 
+  const { t } = useTranslation();
+  const transports = [t("PublicTransport"), t("Car"), "Tir", t("Truck"), t("Minibus")]; 
 
   // state
   const [departureDate, setDepartureDate] = useState(null);
@@ -39,11 +40,11 @@ const AddTransport = () =>{
 
   return(
     <Container className='Primary-container-style'>
-      <Box mb={2} fontWeight={400} fontSize={30} textAlign={'center'}>Adauga transport</Box>
+      <Box mb={2} fontWeight={400} fontSize={30} textAlign={'center'}>{t("AddTransport")}</Box>
       <Box display='flex' justifyContent='center' mt='5%'>
           <Grid container xs={12} spacing={3} >
           <Grid container item xs={6} justifyContent="center">
-              <CarroTextField variant ='outlined' label='Tara de plecare' fullWidth
+              <CarroTextField variant ='outlined' label={t("SearchRideDepartureCountry")} fullWidth
                   select value={departureCountry} onChange={handleChangeDepartureCountry}>
                       {getCountries().map((country)=>(
                           <MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>
@@ -51,31 +52,31 @@ const AddTransport = () =>{
               </CarroTextField>
           </Grid>
           <Grid container item xs={6} justifyContent="center">
-            <CarroAutocomplete options={getCities(departureCountry)} label="Oras de plecare" onChange={(e)=>handleChangeDepartureCity(e)}/>
+            <CarroAutocomplete options={getCities(departureCountry)} label={t("SearchRideDepartureCity")} onChange={(e)=>handleChangeDepartureCity(e)}/>
           </Grid>
           <Grid container item xs={6} justifyContent='center'>
-            <CarroTextField variant ='outlined' label='Tara destinatie' fullWidth select value={destinationCountry} onChange={(e)=>handleChangeDestinationCountry(e)}>
+            <CarroTextField variant ='outlined' label={t("SearchRideDestinationCountry")} fullWidth select value={destinationCountry} onChange={(e)=>handleChangeDestinationCountry(e)}>
               {getCountries().map((country)=>(
                   <MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>
               ))}
             </CarroTextField>
           </Grid>
           <Grid container item xs={6} justifyContent='center'>
-              <CarroAutocomplete options={getCities(destinationCountry)} label="Oras destinatie" onChange={(e)=>handleChangeDestinationCity(e)}/>
+              <CarroAutocomplete options={getCities(destinationCountry)} label={t("SearchRideDestinationCity")} onChange={(e)=>handleChangeDestinationCity(e)}/>
           </Grid>
           <Grid container item xs={6} justifyContent='center'>
-              <CarroTextField variant ='outlined' label='Adresa de plecare' fullWidth/>
+              <CarroTextField variant ='outlined' label={t("DriverCardDepartureAddress")} fullWidth/>
           </Grid>
           <Grid container item xs={6} justifyContent='center'>
-            <CarroDatePicker label='Data si ora de plecare' dateValue={departureDate} handleDateSelect={(e)=>handleChangeDepartureDate(e)}/>
+            <CarroDatePicker label={t("DriverCardDepartureDate")} dateValue={departureDate} handleDateSelect={(e)=>handleChangeDepartureDate(e)}/>
           </Grid>
           <Grid container item xs={6} justifyContent='center'>
-            <CarroTextField select variant ='outlined' label='Tipul de transport' fullWidth value={transportType} onChange={(e)=>handleChangeTransportType(e)}>
+            <CarroTextField select variant ='outlined' label={t("DriverCardType")} fullWidth value={transportType} onChange={(e)=>handleChangeTransportType(e)}>
               {getTransportType().map((transport)=>(<MenuItem value={transport}>{transport}</MenuItem>))}
             </CarroTextField>
           </Grid>
           <Grid container item xs={6} justifyContent='center'>
-              <CarroTextField variant ='outlined' label='Ore pana la destinatie (Estimativ)' fullWidth/>
+              <CarroTextField variant ='outlined' label={t("DriverCardEstimatedHours")} fullWidth/>
           </Grid>
         </Grid>
       </Box>
@@ -89,7 +90,7 @@ const AddTransport = () =>{
                     <ArrowBackIosIcon/>
                   </Box>
                   <Box mr={4} fontSize={20}>
-                      Acasa
+                  {t("Home")}
                   </Box>
                 </Box>
               </Link>
@@ -99,7 +100,7 @@ const AddTransport = () =>{
             <PrimaryButton variant='contained' size="large" color="primary">
               <Box display="flex" justifyContent='center' alignItems="center">
                 <Box ml={4} fontSize={20}>
-                    Adauga
+                {t("Add")}
                 </Box>
                 <Box  ml={3} display="flex" alignItems="center">
                   <ArrowForwardIosIcon/>

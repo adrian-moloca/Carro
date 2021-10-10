@@ -7,9 +7,10 @@ import EditOpenPackage from './edit-open-package/edit-open-package';
 import TrackPackage from './track-package/track-package';
 import IconButtonNoVerticalPadding from '../../../components/buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 import useStyles from  './package-style';
+import { useTranslation } from "react-i18next";
 
 const Package = (props) =>{
-
+  const { t } = useTranslation();
 function getStatusColor(status){ 
     switch (status) {
       case 'Deschis':

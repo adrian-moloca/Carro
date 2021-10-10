@@ -7,7 +7,7 @@ import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import IconButtonNoVerticalPadding from '../../buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 import FormPackage from './form-package/form-package';
-
+import { useTranslation } from "react-i18next";
 const MyBackdrop = withStyles({
     '& element.style':{
         visibility: 'visible',
@@ -22,7 +22,7 @@ const MyBackdrop = withStyles({
 
 
 const BackdropEditPackage = (props) =>{
-
+    const { t } = useTranslation();
     const classes = useStyles();
 
     return(
@@ -32,7 +32,7 @@ const BackdropEditPackage = (props) =>{
                 <Box borderBottom='2px' borderColor='black'>
                     <Grid container xs={12}>
                         <Grid container item xs={10} justifyContent='flex-start'>
-                            <Box fontSize='18px' color='grey.500'>Editeaza pachetul</Box>
+                            <Box fontSize='18px' color='grey.500'>{t("EditButton")}</Box>
                             </Grid>
                         <Grid container item xs={2} justifyContent='flex-end'>
                             <IconButtonNoVerticalPadding onClick={props.clickedClose}>
@@ -44,10 +44,10 @@ const BackdropEditPackage = (props) =>{
                 <FormPackage/>
                <Grid container xs={12} justifyContent='space-around'>
                     <Grid container item xs={3} justifyContent="center">
-                                <SecondaryButton variant='outlined' onClick={props.clickedClose} fullWidth>INCHIDE</SecondaryButton>     
+                                <SecondaryButton variant='outlined' onClick={props.clickedClose} fullWidth>{t("CloseButton")}</SecondaryButton>     
                     </Grid>
                     <Grid container item xs={3} justifyContent="center">
-                                <GreenCaroButton variant='contained' fullWidth>SALVEAZA</GreenCaroButton>
+                                <GreenCaroButton variant='contained' fullWidth>{t("SaveButton")}</GreenCaroButton>
                     </Grid>
                </Grid>
             </Container>
