@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@material-ui/core";
 import DeleteModal from '../modals/deleteModal/DeleteModal';
@@ -22,8 +22,8 @@ const rows = [
   createData(
     "nume",
     "mail",
-    <SwitchSBD />,
-    <SwitchSBD />,
+    <SwitchSBD content="DORESTI SA INVALIDEZI ACEST CONT?" btn1Text="anuleaza" btn2Text="invalideaza"/>,
+    <SwitchSBD content="DORESTI SA DEZACTIVEZI STATUTUL DE PREMIUM PENTRU ACEST CONT?" btn1Text="anuleaza" btn2Text="dezactiveaza"/>,
     <DeleteModal/>
   ),
 ];
