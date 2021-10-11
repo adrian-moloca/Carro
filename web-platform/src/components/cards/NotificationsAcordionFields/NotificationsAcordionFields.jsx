@@ -4,9 +4,9 @@ import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import SendMessageBtn from '../../buttons/textOnlyButtons/sendMessageBtn/sendMessageBtn'
 import HalfRating from '../../rating/rating';
-
+import { useTranslation } from "react-i18next";
 const NotificationsAcordionFields = () => {
-
+  const { t } = useTranslation();
   return (
     <Grid container xs={6} >
 
@@ -15,14 +15,14 @@ const NotificationsAcordionFields = () => {
       <Grid item xs={12}>
         <Box lineHeight="143%" fontSize={12} className={'Primary-color'}>
           <p>
-            Ai primit o noua cerere de transport pentru coletul tau!
+          {t("TransportReceive")}
           </p>
         </Box>
       </Grid>
       <Grid item xs={12}>
         <Box mt={2} lineHeight="143%" fontSize={11} className={'Secondary-color'}>
           <p>
-            Marius Popescu efectueaza o cursa Bucuresti - Timisoara si doreste sa livreze coletul tau
+            Marius Popescu {t("Ride")} Bucuresti - Timisoara {t("RideDeliver")}
           </p>
         </Box>
       </Grid>
@@ -35,12 +35,12 @@ const NotificationsAcordionFields = () => {
         <Box display="flex" justifyContent='space-around' alignItems="center">
           <GreenCaroButton size="medium" >
             <Box>
-              Accepta
+              {t("Accept")}
             </Box>
           </GreenCaroButton>
           <SecondaryButton  variant="outlined" size="medium">
             <Box>
-              Anuleaza
+            {t("Cancel")}
             </Box>
           </SecondaryButton>
         </Box>
