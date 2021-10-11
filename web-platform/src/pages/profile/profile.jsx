@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Country, City }  from 'country-state-city';
 import { Container, Box, Grid, Checkbox, MenuItem, AccordionSummary, AccordionDetails, Accordion, FormControlLabel, FormGroup } from "@material-ui/core";
-import EditIcon from '@material-ui/icons/Edit';
 import CarroAutocomplete from "../../components/autocomplete/CarroAutocomplete";
 import CarroTextField from "../../components/textField/CarroTextField";
-import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import SeeProfileBtn from "../../components/buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn"
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
+import ProfileEditModal from '../../components/modals/profileModal/ProfileEditModal';
 import profilePhotoMiddle from "../../assets/images/photoprofile1.png";
 import useStyles from "./profileStyle";
 import "../../App.css";
@@ -60,6 +59,7 @@ const Profile = (props) => {
       <Box display="flex" justifyContent="center" mb="3%">
         <img src={profilePhotoMiddle} alt={""}/>
       </Box>
+
       <Box display="flex" justifyContent="space-evenly" mt="1%">
         <Grid
           container
@@ -69,24 +69,26 @@ const Profile = (props) => {
           justifyContent="center"
         >
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant="outlined" label="Nume" fullWidth />
+            <CarroTextField variant="outlined" label="Nume" fullWidth disabled/>
           </Grid>
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant="outlined" label="Prenume" fullWidth />
+            <CarroTextField variant="outlined" label="Prenume" fullWidth disabled/>
           </Grid>
           <Grid item xs={12}>
-            <CarroTextField variant="outlined" label="Adresa" fullWidth />
+            <CarroTextField variant="outlined" label="Adresa" fullWidth disabled/>
           </Grid>
           <Grid container item xs={6} justifyContent="center">
             <CarroTextField
               variant="outlined"
               label="Numar de telefon"
               fullWidth
+              disabled
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <CarroDatePicker
               label="Data de nastere"
+              disabled
               InputLabelProps={{
                 style: { fontSize: "17px", marginTop: "3px" },
               }}
@@ -98,6 +100,7 @@ const Profile = (props) => {
               variant="outlined"
               label="Limbi cunoscute"
               fullWidth
+              disabled
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -105,6 +108,7 @@ const Profile = (props) => {
               variant="outlined"
               label="Adresa de email"
               fullWidth
+              disabled
             />
           </Grid>
           <Grid item xs={12}>
@@ -112,6 +116,7 @@ const Profile = (props) => {
               variant="outlined"
               label="Particularitati"
               fullWidth
+              disabled
             />
           </Grid>
         </Grid>
@@ -162,16 +167,16 @@ const Profile = (props) => {
               justifyContent="center"
             >
               <Grid item xs={12}>
-                <CarroTextField variant="outlined" label="Numele firmei" fullWidth />
+                <CarroTextField variant="outlined" label="Numele firmei" fullWidth disabled/>
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant="outlined" label="CUI" fullWidth />
+                <CarroTextField variant="outlined" label="CUI" fullWidth disabled/>
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant="outlined" label="Adresa " fullWidth />
+                <CarroTextField variant="outlined" label="Adresa " fullWidth disabled/>
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label='Tara' fullWidth
+                <CarroTextField variant ='outlined' label='Tara' fullWidth disabled
                   select value={departureCountry} onChange={(e)=>handleChangeDepartureCountry(e)}>
                       {getCountries().map((country)=>(
                           <MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>
@@ -179,13 +184,13 @@ const Profile = (props) => {
                 </CarroTextField>
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-              <CarroAutocomplete options={getCities(departureCountry)} label="Oras" onChange={(e)=>handleChangeDepartureCity(e)}/>
+                <CarroAutocomplete disabled options={getCities(departureCountry)} label="Oras" onChange={(e)=>handleChangeDepartureCity(e)}/>
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant="outlined" label="Email firma" fullWidth />
+                <CarroTextField disabled variant="outlined" label="Email firma" fullWidth />
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant="outlined" label="Numar de telefon" fullWidth/>
+                <CarroTextField disabled variant="outlined" label="Numar de telefon" fullWidth/>
               </Grid>
             </Grid>
           </Box>
@@ -212,28 +217,28 @@ const Profile = (props) => {
           justifyContent="center"
         >
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant="outlined" label="Marca" fullWidth />
+            <CarroTextField variant="outlined" label="Marca" fullWidth disabled/>
           </Grid>
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant="outlined" label="Model" fullWidth />
+            <CarroTextField variant="outlined" label="Model" fullWidth disabled/>
           </Grid>
           <Grid container item xs={6} justifyContent="center">
             <CarroTextField
               variant="outlined"
               label="Numar de inmatriculare"
               fullWidth
+              disabled
             />
           </Grid>
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant="outlined" label="Culoare" fullWidth />
+            <CarroTextField variant="outlined" label="Culoare" fullWidth disabled/>
           </Grid>
         </Grid>
       </Box>
-      <Box display="flex" justifyContent="center" mt="3%" mb="5%">
-        <Grid container item xs={3}>
-          <PrimaryButton fullWidth variant="contained" endIcon={<EditIcon />}>
-            EDITEAZA
-          </PrimaryButton>
+      
+      <Box display="flex" justifyContent="center" alignItems="center" mt="3%" mb="5%">
+        <Grid container justifyContent="center" alignItems="center">
+          <ProfileEditModal/>
         </Grid>
       </Box>
     </Container>

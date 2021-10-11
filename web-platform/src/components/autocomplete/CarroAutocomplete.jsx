@@ -6,6 +6,7 @@ const CarroAutocomplete =(props)=>{
 
     return(
         <Autocomplete
+            disabled={props.disabled}
             options={props.options}
             autoHighlight
             value={props.value}
