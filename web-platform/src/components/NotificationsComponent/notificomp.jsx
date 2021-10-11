@@ -12,9 +12,9 @@ export default function BadgeVisibility() {
     <Box display='flex' alignSelf='center' flexDirection='column' className={"Primary-color"}>
       <Box mr={1}>
         <IconButton className={"Primary-color"} >
-          <Badge color="secondary" badgeContent={count}>
+          {/* <Badge color="secondary" badgeContent={count}> */}
             <NotificationsNoneIcon/>
-          </Badge>
+          {/* </Badge> */}
         </IconButton>
         {/* <ButtonGroup>
           <Button

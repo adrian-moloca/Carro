@@ -1,23 +1,12 @@
 
 import React, { useState} from "react";
-import useStyles from "./adminPanelStyles";
-import {
-  Container,
-  Box,
-  AccordionSummary,
-  AccordionDetails,
-  Accordion,
-  Grid,
-  Button,
-} from "@material-ui/core";
+import { Container, Box, Grid, InputAdornment } from "@material-ui/core";
+import SearchIcon from '@material-ui/icons/Search';
 import PrimaryAdminButton from "../../components/buttons/AdminPanelButton/PrimaryAdmin";
 import SecondaryAdminButton from "../../components/buttons/AdminPanelButton/SecondaryAdmin";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import CarroTextField from "../../components/textField/CarroTextField";
-import SearchIcon from '@material-ui/icons/Search';
 import AdminTable from "../../components/Table/AdminTable"
-import { InputAdornment } from "@material-ui/core";
-
 
 const AdminPanel = () => {
 
@@ -25,7 +14,7 @@ const [visibleUsers, setVisibleUsers] = useState(false);
 const [visibleLanguage, setVisibleLanguage] = useState(false);
 
   return (
-    <Container className="Primary-container-style">
+    <Container className="addPackagesContainer">
       <Box mb={2} fontWeight={400} fontSize={25} textAlign={"center"}>
         Admin Panel
       </Box>
@@ -63,7 +52,6 @@ const [visibleLanguage, setVisibleLanguage] = useState(false);
               variant="outlined"
               fullWidth
               InputProps={{endAdornment: <InputAdornment position="end"> <SearchIcon /></InputAdornment>}}
-              
             />
           </Grid>
         </Grid>
