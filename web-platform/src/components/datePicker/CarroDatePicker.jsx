@@ -30,6 +30,7 @@ const CarroDatePicker = (props)=>{
                     fullWidth
                     defaultValue={props.defaultShow}
                     disablePast
+                    disabled={props.disabled}
                 />  
             </ThemeProvider>
         </MuiPickersUtilsProvider>
