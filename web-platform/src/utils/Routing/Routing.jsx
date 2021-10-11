@@ -20,7 +20,6 @@ import Notifications from '../../pages/notifications/notifications';
 import PaymentMethod from '../../pages/payment-method/payment-method';
 import AddPaymentMethod from '../../pages/payment-method/add-payment-method/add-payment-method';
 import Profile from '../../pages/profile/profile';
-import ProfileAdmin from '../../pages/profileAdmin/ProfileAdmin';
 import SearchPackage from '../../pages/search-package/search-package';
 import SearchRide from '../../pages/search-ride/search-ride';
 import AddTransport from '../../pages/add-transport/add-transport';
@@ -72,7 +71,6 @@ const Routes = () => {
                                 <Route path="/payment-method" exact component={PaymentMethod}/>
                                 <Route path="/payment-method/add-payment-method" exact component={AddPaymentMethod}/>
                                 <Route path="/profile" exact component={Profile}/>
-                                <Route path="/admin-panel" exact component={ProfileAdmin}/>
                                 <Route path="/search-package" exact component={SearchPackage}/>
                                 <Route path="/search-ride" exact component={SearchRide}/>
                                 <Route path="/conversations" exact component={Conversations}/>

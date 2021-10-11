@@ -1,6 +1,5 @@
 import React from 'react'
 import { Container, Box, AccordionSummary, AccordionDetails, Accordion, Grid, Button } from '@material-ui/core';
-import {Delete} from '@material-ui/icons';
 import profilePhotoMiddle from '../../assets/images/photoprofile2.png';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';

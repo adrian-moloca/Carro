@@ -1,156 +1,30 @@
 import React from "react";
-import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
-import TableRow from "@material-ui/core/TableRow";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
-import IconButton from "@material-ui/core/IconButton";
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@material-ui/core";
+import DeleteModal from '../modals/deleteModal/DeleteModal';
+import SwitchSBD from "../switch/SwitchSBD";
 
 const columns = [
-  { id: "localitate", label: "Localitate", minWidth: 170 },
-  { id: "tara", label: "Tara", minWidth: 100 },
-  { id: "data", label: "Data", minWidth: 100 },
+  { id: "numePrenume", label: "Nume si Prenume", minWidth: 170 },
+  { id: "email", label: "Email", minWidth: 100 },
+  { id: "contPremium", label: "Cont Premium", minWidth: 100 },
+  { id: "validareCont", label: "Validare Cont", minWidth: 100 },
   { id: "actions", label: "Actiuni", minWidth: 100 },
 ];
-var deleteIcon = (
-  <IconButton onClick={console.log("delete")}>
-    <DeleteIcon style={{ color: "#F50057" }} />
-  </IconButton>
-);
 
-const editIcon = (
-  <IconButton onClick={console.log("edited")}>
-    <EditIcon style={{ color: "#00B4D8" }} />
-  </IconButton>
-);
-function createData(localitate, tara, data, actions) {
-  return { localitate, tara, data, actions };
+
+function createData(numePrenume, email, contPremium, validareCont, actions) {
+  return { numePrenume, email, contPremium, validareCont, actions };
 }
 
 const rows = [
+
   createData(
-    "Table Cell",
-    "Table Cell",
-    "20/09/2021",
-    <div>
-      {editIcon}
-      {deleteIcon}
-    </div>
-  ),
-  createData(
-    "Table Cell",
-    "Table Cell",
-    "20/09/2021",
-    <div>
-      {editIcon}
-      {deleteIcon}
-    </div>
-  ),
-  createData(
-    "Table Cell",
-    "Table Cell",
-    "20/09/2021",
-    <div>
-      {editIcon}
-      {deleteIcon}
-    </div>
-  ),
-  createData(
-    "Table Cell",
-    "Table Cell",
-    "20/09/2021",
-    <div>
-      {editIcon}
-      {deleteIcon}
-    </div>
-  ),
-  createData(
-    "Table Cell",
-    "Table Cell",
-    "20/09/2021",
-    <div>
-      {editIcon}
-      {deleteIcon}
-    </div>
-  ),
-  createData(
-    "Table Cell",
-    "Table Cell",
-    "20/09/2021",
-    <div>
-      {editIcon}
-      {deleteIcon}
-    </div>
-  ),
-  createData(
-    "Table Cell",
-    "Table Cell",
-    "20/09/2021",
-    <div>
-      {editIcon}
-      {deleteIcon}
-    </div>
-  ),
-  createData(
-    "Table Cell",
-    "Table Cell",
-    "20/09/2021",
-    <div>
-      {editIcon}
-      {deleteIcon}
-    </div>
-  ),
-  createData(
-    "Table Cell",
-    "Table Cell",
-    "20/09/2021",
-    <div>
-      {editIcon}
-      {deleteIcon}
-    </div>
-  ),
-  createData(
-    "Table Cell",
-    "Table Cell",
-    "20/09/2021",
-    <div>
-      {editIcon}
-      {deleteIcon}
-    </div>
-  ),
-  createData(
-    "Table Cell",
-    "Table Cell",
-    "20/09/2021",
-    <div>
-      {editIcon}
-      {deleteIcon}
-    </div>
-  ),
-  createData(
-    "Table Cell",
-    "Table Cell",
-    "20/09/2021",
-    <div>
-      {editIcon}
-      {deleteIcon}
-    </div>
-  ),
-  createData(
-    "Table Cell",
-    "Table Cell",
-    "20/09/2021",
-    <div>
-      {editIcon}
-      {deleteIcon}
-    </div>
+    "nume",
+    "mail",
+    <SwitchSBD />,
+    <SwitchSBD />,
+    <DeleteModal/>
   ),
 ];
 
@@ -171,7 +45,6 @@ export default function StickyHeadTable() {
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
