@@ -92,6 +92,7 @@
     "InTransit": "In transit",
     "Closed": "Closed",
     "Delivered": "Delivered",
+    "ClosedForReceiving": "Close for receiving",
     "PackageDetails": "Package details",
     "PackageType": "Package type:",
     "AvailableTransports": "Available transports",
@@ -107,6 +108,8 @@
     "MyPackages": "My packages",
     "NoPayment": "You have no added payment method!",
     "AddPayment": "Add payment method",
-    "SelectCourier": "Select courier"
+    "SelectCourier": "Select courier",
+    "MyRides": "My rides",
+    "MyRidesText": "* In order to be able to delete, close or edit a transport, you do not need to have packages in progress. Packages must not be accepted (changes can be communicated to customers directly by phone number)."
 
 }

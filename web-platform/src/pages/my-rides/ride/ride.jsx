@@ -4,30 +4,30 @@ import {ExpandMore, ArrowForward, Delete} from '@material-ui/icons';
 import IconButtonNoVerticalPadding from '../../../components/buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 import RideDetails from './ride-details/ride-details';
 import useStyles from './rideStyle';
-
+import { useTranslation } from "react-i18next";
 const Ride = (props) =>{
-
+  const { t } = useTranslation();
     const classes = useStyles();
 
     function getStatusColor(status){ 
       switch (status) {
-        case 'Deschis':
+        case t('Open'):
           return (
             'Green-carro'
           );
-        case 'Inchis pentru primire':
+        case t('ClosedForReceiving'):
           return (
             'Green-carro'
           );
-        case 'In livrare':
+        case t('InTransit'):
           return (
             'Primary-color'
           );  
-        case 'Inchis':
+        case t('Closed'):
           return (
             'Pink-carro'
           );
-        case 'Livrat':
+        case t('Delivered'):
           return (
             'Pink-carro'
           );
@@ -40,7 +40,7 @@ const Ride = (props) =>{
     function ActionsByStatus(status){
   
       switch(status){
-          case 'Deschis':
+          case t('Open'):
               return(
                 <Fragment>
                   <IconButtonNoVerticalPadding onClick={props.deletePackageClicked}>
@@ -48,19 +48,19 @@ const Ride = (props) =>{
                   </IconButtonNoVerticalPadding>
                 </Fragment>
               );
-            case 'Inchis pentru primire':
+            case t('ClosedForReceiving'):
                 return(
                   <Fragment>
                   </Fragment>
                 );
-            case 'In livrare':
+            case t('InTransit'):
                 return(
                   <Fragment> 
                   </Fragment>
                 );
-            case 'Inchis':
+            case  t('Closed'):
               return('');
-            case 'Livrat':
+            case t('Delivered'):
               return('');
             default:
                 return('Unkown status');
