@@ -4,9 +4,9 @@ import {Star, StarBorder, StarHalf} from '@material-ui/icons';
 import BackdropSelectDriver from '../../backdrop/driver-select/backDrop';
 import SeeProfileBtn from '../../buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn'
 import useStyles from './DriverCardNotificationsStyle';
-
+import { useTranslation } from "react-i18next";
 const DriverCardNotifications =(props)=>{
-
+    const { t } = useTranslation();
     const classes = useStyles();
 
     const[open, setOpen]=useState(false);
@@ -26,7 +26,7 @@ const DriverCardNotifications =(props)=>{
                     <Box display="flex" justifyContent="flex-end" alignItems="center" >
                         <Link href="/courier-profile" underline='none' color='inherit'>
                             <SeeProfileBtn>
-                                    Vezi Profilul
+                                   {t("ViewProfile")}
                             </SeeProfileBtn>
                         </Link>
                     </Box>
@@ -36,13 +36,13 @@ const DriverCardNotifications =(props)=>{
                 <Box fontSize='20px' fontWeight='500'>{props.name}</Box>
             </Grid>
             <Grid container justifyContent='center'>
-                <Box marginTop='5%'>Plecare: {props.plecare}</Box>
+                <Box marginTop='5%'>{t("DriverCardDeparture")} {props.plecare}</Box>
             </Grid>
             <Grid container justifyContent='center'>
-                <Box>Destinatie: {props.destinatie}</Box>
+                <Box>{t("DriverCardDestination")} {props.destinatie}</Box>
             </Grid>
             <Grid container justifyContent='center'>
-                <Box marginBottom='5%'>Tip transport: {props.tipTransport}</Box>
+                <Box marginBottom='5%'>{t("DriverCardType")} {props.tipTransport}</Box>
             </Grid>
             <Grid container justifyContent='space-evenly'>
                 <Star className={classes.starsStyle}/>
