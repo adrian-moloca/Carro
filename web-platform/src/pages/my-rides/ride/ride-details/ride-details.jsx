@@ -1,9 +1,12 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import { Grid, Box } from '@material-ui/core';
 import Packages from '../../../../components/packages/packages';
 import { useTranslation } from "react-i18next";
 const RideDetails = (props) =>{
-  const { t } = useTranslation();
+
+    const[rideExists, setRideExists] = useState(true);
+    const { t } = useTranslation();
+
     return(
         <Fragment>
             <Box borderRadius='10px'  boxShadow={3} display ='flex' px='4%' pt='2%' mt = '2%'>
@@ -40,7 +43,7 @@ const RideDetails = (props) =>{
                 </Grid>
               </Box>
               <Box mx={-2} mt={1} p='2%' borderTop={1} borderColor= 'grey.400' >
-                <Packages/> 
+                <Packages rideExists={rideExists}/> 
               </Box>
         </Fragment>
     );

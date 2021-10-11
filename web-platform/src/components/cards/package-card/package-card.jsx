@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import {Box, Grid, SvgIcon } from '@material-ui/core';
+import ReactCardFlip from 'react-card-flip';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';
+import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import BackdropDeliverPackage from '../../backdrop/deliver-package/deliver-package';
 import packageImg from '../../../assets/images/box-small.png';
-import {ReactComponent as fragileIco} from '../../../assets/icon/fragile.svg';
-import {ReactComponent as fishIco} from '../../../assets/icon/fish.svg';
-import {ReactComponent as fireIco} from '../../../assets/icon/fire.svg';
-import {ReactComponent as handboxIco} from '../../../assets/icon/handbox.svg';
-import {ReactComponent as animalprintsIco} from '../../../assets/icon/animalprints.svg';
+import fragileIco from '../../../assets/images/fragile.png';
+import fishIco from '../../../assets/images/environmentdang.png';
+import fireIco from '../../../assets/images/firedang.png';
+import handboxIco from '../../../assets/images/boxHands.png';
+import animalprintsIco from '../../../assets/images/animalPrints.png';
 import greyLine from '../../../assets/images/greyLine.png';
 import useStyles from './package-card-style';
 import { useTranslation } from 'react-i18next';
@@ -18,7 +20,12 @@ const PackageCard = (props) =>{
     const classes = useStyles();
     const { t } = useTranslation();
     const[open, setOpen]=useState(false);
-    const[status, setSatus] = useState(true);
+    const[isFlipped, setIsFlipped] = useState(false);
+
+    const handleClick = () => {
+        const temp = isFlipped;
+        setIsFlipped(!temp);
+    }
     const handleBtn =()=> setOpen(!open);
     const handleCloseBd=(event)=>{
         if(event.target === document.getElementById('backdrop'))
@@ -26,66 +33,169 @@ const PackageCard = (props) =>{
     };
     const handleCloseBdByBtn=(event)=>{ setOpen(false)};
 
+    function getFrontButtons(status, rideExists){
+        switch(status){
+            case 'free package':
+                if(rideExists)
+                    return(
+                        <Grid container item xs={10} justifyContent = 'center'>
+                            <PrimaryButton variant='contained' size='medium' fullWidth>CERE PACHET</PrimaryButton>
+                        </Grid>
+                    );
+                else
+                    return(
+                        <Grid container item xs={10} justifyContent = 'center'>
+                            <PrimaryButton variant='contained' size='medium' fullWidth>ADAUGA CURSA</PrimaryButton>
+                        </Grid>
+                    );
+            case 'package selected':
+                    return(
+                        <Grid container item xs={10} justifyContent = 'center'>
+                            <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>In asteptare...</Box>
+                        </Grid>
+                    );
+            case 'package added':
+                    return(
+                        <Grid container xs={10} justifyContent = 'center' spacing={2}>
+                            <Grid container item xs={10} justifyContent = 'center'>
+                                <GreenCaroButton variant='contained' size='medium' fullWidth>
+                                    PRELUARE
+                                </GreenCaroButton>
+                            </Grid>
+                            <Grid container item xs={10} justifyContent = 'center'>
+                                <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                            </Grid>
+                        </Grid>
+                    );
+            case 'package picked':
+                    return(
+                        <Grid container xs={10} justifyContent = 'center'  spacing={2}>
+                            <Grid container item xs={10} justifyContent = 'center'>
+                                <GreenCaroButton variant='contained' size='medium' onClick={handleBtn} fullWidth>
+                                    PREDARE
+                                </GreenCaroButton>
+                            </Grid>
+                            <Grid container item xs={10} justifyContent = 'center'>
+                                <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                            </Grid>
+                        </Grid>
+                    );
+            case 'package rejected':
+                return(
+                    <Grid container xs={10} justifyContent = 'center'  spacing={2}>
+                        <Grid container item xs={10} justifyContent = 'center'>
+                            <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>{t('Reason')}</Box>
+                        </Grid>
+                        <Grid container item xs={10} justifyContent = 'center'>
+                            <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>Nu mai plec</Box>
+                        </Grid>
+                    </Grid>
+                );
+        }
+
+    }
+
+    function getBackButtons(status){
+        switch(status){
+            case 'package added':
+                return(
+                    <Grid container xs={10} justifyContent = 'center'  spacing={2}>
+                        <Grid container item xs={10} justifyContent = 'center'>
+                            <SecondaryButton variant='contained' size='medium' fullWidth>
+                                REFUZA CU MOTIV
+                            </SecondaryButton>
+                        </Grid>
+                        <Grid container item xs={10} justifyContent = 'center'>
+                            <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>INAPOI</PrimaryButton>
+                        </Grid>
+                    </Grid>
+                );
+            case 'package picked':
+                return(
+                    <Grid container item xs={10} justifyContent = 'center'>
+                        <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>INAPOI</PrimaryButton>
+                    </Grid>
+                );
+        }
+    }
+
     return (
-        <Box paddingBottom='3%' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center' className={'mobile-width-full'}>
-            <Grid container xs ={12} spacing={2} justifyContent='center'>
-                <Grid container item xs={12} justifyContent = 'center'>
-                    <img src={packageImg} className={classes.boxesImageStyle} alt={""}/>
+        <Fragment>
+            <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' containerClassName={'CardFlipContainer'}>
+            
+            <Box paddingBottom='10%' width='1' height='480px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
+                <Grid container xs ={12} spacing={2} justifyContent='center'>
+                    <Grid container item xs={12} justifyContent = 'center'>
+                        <img src={packageImg} className={classes.boxesImageStyle} alt={""}/>
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'center'>
+                        <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
+                    </Grid>
+                    <Grid container item xs={12} spacing={1} justifyContent = 'flex-start'>
+                        <Box px={1} fontSize={14}>{t('Quantity')} {props.packageQuantity}</Box>
+                        <Box px={1} fontSize={14}>{t('Sizing')} {props.packageDimensions}</Box>
+                        <Box px={1} fontSize={14}>{t('Weight')} {props.packageWeight}</Box>
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'center'>
+                        <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
+                    </Grid>
+                    <Grid container item xs={12} spacing={1}justifyContent = 'flex-start'>
+                        <Box px={1} fontSize={14}>{t('PickupDate')} {props.departureDate}</Box>   
+                        <Box px={1} fontSize={14}>{t('PickupAddress')} {props.departureAddress}</Box>
+                        <Box px={1} fontSize={14}>{t('DriverCardDestinationAddress')} {props.destinationAddress}</Box>
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'center'>
+                        <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'center'>
+                        <Box width='100%' textAlign='center' fontSize={16}>{t('Price')}</Box>  
+                        <Box width='100%' textAlign='center' fontSize={22}>{props.price}</Box>
+                    </Grid>
+                    <Grid container item xs={12} xl={10} justifyContent = 'space-around' >
+                        <img src={fragileIco} className={classes.advSigns}/>
+                        <img src={fishIco} className={classes.advSigns}/>
+                        <img src={fireIco} className={classes.advSigns}/>
+                        <img src={handboxIco} className={classes.advSigns}/>
+                        <img src={animalprintsIco} className={classes.advSigns}/>
+                    </Grid>
+                    {getFrontButtons(props.status, props.rideExists)}
                 </Grid>
-                <Grid container item xs={12} justifyContent = 'center'>
-                    <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
+            </Box>
+
+            <Box paddingBottom='10%' width='1' height='480px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
+                <Grid container xs ={12} spacing={2} justifyContent='center'>
+                    <Grid container item xs={12} spacing={1} justifyContent = 'flex-start'>
+                        <Box px={1} fontSize={14} marginTop='20px'>{t('Quantity')} {props.packageQuantity}</Box>
+                        <Box px={1} fontSize={14}>{t('Sizing')} {props.packageDimensions}</Box>
+                        <Box px={1} fontSize={14}>{t('Weight')} {props.packageWeight}</Box>
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'center'>
+                        <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
+                    </Grid>
+                    <Grid container item xs={12} spacing={1}justifyContent = 'flex-start'>
+                        <Box px={1} fontSize={14}>Utilizator: {props.sender}</Box>   
+                        <Box px={1} fontSize={14}>Telefon: {props.senderPhone}</Box>   
+                        <Box px={1} fontSize={14}>{t('PickupAddress')} {props.departureAddress}</Box>
+                        <Box px={1} fontSize={14}>{t('PickupDate')} {props.departureDate}</Box>   
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'center'>
+                        <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
+                    </Grid>
+                    <Grid container item xs={12} spacing={1} justifyContent = 'flex-start' >
+                        <Box px={1} fontSize={14}>{t('DriverCardDestinationAddress')} {props.destinationAddress}</Box>   
+                        <Box px={1} fontSize={14}>Persoana de contact: {props.destinatary}</Box>   
+                        <Box px={1} fontSize={14}>Telefon: {props.destinataryPhone}</Box>
+                        <Box width='1' px={1} fontSize={14} paddingRight='25px'>
+                            Detalii:
+                            <Box width='1' borderRadius='15px' height='90px' marginY='10px' padding='8px' className={classes.detailsBox}> {props.details}</Box>
+                        </Box>
+                    </Grid>
+                    {getBackButtons(props.status)}
                 </Grid>
-                <Grid container item xs={12} spacing={1}justifyContent = 'flex-start'>
-                    <Box px={1} fontSize={14}>{t('Quantity')} {props.packageQuantity}</Box>
-                    <Box px={1} fontSize={14}>{t('Sizing')} {props.packageDimensions}</Box>
-                    <Box px={1} fontSize={14}>{t('Weight')} {props.packageWeight}</Box>
-                </Grid>
-                <Grid container item xs={12} justifyContent = 'center'>
-                    <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
-                </Grid>
-                <Grid container item xs={12} spacing={1}justifyContent = 'flex-start'>
-                    <Box px={1} fontSize={14}>{t('PickupDate')} {props.departureDate}</Box>   
-                    <Box px={1} fontSize={14}>{t('PickupAddress')} {props.departureAddress}</Box>
-                    <Box px={1} fontSize={14}>{t('DriverCardDestinationAddress')} {props.destinationAddress}</Box>
-                </Grid>
-                <Grid container item xs={12} justifyContent = 'center'>
-                    <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
-                </Grid>
-                <Grid container item xs={12} justifyContent = 'center'>
-                    <Box width='100%' textAlign='center' fontSize={16}>{t('Price')}</Box>  
-                    <Box width='100%' textAlign='center' fontSize={22}>{props.price}</Box>
-                </Grid>
-                <Grid container item xs={12} xl={10} justifyContent = 'space-around' >
-                    <SvgIcon component={fragileIco} viewBox='0 0 512 512'/>
-                    <SvgIcon component={fishIco} viewBox='0 0 18 19'/>
-                    <SvgIcon component={fireIco} viewBox='0 0 23 22'/>
-                    <SvgIcon component={handboxIco} viewBox='0 0 21 21'/>
-                    <SvgIcon component={animalprintsIco} viewBox='0 0 20 20'/>
-                </Grid>
-                <Grid container item xs={10} justifyContent = 'center'>
-                    {
-                        props.status ? (<GreenCaroButton variant='contained' onClick={handleBtn} size='medium' fullWidth>
-                       {t('DeliverButton')}
-                    </GreenCaroButton>) : 
-                    ( <Box width='100%' textAlign='center' fontSize={16} color="#9C9C9C">
-                    <h4> {t('Reason')}</h4>
-                    <p>Nu mai plec</p>
-                    </Box>
-                    )
-                    }
-                    
-                </Grid>
-                <Grid container item xs={7}  spacing={1}justifyContent = 'center'>
-                    <PrimaryButton size='medium' variant = 'contained' fullWidth>
-                    {t('DriverCardDetailsButton')}
-                    </PrimaryButton>
-                </Grid>
-            </Grid>
-            <BackdropDeliverPackage 
-                open={open} 
-                clicked={handleCloseBd}
-                clickedClose={handleCloseBdByBtn}/>
-        </Box>
+            </Box>
+            </ReactCardFlip>
+            <BackdropDeliverPackage open={open} clicked={handleCloseBd} clickedClose={handleCloseBdByBtn}/>
+        </Fragment>
     );
 };
 
