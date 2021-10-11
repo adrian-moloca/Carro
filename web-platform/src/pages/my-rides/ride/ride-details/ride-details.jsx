@@ -1,8 +1,10 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import { Grid, Box } from '@material-ui/core';
 import Packages from '../../../../components/packages/packages';
 
 const RideDetails = (props) =>{
+
+    const[rideExists, setRideExists] = useState(true);
 
     return(
         <Fragment>
@@ -41,7 +43,7 @@ const RideDetails = (props) =>{
                 </Grid>
               </Box>
               <Box mx={-2} mt={1} p='2%' borderTop={1} borderColor= 'grey.400' >
-                <Packages/> 
+                <Packages rideExists={rideExists}/> 
               </Box>
         </Fragment>
     );
