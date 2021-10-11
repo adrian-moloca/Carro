@@ -33,7 +33,7 @@
     "AddPackageTitle": "Adauga pachet",
     "Finish": "Finalizeaza",
     "NextStep": "Pasul Urmator",
-    "PhoneNumber": "Numar de telefon",
+    "PhoneNumber": "Numar de telefon:",
     "PackageNumbers": "Numar de pachete",
     "ReceiverNume": "Nume destinatar",
     "ErrorMessage": "   A aparut o problema! Va rugam sa reincarcati pagina",
@@ -86,6 +86,12 @@
     "Login": "Autentificare",
     "ForgotPassword": "Am uitat parola",
     "Open": "Deschis",
+    "Taken": "Luat",
+    "InTransit": "In tranzit",
+    "Closed": "Inchis",
+    "Delivered": "Livrat",
+    "MyRides": "Cursele mele",
+    "ClosedForReceiving": "Inchis pentru primire",
     "PackageDetails": "Detalii pachet",
     "PackageType": "Tipul coletului:",
     "AvailableTransports": "Transporturi disponibile",
@@ -100,7 +106,23 @@
     "LocationPlace": "se afla in: ",
     "MyPackages": "Pachetele mele",
     "NoPayment": " Nu aveti nici o metoda de plata adaugata!",
-    "AddPayment": "Adauga metoda de plata"
+    "AddPayment": "Adauga metoda de plata",
+    "SelectCourier": "Selecteaza curier",
+    "MyRidesText": " *Pentru a putea sterge, inchide sau edita un transport nu trebuie avute pachete in desfasurare. Pachetele trebuie sa nu fie acceptate (modificarile pot fii comunicate clientilor direct prin numarul de telefon).",
+    "Notifications": "Notificari",
+    "ShowLess": "Arata mai putin",
+    "CancelTransport": "a anulat transportul pentru coletul tau!",
+    "MarkedAsRead": "Marcheaza ca citit",
+    "Route": "Ruta",
+    "DeliverPackage": "doreste sa iti transporte pachetul",
+    "TransportReceive": "Ai primit o noua cerere de transport pentru coletul tau!",
+    "Ride": "efectueaza o cursa",
+    "RideDeliver": "si doreste sa livreze coletul tau",
+    "Accept": "Accepta",
+    "SendMessage": "Trimite mesaj",
+    "ViewProfile": "Vizualizare profil"
+
+
 
 
 

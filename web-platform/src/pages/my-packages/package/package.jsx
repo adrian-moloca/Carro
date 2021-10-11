@@ -10,26 +10,28 @@ import useStyles from  './package-style';
 import { useTranslation } from "react-i18next";
 
 const Package = (props) =>{
-  const { t } = useTranslation();
+
+const { t } = useTranslation();
+
 function getStatusColor(status){ 
     switch (status) {
-      case 'Deschis':
+      case t('Open'):
         return (
           'Green-carro'
         );
-      case 'Luat':
+      case t('Taken'):
         return (
           'Green-carro'
         );
-      case 'In livrare':
+      case t('InTransit'):
         return (
           'Primary-color'
         );  
-      case 'Inchis':
+      case t('Closed'):
         return (
           'Pink-carro'
         );
-      case 'Livrat':
+      case t('Delivered'):
         return (
           'Pink-carro'
         );
@@ -42,7 +44,7 @@ function getStatusColor(status){
   function ActionsByStatus(status){
 
     switch(status){
-        case 'Deschis':
+        case t('Open'):
             return(
               <Fragment>
                 <EditOpenPackage package= {props.package}/>
@@ -51,7 +53,7 @@ function getStatusColor(status){
                 </IconButtonNoVerticalPadding>
               </Fragment>
             );
-          case 'Luat':
+          case t('Taken'):
               return(
                 <Fragment>
                     <PartialEditPackage package= {props.package}/>
@@ -59,7 +61,7 @@ function getStatusColor(status){
                                   departureDate={props.departureDate} packageLocation={props.packageLocation}/>
                 </Fragment>
               );
-          case 'In livrare':
+          case t('InTransit'):
               return(
                 <Fragment>
                     <PartialEditPackage package= {props.package}/>
@@ -67,9 +69,9 @@ function getStatusColor(status){
                                   departureDate={props.departureDate} packageLocation={props.packageLocation}/>  
                 </Fragment>
               );
-          case 'Inchis':
+          case t('Closed'):
             return('');
-          case 'Livrat':
+          case t('Delivered'):
             return('');
           default:
               return('Unkown status');
