@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from "react";
 import { Box, Grid, Button } from '@material-ui/core';
 import PrimaryButton from '../../../components/buttons/primaryButton/primaryButton';
 import DeleteModal from '../../../components/modals/deleteModal/DeleteModal';
 import BackdropSelectDriver from '../../../components/backdrop/driver-select/backDrop';
 import { useTranslation } from "react-i18next";
+
 const NotificationsFieldsTransport = (props) => {
+
+  const [title, setTitle] = useState("Marcheaza ca citit");
   const { t } = useTranslation();
+
   return (
     <Grid container direction="column">
       <Grid 
@@ -17,10 +21,10 @@ const NotificationsFieldsTransport = (props) => {
           </Box>
         </Grid>
         <Grid container item xs={3} justifyContent='center'>
-          <Box fontSize={7} className={'Green-carro'}>
-            <Button variant="default">
-              <Box fontSize={8} className={'Primary-color'}>
-              {t("MarkedAsRead")}
+          <Box>
+            <Button variant="default" onClick={() => setTitle("Citit")}>
+              <Box fontSize={10} className={'Primary-color'}>
+              {title}
               </Box>
             </Button>
           </Box>
@@ -48,9 +52,7 @@ const NotificationsFieldsTransport = (props) => {
           </Box>
         </Grid>
       </Grid>
-      <Grid 
-        container 
-        direction="row">
+      <Grid container direction="row">
         <Grid direction="row" container item xs={4} >
           <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
           {t("PickupDate")} {props.dataPlecare}
