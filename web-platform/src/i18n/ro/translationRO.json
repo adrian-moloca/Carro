@@ -86,6 +86,10 @@
     "Login": "Autentificare",
     "ForgotPassword": "Am uitat parola",
     "Open": "Deschis",
+    "Taken": "Luat",
+    "InTransit": "In tranzit",
+    "Closed": "Inchis",
+    "Delivered": "Livrat",
     "PackageDetails": "Detalii pachet",
     "PackageType": "Tipul coletului:",
     "AvailableTransports": "Transporturi disponibile",
@@ -100,7 +104,9 @@
     "LocationPlace": "se afla in: ",
     "MyPackages": "Pachetele mele",
     "NoPayment": " Nu aveti nici o metoda de plata adaugata!",
-    "AddPayment": "Adauga metoda de plata"
+    "AddPayment": "Adauga metoda de plata",
+    "SelectCourier": "Selecteaza curier"
+
 
 
 

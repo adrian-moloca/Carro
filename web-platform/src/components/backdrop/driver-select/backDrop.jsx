@@ -8,6 +8,7 @@ import GreyLine from '../../../assets/images/greyLine.png';
 import useStyles from './backDropStyle';
 import CardSelected from '../../card-selected/card-selected';
 import AddCard from '../../add-card/add-card';
+import { useTranslation } from "react-i18next";
 
 const MyBackdrop = withStyles({
     '& element.style':{
@@ -34,7 +35,7 @@ const MyGrid = withStyles({
 })(Grid);
 
 const BackdropSelectDriver=(props)=>{
-
+    const { t } = useTranslation();
     const classes = useStyles();
 
     const[payment, setPayment] = useState('cardOnline');
@@ -46,7 +47,7 @@ const BackdropSelectDriver=(props)=>{
                 <MyGrid container xs = {12} justifyContent='center' spacing='3'>
                     <Grid container item xs={12} justifyContent='center'>
                         <Box  fontWeight={400} fontSize={21}>
-                            Selecteaza Curierul
+                            {t("SelectCourier")}
                         </Box>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center'>
@@ -60,23 +61,24 @@ const BackdropSelectDriver=(props)=>{
                     </Grid>
                     <Grid container item xs={9} justifyContent='center'>
                         <Grid container xs={12}>
-                            <Grid container item xs={6}>Plecare: {props.plecare}</Grid>
-                            <Grid container item xs={6}>Data plecare: {props.dataPlecare}</Grid>
-                            <Grid container item xs={6}>Destinatie: {props.destinatie}</Grid>
+                            <Grid container item xs={6}>{t("DriverCardDeparture")} {props.plecare}</Grid>
+                            <Grid container item xs={6}>{t("DriverCardDepartureDate")} {props.dataPlecare}</Grid>
+                            <Grid container item xs={6}>{t("DriverCardDestination")} {props.destinatie}</Grid>
                             <Grid container item xs={6}>
                                 <Rating value={props.driverRate} readOnly precision={0.5}/>
                             </Grid>
-                            <Grid container item xs={6} justifyContent='flex-start'>Tipul transportului: {props.tipTransport}</Grid>
+                            <Grid container item xs={6} justifyContent='flex-start'>{t("DriverCardType")} {props.tipTransport}</Grid>
                         </Grid>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center'>
-                        <Box fontWeight='500'>Metoda de plata</Box>
+    
+                        <Box fontWeight='500'>{t("PaymentMethod")}</Box>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center'>
                         <RadioGroup row value = {payment} onChange={handlePayment} className={classes.radioGroupStyle}>                   
-                            <FormControlLabel value = 'cardOnline' control={<Radio/>} label='card Online'/>
-                            <FormControlLabel value = 'ordinDePlata' control={<Radio/>} label='ordin de Plata'/>
-                            <FormControlLabel value = 'ramburs' control={<Radio/>} label='Ramburs'/>
+                            <FormControlLabel value = 'cardOnline' control={<Radio/>} label={t("Card")}/>
+                            <FormControlLabel value = 'ordinDePlata' control={<Radio/>} label={t("PaymentOrder")}/>
+                            <FormControlLabel value = 'ramburs' control={<Radio/>} label={t("CashOnDelivery")}/>
                         </RadioGroup>
                     </Grid>
                     {payment === 'cardOnline' ? (
@@ -89,10 +91,10 @@ const BackdropSelectDriver=(props)=>{
                                                 </MyGrid>
                                                 ))  : null}
                     <Grid container item xs={6} justifyContent='flex-end'>
-                        <SecondaryButton variant='outlined' onClick={props.clickedBackBtn}>ANULEAZA</SecondaryButton>
+                        <SecondaryButton variant='outlined' onClick={props.clickedBackBtn}>{t("Cancel")}</SecondaryButton>
                     </Grid>
                     <Grid container item xs={6} justifyContent='flex-start'>    
-                        <PrimaryButton variant='contained'>SELECTEAZA</PrimaryButton>
+                        <PrimaryButton variant='contained'>{t("DriverCardSelectButton")}</PrimaryButton>
                     </Grid>
                 </MyGrid>
             </Container>
