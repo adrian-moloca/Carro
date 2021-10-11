@@ -5,7 +5,9 @@ import { useTranslation } from "react-i18next";
 
 
 const MyPackages = () => {
-  const { t } = useTranslation();
+
+const { t } = useTranslation();
+
 const packages = [
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -19,7 +21,7 @@ const packages = [
     description:'-',
     price: '150 RON',
     name: 'Pachetul meu',
-    status: t("Open"),
+    status: t('Open'),
   },
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -33,7 +35,7 @@ const packages = [
     description:'-',
     price: '150 RON',
     name: 'Pachetul meu',
-    status: 'Luat',
+    status:  t('Taken'),
   },
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -47,7 +49,7 @@ const packages = [
     description:'-',
     price: '150 RON',
     name: 'Pachetul meu',
-    status: 'In livrare',
+    status:  t('InTransit'),
     location: 'PITESTI',
   },
   {
@@ -62,7 +64,7 @@ const packages = [
     description:'-',
     price: '150 RON',
     name: 'Pachetul meu',
-    status: 'In livrare',
+    status:  t('InTransit'),
   },
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -76,7 +78,7 @@ const packages = [
     description:'-',
     price: '150 RON',
     name: 'Pachetul meu',
-    status: 'Inchis',
+    status:  t('Closed'),
   },
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -90,10 +92,12 @@ const packages = [
     description:'-',
     price: '150 RON',
     name: 'Pachetul meu',
-    status: 'Livrat',
+    status:  t('Delivered'),
   },
-]
-  const[packagesState, setPackagesState] = useState(packages)
+];
+
+
+  const[packagesState, setPackagesState] = useState([]);
 
   const deletePackage = (event, index) =>{
     event.stopPropagation();
@@ -107,15 +111,19 @@ const packages = [
     setPackagesState(temp);
   }
 
+  useEffect(() => {
+    console.log(packages)
+  },[packages]);
+
   return (
 
         <Container className='Primary-container-style'>
           <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t("MyPackages")}</Box>
-          {packagesState.map((packageinf, index)=>
-                <Package package={packageinf} packageIndex={index + 1} departureDate={packageinf.departureDate} departure={packageinf.departure} destination={packageinf.destination}
+          {packages.map((packageinf, index) => {
+                return <Package package={packageinf} packageIndex={index + 1} departureDate={packageinf.departureDate} departure={packageinf.departure} destination={packageinf.destination}
                          departureAddress={packageinf.departureAddress} destinationAddress={packageinf.destinationAddress} packageType={packageinf.packageType}
                          weight={packageinf.weight} description={packageinf.description} dimensions={packageinf.dimensions} price={packageinf.price} name={packageinf.name}
-                         status={packageinf.status} deletePackageClicked={(e, index)=>deletePackage(e, index)} packageLocation={packageinf.location}/>
+                         status={packageinf.status} deletePackageClicked={(e, index)=>deletePackage(e, index)} packageLocation={packageinf.location}/>}
           )}
         </Container>
       );
