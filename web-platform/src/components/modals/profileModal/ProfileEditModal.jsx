@@ -9,9 +9,9 @@ import CarroAutocomplete from '../../autocomplete/CarroAutocomplete';
 import { Modal, Box, Grid, Checkbox, MenuItem, AccordionSummary, AccordionDetails, Accordion, FormControlLabel, FormGroup } from "@material-ui/core";
 import EditIcon from '@material-ui/icons/Edit';
 import useStyles from './ProfileEditModalStyle'
-
+import { useTranslation } from "react-i18next";
 const ProfileEditModal = () =>  {
-
+  const { t } = useTranslation();
   const classes = useStyles();
   // state & handlers
   const [open, setOpen] = React.useState(false);
@@ -52,7 +52,7 @@ const ProfileEditModal = () =>  {
   return (
     <Box>
       <PrimaryButton fullWidth variant="contained" endIcon={<EditIcon />} onClick={handleOpen}>
-        EDITEAZA
+        {t("EditButton")}
       </PrimaryButton>
       <Modal
         open={open}
@@ -69,24 +69,24 @@ const ProfileEditModal = () =>  {
               justifyContent="center"
             >
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant="outlined" label="Nume" fullWidth />
+                <CarroTextField variant="outlined" label={t("FirstName")} fullWidth />
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant="outlined" label="Prenume" fullWidth />
+                <CarroTextField variant="outlined" label={t("LastName")} fullWidth />
               </Grid>
               <Grid item xs={12}>
-                <CarroTextField variant="outlined" label="Adresa" fullWidth />
+                <CarroTextField variant="outlined" label={t("Adress")} fullWidth />
               </Grid>
               <Grid container item xs={6} justifyContent="center">
                 <CarroTextField
                   variant="outlined"
-                  label="Numar de telefon"
+                  label={t("PhoneNumber")}
                   fullWidth
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <CarroDatePicker
-                  label="Data de nastere"
+                  label={t("Birthday")}
                   InputLabelProps={{
                     style: { fontSize: "17px", marginTop: "3px" },
                   }}
@@ -96,21 +96,21 @@ const ProfileEditModal = () =>  {
               <Grid item xs={12} sm={6}>
                 <CarroTextField
                   variant="outlined"
-                  label="Limbi cunoscute"
+                  label={t("Languages")}
                   fullWidth
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <CarroTextField
                   variant="outlined"
-                  label="Adresa de email"
+                  label={t("Mail")}
                   fullWidth
                 />
               </Grid>
               <Grid item xs={12}>
                 <CarroTextField
                   variant="outlined"
-                  label="Particularitati"
+                  label={t("Particularities")}
                   fullWidth
                 />
               </Grid>
@@ -125,7 +125,7 @@ const ProfileEditModal = () =>  {
               fontSize={22}
               textAlign={"center"}
             >
-              INCARCA DOCUMENTELE OBLIGATORII
+              {t("AddDocuments")}
             </Box>
           </Grid>
           <Accordion square='true' className={classes.AccordionBorderRadius} onChange={(event, expanded)=>{handleChange(event, expanded)}} expanded={state.expanded}>
@@ -145,7 +145,7 @@ const ProfileEditModal = () =>  {
                             name="checkedA"
                             color="#00B4D8"
                           ></Checkbox>
-                        }label="Persoana Juridica"
+                        }label={t("LegalPerson")}
                       />
                     </FormGroup>
                   </Grid>
@@ -162,16 +162,16 @@ const ProfileEditModal = () =>  {
                   justifyContent="center"
                 >
                   <Grid item xs={12}>
-                    <CarroTextField variant="outlined" label="Numele firmei" fullWidth />
+                    <CarroTextField variant="outlined" label={t("CompanyName")} fullWidth />
                   </Grid>
                   <Grid container item xs={6} justifyContent="center">
-                    <CarroTextField variant="outlined" label="CUI" fullWidth />
+                    <CarroTextField variant="outlined" label={t("CUI")} fullWidth />
                   </Grid>
                   <Grid container item xs={6} justifyContent="center">
-                    <CarroTextField variant="outlined" label="Adresa " fullWidth />
+                    <CarroTextField variant="outlined" label={t("Adress")} fullWidth />
                   </Grid>
                   <Grid container item xs={6} justifyContent="center">
-                    <CarroTextField variant ='outlined' label='Tara' fullWidth
+                    <CarroTextField variant ='outlined' label={t("Country")} fullWidth
                       select value={departureCountry} onChange={(e)=>handleChangeDepartureCountry(e)}>
                           {getCountries().map((country)=>(
                               <MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>
@@ -179,13 +179,13 @@ const ProfileEditModal = () =>  {
                     </CarroTextField>
                   </Grid>
                   <Grid container item xs={6} justifyContent="center">
-                  <CarroAutocomplete options={getCities(departureCountry)} label="Oras" onChange={(e)=>handleChangeDepartureCity(e)}/>
+                  <CarroAutocomplete options={getCities(departureCountry)} label={t("City")} onChange={(e)=>handleChangeDepartureCity(e)}/>
                   </Grid>
                   <Grid container item xs={6} justifyContent="center">
-                    <CarroTextField variant="outlined" label="Email firma" fullWidth />
+                    <CarroTextField variant="outlined" label={t("CompanyEmail")} fullWidth />
                   </Grid>
                   <Grid container item xs={6} justifyContent="center">
-                    <CarroTextField variant="outlined" label="Numar de telefon" fullWidth/>
+                    <CarroTextField variant="outlined" label={t("PhoneNumber")} fullWidth/>
                   </Grid>
                 </Grid>
               </Box>
@@ -200,7 +200,7 @@ const ProfileEditModal = () =>  {
               fontSize={22}
               textAlign={"center"}
             >
-              INFORMATII AUTOTURISM (OPTIONAL)
+              {t("CarInfo")}
             </Box>
           </Grid>
           <Box display="flex" justifyContent="space-evenly" mt="1%">
@@ -212,29 +212,29 @@ const ProfileEditModal = () =>  {
               justifyContent="center"
             >
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant="outlined" label="Marca" fullWidth />
+                <CarroTextField variant="outlined" label={t("CarBrand")} fullWidth />
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant="outlined" label="Model" fullWidth />
+                <CarroTextField variant="outlined" label={t("CarModel")} fullWidth />
               </Grid>
               <Grid container item xs={6} justifyContent="center">
                 <CarroTextField
                   variant="outlined"
-                  label="Numar de inmatriculare"
+                  label={t("CarNR")}
                   fullWidth
                 />
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant="outlined" label="Culoare" fullWidth />
+                <CarroTextField variant="outlined" label={t("Color")} fullWidth />
               </Grid>
             </Grid>
           </Box>
           <Box display="flex" mt={3}>
             <Box mr={2}>
-              <SecondaryButton variant="outlined" onClick={handleClose}>Anuleaza</SecondaryButton>
+              <SecondaryButton variant="outlined" onClick={handleClose}>{t("Cancel")}</SecondaryButton>
             </Box>
             <Box ml={2}>
-              <GreenCaroButton variant="contained">Salveaza</GreenCaroButton>
+              <GreenCaroButton variant="contained">{t("SaveButton")}</GreenCaroButton>
             </Box>
           </Box>
         </Box>
