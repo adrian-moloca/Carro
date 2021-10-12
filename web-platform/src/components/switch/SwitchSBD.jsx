@@ -5,13 +5,7 @@ import useStyles from '../modals/deleteModal/DeleteModalStyle'
 
 const SwitchSBD = (props) => {
 
-  const { content, btn1Text, btn2Text } = props;
   const classes = useStyles();
-
-  // modal
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   // switch
   const [state, setState] = React.useState({
@@ -21,6 +15,12 @@ const SwitchSBD = (props) => {
    const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked});
    };
+
+  // modal
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const { content, btn1Text, btn2Text } = props;
 
   return (
     <Box>
