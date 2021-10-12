@@ -113,7 +113,9 @@ const PackageCard = (props) =>{
             case 'package picked':
                 return(
                     <Grid container item xs={10} justifyContent = 'center'>
-                        <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>INAPOI</PrimaryButton>
+                        <Box width='1'marginTop='20%'>
+                            <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>INAPOI</PrimaryButton>
+                        </Box>
                     </Grid>
                 );
         }
