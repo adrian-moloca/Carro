@@ -140,6 +140,17 @@
     "CarNR:": "Registration number",
     "Color:": "Color",
     "SearchPackage": "Search package",
-    "SearchRide": "Search ride"
+    "SearchRide": "Search ride",
+    "PackageDelivery": "Package delivery",
+    "CodeReceived": "Cod prmit",
+    "WantToDelete": "Do you want to delete?",
+    "RequestPackage": "Request Package",
+    "AddRide": "Add race",
+    "TakeOver": "Take over",
+    "Delivery": "Deliver",
+    "ContactPerson:": "Contact person",
+    "TotalRides": "Total rides",
+    "Year": "Year"
+
 
 }
