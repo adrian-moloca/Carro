@@ -122,7 +122,21 @@
     "RideDeliver": "and wants to deliver your package",
     "Accept": "Accept",
     "SendMessage": "Send message",
-    "ViewProfile": "View profile"
-
-
+    "ViewProfile": "View profile",
+    "Profile": "Profile",
+    "Languages": "Languages",
+    "Particularities": "Particularities",
+    "AddDocuments": "Upload required documents",
+    "LegalPerson": "Legal person",
+    "CompanyName:": "Company name",
+    "CUI": "Tax Identification Number",
+    "Adress": "Adress",
+    "Country": "Country",
+    "City": "City",
+    "CompanyEmail": "Company email",
+    "CarInfo": "Car information (OPTIONAL)",
+    "CarBrand": "Brand",
+    "CarModel": "Model",
+    "CarNR:": "Registration number",
+    "Color:": "Color"
 }

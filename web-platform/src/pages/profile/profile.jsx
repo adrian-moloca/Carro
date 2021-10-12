@@ -9,11 +9,11 @@ import ProfileEditModal from '../../components/modals/profileModal/ProfileEditMo
 import profilePhotoMiddle from "../../assets/images/photoprofile1.png";
 import useStyles from "./profileStyle";
 import "../../App.css";
-
+import { useTranslation } from "react-i18next";
 const Profile = (props) => {
 
   const classes = useStyles();
-
+  const { t } = useTranslation();
   const [checked, setChecked] = React.useState(true);
   const [state, setState] = React.useState({
     checkedA: false,
@@ -48,11 +48,11 @@ const Profile = (props) => {
     <Container className={"Primary-container-style"}>
       <Grid container item xs={12} justifyContent='center' alignItems="center"> 
         <Grid container item xs={11} justifyContent='center'>
-          <Box mb={4} ml={10} fontWeight={400} fontSize={22} textAlign={'center'}>Profil</Box>
+          <Box mb={4} ml={10} fontWeight={400} fontSize={22} textAlign={'center'}>{t("Profile")}</Box>
         </Grid>
         <Grid container item xs={1} justifyContent='center'>
           <Box fontSize={10} className={'Secondary-color'}>
-            <SeeProfileBtn>Vizualizeaza profil</SeeProfileBtn>
+            <SeeProfileBtn>{t("ViewProfile")}</SeeProfileBtn>
           </Box>
         </Grid>
       </Grid>
@@ -69,25 +69,25 @@ const Profile = (props) => {
           justifyContent="center"
         >
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant="outlined" label="Nume" fullWidth disabled/>
+            <CarroTextField variant="outlined" label={t("CardName")} fullWidth disabled/>
           </Grid>
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant="outlined" label="Prenume" fullWidth disabled/>
+            <CarroTextField variant="outlined" label={t("FirstName")} fullWidth disabled/>
           </Grid>
           <Grid item xs={12}>
-            <CarroTextField variant="outlined" label="Adresa" fullWidth disabled/>
+            <CarroTextField variant="outlined" label={t("PickupAddress")} fullWidth disabled/>
           </Grid>
           <Grid container item xs={6} justifyContent="center">
             <CarroTextField
               variant="outlined"
-              label="Numar de telefon"
+              label={t("PhoneNumber")}
               fullWidth
               disabled
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <CarroDatePicker
-              label="Data de nastere"
+              label={t("Birthday")}
               disabled
               InputLabelProps={{
                 style: { fontSize: "17px", marginTop: "3px" },
@@ -98,7 +98,7 @@ const Profile = (props) => {
           <Grid item xs={12} sm={6}>
             <CarroTextField
               variant="outlined"
-              label="Limbi cunoscute"
+              label={t("Languages")}
               fullWidth
               disabled
             />
@@ -106,7 +106,7 @@ const Profile = (props) => {
           <Grid item xs={12} sm={6}>
             <CarroTextField
               variant="outlined"
-              label="Adresa de email"
+              label={t("Mail")}
               fullWidth
               disabled
             />
@@ -114,7 +114,7 @@ const Profile = (props) => {
           <Grid item xs={12}>
             <CarroTextField
               variant="outlined"
-              label="Particularitati"
+              label={t("Particularities")}
               fullWidth
               disabled
             />
@@ -130,7 +130,7 @@ const Profile = (props) => {
           fontSize={22}
           textAlign={"center"}
         >
-          INCARCA DOCUMENTELE OBLIGATORII
+         {t("AddDocuments")}
         </Box>
       </Grid>
       <Accordion square='true' className={classes.AccordionBorderRadius} onChange={(event, expanded)=>{handleChange(event, expanded)}} expanded={state.expanded}>
@@ -150,7 +150,7 @@ const Profile = (props) => {
                         name="checkedA"
                         color="#00B4D8"
                       ></Checkbox>
-                    }label="Persoana Juridica"
+                    }label={t("LegalPerson")}
                   />
                 </FormGroup>
               </Grid>
@@ -167,16 +167,16 @@ const Profile = (props) => {
               justifyContent="center"
             >
               <Grid item xs={12}>
-                <CarroTextField variant="outlined" label="Numele firmei" fullWidth disabled/>
+                <CarroTextField variant="outlined" label={t("CompanyName")} fullWidth disabled/>
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant="outlined" label="CUI" fullWidth disabled/>
+                <CarroTextField variant="outlined" label={t("CUI")} fullWidth disabled/>
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant="outlined" label="Adresa " fullWidth disabled/>
+                <CarroTextField variant="outlined" label={t("Adress")} fullWidth disabled/>
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label='Tara' fullWidth disabled
+                <CarroTextField variant ='outlined' label={t("Country")} fullWidth disabled
                   select value={departureCountry} onChange={(e)=>handleChangeDepartureCountry(e)}>
                       {getCountries().map((country)=>(
                           <MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>
@@ -184,13 +184,13 @@ const Profile = (props) => {
                 </CarroTextField>
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-                <CarroAutocomplete disabled options={getCities(departureCountry)} label="Oras" onChange={(e)=>handleChangeDepartureCity(e)}/>
+                <CarroAutocomplete disabled options={getCities(departureCountry)} label={t("City")} onChange={(e)=>handleChangeDepartureCity(e)}/>
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField disabled variant="outlined" label="Email firma" fullWidth />
+                <CarroTextField disabled variant="outlined" label={t("CompanyEmail")} fullWidth />
               </Grid>
               <Grid container item xs={6} justifyContent="center">
-                <CarroTextField disabled variant="outlined" label="Numar de telefon" fullWidth/>
+                <CarroTextField disabled variant="outlined" label={t("PhoneNumber")} fullWidth/>
               </Grid>
             </Grid>
           </Box>
@@ -205,7 +205,7 @@ const Profile = (props) => {
           fontSize={22}
           textAlign={"center"}
         >
-          INFORMATII AUTOTURISM (OPTIONAL)
+         {t("CarInfo")}
         </Box>
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="1%">
@@ -217,21 +217,21 @@ const Profile = (props) => {
           justifyContent="center"
         >
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant="outlined" label="Marca" fullWidth disabled/>
+            <CarroTextField variant="outlined" label={t("CarBrand")} fullWidth disabled/>
           </Grid>
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant="outlined" label="Model" fullWidth disabled/>
+            <CarroTextField variant="outlined" label={t("CarModel")} fullWidth disabled/>
           </Grid>
           <Grid container item xs={6} justifyContent="center">
             <CarroTextField
               variant="outlined"
-              label="Numar de inmatriculare"
+              label={t("CarNR")}
               fullWidth
               disabled
             />
           </Grid>
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant="outlined" label="Culoare" fullWidth disabled/>
+            <CarroTextField variant="outlined" label={t("Color")} fullWidth disabled/>
           </Grid>
         </Grid>
       </Box>
