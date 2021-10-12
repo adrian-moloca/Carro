@@ -33,12 +33,7 @@ export default function BasicSelect() {
                 className={classes.langsStyle}
                 labelId="demo-simple-select-error-label"
                 id="demo-simple-select-error"
-                disableUnderline 
-                IconComponent={() => (
-                  <Box ml={-2} justifyContent="center">
-                    <ExpandMoreIcon />
-                  </Box>
-                )}>
+                disableUnderline>
                 <MenuItem value={"ro"}>
                   <Box display="flex"  alignItems="center">
                     <img src={navRoFlag} alt={""}></img>

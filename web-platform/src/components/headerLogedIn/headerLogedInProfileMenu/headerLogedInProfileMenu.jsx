@@ -33,96 +33,83 @@ const HeaderLogedInProfileMenu = () => {
     return (
       <Menu
         anchorEl={accountAnchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         keepMounted
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         open={isAccountMenuOpen}
         onClose={handleMenuAccountClose}
+        className={classes.widthMenu}
       >
-        <Grid container display="flex" justifyContent="center" alignItems="center" flexDirection="column" fullWidth>
+        <Grid container display="flex" justifyContent="center" alignItems="center" flexDirection="column">
           <Grid item xs={12}>
-            <MenuItem>
-              <Link href="/my-packages" underline= 'none' color= 'inherit'>
-                <IconButton color="inherit">
+            <Link href="/my-packages" underline= 'none' color= 'inherit'>
+              <MenuItem dense>
                   <Box mr={2} className={"Primary-color"}>
                     <LocalMallOutlinedIcon/>
                   </Box>
                   <Box>
                     Pachetele mele
                   </Box>
-                </IconButton>
-              </Link>
-            </MenuItem>
+              </MenuItem>
+            </Link>
           </Grid>
           <Grid item xs={12}>
-            <MenuItem>
-              <Link href="/my-rides" underline= 'none' color= 'inherit'>
-                <IconButton color="inherit">
+            <Link href="/my-rides" underline= 'none' color= 'inherit'>
+              <MenuItem dense>
                   <Box mr={2} className={"Primary-color"}>
                     <LocalShippingOutlinedIcon/>
                   </Box>
                   <Box>
                     Transporturile mele
                   </Box>
-                </IconButton>
-              </Link>
-            </MenuItem>
+              </MenuItem>
+            </Link>
           </Grid>
           <Grid item xs={12}>
-            <MenuItem>
               <Link href="/profile" underline= 'none' color= 'inherit'>
-                <IconButton color="inherit">
+                <MenuItem dense>
                   <Box mr={2} className={"Primary-color"}>
                     <AccountCircleOutlinedIcon/>
                   </Box>
                   <Box>
                     Profil
                   </Box>
-                </IconButton>
+                </MenuItem>
               </Link>
-            </MenuItem>
           </Grid>
           <Grid item xs={12}>
-            <MenuItem>
-              <Link href="/payment-method" underline= 'none' color= 'inherit'>
-                <IconButton color="inherit">
+            <Link href="/payment-method" underline= 'none' color= 'inherit'>
+              <MenuItem dense>
                   <Box mr={2} className={"Primary-color"}>
                     <CreditCardOutlinedIcon/>
                   </Box>
                   <Box>
                     Metoda de plata
                   </Box>
-                </IconButton>
-              </Link>
-            </MenuItem>
+              </MenuItem>
+            </Link>
           </Grid>
           <Grid item xs={12}>
-            <MenuItem>
-              <Link href="/conversations" underline= 'none' color= 'inherit'>
-                <IconButton color="inherit">
+            <Link href="/conversations" underline= 'none' color= 'inherit'>
+              <MenuItem dense>
                   <Box mr={2} className={"Primary-color"}>
                     <MessageIcon/>
                   </Box>
                   <Box>
                     Conversatii
                   </Box>
-                </IconButton>
-              </Link>
-            </MenuItem>
+              </MenuItem>
+            </Link>
           </Grid>
           <Grid item xs={12}>
-            <MenuItem>
-              <Link href="/" underline= 'none' color= 'inherit'>
-                <IconButton color="inherit">
+            <Link href="/" underline= 'none' color= 'inherit'>
+              <MenuItem dense>
                   <Box mr={2} className={"Pink-carro"}>
                     <CancelOutlinedIcon/>
                   </Box>
                   <Box>
                     Iesire din cont
                   </Box>
-                </IconButton>
-              </Link>
-            </MenuItem>
+              </MenuItem>
+            </Link>
           </Grid>
           {/* {userType === "userAdmin" ? ( */}
             <Grid item xs={12}>
@@ -131,18 +118,16 @@ const HeaderLogedInProfileMenu = () => {
           {/* ): null}  */}
           {/* {userType === "userAdmin" ? ( */}
             <Grid item xs={12}>
-              <MenuItem>
-                <Link href="/admin-panel" underline= 'none' color= 'inherit'>
-                  <IconButton color="inherit">
-                    <Box mr={2} className={"Primary-color"}>
-                      <SecurityIcon/>
-                    </Box>
-                    <Box>
-                      Panou admin
-                    </Box>
-                  </IconButton>
-                </Link>
-              </MenuItem>
+              <Link href="/admin-panel" underline= 'none' color= 'inherit'>
+                <MenuItem dense>
+                      <Box mr={2} className={"Primary-color"}>
+                        <SecurityIcon/>
+                      </Box>
+                      <Box>
+                        Panou admin
+                      </Box>
+                </MenuItem>
+              </Link>
             </Grid>
           {/* ): null}  */}
         </Grid> 

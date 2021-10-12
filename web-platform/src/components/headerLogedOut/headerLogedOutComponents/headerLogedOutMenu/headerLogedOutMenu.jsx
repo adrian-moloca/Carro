@@ -4,9 +4,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
+import { useTranslation } from "react-i18next";
 const RenderMenuSBD = () => {
-
+  const { t } = useTranslation();
   const menuBtns = () => {
     return (
       <Box display="flex" flexDirection="row">
@@ -16,7 +16,7 @@ const RenderMenuSBD = () => {
               <SearchIcon/>
             </Box>
             <Box fontSize={18}>
-              Cauta Pachet
+             {t("SearchPackage")}
             </Box>
           </IconButton>
         </Link>
@@ -26,7 +26,7 @@ const RenderMenuSBD = () => {
               <DriveEtaIcon/>
             </Box>
             <Box fontSize={18}>
-              Cauta Transport
+            {t("SearchPackage")}
             </Box>
           </IconButton>
         </Link>
@@ -36,7 +36,7 @@ const RenderMenuSBD = () => {
               <AccountCircleIcon/>
             </Box>
             <Box fontSize={18}>
-              Autentificare
+             {t("Login")}
             </Box>
           </IconButton>
         </Link>
@@ -46,7 +46,7 @@ const RenderMenuSBD = () => {
               <ExitToAppIcon/>
             </Box>
             <Box fontSize={18}>
-              Inregistrare
+              {t("Register")}
             </Box>
           </IconButton>
         </Link>

@@ -6,7 +6,11 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid #00B4D8;',
     margin: ' 0',
     transform: 'rotate(-180deg);',
-  }
+  },
+
+  widthMenu:{
+    width: '30%',
+  },
 
 }));
 
