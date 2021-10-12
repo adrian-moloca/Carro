@@ -138,5 +138,8 @@
     "CarBrand": "Brand",
     "CarModel": "Model",
     "CarNR:": "Registration number",
-    "Color:": "Color"
+    "Color:": "Color",
+    "SearchPackage": "Search package",
+    "SearchRide": "Search ride"
+
 }
