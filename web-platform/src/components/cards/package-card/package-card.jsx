@@ -39,19 +39,19 @@ const PackageCard = (props) =>{
                 if(rideExists)
                     return(
                         <Grid container item xs={10} justifyContent = 'center'>
-                            <PrimaryButton variant='contained' size='medium' fullWidth>CERE PACHET</PrimaryButton>
+                            <PrimaryButton variant='contained' size='medium' fullWidth>{t("RequestPackage")}</PrimaryButton>
                         </Grid>
                     );
                 else
                     return(
                         <Grid container item xs={10} justifyContent = 'center'>
-                            <PrimaryButton variant='contained' size='medium' fullWidth>ADAUGA CURSA</PrimaryButton>
+                            <PrimaryButton variant='contained' size='medium' fullWidth>{t("AddRide")}</PrimaryButton>
                         </Grid>
                     );
             case 'package selected':
                     return(
                         <Grid container item xs={10} justifyContent = 'center'>
-                            <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>In asteptare...</Box>
+                            <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>{t("DriverCardWaitingStatus")}</Box>
                         </Grid>
                     );
             case 'package added':
@@ -59,7 +59,7 @@ const PackageCard = (props) =>{
                         <Grid container xs={10} justifyContent = 'center' spacing={2}>
                             <Grid container item xs={10} justifyContent = 'center'>
                                 <GreenCaroButton variant='contained' size='medium' fullWidth>
-                                    PRELUARE
+                                    {t("TakeOver")}
                                 </GreenCaroButton>
                             </Grid>
                             <Grid container item xs={10} justifyContent = 'center'>
@@ -72,7 +72,7 @@ const PackageCard = (props) =>{
                         <Grid container xs={10} justifyContent = 'center'  spacing={2}>
                             <Grid container item xs={10} justifyContent = 'center'>
                                 <GreenCaroButton variant='contained' size='medium' onClick={handleBtn} fullWidth>
-                                    PREDARE
+                                    {t("Delivery")}
                                 </GreenCaroButton>
                             </Grid>
                             <Grid container item xs={10} justifyContent = 'center'>
@@ -102,11 +102,11 @@ const PackageCard = (props) =>{
                     <Grid container xs={10} justifyContent = 'center'  spacing={2}>
                         <Grid container item xs={10} justifyContent = 'center'>
                             <SecondaryButton variant='contained' size='medium' fullWidth>
-                                REFUZA CU MOTIV
+                                {t("Reason")}
                             </SecondaryButton>
                         </Grid>
                         <Grid container item xs={10} justifyContent = 'center'>
-                            <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>INAPOI</PrimaryButton>
+                            <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t("DriverCardBackButton")}</PrimaryButton>
                         </Grid>
                     </Grid>
                 );
@@ -114,7 +114,7 @@ const PackageCard = (props) =>{
                 return(
                     <Grid container item xs={10} justifyContent = 'center'>
                         <Box width='1'marginTop='20%'>
-                            <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>INAPOI</PrimaryButton>
+                            <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t("DriverCardBackButton")}</PrimaryButton>
                         </Box>
                     </Grid>
                 );
@@ -175,7 +175,7 @@ const PackageCard = (props) =>{
                         <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
                     </Grid>
                     <Grid container item xs={12} spacing={1}justifyContent = 'flex-start'>
-                        <Box px={1} fontSize={14}>Utilizator: {props.sender}</Box>   
+                        <Box px={1} fontSize={14}>{t("User")} {props.sender}</Box>   
                         <Box px={1} fontSize={14}>Telefon: {props.senderPhone}</Box>   
                         <Box px={1} fontSize={14}>{t('PickupAddress')} {props.departureAddress}</Box>
                         <Box px={1} fontSize={14}>{t('PickupDate')} {props.departureDate}</Box>   
@@ -185,10 +185,10 @@ const PackageCard = (props) =>{
                     </Grid>
                     <Grid container item xs={12} spacing={1} justifyContent = 'flex-start' >
                         <Box px={1} fontSize={14}>{t('DriverCardDestinationAddress')} {props.destinationAddress}</Box>   
-                        <Box px={1} fontSize={14}>Persoana de contact: {props.destinatary}</Box>   
-                        <Box px={1} fontSize={14}>Telefon: {props.destinataryPhone}</Box>
+                        <Box px={1} fontSize={14}>{t("ContactPerson")} {props.destinatary}</Box>   
+                        <Box px={1} fontSize={14}>{t("PhoneNumber")} {props.destinataryPhone}</Box>
                         <Box width='1' px={1} fontSize={14} paddingRight='25px'>
-                            Detalii:
+                           {t("DriverCardDetailsButton")}
                             <Box width='1' borderRadius='15px' height='90px' marginY='10px' padding='8px' className={classes.detailsBox}> {props.details}</Box>
                         </Box>
                     </Grid>

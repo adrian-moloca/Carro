@@ -139,7 +139,17 @@
     "CarNR:": "Numar de inmatriculare",
     "Color:": "Culoare",
     "SearchPackage": " Cauta pachet",
-    "SearchRide": "Cauta cursa"
+    "SearchRide": "Cauta cursa",
+    "PackageDelivery": "Predare pachet",
+    "CodeReceived": "Code received",
+    "WantToDelete": "Doresti sa stergi?",
+    "RequestPackage": "Cere pachet",
+    "AddRide": "Adauga cursa",
+    "TakeOver": "Preluare",
+    "Delivery": "Predare",
+    "User:": "Utilizator",
+    "ContactPerson:": "Persoana de contact",
+    "Year": "An"
 
 
 
