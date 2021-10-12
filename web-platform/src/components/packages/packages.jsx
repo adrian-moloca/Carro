@@ -17,7 +17,7 @@ const packages_a = [
         destinationAddress: 'Lorem Ipsium Street',
         details: 'ceva de trimis',
         price: '15 RON',
-        status: 'package added', // status can be 'free package', 'package selected', 'package added', 'package picked', 'package rejected'
+        status: 'package picked', // status can be 'free package', 'package selected', 'package added', 'package picked', 'package rejected'
     }
 ]
 
