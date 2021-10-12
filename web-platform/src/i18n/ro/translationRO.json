@@ -137,7 +137,9 @@
     "CarModel:": "Model",
     "CarBrand:": "Brand",
     "CarNR:": "Numar de inmatriculare",
-    "Color:": "Culoare"
+    "Color:": "Culoare",
+    "SearchPackage": " Cauta pachet",
+    "SearchRide": "Cauta cursa"
 
 
 
