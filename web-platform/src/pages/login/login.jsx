@@ -39,7 +39,7 @@ const Login = () => {
               </Link>
             </Box>
             </Grid>
-            <Grid container item xs={8} xl={8} justifyContent='center'>  
+            <Grid container item xs={10} xl={8} justifyContent='center'>  
                 <PrimaryButton className="ButtonTextSize" size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
                 {t("Login")}
                 </PrimaryButton>

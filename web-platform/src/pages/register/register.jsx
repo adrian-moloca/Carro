@@ -78,7 +78,7 @@ const Register = () => {
       </Box>
       <Box display="flex" justifyContent="center" mt="3%" mb="5%">
       <Grid container item xs={8}>
-        <PrimaryButton fullWidth variant="contained" endIcon={<PersonAddIcon />}>
+        <PrimaryButton className="ButtonTextSize" fullWidth variant="contained" endIcon={<PersonAddIcon />}>
           <Link href="/register/phone-number-verification" underline= 'none' color= 'inherit'>
           {t("Register")}
           </Link>

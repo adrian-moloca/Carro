@@ -56,19 +56,20 @@ const PremiumPlanPayment = () => {
           completeNameSet={(e)=>handleSetCompleteName(e)}
           cvv={CVV} cvvSet={(e)=>handleSetCVV(e)}
         />
-        <Grid container item xs={10} justifyContent='flex-end'>
+        <Grid container item xs={9} xl={10} justifyContent='flex-end'>
           <FormControlLabel onChange = {(e)=>handleSaveData(e)} control={<CarroCheckbox/>} label={t("SaveData")}/>
         </Grid>
-        <Grid container item xs={4} justifyContent='center'>
-          <Link to='/register/select-plan' style={{textDecoration: 'none', width:'100%'}}> 
-            <SecondaryButton variant="contained" fullWidth>{t("Cancel")} </SecondaryButton> 
-          </Link>
-        </Grid>
-        <Grid container item xs={4} justifyContent='center'>
+        <Grid container item xs={9} xl={4} justifyContent='center'>
           <Link to='/payment-method' style={{textDecoration: 'none', width:'100%'}}>
             <PrimaryButton variant="contained" fullWidth> {t("Pay")}</PrimaryButton>
           </Link>
         </Grid>
+        <Grid container item xs={9} xl={4} justifyContent='center' >
+          <Link to='/register/select-plan' style={{textDecoration: 'none', width:'100%'}}> 
+            <SecondaryButton variant="contained" fullWidth>{t("Cancel")} </SecondaryButton> 
+          </Link>
+        </Grid>
+        
       </MyGrid>
     </Container>
   );
