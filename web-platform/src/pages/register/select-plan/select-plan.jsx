@@ -6,7 +6,7 @@ import PrimaryButton from "../../../components/buttons/primaryButton/primaryButt
 import useStyles from "./SelectPlanStyles";
 import "../../../App.css";
 import { withStyles } from "@material-ui/core/styles"
-
+import { useTranslation } from "react-i18next";
 const ColorText = withStyles({
   root: {
     color: "#00B4D8",
@@ -21,13 +21,14 @@ const ColorText = withStyles({
 })(Typography);
 
 const SelectPlan = () => {
+  const { t } = useTranslation();
   const classes = useStyles();
   return (
     <Container>
       <Grid container  xs={12} justifyContent="space-between" alignItems="center">
       
-        <Grid xs={5} justifyContent="space-between" alignItems="center">
-          <Box mt='15%' mb='15%' className={classes.SmallContainer} display="flex" flexDirection="column" alignItems="center">
+        <Grid xs={12} xl={5} justifyContent="space-between" alignItems="center">
+          <Box mt='15%' mb='10%' className={classes.SmallContainer} display="flex" flexDirection="column" alignItems="center">
           <Typography variant="h6" gutterBottom component="div">
             Cont Basic
           </Typography>
@@ -97,12 +98,12 @@ const SelectPlan = () => {
             justifyContent="center"
             alignItems="center"
           >
-            <PrimaryButton variant="contained"> SELECTEAZA</PrimaryButton>
+            <PrimaryButton variant="contained"> {t("DriverCardSelectButton")}</PrimaryButton>
           </Grid>
           </Box>
         </Grid>
-        <Grid xs={5} justifyContent="space-between" alignItems="center">
-          <Box mt='15%' mb='15%' className={classes.SmallContainer} display="flex" flexDirection="column" alignItems="center">
+        <Grid xs={12} xl={5} justifyContent="space-between" alignItems="center">
+          <Box mt='10%' mb='15%' className={classes.SmallContainer} display="flex" flexDirection="column" alignItems="center">
           <Typography variant="h6" gutterBottom component="div">
             Cont Premium
           </Typography>
@@ -172,7 +173,7 @@ const SelectPlan = () => {
             justifyContent="center"
             alignItems="center"
           >
-            <PrimaryButton variant="contained"> SELECTEAZA</PrimaryButton>
+            <PrimaryButton variant="contained"> {t("DriverCardSelectButton")}</PrimaryButton>
           </Grid>
           </Box>
         </Grid>
