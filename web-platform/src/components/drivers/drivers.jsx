@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {Grid} from '@material-ui/core';
 import DriverCard from '../cards/DriverCard/DriverCard';
 import profilePhotoLeft from '../../assets/images/photoprofile1.png';
@@ -52,8 +52,9 @@ const drivers_a = [
 const Drivers = (props) =>{
  
     return(
-        <Grid container item xs={12} justifyContent='space-around'>
+        <Fragment>
             {drivers_a.map((driver)=> 
+                <Grid container item xs={12} sm={6} md={4} xl={4} justifyContent='space-around'>
                   <DriverCard image={driver.image} 
                               name={driver.name}
                               transportType={driver.transportType}
@@ -69,8 +70,9 @@ const Drivers = (props) =>{
                               packageTaked= {driver.packageTaked}
                               packageExists= {props.packageExists}
                              />
+                </Grid>
             )}
-        </Grid>
+        </Fragment>
     );
 
 }
