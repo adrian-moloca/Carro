@@ -14,6 +14,9 @@ const useStyles = makeStyles({
         height:'1px',
         width: '100%',
     },
+    LoginThrough: {
+        fontSize: '12px'
+    }
 });
 
 export default useStyles;
