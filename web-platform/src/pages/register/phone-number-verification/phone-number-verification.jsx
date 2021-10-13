@@ -29,8 +29,8 @@ const PhoneNumberVerification = ()=>{
                         {t("PhoneSMS")}
                     </Box>
                 </Grid>
-                <Grid container item xs={12} justifyContent='center'>
-                    <Box mt = '3%' width='40%' >
+                <Grid container item xs={12} xl={6} justifyContent='center'>
+                    <Box mt = '3%' width='80%' >
                         <CarroTextField value = {sms} onChange={(e)=>setSMS(e.target.value)} variant ='outlined' label= {t("PhoneSMS")} fullWidth/>
                     </Box>
                 </Grid>

@@ -1,94 +1,105 @@
 ::-webkit-scrollbar {
-  width: 5px;
+    width: 5px;
 }
+
 
 /* Track */
+
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+    background: #f1f1f1;
 }
+
 
 /* Handle */
+
 ::-webkit-scrollbar-thumb {
-  background: #888;
+    background: #888;
 }
 
+
 /* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
-  background: black;
+    background: black;
 }
 
 .Primary-container-style {
-  background-color: white;
-  margin: 1% 0;
-  min-height: 66vh;
-  padding: 20px;
-  width: 50% !important;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
+    background-color: white;
+    margin: 1% 0;
+    min-height: 66vh;
+    padding: 20px;
+    width: 50% !important;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
 }
 
 .CardFlipContainer {
-  width: 29%;
+    width: 29%;
 }
 
 .addPackagesContainer {
-  background-color: white;
-  margin: 1% 0;
-  padding: 20px;
-  width: 100% !important;
-  height: 100%;
-  min-height: 60vh;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
+    background-color: white;
+    margin: 1% 0;
+    padding: 20px;
+    width: 100% !important;
+    height: 100%;
+    min-height: 60vh;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
 }
 
 .mobile-width-full {
-  width: 30%;
+    width: 30%;
 }
 
 @media screen and (max-width: 1280px) {
-  .Primary-container-style {
-    width: 80% !important;
-  }
+    .Primary-container-style {
+        width: 80% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .ButtonTextSize {
+        font-size: 12px !important;
+    }
 }
 
 @media screen and (max-width: 992px) {
-  .Primary-container-style {
-    width: 95% !important;
-  }
+    .Primary-container-style {
+        width: 95% !important;
+    }
 }
 
 @media screen and (max-width: 630px) {
-  .hide-on-mobile {
-    display: none !important;
-  }
-
-  .mobile-width-full {
-    width: 100%;
-  }
+    .hide-on-mobile {
+        display: none !important;
+    }
+    .mobile-width-full {
+        width: 100%;
+    }
 }
 
 .Primary-color {
-  color: #00b4d8 !important;
+    color: #00b4d8 !important;
 }
 
 .Secondary-color {
-  color: grey;
+    color: grey;
 }
 
 .Green-carro {
-  color: #34d02d;
+    color: #34d02d;
 }
 
 .Pink-carro {
-  color: #f50057;
+    color: #f50057;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

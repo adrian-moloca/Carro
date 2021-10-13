@@ -34,13 +34,13 @@ const Register = () => {
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="1%">
         <Grid container xs={8} spacing={3} display="flex" justifyContent="center">
-          <Grid container item xs={6} justifyContent="center">
+          <Grid container item xs={12} xl={6} justifyContent="center">
             <CarroTextField variant="outlined" label={t("LastName")} fullWidth />
           </Grid>
-          <Grid container item xs={6} justifyContent="center">
+          <Grid container item xs={12} xl={6} justifyContent="center">
             <CarroTextField variant="outlined" label={t("FirstName")} fullWidth />
           </Grid>
-          <Grid container item xs={6} justifyContent="center">
+          <Grid container item xs={12} xl={6} justifyContent="center">
             <CarroTextField variant="outlined" label={t("PickupAddress")} fullWidth/>
           </Grid>
           <Grid item xs={12} sm={6}>
