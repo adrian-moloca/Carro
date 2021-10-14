@@ -26,7 +26,7 @@ const RenderMenuSBD = () => {
               <DriveEtaIcon/>
             </Box>
             <Box fontSize={18}>
-            {t("SearchPackage")}
+            {t("SearchRide")}
             </Box>
           </IconButton>
         </Link>

@@ -11,16 +11,16 @@ const AddCard = (props) =>{
             <Grid Grid container item xs={12} justifyContent='center'>
                 <Box mt={props.marginTop}fontWeight={500} fontSize={20}>{t("AddCard")}</Box>
             </Grid>
-            <Grid container item xs={9} xl={5} justifyContent='center'>
+            <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
                 <CarroTextField value={props.cardNumber} onChange={props.cardNumberSet} variant ='outlined' label={t("AddCard")} fullWidth/>
             </Grid>
-            <Grid container item xs={9} xl={5} justifyContent='center'>
+            <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
                 <CarroDatePicker dateValue={props.expDate} handleDateSelect={props.expDateSet} views={["month","year"]} format="MM/yy" openTo='month' label={t("LastDate")}/>  
             </Grid>
-            <Grid container item xs={9} xl={5} justifyContent='center'>
+            <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
                 <CarroTextField value ={props.completeName} onChange={props.completeNameSet} variant ='outlined' label={t("CardName")} fullWidth/>
             </Grid>
-            <Grid container item xs={9} xl={5} justifyContent='center'>
+            <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
                 <CarroTextField value={props.cvv} onChange={props.cvvSet} variant ='outlined' label='CVV/CVC' fullWidth/>
             </Grid>
             <Grid container item xs={12} justifyContent='center'>

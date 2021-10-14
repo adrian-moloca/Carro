@@ -85,7 +85,7 @@ const Package = (props) => {
   return (
     <Grid container xs={12} spacing={3}>
       {console.log(Inflamabil, Fragil, Perisabil, Animal)}
-      <Grid container item xs={6} justifyContent="center">
+      <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
         <CarroTextField
           variant="outlined"
           label={t("PackageSize")}
@@ -101,7 +101,7 @@ const Package = (props) => {
           ))}
         </CarroTextField>
       </Grid>
-      <Grid container item xs={6} justifyContent="center">
+      <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
         <CarroTextField
           variant="outlined"
           label={t("Weight")}
@@ -182,7 +182,7 @@ const Package = (props) => {
       <Grid container item xs={12} justifyContent="center">
         <CarroTextField variant="outlined" label={t("SmallDescription")} fullWidth />
       </Grid>
-      <Grid container item xs={6} justifyContent="center">
+      <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
         <CarroTextField
           variant="outlined"
           label={t("Price")}
@@ -203,7 +203,7 @@ const Package = (props) => {
           }}
         />
       </Grid>
-      <Grid container item xs={6} justifyContent="center">
+      <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
         <CarroTextField variant="outlined" label={t("PackageNumbers")} fullWidth />
       </Grid>
       <Grid container item xs={12} justifyContent="center" maxRows={5}>

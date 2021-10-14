@@ -39,7 +39,7 @@ const SearchRide = () => {
 
       <Box display="flex" justifyContent="space-evenly" mt="3%">
         <Grid container xs={12} spacing={3} justifyContent="space-between">
-          <Grid container item xs justifyContent="center">
+          <Grid container item xs={12} md={6} xl={12} justifyContent="center">
             <CarroTextField
               variant="outlined"
               label= {t('SearchRideDepartureCountry')}
@@ -58,7 +58,7 @@ const SearchRide = () => {
               ))}
             </CarroTextField>
           </Grid>
-          <Grid container item xs justifyContent="center">
+          <Grid container item xs={12} md={6} xl={12} justifyContent="center">
             <Autocomplete
               options={getCities(departureCountry)}
               autoHighlight
@@ -86,7 +86,7 @@ const SearchRide = () => {
               fullWidth
             />
           </Grid>
-          <Grid container item xs justifyContent="center">
+          <Grid container item xs={12} md={6} xl={12} justifyContent="center">
             <CarroTextField
               variant="outlined"
               label={t('SearchRideDestinationCountry')}
@@ -105,7 +105,7 @@ const SearchRide = () => {
               ))}
             </CarroTextField>
           </Grid>
-          <Grid container item xs justifyContent="center">
+          <Grid container item xs={12} md={6} xl={12} justifyContent="center">
             <Autocomplete
               options={getCities(destinationCountry)}
               autoHighlight
@@ -135,18 +135,16 @@ const SearchRide = () => {
           </Grid>
         </Grid>
       </Box>
-      <Box display="flex" justifyContent="space-evenly" mt="3%">
-        <Grid container item xs={2}>
+      <Box display="flex" justifyContent="space-evenly" my="3%">
+        <Grid item xs={11} md={5} xl={3}>
           <PrimaryButton fullWidth variant="contained" endIcon={<DriveEtaIcon />}>
             {" "}
             {t('SearchRideButton')}
           </PrimaryButton>
         </Grid>
       </Box>
-      <Grid container xs={12}>
-            <Box marginTop='2%'>
+      <Grid container xs={12} justifyContent='space-around'>
               <Drivers packageExists={packageExists}/>
-            </Box>
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">
         <PaginationSBD />

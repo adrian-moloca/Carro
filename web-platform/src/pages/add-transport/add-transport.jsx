@@ -43,7 +43,7 @@ const AddTransport = () =>{
       <Box mb={2} fontWeight={400} fontSize={30} textAlign={'center'}>{t("AddTransport")}</Box>
       <Box display='flex' justifyContent='center' mt='5%'>
           <Grid container xs={12} spacing={3} >
-          <Grid container item xs={6} justifyContent="center">
+          <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
               <CarroTextField variant ='outlined' label={t("SearchRideDepartureCountry")} fullWidth
                   select value={departureCountry} onChange={handleChangeDepartureCountry}>
                       {getCountries().map((country)=>(
@@ -51,39 +51,39 @@ const AddTransport = () =>{
                       ))}
               </CarroTextField>
           </Grid>
-          <Grid container item xs={6} justifyContent="center">
+          <Grid container item xs={12} md ={6} xl={6}  justifyContent="center">
             <CarroAutocomplete options={getCities(departureCountry)} label={t("SearchRideDepartureCity")} onChange={(e)=>handleChangeDepartureCity(e)}/>
           </Grid>
-          <Grid container item xs={6} justifyContent='center'>
+          <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
             <CarroTextField variant ='outlined' label={t("SearchRideDestinationCountry")} fullWidth select value={destinationCountry} onChange={(e)=>handleChangeDestinationCountry(e)}>
               {getCountries().map((country)=>(
                   <MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>
               ))}
             </CarroTextField>
           </Grid>
-          <Grid container item xs={6} justifyContent='center'>
+          <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
               <CarroAutocomplete options={getCities(destinationCountry)} label={t("SearchRideDestinationCity")} onChange={(e)=>handleChangeDestinationCity(e)}/>
           </Grid>
-          <Grid container item xs={6} justifyContent='center'>
+          <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
               <CarroTextField variant ='outlined' label={t("DriverCardDepartureAddress")} fullWidth/>
           </Grid>
-          <Grid container item xs={6} justifyContent='center'>
+          <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
             <CarroDatePicker label={t("DriverCardDepartureDate")} dateValue={departureDate} handleDateSelect={(e)=>handleChangeDepartureDate(e)}/>
           </Grid>
-          <Grid container item xs={6} justifyContent='center'>
+          <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
             <CarroTextField select variant ='outlined' label={t("DriverCardType")} fullWidth value={transportType} onChange={(e)=>handleChangeTransportType(e)}>
               {getTransportType().map((transport)=>(<MenuItem value={transport}>{transport}</MenuItem>))}
             </CarroTextField>
           </Grid>
-          <Grid container item xs={6} justifyContent='center'>
+          <Grid container item xs={12}  md ={6} xl={6}  justifyContent='center'>
               <CarroTextField variant ='outlined' label={t("DriverCardEstimatedHours")} fullWidth/>
           </Grid>
         </Grid>
       </Box>
       <Box mt={7}>
-        <Grid container display='flex' direction="row" alignItems="center">                      
-          <Grid container item xs={6} justifyContent='center' alignItems="center">
-            <SecondaryButton variant="contained" size="large">
+        <Grid container display='flex' direction="row" alignItems="center"  spacing={2} style={{margin:0}}>                      
+          <Grid container item xs={12} md ={6} xl={6}  justifyContent='center' alignItems="center">
+            <SecondaryButton variant="contained" fullWidth>
               <Link href="/" underline= 'none' color= 'inherit'>
                 <Box display="flex" justifyContent='center' alignItems="center">
                   <Box mr={3} display="flex" alignItems="center">
@@ -96,8 +96,8 @@ const AddTransport = () =>{
               </Link>
             </SecondaryButton>
           </Grid>
-          <Grid container item xs={6} justifyContent='center' alignItems="center">
-            <PrimaryButton variant='contained' size="large" color="primary">
+          <Grid container item xs={12} md ={6} xl={6}  justifyContent='center' alignItems="center">
+            <PrimaryButton variant='contained' color="primary" fullWidth>
               <Box display="flex" justifyContent='center' alignItems="center">
                 <Box ml={4} fontSize={20}>
                 {t("Add")}
