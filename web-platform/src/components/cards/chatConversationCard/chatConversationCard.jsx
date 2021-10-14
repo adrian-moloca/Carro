@@ -20,7 +20,11 @@ const ChatConversationCard = (props) => {
               <Box mb={1} fontWeight={400} fontSize={22} textAlign={'center'}>Alex</Box>
             </Grid>
             <Grid container item xs={1} justifyContent='flex-end'>
-              <DeleteModal/>
+              <DeleteModal
+                content="Doresti sa stergi conversatia?"
+                btn1Text="Anuleaza"
+                btn2Text="Sterge"
+              />
             </Grid>
           </Grid>
           <Grid container item xs={12} justifyContent='center' alignItems='center'> 

@@ -30,7 +30,11 @@ const NotificationsFieldsTransport = (props) => {
           </Box>
         </Grid>
         <Grid container item xs={1} justifyContent='flex-end'>
-          <DeleteModal/>
+          <DeleteModal
+            content="Doresti sa stergi notificarea?"
+            btn1Text="Anuleaza"
+            btn2Text="Sterge"
+          />
         </Grid>
       </Grid>
       <Grid 
