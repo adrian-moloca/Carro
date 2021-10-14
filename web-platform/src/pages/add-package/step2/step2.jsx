@@ -11,10 +11,10 @@ const StepTwo = (props) =>{
     return(
         <Box display='flex' justifyContent='center' mt='5%'>
             <Grid container xs={12} spacing={3} >
-                <Grid container item xs={6} justifyContent="center">
+                <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
                     <CarroTextField variant ='outlined' label={t('ReceiverNume')}  fullWidth/>
                 </Grid>
-                <Grid container item xs={6} justifyContent="center">
+                <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
                     <PhoneTextField 
                         number={inputValuePhoneNumber} 
                         handleChangeNumber = {(e)=>setInputValuePhoneNumber(e.target.value)}
