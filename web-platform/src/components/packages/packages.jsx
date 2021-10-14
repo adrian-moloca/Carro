@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
 import PackageCard from '../cards/package-card/package-card';
-import { el } from 'date-fns/locale';
 
 const packages_a = [
     {
