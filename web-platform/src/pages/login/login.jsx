@@ -17,17 +17,17 @@ const Login = () => {
   return (
     <Container className={'Primary-container-style'}>
       <Box display= 'flex' flexDirection='column' justifyContent ='center' alignItems='center'>
-        <Grid container xs={12}  spacing={3} justifyContent='center'>
+        <Grid container xs={12}   spacing={3} justifyContent='center'>
           <Grid container item xs={12} justifyContent='center'> 
               <Box mt='5%' fontWeight={400} fontSize={21} textAlign={'center'}>{t("Login")}</Box>
             </Grid>  
-            <Grid container item xs={8} >
+            <Grid container item xs={10} xl={8} >
               <CarroTextField required label={t("Mail")} variant='outlined' fullWidth/>
             </Grid>
-            <Grid container item xs={8}>
+            <Grid container item xs={10} xl={8}>
               <CarroTextField required label={t("Password")} variant='outlined' fullWidth/>
             </Grid>  
-            <Grid  container item xs={8} justifyContent='space-between'>  
+            <Grid  container item xs={10} xl={8} justifyContent='space-between'>  
             <Box container  justifyContent='flex-start'>
               <FormControlLabel 
                 control={<CarroCheckbox color='default'/>}
@@ -39,8 +39,8 @@ const Login = () => {
               </Link>
             </Box>
             </Grid>
-            <Grid container item xs={6} justifyContent='center'>  
-                <PrimaryButton size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
+            <Grid container item xs={10} xl={8} justifyContent='center'>  
+                <PrimaryButton className="ButtonTextSize" size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
                 {t("Login")}
                 </PrimaryButton>
             </Grid>
@@ -50,8 +50,8 @@ const Login = () => {
             <Grid container item xs={5} alignItems='center'>
               <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
             </Grid>
-            <Grid container item xs={2} justifyContent='center'>
-                <Box textAlign='center'>
+            <Grid container item xs={2} xl={2} justifyContent='center'>
+                <Box textAlign='center' className="ButtonTextSize">
                 
                 {t("LoginThrough")}
                 </Box>
@@ -59,7 +59,7 @@ const Login = () => {
             <Grid container item xs={5} alignItems='center'>
               <img src={greyLine}  className={classes.greyLinesStyle} alt={""}/>
             </Grid>
-            <Grid container item xs={3} justifyContent='space-between'>
+            <Grid container item xs={7} xl={3} justifyContent='space-between'>
                 <img src={googleicon} alt={""}/>
                 <img src={fbicon} alt={""}/>
             </Grid>

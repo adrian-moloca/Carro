@@ -15,7 +15,7 @@ const ResetPassword = () =>{
                     <Grid container item xs={8} justifyContent='center'><CarroTextField label='Confirmare parola' variant='outlined' fullWidth/></Grid>
                     <Grid container item xs={8} justifyContent='center'>
                         <Link to='/login/' style={{ textDecoration: 'none', width:'80%' }}>
-                            <PrimaryButton variant='contained' fullWidth>
+                            <PrimaryButton variant='contained'  fullWidth>
                                 SALVEAZA
                             </PrimaryButton>
                         </Link>

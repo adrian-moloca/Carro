@@ -22,8 +22,13 @@ const rows = [
   createData(
     "nume",
     "mail",
-    <SwitchSBD content="DORESTI SA INVALIDEZI ACEST CONT?" btn1Text="anuleaza" btn2Text="invalideaza"/>,
-    <SwitchSBD content="DORESTI SA DEZACTIVEZI STATUTUL DE PREMIUM PENTRU ACEST CONT?" btn1Text="anuleaza" btn2Text="dezactiveaza"/>,
+    <SwitchSBD 
+    contentOff="DORESTI SA INVALIDEZI ACEST CONT?" btn1OffText="anuleaza" btn2OffText="invalideaza"
+    contentOn="DORESTI SA VALIDEZI ACEST CONT?" btn1OnText="anuleaza" btn2OnText="valideaza" 
+    />,
+    <SwitchSBD 
+    contentOff="DORESTI SA DEZACTIVEZI STATUTUL DE PREMIUM PENTRU ACEST CONT?" btn1OffText="anuleaza" btn2OffText="dezactiveaza"
+    contentOn="DORESTI SA ACTIVEZI STATUTUL DE PREMIUM PENTRU ACEST CONT?" btn1OnText="anuleaza" btn2OnText="activeaza"/>,
     <DeleteModal/>
   ),
 ];

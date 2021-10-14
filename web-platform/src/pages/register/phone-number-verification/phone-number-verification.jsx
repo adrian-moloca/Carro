@@ -25,32 +25,31 @@ const PhoneNumberVerification = ()=>{
                 </Grid>
                 <Grid container item xs={12} justifyContent='center'>
                     <Box  mb={3} fontSize={18} justifyContent='center' mt='3%'>
-                      
                         {t("PhoneSMS")}
                     </Box>
                 </Grid>
-                <Grid container item xs={12} justifyContent='center'>
-                    <Box mt = '3%' width='40%' >
+                <Grid container item xs={12} xl={6} justifyContent='center'>
+                    <Box mt = '3%' width='80%' >
                         <CarroTextField value = {sms} onChange={(e)=>setSMS(e.target.value)} variant ='outlined' label= {t("PhoneSMS")} fullWidth/>
                     </Box>
                 </Grid>
                 <Grid container item xs={12} justifyContent='center'>
                     <Timer expiryTimestamp={time}/>
                 </Grid>
-               <Grid container item xs={6} justifyContent='flex-end'>
-                    <Box width='50%' mt='5%'>
+                <Box width="80%">
+                <Grid container item xs={12} xl={12} justifyContent='space-around'>
+                    <Box>
                         <Link to='/register' style={{textDecoration:'none'}}>
-                            <SecondaryButton variant='outlined' fullWidth>{t("DriverCardBackButton")}</SecondaryButton>
+                            <SecondaryButton className="ButtonTextSize" variant='outlined' fullWidth>{t("DriverCardBackButton")}</SecondaryButton>
                         </Link>
                     </Box>
-                </Grid>
-                <Grid container item xs={6} justifyContent='flex-start'>
-                    <Box width='50%' mt='5%'>
+                    <Box>
                         <Link to='/register/select-plan' style={{textDecoration:'none'}}>
-                            <PrimaryButton variant='contained' onClick={()=><Link to='/register/select-plan'/>} fullWidth>{t("ChoosePlan")}</PrimaryButton>
+                            <PrimaryButton   className="ButtonTextSize"  variant='contained' onClick={()=><Link to='/register/select-plan'/>} fullWidth>{t("ChoosePlan")}</PrimaryButton>
                         </Link>
                     </Box>
                 </Grid>
+                </Box>
             </MyGrid>
         </Container>
     );

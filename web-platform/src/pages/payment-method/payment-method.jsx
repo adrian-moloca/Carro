@@ -26,7 +26,7 @@ const PaymentMethod = () => {
                 : 
                 (
                   <Fragment>
-                    <Grid container item xs={12} justifyContent='center'>
+                    <Grid container item xs={10} justifyContent='center'>
                       <Box fontSize={22} display='flex' justifyContent='center' mt='10%' className={'Secondary-color'}>
                          {t("NoPayment")}
                       </Box>
@@ -34,7 +34,7 @@ const PaymentMethod = () => {
                       <Grid container item xs={12} justifyContent='center'>
                         <Box display='flex' justifyContent='center' mt='10%'>
                             <Link to='/payment-method/add-payment-method' style={{textDecoration: 'none'}}>
-                              <PrimaryButton variant = 'contained' size='large' endIcon={<CreditCard/>} fullWidth>{t("AddPayment")}</PrimaryButton>
+                              <PrimaryButton className="ButtonTextSize" variant = 'contained' size='large' endIcon={<CreditCard/>} fullWidth>{t("AddPayment")}</PrimaryButton>
                             </Link>
                         </Box>
                       </Grid>

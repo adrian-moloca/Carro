@@ -1,6 +1,7 @@
-import React from 'react';
-import {FormControlLabel, Switch, Modal, Box} from '@material-ui/core';
+import React, {useState} from 'react';
+import {Switch, Modal, Box} from '@material-ui/core';
 import SecondaryButton from '../buttons/secondaryButton/secondaryButton';
+import GreenCaroButton from '../buttons/GreenCaroButton/GreenCaroButton';
 import useStyles from '../modals/deleteModal/DeleteModalStyle'
 
 const SwitchSBD = (props) => {
@@ -8,48 +9,67 @@ const SwitchSBD = (props) => {
   const classes = useStyles();
 
   // switch
-  const [state, setState] = React.useState({
-    checkedA: true ,
-    checkedB: true ,
-   });
-   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked});
-   };
+  const [toggle, setToggle] = useState(true)
+  // modal off
+  const [openOff, setOpenOff] = React.useState(false);
+  const handleOpenOff = () => setOpenOff(true);
+  const handleCloseOff = () => setOpenOff(false);
+  // modal on
+  const [openOn, setOpenOn] = React.useState(false);
+  const handleOpenOn = () => setOpenOn(true);
+  const handleCloseOn = () => setOpenOn(false);
 
-  // modal
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const { content, btn1Text, btn2Text } = props;
+  const { contentOff, btn1OffText, btn2OffText, contentOn, btn1OnText, btn2OnText } = props;
+
+  const toggler = (event) => {
+    toggle ? setToggle(handleOpenOff) : setToggle(handleOpenOn);
+    setToggle({ ...toggle, [event.target.name]: event.target.checked});
+  }
 
   return (
     <Box>
-      <FormControlLabel
-        control={
-          <Switch
-            onClick={handleOpen}
-            checked={state.checkedB}
-            onChange={handleChange}
-            name="checkedB"    
-            color= "primary"
-          />
-        }
+      <Switch
+        checked={toggle}
+        onChange={toggler}
+        name="toggle"
+        color= "primary"
       />
+      {/* off */}
       <Modal
-        open={open}
-        className={classes.modal}
-        onClose={handleClose}
+        open={openOff}
+        className={classes.modal}s
+        onClose={handleCloseOff}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center"  className={classes.paper}>
-          <Box fontSize={24} color="#3F3F3F" >{content}</Box>
+          <Box fontSize={24} color="#3F3F3F" >{contentOff}</Box>
           <Box display="flex" mt={3}>
             <Box mr={2}>
-              <SecondaryButton variant="outlined" onClick={handleClose}>{btn1Text}</SecondaryButton>
+              <SecondaryButton variant="outlined" onClick={handleCloseOff}>{btn1OffText}</SecondaryButton>
             </Box>
             <Box ml={2}>
-              <SecondaryButton variant="contained">{btn2Text}</SecondaryButton>
+              <SecondaryButton  variant="contained" onClick={()=> {setToggle(false), setOpenOff(false)}}>{btn2OffText}</SecondaryButton>
+            </Box>
+          </Box>
+        </Box>
+      </Modal>
+      {/* on */}
+      <Modal
+        open={openOn}
+        className={classes.modal}
+        onClose={handleCloseOn}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center"  className={classes.paper}>
+          <Box fontSize={24} color="#3F3F3F" >{contentOn}</Box>
+          <Box display="flex" mt={3}>
+            <Box mr={2}>
+              <SecondaryButton variant="outlined" onClick={handleCloseOn}>{btn1OnText}</SecondaryButton>
+            </Box>
+            <Box ml={2}>
+              <GreenCaroButton variant="contained" onClick={()=> {setToggle(true), setOpenOn(false)}}>{btn2OnText}</GreenCaroButton>
             </Box>
           </Box>
         </Box>
