@@ -55,21 +55,22 @@ const Drivers = (props) =>{
         <Fragment>
             {drivers_a.map((driver)=> 
                 <Grid container item xs={12} sm={6} md={4} xl={4} justifyContent='space-around'>
-                  <DriverCard image={driver.image} 
-                              name={driver.name}
-                              transportType={driver.transportType}
-                              driverRate={driver.rate}
-                              plecare={driver.departure}
-                              destinatie={driver.destination}
-                              departureDate={driver.departureDate}
-                              departureAddress={driver.departureAddress}
-                              destinationAddress={driver.destinationAddress}
-                              estimatedTime={driver.estimatedTime}
-                              driverSelected= {driver.driverSelected}
-                              requestStatus= {driver.requestStatus}
-                              packageTaked= {driver.packageTaked}
-                              packageExists= {props.packageExists}
-                             />
+                    <DriverCard 
+                        image={driver.image} 
+                        name={driver.name}
+                        transportType={driver.transportType}
+                        driverRate={driver.rate}
+                        plecare={driver.departure}
+                        destinatie={driver.destination}
+                        departureDate={driver.departureDate}
+                        departureAddress={driver.departureAddress}
+                        destinationAddress={driver.destinationAddress}
+                        estimatedTime={driver.estimatedTime}
+                        driverSelected= {driver.driverSelected}
+                        requestStatus= {driver.requestStatus}
+                        packageTaked= {driver.packageTaked}
+                        packageExists= {props.packageExists}
+                    />
                 </Grid>
             )}
         </Fragment>
