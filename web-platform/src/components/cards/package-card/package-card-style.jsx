@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
 
-    greyLinesStyle:{ width:'100%' },
+    greyLinesStyle:{ width:'100%', height: "1px" },
     boxesImageStyle:{ paddingTop:'13%' },
     advSigns:{height:'95%'},
     detailsBox: {

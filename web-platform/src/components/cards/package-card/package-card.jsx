@@ -125,7 +125,7 @@ const PackageCard = (props) =>{
         <Fragment>
             <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' containerClassName={'CardFlipContainer'}>
             
-            <Box paddingBottom='10%' width='1' height='480px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
+            <Box paddingBottom='10%' width='1' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
                 <Grid container xs ={12} spacing={2} justifyContent='center'>
                     <Grid container item xs={12} justifyContent = 'center'>
                         <img src={packageImg} className={classes.boxesImageStyle} alt={""}/>
@@ -164,7 +164,7 @@ const PackageCard = (props) =>{
                 </Grid>
             </Box>
 
-            <Box paddingBottom='10%' width='1' height='480px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
+            <Box paddingBottom='10%' width='1' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
                 <Grid container xs ={12} spacing={2} justifyContent='center'>
                     <Grid container item xs={12} spacing={1} justifyContent = 'flex-start'>
                         <Box px={1} fontSize={14} marginTop='20px'>{t('Quantity')} {props.packageQuantity}</Box>

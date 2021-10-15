@@ -10,7 +10,7 @@ const RideDetails = (props) =>{
     return(
         <Fragment>
             <Box borderRadius='10px'  boxShadow={3} display ='flex' px='4%' pt='2%' mt = '2%'>
-                <Grid container xs={12} spacing={0} justifyContent='center'>
+                <Grid container xs={12} spacing={0} justifyContent='center' className="ButtonTextSize">
                     <Grid container item xs={6}>
                       <Box >{t('DriverCardDeparture')} {props.departure}</Box>
                     </Grid>
