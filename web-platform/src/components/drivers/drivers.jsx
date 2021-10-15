@@ -54,7 +54,7 @@ const Drivers = (props) =>{
     return(
         <Fragment>
             {drivers_a.map((driver)=> 
-                <Grid container item xs={12} sm={6} md={4} xl={4} justifyContent='space-around'>
+                <Grid container item xs={12}  md={4}  xl={4} justifyContent='space-around'>
                     <DriverCard 
                         image={driver.image} 
                         name={driver.name}
