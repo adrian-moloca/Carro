@@ -9,9 +9,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MessageIcon from '@material-ui/icons/Message';
 import SecurityIcon from '@material-ui/icons/Security';
 import useStyles from './headerLogedInProfileMenuStyle'
-
+import { useTranslation } from 'react-i18next';
 const HeaderLogedInProfileMenu = () => {
-
+  const { t } = useTranslation();
   // State
   const [accountAnchorEl, setAccountAnchorEl] = React.useState(null);
   const isAccountMenuOpen = Boolean(accountAnchorEl);
@@ -46,7 +46,7 @@ const HeaderLogedInProfileMenu = () => {
                     <LocalMallOutlinedIcon/>
                   </Box>
                   <Box>
-                    Pachetele mele
+                    {t("MyPackages")}
                   </Box>
               </MenuItem>
             </Link>
@@ -58,7 +58,7 @@ const HeaderLogedInProfileMenu = () => {
                     <LocalShippingOutlinedIcon/>
                   </Box>
                   <Box>
-                    Transporturile mele
+                    {t("MyRides")}
                   </Box>
               </MenuItem>
             </Link>
@@ -70,7 +70,7 @@ const HeaderLogedInProfileMenu = () => {
                     <AccountCircleOutlinedIcon/>
                   </Box>
                   <Box>
-                    Profil
+                   {t("Profile")}
                   </Box>
                 </MenuItem>
               </Link>
@@ -82,7 +82,7 @@ const HeaderLogedInProfileMenu = () => {
                     <CreditCardOutlinedIcon/>
                   </Box>
                   <Box>
-                    Metoda de plata
+                    {t("PaymentMethod")}
                   </Box>
               </MenuItem>
             </Link>
@@ -94,7 +94,7 @@ const HeaderLogedInProfileMenu = () => {
                     <MessageIcon/>
                   </Box>
                   <Box>
-                    Conversatii
+                    Chat
                   </Box>
               </MenuItem>
             </Link>
@@ -106,7 +106,7 @@ const HeaderLogedInProfileMenu = () => {
                     <CancelOutlinedIcon/>
                   </Box>
                   <Box>
-                    Iesire din cont
+                   {t("Logout")}
                   </Box>
               </MenuItem>
             </Link>
@@ -124,7 +124,7 @@ const HeaderLogedInProfileMenu = () => {
                         <SecurityIcon/>
                       </Box>
                       <Box>
-                        Panou admin
+                        {t("AdminPanel")}
                       </Box>
                 </MenuItem>
               </Link>
@@ -148,7 +148,7 @@ const HeaderLogedInProfileMenu = () => {
             <AccountCircle/>
           </Box>
           <Box>
-            Contul meu
+            {t("MyAccount")}
           </Box>
         </Box>
       </IconButton>
