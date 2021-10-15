@@ -16,7 +16,7 @@ const PackageDetails = (props)=>{
     return(
     <Box borderRadius='10px' alignItems='center'  boxShadow={3} display ='flex' flexDirection='column' mx='3%' p='2%'>
         <Box my='2%' fontSize={20}>{t("PackageDetails")}</Box>
-        <Grid container  xs={12} spacing={0} justifyContent='center'>
+        <Grid container  xs={12} spacing={0} justifyContent='center' className="ButtonTextSize" >
             <Grid container item xs={6}>
                 <Box>{t("DriverCardDeparture")} {props.departure}</Box>
             </Grid>

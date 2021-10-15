@@ -103,7 +103,7 @@ function getStatusColor(status){
               <Grid container item xs={1} justifyContent='center'>
                 <Box fontSize={16} className={getStatusColor(props.status)} textAlign='center'>{props.status}</Box>
               </Grid>
-              <Grid container item xs={2} justifyContent='flex-end'>
+              <Grid container item xs={6}  xl={2} justifyContent='flex-end'>
                 {ActionsByStatus(props.status)}
                 <ExpandMore className={'Primary-color'}/>
               </Grid>
