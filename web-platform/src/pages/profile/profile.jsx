@@ -69,7 +69,7 @@ const Profile = (props) => {
           justifyContent="center"
         >
           <Grid container item xs={6} justifyContent="center">
-            <CarroTextField variant="outlined" label={t("CardName")} fullWidth disabled/>
+            <CarroTextField variant="outlined" label={t("LastName")} fullWidth disabled/>
           </Grid>
           <Grid container item xs={6} justifyContent="center">
             <CarroTextField variant="outlined" label={t("FirstName")} fullWidth disabled/>
