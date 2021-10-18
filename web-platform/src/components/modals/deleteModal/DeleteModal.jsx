@@ -1,7 +1,7 @@
 import React from 'react';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton'
 import { Modal, IconButton, Box } from '@material-ui/core';
-import {Delete} from '@material-ui/icons';
+import {DeleteOutline} from '@material-ui/icons';
 import useStyles from './DeleteModalStyle'
 import { useTranslation } from "react-i18next";
 const DeleteModal = () =>  {
@@ -14,8 +14,8 @@ const DeleteModal = () =>  {
 
   return (
     <Box>
-      <IconButton aria-label="delete" color="inherit" onClick={handleOpen}>
-        <Delete className={'Pink-carro'}/>
+      <IconButton aria-label="delete" size='small' color="inherit" onClick={handleOpen}>
+        <DeleteOutline className={'Pink-carro'}/>
       </IconButton>
       <Modal
         open={open}

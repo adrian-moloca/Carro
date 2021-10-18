@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Grid, Link } from '@material-ui/core';
+import {Box, Grid, ButtonBase } from '@material-ui/core';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import DeleteModal from '../../modals/deleteModal/DeleteModal';
 import useStyles from './chatConversationCardStyle';
@@ -9,44 +9,32 @@ const ChatConversationCard = (props) => {
   const classes = useStyles();
   
   return(
-    <Box display='flex' m='2%' fullWidth p={1} borderRadius='10px' boxShadow={3}>
-      <Grid 
-        container 
-        justifyContent="center"
-        alignItems="center"
-        direction="row">
-          <Grid container item xs={12} justifyContent='center'> 
-            <Grid container item xs={11} justifyContent='center'>
-              <Box mb={1} fontWeight={400} fontSize={22} textAlign={'center'}>Alex</Box>
-            </Grid>
-            <Grid container item xs={1} justifyContent='flex-end'>
+    <Box display='flex' width='1' mt='5%' fullWidth p={1} borderRadius='10px' boxShadow={3}>
+        <Grid container xs={12}>
+          <Grid container item xs={2} alignItems='center' justifyContent='center'>
+            <img src={props.profileImage} className={classes.profileImg}/>
+          </Grid>
+          <Grid container item xs={8} justifyContent='center'>
+            <ButtonBase disableRipple>
+              <Grid container>
+                <Grid container item xs={12} alignItems='flex-end' justifyContent='center'>
+                  <Box fontWeight='700' fontSize='16px' textAlign='center'>{props.name}</Box>
+                </Grid>
+                <Grid container item xs={12} justifyContent='center'>
+                  <Box fontWeight='200'  fontSize='18px' textAlign='center'>{props.message}</Box>
+                </Grid>
+              </Grid>
+            </ButtonBase>
+          </Grid>
+          <Grid container item xs={2}>
+            <Grid container item xs={12} alignItems='flex-start' justifyContent='flex-end'>
               <DeleteModal/>
             </Grid>
-          </Grid>
-          <Grid container item xs={12} justifyContent='center' alignItems='center'> 
-            <Grid container item xs={5} justifyContent='flex-start'>
-              <Box ml={4}>
-                <img src={props.image} className={classes.profileImg}  alt={""}/>
-              </Box>
-            </Grid>
-            <Grid container item xs={7} justifyContent='flex-start'>
-              <Box>
-                <GreenCaroButton>
-                  <Link href="/conversations/chat" underline= 'none' color= 'inherit'>
-                    Deschide
-                  </Link>
-                </GreenCaroButton>
-              </Box>
+            <Grid container item xs={12} alignItems='flex-end' justifyContent='flex-end'>
+              <Box fontWeight='400' fontSize='12px' fontStyle='italic' textAlign='right' className={'Secondary-color'}>{props.date}</Box>
             </Grid>
           </Grid>
-            <Grid container justifyContent='flex-end'>
-              <Box fontSize={14} className={'Secondary-color'}>
-                <text>
-                  12/06/2021
-                </text>
-              </Box>
-            </Grid>
-      </Grid>
+        </Grid>
     </Box>
   );
 };
