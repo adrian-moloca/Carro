@@ -15,7 +15,7 @@ const ChatConversationCard = (props) => {
             <img src={props.profileImage} className={classes.profileImg}/>
           </Grid>
           <Grid container item xs={8} justifyContent='center'>
-            <ButtonBase disableRipple>
+            <ButtonBase disableRipple onClick={props.chatClicked}>
               <Grid container>
                 <Grid container item xs={12} alignItems='flex-end' justifyContent='center'>
                   <Box fontWeight='700' fontSize='16px' textAlign='center'>{props.name}</Box>
