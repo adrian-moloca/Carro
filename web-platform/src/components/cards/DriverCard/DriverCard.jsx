@@ -86,7 +86,7 @@ const DriverCard =(props)=>{
         {
             return(
                 <Grid container item xs={8} justifyContent='center'>
-                    <Box mt='59%' width={1}>
+                    <Box mt='40px' width={1}>
                         <SecondaryButton disabled={packageTaked} variant='contained' fullWidth>REFUZA CU MOTIV</SecondaryButton>
                     </Box>
                 </Grid>
@@ -102,14 +102,14 @@ const DriverCard =(props)=>{
                         <Grid container item xs={8} justifyContent='center'>
                             <Box my='4%'>
                                 <PrimaryButton variant='outlined' fullWidth>
-                                    CERE TRANSPORT - CEVA MEDIU
+                                    <Box fontSize='10px'>CERE TRANSPORT - CEVA MIC</Box>
                                 </PrimaryButton>
                             </Box>
                         </Grid>
                         <Grid container item xs={8} justifyContent='center'>
                             <Box my='2%'>
                                 <PrimaryButton variant='outlined' fullWidth>
-                                    CERE TRANSPORT - CEVA MEDIU
+                                    <Box fontSize='10px'>CERE TRANSPORT - CEVA MEDIU</Box>
                                 </PrimaryButton>
                             </Box>
                         </Grid>

@@ -34,7 +34,7 @@
 }
 
 .CardFlipContainer {
-  width: 87%;
+    width: 87%;
 }
 
 .addPackagesContainer {
@@ -61,6 +61,13 @@
 @media (max-width: 480px) {
     .ButtonTextSize {
         font-size: 13px !important;
+    }
+    .AlignCenter {
+        display: flex;
+        justify-content: center;
+    }
+    .CardFlipContainer {
+        width: 87%;
     }
 }
 

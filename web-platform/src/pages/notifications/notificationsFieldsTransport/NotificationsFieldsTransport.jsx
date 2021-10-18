@@ -17,7 +17,7 @@ const NotificationsFieldsTransport = (props) => {
         direction="row">
         <Grid direction="row" container item xs={8} >
           <Box fontWeight= {600} fontStyle='italic' >
-          {props.name} {t("DeliverPackage")}
+          {props.name} {props.actionText}
           </Box>
         </Grid>
         <Grid container item xs={3} justifyContent='center'>
@@ -30,7 +30,11 @@ const NotificationsFieldsTransport = (props) => {
           </Box>
         </Grid>
         <Grid container item xs={1} justifyContent='flex-end'>
-          <DeleteModal/>
+          <DeleteModal
+            content="Doresti sa stergi notificarea?"
+            btn1Text="Anuleaza"
+            btn2Text="Sterge"
+          />
         </Grid>
       </Grid>
       <Grid 
@@ -77,6 +81,7 @@ const NotificationsFieldsTransport = (props) => {
         </Box>
       </Grid>
       <BackdropSelectDriver 
+        actionText={props.actionText}
         image={props.image}
         name={props.name}
         plecare={props.plecare}
