@@ -1,8 +1,7 @@
 import React from 'react';
-import {Paper, Grid, IconButton, Box} from '@material-ui/core';
+import {Paper, Grid, IconButton, Box, Link} from '@material-ui/core';
 import facebook from "../../assets/icon/facebookIcon.png"
 import instagram from "../../assets/icon/instagramIcon.png"
-import twitter from "../../assets/icon/twitterIcon.png"
 import useStyles from'./footerStyle'
 
 export default function NestedGrid() {
@@ -65,15 +64,16 @@ export default function NestedGrid() {
   function FormRowMediaButtons() {
     return (
       <div className={classes.mediaButtonsContainer}>
-        <IconButton>
-          <img src={facebook} alt={""}></img>
-        </IconButton>
-        <IconButton>
-          <img src={instagram} alt={""}></img>
-        </IconButton>
-        <IconButton>
-          <img src={twitter} alt={""}></img>
-        </IconButton>
+        <Link href="https://www.facebook.com/Carro-Future-Delivery-297489362056201" target="_blank" rel="noopener"  underline= 'none' color= 'inherit'>
+          <IconButton>
+            <img src={facebook} alt={"facebookButton"}></img>
+          </IconButton>
+        </Link>
+        <Link href="https://www.instagram.com/carrofuturedelivery/" target="_blank" rel="noopener" underline= 'none' color= 'inherit'>
+          <IconButton>
+            <img src={instagram} alt={"instaButton"}></img>
+          </IconButton>
+        </Link>
       </div>
     );
   }
