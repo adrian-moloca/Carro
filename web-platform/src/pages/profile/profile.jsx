@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Country, City }  from 'country-state-city';
+import { Link } from "react-router-dom";
 import { Container, Box, Grid, Checkbox, MenuItem, AccordionSummary, AccordionDetails, Accordion, FormControlLabel, FormGroup } from "@material-ui/core";
 import CarroAutocomplete from "../../components/autocomplete/CarroAutocomplete";
 import CarroTextField from "../../components/textField/CarroTextField";
@@ -51,9 +52,11 @@ const Profile = (props) => {
           <Box mb={4} ml={10} fontWeight={400} fontSize={22} textAlign={'center'}>{t("Profile")}</Box>
         </Grid>
         <Grid container item xs={1} justifyContent='center'>
+        <Link to="/courier-profile" style={{textDecoration: "none"}}>
           <Box fontSize={10} className={'Secondary-color'}>
             <SeeProfileBtn>{t("ViewProfile")}</SeeProfileBtn>
           </Box>
+          </Link>
         </Grid>
       </Grid>
       <Box display="flex" justifyContent="center" mb="3%">
