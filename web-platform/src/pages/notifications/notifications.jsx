@@ -1,12 +1,9 @@
 import React from 'react'
-import { Container, Box, AccordionSummary, AccordionDetails, Accordion, Grid, Button } from '@material-ui/core';
+import { Container, Box, AccordionSummary, AccordionDetails, Accordion, Grid } from '@material-ui/core';
 import profilePhotoMiddle from '../../assets/images/photoprofile2.png';
-import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
-import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';
 import DriverCardNotifications from '../../components/cards/DriverCardNotifications/DriverCardNotifications';
 import NotificationsAcordionFields from '../../components/cards/NotificationsAcordionFields/NotificationsAcordionFields';
 import PaginationSBD from '../../components/pagination/pagination';
-import DeleteModal from '../../components/modals/deleteModal/DeleteModal';
 import useStyles from './notificationsStyle.jsx';
 import Packages from '../../components/packages/packages';
 import NotificationsFieldsTransport from './notificationsFieldsTransport/NotificationsFieldsTransport'
