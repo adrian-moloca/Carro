@@ -23,12 +23,12 @@ const rows = [
     "nume",
     "mail",
     <SwitchSBD 
-      contentOff="DORESTI SA INVALIDEZI ACEST CONT?" btn1OffText="anuleaza" btn2OffText="invalideaza"
-      contentOn="DORESTI SA VALIDEZI ACEST CONT?" btn1OnText="anuleaza" btn2OnText="valideaza" 
-    />,
-    <SwitchSBD 
       contentOff="DORESTI SA DEZACTIVEZI STATUTUL DE PREMIUM PENTRU ACEST CONT?" btn1OffText="anuleaza" btn2OffText="dezactiveaza"
       contentOn="DORESTI SA ACTIVEZI STATUTUL DE PREMIUM PENTRU ACEST CONT?" btn1OnText="anuleaza" btn2OnText="activeaza"
+    />,
+    <SwitchSBD 
+      contentOff="DORESTI SA INVALIDEZI ACEST CONT?" btn1OffText="anuleaza" btn2OffText="invalideaza"
+      contentOn="DORESTI SA VALIDEZI ACEST CONT?" btn1OnText="anuleaza" btn2OnText="valideaza" 
     />,
     <DeleteModal
       content="Doresti sa stergi utilizatorul?"
