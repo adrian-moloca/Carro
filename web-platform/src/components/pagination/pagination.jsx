@@ -8,18 +8,16 @@ const PaginationSBD = () => {
   const handleChange = (event, value) => { setPage(value) };
 
   return(
-    <Grid container direction="row" justifyContent="center" alignItems="flex-end">
-      <Box>
+      <Box width='1' mt='5%' display='flex' justifyContent='center'>
         <Pagination 
           count={10} 
           variant="outlined" 
           shape="rounded" 
           page={page} 
           onChange={handleChange}
-          pageSize={4}
+          size='medium'
         />
       </Box>
-    </Grid>
   );
 };
 

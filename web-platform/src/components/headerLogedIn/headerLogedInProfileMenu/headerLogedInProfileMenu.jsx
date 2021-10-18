@@ -147,7 +147,7 @@ const HeaderLogedInProfileMenu = () => {
           <Box mr={2}>
             <AccountCircle/>
           </Box>
-          <Box>
+          <Box fontSize='18px'>
             {t("MyAccount")}
           </Box>
         </Box>
