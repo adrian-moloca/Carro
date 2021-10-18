@@ -39,7 +39,7 @@ const SearchRide = () => {
 
       <Box display="flex" justifyContent="space-evenly" mt="3%">
         <Grid container xs={12} spacing={3} justifyContent="space-between">
-          <Grid container item xs={12} md={6} xl={12} justifyContent="center">
+          <Grid container item xs={12} md={6} xl={3} justifyContent="center">
             <CarroTextField
               variant="outlined"
               label= {t('SearchRideDepartureCountry')}
@@ -58,7 +58,7 @@ const SearchRide = () => {
               ))}
             </CarroTextField>
           </Grid>
-          <Grid container item xs={12} md={6} xl={12} justifyContent="center">
+          <Grid container item xs={12} md={6} xl={3} justifyContent="center">
             <Autocomplete
               options={getCities(departureCountry)}
               autoHighlight
@@ -86,7 +86,7 @@ const SearchRide = () => {
               fullWidth
             />
           </Grid>
-          <Grid container item xs={12} md={6} xl={12} justifyContent="center">
+          <Grid container item xs={12} md={6} xl={3} justifyContent="center">
             <CarroTextField
               variant="outlined"
               label={t('SearchRideDestinationCountry')}
@@ -105,7 +105,7 @@ const SearchRide = () => {
               ))}
             </CarroTextField>
           </Grid>
-          <Grid container item xs={12} md={6} xl={12} justifyContent="center">
+          <Grid container item xs={12} md={6} xl={3} justifyContent="center">
             <Autocomplete
               options={getCities(destinationCountry)}
               autoHighlight
