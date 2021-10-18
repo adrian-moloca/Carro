@@ -6,7 +6,7 @@ import PrimaryButton from '../../buttons/primaryButton/primaryButton';
 import CarroTextField from '../../textField/CarroTextField';
 import CarroDatePicker from '../../datePicker/CarroDatePicker';
 import CarroAutocomplete from '../../autocomplete/CarroAutocomplete';
-import { Modal, Box, Grid, Checkbox, MenuItem, AccordionSummary, AccordionDetails, Accordion, FormControlLabel, FormGroup } from "@material-ui/core";
+import { Modal, Container, Box, Grid, Checkbox, MenuItem, AccordionSummary, AccordionDetails, Accordion, FormControlLabel, FormGroup } from "@material-ui/core";
 import EditIcon from '@material-ui/icons/Edit';
 import useStyles from './ProfileEditModalStyle'
 import { useTranslation } from "react-i18next";
@@ -59,7 +59,10 @@ const ProfileEditModal = () =>  {
         className={classes.modal}
         onClose={handleClose}
       >
+         <Container>
+        
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center"  className={classes.paper}>
+        <Box mb={4} fontWeight={400} fontSize={22} textAlign={'center'}>{t("EditProfileButton")}</Box>
           <Box display="flex" justifyContent="space-evenly" mt="1%">
             <Grid
               container
@@ -238,6 +241,7 @@ const ProfileEditModal = () =>  {
             </Box>
           </Box>
         </Box>
+        </Container>
       </Modal>
     </Box>
   );

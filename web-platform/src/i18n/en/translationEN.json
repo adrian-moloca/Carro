@@ -114,6 +114,7 @@
     "PackageType": "Package type:",
     "AvailableTransports": "Available transports",
     "EditButton": "Edit",
+    "EditProfileButton": "Edit profile",
     "CloseButton": "Close",
     "SaveButton": "Save",
     "TrackPackage": "Track package",
