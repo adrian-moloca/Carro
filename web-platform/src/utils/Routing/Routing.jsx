@@ -27,6 +27,18 @@ import CourierProfile from '../../pages/courier-profile/courier-profile';
 import Conversations from '../../pages/conversations/conversations';
 import Chat from '../../pages/conversations/chat/chat';
 import adminPanel from '../../pages/admin-panel/adminPanel';
+import HowItWorks from '../../pages/footer-pages/how-it-works/how-it-works';
+import AboutUs from '../../pages/footer-pages/about-us/about-us';
+import FrequentQuestions from '../../pages/footer-pages/frequent-questions/frequent-questions';
+import NewsAndFuturePlans from '../../pages/footer-pages/news-and-future-plans/news-and-future-plans';
+import Contact from '../../pages/footer-pages/contact/contact';
+import TermsAndConditions from '../../pages/footer-pages/terms-and-conditions/terms-and-conditions';
+import Press from '../../pages/footer-pages/press/press';
+import Reviews from '../../pages/footer-pages/reviews/reviews';
+import Career from '../../pages/footer-pages/career/career';
+import MobileApplication from '../../pages/footer-pages/mobile-application/mobile-application';
+import WhyUseOurServices from '../../pages/footer-pages/why-use-our-services/why-use-our-services';
+import Vouchers from '../../pages/footer-pages/vouchers/vouchers';
 import './Routing.css';
 
 const Routes = () => {
@@ -86,7 +98,18 @@ const Routes = () => {
                                 <Route path="/add-transport" exact component={AddTransport}/>  {/* checked */}
                                 <Route path="/courier-profile" exact component={CourierProfile}/>
                                 <Route path="/admin-panel" exact component={adminPanel}/>
-        
+                                <Route path="/how-it-works" exact component={HowItWorks}/>
+                                <Route path="/about-us" exact component={AboutUs}/>
+                                <Route path="/frequent-questions" exact component={FrequentQuestions}/>
+                                <Route path="/news-and-future-plans" exact component={NewsAndFuturePlans}/>
+                                <Route path="/contact" exact component={Contact}/>
+                                <Route path="/terms-and-conditions" exact component={TermsAndConditions}/>
+                                <Route path="/press" exact component={Press}/>
+                                <Route path="/reviews" exact component={Reviews}/>
+                                <Route path="/career" exact component={Career}/>
+                                <Route path="/mobile-application" exact component={MobileApplication}/>
+                                <Route path="/why-use-our-services" exact component={WhyUseOurServices}/>
+                                <Route path="/vouchers" exact component={Vouchers}/>
                                 <Route component={HomePage} />
                             </Switch>
                         </div>
