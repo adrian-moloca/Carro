@@ -115,6 +115,7 @@
     "AvailableTransports": "Available transports",
     "EditButton": "Edit",
     "EditProfileButton": "Edit profile",
+    "CourierProfile": "Courier profile",
     "CloseButton": "Close",
     "SaveButton": "Save",
     "TrackPackage": "Track package",
@@ -168,7 +169,9 @@
     "Delivery": "Deliver",
     "ContactPerson:": "Contact person",
     "TotalRides": "Total rides",
-    "Year": "Year"
+    "Year": "Year",
+    "LeaveAMessage": "Leave a message",
+    "Message": "Comments"
 
 
 }

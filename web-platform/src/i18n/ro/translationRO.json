@@ -114,6 +114,7 @@
     "AvailableTransports": "Transporturi disponibile",
     "EditButton": "Editeaza",
     "EditProfileButton": "Editeaza profil",
+    "CourierProfile": "Profilul curierului",
     "CloseButton": "Inchide",
     "SaveButton": "Salveaza",
     "TrackPackage": "Urmareste coletul",
@@ -168,7 +169,11 @@
     "Delivery": "Predare",
     "User:": "Utilizator",
     "ContactPerson:": "Persoana de contact",
-    "Year": "An"
+    "Year": "An",
+    "TotalRides": "Curse totale",
+    "LeaveAMessage": "Lasa un mesaj",
+    "Message": "Comentarii"
+
 
 
 
