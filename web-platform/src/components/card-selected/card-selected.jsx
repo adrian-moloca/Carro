@@ -8,8 +8,11 @@ import CarroRadio from '../radio/CarroRadio';
 import CarroCreditCard from '../cards/CreditCard/CreditCard';
 import AddCard from '../add-card/add-card';
 import {Add} from '@material-ui/icons';
+import useStyles from './card-selectedStyle'
 
 const CardSelected = (props) =>{
+
+    const classes = useStyles();
 
     const[cardSelected, setCardSelected] = useState('cardOnline1');
     const[cardHolder, setCardHolder] = useState();
@@ -139,17 +142,24 @@ const CardSelected = (props) =>{
              checked=true;
             }
         return (
-            <Fragment>
-                <Grid container item xs={9} justifyContent='flex-end'>
+            <Box 
+                display ='flex'
+                justifyContent="space-between"
+                alignItems="center"
+                flexDirection='column' 
+            >
+                <Grid container item xs={12} justifyContent='center'>
                     <CarroCreditCard cardProvider = {value.cardProvider} cardHolder = {value.cardHolder}
                         cardNumber = {'**** **** **** ' + value.cardNumber.substr(value.cardNumber.length - 4, value.cardNumber.length)} 
                         dateEmission = {value.dateSaved} dateExp = {value.expDate} clickedDelete={()=>deleteCard(index, value.name)}
                     />
                 </Grid>
-                <Grid container item xs={3} justifyContent='flex-start'>
-                    <FormControlLabel onChange={handleCardSelect} value={value.name} control={<CarroRadio/>} label={label} checked={checked}/>        
+                <Grid container item xs={12} justifyContent='center' className={classes.responsiveSelect}>
+                    <Box>
+                        <FormControlLabel onChange={handleCardSelect} className={classes.responsiveSelect} value={value.name} control={<CarroRadio/>} label={label} checked={checked}/>
+                    </Box>       
                 </Grid>
-            </Fragment>);
+            </Box>);
     }
 
 

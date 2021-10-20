@@ -15,7 +15,7 @@ const PaymentMethod = () => {
 
   return (
     <Container column className='Primary-container-style'>
-      <Grid container xs={12} justifyContent='center' spacing={3}>
+      <Grid container xs={12} justifyContent='center'>
         <Grid container item xs={12} justifyContent='center'> 
           <Box mb={3} fontSize={22} justifyContent='center' mt='3%'>{t("PaymentMethod")}</Box>
         </Grid>
