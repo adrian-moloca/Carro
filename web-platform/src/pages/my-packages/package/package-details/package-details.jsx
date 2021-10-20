@@ -9,7 +9,6 @@ import Drivers from '../../../../components/drivers/drivers';
 import useStyles from './package-details-style';
 import { useTranslation } from "react-i18next";
 const PackageDetails = (props)=>{
-    const[packageExists, setPackageExists] = useState(true);
     const { t } = useTranslation();
     const classes = useStyles();
 
@@ -57,7 +56,7 @@ const PackageDetails = (props)=>{
         </Grid>
         <Box my='2%' fontSize={20}>{t("AvailableTransports")}</Box>
         <Grid container  xs={12} spacing={0} justifyContent='center'>
-            <Drivers packageExists={packageExists}/>
+            <Drivers/>
         </Grid>
     </Box>  
     );

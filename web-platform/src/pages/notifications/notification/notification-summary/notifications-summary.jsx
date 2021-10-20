@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Box, Grid, Button } from '@material-ui/core';
-import PrimaryButton from '../../../components/buttons/primaryButton/primaryButton';
-import DeleteModal from '../../../components/modals/deleteModal/DeleteModal';
-import BackdropSelectDriver from '../../../components/backdrop/driver-select/backDrop';
+import PrimaryButton from '../../../../components/buttons/primaryButton/primaryButton';
+import DeleteModal from '../../../../components/modals/deleteModal/DeleteModal';
+import BackdropSelectDriver from '../../../../components/backdrop/driver-select/backDrop';
 import { useTranslation } from "react-i18next";
 
-const NotificationsFieldsTransport = (props) => {
+const NotificationsSummary = (props) => {
 
   const [title, setTitle] = useState("Marcheaza ca citit");
   const { t } = useTranslation();
@@ -96,4 +96,4 @@ const NotificationsFieldsTransport = (props) => {
   );
 };
 
-export default NotificationsFieldsTransport;
+export default NotificationsSummary;

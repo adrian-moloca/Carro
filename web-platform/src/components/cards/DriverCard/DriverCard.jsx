@@ -37,7 +37,7 @@ const DriverCard =(props)=>{
         if(driverSelected)
         {
             switch(requestStatus){
-                case 'sent':
+                case 'waiting':
                     return(
                         <Grid container item xs={8} justifyContent='center'>
                             <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>
@@ -54,6 +54,17 @@ const DriverCard =(props)=>{
                                 {t('DriverCardDetailsButton')}
                                 </PrimaryButton>
                             </Box>
+                        </Grid>
+                    );
+                case 'rejected':
+                    return(
+                        <Grid container xs={8} justifyContent = 'center'  spacing={2}>
+                            <Grid container item xs={12} justifyContent = 'center'>
+                                <Box my='10' className='Secondary-color' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
+                            </Grid>
+                            <Grid container item xs={12} justifyContent = 'center'>
+                                <Box my='10%' className='Secondary-color' fontSize='18px' fontWeight='500'>Nu mai plec</Box>
+                            </Grid>
                         </Grid>
                     );
             }

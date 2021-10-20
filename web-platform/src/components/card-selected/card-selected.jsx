@@ -116,7 +116,6 @@ const CardSelected = (props) =>{
             setCardSelected(temp[0].name) 
         temp.splice(index, 1);
         setSavedCardsData(temp);
-        console.log(savedCardsData);
     }
 
     const handleExpDate = (date)=>{

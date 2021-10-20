@@ -16,7 +16,8 @@ const packages_a = [
         destinationAddress: 'Lorem Ipsium Street',
         details: 'ceva de trimis',
         price: '15 RON',
-        status: 'package picked', // status can be 'free package', 'package selected', 'package added', 'package picked', 'package rejected'
+        status: 'free package', // status can be 'free package', 'package selected', 'package added', 'package picked', 'package rejected'
+        rideExists: true,
     }
 ]
 
@@ -30,7 +31,7 @@ const Packages = (props) =>{
                                  senderPhone={pack.senderPhone} destinatary={pack.destinatary} destinataryPhone={pack.destinataryPhone}
                                  packageWeight={pack.packageWeight} departureDate={pack.departureDate} price={pack.price}
                                  departureAddress={pack.departureAddress} destinationAddress={pack.destinationAddress} details={pack.details}
-                                 status= {pack.status} rideExists={props.rideExists}/>
+                                 status= {pack.status} rideExists={pack.rideExists}/>
                     </Grid>
             )} 
         </Fragment>

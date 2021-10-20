@@ -43,7 +43,7 @@ const RideDetails = (props) =>{
                 </Grid>
               </Box>
               <Box mx={-2} mt={1} p='2%' borderTop={1} borderColor= 'grey.400' >
-                <Packages rideExists={rideExists}/> 
+                <Packages/> 
               </Box>
         </Fragment>
     );

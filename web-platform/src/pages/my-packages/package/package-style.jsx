@@ -4,8 +4,8 @@ const useStyles=makeStyles({
 
     AccordionBorderRadius : {
         borderRadius: '10px',
+        alignItems: 'center',
     },
-
     AccordionDetailsFlex : {
         display: 'flex',
         flexDirection: 'column',
