@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {Box, Grid, Link} from '@material-ui/core';
-import {Star, StarBorder, StarHalf} from '@material-ui/icons';
+import {Rating} from '@material-ui/lab';
 import BackdropSelectDriver from '../../backdrop/driver-select/backDrop';
 import SeeProfileBtn from '../../buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn'
 import useStyles from './DriverCardNotificationsStyle';
@@ -44,12 +44,8 @@ const DriverCardNotifications =(props)=>{
             <Grid container justifyContent='center'>
                 <Box marginBottom='5%'>{t("DriverCardType")} {props.tipTransport}</Box>
             </Grid>
-            <Grid container justifyContent='space-evenly'>
-                <Star className={classes.starsStyle}/>
-                <Star className={classes.starsStyle}/>
-                <Star className={classes.starsStyle}/>
-                <StarHalf className={classes.starsStyle}/>
-                <StarBorder className={classes.starsStyle}/>
+            <Grid container xs={12} justifyContent='center'>
+                <Rating value={props.driverRate} readOnly precision={0.5}/>
             </Grid>
             <BackdropSelectDriver 
                 open={open} 

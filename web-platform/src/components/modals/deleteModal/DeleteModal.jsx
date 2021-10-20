@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton'
 import { Modal, IconButton, Box } from '@material-ui/core';
 import {DeleteOutline} from '@material-ui/icons';
@@ -16,7 +16,7 @@ const DeleteModal = (props) =>  {
   const { content, btn1Text, btn2Text } = props;
 
   return (
-    <Box>
+    <Fragment>
       <IconButton aria-label="delete" size='small' color="inherit" onClick={handleOpen}>
         <DeleteOutline className={'Pink-carro'}/>
       </IconButton>
@@ -39,7 +39,7 @@ const DeleteModal = (props) =>  {
           </Box>
         </Box>
       </Modal>
-    </Box>
+    </Fragment>
   );
 };
 

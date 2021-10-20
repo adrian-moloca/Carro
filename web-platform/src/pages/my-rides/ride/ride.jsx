@@ -88,7 +88,7 @@ const Ride = (props) =>{
                   <Box>{props.departureDate}</Box>
                 </Grid>
                 <Grid container item xs={2} justifyContent='center'>
-                  <Box fontSize={16} className={getStatusColor(props.rideStatus)}>{props.rideStatus}</Box>
+                  <Box fontSize={16} className={getStatusColor(props.rideStatus)} textAlign='center'>{props.rideStatus}</Box>
                 </Grid>
                 <Grid container item xs={1} justifyContent='flex-end'>
                   <ExpandMore className={'Primary-color'}/>

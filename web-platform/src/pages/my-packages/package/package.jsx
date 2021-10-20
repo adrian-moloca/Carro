@@ -85,25 +85,25 @@ function getStatusColor(status){
         <Accordion square='true' className={classes.AccordionBorderRadius}>
           <AccordionSummary id="transport-header">
             <Grid container justifyContent='space-between'>
-              <Grid container item xs = {1} justifyContent='flex-starts'>
+              <Grid container item sm = {1} md={1} lg={1} justifyContent='flex-starts'>
                 <Typography >{props.packageIndex}.</Typography>
               </Grid>
-              <Grid container item xs={2} justifyContent='center' className='hide-on-mobile'>
+              <Grid container item sm={2} md={2} lg={2} justifyContent='center' className='hide-on-mobile'>
                 <Box fontWeight= {600} fontStyle='italic' >{props.departure}</Box>
               </Grid>
-              <Grid container  item xs={1} justifyContent='center' className='hide-on-mobile'>
+              <Grid container  item sm={1} md={1} lg={1} justifyContent='center' className='hide-on-mobile'>
                 <ArrowForward className={'Primary-color'}/>
               </Grid>
-              <Grid container item xs={2} justifyContent='center' className='hide-on-mobile'>
+              <Grid container item sm={2} md={2} lg={2} justifyContent='center' className='hide-on-mobile'>
                 <Box fontWeight= {600} fontStyle='italic'>{props.destination}</Box>
               </Grid>
-              <Grid container item xs={3} justifyContent='center' className='hide-on-mobile'>
+              <Grid container item sm={3} md={3} lg={3} justifyContent='center' className='hide-on-mobile'>
                 <Box >{props.departureDate}</Box>
               </Grid>
-              <Grid container item xs={1} justifyContent='center'>
+              <Grid container item sm={1} md={1} lg={1} justifyContent='center'>
                 <Box fontSize={16} className={getStatusColor(props.status)} textAlign='center'>{props.status}</Box>
               </Grid>
-              <Grid container item xs={6}  xl={2} justifyContent='flex-end'>
+              <Grid container item sm={6} md={2}  lg={2} justifyContent='flex-end'>
                 {ActionsByStatus(props.status)}
                 <ExpandMore className={'Primary-color'}/>
               </Grid>

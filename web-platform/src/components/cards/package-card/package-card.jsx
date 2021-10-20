@@ -84,10 +84,10 @@ const PackageCard = (props) =>{
                 return(
                     <Grid container xs={10} justifyContent = 'center'  spacing={2}>
                         <Grid container item xs={10} justifyContent = 'center'>
-                            <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>{t('Reason')}</Box>
+                            <Box my='10' className='Secondary-color' fontSize='18px' fontWeight='500'>{t('DeclinedWithReason')}</Box>
                         </Grid>
                         <Grid container item xs={10} justifyContent = 'center'>
-                            <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>Nu mai plec</Box>
+                            <Box my='10%' className='Secondary-color' fontSize='18px' fontWeight='500'>Nu mai plec</Box>
                         </Grid>
                     </Grid>
                 );
@@ -165,8 +165,8 @@ const PackageCard = (props) =>{
             </Box>
 
             <Box paddingBottom='10%' width='1' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
-                <Grid container xs ={12} spacing={2} justifyContent='center'>
-                    <Grid container item xs={12} spacing={1} justifyContent = 'flex-start'>
+                <Grid container xs ={12} justifyContent='center'>
+                    <Grid container item xs={12} justifyContent = 'flex-start'>
                         <Box px={1} fontSize={14} marginTop='20px'>{t('Quantity')} {props.packageQuantity}</Box>
                         <Box px={1} fontSize={14}>{t('Sizing')} {props.packageDimensions}</Box>
                         <Box px={1} fontSize={14}>{t('Weight')} {props.packageWeight}</Box>
