@@ -33,6 +33,16 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
 }
 
+.searchPackageContainerStyle {
+    background-color: white;
+    margin: 1% 0;
+    min-height: 66vh;
+    padding: 20px;
+    width: 70% !important;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
+}
+
 .CardFlipContainer {
     width: 87%;
 }
@@ -41,7 +51,7 @@
     background-color: white;
     margin: 1% 0;
     padding: 20px;
-    width: 100% !important;
+    width: 70% !important;
     height: 100%;
     min-height: 60vh;
     border-radius: 15px;
@@ -69,6 +79,9 @@
     .CardFlipContainer {
         width: 87%;
     }
+    .searchPackageContainerStyle {
+        width: 100% !important;
+    }
 }
 
 @media screen and (max-width: 992px) {
@@ -83,6 +96,9 @@
     }
     .mobile-width-full {
         width: 100%;
+    }
+    .searchPackageContainerStyle {
+        width: 100% !important;
     }
 }
 

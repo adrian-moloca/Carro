@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { Container, Box, Grid, MenuItem } from "@material-ui/core";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import { Country, City } from "country-state-city";
+import { useTranslation } from 'react-i18next';
+import { Autocomplete } from "@material-ui/lab";
 import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
 import PaginationSBD from "../../components/pagination/pagination";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import CarroTextField from "../../components/textField/CarroTextField";
 import Packages from "../../components/packages/packages";
-import { Country, City } from "country-state-city";
-import { useTranslation } from 'react-i18next';
 
 const SearchPackages = () => {
+
   const { t } = useTranslation();
   // state
   const [departureCountry, setDepartureCountry] = useState(null);
@@ -31,15 +32,15 @@ const SearchPackages = () => {
 
   // render
   return (
-    <Container className={"Primary-container-style"}>
+    <Container className={"searchPackageContainerStyle"}>
       <Grid item xs={12}>
         <Box mb={2} fontWeight={400} fontSize={21} textAlign={"center"}>
         {t('SearchPackageTitle')}
         </Box>
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%">
-        <Grid container xs={12} spacing={3} justifyContent="space-between">
-          <Grid container item xs justifyContent="center">
+        <Grid container spacing={3} justifyContent="space-between">
+          <Grid item xs={12} sm={6}>
             <CarroTextField
               variant="outlined"
               label= {t('SearchRideDepartureCountry')}
@@ -58,7 +59,7 @@ const SearchPackages = () => {
               ))}
             </CarroTextField>
           </Grid>
-          <Grid container item xs justifyContent="center">
+          <Grid item xs={12} sm={6}>
             <Autocomplete
               options={getCities(departureCountry)}
               autoHighlight
@@ -72,7 +73,7 @@ const SearchPackages = () => {
                   {...params}
                   label={t('SearchRideDepartureCity')}
                   InputLabelProps={{
-                    style: { fontSize: "17px", marginTop: "3px" },
+                    style: { fontSize: "17px", marginTop: "3px"},
                   }}
                   variant="outlined"
                   inputProps={{
@@ -86,7 +87,7 @@ const SearchPackages = () => {
               fullWidth
             />
           </Grid>
-          <Grid container item xs justifyContent="center">
+          <Grid item xs={12} sm={6}>
             <CarroTextField
               variant="outlined"
               label={t('SearchRideDestinationCountry')}
@@ -105,7 +106,7 @@ const SearchPackages = () => {
               ))}
             </CarroTextField>
           </Grid>
-          <Grid container item xs justifyContent="center">
+          <Grid item xs={12} sm={6}>
             <Autocomplete
               options={getCities(destinationCountry)}
               autoHighlight
@@ -136,9 +137,8 @@ const SearchPackages = () => {
         </Grid>
       </Box>
       <Box display="flex" justifyContent="space-evenly" mt="3%">
-        <Grid container item xs={2}>
-          <PrimaryButton fullWidth variant="contained" endIcon={<FindInPageRoundedIcon />}>
-            {" "}
+        <Grid container item xs={4} sm={3}>
+          <PrimaryButton size={"large"} fullWidth variant="contained" endIcon={<FindInPageRoundedIcon/>}>
             {t('SearchRideButton')}
           </PrimaryButton>
         </Grid>
