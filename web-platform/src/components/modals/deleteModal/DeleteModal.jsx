@@ -11,7 +11,10 @@ const DeleteModal = (props) =>  {
   const classes = useStyles();
   // state & handlers
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = (event) => {
+    setOpen(true)
+    event.stopPropagation();
+  };
   const handleClose = () => setOpen(false);
   const { content, btn1Text, btn2Text } = props;
 

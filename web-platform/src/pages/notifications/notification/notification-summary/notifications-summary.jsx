@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Grid, Button } from '@material-ui/core';
 import PrimaryButton from '../../../../components/buttons/primaryButton/primaryButton';
 import DeleteModal from '../../../../components/modals/deleteModal/DeleteModal';
@@ -7,8 +7,8 @@ import { useTranslation } from "react-i18next";
 
 const NotificationsSummary = (props) => {
 
-  const [title, setTitle] = useState("Marcheaza ca citit");
   const { t } = useTranslation();
+  
 
   return (
     <Grid container direction="column">
@@ -21,13 +21,9 @@ const NotificationsSummary = (props) => {
           </Box>
         </Grid>
         <Grid container item xs={3} justifyContent='center'>
-          <Box>
-            <Button variant="default" onClick={() => setTitle("Citit")}>
-              <Box fontSize={10} className={'Primary-color'}>
-              {title}
-              </Box>
+            <Button variant="default" onClick={props.clickedMarkAsRead} className={props.markAsReadColor}>
+                {props.markAsReadBtnText}
             </Button>
-          </Box>
         </Grid>
         <Grid container item xs={1} justifyContent='flex-end'>
           <DeleteModal
@@ -75,8 +71,8 @@ const NotificationsSummary = (props) => {
       </Grid>
       <Grid  container  direction="row" justifyContent="center">
         <Box mt={3}>
-          <PrimaryButton variant="contained">
-          {t("DriverCardDetailsButton")}
+          <PrimaryButton variant="contained" onClick={props.clickedDetails} className={'details-button'}>
+            {props.detailsBtnText}
           </PrimaryButton>
         </Box>
       </Grid>

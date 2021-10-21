@@ -192,7 +192,9 @@
     "TotalRides": "Total rides",
     "Year": "Year",
     "LeaveAMessage": "Leave a message",
-    "Message": "Comments"
-
+    "Message": "Comments",
+    "DriverCardLessDetailsButton": "Show less",
+    "Approve": "Approve",
+    "Refuse": "Refuse"
 
 }
