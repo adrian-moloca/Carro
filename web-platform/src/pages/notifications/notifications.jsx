@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {Container, Box, Grid} from '@material-ui/core';
 import { useTranslation } from "react-i18next";
 import Notification from './notification/notification';
+import { ContactSupportOutlined } from '@material-ui/icons';
 
 const notifications_a = [
     
@@ -16,77 +17,12 @@ const notifications_a = [
         departureDate: '26/08/2021 02:00am',
         price: '20 RON',
         transportType: 'Masina', 
-        read: false,
-    },
-    {
-        type: 'colet acceptat',
-        name: 'Marius Popescu',
-        action: 'a acceptat livrarea coletului tau!',
-        departure: 'Timisoara',
-        destination: 'Bucuresti',
-        departureAddress: '1 Decembrie',
-        destinationAddress: '2 Mai',
-        departureDate: '26/08/2021 02:00am',
-        price: '20 RON',
-        transportType: 'Masina',
-        read: false,
-    },
-    {
-        type: 'colet refuzat',
-        name: 'Marius Popescu',
-        action: 'a refuzat livrarea coletului tau!',
-        departure: 'Timisoara',
-        destination: 'Bucuresti',
-        departureAddress: '1 Decembrie',
-        destinationAddress: '2 Mai',
-        departureDate: '26/08/2021 02:00am',
-        price: '20 RON',
-        transportType: 'Masina',
-        read: false,
-    },
-    {
-        type: 'transport acceptat',
-        name: 'Marius Popescu',
-        action: 'a acceptat transportul tau pe ruta Timisoara-Bucuresti.',
-        departure: 'Timisoara',
-        destination: 'Bucuresti',
-        departureAddress: '1 Decembrie',
-        destinationAddress: '2 Mai',
-        departureDate: '26/08/2021 02:00am',
-        price: '20 RON',
-        transportType: 'Masina',
-        read: false,
-    },
-    {
-        type: 'transport refuzat',
-        name: 'Marius Popescu',
-        action: 'a refuzat transportul tau pe ruta Timisoara-Bucuresti.',
-        departure: 'Timisoara',
-        destination: 'Bucuresti',
-        departureAddress: '1 Decembrie',
-        destinationAddress: '2 Mai',
-        departureDate: '26/08/2021 02:00am',
-        price: '20 RON',
-        transportType: 'Masina',
-        read: false,
+        read: true,
     },
     {
         type: 'transport anulat',
         name: 'Marius Popescu',
-        action: 'a anulat transportul pentru coletul tau!',
-        departure: 'Timisoara',
-        destination: 'Bucuresti',
-        departureAddress: '1 Decembrie',
-        destinationAddress: '2 Mai',
-        departureDate: '26/08/2021 02:00am',
-        price: '20 RON',
-        transportType: 'Masina',
-        read: false,
-    },
-    {
-        type: 'cerere pachet',
-        name: 'Marius Popescu',
-        action: 'doreste sa livreze coletul tau.',
+        action: 'a anulat transportul pentru coletul tau.',
         departure: 'Timisoara',
         destination: 'Bucuresti',
         departureAddress: '1 Decembrie',
@@ -115,16 +51,18 @@ const Notifications =()=>{
 
     const { t } = useTranslation();
     const[notifications, setNotifications] = useState(notifications_a)
-    const readNotification = (index) => {
+    const readNotification = (event, index) => {
+        event.stopPropagation();
+        if(event.target.className.includes('details-button') || event.target.className.includes('label')){
         const temp = [...notifications];
         temp.map((el, i)=>{
             if(i==index)
             {
-                const b = el.read;
-                el.read = !b;
+                el.read=true
             }
         })
         setNotifications(temp);
+    }
     }
 
     const deleteNotification=(index)=>{
@@ -137,12 +75,12 @@ const Notifications =()=>{
         <Container className='Primary-container-style'>
             <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t('Notifications')}</Box>
             <Grid container justifyContent='center'>
-                {notifications.map((not)=>{
+                {notifications.map((not, index)=>{
                     return  <Grid container item xs={12}>
                                 <Notification type={not.type} name={not.name} action={not.action} 
                                             departure={not.departure} destination={not.destination} price={not.price} transportType={not.transportType}
                                             departureAddress={not.departureAddress} destinationAddress={not.destinationAddress} departureDate={not.departureDate}
-                                            handleRead={readNotification} read={not.read} handleDelete={deleteNotification}/>
+                                            handleRead={(e)=>readNotification(e,index)} read={not.read} handleDelete={deleteNotification}/>
                             </Grid>
                 })}
             </Grid>

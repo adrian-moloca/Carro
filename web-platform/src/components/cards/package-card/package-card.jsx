@@ -84,10 +84,25 @@ const PackageCard = (props) =>{
                 return(
                     <Grid container xs={10} justifyContent = 'center'  spacing={2}>
                         <Grid container item xs={10} justifyContent = 'center'>
-                            <Box my='10' className='Secondary-color' fontSize='18px' fontWeight='500'>{t('DeclinedWithReason')}</Box>
+                            <Box my='10' className='Secondary-color' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
                         </Grid>
                         <Grid container item xs={10} justifyContent = 'center'>
                             <Box my='10%' className='Secondary-color' fontSize='18px' fontWeight='500'>Nu mai plec</Box>
+                        </Grid>
+                    </Grid>
+                );
+            case 'notification ride request':
+                return(
+                    <Grid container xs={10} justifyContent = 'center'  spacing={2}>
+                        <Grid container item xs={10} justifyContent = 'center'>
+                            <GreenCaroButton variant='contained' size='medium' fullWidth>
+                                {t("Approve")}
+                            </GreenCaroButton>
+                        </Grid>
+                        <Grid container item xs={10} justifyContent = 'center'>
+                            <SecondaryButton variant='contained' size='medium' fullWidth>
+                                {t("Refuse")}
+                            </SecondaryButton>
                         </Grid>
                     </Grid>
                 );
