@@ -215,7 +215,7 @@ const DriverCard =(props)=>{
             plecare={props.plecare}
             destinatie= {props.destinatie}
             tipTransport = {props.transportType}
-            dataPlecare = {props.dataPlecare}/>
+            dataPlecare = {props.departureDate}/>
         </Fragment>
     );
 };
