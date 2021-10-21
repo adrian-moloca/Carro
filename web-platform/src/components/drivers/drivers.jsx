@@ -8,7 +8,7 @@ import profilePhotoRight from '../../assets/images/photoprofile3.png';
 const drivers_a = [
     {
         image: profilePhotoLeft,
-        name: 'Marius popescu',
+        name: 'Marius Popescu',
         transportType: 'Masina',
         estimatedTime: '7 ore',
         departure: 'Timisoara, Romania',
@@ -21,7 +21,7 @@ const drivers_a = [
     },
     {
         image: profilePhotoMiddle,
-        name: 'Marius popescu',
+        name: 'Marius Popescu',
         transportType: 'Masina',
         estimatedTime: '7 ore',
         departure: 'Timisoara, Romania',
@@ -36,7 +36,7 @@ const drivers_a = [
     },
     {
         image: profilePhotoRight,
-        name: 'Marius popescu',
+        name: 'Marius Popescu',
         transportType: 'Masina',
         estimatedTime: '7 ore',
         departure: 'Timisoara, Romania',

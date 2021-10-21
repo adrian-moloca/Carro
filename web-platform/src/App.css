@@ -87,15 +87,27 @@
   }
 }
 
-@media screen and (max-width: 630px) {
+@media screen and (max-width: 961px) {
   .hide-on-mobile {
     display: none !important;
   }
+}
+
+@media screen and (max-width: 630px) {
   .mobile-width-full {
     width: 100%;
   }
   .searchPackageContainerStyle {
     width: 100% !important;
+  }
+  .textSizeMobile {
+    font-size: small !important;
+  }
+}
+
+@media screen and (min-width: 962px) {
+  .hide-on-desktop {
+    display: none !important;
   }
 }
 

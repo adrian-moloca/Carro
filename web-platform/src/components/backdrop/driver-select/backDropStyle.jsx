@@ -10,7 +10,8 @@ const useStyles = makeStyles({
         backgroundColor: '#fff',
         margin: '1% 0',
         padding: '20px',
-        width: '40%',
+        maxHeight: '95%',
+        width: '60%',
         borderRadius: '15px',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.31)'
     },
@@ -26,6 +27,17 @@ const useStyles = makeStyles({
             width: '80%',
         },
     },
+
+    ['@media (max-width:630px)'] : {
+        containerBackdrop:{
+            width: '90%',
+        },
+        profileImage:{
+            width:'45px',
+            height:'45px',
+        },
+    },
+
 
     ['@media (max-width:250px)'] : {
         containerBackdrop:{
