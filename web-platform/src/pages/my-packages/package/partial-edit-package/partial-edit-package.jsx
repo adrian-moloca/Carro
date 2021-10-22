@@ -14,7 +14,7 @@ const PartialEditPackage = (props) =>{
         event.stopPropagation()
     };
     const handleCloseBd=(event)=>{
-        if(event.target === document.getElementById('backdrop'))
+        if(event.target.className.includes('backdrop'))
             setOpen(false)
         event.stopPropagation()
     };
@@ -28,7 +28,7 @@ const PartialEditPackage = (props) =>{
     return (
             <IconButtonNoVerticalPadding onClick={handleBtn}>
                 <BackdropEditDestinatary open={open} clicked={handleCloseBd} clickedClose={handleCloseBdByBtn} package={props.package}/>
-                <EditOutlined className={'Primary-color'}/> 
+                <EditOutlined className={'Primary-color'}  fontSize='small'/> 
             </IconButtonNoVerticalPadding >
 
     );

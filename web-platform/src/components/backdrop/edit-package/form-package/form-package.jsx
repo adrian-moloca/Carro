@@ -99,32 +99,33 @@ const   FormPackage = (props) =>{
 
 
     return(
-        <Box display='flex' justifyContent='center' mt='5%'>
-            <Grid container xs={12} spacing={3} >
+        <Box display='flex' justifyContent='center' mt='5%' mb='5%' fontSize='13px'>
+            <Grid container xs={12} spacing={1} >
                 <Grid container item xs={6} justifyContent="center">
-                            <CarroAutocomplete value={departureCountry} options={getCountries()}  label= {t("SearchRideDepartureCountry")} onChange={(e)=>setDepartureCountry(e.target.textContent)}/>
+                            <CarroAutocomplete size='small' value={departureCountry} options={getCountries()}  label= {t("SearchRideDepartureCountry")} onChange={(e)=>setDepartureCountry(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
-                            <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label={t("SearchRideDepartureCity")} onChange={(e)=>setDepartureCity(e.target.textContent)}/>
+                            <CarroAutocomplete size='small' value={departureCity} options={getCities(departureCountry)} label={t("SearchRideDepartureCity")} onChange={(e)=>setDepartureCity(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
-                            <CarroAutocomplete value={destinationCountry} options={getCountries()} label={t("SearchRideDestinationCountry")} onChange={(e)=>setDestinationCountry(e.target.textContent)}/>
+                            <CarroAutocomplete size='small' value={destinationCountry} options={getCountries()} label={t("SearchRideDestinationCountry")} onChange={(e)=>setDestinationCountry(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
-                            <CarroAutocomplete value = {destinationCity} options={getCities(destinationCountry)} label={t("SearchRideDestinationCity")} onChange={(e)=>setDestinationCity(e.target.textContent)}/>
+                            <CarroAutocomplete size='small' value = {destinationCity} options={getCities(destinationCountry)} label={t("SearchRideDestinationCity")} onChange={(e)=>setDestinationCity(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
-                            <CarroTextField value = {pickUpAddress} onChange={(e)=>setPickUpAddress(e.target.value)} variant ='outlined' label={t("DriverCardDepartureAddress")} fullWidth/>
+                            <CarroTextField size='small' value = {pickUpAddress} onChange={(e)=>setPickUpAddress(e.target.value)} variant ='outlined' label={t("DriverCardDepartureAddress")} fullWidth/>
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
-                            <CarroDatePicker label={t("DriverCardDepartureDate")} format='dd/MM/yyyy'
+                            <CarroDatePicker size='small' label={t("DriverCardDepartureDate")} format='dd/MM/yyyy'
                                         dateValue={departureDate} handleDateSelect={(date)=>setDepartureDate(date)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
-                    <CarroTextField variant ='outlined' label={t("ReceiverNume")} fullWidth/>
+                    <CarroTextField size='small' variant ='outlined' label={t("ReceiverNume")} fullWidth/>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
                     <PhoneTextField 
+                        size='small'
                         number={inputValuePhoneNumber} 
                         handleChangeNumber = {(e)=>setInputValuePhoneNumber(e.target.value)}
                         countryPhoneCode={countryPhoneCode} 
@@ -133,6 +134,7 @@ const   FormPackage = (props) =>{
                 </Grid>
                 <Grid container item xs={12} justifyContent='center'>
                     <CarroTextField 
+                        size='small'
                         value = {props.destinataryAddress} 
                         onChange={props.handleChangeDestinataryAddress}
                         variant ='outlined' 
@@ -141,7 +143,7 @@ const   FormPackage = (props) =>{
                     />
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label={t("Sizing")} fullWidth select value={packageSize} onChange={handleSizeSelect}>
+                <CarroTextField size='small' variant ='outlined' label={t("Sizing")} fullWidth select value={packageSize} onChange={handleSizeSelect}>
                     {packageSizes.map((option)=>(
                         <MenuItem key={option.value} value={option.value}>
                         {option.label}
@@ -150,27 +152,27 @@ const   FormPackage = (props) =>{
                 </CarroTextField>
             </Grid>
             <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label={t("Weight")} fullWidth
+                <CarroTextField size='small' variant ='outlined' label={t("Weight")} fullWidth
                     InputProps={{startAdornment: <InputAdornment position="start">Kg</InputAdornment>}}/>
             </Grid>
             {packageSize==='big' ? (
                 <Fragment>
                 <Grid  container item xs={4} justifyContent="center">
-                    <CarroTextField variant ='outlined' label={t("Width")}  fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                    <CarroTextField size='small' variant ='outlined' label={t("Width")}  fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
                 </Grid>
                 <Grid  container item xs={4} justifyContent="center">
-                    <CarroTextField variant ='outlined' label={t("Height")}  fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                    <CarroTextField size='small' variant ='outlined' label={t("Height")}  fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
                 </Grid>
                 <Grid  container item xs={4} justifyContent="center">
-                    <CarroTextField variant ='outlined' label={t("Length")} fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                    <CarroTextField size='small' variant ='outlined' label={t("Length")} fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
                 </Grid>
                 </Fragment>
             ):(null)}
             <Grid container item xs={12} justifyContent='center'>
-                <CarroTextField variant ='outlined' label={t("SmallDescription")} fullWidth/>
+                <CarroTextField size='small' variant ='outlined' label={t("SmallDescription")} fullWidth/>
             </Grid>
             <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label={t("Price")} fullWidth InputProps={{startAdornment: 
+                <CarroTextField size='small' variant ='outlined' label={t("Price")} fullWidth InputProps={{startAdornment: 
                     <InputAdornment position="start">
                         <Select value={currency} onChange={handleCurrencySelect}> {currencies.map((option)=>(
                             <MenuItem key={option.value} value={option.value}>
@@ -180,10 +182,10 @@ const   FormPackage = (props) =>{
                     </InputAdornment>}}/>
             </Grid>
             <Grid container item xs={6} justifyContent="center">
-                <CarroTextField variant ='outlined' label={t("PackageNumbers")} fullWidth/>
+                <CarroTextField size='small' variant ='outlined' label={t("PackageNumbers")} fullWidth/>
             </Grid>
             <Grid container item xs={12} justifyContent='center' maxRows={5}>
-                <CarroTextField variant ='outlined' label={t("Description")} multiline={4} rows={4} fullWidth/>
+                <CarroTextField size='small' variant ='outlined' label={t("Description")} multiline={4} rows={4} fullWidth/>
             </Grid>
             <Grid container item xs={12} justifyContent='space-between'>            
                 <FormControlLabel onChange = {handleInflamabilCheckboxClick} control={<CarroCheckbox/>} label={t("Inflammable")}/>

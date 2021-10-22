@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import { Fragment } from 'react';
 import { Create } from '@material-ui/icons';
-import BackdropEditPackage from '../../../../components/backdrop/edit-package/edit-package-backdrop';
+import BackdropEditRide from '../../../../components/backdrop/edit-ride/edit-ride-backdrop';
 import IconButtonNoVerticalPadding from '../../../../components/buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 
 
-const EditOpenPackage = (props) =>{
+const EditRide = (props) =>{
 
     const[open, setOpen]=useState(false);
 
@@ -27,7 +27,7 @@ const EditOpenPackage = (props) =>{
 
     return (
         <Fragment>
-            <BackdropEditPackage open={open} clicked={handleCloseBd} clickedClose={handleCloseBdByBtn} package={props.package}/>
+            <BackdropEditRide open={open} clicked={handleCloseBd} clickedClose={handleCloseBdByBtn} ride={props.ride}/>
             <IconButtonNoVerticalPadding onClick={handleBtn}>
                 <Create className={'Primary-color'} fontSize='small'/> 
             </IconButtonNoVerticalPadding >
@@ -37,4 +37,4 @@ const EditOpenPackage = (props) =>{
 
 }
 
-export default EditOpenPackage
+export default EditRide;

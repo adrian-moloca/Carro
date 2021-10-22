@@ -28,6 +28,7 @@ const CarroAutocomplete =(props)=>{
                 />
             )}
             onChange={props.onChange}
+            {...props}
             fullWidth
         />
     );

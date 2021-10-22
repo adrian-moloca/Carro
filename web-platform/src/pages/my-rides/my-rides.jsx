@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Container, Box } from '@material-ui/core'; 
 import Ride from './ride/ride';
 import { useTranslation } from "react-i18next";
@@ -64,18 +64,41 @@ const MyRides = () => {
       status:  t('Closed')
     },
   ];
-  
+
+  const[ridesState, setRidesState] = useState(rides_a);
+
+  const deleteRide = (event, index) =>{
+    event.stopPropagation();
+    const temp = [...ridesState]
+    temp.splice(index, 1);
+    setRidesState(temp);
+  }
+
+  const closeRide=(event, index)=>{
+    event.stopPropagation();
+    const temp=[...ridesState] 
+    temp.forEach((ride, i)=>{
+      if(index === i)
+      {
+        ride.status = t('Closed');
+      }
+    })
+    setRidesState(temp);
+  }
 
   return (
     <Container className={'Primary-container-style'} >
-      <Box mb={4} mt={2} fontWeight={400} fontSize={21} textAlign={'center'}>
+      <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>
        {t('MyRides')}
       </Box>
-      {rides_a.map((rideinf, index)=>
+      {ridesState.map((rideinf, index)=>
           <Box mb={1.5} borderRadius='10px' boxShadow={3} >
-            <Ride departure={rideinf.departure} destination={rideinf.destination} departureDate={rideinf.departureDate}
+            <Ride ride={rideinf} departure={rideinf.departure} destination={rideinf.destination} departureDate={rideinf.departureDate}
                  departureAddress={rideinf.departureAddress} destinationAddress={rideinf.destinationAddress} estimatedTime={rideinf.estimatedTime}
-                 transportType={rideinf.transportType} phoneNumber={rideinf.phoneNumber} rideStatus={rideinf.status} rideIndex={index + 1}/>
+                 transportType={rideinf.transportType} phoneNumber={rideinf.phoneNumber} rideStatus={rideinf.status} rideIndex={index + 1}
+                 deleteRideClicked={(e)=>deleteRide(e, index)}
+                 closeRideClicked={(e)=>closeRide(e, index)}
+            />
           </Box>  
       )}
     </Container>

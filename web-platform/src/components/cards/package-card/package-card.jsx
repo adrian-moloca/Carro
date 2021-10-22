@@ -28,7 +28,7 @@ const PackageCard = (props) =>{
     }
     const handleBtn =()=> setOpen(!open);
     const handleCloseBd=(event)=>{
-        if(event.target === document.getElementById('backdrop'))
+        if(event.target.className.includes('backdrop'))
             setOpen(false)
     };
     const handleCloseBdByBtn=(event)=>{ setOpen(false)};

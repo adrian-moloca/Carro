@@ -97,33 +97,38 @@ const packages = [
 ];
 
 
-  const[packagesState, setPackagesState] = useState([]);
+  const[packagesState, setPackagesState] = useState(packages);
 
-  const deletePackage = (event, index) =>{
-    event.stopPropagation();
-    const temp = packagesState.map((pack, i)=> {
-        if(i>index)
-            return pack-1;
-        else
-            return pack
-    });
-    temp.splice(index, 1);
-    setPackagesState(temp);
+  const deletePackage=(event, index)=>{
+      event.stopPropagation();
+      const temp=[...packagesState] 
+      temp.splice(index, 1);
+      setPackagesState(temp);
   }
 
-  useEffect(() => {
-    console.log(packages)
-  },[packages]);
+  const closePackage=(event, index)=>{
+      event.stopPropagation();
+      const temp=[...packagesState] 
+      temp.forEach((pack, i)=>{
+        if(index === i)
+        {
+          pack.status = t('Closed');
+        }
+      })
+      setPackagesState(temp);
+  }
 
   return (
 
         <Container className='Primary-container-style'>
           <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t("MyPackages")}</Box>
-          {packages.map((packageinf, index) => {
+          {packagesState.map((packageinf, index) => {
                 return <Package package={packageinf} packageIndex={index + 1} departureDate={packageinf.departureDate} departure={packageinf.departure} destination={packageinf.destination}
                          departureAddress={packageinf.departureAddress} destinationAddress={packageinf.destinationAddress} packageType={packageinf.packageType}
                          weight={packageinf.weight} description={packageinf.description} dimensions={packageinf.dimensions} price={packageinf.price} name={packageinf.name}
-                         status={packageinf.status} deletePackageClicked={(e, index)=>deletePackage(e, index)} packageLocation={packageinf.location}/>}
+                         status={packageinf.status} deletePackageClicked={(e)=>deletePackage(e, index)} packageLocation={packageinf.location}
+                         closePackageClicked={(e)=>closePackage(e, index)}
+                         />}
           )}
         </Container>
       );

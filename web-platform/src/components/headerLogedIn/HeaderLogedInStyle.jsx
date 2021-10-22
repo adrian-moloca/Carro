@@ -12,6 +12,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     [theme.breakpoints.up('md')]: {display: 'none'},
   },
+  linkBtn: {
+    display: 'flex',
+    textDecoration: 'none',
+    maxWidth:'250px',
+    color:'inherit',
+    justifyContent:'center',
+  },
+
 }));
 
 export default useStyles;

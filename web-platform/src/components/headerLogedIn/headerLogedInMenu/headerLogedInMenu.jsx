@@ -1,42 +1,35 @@
-import React from 'react';
-import { Link, IconButton, Box } from "@material-ui/core";
-import SearchIcon from '@material-ui/icons/Search';
-import DriveEtaIcon from '@material-ui/icons/DriveEta';
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import { Box, Grid, ButtonBase } from "@material-ui/core";
+import {Search, DriveEta} from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
+import useStyles from '../HeaderLogedInStyle';
+
 const RenderMenuSBD = () => {
 
-  const menuBtns = () => {
-    const { t } = useTranslation();
-    return (
-      <Box display="flex" flexDirection="row">
-        <Link href="/search-package" underline= 'none' color= 'inherit'>
-          <IconButton color="inherit">
-            <Box mr={1}>
-              <SearchIcon/>
-            </Box>
-            <Box fontSize={18}>
-              {t("SearchPackage")}
-            </Box>
-          </IconButton>
-        </Link>
-        <Link href="/search-ride" underline= 'none' color= 'inherit'>
-          <IconButton color="inherit">
-            <Box mr={1}>
-              <DriveEtaIcon/>
-            </Box>
-            <Box fontSize={18}>
-              {t("SearchRideTitle")}
-            </Box>
-          </IconButton>
-        </Link>
-      </Box>
-    );
-  };
+  const classes=useStyles();
+
+  const {t}=useTranslation();
 
   return(
-    <Box>
-      {menuBtns()}
-    </Box>
+    <Fragment>
+        <Grid container item md={6} justifyContent='flex-end'>
+          <Link to="/search-package" className={classes.linkBtn}> 
+                  <Search/>
+                  <Box fontSize={18} marginLeft='10px'>
+                    {t("SearchPackage")}
+                  </Box>
+          </Link>
+        </Grid>
+        <Grid container item md={6}  justifyContent='flex-start'>
+          <Link to="/search-ride" className={classes.linkBtn}>
+                  <DriveEta/>
+                  <Box  fontSize={18} marginLeft='10px'>
+                    {t("SearchRideTitle")}
+                  </Box>
+          </Link>
+        </Grid>
+    </Fragment>
   );
 };
 

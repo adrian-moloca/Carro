@@ -27,13 +27,13 @@ const BackdropEditPackage = (props) =>{
 
     return(
 
-        <MyBackdrop id='backdrop' open={props.open} onClick={props.clicked}>
+        <MyBackdrop open={props.open} onClick={props.clicked}  className='backdrop'>
             <Container className={classes.containerBackdrop}>
                 <Box borderBottom='2px' borderColor='black'>
                     <Grid container xs={12}>
                         <Grid container item xs={10} justifyContent='flex-start'>
                             <Box fontSize='18px' color='grey.500'>{t("EditButton")}</Box>
-                            </Grid>
+                        </Grid>
                         <Grid container item xs={2} justifyContent='flex-end'>
                             <IconButtonNoVerticalPadding onClick={props.clickedClose}>
                                 <Close />

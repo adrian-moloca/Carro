@@ -1,10 +1,8 @@
-import React, {Fragment} from 'react';
-import { Box, Grid, Accordion, AccordionDetails, AccordionSummary, Typography, } from '@material-ui/core';
-import {ExpandMore, ArrowForward, Delete} from '@material-ui/icons';
+import React, {Fragment, useState} from 'react';
+import { Box, Grid, Accordion, AccordionDetails, AccordionSummary, Typography, ButtonBase, } from '@material-ui/core';
+import {ExpandMore, ExpandLess, ArrowForward } from '@material-ui/icons';
 import PackageDetails from './package-details/package-details';
-import PartialEditPackage from './partial-edit-package/partial-edit-package';
-import EditOpenPackage from './edit-open-package/edit-open-package';
-import TrackPackage from './track-package/track-package';
+import ActionsByStatus from './actions-by-status/actions-by-status';
 import IconButtonNoVerticalPadding from '../../../components/buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 import useStyles from  './package-style';
 import { useTranslation } from "react-i18next";
@@ -41,71 +39,61 @@ function getStatusColor(status){
     }
   }
 
-  function ActionsByStatus(status){
-
-    switch(status){
-        case t('Open'):
-            return(
-              <Fragment>
-                <EditOpenPackage package= {props.package}/>
-                <IconButtonNoVerticalPadding onClick={props.deletePackageClicked}>
-                      <Delete className={'Pink-carro'}/>
-                </IconButtonNoVerticalPadding>
-              </Fragment>
-            );
-          case t('Taken'):
-              return(
-                <Fragment>
-                    <PartialEditPackage package= {props.package}/>
-                    <TrackPackage departure={props.departure} destination={props.destination} 
-                                  departureDate={props.departureDate} packageLocation={props.packageLocation}/>
-                </Fragment>
-              );
-          case t('InTransit'):
-              return(
-                <Fragment>
-                    <PartialEditPackage package= {props.package}/>
-                    <TrackPackage departure={props.departure} destination={props.destination} 
-                                  departureDate={props.departureDate} packageLocation={props.packageLocation}/>  
-                </Fragment>
-              );
-          case t('Closed'):
-            return('');
-          case t('Delivered'):
-            return('');
-          default:
-              return('Unkown status');
-    }
-}
-
   const classes = useStyles();
+
+  const[expanded, setExpanded] = useState(false);
+  
+  const getArrowBtn=(stateExpanded)=>{
+    switch(stateExpanded){
+      case true:
+        return(
+          <ButtonBase disableRipple onClick={()=>setExpanded(false)}>
+              <ExpandLess size='small' className={'Secondary-color'}/>
+          </ButtonBase>
+        )
+      case false:
+        return(
+          <ButtonBase disableRipple onClick={()=>setExpanded(true)}>
+              <ExpandMore size='small' className={'Primary-color'}/>
+          </ButtonBase>
+        );
+      default:
+        return('err');
+    }
+
+  }
 
   return(
       <Box mb={1.5} borderRadius='10px' boxShadow={3} >
-        <Accordion square='true' className={classes.AccordionBorderRadius}>
+        <Accordion square='true' className={classes.AccordionBorderRadius} expanded={expanded}>
           <AccordionSummary id="transport-header">
             <Grid container justifyContent='space-between'>
-              <Grid container item sm = {1} md={1} lg={1} justifyContent='flex-starts'>
+              <Grid container item xs={1} sm = {1} md={1} lg={1} justifyContent='flex-starts'>
                 <Typography >{props.packageIndex}.</Typography>
               </Grid>
-              <Grid container item sm={2} md={2} lg={2} justifyContent='center' className='hide-on-mobile'>
-                <Box fontWeight= {600} fontStyle='italic' >{props.departure}</Box>
+              <Grid container item xs={0} sm={0} md={2} lg={2} justifyContent='center'  alignItems='center' className='hide-on-mobile'>
+                <Box fontSize='13px' fontWeight= {600} fontStyle='italic'>{props.departure}</Box>
               </Grid>
-              <Grid container  item sm={1} md={1} lg={1} justifyContent='center' className='hide-on-mobile'>
-                <ArrowForward className={'Primary-color'}/>
+              <Grid container  item xs={0} sm={0} md={1} lg={1} justifyContent='center' alignItems='center' className='hide-on-mobile'>
+                <ArrowForward className={'Primary-color'} fontSize='small'/>
               </Grid>
-              <Grid container item sm={2} md={2} lg={2} justifyContent='center' className='hide-on-mobile'>
-                <Box fontWeight= {600} fontStyle='italic'>{props.destination}</Box>
+              <Grid container item xs={0} sm={0} md={2} lg={2} justifyContent='center'  alignItems='center' className='hide-on-mobile'>
+                <Box fontSize='13px' fontWeight= {600} fontStyle='italic'>{props.destination}</Box>
               </Grid>
-              <Grid container item sm={3} md={3} lg={3} justifyContent='center' className='hide-on-mobile'>
-                <Box >{props.departureDate}</Box>
+              <Grid container item xs={4} sm={3} md={3} lg={3} justifyContent='center' alignItems='center'>
+                <Box fontSize='13px'>{props.departureDate}</Box>
               </Grid>
-              <Grid container item sm={1} md={1} lg={1} justifyContent='center'>
-                <Box fontSize={16} className={getStatusColor(props.status)} textAlign='center'>{props.status}</Box>
+              <Grid container item xs={3} sm={3} md={1} lg={1} justifyContent='center' alignItems='center'>
+                <Box fontSize='13px' className={getStatusColor(props.status)} textAlign='center'>{props.status}</Box>
               </Grid>
-              <Grid container item sm={6} md={2}  lg={2} justifyContent='flex-end'>
-                {ActionsByStatus(props.status)}
-                <ExpandMore className={'Primary-color'}/>
+              <Grid container item xs={4} sm={4} md={2}  lg={2} justifyContent='flex-end' alignItems='center'>
+                <ActionsByStatus status = {props.status} package={props.package}
+                                departure={props.departure} destination={props.destination} 
+                                departureDate={props.departureDate} packageLocation={props.packageLocation}
+                                deletePackageClicked={props.deletePackageClicked}
+                                closePackageClicked={props.closePackageClicked}
+                />
+                {getArrowBtn(expanded)}
               </Grid>
             </Grid>
           </AccordionSummary>
