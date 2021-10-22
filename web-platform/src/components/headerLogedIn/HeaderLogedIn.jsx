@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, AppBar, Toolbar, IconButton, Box, Grid } from "@material-ui/core";
+import { Link } from 'react-router-dom';
+import { AppBar, Toolbar, IconButton, Box, Grid, ButtonBase } from "@material-ui/core";
 import CaroLogo from '../../assets/logo/CaroLogo.png';
 import BadgeVisibility from '../NotificationsComponent/notificomp';
 import BasicSelect from '../buttons/languageButton/languageButton'
@@ -16,26 +17,20 @@ export default function PrimarySearchAppBar() {
       <Toolbar>
         <Grid container justifyContent="space-between" alignItems="center" flexDirection="row">
           {/* render logo */}
-          <Grid item xs={3}>
-            <Box justifyContent="center" alignItems="center">
-              <Link href="/" underline= 'none' color= 'inherit'>
-                <IconButton>
-                  <img src={CaroLogo} alt={""}></img>
-                </IconButton>
+          <Grid container item md={2}>
+              <Link to="/home" style={{paddingTop:'10px', paddingBottom: '10px'}}>
+                  <ButtonBase disableRipple><img src={CaroLogo} alt={""}/></ButtonBase>
               </Link>
-            </Box>
           </Grid>
           {/* render desktop btns */}
-          <Grid item xs={6} >
-            <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
+          <Grid container item md={7} spacing={2}  className={classes.sectionDesktop}>
               <RenderMenuSBD/>
-            </Box>
           </Grid>
           {/* render right btns: notifications, my account, language */}
-          <Grid item xs={3} container flexDirection="row" justifyContent="flex-end"> 
+          <Grid container item md={3} container flexDirection="row" justifyContent="flex-end"> 
             {/* notifications */}
             <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
-              <Link href="/notifications" underline= 'none' color= 'inherit'>
+              <Link to="/notifications" style={{underline:'none'}}>
                 <BadgeVisibility/>
               </Link>
             </Box>
@@ -51,7 +46,7 @@ export default function PrimarySearchAppBar() {
         </Grid>
         {/* mobile */}
         <Box className={classes.sectionMobile} display="flex" flexDirection="row">
-          <Link href="/notifications" underline= 'none' color= 'inherit'>
+          <Link to="/notifications" style={{underline:'none'}}>
             <BadgeVisibility/>
           </Link>
           <RenderMobileMenu/>

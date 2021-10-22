@@ -32,7 +32,7 @@ const BackdropDeliverPackage=(props)=>{
     const classes = useStyles();
 
     return(
-        <MyBackdrop id='backdrop' open={props.open} onClick={props.clicked}>
+        <MyBackdrop open={props.open} onClick={props.clicked} className='backdrop'>
             <Container className={classes.containerBackdrop}>
                 <Box borderBottom='2px' borderColor='black' marginBottom={5} width='100%'>
                     <Grid container xs={12} justifyContent='space-between'>

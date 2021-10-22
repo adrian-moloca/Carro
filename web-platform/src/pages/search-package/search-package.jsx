@@ -32,15 +32,15 @@ const SearchPackages = () => {
 
   // render
   return (
-    <Container className={"searchPackageContainerStyle"}>
+    <Container className={"Primary-container-style"}>
       <Grid item xs={12}>
         <Box mb={2} fontWeight={400} fontSize={21} textAlign={"center"}>
         {t('SearchPackageTitle')}
         </Box>
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%">
-        <Grid container spacing={3} justifyContent="space-between">
-          <Grid item xs={12} sm={6}>
+        <Grid container xs={12} spacing={3} justifyContent="space-between">
+          <Grid container item xs={12} md={6} xl={3} justifyContent="center">
             <CarroTextField
               variant="outlined"
               label= {t('SearchRideDepartureCountry')}
@@ -59,7 +59,7 @@ const SearchPackages = () => {
               ))}
             </CarroTextField>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid container item xs={12} md={6} xl={3} justifyContent="center">
             <Autocomplete
               options={getCities(departureCountry)}
               autoHighlight
@@ -87,7 +87,7 @@ const SearchPackages = () => {
               fullWidth
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid container item xs={12} md={6} xl={3} justifyContent="center">
             <CarroTextField
               variant="outlined"
               label={t('SearchRideDestinationCountry')}
@@ -106,7 +106,7 @@ const SearchPackages = () => {
               ))}
             </CarroTextField>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid container item xs={12} md={6} xl={3} justifyContent="center">
             <Autocomplete
               options={getCities(destinationCountry)}
               autoHighlight
@@ -137,9 +137,9 @@ const SearchPackages = () => {
         </Grid>
       </Box>
       <Box display="flex" justifyContent="space-evenly" mt="3%">
-        <Grid container item xs={4} sm={3}>
-          <PrimaryButton size={"large"} fullWidth variant="contained" endIcon={<FindInPageRoundedIcon/>}>
-            {t('SearchRideButton')}
+          <Grid item xs={11} md={5} xl={3}>
+            <PrimaryButton fullWidth variant="contained" endIcon={<FindInPageRoundedIcon/>}>
+              {t('SearchRideButton')}
           </PrimaryButton>
         </Grid>
       </Box>

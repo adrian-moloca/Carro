@@ -25,7 +25,7 @@
   margin: 1% 0;
   min-height: 66vh;
   padding: 20px;
-  width: 50% !important;
+  width: 70% !important;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.31);
 }
@@ -91,6 +91,9 @@
   .hide-on-mobile {
     display: none !important;
   }
+  .textSizeResponsive {
+    font-size: small !important;
+  }
 }
 
 @media screen and (max-width: 630px) {
@@ -100,8 +103,8 @@
   .searchPackageContainerStyle {
     width: 100% !important;
   }
-  .textSizeMobile {
-    font-size: small !important;
+  .textSizeResponsive {
+    font-size: x-small !important;
   }
 }
 

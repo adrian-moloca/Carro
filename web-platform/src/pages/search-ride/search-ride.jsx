@@ -137,7 +137,6 @@ const SearchRide = () => {
       <Box display="flex" justifyContent="space-evenly" my="3%">
         <Grid item xs={11} md={5} xl={3}>
           <PrimaryButton fullWidth variant="contained" endIcon={<DriveEtaIcon />}>
-            {" "}
             {t('SearchRideButton')}
           </PrimaryButton>
         </Grid>

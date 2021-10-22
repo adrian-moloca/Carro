@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 
 const PaymentMethod = () => {
   const { t } = useTranslation();
-  const [cardSetted, setCardSetted] =  useState(localStorage.getItem('paymentMethodExist'));
+  const [cardSetted, setCardSetted] =  useState(true);
 
   const [paymentMethod, setPaymenthMethod] = useState('no assignment');
 

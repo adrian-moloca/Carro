@@ -25,7 +25,7 @@ const BackdropTrackPackage = (props) =>{
 
     return(
 
-        <MyBackdrop id='backdrop' open={props.open} onClick={props.clicked}>
+        <MyBackdrop open={props.open} onClick={props.clicked}  className='backdrop'>
             <Container className={classes.containerBackdrop}>
                 <Box borderBottom='2px'>
                     <Grid container xs={12}>

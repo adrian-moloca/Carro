@@ -9,7 +9,13 @@ import {ro} from "date-fns/locale";
 
 registerLocale('ro', ro);
 
-const DatePickerTh = createTheme({palette:{primary: {500:'#00b4d8'}}});
+const DatePickerTh = createTheme({
+    palette:{
+        primary: {
+            500:'#00b4d8',
+        },
+    },
+});
 
 const CarroDatePicker = (props)=>{
 
@@ -31,6 +37,7 @@ const CarroDatePicker = (props)=>{
                     defaultValue={props.defaultShow}
                     disablePast
                     disabled={props.disabled}
+                    {...props}
                 />  
             </ThemeProvider>
         </MuiPickersUtilsProvider>

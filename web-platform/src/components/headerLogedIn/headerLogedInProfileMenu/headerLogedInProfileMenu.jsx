@@ -1,22 +1,25 @@
-import React, { useState } from "react";
-import { Link, IconButton, MenuItem, Menu, Grid, Box } from "@material-ui/core";
-import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
-import LocalShippingOutlinedIcon from '@material-ui/icons/LocalShippingOutlined';
-import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import CreditCardOutlinedIcon from '@material-ui/icons/CreditCardOutlined';
-import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MessageIcon from '@material-ui/icons/Message';
-import SecurityIcon from '@material-ui/icons/Security';
+import React, { useState, Fragment} from "react";
+import { Link } from "react-router-dom";
+import { ButtonBase, MenuItem, Menu, Grid, Box} from "@material-ui/core";
+import {LocalMallOutlined, LocalShippingOutlined, AccountCircleOutlined,
+      CreditCardOutlined, CancelOutlined, AccountCircle,
+      Message, Security} from '@material-ui/icons';
+import { Fade } from "@material-ui/core";
 import useStyles from './headerLogedInProfileMenuStyle'
 import { useTranslation } from 'react-i18next';
+
 const HeaderLogedInProfileMenu = () => {
   const { t } = useTranslation();
   // State
-  const [accountAnchorEl, setAccountAnchorEl] = React.useState(null);
-  const isAccountMenuOpen = Boolean(accountAnchorEl);
-  const handleProfileAccountMenuOpen = (event) => setAccountAnchorEl(event.currentTarget);
-  const handleMenuAccountClose = () =>  setAccountAnchorEl(null);
+  const [anchorEl, setAnchorEl]= useState(null);
+  const accountMenuOpen = Boolean(anchorEl);
+  
+  const handleToggleAccountMenuOpen = (event) =>{
+    setAnchorEl(event.currentTarget);
+  } 
+  const handleAccountMenuClose = () =>{
+    setAnchorEl(null);
+  }
 
   const [userType, setUserType] = useState(null);
   
@@ -28,132 +31,107 @@ const HeaderLogedInProfileMenu = () => {
       label: "Profil admin",
     },
   ]
-  
-  const profile = () => {
-    return (
-      <Menu
-        anchorEl={accountAnchorEl}
-        keepMounted
-        open={isAccountMenuOpen}
-        onClose={handleMenuAccountClose}
-        className={classes.widthMenu}
+
+  return(
+    <Fragment>
+      <ButtonBase
+        disableRipple
+        aria-controls="account-menu"
+        aria-haspopup="true"
+        onClick={handleToggleAccountMenuOpen}
+        color="inherit"
       >
-        <Grid container display="flex" justifyContent="center" alignItems="center" flexDirection="column">
-          <Grid item xs={12}>
-            <Link href="/my-packages" underline= 'none' color= 'inherit'>
-              <MenuItem dense>
+      <AccountCircle/>
+      <Box fontSize={18} marginLeft='10px'>{t("MyAccount")}</Box>
+      </ButtonBase>
+      <Menu open={accountMenuOpen}
+            className={classes.widthMenu}
+            keepMounted
+            anchorEl={anchorEl}
+            TransitionComponent={Fade}
+            onClose={handleAccountMenuClose}
+            id="account-menu"
+      >
+            <Link to="/my-packages" style={{textDecoration:'none' ,color:'inherit'}}>
+              <MenuItem dense onClick={handleAccountMenuClose}>
                   <Box mr={2} className={"Primary-color"}>
-                    <LocalMallOutlinedIcon/>
+                    <LocalMallOutlined/>
                   </Box>
-                  <Box>
+                  <Box fontWeight='500'>
                     {t("MyPackages")}
                   </Box>
               </MenuItem>
             </Link>
-          </Grid>
-          <Grid item xs={12}>
-            <Link href="/my-rides" underline= 'none' color= 'inherit'>
-              <MenuItem dense>
+            <Link to="/my-rides" style={{textDecoration:'none' ,color:'inherit'}}>
+              <MenuItem dense onClick={handleAccountMenuClose}>
                   <Box mr={2} className={"Primary-color"}>
-                    <LocalShippingOutlinedIcon/>
+                    <LocalShippingOutlined/>
                   </Box>
-                  <Box>
+                  <Box fontWeight='500'>
                     {t("MyRides")}
                   </Box>
               </MenuItem>
             </Link>
-          </Grid>
-          <Grid item xs={12}>
-              <Link href="/profile" underline= 'none' color= 'inherit'>
-                <MenuItem dense>
+            <Link to="/profile" style={{textDecoration:'none' ,color:'inherit'}}>
+              <MenuItem dense onClick={handleAccountMenuClose}>
+                <Box mr={2} className={"Primary-color"}>
+                  <AccountCircleOutlined/>
+                </Box>
+                <Box fontWeight='500'>
+                {t("Profile")}
+                </Box>
+              </MenuItem>
+            </Link>
+            <Link to="/payment-method" style={{textDecoration:'none' ,color:'inherit'}}>
+              <MenuItem dense onClick={handleAccountMenuClose}>
                   <Box mr={2} className={"Primary-color"}>
-                    <AccountCircleOutlinedIcon/>
+                    <CreditCardOutlined/>
                   </Box>
-                  <Box>
-                   {t("Profile")}
-                  </Box>
-                </MenuItem>
-              </Link>
-          </Grid>
-          <Grid item xs={12}>
-            <Link href="/payment-method" underline= 'none' color= 'inherit'>
-              <MenuItem dense>
-                  <Box mr={2} className={"Primary-color"}>
-                    <CreditCardOutlinedIcon/>
-                  </Box>
-                  <Box>
+                  <Box fontWeight='500'>
                     {t("PaymentMethod")}
                   </Box>
               </MenuItem>
             </Link>
-          </Grid>
-          <Grid item xs={12}>
-            <Link href="/conversations" underline= 'none' color= 'inherit'>
-              <MenuItem dense>
+            <Link to="/conversations" style={{textDecoration:'none' ,color:'inherit'}}>
+              <MenuItem dense onClick={handleAccountMenuClose}>
                   <Box mr={2} className={"Primary-color"}>
-                    <MessageIcon/>
+                    <Message/>
                   </Box>
                   <Box>
                     Chat
                   </Box>
               </MenuItem>
             </Link>
-          </Grid>
-          <Grid item xs={12}>
-            <Link href="/" underline= 'none' color= 'inherit'>
-              <MenuItem dense>
+            <Link to="/" style={{textDecoration:'none' ,color:'inherit'}}>
+              <MenuItem dense onClick={handleAccountMenuClose}>
                   <Box mr={2} className={"Pink-carro"}>
-                    <CancelOutlinedIcon/>
+                    <CancelOutlined/>
                   </Box>
                   <Box>
-                   {t("Logout")}
+                  {t("Logout")}
                   </Box>
               </MenuItem>
             </Link>
-          </Grid>
           {/* {userType === "userAdmin" ? ( */}
             <Grid item xs={12}>
-              <Box className={classes.borderForAdmin} fullWidth></Box>
+              <Box className={classes.borderForAdmin}></Box>
             </Grid>
           {/* ): null}  */}
           {/* {userType === "userAdmin" ? ( */}
-            <Grid item xs={12}>
-              <Link href="/admin-panel" underline= 'none' color= 'inherit'>
-                <MenuItem dense>
+              <Link to="/admin-panel" style={{textDecoration:'none' ,color:'inherit'}}>
+                <MenuItem dense onClick={handleAccountMenuClose}>
                       <Box mr={2} className={"Primary-color"}>
-                        <SecurityIcon/>
+                        <Security/>
                       </Box>
-                      <Box>
+                      <Box fontWeight='500'>
                         {t("AdminPanel")}
                       </Box>
                 </MenuItem>
               </Link>
-            </Grid>
           {/* ): null}  */}
-        </Grid> 
       </Menu>
-    );
-  };
+    </Fragment>
 
-  return(
-    <Box>
-      <IconButton
-        aria-label="show more"
-        aria-haspopup="true"
-        onClick={handleProfileAccountMenuOpen}
-        color="inherit"
-      >
-        <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center">
-          <Box mr={2}>
-            <AccountCircle/>
-          </Box>
-          <Box fontSize='18px'>
-            {t("MyAccount")}
-          </Box>
-        </Box>
-      </IconButton>
-      {profile()}
-    </Box>
   );
 };
 

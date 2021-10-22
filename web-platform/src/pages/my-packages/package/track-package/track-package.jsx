@@ -28,7 +28,7 @@ const TrackPackage = (props) =>{
                                   departure={props.departure} destination={props.destination} departureDate={props.departureDate} 
                                   packageLocation={props.packageLocation}/>
             <IconButtonNoVerticalPadding onClick={handleBtn}>
-                <TrackChanges className={'Primary-color'}/> 
+                <TrackChanges className={'Primary-color'}  fontSize='small'/> 
             </IconButtonNoVerticalPadding >
         </Fragment>
 

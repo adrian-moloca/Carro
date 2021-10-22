@@ -1,13 +1,33 @@
-import React, {Fragment} from 'react';
-import { Box, Grid, Accordion, AccordionSummary, AccordionDetails, Typography} from '@material-ui/core'; 
-import {ExpandMore, ArrowForward, Delete} from '@material-ui/icons';
+import React, {Fragment, useState} from 'react';
+import { Box, Grid, Accordion, AccordionSummary, AccordionDetails, Typography, ButtonBase} from '@material-ui/core'; 
+import {ExpandMore, ArrowForward, Delete, Edit, HighlightOff, ExpandLess} from '@material-ui/icons';
 import IconButtonNoVerticalPadding from '../../../components/buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
+import EditRide from './edit-ride/edit-ride';
 import RideDetails from './ride-details/ride-details';
 import useStyles from './rideStyle';
 import { useTranslation } from "react-i18next";
 const Ride = (props) =>{
   const { t } = useTranslation();
     const classes = useStyles();
+
+    const[expanded, setExpanded]=useState(false);
+    const getArrowBtn=(expandedState)=>{
+      switch(expandedState){
+        case true:
+          return(
+            <ButtonBase disableRipple onClick={()=>setExpanded(false)}>
+              <ExpandLess size='small' className={'Secondary-color'}/>
+            </ButtonBase>
+          );
+        case false:
+          return(
+            <ButtonBase disableRipple onClick={()=>setExpanded(true)}>
+              <ExpandMore size='small' className={'Primary-color'}/>
+            </ButtonBase>
+          );
+      }
+
+    }
 
     function getStatusColor(status){ 
       switch (status) {
@@ -37,61 +57,73 @@ const Ride = (props) =>{
       }
     }
   
-    function ActionsByStatus(status){
-  
-      switch(status){
+    function actionsByStatus(status){
+        switch(status){
           case t('Open'):
-              return(
-                <Fragment>
-                  <IconButtonNoVerticalPadding onClick={props.deletePackageClicked}>
-                        <Delete className={'Pink-carro'}/>
-                  </IconButtonNoVerticalPadding>
-                </Fragment>
-              );
-            case t('ClosedForReceiving'):
-                return(
-                  <Fragment>
-                  </Fragment>
-                );
-            case t('InTransit'):
-                return(
-                  <Fragment> 
-                  </Fragment>
-                );
-            case  t('Closed'):
-              return('');
-            case t('Delivered'):
-              return('');
-            default:
-                return('Unkown status');
-      }
-  }
+            return(
+              <Fragment>
+                <EditRide ride={props.ride}/>
+                <IconButtonNoVerticalPadding onClick={props.closeRideClicked}>
+                      <HighlightOff className={'Pink-carro'} fontSize='small'/>
+                </IconButtonNoVerticalPadding>
+                <IconButtonNoVerticalPadding onClick={props.deleteRideClicked}>
+                      <Delete className={'Pink-carro'} fontSize='small'/>
+                </IconButtonNoVerticalPadding>
+              </Fragment>
+            );
+          case t('ClosedForReceiving'):
+            return(
+              <Fragment>
+                
+              </Fragment>
+            );
+          case t('InTrasit'):
+            return(
+              <Fragment>
+                
+              </Fragment>
+            );
+          case t('Closed'):
+            return(
+              <Fragment>
+            
+              </Fragment>
+            );
+          case t('Delivered'):
+            return(
+              <Fragment>
+                
+              </Fragment>
+            );
+        }
+    }
 
 
     return(
-        <Accordion square='true' className={classes.AccordionBorderRadius}>
+        <Accordion square='true' expanded={expanded} className={classes.AccordionBorderRadius}>
           <AccordionSummary aria-controls="transport-content" id="transport-header">
-          <Grid container xs={12} justifyContent='space-between'>
-                <Grid container item xs = {1} justifyContent='flex-starts'>
+          <Grid container justifyContent='space-between'>
+                <Grid container item xs = {1} sm = {1} md={1} lg={1} justifyContent='flex-starts'>
                   <Typography >{props.rideIndex}.</Typography>
                 </Grid>
-                <Grid container item xs={2} justifyContent='center' className='hide-on-mobile'>
-                  <Box fontWeight= {600} fontStyle='italic'>{props.departure}</Box>
+                <Grid container item xs={0} sm={0} md={2} lg={2} justifyContent='center'  alignItems='center' className='hide-on-mobile'>
+                  <Box fontWeight= {600} fontStyle='italic' fontSize='13px'ù>{props.departure}</Box>
                 </Grid>
-                <Grid container  item xs={1} justifyContent='center' className='hide-on-mobile'>
-                    <ArrowForward className={['Primary-color']}/>
+                <Grid container  item xs={0} sm={0} md={1} lg={1} justifyContent='center' alignItems='center' className='hide-on-mobile'>
+                    <ArrowForward className={['Primary-color']} fontSize='small'/>
                 </Grid>
-                <Grid container item xs={2} justifyContent='center' className='hide-on-mobile'>
-                  <Box fontWeight= {600} fontStyle='italic'>{props.destination}</Box>
+                <Grid container item xs={0} sm={0} md={2} lg={2} justifyContent='center' alignItems='center' className='hide-on-mobile'>
+                  <Box fontWeight= {600} fontStyle='italic' fontSize='13px'>{props.destination}</Box>
                 </Grid>
-                <Grid container item xs={3} justifyContent='center' className='hide-on-mobile'>
-                  <Box>{props.departureDate}</Box>
+                <Grid container item xs={4} sm={4} md={3} lg={3} justifyContent='center' alignItems='center' >
+                  <Box fontSize='13px'>{props.departureDate}</Box>
                 </Grid>
-                <Grid container item xs={2} justifyContent='center'>
-                  <Box fontSize={16} className={getStatusColor(props.rideStatus)} textAlign='center'>{props.rideStatus}</Box>
+                <Grid container item xs={3} sm={3} md={1} lg={1} alignItems='center' justifyContent='center'>
+                  <Box  fontSize='13px' className={getStatusColor(props.rideStatus)} textAlign='center'>{props.rideStatus}</Box>
                 </Grid>
-                <Grid container item xs={1} justifyContent='flex-end'>
-                  <ExpandMore className={'Primary-color'}/>
+                <Grid container item xs={4} sm={4} md={2} lg={2}  alignItems='center' justifyContent='flex-end'>
+                  {actionsByStatus(props.rideStatus)}
+                  {getArrowBtn(expanded)}
                 </Grid>
               </Grid>
           </AccordionSummary>
@@ -99,43 +131,6 @@ const Ride = (props) =>{
               <RideDetails departure={props.departure} destination={props.destination} departureDate={props.departureDate} 
                           estimatedTime={props.estimatedTime} departureAddress={props.departureAddress} destinationAddress={props.destinationAddress} 
                           transportType={props.transportType} phoneNumber={props.phoneNumber}/>
-              {/* <Box borderRadius='10px'  boxShadow={3} display ='flex' px='4%' pt='2%' mt = '2%'>
-                <Grid container xs={12} spacing={0} justifyContent='center'>
-                    <Grid container item xs={6}>
-                      <Box >Plecare: Timisoara, Romania</Box>
-                    </Grid>
-                    <Grid container item xs={6}>  
-                      <Box >Destinatie: Bucuresti</Box>
-                    </Grid>
-                    <Grid container item xs={6}>  
-                      <Box >Data Plecarii: 26/08/2021 02:00 AM</Box>
-                    </Grid>
-                    <Grid container item xs={6}>
-                      <Box >Numarul estimat de ore: 5 ore</Box>                        
-                    </Grid>
-                    <Grid container item xs={6}>
-                      <Box>Adresa de preluare: Lorem impsium Street</Box>
-                    </Grid>
-                    <Grid container item xs={6}>
-                      <Box>Adresa destinatie: Lorem Ipsium Street</Box>
-                    </Grid>
-                    <Grid container item xs={6}>
-                      <Box>Tipul de transport: Masina</Box>  
-                    </Grid>
-                    <Grid container item xs={6}>
-                      <Box>Telefon: 0888888888</Box>
-                    </Grid>
-                    <Grid container item xs={12}>
-                        <Box fontSize={13} mb = '2%' className={'Secondary-color'}>
-                            *Pentru a putea sterge, inchide sau edita un transport nu trebuie avute pachete in desfasurare. 
-                            Pachetele trebuie sa nu fie acceptate (modificarile pot fii comunicate clientilor direct prin numarul de telefon).
-                        </Box>
-                    </Grid>
-                </Grid>
-              </Box>
-              <Box mx={-2} mt={1} p='2%' borderTop={1} borderColor= 'grey.400' >
-                <RideCard/> 
-              </Box> */}
           </AccordionDetails>
         </Accordion>
     );
