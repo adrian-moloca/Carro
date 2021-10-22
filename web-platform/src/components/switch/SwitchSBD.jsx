@@ -21,9 +21,12 @@ const SwitchSBD = (props) => {
 
   const { contentOff, btn1OffText, btn2OffText, contentOn, btn1OnText, btn2OnText } = props;
 
-  const toggler = (event) => {
-    toggle ? setToggle(handleOpenOff) : setToggle(handleOpenOn);
-    setToggle({ ...toggle, [event.target.name]: event.target.checked});
+  const toggler = () => {
+    if(!toggle)
+      setToggle(handleOpenOn)
+    else
+      setToggle(handleOpenOff)
+      setToggle(toggle)
   }
 
   return (
