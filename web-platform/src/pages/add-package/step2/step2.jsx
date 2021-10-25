@@ -7,6 +7,8 @@ const StepTwo = (props) =>{
     const { t } = useTranslation();
     const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState(null);
     const [countryPhoneCode, setCountryPhoneCode] = useState(null);
+    const [destinataryAddress, setDestinataryAddress] = useState('');
+
 
     return(
         <Box display='flex' justifyContent='center' mt='5%'>
@@ -24,8 +26,8 @@ const StepTwo = (props) =>{
                 </Grid>
                 <Grid container item xs={12} justifyContent='center'>
                     <CarroTextField 
-                        value = {props.destinataryAddress} 
-                        onChange={props.handleChangeDestinataryAddress}
+                        value = {destinataryAddress} 
+                        onChange={(e)=>setDestinataryAddress(e.target.value)}
                         variant ='outlined' 
                         label={t('DriverCardDestinationAddress')} 
                         fullWidth

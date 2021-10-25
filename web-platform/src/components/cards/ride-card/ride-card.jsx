@@ -7,10 +7,10 @@ import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import BackdropSelectDriver from '../../backdrop/driver-select/backDrop';
-import useStyles from './DriverCardStyle';
+import useStyles from './ride-card-style';
 import { useTranslation } from 'react-i18next';
 
-const DriverCard =(props)=>{
+const RideCard =(props)=>{
     const { t } = useTranslation();
     const classes = useStyles();
 
@@ -26,8 +26,9 @@ const DriverCard =(props)=>{
     const handleBtn =()=> setOpen(!open);
 
     const handleCloseBd=(event)=>{
-        if(event.target.className.includes('backdrop'))
-            setOpen(false)
+        if(typeof(event.target.className) === 'string' )
+            if(event.target.className.includes('backdrop'))
+                setOpen(false)
     };
 
     const handleCloseBdByBtn=(event)=>{ setOpen(false)};
@@ -220,4 +221,4 @@ const DriverCard =(props)=>{
     );
 };
 
-export default DriverCard;
+export default RideCard;

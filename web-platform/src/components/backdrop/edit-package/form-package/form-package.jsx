@@ -47,15 +47,16 @@ const   FormPackage = (props) =>{
     ];
 
     const [departureDate, setDepartureDate] = useState(new Date());
-    const [departureCountry, setDepartureCountry] = useState('');
-    const [destinationCountry, setDestinationCountry] = useState('');
+    const [departureCountry, setDepartureCountry] = useState('RO');
+    const [destinationCountry, setDestinationCountry] = useState('RO');
     const [departureCity, setDepartureCity] = useState('');
     const [destinationCity, setDestinationCity] = useState('');
     const [pickUpAddress, setPickUpAddress] = useState('');
-    const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState(null);
-    const [countryPhoneCode, setCountryPhoneCode] = useState(null);
-    const[packageSize, setPackageSize] = useState(null);
-    const[currency, setCurrency] = useState('ron');
+    const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState('');
+    const [countryPhoneCode, setCountryPhoneCode] = useState('');
+    const[destinataryAddress, setDestinataryAddress] = useState('');
+    const[packageSize, setPackageSize] = useState('');
+    const[currency, setCurrency] = useState('');
     const[Inflamabil, setInflamabil]= useState(false);
     const[Fragil, setFragil]= useState(false);
     const[Perisabil, setPerisabil]= useState(false);
@@ -135,8 +136,8 @@ const   FormPackage = (props) =>{
                 <Grid container item xs={12} justifyContent='center'>
                     <CarroTextField 
                         size='small'
-                        value = {props.destinataryAddress} 
-                        onChange={props.handleChangeDestinataryAddress}
+                        value = {destinataryAddress} 
+                        onChange={(e)=> setDestinataryAddress(e.target.value)}
                         variant ='outlined' 
                         label={t("DriverCardDestinationAddress")}
                         fullWidth

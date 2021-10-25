@@ -2,7 +2,6 @@ import React, {Fragment} from "react";
 import {Grid, Box, ButtonBase} from '@material-ui/core';
 import profilePhoto from '../../../../assets/images/photoprofile1.png';
 import DriverCardNotifications from '../../../../components/cards/DriverCardNotifications/DriverCardNotifications';
-import DriverCard from "../../../../components/cards/DriverCard/DriverCard";
 import PackageCard from "../../../../components/cards/package-card/package-card";
 import GreenCaroButton from "../../../../components/buttons/GreenCaroButton/GreenCaroButton";
 import {Rating} from '@material-ui/lab';

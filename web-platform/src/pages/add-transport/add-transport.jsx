@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Box, Grid, MenuItem, Container, Link } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { Box, Grid, MenuItem, Container} from "@material-ui/core";
 import CarroTextField from "../../components/textField/CarroTextField";
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
 import { Country, City }  from 'country-state-city';
 import CarroAutocomplete from "../../components/autocomplete/CarroAutocomplete";
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import {ArrowBackIos, ArrowForwardIos}  from '@material-ui/icons';
 import { useTranslation } from "react-i18next";
 
 const AddTransport = () =>{
@@ -68,6 +68,9 @@ const AddTransport = () =>{
               <CarroTextField variant ='outlined' label={t("DriverCardDepartureAddress")} fullWidth/>
           </Grid>
           <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
+              <CarroTextField variant ='outlined' label={t("DriverCardDestinationAddress")} fullWidth/>
+          </Grid>
+          <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
             <CarroDatePicker label={t("DriverCardDepartureDate")} dateValue={departureDate} handleDateSelect={(e)=>handleChangeDepartureDate(e)}/>
           </Grid>
           <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
@@ -75,38 +78,20 @@ const AddTransport = () =>{
               {getTransportType().map((transport)=>(<MenuItem value={transport}>{transport}</MenuItem>))}
             </CarroTextField>
           </Grid>
-          <Grid container item xs={12}  md ={6} xl={6}  justifyContent='center'>
+          <Grid container item xs={12}  md ={12} xl={12}  justifyContent='center'>
               <CarroTextField variant ='outlined' label={t("DriverCardEstimatedHours")} fullWidth/>
           </Grid>
         </Grid>
       </Box>
-      <Box mt={7}>
-        <Grid container display='flex' direction="row" alignItems="center"  spacing={2} style={{margin:0}}>                      
-          <Grid container item xs={12} md ={6} xl={6}  justifyContent='center' alignItems="center">
-            <SecondaryButton variant="contained" fullWidth>
-              <Link href="/" underline= 'none' color= 'inherit'>
-                <Box display="flex" justifyContent='center' alignItems="center">
-                  <Box mr={3} display="flex" alignItems="center">
-                    <ArrowBackIosIcon/>
-                  </Box>
-                  <Box mr={4} fontSize={20}>
-                  {t("Home")}
-                  </Box>
-                </Box>
-              </Link>
-            </SecondaryButton>
+      <Box mt={5} mb={2} display ='flex' justifyContent='center'>
+        <Grid container xs={12} spacing={7}>
+          <Grid container item xs  justifyContent='center'>
+          <Link to='/home' style={{textDecoration:'none', width:'100%'}}>
+            <SecondaryButton startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('Home')}</SecondaryButton>
+          </Link>
           </Grid>
-          <Grid container item xs={12} md ={6} xl={6}  justifyContent='center' alignItems="center">
-            <PrimaryButton variant='contained' color="primary" fullWidth>
-              <Box display="flex" justifyContent='center' alignItems="center">
-                <Box ml={4} fontSize={20}>
-                {t("Add")}
-                </Box>
-                <Box  ml={3} display="flex" alignItems="center">
-                  <ArrowForwardIosIcon/>
-                </Box>
-              </Box>
-            </PrimaryButton>
+          <Grid container item xs  justifyContent='center'>
+            <PrimaryButton endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Add')}</PrimaryButton>
           </Grid>
         </Grid>
       </Box>

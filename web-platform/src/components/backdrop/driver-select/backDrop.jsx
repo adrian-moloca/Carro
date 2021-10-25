@@ -13,9 +13,6 @@ import CarroRadio from '../../radio/CarroRadio';
 import { useTranslation } from "react-i18next";
 
 const MyBackdrop = withStyles({
-    '& element.style':{
-        visibility: 'visible',
-    },
     /* '.MuiBackdrop-root' */
     root:{
         zIndex: '2',
@@ -44,6 +41,18 @@ const BackdropSelectDriver=(props)=>{
     const classes = useStyles();
 
     const[payment, setPayment] = useState('cardOnline');
+    // state
+    const [cardNumber, setCardNumber] = useState(null);
+    const [expDate, setExpDate] = useState(null);
+    const [completeName, setCompleteName] = useState(null);
+    const [CVV, setCVV] = useState(null);
+    // handlers
+    const handleSetCompleteName = (event) => setCompleteName(event.target.value);
+    const handleSetCardNumber = (event) => setCardNumber(event.target.value);
+    const handleSetExpDate = (date) => {
+        setExpDate(date)
+    };
+    const handleSetCVV = (event) => setCVV(event.target.value);
     const handlePayment = (event)=> setPayment(event.target.value);
 
     return(
@@ -90,7 +99,16 @@ const BackdropSelectDriver=(props)=>{
                                                 </MyGrid>) : (
                                                 <Fragment>
                                                     <MyGrid container item xs={12} justifyContent='center' spacing={2} className={'hide-on-mobile'}>
-                                                        <AddCard/>
+                                                        <AddCard 
+                                                                showSaveButton='true'
+                                                                cardNumber = {cardNumber} 
+                                                                cardNumberSet = {(e)=>handleSetCardNumber(e)} 
+                                                                expDate={expDate} 
+                                                                expDateSet={handleSetExpDate} 
+                                                                completeName = {completeName} 
+                                                                completeNameSet={(e)=>handleSetCompleteName(e)}
+                                                                cvv={CVV}
+                                                                cvvSet={(e)=>handleSetCVV(e)}/>
                                                     </MyGrid>
                                                     <MyGrid container item xs={10} justifyContent='center' spacing={2} className={'hide-on-desktop'}>
                                                         <Box paddingY='30px'>

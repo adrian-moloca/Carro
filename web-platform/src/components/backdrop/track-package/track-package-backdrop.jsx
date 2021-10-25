@@ -7,9 +7,6 @@ import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import IconButtonNoVerticalPadding from '../../buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 import { useTranslation } from "react-i18next";
 const MyBackdrop = withStyles({
-    '& element.style':{
-        visibility: 'visible',
-    },
     /* '.MuiBackdrop-root' */
     root:{
         zIndex: '2',
