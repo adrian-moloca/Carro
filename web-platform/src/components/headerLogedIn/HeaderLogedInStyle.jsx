@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     maxWidth:'250px',
     color:'inherit',
-    justifyContent:'center',
+    justifyContent:'left',
   },
 
 }));

@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import {Grid} from '@material-ui/core';
-import DriverCard from '../cards/DriverCard/DriverCard';
+import RideCard from '../cards/ride-card/ride-card';
 import profilePhotoLeft from '../../assets/images/photoprofile1.png';
 import profilePhotoMiddle from '../../assets/images/photoprofile2.png';
 import profilePhotoRight from '../../assets/images/photoprofile3.png';
 
-const drivers_a = [
+const rides_a = [
     {
         image: profilePhotoLeft,
         name: 'Marius Popescu',
@@ -52,13 +52,13 @@ const drivers_a = [
     },
 ]
 
-const Drivers = (props) =>{
+const Rides = (props) =>{
  
     return(
         <Fragment>
-            {drivers_a.map((driver)=> 
+            {rides_a.map((driver)=> 
                 <Grid container item xs={12} sm={5}  md={4} lg={4}  xl={4} justifyContent='space-around'>
-                    <DriverCard 
+                    <RideCard 
                         image={driver.image} 
                         name={driver.name}
                         transportType={driver.transportType}
@@ -81,4 +81,4 @@ const Drivers = (props) =>{
 
 }
 
-export default Drivers;
+export default Rides;

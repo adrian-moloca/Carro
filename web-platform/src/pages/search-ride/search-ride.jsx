@@ -5,7 +5,7 @@ import { Container, Box, Grid, MenuItem } from "@material-ui/core";
 import PaginationSBD from "../../components/pagination/pagination";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import CarroTextField from "../../components/textField/CarroTextField";
-import Drivers from "../../components/drivers/drivers";
+import Rides from "../../components/rides/rides";
 import { Country, City } from "country-state-city";
 import { useTranslation } from 'react-i18next';
 
@@ -142,7 +142,7 @@ const SearchRide = () => {
         </Grid>
       </Box>
       <Grid container xs={12} justifyContent='space-around'>
-              <Drivers/>
+              <Rides/>
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">
         <PaginationSBD />

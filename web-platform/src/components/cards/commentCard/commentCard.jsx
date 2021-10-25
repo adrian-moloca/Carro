@@ -8,38 +8,27 @@ const CommentCard = (props) => {
   const classes = useStyles();
   
   return(
-    <Box display='flex' m='2%' fullWidth p={1} borderRadius='10px' boxShadow={3}>
-      <Grid 
-        container 
-        justifyContent="center"
-        alignItems="center"
-        direction="row">
-          <Grid container item xs={12} justifyContent='center'>
-            <Grid container item xs={1} justifyContent='center'>
-              <Box fontSize={10} className={'Secondary-color'}>22/10/2021{props.date}</Box>
-            </Grid>
-            <Grid container item xs={10} justifyContent='center'>
-              <Box mb={4} fontWeight={400} fontSize={22} textAlign={'center'}>Nume Client{props.date}</Box>
-            </Grid>
-            <Grid container item xs={1} justifyContent='center'>
-              <DeleteModal/>
+    <Box display='flex' width='1' mt='30px' fullWidth p={1} borderRadius='10px' boxShadow={3}>
+        <Grid container xs={12}>
+          <Grid container item xs={2} alignItems='center' justifyContent='center'>
+            <img src={props.profileImage} className={classes.profileImg}/>
+          </Grid>
+          <Grid container item xs={8} justifyContent='center'>
+              <Grid container>
+                <Grid container item xs={12} alignItems='flex-end' justifyContent='center'>
+                  <Box fontWeight='700' fontSize='16px' textAlign='center'>{props.name}</Box>
+                </Grid>
+                <Grid container item xs={12} justifyContent='center'>
+                  <Box fontWeight='200'  fontSize='18px' textAlign='center'>{props.comment}</Box>
+                </Grid>
+              </Grid>
+          </Grid>
+          <Grid container item xs={2}>
+            <Grid container item xs={12} alignItems='flex-end' justifyContent='flex-end'>
+              <Box fontWeight='400' fontSize='12px' fontStyle='italic' textAlign='right' className={'Secondary-color'}>{props.date}</Box>
             </Grid>
           </Grid>
-          <Grid container item xs={12} justifyContent='center' alignItems='center'> 
-            <Grid container item xs={3} justifyContent='center'>
-              <Box mb={4} fontWeight={400} fontSize={22} textAlign={'center'}>
-                <img src={props.image} className={classes.profileImg} alt={""}/>
-              </Box>
-            </Grid>
-            <Grid container item xs={9} justifyContent='center'>
-              <Box fontSize={10}>
-                <text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent scelerisque metus turpis, venenatis elementum ex luctus non. Donec massa augue, porta eget arcu lacinia, ornare elementum nunc.
-                </text>
-              </Box>
-            </Grid>
-          </Grid>
-      </Grid>
+        </Grid>
     </Box>
   );
 };

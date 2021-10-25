@@ -11,8 +11,9 @@ const TrackPackage = (props) =>{
         event.stopPropagation()
     };
     const handleCloseBd=(event)=>{
-        if(event.target === document.getElementById('backdrop'))
-            setOpen(false)
+        if(typeof(event.target.className) === 'string' )
+            if(event.target === document.getElementById('backdrop'))
+                setOpen(false)
         event.stopPropagation()
     };
    

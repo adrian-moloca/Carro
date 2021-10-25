@@ -1,7 +1,8 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import BoxIcon from "../../assets/images/box.png";
 import CarIcon from "../../assets/images/car.png";
-import { Container, Box, Grid, Link } from "@material-ui/core";
+import { Container, Box, Grid } from "@material-ui/core";
 import useStyles from "./home-pageStyles";
 import "./home-pageStyles.jsx";
 import { useTranslation } from 'react-i18next';
@@ -20,7 +21,7 @@ const HomePage = () => {
             </Box>
           </Grid>
         <Grid container item xs={5} justifyContent='space-around' >
-          <Link href="/add-package" underline= 'none' color= 'inherit'>
+          <Link to="/add-package" style={{textDecoration:'none', color:'inherit'}}>
             <Box display='flex' alignItems='center' justifyContent='center' fontSize='22px'                    
                   borderRadius='15px' height='120px' width='100%' minWidth='220px' className={classes.BgColorBtn} >
               <Box mx={2}><img src={BoxIcon} alt={""}></img></Box> 
@@ -29,7 +30,7 @@ const HomePage = () => {
           </Link> 
         {/* </Grid>
         <Grid container item xs={6} justifyContent='flex-start'> */}
-          <Link href="/add-transport" underline= 'none' color= 'inherit' >
+          <Link to="/add-transport" style={{textDecoration:'none', color:'inherit'}} >
             <Box  display='flex' alignItems='center' justifyContent='center' fontSize='22px'
                   borderRadius='15px' height='120px' width='100%' minWidth='220px' className={classes.BgColorBtn} >
               <Box mx={2}><img src={CarIcon} alt={""}></img></Box>

@@ -13,9 +13,6 @@ import useStyles from "./edit-ride-backdrop-style";
 
 
 const MyBackdrop = withStyles({
-    '& element.style':{
-        visibility: 'visible',
-    },
     /* '.MuiBackdrop-root' */
     root:{
         zIndex: '2',

@@ -10,9 +10,6 @@ import IconButtonNoVerticalPadding from '../../../buttons/icon-button/icon-butto
 import { Country, City }  from 'country-state-city';
 import { useTranslation } from "react-i18next";
 const MyBackdrop = withStyles({
-    '& element.style':{
-        visibility: 'visible',
-    },
     /* '.MuiBackdrop-root' */
     root:{
         zIndex: '2',

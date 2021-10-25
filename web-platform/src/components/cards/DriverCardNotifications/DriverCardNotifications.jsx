@@ -20,7 +20,7 @@ const DriverCardNotifications =(props)=>{
                     <Box marginTop='5%' fontSize='15px' fontWeight='500' textAlign='center'>{t('DriverCardDeparture')} {props.plecare}</Box>
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
-                    <Box fontSize='15px' fontWeight='500' textAlign='center'>{t('DriverCardDestination')} {props.destinatie}</Box>
+                    <Box marginTop='5%' fontSize='15px' fontWeight='500' textAlign='center'>{t('DriverCardDestination')} {props.destinatie}</Box>
                 </Grid>
                 <Grid container item xs={12} justifyContent='center'>
                     <Box marginBottom='5%' fontSize='15px' fontWeight='500' textAlign='center'>{t('DriverCardType')} {props.transportType}</Box>

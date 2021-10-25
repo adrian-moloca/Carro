@@ -15,7 +15,7 @@ const packages = [
     destination: 'Bucuresti, Romania',
     departureAddress: 'Lorem impsium Street',
     destinationAddress: 'Lorem Ipsium Street',
-    packageType: 'Mic',
+    packageType: 'Mic', //Mediu, Mare
     dimensions: '0x0x0',
     weight: '1 Kg',
     description:'-',

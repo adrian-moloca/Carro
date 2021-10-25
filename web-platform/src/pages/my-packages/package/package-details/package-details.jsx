@@ -5,7 +5,7 @@ import environmentdang from '../../../../assets/images/environmentdang.png';
 import firedang from '../../../../assets/images/firedang.png';
 import boxHands from '../../../../assets/images/boxHands.png';
 import animalPrints from '../../../../assets/images/animalPrints.png';
-import Drivers from '../../../../components/drivers/drivers';
+import Rides from '../../../../components/rides/rides';
 import useStyles from './package-details-style';
 import { useTranslation } from "react-i18next";
 const PackageDetails = (props)=>{
@@ -56,7 +56,7 @@ const PackageDetails = (props)=>{
         </Grid>
         <Box my='2%' fontSize={20}>{t("AvailableTransports")}</Box>
         <Grid container  xs={12} spacing={0} justifyContent='center'>
-            <Drivers/>
+            <Rides/>
         </Grid>
     </Box>  
     );

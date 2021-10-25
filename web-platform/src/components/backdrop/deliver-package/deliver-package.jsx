@@ -11,9 +11,6 @@ import useStyles from './deliver-package-style';
 import { useTranslation } from "react-i18next";
 
 const MyBackdrop = withStyles({
-    '& element.style':{
-        visibility: 'visible',
-    },
     /* '.MuiBackdrop-root' */
     root:{
         zIndex: '2',

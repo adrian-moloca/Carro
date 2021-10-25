@@ -14,8 +14,9 @@ const PartialEditPackage = (props) =>{
         event.stopPropagation()
     };
     const handleCloseBd=(event)=>{
-        if(event.target.className.includes('backdrop'))
-            setOpen(false)
+        if(typeof(event.target.className) === 'string' )
+            if(event.target.className.includes('backdrop'))
+                setOpen(false)
         event.stopPropagation()
     };
    

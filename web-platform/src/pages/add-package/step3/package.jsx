@@ -138,7 +138,7 @@ const Package = (props) => {
           <Grid container item xs={4} justifyContent="center">
             <CarroTextField
               variant="outlined"
-              label={t("Weight")}
+              label={t("Width")}
               fullWidth
               InputProps={{
                 startAdornment: (

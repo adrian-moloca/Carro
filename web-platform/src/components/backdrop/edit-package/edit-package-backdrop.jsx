@@ -9,9 +9,6 @@ import IconButtonNoVerticalPadding from '../../buttons/icon-button/icon-button-n
 import FormPackage from './form-package/form-package';
 import { useTranslation } from "react-i18next";
 const MyBackdrop = withStyles({
-    '& element.style':{
-        visibility: 'visible',
-    },
     /* '.MuiBackdrop-root' */
     root:{
         zIndex: '2',
