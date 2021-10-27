@@ -43,7 +43,7 @@ const BackdropDeliverPackage=(props)=>{
                         </Grid>
                     </Grid>
                 </Box>
-                <Grid container xs={12} justifyContent='center' spacing={3}>
+                <Grid container justifyContent='center' spacing={3}>
                     <Grid container item xs={8}>
                         <CarroTextField  value = {sms} onChange={(e)=>setSMS(e.target.value)} variant ='outlined' label={t("CodeReceived")} fullWidth/>
                     </Grid>
@@ -52,7 +52,7 @@ const BackdropDeliverPackage=(props)=>{
                     </Grid>
                 </Grid>
                 <Box width='100%' display='flex' justifyContent='center'>
-                    <Grid container xs={8} justifyContent='space-between'>
+                    <Grid container justifyContent='space-between'>
                         <Grid container item xs={5} justifyContent='flex-start'>
                             <SecondaryButton variant='outlined' onClick={props.clickedClose} fullWidth>{t("CloseButton")}</SecondaryButton>
                         </Grid>

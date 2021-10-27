@@ -17,7 +17,7 @@ const MyRides = () => {
       destinationAddress: 'Lorem impsium Street',
       transportType: 'Masina',
       phoneNumber: '0888888888',
-      status: t('Open'),
+      status: 1,
     },
     {
       departure: 'Timisoara, Romania',
@@ -28,7 +28,7 @@ const MyRides = () => {
       destinationAddress: 'Lorem impsium Street',
       transportType: 'Masina',
       phoneNumber: '0888888888',
-      status:  t('ClosedForReceiving'),
+      status: 2,
     },
     {
       departure: 'Timisoara, Romania',
@@ -39,7 +39,7 @@ const MyRides = () => {
       destinationAddress: 'Lorem impsium Street',
       transportType: 'Masina',
       phoneNumber: '0888888888',
-      status:  t('InTransit'),
+      status:  3,
     },
     {
       departure: 'Timisoara, Romania',
@@ -50,7 +50,7 @@ const MyRides = () => {
       destinationAddress: 'Lorem impsium Street',
       transportType: 'Masina',
       phoneNumber: '0888888888',
-      status:  t('Delivered'),
+      status:  4,
     },
     {
       departure: 'Timisoara, Romania',
@@ -61,7 +61,7 @@ const MyRides = () => {
       destinationAddress: 'Lorem impsium Street',
       transportType: 'Masina',
       phoneNumber: '0888888888',
-      status:  t('Closed')
+      status: 5,
     },
   ];
 

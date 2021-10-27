@@ -25,7 +25,7 @@ const RenderMobileMenu = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
       >
-        <Grid container display="flex" justifyContent="center" alignItems="center" flexDirection="column" fullWidth>
+        <Grid container display="flex" justifyContent="center" alignItems="center" fullWidth>
           <Grid item xs={12}>
             <MenuItem>
               <Link href="/login" underline= 'none' color= 'inherit'>

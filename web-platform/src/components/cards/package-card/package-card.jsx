@@ -36,7 +36,7 @@ const PackageCard = (props) =>{
 
     function getFrontButtons(status, rideExists){
         switch(status){
-            case 'free package':
+            case 0:
                 if(rideExists)
                     return(
                         <Grid container item xs={10} justifyContent = 'center'>
@@ -49,15 +49,15 @@ const PackageCard = (props) =>{
                             <PrimaryButton variant='contained' size='medium' fullWidth>{t("AddRide")}</PrimaryButton>
                         </Grid>
                     );
-            case 'package selected':
+            case 1:
                     return(
                         <Grid container item xs={10} justifyContent = 'center'>
                             <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>{t("DriverCardWaitingStatus")}</Box>
                         </Grid>
                     );
-            case 'package added':
+            case 8:
                     return(
-                        <Grid container xs={10} justifyContent = 'center' spacing={2}>
+                        <Grid container justifyContent = 'center' spacing={2}>
                             <Grid container item xs={10} justifyContent = 'center'>
                                 <GreenCaroButton variant='contained' size='medium' fullWidth>
                                     {t("TakeOver")}
@@ -68,9 +68,9 @@ const PackageCard = (props) =>{
                             </Grid>
                         </Grid>
                     );
-            case 'package picked':
+            case 10:
                     return(
-                        <Grid container xs={10} justifyContent = 'center'  spacing={2}>
+                        <Grid container justifyContent = 'center'  spacing={2}>
                             <Grid container item xs={10} justifyContent = 'center'>
                                 <GreenCaroButton variant='contained' size='medium' onClick={handleBtn} fullWidth>
                                     {t("Delivery")}
@@ -81,7 +81,7 @@ const PackageCard = (props) =>{
                             </Grid>
                         </Grid>
                     );
-            case 'package rejected':
+            case 6:
                 return(
                     <Grid container xs={10} justifyContent = 'center'  spacing={2}>
                         <Grid container item xs={10} justifyContent = 'center'>
@@ -92,7 +92,7 @@ const PackageCard = (props) =>{
                         </Grid>
                     </Grid>
                 );
-            case 'notification ride request':
+            case 2:
                 return(
                     <Grid container xs={10} justifyContent = 'center'  spacing={2}>
                         <Grid container item xs={10} justifyContent = 'center'>
@@ -113,9 +113,9 @@ const PackageCard = (props) =>{
 
     function getBackButtons(status){
         switch(status){
-            case 'package added':
+            case 8:
                 return(
-                    <Grid container xs={10} justifyContent = 'center'  spacing={2}>
+                    <Grid container justifyContent = 'center'  spacing={2}>
                         <Grid container item xs={10} justifyContent = 'center'>
                             <SecondaryButton variant='contained' size='medium' fullWidth>
                                 {t("Reason")}
@@ -126,7 +126,7 @@ const PackageCard = (props) =>{
                         </Grid>
                     </Grid>
                 );
-            case 'package picked':
+            case 10:
                 return(
                     <Grid container item xs={10} justifyContent = 'center'>
                         <Box width='1'marginTop='20%'>
@@ -142,7 +142,7 @@ const PackageCard = (props) =>{
             <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' containerClassName={'CardFlipContainer'}>
             
             <Box paddingBottom='10%' width='1' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
-                <Grid container xs ={12} spacing={2} justifyContent='center'>
+                <Grid container spacing={2} justifyContent='center'>
                     <Grid container item xs={12} justifyContent = 'center'>
                         <img src={packageImg} className={classes.boxesImageStyle} alt={""}/>
                     </Grid>
@@ -181,7 +181,7 @@ const PackageCard = (props) =>{
             </Box>
 
             <Box paddingBottom='10%' width='1' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
-                <Grid container xs ={12} justifyContent='center'>
+                <Grid container justifyContent='center'>
                     <Grid container item xs={12} justifyContent = 'flex-start'>
                         <Box px={1} fontSize={14} marginTop='20px'>{t('Quantity')} {props.packageQuantity}</Box>
                         <Box px={1} fontSize={14}>{t('Sizing')} {props.packageDimensions}</Box>

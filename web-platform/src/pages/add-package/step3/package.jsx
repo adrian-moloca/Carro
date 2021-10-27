@@ -83,14 +83,13 @@ const Package = (props) => {
   };
 
   return (
-    <Grid container xs={12} spacing={3}>
+    <Grid container spacing={3}>
       {console.log(Inflamabil, Fragil, Perisabil, Animal)}
       <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
         <CarroTextField
           variant="outlined"
           label={t("PackageSize")}
           fullWidth
-          select
           value={packageSize}
           onChange={handleSizeSelect}
         >
@@ -114,7 +113,7 @@ const Package = (props) => {
         />
       </Grid>
       {packageSize === "small" ? (
-        <Grid container xs={12} justifyContent="center">
+        <Grid container justifyContent="center">
           <Box fontSize={12} color={"#9C9C9C"}>
             {
               "Pachet mic - Latimea<=30cm, Lungimea<=30cm, Inaltimea<=30cm (ex. plicuri,cutii pantofi,cutii bijuterii, etc.)"
@@ -124,7 +123,7 @@ const Package = (props) => {
       ) : null}
       {packageSize === "medium" ? (
         <Fragment>
-          <Grid container xs={12} justifyContent="center">
+          <Grid container justifyContent="center">
             <Box fontSize={12} color={"#9C9C9C"}>
               {
                 "Pachet mediu - 30cm<Latimea<=100cm, 30cm<Lungimea<=100cm, 30cm<Inaltimea<=100cm (ex. bagaje de cala, cutii cu scaune, etc.)"
@@ -171,7 +170,7 @@ const Package = (props) => {
               }}
             />
           </Grid>
-          <Grid container xs={12} justifyContent="center">
+          <Grid container justifyContent="center">
             <CarroTextField
               label="Pachet Mare - Depaseste un metru cub"
               fullWidth

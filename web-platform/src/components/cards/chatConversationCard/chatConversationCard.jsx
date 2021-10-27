@@ -10,7 +10,7 @@ const ChatConversationCard = (props) => {
   
   return(
     <Box display='flex' width='1' mt='5%' fullWidth p={1} borderRadius='10px' boxShadow={3}>
-        <Grid container xs={12}>
+        <Grid container>
           <Grid container item xs={2} alignItems='center' justifyContent='center'>
             <img src={props.profileImage} className={classes.profileImg}/>
           </Grid>

@@ -6,10 +6,11 @@ const CarroAutocomplete =(props)=>{
 
     return(
         <Autocomplete
+            value={props.value}
+            onChange={props.onChange}
             disabled={props.disabled}
             options={props.options}
             autoHighlight
-            value={props.value}
             getOptionLabel={(option) => option}
             renderOption={(option) => (
                         <React.Fragment>
@@ -24,11 +25,8 @@ const CarroAutocomplete =(props)=>{
                     inputProps={{
                         ...params.inputProps, // disable autocomplete and autofill
                     }}
-                    fullWidth
-                />
+                fullWidth/>
             )}
-            onChange={props.onChange}
-            {...props}
             fullWidth
         />
     );

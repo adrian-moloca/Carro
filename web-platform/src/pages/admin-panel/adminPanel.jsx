@@ -13,7 +13,7 @@ const AdminPanel = () => {
         Admin Panel
       </Box>
       <Box mt={5}>
-        <Grid container xs={12} justifyContent="center">
+        <Grid container justifyContent="center">
           <Grid container item xs={12} md={4} xl={4} justifyContent="flex-start">
             <CarroTextField
               required

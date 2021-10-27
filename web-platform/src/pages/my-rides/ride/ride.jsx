@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import { Box, Grid, Accordion, AccordionSummary, AccordionDetails, Typography, ButtonBase} from '@material-ui/core'; 
+import { Box, Grid, Typography, ButtonBase, Collapse} from '@material-ui/core'; 
 import {ExpandMore, ArrowForward, Delete, Edit, HighlightOff, ExpandLess} from '@material-ui/icons';
 import IconButtonNoVerticalPadding from '../../../components/buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 import EditRide from './edit-ride/edit-ride';
@@ -29,27 +29,27 @@ const Ride = (props) =>{
 
     }
 
-    function getStatusColor(status){ 
+    function getStatus(status){ 
       switch (status) {
-        case t('Open'):
+        case 1:
           return (
-            'Green-carro'
+            <Box fontSize='13px' className={'Green-carro'} textAlign='center'>{t('Open')}</Box>
           );
-        case t('ClosedForReceiving'):
+        case 2:
           return (
-            'Green-carro'
+            <Box fontSize='13px' className={'Green-carro'} textAlign='center'>{t('ClosedForReceiving')}</Box>
           );
-        case t('InTransit'):
+        case 3:
           return (
-            'Primary-color'
+            <Box fontSize='13px' className={'Primary-color'} textAlign='center'>{t('InTransit')}</Box>
           );  
-        case t('Closed'):
+        case 4:
           return (
-            'Pink-carro'
+            <Box fontSize='13px' className={'Pink-carro'} textAlign='center'>{t('Closed')}</Box>
           );
-        case t('Delivered'):
+        case 5:
           return (
-            'Pink-carro'
+            <Box fontSize='13px' className={'Pink-carro'} textAlign='center'>{t('Delivered')}</Box>
           );
   
         default:
@@ -59,7 +59,7 @@ const Ride = (props) =>{
   
     function actionsByStatus(status){
         switch(status){
-          case t('Open'):
+          case 1:
             return(
               <Fragment>
                 <EditRide ride={props.ride}/>
@@ -71,25 +71,25 @@ const Ride = (props) =>{
                 </IconButtonNoVerticalPadding>
               </Fragment>
             );
-          case t('ClosedForReceiving'):
+          case 2:
             return(
               <Fragment>
                 
               </Fragment>
             );
-          case t('InTrasit'):
+          case 3:
             return(
               <Fragment>
                 
               </Fragment>
             );
-          case t('Closed'):
+          case 4:
             return(
               <Fragment>
             
               </Fragment>
             );
-          case t('Delivered'):
+          case 5:
             return(
               <Fragment>
                 
@@ -100,10 +100,9 @@ const Ride = (props) =>{
 
 
     return(
-        <Accordion square='true' expanded={expanded} className={classes.AccordionBorderRadius}>
-          <AccordionSummary aria-controls="transport-content" id="transport-header">
+      <Box mb={1.5} borderRadius='12px' boxShadow={3} paddingX='20px' paddingY='12px'>
           <Grid container justifyContent='space-between'>
-                <Grid container item xs = {1} sm = {1} md={1} lg={1} justifyContent='flex-starts'>
+                <Grid container item xs = {1} sm = {1} md={1} lg={1}>
                   <Typography >{props.rideIndex}.</Typography>
                 </Grid>
                 <Grid container item xs={0} sm={0} md={2} lg={2} justifyContent='center'  alignItems='center' className='hide-on-mobile'>
@@ -119,20 +118,19 @@ const Ride = (props) =>{
                   <Box fontSize='13px'>{props.departureDate}</Box>
                 </Grid>
                 <Grid container item xs={3} sm={3} md={1} lg={1} alignItems='center' justifyContent='center'>
-                  <Box  fontSize='13px' className={getStatusColor(props.rideStatus)} textAlign='center'>{props.rideStatus}</Box>
+                  {getStatus(props.rideStatus)}
                 </Grid>
                 <Grid container item xs={4} sm={4} md={2} lg={2}  alignItems='center' justifyContent='flex-end'>
                   {actionsByStatus(props.rideStatus)}
                   {getArrowBtn(expanded)}
                 </Grid>
               </Grid>
-          </AccordionSummary>
-          <AccordionDetails className={classes.AccordionDetailsFlex}>
-              <RideDetails departure={props.departure} destination={props.destination} departureDate={props.departureDate} 
+              <Collapse in={expanded} timeout={600}>
+                <RideDetails departure={props.departure} destination={props.destination} departureDate={props.departureDate} 
                           estimatedTime={props.estimatedTime} departureAddress={props.departureAddress} destinationAddress={props.destinationAddress} 
                           transportType={props.transportType} phoneNumber={props.phoneNumber}/>
-          </AccordionDetails>
-        </Accordion>
+              </Collapse>
+        </Box>
     );
 }
 

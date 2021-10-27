@@ -57,7 +57,7 @@ const Rides = (props) =>{
     return(
         <Fragment>
             {rides_a.map((driver, index)=> 
-                <Grid key={index} container item xs={12} sm={5}  md={4} lg={4}  xl={4} justifyContent='space-around'>
+                <Grid key ={index} container item xs={12} sm={5}  md={4} lg={4}  xl={4} justifyContent='space-around'>
                     <RideCard 
                         image={driver.image} 
                         name={driver.name}

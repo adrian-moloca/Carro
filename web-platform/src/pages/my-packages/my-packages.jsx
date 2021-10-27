@@ -21,7 +21,7 @@ const packages = [
     description:'-',
     price: '150 RON',
     name: 'Pachetul meu',
-    status: t('Open'),
+    status: 1,
   },
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -35,7 +35,7 @@ const packages = [
     description:'-',
     price: '150 RON',
     name: 'Pachetul meu',
-    status:  t('Taken'),
+    status:  2,
   },
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -49,7 +49,7 @@ const packages = [
     description:'-',
     price: '150 RON',
     name: 'Pachetul meu',
-    status:  t('InTransit'),
+    status:  3,
     location: 'PITESTI',
   },
   {
@@ -64,7 +64,7 @@ const packages = [
     description:'-',
     price: '150 RON',
     name: 'Pachetul meu',
-    status:  t('InTransit'),
+    status:  3,
   },
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -78,7 +78,7 @@ const packages = [
     description:'-',
     price: '150 RON',
     name: 'Pachetul meu',
-    status:  t('Closed'),
+    status:  5,
   },
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -92,7 +92,7 @@ const packages = [
     description:'-',
     price: '150 RON',
     name: 'Pachetul meu',
-    status:  t('Delivered'),
+    status:  4,
   },
 ];
 
@@ -123,7 +123,7 @@ const packages = [
         <Container className='Primary-container-style'>
           <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t("MyPackages")}</Box>
           {packagesState.map((packageinf, index) => {
-                return <Package package={packageinf} packageIndex={index + 1} departureDate={packageinf.departureDate} departure={packageinf.departure} destination={packageinf.destination}
+                return <Package key={index} package={packageinf} packageIndex={index + 1} departureDate={packageinf.departureDate} departure={packageinf.departure} destination={packageinf.destination}
                          departureAddress={packageinf.departureAddress} destinationAddress={packageinf.destinationAddress} packageType={packageinf.packageType}
                          weight={packageinf.weight} description={packageinf.description} dimensions={packageinf.dimensions} price={packageinf.price} name={packageinf.name}
                          status={packageinf.status} deletePackageClicked={(e)=>deletePackage(e, index)} packageLocation={packageinf.location}

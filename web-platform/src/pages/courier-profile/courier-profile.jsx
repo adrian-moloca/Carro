@@ -43,7 +43,7 @@ const CourierProfile = () =>{
           totalCurse='10'/>
       </Box>
       <Box mb={2} lassName={'Secondary-color'} fontWeight={"normal"} fontSize={20} textAlign='center'>{t("Comments")}</Box>
-      <Grid container xs={12}>
+      <Grid container >
         {comments.map((comment)=>{
             return <CommentCard name={comment.name} comment={comment.comment} date={comment.date} profileImage={comment.profileImage}/>
         })}

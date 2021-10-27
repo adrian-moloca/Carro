@@ -9,7 +9,7 @@ const RenderMenuSBD = () => {
   const { t } = useTranslation();
   const menuBtns = () => {
     return (
-      <Box display="flex" flexDirection="row">
+      <Box display="flex">
         <Link href="/login" underline= 'none' color= 'inherit'>
           <IconButton color="inherit">
             <Box mr={1}>

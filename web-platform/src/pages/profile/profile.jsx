@@ -75,7 +75,7 @@ const Profile = (props) => {
       </Box>
       {/* required infos */}
       <Box display="flex" justifyContent="space-evenly" mt="1%">
-        <Grid container xs={8} spacing={3} display="flex" justifyContent="center">
+        <Grid container spacing={3} display="flex" justifyContent="center">
           <Grid item xs={12} sm={6}>
             <CarroTextField variant="outlined" label={t("LastName")} fullWidth disabled = {!onEditMode}/>
           </Grid>

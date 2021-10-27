@@ -9,7 +9,7 @@ const ResetPassword = () =>{
     return(
         <Container className={'Primary-container-style'}>
             <Box>
-                <Grid container xs={12} spacing={3} justifyContent='center'>
+                <Grid container spacing={3} justifyContent='center'>
                     <Grid container item xs={12} justifyContent='center'><Box  mt='5%' mb='3%' fontSize={22}>Resetare parola</Box></Grid>
                     <Grid container item xs={8} justifyContent='center'><CarroTextField label='Parola noua' variant='outlined' fullWidth/></Grid>
                     <Grid container item xs={8} justifyContent='center'><CarroTextField label='Confirmare parola' variant='outlined' fullWidth/></Grid>

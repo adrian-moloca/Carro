@@ -16,7 +16,7 @@ const packages_a = [
         destinationAddress: 'Lorem Ipsium Street',
         details: 'ceva de trimis',
         price: '15 RON',
-        status: 'free package', // status can be 'free package', 'package selected', 'package added', 'package picked', 'package rejected'
+        status: 10,
         rideExists: true,
     }
 ]
@@ -27,11 +27,11 @@ const Packages = (props) =>{
         <Fragment>
             {packages_a.map((pack)=>
                     <Grid container item xs={12}  md={5}  xl={4} justifyContent='space-around'>
-                     <PackageCard packageQuantity={pack.packageQuantity} packageDimensions={pack.packageDimensions} sender={pack.sender}
-                                 senderPhone={pack.senderPhone} destinatary={pack.destinatary} destinataryPhone={pack.destinataryPhone}
-                                 packageWeight={pack.packageWeight} departureDate={pack.departureDate} price={pack.price}
-                                 departureAddress={pack.departureAddress} destinationAddress={pack.destinationAddress} details={pack.details}
-                                 status= {pack.status} rideExists={pack.rideExists}/>
+                        <PackageCard packageQuantity={pack.packageQuantity} packageDimensions={pack.packageDimensions} sender={pack.sender}
+                                    senderPhone={pack.senderPhone} destinatary={pack.destinatary} destinataryPhone={pack.destinataryPhone}
+                                    packageWeight={pack.packageWeight} departureDate={pack.departureDate} price={pack.price}
+                                    departureAddress={pack.departureAddress} destinationAddress={pack.destinationAddress} details={pack.details}
+                                    status= {pack.status} rideExists={pack.rideExists}/>
                     </Grid>
             )} 
         </Fragment>

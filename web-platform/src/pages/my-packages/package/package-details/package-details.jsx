@@ -13,9 +13,9 @@ const PackageDetails = (props)=>{
     const classes = useStyles();
 
     return(
-    <Box borderRadius='10px' alignItems='center'  boxShadow={3} display ='flex' flexDirection='column' mx='3%' p='2%'>
+    <Box borderRadius='10px' alignItems='center'  boxShadow={3} display ='flex' flexDirection='column' mt='15px' mx='3%' p='2%'>
         <Box my='2%' fontSize={20}>{t("PackageDetails")}</Box>
-        <Grid container  xs={12} spacing={0} justifyContent='center' className="ButtonTextSize" >
+        <Grid container justifyContent='center' className="ButtonTextSize" >
             <Grid container item xs={6}>
                 <Box>{t("DriverCardDeparture")} {props.departure}</Box>
             </Grid>
@@ -55,7 +55,7 @@ const PackageDetails = (props)=>{
             </Grid>
         </Grid>
         <Box my='2%' fontSize={20}>{t("AvailableTransports")}</Box>
-        <Grid container  xs={12} spacing={0} justifyContent='center'>
+        <Grid container justifyContent='center'>
             <Rides/>
         </Grid>
     </Box>  

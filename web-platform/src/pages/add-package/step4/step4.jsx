@@ -26,7 +26,7 @@ const StepFour = () =>{
 
     const[payment, setPayment] = useState('cardOnline');
 
-    const [cardSetted, setCardSetted] =  useState(localStorage.getItem('paymentMethodExist'));
+    const [cardSetted, setCardSetted] =  useState(true);
 
     const[savingData, setSavingData] = useState(false);
 

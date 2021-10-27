@@ -8,19 +8,19 @@ const PhoneTextField = (props) =>{
     return(
         <CarroTextField 
             label={t('PhoneNumber')} 
-            variant='outlined' 
-            value={props.number} 
-            onChange={props.handleChangeNumber} 
+            variant='outlined'  
+            value={props.inputValue}
+            handleinputivalue={props.handleInputValue}
             InputProps={{startAdornment: 
                     <InputAdornment position='start'>
-                        <Select value={props.countryPhoneCode} onChange={props.handleSelectCountry}>
+                        <Select value={props.countryphonecode} onChange={(event)=>console.log(event)}>
                             {Country.getAllCountries().map((country)=>(
                                 <MenuItem key={country.phonecode} value={country.phonecode}>
                                     {country.name} +{country.phonecode}
                                 </MenuItem> 
                             ))}
                         </Select>
-                    </InputAdornment>}} fullWidth {...props}/>
+                    </InputAdornment>}} fullWidth/>
     );
 
 }

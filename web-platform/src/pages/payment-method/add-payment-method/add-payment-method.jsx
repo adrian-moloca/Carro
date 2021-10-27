@@ -20,7 +20,7 @@ const AddPaymentMethod = () =>{
 
     return(
         <Container className='Primary-container-style'>
-            <GridCarro container xs={12} spacing={5} justifyContent='center' >
+            <GridCarro container spacing={5} justifyContent='center' >
                 <Grid container item xs={12} justifyContent='center'>
                     <Box mb={3} fontSize={22} justifyContent='center' mt='3%'>
                     {t("PaymentMethod")}

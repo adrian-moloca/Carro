@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, IconButton, Box, Grid, ButtonBase } from "@material-ui/core";
+import { AppBar, Toolbar, Box, Grid} from "@material-ui/core";
 import CaroLogo from '../../assets/logo/CaroLogo.png';
 import BadgeVisibility from '../NotificationsComponent/notificomp';
 import BasicSelect from '../buttons/languageButton/languageButton'
@@ -15,11 +15,11 @@ export default function PrimarySearchAppBar() {
   return (
     <AppBar position="static" className={classes.fundal}>
       <Toolbar>
-        <Grid container item justifyContent="space-between" alignItems="center">
+        <Grid container justifyContent="space-between" alignItems="center">
           {/* render logo */}
           <Grid container item md={2}>
               <Link to="/home" style={{paddingTop:'10px', paddingBottom: '10px'}}>
-                  <ButtonBase disableRipple><img src={CaroLogo} alt={""}/></ButtonBase>
+                  <img src={CaroLogo} alt={""}/>
               </Link>
           </Grid>
           {/* render desktop btns */}
@@ -30,9 +30,9 @@ export default function PrimarySearchAppBar() {
           <Grid container item md={3} container justifyContent="flex-end"> 
             {/* notifications */}
             <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
-              <Link to="/notifications" style={{underline:'none'}}>
-                <BadgeVisibility/>
-              </Link>
+              {/* <Link to="/notifications" style={{underline:'none'}}> */}
+                <BadgeVisibility />
+              {/* </Link> */}
             </Box>
             {/* profile menu */}
             <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
@@ -46,9 +46,7 @@ export default function PrimarySearchAppBar() {
         </Grid>
         {/* mobile */}
         <Box className={classes.sectionMobile} display="flex">
-          <Link to="/notifications" style={{underline:'none'}}>
             <BadgeVisibility/>
-          </Link>
           <RenderMobileMenu/>
         </Box>
       </Toolbar>

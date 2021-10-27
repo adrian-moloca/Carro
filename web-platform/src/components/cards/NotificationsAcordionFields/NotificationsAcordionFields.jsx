@@ -8,10 +8,7 @@ import { useTranslation } from "react-i18next";
 const NotificationsAcordionFields = () => {
   const { t } = useTranslation();
   return (
-    <Grid container xs={6} >
-
-                                  {/* before delivery */}
-
+    <Grid container>               {/* before delivery */}
       <Grid item xs={12}>
         <Box lineHeight="143%" fontSize={12} className={'Primary-color'}>
           <p>
