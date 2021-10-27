@@ -10,7 +10,7 @@ const SwitchSBD = (props) => {
   const classes = useStyles();
 
   // switch
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(props.checked)
   // modal off
   const [openOff, setOpenOff] = React.useState(false);
   const handleOpenOff = () => setOpenOff(true);
