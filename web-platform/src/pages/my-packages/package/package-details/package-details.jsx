@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Box, Grid} from '@material-ui/core';
 import fragile from '../../../../assets/images/fragile.png';
 import environmentdang from '../../../../assets/images/environmentdang.png';

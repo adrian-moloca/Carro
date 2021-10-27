@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Switch, Modal, Box} from '@material-ui/core';
 import SecondaryButton from '../buttons/secondaryButton/secondaryButton';
 import GreenCaroButton from '../buttons/GreenCaroButton/GreenCaroButton';
+import PrimaryColorSwitch from './switch-primary-color/switch-primary-color';
 import useStyles from '../modals/deleteModal/DeleteModalStyle'
 
 const SwitchSBD = (props) => {
@@ -30,12 +31,11 @@ const SwitchSBD = (props) => {
   }
 
   return (
-    <Box>
-      <Switch
+    <Box display='flex' justifyContent='center'>
+      <PrimaryColorSwitch
         checked={toggle}
         onChange={toggler}
         name="toggle"
-        color= "primary"
       />
       {/* off */}
       <Modal

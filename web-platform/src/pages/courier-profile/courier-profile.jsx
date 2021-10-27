@@ -36,16 +36,16 @@ const CourierProfile = () =>{
       <Box m='2%' display='flex' flexDirection='column' justifyContent="center"  width='0.939' p={1} borderRadius='10px' boxShadow={3}>
         <DriverProfileCard
           image={profilePhotoMiddle}
-          rate='4.0' 
+          rate={4.5} 
           masina='Dacia'
           an='1900'
           culoare='negru'
           totalCurse='10'/>
       </Box>
-      <Box mb={2} lassName={'Secondary-color'} fontWeight={"normal"} fontSize={20} textAlign='center'>{t("Comments")}</Box>
+      <Box mb={2} className={'Secondary-color'} fontWeight={"normal"} fontSize={20} textAlign='center'>{t("Comments")}</Box>
       <Grid container >
-        {comments.map((comment)=>{
-            return <CommentCard name={comment.name} comment={comment.comment} date={comment.date} profileImage={comment.profileImage}/>
+        {comments.map((comment, index)=>{
+            return <CommentCard key={index}name={comment.name} comment={comment.comment} date={comment.date} profileImage={comment.profileImage}/>
         })}
       </Grid>
         <PaginationSBD/>

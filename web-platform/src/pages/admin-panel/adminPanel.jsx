@@ -3,7 +3,7 @@ import React from "react";
 import { Container, Box, Grid, InputAdornment } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import CarroTextField from "../../components/textField/CarroTextField";
-import AdminTable from "../../components/Table/AdminTable"
+import StickyHeadTable from "../../components/Table/AdminTable"
 
 const AdminPanel = () => {
 
@@ -25,7 +25,7 @@ const AdminPanel = () => {
           </Grid>
         </Grid>
         <Box mt={5}>
-        <AdminTable/>
+          <StickyHeadTable/>
         </Box>
       </Box>
     </Container>

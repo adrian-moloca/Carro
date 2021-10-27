@@ -8,7 +8,7 @@ const CommentCard = (props) => {
   const classes = useStyles();
   
   return(
-    <Box display='flex' width='1' mt='30px' fullWidth p={1} borderRadius='10px' boxShadow={3}>
+    <Box display='flex' width='1' mt='30px' p={1} borderRadius='10px' boxShadow={3}>
         <Grid container>
           <Grid container item xs={2} alignItems='center' justifyContent='center'>
             <img src={props.profileImage} className={classes.profileImg}/>

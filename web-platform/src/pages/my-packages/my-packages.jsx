@@ -100,19 +100,17 @@ const packages = [
   const[packagesState, setPackagesState] = useState(packages);
 
   const deletePackage=(event, index)=>{
-      event.stopPropagation();
       const temp=[...packagesState] 
       temp.splice(index, 1);
       setPackagesState(temp);
   }
 
   const closePackage=(event, index)=>{
-      event.stopPropagation();
       const temp=[...packagesState] 
       temp.forEach((pack, i)=>{
         if(index === i)
         {
-          pack.status = t('Closed');
+          pack.status = 5;
         }
       })
       setPackagesState(temp);

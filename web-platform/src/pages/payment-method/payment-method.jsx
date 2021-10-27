@@ -14,7 +14,7 @@ const PaymentMethod = () => {
   const [paymentMethod, setPaymenthMethod] = useState('no assignment');
 
   return (
-    <Container column className='Primary-container-style'>
+    <Container className='Primary-container-style'>
       <Grid container justifyContent='center' spacing={2}>
         <Grid container item xs={12} justifyContent='center'> 
           <Box mb={3} fontSize={22} justifyContent='center' mt='3%'>{t("PaymentMethod")}</Box>

@@ -25,8 +25,8 @@ const Packages = (props) =>{
 
     return (
         <Fragment>
-            {packages_a.map((pack)=>
-                    <Grid container item xs={12}  md={5}  xl={4} justifyContent='space-around'>
+            {packages_a.map((pack, index)=>
+                    <Grid key={index} container item xs={12}  md={5}  xl={4} justifyContent='space-around'>
                         <PackageCard packageQuantity={pack.packageQuantity} packageDimensions={pack.packageDimensions} sender={pack.sender}
                                     senderPhone={pack.senderPhone} destinatary={pack.destinatary} destinataryPhone={pack.destinataryPhone}
                                     packageWeight={pack.packageWeight} departureDate={pack.departureDate} price={pack.price}

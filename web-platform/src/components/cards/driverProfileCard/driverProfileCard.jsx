@@ -1,7 +1,6 @@
 import React from 'react';
 import {Box, Grid} from '@material-ui/core';
 import {Rating} from '@material-ui/lab';
-import BackdropSelectDriver from '../../backdrop/driver-select/backDrop';
 import useStyles from './driverProfileCardStyle';
 import { useTranslation } from 'react-i18next';
 const DriverProfileCard =(props)=>{
@@ -9,8 +8,8 @@ const DriverProfileCard =(props)=>{
   const classes = useStyles();
   const { t } = useTranslation();
   return(
-    <Box display='flex' justifyContent='center' fullWidth p={2}>
-      <Grid container justifyContent="center" alignItems="center" direction="row">
+    <Box display='flex' justifyContent='center' p={2}>
+      <Grid container justifyContent="center" alignItems="center">
         <Grid container item xs={6} justifyContent='center' direction="column">
           <Grid container item xs={12} justifyContent='center'>
               <img src={props.image} className={classes.profileImg}  alt={""}/>

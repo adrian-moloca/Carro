@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@material-ui/core";
+import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@material-ui/core";
 import DeleteModal from '../modals/deleteModal/DeleteModal';
 import SwitchSBD from "../switch/SwitchSBD";
 
@@ -12,16 +12,47 @@ const columns = [
   { id: "actions", label: "Actiuni", minWidth: 100 },
 ];
 
+const users = [
+  {
+    numePrenume: 'Marius Popescu',
+    email: 'MariusPopescu@gmail.com',
+    contPremium: false,
+    validareCont: false,
+    actions: 'delete',
+  },
+  {
+    numePrenume: 'Marius Popescu',
+    email: 'MariusPopescu@gmail.com',
+    contPremium: true,
+    validareCont: true,
+    actions: 'delete',
+  },
+  {
+    numePrenume: 'Marius Popescu',
+    email: 'MariusPopescu@gmail.com',
+    contPremium: false,
+    validareCont: false,
+    actions: 'delete',
+  },
+  {
+    numePrenume: 'Marius Popescu',
+    email: 'MariusPopescu@gmail.com',
+    contPremium: true,
+    validareCont: true,
+    actions: 'delete',
+  },
 
-function createData(numePrenume, email, contPremium, validareCont, actions) {
-  return { numePrenume, email, contPremium, validareCont, actions };
-}
+]
 
 const rows = [
 
   createData(
-    "nume",
-    "mail",
+    <Box display='flex' justifyContent='center'>
+      'Nume si prenume'
+    </Box>,
+    <Box display='flex' justifyContent='center'>
+      'Email'
+    </Box>,
     <SwitchSBD 
       contentOff="DORESTI SA DEZACTIVEZI STATUTUL DE PREMIUM PENTRU ACEST CONT?" btn1OffText="anuleaza" btn2OffText="dezactiveaza"
       contentOn="DORESTI SA ACTIVEZI STATUTUL DE PREMIUM PENTRU ACEST CONT?" btn1OnText="anuleaza" btn2OnText="activeaza"
@@ -63,13 +94,13 @@ export default function StickyHeadTable() {
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
+        <Table aria-label="sticky table">
+          <TableHead key={11}>
             <TableRow>
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
-                  align={column.align}
+                  align='center'
                   style={{
                     minWidth: column.minWidth,
                     fontSize: "18px",
@@ -81,16 +112,16 @@ export default function StickyHeadTable() {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody key={12}>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row, index) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow key={index} hover role="checkbox" tabIndex={1} key={row.email}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell key={column.id} align={column.align}>
+                        <TableCell key={column.id} align='center'>
                           {column.format && typeof value === "number"
                             ? column.format(value)
                             : value}

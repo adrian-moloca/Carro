@@ -20,7 +20,9 @@ const PhoneTextField = (props) =>{
                                 </MenuItem> 
                             ))}
                         </Select>
-                    </InputAdornment>}} fullWidth/>
+                    </InputAdornment>}} 
+            size={props.size}
+            fullWidth/>
     );
 
 }

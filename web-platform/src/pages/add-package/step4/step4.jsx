@@ -60,7 +60,7 @@ const StepFour = () =>{
 
     return(
         <Box display='flex' justifyContent='center' mt='3%'>
-              <Grid container xs={12} spacing={3} justifyContent='center'>
+              <Grid container spacing={3} justifyContent='center'>
                 <Grid container item xs={12} justifyContent="center">
                   <Box fontWeight={500} fontSize={22}>{t("PaymentMethod")}</Box>
                 </Grid>

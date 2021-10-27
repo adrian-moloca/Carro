@@ -16,7 +16,7 @@ const AddCard = (rest) =>{
                 <CarroTextField size='small' value={props.cardNumber} onChange={props.cardNumberSet} variant ='outlined' label={t("AddCard")} fullWidth/>
             </Grid>
             <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                <CarroDatePicker size='small' value={dateValue} onChange={(date) => handleDateSelect(date)} views={["month","year"]} format="MM/yy" openTo='month' label={t("LastDate")}/>  
+                <CarroDatePicker size='small' value={dateValue} onChange={handleDateSelect} views={["month","year"]} format="MM/yy" openTo='month' label={t("LastDate")}/>  
             </Grid>
             <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
                 <CarroTextField size='small' value ={props.completeName} onChange={props.completeNameSet} variant ='outlined' label={t("CardName")} fullWidth/>

@@ -6,7 +6,7 @@ import ReactCardFlip from 'react-card-flip';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
-import BackdropSelectDriver from '../../backdrop/driver-select/backDrop';
+import SelectDriver from '../../modals/driver-select/driver-select';
 import useStyles from './ride-card-style';
 import { useTranslation } from 'react-i18next';
 
@@ -14,25 +14,12 @@ const RideCard =(props)=>{
     const { t } = useTranslation();
     const classes = useStyles();
 
-    const[open, setOpen]=useState(false);
-
     const[isFlipped, setIsFlipped] = useState(false);
 
     const handleClick = () => {
         const temp = isFlipped;
         setIsFlipped(!temp);
     }
-
-    const handleBtn =()=> setOpen(!open);
-
-    const handleCloseBd=(event)=>{
-        if(typeof(event.target.className) === 'string' )
-            if(event.target.className.includes('backdrop'))
-                setOpen(false)
-    };
-
-    const handleCloseBdByBtn=(event)=>{ setOpen(false)};
-    
 
     function getFrontCardBtns(driverSelected, requestStatus){
         if(driverSelected)
@@ -74,13 +61,15 @@ const RideCard =(props)=>{
         {
             return (
                 <Fragment>
-                    <Grid container item xs={8} justifyContent='center'>
-                        <Box mt='26%' mb='2%' width={1}>
-                            <GreenCaroButton variant='contained'  onClick={handleBtn} fullWidth>
-                                 {t('DriverCardSelectButton')}
-                            </GreenCaroButton>
-                        </Box>
-                    </Grid>
+                    <SelectDriver 
+                        image={props.image}
+                        name={props.name}
+                        driverRate={props.driverRate}
+                        plecare={props.plecare}
+                        destinatie= {props.destinatie}
+                        tipTransport = {props.transportType}
+                        dataPlecare = {props.departureDate}
+                    />
                     <Grid container item xs={8} justifyContent='center'>
                         <Box mb='2%' width={1}>
                             <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
@@ -206,19 +195,6 @@ const RideCard =(props)=>{
             </Box>
             
             </ReactCardFlip>
-            
-            <BackdropSelectDriver 
-                open={open} 
-                clicked={handleCloseBd}
-                clickedBackBtn={handleCloseBdByBtn}
-                image={props.image}
-                name={props.name}
-                driverRate={props.driverRate}
-                plecare={props.plecare}
-                destinatie= {props.destinatie}
-                tipTransport = {props.transportType}
-                dataPlecare = {props.departureDate}
-            />
         </Fragment>
     );
 };

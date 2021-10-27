@@ -85,10 +85,10 @@ const AddPackage = () => {
                 {getStepContent(activeStep)}
                 <Box mt={5} mb={2} display ='flex' justifyContent='center'>
                   <Grid container  spacing={7}>
-                    <Grid container item  justifyContent='center'>
+                    <Grid container item  xs={12} sm={6} md={6} lg={6} xl={6}  justifyContent='center'>
                       <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton>
                     </Grid>
-                    <Grid container item  justifyContent='center'>
+                    <Grid container item  xs={12} sm={6} md={6} lg={6} xl={6} justifyContent='center'>
                       <PrimaryButton endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Finish')}</PrimaryButton>
                     </Grid>
                   </Grid>
@@ -99,12 +99,10 @@ const AddPackage = () => {
                 {getStepContent(activeStep)}
                 <Box mt={5} mb={2} display ='flex' justifyContent='center'>
                   <Grid container spacing={7}>
-                    <Grid container item justifyContent='center'>
-                    {activeStep === 0 ? 
-                      <SecondaryButton disabled startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton> :
-                      <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton> }
+                    <Grid container item xs={12} sm={6} md={6} lg={6} xl={6} justifyContent='center'>
+                      <SecondaryButton disabled={activeStep===0} onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton>
                     </Grid>
-                    <Grid container item justifyContent='center'>
+                    <Grid container item xs={12} sm={6} md={6} lg={6} xl={6} justifyContent='center'>
                       <PrimaryButton onClick={handleNext} endIcon={<ArrowForwardIos/>}
                        variant='contained' fullWidth color="primary">{t('NextStep')}</PrimaryButton>
                     </Grid>

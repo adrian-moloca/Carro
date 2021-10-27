@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 const Package = (props) => {
   const { t } = useTranslation();
 
-  const [packageSize, setPackageSize] = useState(null);
+  const [packageSize, setPackageSize] = useState(0);
 
   const [currency, setCurrency] = useState("ron");
 
@@ -26,15 +26,15 @@ const Package = (props) => {
 
   const packageSizes = [
     {
-      value: "small",
+      value: 1,
       label: t("Small"),
     },
     {
-      value: "medium",
+      value: 2,
       label:  t("Medium"),
     },
     {
-      value: "big",
+      value: 3,
       label:  t("Big"),
     },
   ];
@@ -57,6 +57,69 @@ const Package = (props) => {
       label: "£",
     },
   ];
+
+  function getPackagesSizesContent(size){
+
+    switch(size){
+      case 1: return(
+                      <Grid container item justifyContent="center">
+                        <Box fontSize={12} color={"#9C9C9C"}>
+                          {
+                            "Pachet mic - Latimea<=30cm, Lungimea<=30cm, Inaltimea<=30cm (ex. plicuri,cutii pantofi,cutii bijuterii, etc.)"
+                          }
+                        </Box>
+                      </Grid>
+                    );
+      case 2: return(
+                      <Fragment>
+                        <Grid container justifyContent="center">
+                          <Box fontSize={12} color={"#9C9C9C"}>
+                            {
+                              "Pachet mediu - 30cm<Latimea<=100cm, 30cm<Lungimea<=100cm, 30cm<Inaltimea<=100cm (ex. bagaje de cala, cutii cu scaune, etc.)"
+                            }
+                          </Box>
+                        </Grid>
+                      </Fragment>
+                    );
+      case 3: return(
+                      <Fragment>
+                        <Grid container item xs={4} justifyContent="center">
+                            <CarroTextField variant="outlined" label={t("Width")} fullWidth
+                                          InputProps={{
+                                            startAdornment: (
+                                              <InputAdornment position="start">m</InputAdornment>
+                                            ),
+                                          }}
+                            />
+                        </Grid>
+                        <Grid container item xs={4} justifyContent="center">
+                            <CarroTextField variant="outlined" label={t("Height")} fullWidth
+                                          InputProps={{
+                                            startAdornment: (
+                                              <InputAdornment position="start">m</InputAdornment>
+                                            ),
+                                          }}
+                            />
+                        </Grid>
+                        <Grid container item xs={4} justifyContent="center">
+                            <CarroTextField variant="outlined" label={t("Length")} fullWidth
+                                          InputProps={{
+                                            startAdornment: (
+                                              <InputAdornment position="start">m</InputAdornment>
+                                            ),
+                                          }}
+                            />
+                        </Grid>
+                        <Grid container justifyContent="center">
+                          <Box fontSize={14} color={"#9C9C9C"}>
+                            {
+                              "Pachet Mare - Depaseste un metru cub"
+                            }
+                          </Box>
+                        </Grid>
+                      </Fragment>
+                    );
+  }}
 
   const handleSizeSelect = (event) => {
     setPackageSize(event.target.value);
@@ -84,20 +147,13 @@ const Package = (props) => {
 
   return (
     <Grid container spacing={3}>
-      {console.log(Inflamabil, Fragil, Perisabil, Animal)}
       <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
-        <CarroTextField
-          variant="outlined"
-          label={t("PackageSize")}
-          fullWidth
-          value={packageSize}
-          onChange={handleSizeSelect}
-        >
-          {packageSizes.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
+        <CarroTextField variant ='outlined' label={t("Sizing")} fullWidth select value={packageSize} onChange={handleSizeSelect}>
+                {packageSizes.map((option)=>(
+                    <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                    </MenuItem>
+                ))}
         </CarroTextField>
       </Grid>
       <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
@@ -112,72 +168,7 @@ const Package = (props) => {
           }}
         />
       </Grid>
-      {packageSize === "small" ? (
-        <Grid container justifyContent="center">
-          <Box fontSize={12} color={"#9C9C9C"}>
-            {
-              "Pachet mic - Latimea<=30cm, Lungimea<=30cm, Inaltimea<=30cm (ex. plicuri,cutii pantofi,cutii bijuterii, etc.)"
-            }
-          </Box>
-        </Grid>
-      ) : null}
-      {packageSize === "medium" ? (
-        <Fragment>
-          <Grid container justifyContent="center">
-            <Box fontSize={12} color={"#9C9C9C"}>
-              {
-                "Pachet mediu - 30cm<Latimea<=100cm, 30cm<Lungimea<=100cm, 30cm<Inaltimea<=100cm (ex. bagaje de cala, cutii cu scaune, etc.)"
-              }
-            </Box>
-          </Grid>
-        </Fragment>
-      ) : null}
-      {packageSize === "big" ? (
-        <Fragment>
-          <Grid container item xs={4} justifyContent="center">
-            <CarroTextField
-              variant="outlined"
-              label={t("Width")}
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">m</InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid container item xs={4} justifyContent="center">
-            <CarroTextField
-              variant="outlined"
-              label={t("Height")}
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">m</InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid container item xs={4} justifyContent="center">
-            <CarroTextField
-              variant="outlined"
-              label={t("Length")}
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">m</InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid container justifyContent="center">
-            <CarroTextField
-              label="Pachet Mare - Depaseste un metru cub"
-              fullWidth
-            />
-          </Grid>
-        </Fragment>
-      ) : null}
+      {getPackagesSizesContent(packageSize)}
       <Grid container item xs={12} justifyContent="center">
         <CarroTextField variant="outlined" label={t("SmallDescription")} fullWidth />
       </Grid>
@@ -205,14 +196,9 @@ const Package = (props) => {
       <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
         <CarroTextField variant="outlined" label={t("PackageNumbers")} fullWidth />
       </Grid>
-      <Grid container item xs={12} justifyContent="center" maxRows={5}>
+      <Grid container item xs={12} justifyContent="center">
         <CarroTextField
-          variant="outlined"
-          label={t("Description")}
-          multiline={4}
-          rows={4}
-          fullWidth
-        />
+          variant="outlined" label={t("Description")} multiline rows={4} fullWidth/>
       </Grid>
       <Grid container item xs={12} justifyContent="space-between">
         <FormControlLabel

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Button, Grid, IconButton, Menu, MenuItem} from '@material-ui/core';
+import {Box, Grid, IconButton, Menu, MenuItem} from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { Edit } from '@material-ui/icons';
 import useStyles from './CreditCardStyle';
@@ -35,7 +35,7 @@ const CarroCreditCard = (props)=>{
             className={classes.paymentCard}
         >
             <Grid container justifyContent='center'>
-                <Grid item xs={6} justifyContent='flex-start'>
+                <Grid container item xs={6} justifyContent='flex-start'>
                     <img src={props.cardProvider} className={classes.cardProviderIco} alt={""}/>    
                 </Grid>
                 <Grid container item xs={5} justifyContent='flex-end'>
