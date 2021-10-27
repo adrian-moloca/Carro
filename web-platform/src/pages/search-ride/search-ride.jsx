@@ -12,10 +12,10 @@ import { useTranslation } from 'react-i18next';
 const SearchRide = () => {
   // state
   const { t } = useTranslation();
-  const [departureCountry, setDepartureCountry] = useState(null);
-  const [destinationCountry, setDestinationCountry] = useState(null);
-  const [departureCity, setDepartureCity] = useState(null);
-  const [destinationCity, setDestinationCity] = useState(null);
+  const [departureCountry, setDepartureCountry] = useState("RO");
+  const [destinationCountry, setDestinationCountry] = useState("RO");
+  const [departureCity, setDepartureCity] = useState("Bucharest");
+  const [destinationCity, setDestinationCity] = useState("Bucharest");
   // handlers
   const handleChangeDepartureCountry = (event) => setDepartureCountry(event.target.value);
   const handleChangeDestinationCountry = (event) => setDestinationCountry(event.target.value);
@@ -37,7 +37,7 @@ const SearchRide = () => {
       </Grid>
 
       <Box display="flex" justifyContent="space-evenly" mt="3%">
-        <Grid container xs={12} spacing={3} justifyContent="space-between">
+        <Grid container item xs={12} spacing={3} justifyContent="space-between">
           <Grid container item xs={12} md={6} xl={3} justifyContent="center">
             <CarroTextField
               variant="outlined"
@@ -141,7 +141,7 @@ const SearchRide = () => {
           </PrimaryButton>
         </Grid>
       </Box>
-      <Grid container xs={12} justifyContent='space-around'>
+      <Grid item container xs={12} justifyContent='space-around'>
               <Rides/>
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">

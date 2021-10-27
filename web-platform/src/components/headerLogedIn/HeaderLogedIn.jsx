@@ -15,7 +15,7 @@ export default function PrimarySearchAppBar() {
   return (
     <AppBar position="static" className={classes.fundal}>
       <Toolbar>
-        <Grid container justifyContent="space-between" alignItems="center" flexDirection="row">
+        <Grid container item justifyContent="space-between" alignItems="center">
           {/* render logo */}
           <Grid container item md={2}>
               <Link to="/home" style={{paddingTop:'10px', paddingBottom: '10px'}}>
@@ -27,7 +27,7 @@ export default function PrimarySearchAppBar() {
               <RenderMenuSBD/>
           </Grid>
           {/* render right btns: notifications, my account, language */}
-          <Grid container item md={3} container flexDirection="row" justifyContent="flex-end"> 
+          <Grid container item md={3} container justifyContent="flex-end"> 
             {/* notifications */}
             <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
               <Link to="/notifications" style={{underline:'none'}}>
@@ -45,7 +45,7 @@ export default function PrimarySearchAppBar() {
           </Grid>
         </Grid>
         {/* mobile */}
-        <Box className={classes.sectionMobile} display="flex" flexDirection="row">
+        <Box className={classes.sectionMobile} display="flex">
           <Link to="/notifications" style={{underline:'none'}}>
             <BadgeVisibility/>
           </Link>

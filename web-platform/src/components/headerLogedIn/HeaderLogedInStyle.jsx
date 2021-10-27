@@ -16,8 +16,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     textDecoration: 'none',
     maxWidth:'250px',
-    color:'inherit',
-    justifyContent:'left',
+    color:'inherit'
   },
 
 }));

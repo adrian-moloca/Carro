@@ -24,15 +24,16 @@ const CarroDatePicker = (props)=>{
             <ThemeProvider theme={DatePickerTh}>
                 <KeyboardDatePicker
                     disableToolbar
-                    value={props.dateValue}
+                    // value={props.dateValue}
                     inputVariant="outlined"
                     variant='inline'
+                    autoOk={true}
                     label={props.label}
                     views={props.views}
                     format={props.format}
                     openTo={props.openTo}
                     TextFieldComponent={CarroTextField}
-                    onChange={props.handleDateSelect}
+                    // onChange={props.handleDateSelect}
                     fullWidth
                     defaultValue={props.defaultShow}
                     disablePast

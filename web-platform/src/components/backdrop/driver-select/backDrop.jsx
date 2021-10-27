@@ -42,23 +42,21 @@ const BackdropSelectDriver=(props)=>{
 
     const[payment, setPayment] = useState('cardOnline');
     // state
-    const [cardNumber, setCardNumber] = useState(null);
-    const [expDate, setExpDate] = useState(null);
-    const [completeName, setCompleteName] = useState(null);
-    const [CVV, setCVV] = useState(null);
+    const [cardNumber, setCardNumber] = useState("");
+    const [dateValue, setDateValue] = useState(null);
+    const [completeName, setCompleteName] = useState("");
+    const [CVV, setCVV] = useState("");
     // handlers
     const handleSetCompleteName = (event) => setCompleteName(event.target.value);
     const handleSetCardNumber = (event) => setCardNumber(event.target.value);
-    const handleSetExpDate = (date) => {
-        setExpDate(date)
-    };
+    const handleDateSelect = (event) => setDateValue(event);
     const handleSetCVV = (event) => setCVV(event.target.value);
     const handlePayment = (event)=> setPayment(event.target.value);
 
     return(
         <MyBackdrop open={props.open} onClick={props.clicked} className='backdrop'>
-            <Container className={[classes.containerBackdrop, 'textSizeMobile']}>
-                <MyGrid container xs = {12} justifyContent='center' spacing='1'>
+            <Container className={classes.containerBackdrop + ' textSizeMobile'}>
+                <MyGrid container item xs = {12} justifyContent='center' spacing={1}>
                     <Grid container item xs={12} justifyContent='center'>
                         <Box  fontWeight={400} fontSize={21}>
                             {t("SelectCourier")}
@@ -103,8 +101,8 @@ const BackdropSelectDriver=(props)=>{
                                                                 showSaveButton='true'
                                                                 cardNumber = {cardNumber} 
                                                                 cardNumberSet = {(e)=>handleSetCardNumber(e)} 
-                                                                expDate={expDate} 
-                                                                expDateSet={handleSetExpDate} 
+                                                                dateValue={dateValue} 
+                                                                handleDateSelect={handleDateSelect} 
                                                                 completeName = {completeName} 
                                                                 completeNameSet={(e)=>handleSetCompleteName(e)}
                                                                 cvv={CVV}
@@ -120,7 +118,7 @@ const BackdropSelectDriver=(props)=>{
                                                         </Box>
                                                     </MyGrid>
                                                 </Fragment>
-                                                ))  : null}
+                                                ))  : ""}
                     <Grid container item xs={6} justifyContent='flex-end'>
                         <SecondaryButton variant='outlined' onClick={props.clickedBackBtn}>{t("Cancel")}</SecondaryButton>
                     </Grid>

@@ -39,7 +39,7 @@ const SearchPackages = () => {
         </Box>
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%">
-        <Grid container xs={12} spacing={3} justifyContent="space-between">
+        <Grid container item xs={12} spacing={3} justifyContent="space-between">
           <Grid container item xs={12} md={6} xl={3} justifyContent="center">
             <CarroTextField
               variant="outlined"

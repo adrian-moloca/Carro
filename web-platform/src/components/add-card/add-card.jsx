@@ -4,18 +4,19 @@ import CarroDatePicker from '../datePicker/CarroDatePicker';
 import CarroTextField from '../textField/CarroTextField';
 import PrimaryButton from '../buttons/primaryButton/primaryButton';
 import { useTranslation } from "react-i18next";
-const AddCard = (props) =>{
+const AddCard = (rest) =>{
     const { t } = useTranslation();
+    const {dateValue, handleDateSelect, ...props} = rest;
     return (
         <Fragment>
-            <Grid Grid container item xs={12} justifyContent='center'>
+            <Grid container item xs={12} justifyContent='center'>
                 <Box mt={props.marginTop}fontWeight={500} fontSize={16}>{t("AddCard")}</Box>
             </Grid>
             <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
                 <CarroTextField size='small' value={props.cardNumber} onChange={props.cardNumberSet} variant ='outlined' label={t("AddCard")} fullWidth/>
             </Grid>
             <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                <CarroDatePicker size='small' dateValue={props.expDate} handleDateSelect={props.expDateSet} views={["month","year"]} format="MM/yy" openTo='month' label={t("LastDate")}/>  
+                <CarroDatePicker size='small' value={dateValue} onChange={(date) => handleDateSelect(date)} views={["month","year"]} format="MM/yy" openTo='month' label={t("LastDate")}/>  
             </Grid>
             <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
                 <CarroTextField size='small' value ={props.completeName} onChange={props.completeNameSet} variant ='outlined' label={t("CardName")} fullWidth/>

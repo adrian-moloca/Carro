@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Box, Grid, FormControlLabel, Button } from '@material-ui/core';
 import googleicon from '../../assets/images/GoogleIcon.png';
@@ -10,43 +10,50 @@ import PrimaryButton from '../../components/buttons/primaryButton/primaryButton.
 import useStyles from './loginStyles';
 import { useTranslation } from "react-i18next";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-const Login = () => { 
+import { connect } from 'react-redux';
+import {fetchLogin} from '../../redux/actions/UserActions';
+
+const Login = ({fetchLogin, data}) => { 
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const classes = useStyles();
   const { t } = useTranslation();
+
   return (
     <Container className={'Primary-container-style'}>
       <Box display= 'flex' flexDirection='column' justifyContent ='center' alignItems='center'>
-        <Grid container xs={12}   spacing={3} justifyContent='center'>
+        <Grid container item xs={12}   spacing={3} justifyContent='center'>
           <Grid container item xs={12} justifyContent='center'> 
               <Box mt='5%' fontWeight={400} fontSize={21} textAlign={'center'}>{t("Login")}</Box>
             </Grid>  
             <Grid container item xs={10} xl={8} >
-              <CarroTextField required label={t("Mail")} variant='outlined' fullWidth/>
+              <CarroTextField required label={t("Mail")} variant='outlined' fullWidth value={email} onChange={(e) => setEmail(e.target.value)}/>
             </Grid>
             <Grid container item xs={10} xl={8}>
-              <CarroTextField required label={t("Password")} variant='outlined' fullWidth/>
+              <CarroTextField required label={t("Password")} variant='outlined' fullWidth value={password} onChange={(e) => setPassword(e.target.value)}/>
             </Grid>  
-            <Grid  container item xs={10} xl={8} justifyContent='space-between'>  
+            <Grid container item xs={10} xl={8} justifyContent='space-between'>  
             <Box container  justifyContent='flex-start'>
               <FormControlLabel 
                 control={<CarroCheckbox color='default'/>}
                 label={t("SaveData")}/>
             </Box>
-            <Box container  justifyContent='flex-end'>
+            <Box container justifyContent='flex-end'>
               <Link to='/login/forgot-password' style={{ textDecoration: 'none' }}>
                 <Button className={'Primary-color'}>{t("ForgotPassword")}</Button>
               </Link>
             </Box>
             </Grid>
             <Grid container item xs={10} xl={8} justifyContent='center'>  
-                <PrimaryButton className="ButtonTextSize" size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
+                <PrimaryButton onClick={() => fetchLogin(email, password)} className="ButtonTextSize" size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
                 {t("Login")}
                 </PrimaryButton>
             </Grid>
         </Grid>
         <Box display='flex' justifyContent='center' mt='4%'>
-          <Grid container xs={12} justifyContent='center' spacing={3}>
+          <Grid container item xs={12} justifyContent='center' spacing={3}>
             <Grid container item xs={5} alignItems='center'>
               <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
             </Grid>
@@ -70,4 +77,7 @@ const Login = () => {
   )
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => ({fetchLogin: (email,password) => dispatch(fetchLogin(email, password))})
+const mapStateToProps = state => ({data: state.userData})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

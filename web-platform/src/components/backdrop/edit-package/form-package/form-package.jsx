@@ -168,7 +168,7 @@ const   FormPackage = (props) =>{
                     <CarroTextField size='small' variant ='outlined' label={t("Length")} fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
                 </Grid>
                 </Fragment>
-            ):(null)}
+            ):("")}
             <Grid container item xs={12} justifyContent='center'>
                 <CarroTextField size='small' variant ='outlined' label={t("SmallDescription")} fullWidth/>
             </Grid>

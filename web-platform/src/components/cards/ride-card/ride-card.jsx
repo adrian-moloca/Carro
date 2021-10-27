@@ -59,7 +59,7 @@ const RideCard =(props)=>{
                     );
                 case 'rejected':
                     return(
-                        <Grid container xs={8} justifyContent = 'center'  spacing={2}>
+                        <Grid container item xs={8} justifyContent = 'center'  spacing={2}>
                             <Grid container item xs={12} justifyContent = 'center'>
                                 <Box my='10' className='Secondary-color' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
                             </Grid>
@@ -145,23 +145,23 @@ const RideCard =(props)=>{
    
     return(
         <Fragment>
-            <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' containerClassName={'CardFlipContainer'}>
+            <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal'  containerClassName={'CardFlipContainer'}>
                
             <Box display='flex' width='1' height='400px' p={1} borderRadius='10px' boxShadow={3}>
-                <Grid container xs={12} justifyContent='center'>
+                <Grid container item xs={12} justifyContent='center'>
                     <Grid container item xs={12} justifyContent='center'>
                         <img src={props.image} className={classes.profileImg} alt={""}/>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center'>
                         <Box fontSize='20px' fontWeight='500'>{props.name}</Box>
                     </Grid>
-                    <Grid container item xs={12} justifyContent='left'>
+                    <Grid container item xs={12} >
                         <Box marginTop='5%' fontSize='15px' fontWeight='500'>{t('DriverCardDeparture')} {props.plecare}</Box>
                     </Grid>
-                    <Grid container item xs={12} justifyContent='left'>
+                    <Grid container item xs={12} >
                         <Box fontSize='15px' fontWeight='500'>{t('DriverCardDestination')} {props.destinatie}</Box>
                     </Grid>
-                    <Grid container item xs={12} justifyContent='left'>
+                    <Grid container item xs={12} >
                         <Box marginBottom='5%' fontSize='15px' fontWeight='500'>{t('DriverCardType')} {props.transportType}</Box>
                     </Grid>
                     <Grid container item xs={8} justifyContent='space-around'>
@@ -172,26 +172,26 @@ const RideCard =(props)=>{
             </Box>
                 
                 <Box  display='flex' width='1' height='400px' p={1} borderRadius='10px' boxShadow={3}>
-                    <Grid container xs={12} justifyContent='center'>
-                        <Grid container item xs={12} justifyContent='left'>
+                    <Grid container item xs={12} justifyContent='center'>
+                        <Grid container item xs={12} >
                             <Box fontSize='15px' fontWeight='500'>{t('DriverCardDeparture')} {props.plecare}</Box>
                         </Grid>
-                        <Grid container item xs={12} justifyContent='left'>
+                        <Grid container item xs={12} >
                             <Box fontSize='15px' fontWeight='500'>{t('DriverCardDepartureAddress')} {props.departureAddress}</Box>
                         </Grid>
-                        <Grid container item xs={12} justifyContent='left'>
+                        <Grid container item xs={12} >
                             <Box fontSize='15px' fontWeight='500'>{t('DriverCardDestination')} {props.destinatie}</Box>
                         </Grid>
-                        <Grid container item xs={12} justifyContent='left'>
+                        <Grid container item xs={12} >
                             <Box fontSize='15px' fontWeight='500'>{t('DriverCardDestinationAddress')}  {props.destinationAddress}</Box>
                         </Grid>
-                        <Grid container item xs={12} justifyContent='left'>
+                        <Grid container item xs={12} >
                             <Box fontSize='15px' fontWeight='500'>{t('DriverCardType')} {props.transportType}</Box>
                         </Grid>
-                        <Grid container item xs={12} justifyContent='left'>
+                        <Grid container item xs={12} >
                             <Box fontSize='15px' fontWeight='500'>{t('DriverCardDepartureDate')}  {props.departureDate}</Box>
                         </Grid>
-                        <Grid container item xs={12} justifyContent='left'>
+                        <Grid container item xs={12} >
                             <Box fontSize='15px' fontWeight='500' paddingBottom='4%'>{t('DriverCardEstimatedHours')} {props.estimatedTime}</Box>
                         </Grid>
                         {getBackCardBtns(props.driverSelected, props.packageExists, props.packageTaked)}
@@ -207,16 +207,17 @@ const RideCard =(props)=>{
             </ReactCardFlip>
             
             <BackdropSelectDriver 
-            open={open} 
-            clicked={handleCloseBd}
-            clickedBackBtn={handleCloseBdByBtn}
-            image={props.image}
-            name={props.name}
-            driverRate={props.driverRate}
-            plecare={props.plecare}
-            destinatie= {props.destinatie}
-            tipTransport = {props.transportType}
-            dataPlecare = {props.departureDate}/>
+                open={open} 
+                clicked={handleCloseBd}
+                clickedBackBtn={handleCloseBdByBtn}
+                image={props.image}
+                name={props.name}
+                driverRate={props.driverRate}
+                plecare={props.plecare}
+                destinatie= {props.destinatie}
+                tipTransport = {props.transportType}
+                dataPlecare = {props.departureDate}
+            />
         </Fragment>
     );
 };

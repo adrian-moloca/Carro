@@ -18,13 +18,13 @@ export default function BasicSelect() {
   };
 
   return (
-    <Box  sx={{ minWidth: 120 }} display="flex" alignItems="center" justifyContent="flex-end" flexDirection="row">
+    <Box  sx={{ minWidth: 120 }} display="flex" alignItems="center" justifyContent="flex-end">
       <FormControl fullWidth>
         <Grid
           container
+          item
           alignItems="center" 
-          justifyContent="center" 
-          flexDirection="row">
+          justifyContent="center" >
             <Grid item xs={8}>
               <Select
                 value={language}
