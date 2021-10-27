@@ -10,7 +10,7 @@ const DriverProfileCard =(props)=>{
   const { t } = useTranslation();
   return(
     <Box display='flex' justifyContent='center' fullWidth p={2}>
-      <Grid container xs={6} justifyContent="center" alignItems="center" direction="row">
+      <Grid container justifyContent="center" alignItems="center" direction="row">
         <Grid container item xs={6} justifyContent='center' direction="column">
           <Grid container item xs={12} justifyContent='center'>
               <img src={props.image} className={classes.profileImg}  alt={""}/>

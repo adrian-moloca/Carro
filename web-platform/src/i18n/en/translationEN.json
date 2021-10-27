@@ -196,6 +196,9 @@
     "DriverCardLessDetailsButton": "Show less",
     "Approve": "Approve",
     "Refuse": "Refuse",
-    "EditRide": "Edit ride"
+    "EditRide": "Edit ride",
+    "Sender": "Sender",
+    "Destinatary": "Destinatary",
+    "PaymentMethods": "Payment methods"
 
 }

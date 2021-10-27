@@ -123,9 +123,11 @@ const NotificationDetails = (props) =>{
     }
 
     return(
-        <Grid container>
-            {getNotificationContent(props.type)}
-        </Grid>
+        <Box mt='4%'>
+            <Grid container>
+                {getNotificationContent(props.type)}
+            </Grid>
+        </Box>
     );
 
 }

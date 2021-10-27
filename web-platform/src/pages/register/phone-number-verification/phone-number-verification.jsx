@@ -17,7 +17,7 @@ const PhoneNumberVerification = ()=>{
 
     return(
         <Container className = 'Primary-container-style'>
-            <MyGrid container xs={12} justifyContent='center' spacing={4}>
+            <MyGrid container justifyContent='center' spacing={4}>
                 <Grid container item xs={12} justifyContent='center'>
                     <Box  mb={3} fontSize={22} justifyContent='center' mt='3%'>
                     {t("ConfirmPhoneNumber")}

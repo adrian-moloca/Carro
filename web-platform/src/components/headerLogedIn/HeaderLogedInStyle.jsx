@@ -5,6 +5,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#000",
   },
   sectionDesktop: {
+    paddingLeft:'10px',
+    paddingRight:'10px',
     display: 'none',
     [theme.breakpoints.up('md')]: { display: 'flex'},
   },

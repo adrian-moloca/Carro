@@ -24,7 +24,7 @@ export default function BasicSelect() {
           container
           item
           alignItems="center" 
-          justifyContent="center" >
+          justifyContent="center">
             <Grid item xs={8}>
               <Select
                 value={language}

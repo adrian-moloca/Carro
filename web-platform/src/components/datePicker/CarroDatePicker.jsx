@@ -33,7 +33,6 @@ const CarroDatePicker = (props)=>{
                     format={props.format}
                     openTo={props.openTo}
                     TextFieldComponent={CarroTextField}
-                    // onChange={props.handleDateSelect}
                     fullWidth
                     defaultValue={props.defaultShow}
                     disablePast

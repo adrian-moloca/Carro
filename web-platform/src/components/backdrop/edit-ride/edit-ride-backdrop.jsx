@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Grid, MenuItem, Container, Backdrop, Link, withStyles } from "@material-ui/core";
+import { Box, Grid, MenuItem, Container, Modal} from "@material-ui/core";
 import CarroTextField from "../../textField/CarroTextField";
 import CarroDatePicker from "../../datePicker/CarroDatePicker";
 import { Country, City }  from 'country-state-city';
@@ -10,16 +10,6 @@ import IconButtonNoVerticalPadding from "../../buttons/icon-button/icon-button-n
 import { Close } from "@material-ui/icons";
 import { useTranslation } from "react-i18next";
 import useStyles from "./edit-ride-backdrop-style";
-
-
-const MyBackdrop = withStyles({
-    /* '.MuiBackdrop-root' */
-    root:{
-        zIndex: '2',
-        backgroundColor: 'black 0.7',
-    },
-
-})(Backdrop);
 
 const BackdropEditRide = (props) =>{
   const { t } = useTranslation();
@@ -53,9 +43,9 @@ const BackdropEditRide = (props) =>{
   }
 
   return(
-    <MyBackdrop open={props.open} onClick={props.clicked}  className='backdrop'>
+    <Modal open={props.open} onClick={props.clicked}  className='backdrop'>
         <Container className={classes.containerBackdrop}>
-            <Grid container xs={12}>
+            <Grid container >
                 <Grid container item xs={10} justifyContent='flex-start'>
                     <Box fontSize='18px' color='grey.500'>{t("EditRide")}</Box>
                     </Grid>
@@ -66,7 +56,7 @@ const BackdropEditRide = (props) =>{
                 </Grid>
             </Grid>
             <Box display='flex' justifyContent='center' mt='5%' mb='5%'>
-                <Grid container xs={12} spacing={3} >
+                <Grid containerpacing={3} >
                     <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
                         <CarroTextField size='small' variant ='outlined' label={t("SearchRideDepartureCountry")} fullWidth
                             select value={departureCountry} onChange={handleChangeDepartureCountry}>
@@ -92,7 +82,7 @@ const BackdropEditRide = (props) =>{
                         <CarroTextField size='small' variant ='outlined' label={t("DriverCardDepartureAddress")} fullWidth/>
                     </Grid>
                     <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
-                        <CarroDatePicker size='small' label={t("DriverCardDepartureDate")} dateValue={departureDate} handleDateSelect={(e)=>handleChangeDepartureDate(e)}/>
+                        <CarroDatePicker size='small' label={t("DriverCardDepartureDate")} value={departureDate} onChange={(e)=>handleChangeDepartureDate(e)}/>
                     </Grid>
                     <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
                         <CarroTextField select size='small' variant ='outlined' label={t("DriverCardType")} fullWidth value={transportType} onChange={(e)=>handleChangeTransportType(e)}>
@@ -104,7 +94,7 @@ const BackdropEditRide = (props) =>{
                     </Grid>
                 </Grid>
             </Box>
-            <Grid container xs={12} justifyContent='space-around'>
+            <Grid container justifyContent='space-around'>
                     <Grid container item xs={3} justifyContent="center">
                                 <SecondaryButton variant='outlined' onClick={props.clickedClose} fullWidth>{t("CloseButton")}</SecondaryButton>     
                     </Grid>
@@ -113,7 +103,7 @@ const BackdropEditRide = (props) =>{
                     </Grid>
                </Grid>
         </Container>
-    </MyBackdrop>
+    </Modal>
   );
 };
 

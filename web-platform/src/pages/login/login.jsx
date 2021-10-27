@@ -24,7 +24,7 @@ const Login = ({fetchLogin, data}) => {
   return (
     <Container className={'Primary-container-style'}>
       <Box display= 'flex' flexDirection='column' justifyContent ='center' alignItems='center'>
-        <Grid container item xs={12}   spacing={3} justifyContent='center'>
+        <Grid container spacing={3} justifyContent='center'>
           <Grid container item xs={12} justifyContent='center'> 
               <Box mt='5%' fontWeight={400} fontSize={21} textAlign={'center'}>{t("Login")}</Box>
             </Grid>  
@@ -53,7 +53,7 @@ const Login = ({fetchLogin, data}) => {
             </Grid>
         </Grid>
         <Box display='flex' justifyContent='center' mt='4%'>
-          <Grid container item xs={12} justifyContent='center' spacing={3}>
+          <Grid container justifyContent='center' spacing={3}>
             <Grid container item xs={5} alignItems='center'>
               <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
             </Grid>

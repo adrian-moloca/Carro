@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Accordion, AccordionDetails, AccordionSummary, Box} from '@material-ui/core';
+import {Box, Collapse} from '@material-ui/core';
 import NotificationsSummary from "./notification-summary/notifications-summary";
 import NotificationDetails from "./notification-details/notification-details";
 import useStyles from "./notification-style";
@@ -54,32 +54,28 @@ const Notification = (props) =>{
     }
 
     return(
-        <Box mb={1.5} width='1' borderRadius='10px' boxShadow={10}>
-            <Accordion className={classes.AccordionBorderRadius} expanded={expanded} onChange={props.handleRead}>
-                <AccordionSummary>
-                    <NotificationsSummary
-                            name={props.name}
-                            actionText={props.action}
-                            plecare={props.departure}
-                            destinatie={props.destination}
-                            tipTransport={props.transportType}
-                            dataPlecare={props.departureDate}
-                            pickUpAdress={props.departureAddress}
-                            dropOffAdress={props.destinationAddress}
-                            price={props.price}
-                            read={props.read}
-                            clickedDetails={handleDetailsBtn}
-                            detailsBtnText={detailsBtn}
-                            markAsReadBtnText={markAsRead}
-                            markAsReadColor={markAsReadColor}
-                            clickedMarkAsRead={handleMarkAsRead}
-                    />
-                </AccordionSummary>
-                <AccordionDetails>
-                    <NotificationDetails
-                        type={props.type}/>
-                </AccordionDetails>
-            </Accordion>
+      <Box mb={1.5} borderRadius='12px' boxShadow={3} paddingX='20px' paddingY='12px'>
+          <NotificationsSummary
+                  name={props.name}
+                  actionText={props.action}
+                  plecare={props.departure}
+                  destinatie={props.destination}
+                  tipTransport={props.transportType}
+                  dataPlecare={props.departureDate}
+                  pickUpAdress={props.departureAddress}
+                  dropOffAdress={props.destinationAddress}
+                  price={props.price}
+                  read={props.read}
+                  clickedDetails={handleDetailsBtn}
+                  detailsBtnText={detailsBtn}
+                  markAsReadBtnText={markAsRead}
+                  markAsReadColor={markAsReadColor}
+                  clickedMarkAsRead={handleMarkAsRead}
+          />
+          <Collapse in={expanded} timeout={600}>
+            <NotificationDetails
+                type={props.type}/>
+          </Collapse>
         </Box>
     );
 

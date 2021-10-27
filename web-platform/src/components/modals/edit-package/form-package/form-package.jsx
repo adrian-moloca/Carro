@@ -49,8 +49,8 @@ const   FormPackage = (props) =>{
     const [departureDate, setDepartureDate] = useState(new Date());
     const [departureCountry, setDepartureCountry] = useState('RO');
     const [destinationCountry, setDestinationCountry] = useState('RO');
-    const [departureCity, setDepartureCity] = useState('');
-    const [destinationCity, setDestinationCity] = useState('');
+    const [departureCity, setDepartureCity] = useState('Cluj-Napoca');
+    const [destinationCity, setDestinationCity] = useState('Cluj-Napoca');
     const [pickUpAddress, setPickUpAddress] = useState('');
     const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState('');
     const [countryPhoneCode, setCountryPhoneCode] = useState('');
@@ -68,6 +68,10 @@ const   FormPackage = (props) =>{
     
     const handleCurrencySelect = (event) =>{
         setCurrency(event.target.value);
+    };
+
+    const handleselectcountry = (event) =>{
+        setCountryPhoneCode(event.target.value);
     };
 
     const handleInflamabilCheckboxClick = (event)=>{
@@ -101,7 +105,7 @@ const   FormPackage = (props) =>{
 
     return(
         <Box display='flex' justifyContent='center' mt='5%' mb='5%' fontSize='13px'>
-            <Grid container xs={12} spacing={1} >
+            <Grid container spacing={1} >
                 <Grid container item xs={6} justifyContent="center">
                             <CarroAutocomplete size='small' value={departureCountry} options={getCountries()}  label= {t("SearchRideDepartureCountry")} onChange={(e)=>setDepartureCountry(e.target.textContent)}/>
                 </Grid>
@@ -119,7 +123,7 @@ const   FormPackage = (props) =>{
                 </Grid>
                 <Grid container item xs={6} justifyContent='center'>
                             <CarroDatePicker size='small' label={t("DriverCardDepartureDate")} format='dd/MM/yyyy'
-                                        dateValue={departureDate} handleDateSelect={(date)=>setDepartureDate(date)}/>
+                                        value={departureDate} onChange={(date)=>setDepartureDate(date)}/>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
                     <CarroTextField size='small' variant ='outlined' label={t("ReceiverNume")} fullWidth/>
@@ -127,10 +131,10 @@ const   FormPackage = (props) =>{
                 <Grid container item xs={6} justifyContent="center">
                     <PhoneTextField 
                         size='small'
-                        number={inputValuePhoneNumber} 
-                        handleChangeNumber = {(e)=>setInputValuePhoneNumber(e.target.value)}
-                        countryPhoneCode={countryPhoneCode} 
-                        handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
+                        inputValue={inputValuePhoneNumber} 
+                        handleinputvalue = {(e)=>setInputValuePhoneNumber(e.target.value)}
+                        countryphonecode={countryPhoneCode} 
+                        handleselectcountry = {handleselectcountry}
                     />
                 </Grid>
                 <Grid container item xs={12} justifyContent='center'>
@@ -185,8 +189,8 @@ const   FormPackage = (props) =>{
             <Grid container item xs={6} justifyContent="center">
                 <CarroTextField size='small' variant ='outlined' label={t("PackageNumbers")} fullWidth/>
             </Grid>
-            <Grid container item xs={12} justifyContent='center' maxRows={5}>
-                <CarroTextField size='small' variant ='outlined' label={t("Description")} multiline={4} rows={4} fullWidth/>
+            <Grid container item xs={12} justifyContent='center'>
+                <CarroTextField size='small' variant ='outlined' label={t("Description")} multiline={true} rows={4} fullWidth/>
             </Grid>
             <Grid container item xs={12} justifyContent='space-between'>            
                 <FormControlLabel onChange = {handleInflamabilCheckboxClick} control={<CarroCheckbox/>} label={t("Inflammable")}/>

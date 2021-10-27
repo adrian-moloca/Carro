@@ -9,9 +9,7 @@ const StepOne = (props) =>{
     const { t } = useTranslation();
     const [departureDate, setDepartureDate] = useState(new Date());
     const [departureCountry, setDepartureCountry] = useState('');
-    const [destinationCountry, setDestinationCountry] = useState('');
     const [departureCity, setDepartureCity] = useState('');
-    const [destinationCity, setDestinationCity] = useState('');
     const [pickUpAddress, setPickUpAddress] = useState('');
 
     const getCountries = ()=> {
@@ -35,18 +33,14 @@ const StepOne = (props) =>{
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
                             <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label={t('SearchRideDepartureCity')} onChange={(e)=>setDepartureCity(e.target.textContent)}/>
                 </Grid>
-                <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                            <CarroAutocomplete value={destinationCountry} options={getCountries()} label={t('SearchRideDestinationCountry')} onChange={(e)=>setDestinationCountry(e.target.textContent)}/>
-                </Grid>
-                <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                            <CarroAutocomplete value = {destinationCity} options={getCities(destinationCountry)} label={t('SearchRideDestinationCity')} onChange={(e)=>setDestinationCity(e.target.textContent)}/>
-                </Grid>
+               
+                
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
                             <CarroTextField value = {pickUpAddress} onChange={(e)=>setPickUpAddress(e.target.value)} variant ='outlined' label={t('PickupAddress')} fullWidth/>
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
                             <CarroDatePicker label={t('PickupDate')} format='dd/MM/yyyy'
-                                        dateValue={departureDate} handleDateSelect={(date)=>setDepartureDate(date)}/>
+                                        value={departureDate} onChange={(date)=>setDepartureDate(date)}/>
                 </Grid>
             </Grid>
         </Box>

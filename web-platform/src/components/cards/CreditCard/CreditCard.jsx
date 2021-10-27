@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Button, Grid, Menu, MenuItem} from '@material-ui/core';
+import {Box, Button, Grid, IconButton, Menu, MenuItem} from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { Edit } from '@material-ui/icons';
 import useStyles from './CreditCardStyle';
@@ -24,7 +24,7 @@ const CarroCreditCard = (props)=>{
 
     return (
         <Box 
-            minWidth='225px' 
+            minWidth='300px' 
             maxWidth='450px' 
             borderRadius='10px' 
             boxShadow={3} 
@@ -34,7 +34,7 @@ const CarroCreditCard = (props)=>{
             flexDirection='column' 
             className={classes.paymentCard}
         >
-            <Grid container xs={12}  justifyContent='center'>
+            <Grid container justifyContent='center'>
                 <Grid item xs={6} justifyContent='flex-start'>
                     <img src={props.cardProvider} className={classes.cardProviderIco} alt={""}/>    
                 </Grid>
@@ -42,7 +42,9 @@ const CarroCreditCard = (props)=>{
                     <Box mx={2} mt={2} className={'Secondary-color'}>{props.cardHolder}</Box>
                 </Grid>
                 <Grid container item xs={1} justifyContent='flex-end'>
-                    <Button onClick={handleEdit} display='flex' variant='default' endIcon={<Edit className={'Primary-color'}/>}/>
+                    <IconButton onClick={handleEdit} className={'Primary-color'}>
+                        <Edit fontSize='small'/>
+                    </IconButton>
                 </Grid>
                 <Grid container item xs={11} justifyContent='flex-start'>
                     <Box mt={2} fontSize={25} fontWeight='500'>{props.cardNumber}</Box>
@@ -55,7 +57,7 @@ const CarroCreditCard = (props)=>{
                 </Grid>
             </Grid>
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-                <MenuItem onClick={handleClose}>Editeaza</MenuItem>
+                <MenuItem onClick={props.clickedEdit}>Editeaza</MenuItem>
                 <Link to='/payment-method' style={{textDecoration: 'none', color: 'black'}}>
                     <MenuItem onClick={props.clickedDelete}>Sterge</MenuItem>       
                 </Link>

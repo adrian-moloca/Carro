@@ -62,7 +62,7 @@ const StepThree = (props) =>{
                   )) : (<Fragment>
                             {errorMessage()}
                         </Fragment>)}
-          <Grid container xs={12} justifyContent='flex-end'>
+          <Grid container justifyContent='flex-end'>
                <Box mt={3}>
                    <Button startIcon = {<Add/>} variant='default' className='Primary-color' onClick={increaseNumberOfpackages}>{t('AddPackageButton')}</Button>
                 </Box>

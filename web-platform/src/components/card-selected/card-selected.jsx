@@ -6,11 +6,17 @@ import americanExpress from '../../assets/images/americanExpress.png';
 import discover from '../../assets/images/discover.png';
 import CarroRadio from '../radio/CarroRadio';
 import CarroCreditCard from '../cards/CreditCard/CreditCard';
+import CarroTextField from '../textField/CarroTextField';
+import CarroDatePicker from '../datePicker/CarroDatePicker';
+import PrimaryButton from '../buttons/primaryButton/primaryButton';
 import AddCard from '../add-card/add-card';
 import {Add} from '@material-ui/icons';
 import useStyles from './card-selectedStyle'
+import { useTranslation } from 'react-i18next';
 
 const CardSelected = (props) =>{
+
+    const{t}=useTranslation();
 
     const classes = useStyles();
 
@@ -28,9 +34,11 @@ const CardSelected = (props) =>{
             dateSaved: '25/08/21',
             expDate: '08/24',
             cvv: '111',
+            onEdit: false,
         },
     ]);
     const [addCard, setAddCard] = useState(false);
+    const [editCard, setEditCard] = useState(false);
 
     const handleAddCard = () =>{
         if(!addCard){
@@ -39,6 +47,18 @@ const CardSelected = (props) =>{
          } 
          else setAddCard(false);
     }
+
+    const handleEditCard = (index) =>{
+        const temp = [...savedCardsData]
+        if(!temp[index].onEdit){
+            temp[index].onEdit=true;
+            setCardSelected(false);
+        }
+        else temp[index].onEdit=false;
+
+        setSavedCardsData(temp);
+    }
+
     const handleCardSelect=(event)=>{
         if(event.target.checked){
              setCardSelected(event.target.value)
@@ -46,6 +66,7 @@ const CardSelected = (props) =>{
             }
          else setCardSelected('');
     }
+    
     const cardProviderSearch=(cardNumber)=>{
         const cardNetwork = parseInt(cardNumber.charAt(0));
         switch(cardNetwork){
@@ -84,7 +105,7 @@ const CardSelected = (props) =>{
     }
 
     const handleSaveButtonAddCard=(cardNumber, cardHolder, expDate, cvv)=>{
-        const temp = savedCardsData;
+        const temp = [...savedCardsData];
         const numberSavedCards = savedCardsData.length + 1;
         const string = numberSavedCards.toString();
         temp.push({
@@ -95,10 +116,22 @@ const CardSelected = (props) =>{
             dateSaved: getCurrentDate(),
             expDate: getExpDate(expDate),
             cvv: cvv,
+            onEdit: false,
             });
         setSavedCardsData(temp);
         setAddCard(false);
         setCardSelected('cardOnline'+string);
+    }
+
+    const handleSaveButtonEditCard=(cardNumber, cardHolder, expDate, cvv, index)=>{
+        const temp = [...savedCardsData];
+        temp[index].cardHolder=cardHolder;
+        temp[index].cardNumber=cardNumber;
+        temp[index].expDate=expDate;
+        temp[index].cvv=cvv;
+        temp[index].onEdit=false;
+        setSavedCardsData(temp);
+        setCardSelected(temp[index].name);
     }
 
     const deleteCard=(index, card)=>{
@@ -116,6 +149,34 @@ const CardSelected = (props) =>{
             setCardSelected(temp[0].name) 
         temp.splice(index, 1);
         setSavedCardsData(temp);
+    }
+
+    const editExistentCard = (value, index)=>{
+
+        setCardNumber(value.cardNumber);
+        setCardHolder(value.cardHolder)
+        setCardCVV(value.cardCVV);
+        setExpDate(value.expDate);
+
+        value.onEdit ?
+            <Fragment>
+                <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
+                    <CarroTextField size='small' value={cardNumber} onChange={handleCardNumber} variant ='outlined' label={t("AddCard")} fullWidth/>
+                </Grid>
+                <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
+                    <CarroDatePicker size='small' value={expDate} onChange={handleExpDate} views={["month","year"]} format="MM/yy" openTo='month' label={t("LastDate")}/>  
+                </Grid>
+                <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
+                    <CarroTextField size='small' value ={cardHolder} onChange={handleCardHolder} variant ='outlined' label={t("CardName")} fullWidth/>
+                </Grid>
+                <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
+                    <CarroTextField size='small' value={cardCVV} onChange={handleCardCVV} variant ='outlined' label='CVV/CVC' fullWidth/>
+                </Grid>
+                <Grid container item xs={12} justifyContent='center'>
+                        <PrimaryButton disabled = {cardNumber && expDate && cardHolder && cardCVV ? false : true} variant = 'contained' onClick={()=>handleSaveButtonEditCard(cardNumber, cardHolder, expDate, cardCVV, index)} fullWidth>{t("SaveButton")}</PrimaryButton>
+                </Grid>
+            </Fragment>
+        : null
     }
 
     const handleExpDate = (date)=>{
@@ -142,24 +203,21 @@ const CardSelected = (props) =>{
              checked=true;
             }
         return (
-            <Box 
-                display ='flex'
-                justifyContent="space-between"
-                alignItems="center"
-                flexDirection='column' 
-            >
-                <Grid container item xs={12} justifyContent='center'>
+            <Grid container item xs={12}>
+                <Grid container item xs={12} sm={8} md={8} lg={8} xl={8} justifyContent='flex-end'>
                     <CarroCreditCard cardProvider = {value.cardProvider} cardHolder = {value.cardHolder}
                         cardNumber = {'**** **** **** ' + value.cardNumber.substr(value.cardNumber.length - 4, value.cardNumber.length)} 
-                        dateEmission = {value.dateSaved} dateExp = {value.expDate} clickedDelete={()=>deleteCard(index, value.name)}
+                        dateEmission = {value.dateSaved} dateExp = {value.expDate} clickedDelete={()=>deleteCard(index, value.name)} 
+                        clickedEdit={()=>handleEditCard(index)}
                     />
                 </Grid>
-                <Grid container item xs={12} justifyContent='center' className={classes.responsiveSelect}>
+                {()=>editExistentCard(value, index)}
+                <Grid container item  xs={12} sm={3} md={3} lg={3} xl={3} justifyContent='center' alignItems='center'>
                     <Box>
-                        <FormControlLabel onChange={handleCardSelect} className={classes.responsiveSelect} value={value.name} control={<CarroRadio/>} label={label} checked={checked}/>
+                        <FormControlLabel onChange={handleCardSelect} value={value.name} control={<CarroRadio/>} label={label} checked={checked}/>
                     </Box>       
                 </Grid>
-            </Box>);
+            </Grid>);
     }
 
 
@@ -170,9 +228,9 @@ const CardSelected = (props) =>{
                 (
                     <Fragment>
                         <AddCard marginTop={props.marginTopAddCard} 
-                                showSaveButton={props.showSaveButtonAddCard} clickedSaveButton={()=>handleSaveButtonAddCard(cardNumber, cardHolder, expDate, cardCVV)}
-                                cardNumber={cardNumber} cardNumberSet={handleCardNumber} expDate={expDate} expDateSet={handleExpDate}
-                                completeName={cardHolder} completeNameSet={handleCardHolder} cvv={cardCVV} cvvSet={handleCardCVV}/>
+                                 showSaveButton={props.showSaveButtonAddCard} clickedSaveButton={()=>handleSaveButtonAddCard(cardNumber, cardHolder, expDate, cardCVV)}
+                                 cardNumber={cardNumber} cardNumberSet={handleCardNumber} expDate={expDate} expDateSet={handleExpDate}
+                                 completeName={cardHolder} completeNameSet={handleCardHolder} cvv={cardCVV} cvvSet={handleCardCVV}/>
                     </Fragment>
                 ) 
                 : 

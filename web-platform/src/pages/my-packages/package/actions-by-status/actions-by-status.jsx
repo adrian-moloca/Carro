@@ -11,7 +11,7 @@ const ActionsByStatus = (props) =>{
   const {t} = useTranslation();
 
     switch(props.status){
-        case t('Open'):
+        case 1:
             return(
               <Fragment>
                 <EditOpenPackage package= {props.package}/>
@@ -23,7 +23,7 @@ const ActionsByStatus = (props) =>{
                 </IconButtonNoVerticalPadding>
               </Fragment>
             );
-          case t('Taken'):
+          case 2:
               return(
                 <Fragment>
                     <PartialEditPackage package= {props.package}/>
@@ -32,7 +32,7 @@ const ActionsByStatus = (props) =>{
                     />
                 </Fragment>
               );
-          case t('InTransit'):
+          case 3:
               return(
                 <Fragment>
                     <PartialEditPackage package= {props.package}/>
@@ -41,13 +41,13 @@ const ActionsByStatus = (props) =>{
                     />  
                 </Fragment>
               );
-          case t('Closed'):
+          case 5:
             return(
                 <Fragment>
                     
                 </Fragment>
               );
-          case t('Delivered'):
+          case 4:
             return(
                 <Fragment>
                     

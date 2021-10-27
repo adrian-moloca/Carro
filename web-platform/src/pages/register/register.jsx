@@ -27,13 +27,13 @@ const Register = () => {
 
   return (
     <Container className={"Primary-container-style"}>
-      <Grid container xs={12} display="flex" justifyContent="center">
+      <Grid container display="flex" justifyContent="center">
         <Box mt={3} mb={2} fontWeight={400} fontSize={21} textAlign={"center"}>
         {t("Register")}
         </Box>
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="1%">
-        <Grid container xs={8} spacing={3} display="flex" justifyContent="center">
+        <Grid container spacing={3} display="flex" justifyContent="center">
           <Grid container item xs={12} xl={6} justifyContent="center">
             <CarroTextField variant="outlined" label={t("LastName")} fullWidth />
           </Grid>
@@ -51,10 +51,10 @@ const Register = () => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <PhoneTextField 
-              number={inputValuePhoneNumber}
-              handleChangeNumber = {(e)=>setInputValuePhoneNumber(e.target.value)}
+              value={inputValuePhoneNumber}
+              onChange = {(e)=>setInputValuePhoneNumber(e.target.value)}
               countryPhoneCode={countryPhoneCode} 
-              handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
+              handleselectcountry = {(e)=>setCountryPhoneCode(e.target.value)}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -66,7 +66,7 @@ const Register = () => {
         </Grid>
       </Box>
       <Box display="flex" justifyContent="center" ml="1%">
-      <Grid  container xs={8}> 
+      <Grid  container item xs={8}> 
         <FormGroup row>
           <FormControlLabel
             classes={{ label: classes.label }}
@@ -86,7 +86,7 @@ const Register = () => {
       </Grid>
       </Box>
       <Box display="flex" justifyContent="center" mb="3%">
-      <Grid xs={8} container direction="row" justifyContent="center" alignItems="center">
+      <Grid xs={8} container item direction="row" justifyContent="center" alignItems="center">
         <StepConnector />
         <Box fontWeight={400} fontSize={16} textAlign={"center"}>
         {t("RegisterThrough")}
@@ -95,7 +95,7 @@ const Register = () => {
       </Grid>
       </Box>
       <Box display="flex" justifyContent="center" mb="1%">
-      <Grid container xs={8} justifyContent="space-evenly" mx="auto">
+      <Grid container  justifyContent="space-evenly" mx="auto">
         <Box display="flex" justifyContent="center">
           <Avatar alt="Google" src={GoogleIcon} className={classes.large} />
         </Box>

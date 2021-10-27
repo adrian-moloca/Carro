@@ -7,7 +7,7 @@ const EmailSent = () => {
     const { t } = useTranslation();
     return (
         <Container className={'Primary-container-style'}>
-            <Grid container xs={12}>
+            <Grid container >
                 <Grid container item xs={12} justifyContent='center'>
                     <Box mt ={3 } mb={2} fontWeight={400} fontSize={25} textAlign={'center'}>{t("ResetPassword")}</Box>
                 </Grid>

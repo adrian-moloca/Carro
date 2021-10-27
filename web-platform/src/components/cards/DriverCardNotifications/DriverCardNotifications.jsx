@@ -9,7 +9,7 @@ const DriverCardNotifications =(props)=>{
 
     return(
         <Box display='flex' width='1' height='220px' p={1} borderRadius='10px' boxShadow={3}>
-            <Grid container xs={12} justifyContent='center'>
+            <Grid container justifyContent='center'>
                 <Grid container item xs={12} justifyContent='center'>
                     <img src={props.image} className={classes.profileImg} alt={""}/>
                 </Grid>

@@ -197,9 +197,9 @@
     "DriverCardLessDetailsButton": "Arata mai putin",
     "Approve": "Aproba",
     "Refuse": "Refuza",
-    "EditRide": "Editeaza cursa"
-
-
-
+    "EditRide": "Editeaza cursa",
+    "Sender": "Expeditor",
+    "Destinatary": "Destinatar",
+    "PaymentMethods": "Metode de plata"
 
 }

@@ -42,10 +42,10 @@ const BackdropSelectDriver=(props)=>{
 
     const[payment, setPayment] = useState('cardOnline');
     // state
-    const [cardNumber, setCardNumber] = useState("");
-    const [dateValue, setDateValue] = useState(null);
-    const [completeName, setCompleteName] = useState("");
-    const [CVV, setCVV] = useState("");
+    const [cardNumber, setCardNumber] = useState('');
+    const [dateValue, setDateValue] = useState(new Date());
+    const [completeName, setCompleteName] = useState('');
+    const [CVV, setCVV] = useState('');
     // handlers
     const handleSetCompleteName = (event) => setCompleteName(event.target.value);
     const handleSetCardNumber = (event) => setCardNumber(event.target.value);
@@ -56,7 +56,7 @@ const BackdropSelectDriver=(props)=>{
     return(
         <MyBackdrop open={props.open} onClick={props.clicked} className='backdrop'>
             <Container className={classes.containerBackdrop + ' textSizeMobile'}>
-                <MyGrid container item xs = {12} justifyContent='center' spacing={1}>
+                <MyGrid container justifyContent='center' spacing={1}>
                     <Grid container item xs={12} justifyContent='center'>
                         <Box  fontWeight={400} fontSize={21}>
                             {t("SelectCourier")}
@@ -96,7 +96,7 @@ const BackdropSelectDriver=(props)=>{
                                                     <CardSelected/>
                                                 </MyGrid>) : (
                                                 <Fragment>
-                                                    <MyGrid container item xs={12} justifyContent='center' spacing={2} className={'hide-on-mobile'}>
+                                                    <MyGrid container item xs={12} justifyContent='center' spacing={2}>
                                                         <AddCard 
                                                                 showSaveButton='true'
                                                                 cardNumber = {cardNumber} 
@@ -108,15 +108,7 @@ const BackdropSelectDriver=(props)=>{
                                                                 cvv={CVV}
                                                                 cvvSet={(e)=>handleSetCVV(e)}/>
                                                     </MyGrid>
-                                                    <MyGrid container item xs={10} justifyContent='center' spacing={2} className={'hide-on-desktop'}>
-                                                        <Box paddingY='30px'>
-                                                            <Link to='/payment-method/add-payment-method' style={{textDecoration: 'none', width:'1'}}>
-                                                                <PrimaryButton variant='outlined' fullWidth>
-                                                                    ADAUGA CARD
-                                                                </PrimaryButton>
-                                                            </Link>
-                                                        </Box>
-                                                    </MyGrid>
+
                                                 </Fragment>
                                                 ))  : ""}
                     <Grid container item xs={6} justifyContent='flex-end'>

@@ -25,7 +25,7 @@ const SelectPlan = () => {
   const classes = useStyles();
   return (
     <Container>
-      <Grid container  xs={12} justifyContent="space-between" alignItems="center">
+      <Grid container justifyContent="space-between" alignItems="center">
       
         <Grid xs={12} xl={5} justifyContent="space-between" alignItems="center">
           <Box mt='15%' mb='10%' className={classes.SmallContainer} display="flex" flexDirection="column" alignItems="center">

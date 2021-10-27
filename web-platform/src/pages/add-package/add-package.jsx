@@ -13,16 +13,19 @@ import { useTranslation } from 'react-i18next';
 
 const StepLabelPersonalized = withStyles({
       root:{
-          '& .MuiStepLabel-iconContainer':{
-              '& .MuiStepIcon-root':{
-                '&.MuiStepIcon-active':{
-                  color: '#00b4d8', 
-                },
-                '&.MuiStepIcon-completed':{
-                  color: '#00b4d8',
-                },
+        '& .MuiStepLabel-active':{
+          fontWeight: '600',
+        },
+        '& .MuiStepLabel-iconContainer':{
+            '& .MuiStepIcon-root':{
+              '&.MuiStepIcon-active':{
+                color: '#00b4d8', 
               },
-          },
+              '&.MuiStepIcon-completed':{
+                color: '#00b4d8',
+              },
+            },
+        },
         },
 
 })(StepLabel);
@@ -40,7 +43,8 @@ const AddPackage = () => {
 
 
   const steps = getSteps();
-  function getSteps(){return ['Step 1','Step 2','Step 3','Step 4']};
+
+  function getSteps(){return [t('Sender'),t('Destinatary'),t('PackageDetails'),t('PaymentMethod')]};
 
   function getStepContent(step) {
     switch (step) {
@@ -80,11 +84,11 @@ const AddPackage = () => {
               <Box>
                 {getStepContent(activeStep)}
                 <Box mt={5} mb={2} display ='flex' justifyContent='center'>
-                  <Grid container xs={12} spacing={7}>
-                    <Grid container item xs  justifyContent='center'>
+                  <Grid container  spacing={7}>
+                    <Grid container item  justifyContent='center'>
                       <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton>
                     </Grid>
-                    <Grid container item xs  justifyContent='center'>
+                    <Grid container item  justifyContent='center'>
                       <PrimaryButton endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Finish')}</PrimaryButton>
                     </Grid>
                   </Grid>
@@ -94,13 +98,13 @@ const AddPackage = () => {
               <Box>
                 {getStepContent(activeStep)}
                 <Box mt={5} mb={2} display ='flex' justifyContent='center'>
-                  <Grid container xs={12} spacing={7}>
-                    <Grid container item xs  justifyContent='center'>
+                  <Grid container spacing={7}>
+                    <Grid container item justifyContent='center'>
                     {activeStep === 0 ? 
                       <SecondaryButton disabled startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton> :
                       <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton> }
                     </Grid>
-                    <Grid container item xs  justifyContent='center'>
+                    <Grid container item justifyContent='center'>
                       <PrimaryButton onClick={handleNext} endIcon={<ArrowForwardIos/>}
                        variant='contained' fullWidth color="primary">{t('NextStep')}</PrimaryButton>
                     </Grid>

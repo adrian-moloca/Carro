@@ -47,7 +47,7 @@ const PremiumPlanPayment = () => {
   
   return (
     <Container className={"Primary-container-style"}>
-      <MyGrid container xs = {12} spacing={3} justifyContent='center'>
+      <MyGrid container spacing={3} justifyContent='center'>
         <AddCard 
           cardNumber = {cardNumber} 
           cardNumberSet = {(e)=>handleSetCardNumber(e)} 

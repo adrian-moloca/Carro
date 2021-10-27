@@ -41,8 +41,8 @@ const HeaderLogedInProfileMenu = () => {
         onClick={handleToggleAccountMenuOpen}
         color="inherit"
       >
-      <AccountCircle/>
-      <Box fontSize={18} marginLeft='10px'>{t("MyAccount")}</Box>
+        <AccountCircle/>
+        <Box fontSize={18} marginLeft='10px'>{t("MyAccount")}</Box>
       </ButtonBase>
       <Menu open={accountMenuOpen}
             className={classes.widthMenu}

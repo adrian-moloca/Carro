@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Badge, Box, IconButton } from '@material-ui/core';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 
@@ -11,11 +12,13 @@ export default function BadgeVisibility() {
   return (
     <Box display='flex' alignSelf='center' flexDirection='column' className={"Primary-color"}>
       <Box mr={1}>
-        <IconButton className={"Primary-color"} >
-          {/* <Badge color="secondary" badgeContent={count}> */}
-            <NotificationsNoneIcon/>
-          {/* </Badge> */}
-        </IconButton>
+        <Link to='/notifications' style={{textDecoration:'none'}}>
+          <IconButton className={"Primary-color"} >
+            {/* <Badge color="secondary" badgeContent={count}> */}
+              <NotificationsNoneIcon/>
+            {/* </Badge> */}
+          </IconButton>
+        </Link>
         {/* <ButtonGroup>
           <Button
             aria-label="reduce"

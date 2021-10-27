@@ -12,7 +12,7 @@ const ForgotPassword = () => {
   return (
     <Container className={'Primary-container-style'}>
       <Box>
-        <Grid container xs={12} spacing={3} justifyContent='center'> 
+        <Grid container spacing={3} justifyContent='center'> 
           <Grid container item xs={12} justifyContent='center'><Box mt='5%' mb='8%' fontSize={22}>{t("ResetPassword")}</Box></Grid>
           <Grid container item xs={10} justifyContent='center'>
             <CarroTextField label = 'email' variant = 'outlined' fullWidth/>

@@ -37,7 +37,7 @@ const SearchRide = () => {
       </Grid>
 
       <Box display="flex" justifyContent="space-evenly" mt="3%">
-        <Grid container item xs={12} spacing={3} justifyContent="space-between">
+        <Grid container spacing={3} justifyContent="space-between">
           <Grid container item xs={12} md={6} xl={3} justifyContent="center">
             <CarroTextField
               variant="outlined"
@@ -141,7 +141,7 @@ const SearchRide = () => {
           </PrimaryButton>
         </Grid>
       </Box>
-      <Grid item container xs={12} justifyContent='space-around'>
+      <Grid container justifyContent='space-around'>
               <Rides/>
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">

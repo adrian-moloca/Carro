@@ -13,7 +13,7 @@ export default function PrimarySearchAppBar() {
   return (
     <AppBar position="static" className={classes.fundal}>
       <Toolbar>
-        <Grid container justifyContent="space-between" alignItems="center" flexDirection="row">
+        <Grid container justifyContent="space-between" alignItems="center" >
           {/* render logo */}
           <Grid item xs={1}>
             <Box justifyContent="center" alignItems="center">
