@@ -1,42 +1,95 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@material-ui/core";
+import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@material-ui/core";
 import DeleteModal from '../modals/deleteModal/DeleteModal';
 import SwitchSBD from "../switch/SwitchSBD";
 
 const columns = [
-  { id: "numePrenume", label: "Nume si Prenume", minWidth: 170 },
-  { id: "email", label: "Email", minWidth: 100 },
+  { id: "numePrenume", label: "Nume si Prenume", minWidth: 170},
+  { id: "email", label: "Email", minWidth: 100},
   { id: "contPremium", label: "Cont Premium", minWidth: 100 },
   { id: "validareCont", label: "Validare Cont", minWidth: 100 },
   { id: "actions", label: "Actiuni", minWidth: 100 },
 ];
 
+const users = [
+  {
+    numePrenume: 'Marius Popescu',
+    email: 'MariusPopescu1@gmail.com',
+    contPremium: false,
+    validareCont: false,
+    actions: 'delete',
+  },
+  {
+    numePrenume: 'Marius Popescu',
+    email: 'MariusPopescu2@gmail.com',
+    contPremium: true,
+    validareCont: true,
+    actions: 'delete',
+  },
+  {
+    numePrenume: 'Marius Popescu',
+    email: 'MariusPopescu3@gmail.com',
+    contPremium: false,
+    validareCont: false,
+    actions: 'delete',
+  },
+  {
+    numePrenume: 'Adrian Popescu',
+    email: 'AdrianPopescu@gmail.com',
+    contPremium: true,
+    validareCont: true,
+    actions: 'delete',
+  },
+]
 
-function createData(numePrenume, email, contPremium, validareCont, actions) {
-  return { numePrenume, email, contPremium, validareCont, actions };
+function filterUsers(value, filter){
+
+  if(value.numePrenume.toString().toLowerCase().includes(filter.toString().toLowerCase()) || 
+    value.email.toString().toLowerCase().includes(filter.toString().toLowerCase()) || filter<=0)
+  {
+    console.log(value)
+    return value;
+
+  }
 }
 
-const rows = [
+function getRow(numePrenume, email, contPremium, validareCont, actions){
+  return(
+    [
+      <Box display='flex' justifyContent='center'>
+          {numePrenume}
+      </Box>,
+      <Box display='flex' justifyContent='center'>
+          {email}
+      </Box>,
+      <SwitchSBD contentOff="DORESTI SA DEZACTIVEZI STATUTUL DE PREMIUM PENTRU ACEST CONT?" btn1OffText="anuleaza" btn2OffText="dezactiveaza"
+                contentOn="DORESTI SA ACTIVEZI STATUTUL DE PREMIUM PENTRU ACEST CONT?" btn1OnText="anuleaza" btn2OnText="activeaza" checked={contPremium}
+      />,
+      <SwitchSBD contentOff="DORESTI SA INVALIDEZI ACEST CONT?" btn1OffText="anuleaza" btn2OffText="invalideaza"
+                contentOn="DORESTI SA VALIDEZI ACEST CONT?" btn1OnText="anuleaza" btn2OnText="valideaza" checked={validareCont}
+      />,
+      getActions(actions)
+    ]
+  );
+}
 
-  createData(
-    "nume",
-    "mail",
-    <SwitchSBD 
-      contentOff="DORESTI SA DEZACTIVEZI STATUTUL DE PREMIUM PENTRU ACEST CONT?" btn1OffText="anuleaza" btn2OffText="dezactiveaza"
-      contentOn="DORESTI SA ACTIVEZI STATUTUL DE PREMIUM PENTRU ACEST CONT?" btn1OnText="anuleaza" btn2OnText="activeaza"
-    />,
-    <SwitchSBD 
-      contentOff="DORESTI SA INVALIDEZI ACEST CONT?" btn1OffText="anuleaza" btn2OffText="invalideaza"
-      contentOn="DORESTI SA VALIDEZI ACEST CONT?" btn1OnText="anuleaza" btn2OnText="valideaza" 
-    />,
-    <DeleteModal
-      content="Doresti sa stergi utilizatorul?"
-      btn1Text="Anuleaza"
-      btn2Text="Sterge"
-    />
-  ),
-];
+function getActions(actions){
+
+  switch(actions){
+    case 'delete':
+      return(
+        <DeleteModal
+          content="Doresti sa stergi utilizatorul?"
+          btn1Text="Anuleaza"
+          btn2Text="Sterge"
+        />
+      );
+    default:
+      return 'err';
+  }
+
+}
 
 const useStyles = makeStyles({
   root: {
@@ -47,10 +100,15 @@ const useStyles = makeStyles({
   },
 });
 
-export default function StickyHeadTable() {
+export default function StickyHeadTable(props) {
   const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rows, setRows] = useState(users)
+
+  useEffect(()=>{
+    setRows(users.filter((value)=>filterUsers(value, props.searched)))
+  }, [props.searched])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -63,13 +121,13 @@ export default function StickyHeadTable() {
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
+        <Table aria-label="sticky table">
+          <TableHead key={11}>
             <TableRow>
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
-                  align={column.align}
+                  align='center'
                   style={{
                     minWidth: column.minWidth,
                     fontSize: "18px",
@@ -81,21 +139,18 @@ export default function StickyHeadTable() {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody key={12}>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((user, index) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
+                  <TableRow hover role="checkbox" tabIndex={1} key={user.email}>
+                    {getRow(user.numePrenume, user.email, user.contPremium, user.validareCont, user.actions).map((el, index)=>{
+                          return(
+                            <TableCell key={index} align='center'>
+                                {el}
+                            </TableCell> 
+                          );
                     })}
                   </TableRow>
                 );
@@ -106,7 +161,7 @@ export default function StickyHeadTable() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={users.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

@@ -20,8 +20,8 @@ const Profile = (props) => {
   const { t } = useTranslation();
   const [legalPersonChecked, setLegalPersonChecked] = useState(false);
   const [mandatoryDocuments, setMandatoryDocuments] = useState([]);
-  const [departureCountry, setDepartureCountry] = useState(null);
-  const [departureCity, setDepartureCity] = useState(null);
+  const [departureCountry, setDepartureCountry] = useState('');
+  const [departureCity, setDepartureCity] = useState('');
   const [onEditMode, setOnEditMode] = useState(false);
   const handleChangeDepartureCountry=(event)=> setDepartureCountry(event.target.value);
   const handleChangeDepartureCity=(event)=> setDepartureCity(event.target.textContent);
@@ -56,13 +56,13 @@ const Profile = (props) => {
     <Container className={"Primary-container-style"}>
       {/* head */}
       <Grid container justifyContent="space-between" alignItems="center"> 
-        <Grid item xs={2} >
+        <Grid container item xs={2} >
           <Box mb={4} fontWeight={400} fontSize={22}></Box>
         </Grid>
-        <Grid item xs={8} alignItems="center" justifyContent='center'>
+        <Grid container item xs={8} alignItems="center" justifyContent='center'>
           <Box display="flex" alignItems="center" justifyContent='center' mb={4} fontWeight={400} fontSize={22}>{t("Profile")}</Box>
         </Grid>
-        <Grid item xs={2} >
+        <Grid container item xs={2} >
             <Box display="flex" alignItems="center" justifyContent='center' fontSize={10} className={'Secondary-color'}>
               <Link to="/courier-profile" style={{textDecoration: "none"}}>
                 <SeeProfileBtn>{t("ViewProfile")}</SeeProfileBtn>
@@ -111,7 +111,7 @@ const Profile = (props) => {
                       </Grid>
           ) : null}
           {mandatoryDocuments.map((file, index)=>{
-            return    <Fragment>
+            return    <Fragment key={index}>
                         <Grid item xs={11}>
                           <Box fontWeight='500' className='Secondary-color'>
                             {file.name}
@@ -140,27 +140,27 @@ const Profile = (props) => {
           </Grid>
           {legalPersonChecked ? (
               <Fragment>
-                <Grid item item xs={12} sm={6}>
+                <Grid container item xs={12} sm={6}>
                   <CarroTextField variant="outlined" label={t("CompanyName")} fullWidth disabled = {!onEditMode}/>
                 </Grid>
-                <Grid item xs={12} sm={6} justifyContent="center">
+                <Grid container item xs={12} sm={6} justifyContent="center">
                   <CarroTextField variant="outlined" label={t("CUI")} fullWidth disabled = {!onEditMode}/>
                 </Grid>
-                <Grid item xs={12} sm={6} justifyContent="center">
+                <Grid container item xs={12} sm={6} justifyContent="center">
                   <CarroTextField variant="outlined" label={t("Adress")} fullWidth disabled = {!onEditMode}/>
                 </Grid>
-                <Grid item xs={12} sm={6} justifyContent="center">
+                <Grid container item xs={12} sm={6} justifyContent="center">
                   <CarroTextField variant ='outlined' label={t("Country")} fullWidth disabled = {!onEditMode} select value={departureCountry} onChange={(e)=>handleChangeDepartureCountry(e)}>
                     {getCountries().map((country)=>(<MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>))}
                   </CarroTextField>
                 </Grid>
-                <Grid item xs={12} sm={6} justifyContent="center">
+                <Grid container item xs={12} sm={6} justifyContent="center">
                   <CarroAutocomplete disabled = {!onEditMode} options={getCities(departureCountry)} label={t("City")} onChange={(e)=>handleChangeDepartureCity(e)}/>
                 </Grid>
-                <Grid item xs={12} sm={6} justifyContent="center">
+                <Grid container item xs={12} sm={6} justifyContent="center">
                   <CarroTextField disabled = {!onEditMode} variant="outlined" label={t("CompanyEmail")} fullWidth />
                 </Grid>
-                <Grid item xs={12} sm={6} justifyContent="center">
+                <Grid container item xs={12} sm={6} justifyContent="center">
                   <CarroTextField disabled = {!onEditMode} variant="outlined" label={t("PhoneNumber")} fullWidth/>
                 </Grid>  
               </Fragment>

@@ -7,8 +7,8 @@ import { Country, City }  from 'country-state-city';
 import { useTranslation } from 'react-i18next';
 const StepTwo = (props) =>{
     const { t } = useTranslation();
-    const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState(null);
-    const [countryPhoneCode, setCountryPhoneCode] = useState(null);
+    const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState('');
+    const [countryPhoneCode, setCountryPhoneCode] = useState('');
     const [destinataryAddress, setDestinataryAddress] = useState('');
     const [destinationCity, setDestinationCity] = useState('');
     const [destinationCountry, setDestinationCountry] = useState('');

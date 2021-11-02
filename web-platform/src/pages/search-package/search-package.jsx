@@ -13,10 +13,10 @@ const SearchPackages = () => {
 
   const { t } = useTranslation();
   // state
-  const [departureCountry, setDepartureCountry] = useState(null);
-  const [destinationCountry, setDestinationCountry] = useState(null);
-  const [departureCity, setDepartureCity] = useState(null);
-  const [destinationCity, setDestinationCity] = useState(null);
+  const [departureCountry, setDepartureCountry] = useState('');
+  const [destinationCountry, setDestinationCountry] = useState('');
+  const [departureCity, setDepartureCity] = useState('');
+  const [destinationCity, setDestinationCity] = useState('');
 
   const handleChangeDepartureCountry = (event) => setDepartureCountry(event.target.value);
   const handleChangeDestinationCountry = (event) => setDestinationCountry(event.target.value);

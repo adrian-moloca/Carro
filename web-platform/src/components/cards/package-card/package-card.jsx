@@ -4,7 +4,6 @@ import ReactCardFlip from 'react-card-flip';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
-import BackdropDeliverPackage from '../../backdrop/deliver-package/deliver-package';
 import packageImg from '../../../assets/images/box-small.png';
 import fragileIco from '../../../assets/images/fragile.png';
 import fishIco from '../../../assets/images/environmentdang.png';
@@ -14,25 +13,20 @@ import animalprintsIco from '../../../assets/images/animalPrints.png';
 import greyLine from '../../../assets/images/greyLine.png';
 import useStyles from './package-card-style';
 import { useTranslation } from 'react-i18next';
+import DeliverPackage from '../../modals/deliver-package/deliver-package';
 
 const PackageCard = (props) =>{
 
     const classes = useStyles();
     const { t } = useTranslation();
-    const[open, setOpen]=useState(false);
     const[isFlipped, setIsFlipped] = useState(false);
 
     const handleClick = () => {
         const temp = isFlipped;
         setIsFlipped(!temp);
     }
-    const handleBtn =()=> setOpen(!open);
-    const handleCloseBd=(event)=>{
-        if(typeof(event.target.className)==='string')
-            if(event.target.className.includes('backdrop'))
-                setOpen(false)
-    };
-    const handleCloseBdByBtn=(event)=>{ setOpen(false)};
+
+    
 
     function getFrontButtons(status, rideExists){
         switch(status){
@@ -71,11 +65,7 @@ const PackageCard = (props) =>{
             case 10:
                     return(
                         <Grid container justifyContent = 'center'  spacing={2}>
-                            <Grid container item xs={10} justifyContent = 'center'>
-                                <GreenCaroButton variant='contained' size='medium' onClick={handleBtn} fullWidth>
-                                    {t("Delivery")}
-                                </GreenCaroButton>
-                            </Grid>
+                            <DeliverPackage/>
                             <Grid container item xs={10} justifyContent = 'center'>
                                 <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
                             </Grid>
@@ -83,7 +73,7 @@ const PackageCard = (props) =>{
                     );
             case 6:
                 return(
-                    <Grid container xs={10} justifyContent = 'center'  spacing={2}>
+                    <Grid container justifyContent = 'center'  spacing={2}>
                         <Grid container item xs={10} justifyContent = 'center'>
                             <Box my='10' className='Secondary-color' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
                         </Grid>
@@ -94,7 +84,7 @@ const PackageCard = (props) =>{
                 );
             case 2:
                 return(
-                    <Grid container xs={10} justifyContent = 'center'  spacing={2}>
+                    <Grid container justifyContent = 'center'  spacing={2}>
                         <Grid container item xs={10} justifyContent = 'center'>
                             <GreenCaroButton variant='contained' size='medium' fullWidth>
                                 {t("Approve")}
@@ -141,7 +131,7 @@ const PackageCard = (props) =>{
         <Fragment>
             <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' containerClassName={'CardFlipContainer'}>
             
-            <Box paddingBottom='10%' width='1' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
+            <Box paddingBottom='10%' width='0.9' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
                 <Grid container spacing={2} justifyContent='center'>
                     <Grid container item xs={12} justifyContent = 'center'>
                         <img src={packageImg} className={classes.boxesImageStyle} alt={""}/>
@@ -180,7 +170,7 @@ const PackageCard = (props) =>{
                 </Grid>
             </Box>
 
-            <Box paddingBottom='10%' width='1' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
+            <Box paddingBottom='10%' width='0.9' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
                 <Grid container justifyContent='center'>
                     <Grid container item xs={12} justifyContent = 'flex-start'>
                         <Box px={1} fontSize={14} marginTop='20px'>{t('Quantity')} {props.packageQuantity}</Box>
@@ -212,7 +202,6 @@ const PackageCard = (props) =>{
                 </Grid>
             </Box>
             </ReactCardFlip>
-            <BackdropDeliverPackage open={open} clicked={handleCloseBd} clickedClose={handleCloseBdByBtn}/>
         </Fragment>
     );
 };

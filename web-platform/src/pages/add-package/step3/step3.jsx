@@ -1,7 +1,8 @@
 import React, {Fragment, useState} from "react";
-import { Box, Grid, Button} from "@material-ui/core";
+import { Box, Grid} from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import Package from './package';
+import PrimaryButton from "../../../components/buttons/primaryButton/primaryButton";
 import SecondaryButton from "../../../components/buttons/secondaryButton/secondaryButton";
 import { useTranslation } from 'react-i18next';
 
@@ -41,7 +42,6 @@ const StepThree = (props) =>{
         temp.splice(index, 1);
         setNumberOfPackages(temp.length);
         setPackages(temp);
-        console.log(temp);
     }
 
 
@@ -49,7 +49,7 @@ const StepThree = (props) =>{
         <Box display='flex' flexDirection='column' justifyContent='center'>
           {numberOfPackages===packages.length ? (
               packages.map((pack, index)=>
-                  <Box mt='5%' display='flex' flexDirection ='column' alignItems='center' fontSize={18} fontWeight={400}>
+                  <Box key={index} mt='5%' display='flex' flexDirection ='column' alignItems='center' fontSize={18} fontWeight={400}>
                       {pack !==1 ? ( 
                       <Box display='inline-flex' flexDirection='row' justifyContent='space-between' mb={3} width='80%'>
                             {t('AdditionalPackage')}
@@ -64,7 +64,7 @@ const StepThree = (props) =>{
                         </Fragment>)}
           <Grid container justifyContent='flex-end'>
                <Box mt={3}>
-                   <Button startIcon = {<Add/>} variant='default' className='Primary-color' onClick={increaseNumberOfpackages}>{t('AddPackageButton')}</Button>
+                   <PrimaryButton size='small' variant='outlined' onClick={increaseNumberOfpackages}>{t('AddPackageButton')}</PrimaryButton>
                 </Box>
           </Grid>
       </Box>

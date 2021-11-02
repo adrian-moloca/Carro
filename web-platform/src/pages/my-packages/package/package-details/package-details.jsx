@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Box, Grid} from '@material-ui/core';
 import fragile from '../../../../assets/images/fragile.png';
 import environmentdang from '../../../../assets/images/environmentdang.png';
@@ -54,7 +54,7 @@ const PackageDetails = (props)=>{
                 <img src={animalPrints} className={classes.advStyle} alt={""}/>
             </Grid>
         </Grid>
-        <Box my='2%' fontSize={20}>{t("AvailableTransports")}</Box>
+        <Box my='2%' fontSize={20}>{t("Transports")}</Box>
         <Grid container justifyContent='center'>
             <Rides/>
         </Grid>

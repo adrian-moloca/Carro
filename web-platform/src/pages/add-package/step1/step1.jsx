@@ -26,7 +26,7 @@ const StepOne = (props) =>{
 
     return(
         <Box display='flex' justifyContent='center' mt='5%'>
-            <Grid container xs={12} spacing={3} >
+            <Grid container spacing={3} >
                 <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
                             <CarroAutocomplete value={departureCountry} options={getCountries()}  label={t('SearchRideDepartureCountry')} onChange={(e)=>setDepartureCountry(e.target.textContent)}/>
                 </Grid>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Box, Grid, Button } from '@material-ui/core';
 import PrimaryButton from '../../../../components/buttons/primaryButton/primaryButton';
 import DeleteModal from '../../../../components/modals/deleteModal/DeleteModal';
-import BackdropSelectDriver from '../../../../components/backdrop/driver-select/backDrop';
 import { useTranslation } from "react-i18next";
 
 const NotificationsSummary = (props) => {
@@ -76,18 +75,7 @@ const NotificationsSummary = (props) => {
           </PrimaryButton>
         </Box>
       </Grid>
-      <BackdropSelectDriver 
-        actionText={props.actionText}
-        image={props.image}
-        name={props.name}
-        plecare={props.plecare}
-        destinatie= {props.destinatie}
-        tipTransport = {props.tipTransport}
-        dataPlecare = {props.dataPlecare}
-        pickUpAdress ={props.pickUpAdress}
-        dropOffAdress ={props.dropOffAdress}
-        price ={props.price}
-      />
+      
     </Grid>
   );
 };
