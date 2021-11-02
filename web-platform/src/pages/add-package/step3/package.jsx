@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 const Package = (props) => {
   const { t } = useTranslation();
 
-  const [packageSize, setPackageSize] = useState(0);
+  const [packageSize, setPackageSize] = useState(1);
 
   const [currency, setCurrency] = useState("ron");
 

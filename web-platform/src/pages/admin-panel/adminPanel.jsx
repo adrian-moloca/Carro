@@ -25,7 +25,7 @@ const AdminPanel = () => {
               label="Nume sau email"
               variant="outlined"
               fullWidth
-              InputProps={{endAdornment: <IconButton onClick={()=>setSearch(e.target.value)}> <SearchIcon /></IconButton>}}
+              InputProps={{endAdornment: <IconButton onClick={()=>setSearch(search.trim())}> <SearchIcon /></IconButton>}}
             />
           </Grid>
         </Grid>

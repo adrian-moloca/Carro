@@ -133,7 +133,7 @@
     "ClosedForReceiving": "Close for receiving",
     "PackageDetails": "Package details",
     "PackageType": "Package type:",
-    "AvailableTransports": "Available transports",
+    "Transports": "Transports",
     "EditButton": "Edit",
     "EditProfileButton": "Edit profile",
     "CourierProfile": "Driver profile",

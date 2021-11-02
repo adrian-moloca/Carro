@@ -9,6 +9,7 @@ import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import SelectDriver from '../../modals/driver-select/driver-select';
 import useStyles from './ride-card-style';
 import { useTranslation } from 'react-i18next';
+import { SwapHorizontalCircleSharp } from '@material-ui/icons';
 
 const RideCard =(props)=>{
     const { t } = useTranslation();
@@ -21,21 +22,68 @@ const RideCard =(props)=>{
         setIsFlipped(!temp);
     }
 
-    function getFrontCardBtns(driverSelected, requestStatus){
-        if(driverSelected)
-        {
-            switch(requestStatus){
-                case 'waiting':
-                    return(
+    function getFrontCardBtns(status){
+        
+        switch(status){
+            case 0:
+                return (
+                    <Fragment>
+                        <SelectDriver 
+                            image={props.image}
+                            name={props.name}
+                            driverRate={props.driverRate}
+                            plecare={props.plecare}
+                            destinatie= {props.destinatie}
+                            tipTransport = {props.transportType}
+                            dataPlecare = {props.departureDate}
+                        />
                         <Grid container item xs={8} justifyContent='center'>
-                            <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>
-                                {t('DriverCardWaitingStatus')}
+                            <Box mb='2%' width={1}>
+                                <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
+                                    {t('DriverCardDetailsButton')}
+                                </PrimaryButton>
                             </Box>
                         </Grid>
-                    );
-                case 'accepted':
+                    </Fragment>
+                )
+            case 1:
+                return(
+                    <Grid container item xs={8} justifyContent='center'>
+                        <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>
+                            {t('DriverCardWaitingStatus')}
+                        </Box>
+                    </Grid>
+                );
+            case 2:{
+                return(
+                    <Grid container justifyContent = 'center'  spacing={2}>
+                        <Grid container item xs={8} justifyContent = 'center'>
+                            <GreenCaroButton variant='contained' size='medium' fullWidth>
+                                {t("Approve")}
+                            </GreenCaroButton>
+                        </Grid>
+                        <Grid container item xs={8} justifyContent = 'center'>
+                            <SecondaryButton variant='contained' size='medium' fullWidth>
+                                {t("Refuse")}
+                            </SecondaryButton>
+                        </Grid>
+                    </Grid>
+                )
+            }
+            case 6:{
+                return(
+                    <Grid container item xs={8} justifyContent = 'center'  spacing={2}>
+                        <Grid container item xs={12} justifyContent = 'center'>
+                            <Box my='10' className='Secondary-color' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
+                        </Grid>
+                        <Grid container item xs={12} justifyContent = 'center'>
+                            <Box my='10%' className='Secondary-color' fontSize='18px' fontWeight='500'>Nu mai plec</Box>
+                        </Grid>
+                    </Grid>
+                );
+            }
+            case 8:{
                     return(
-
                         <Grid container item xs={8} justifyContent='center'>
                             <Box mt ='52%' mb='2%' width={1}>
                                 <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
@@ -43,91 +91,81 @@ const RideCard =(props)=>{
                                 </PrimaryButton>
                             </Box>
                         </Grid>
-                    );
-                case 'rejected':
-                    return(
-                        <Grid container item xs={8} justifyContent = 'center'  spacing={2}>
-                            <Grid container item xs={12} justifyContent = 'center'>
-                                <Box my='10' className='Secondary-color' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
-                            </Grid>
-                            <Grid container item xs={12} justifyContent = 'center'>
-                                <Box my='10%' className='Secondary-color' fontSize='18px' fontWeight='500'>Nu mai plec</Box>
-                            </Grid>
-                        </Grid>
-                    );
-            }
-        }
-        else
-        {
-            return (
-                <Fragment>
-                    <SelectDriver 
-                        image={props.image}
-                        name={props.name}
-                        driverRate={props.driverRate}
-                        plecare={props.plecare}
-                        destinatie= {props.destinatie}
-                        tipTransport = {props.transportType}
-                        dataPlecare = {props.departureDate}
-                    />
+                    )   
+                }
+            case 10:{
+                return(
                     <Grid container item xs={8} justifyContent='center'>
-                        <Box mb='2%' width={1}>
+                        <Box mt ='52%' mb='2%' width={1}>
                             <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
-                                {t('DriverCardDetailsButton')}
+                            {t('DriverCardDetailsButton')}
                             </PrimaryButton>
                         </Box>
                     </Grid>
-                </Fragment>
-            )
+                )   
+            }
+            default:{
+                return('Unknown');
+            }
+
         }
     }
 
-    function getBackCardBtns(driverSelected, packageExists, packageTaked){
-        if(driverSelected)
-        {
-            return(
-                <Grid container item xs={8} justifyContent='center'>
-                    <Box mt='40px' width={1}>
-                        <SecondaryButton disabled={packageTaked} variant='contained' fullWidth>REFUZA CU MOTIV</SecondaryButton>
-                    </Box>
-                </Grid>
-            );
-
-        }
-        else
-        {
-            if(packageExists)
-            {
-                return(
-                    <Fragment>
+    function getBackCardBtns(status, packageExists){
+        
+        switch(status){
+            case 0:{
+                if(packageExists)
+                    return(
+                        <Fragment>
+                            <Grid container item xs={8} justifyContent='center'>
+                                <Box my='4%'>
+                                    <PrimaryButton variant='outlined' fullWidth>
+                                        <Box fontSize='10px'>CERE TRANSPORT - CEVA MIC</Box>
+                                    </PrimaryButton>
+                                </Box>
+                            </Grid>
+                            <Grid container item xs={8} justifyContent='center'>
+                                <Box my='2%'>
+                                    <PrimaryButton variant='outlined' fullWidth>
+                                        <Box fontSize='10px'>CERE TRANSPORT - CEVA MEDIU</Box>
+                                    </PrimaryButton>
+                                </Box>
+                            </Grid>
+                        </Fragment>
+                    );
+                else
+                    return(
                         <Grid container item xs={8} justifyContent='center'>
-                            <Box my='4%'>
-                                <PrimaryButton variant='outlined' fullWidth>
-                                    <Box fontSize='10px'>CERE TRANSPORT - CEVA MIC</Box>
-                                </PrimaryButton>
+                            <Box mt='59%' width={1}>
+                                <Link to='/add-package' style={{textDecoration: 'none'}}>
+                                    <PrimaryButton variant='outlined' fullWidth>ADAUGA PACHET</PrimaryButton>
+                                </Link>
                             </Box>
                         </Grid>
-                        <Grid container item xs={8} justifyContent='center'>
-                            <Box my='2%'>
-                                <PrimaryButton variant='outlined' fullWidth>
-                                    <Box fontSize='10px'>CERE TRANSPORT - CEVA MEDIU</Box>
-                                </PrimaryButton>
-                            </Box>
-                        </Grid>
-                    </Fragment>
-                );
+                    );
             }
-            else
-            {
+            case 8:{
                 return(
                     <Grid container item xs={8} justifyContent='center'>
-                        <Box mt='59%' width={1}>
-                            <Link to='/add-package' style={{textDecoration: 'none'}}>
-                                <PrimaryButton variant='outlined' fullWidth>ADAUGA PACHET</PrimaryButton>
-                            </Link>
+                        <Box mt='40px' width={1}>
+                            <SecondaryButton variant='contained' fullWidth>REFUZA CU MOTIV</SecondaryButton>
                         </Box>
                     </Grid>
                 );
+            
+            }
+            case 10:{
+                return(
+                    <Grid container item xs={8} justifyContent='center'>
+                        <Box mt='40px' width={1}>
+                            <SecondaryButton disabled variant='contained' fullWidth>REFUZA CU MOTIV</SecondaryButton>
+                        </Box>
+                    </Grid>
+                );
+            }
+            default:{
+                return('Unknown');
             }
         }
     }
@@ -156,7 +194,7 @@ const RideCard =(props)=>{
                     <Grid container item xs={8} justifyContent='space-around'>
                         <Rating value={props.driverRate} readOnly precision={0.5}/>
                     </Grid>
-                    {getFrontCardBtns(props.driverSelected, props.requestStatus)}
+                    {getFrontCardBtns(props.status)}
                 </Grid>
             </Box>
                 
@@ -183,7 +221,7 @@ const RideCard =(props)=>{
                     <Grid container item xs={12}>
                         <Box fontSize='15px' fontWeight='500' paddingBottom='4%'>{t('DriverCardEstimatedHours')} {props.estimatedTime}</Box>
                     </Grid>
-                    {getBackCardBtns(props.driverSelected, props.packageExists, props.packageTaked)}
+                    {getBackCardBtns(props.status, props.packageExists)}
                     <Grid container item xs={8} justifyContent='center'>
                         <Box mt='8%' mb='2%' width={1}>
                             <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>

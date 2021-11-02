@@ -17,6 +17,7 @@ const rides_a = [
         destinationAddress: 'Lorem Ipsium Street',
         departureDate: '26/08/2021 02:00 AM',
         rate: 4.5,
+        status: 0,
         packageExists: false,
     },
     {
@@ -30,9 +31,7 @@ const rides_a = [
         destinationAddress: 'Lorem Ipsium Street',
         departureDate: '26/08/2021 02:00 AM',
         rate: 4.5,
-        driverSelected: true,
-        requestStatus: 'waiting',
-        packageExists: true,
+        status: 1,
     },
     {
         image: profilePhotoRight,
@@ -45,10 +44,7 @@ const rides_a = [
         destinationAddress: 'Lorem Ipsium Street',
         departureDate: '26/08/2021 02:00 AM',
         rate: 4.5,
-        driverSelected: true,
-        requestStatus: 'accepted',
-        packageTaked: false,
-        packageExists: true,
+        status: 10,
     },
 ]
 
@@ -69,9 +65,7 @@ const Rides = (props) =>{
                         departureAddress={driver.departureAddress}
                         destinationAddress={driver.destinationAddress}
                         estimatedTime={driver.estimatedTime}
-                        driverSelected= {driver.driverSelected}
-                        requestStatus= {driver.requestStatus}
-                        packageTaked= {driver.packageTaked}
+                        status={driver.status}
                         packageExists= {driver.packageExists}
                     />
                 </Grid>

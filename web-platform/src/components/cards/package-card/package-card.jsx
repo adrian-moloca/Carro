@@ -73,7 +73,7 @@ const PackageCard = (props) =>{
                     );
             case 6:
                 return(
-                    <Grid container xs={10} justifyContent = 'center'  spacing={2}>
+                    <Grid container justifyContent = 'center'  spacing={2}>
                         <Grid container item xs={10} justifyContent = 'center'>
                             <Box my='10' className='Secondary-color' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
                         </Grid>
@@ -84,7 +84,7 @@ const PackageCard = (props) =>{
                 );
             case 2:
                 return(
-                    <Grid container xs={10} justifyContent = 'center'  spacing={2}>
+                    <Grid container justifyContent = 'center'  spacing={2}>
                         <Grid container item xs={10} justifyContent = 'center'>
                             <GreenCaroButton variant='contained' size='medium' fullWidth>
                                 {t("Approve")}
@@ -131,7 +131,7 @@ const PackageCard = (props) =>{
         <Fragment>
             <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' containerClassName={'CardFlipContainer'}>
             
-            <Box paddingBottom='10%' width='1' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
+            <Box paddingBottom='10%' width='0.9' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
                 <Grid container spacing={2} justifyContent='center'>
                     <Grid container item xs={12} justifyContent = 'center'>
                         <img src={packageImg} className={classes.boxesImageStyle} alt={""}/>
@@ -170,7 +170,7 @@ const PackageCard = (props) =>{
                 </Grid>
             </Box>
 
-            <Box paddingBottom='10%' width='1' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
+            <Box paddingBottom='10%' width='0.9' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
                 <Grid container justifyContent='center'>
                     <Grid container item xs={12} justifyContent = 'flex-start'>
                         <Box px={1} fontSize={14} marginTop='20px'>{t('Quantity')} {props.packageQuantity}</Box>

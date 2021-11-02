@@ -31,7 +31,7 @@ const NotificationDetails = (props) =>{
         destinationAddress: 'Lorem Ipsium Street',
         details: 'ceva de trimis',
         price: '15 RON',
-        status: 'package rejected', 
+        status: 6, 
         rideExists: true,
     }
 
@@ -48,7 +48,7 @@ const NotificationDetails = (props) =>{
         destinationAddress: 'Lorem Ipsium Street',
         details: 'ceva de trimis',
         price: '15 RON',
-        status: 'notification ride request', 
+        status: 2, 
         rideExists: true,
     }
     
@@ -58,7 +58,7 @@ const NotificationDetails = (props) =>{
             case 'colet livrat':
                 return(
                     <Fragment>
-                        <Grid container item xs={6}>
+                        <Grid container item xs={5}>
                             <DriverCardNotifications 
                                 image={Driver.image} 
                                 name={Driver.name}
@@ -67,12 +67,13 @@ const NotificationDetails = (props) =>{
                                 plecare={Driver.departure}
                                 destinatie={Driver.destination}/>
                         </Grid>
-                        <Grid container item xs={6}>
+                        <Grid container item xs={5}>
                             <Grid container item xs={12} justifyContent='center'>
                                 <Box fontSize='16px' fontWeight='600' className={'Primary-color'}>Coletul tau a ajuns cu succes!</Box>
                             </Grid>
                             <Grid container item xs={12} justifyContent='center'>
-                                <Box px='5px' fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>{Driver.name} a efectuat livrarea coletului tau pe ruta {Driver.departure}-{Driver.destination}. Lasa un review!</Box>
+                                <Box px='5px' fontWeight= {400} fontStyle='italic' className={'Secondary-color'}
+                                     textAlign='center' >{Driver.name} a efectuat livrarea coletului tau pe ruta {Driver.departure}-{Driver.destination}. Lasa un review!</Box>
                             </Grid>
                             <Grid container item xs={12} justifyContent='center'>
                                 <ButtonBase className={'Primary-color'}>
@@ -124,7 +125,7 @@ const NotificationDetails = (props) =>{
 
     return(
         <Box mt='4%'>
-            <Grid container>
+            <Grid container justifyContent='space-around'>
                 {getNotificationContent(props.type)}
             </Grid>
         </Box>
