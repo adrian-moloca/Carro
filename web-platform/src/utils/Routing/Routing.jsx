@@ -39,6 +39,8 @@ import Career from '../../pages/footer-pages/career/career';
 import MobileApplication from '../../pages/footer-pages/mobile-application/mobile-application';
 import WhyUseOurServices from '../../pages/footer-pages/why-use-our-services/why-use-our-services';
 import Vouchers from '../../pages/footer-pages/vouchers/vouchers';
+import PrivacyPolicy from '../../pages/footer-pages/privacy-policy/privacyPolicy';
+import CookiesPolicy from '../../pages/footer-pages/cookies-policy/cookiesPolicy';
 import './Routing.css';
 
 const Routes = () => {
@@ -110,6 +112,8 @@ const Routes = () => {
                                 <Route path="/mobile-application" exact component={MobileApplication}/>
                                 <Route path="/why-use-our-services" exact component={WhyUseOurServices}/>
                                 <Route path="/vouchers" exact component={Vouchers}/>
+                                <Route path="/privacy-policy" exact component={PrivacyPolicy}/>
+                                <Route path="/cookies-policy" exact component={CookiesPolicy}/>
                                 <Route component={HomePage} />
                             </Switch>
                         </div>
