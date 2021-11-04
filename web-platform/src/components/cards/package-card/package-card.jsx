@@ -85,12 +85,12 @@ const PackageCard = (props) =>{
             case 2:
                 return(
                     <Grid container justifyContent = 'center'  spacing={2}>
-                        <Grid container item xs={10} justifyContent = 'center'>
+                        <Grid container item xs={10} sm={4} ustifyContent = 'center'>
                             <GreenCaroButton variant='contained' size='medium' fullWidth>
                                 {t("Approve")}
                             </GreenCaroButton>
                         </Grid>
-                        <Grid container item xs={10} justifyContent = 'center'>
+                        <Grid container item xs={10} sm={4} justifyContent = 'center'>
                             <SecondaryButton variant='contained' size='medium' fullWidth>
                                 {t("Refuse")}
                             </SecondaryButton>
@@ -131,7 +131,7 @@ const PackageCard = (props) =>{
         <Fragment>
             <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' containerClassName={'CardFlipContainer'}>
             
-            <Box paddingBottom='10%' width='0.9' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
+            <Box paddingBottom='10%' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
                 <Grid container spacing={2} justifyContent='center'>
                     <Grid container item xs={12} justifyContent = 'center'>
                         <img src={packageImg} className={classes.boxesImageStyle} alt={""}/>
