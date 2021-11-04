@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Box, Grid, Button } from '@material-ui/core';
 import PrimaryButton from '../../../../components/buttons/primaryButton/primaryButton';
 import DeleteModal from '../../../../components/modals/deleteModal/DeleteModal';
@@ -10,61 +10,61 @@ const NotificationsSummary = (props) => {
   
 
   return (
-    <Grid container direction="column">
-      <Grid 
-        container 
-        direction="row">
-        <Grid direction="row" container item xs={8} >
-          <Box fontWeight= {600} fontStyle='italic' >
-          {props.name} {props.actionText}
+    <Box>
+      <Grid container justifyContent="space-between" alignItems="center">
+        <Grid item xs={12} sm={6}>
+          <Box display="flex" justifyContent="flex-start" alignItems="center" fontWeight= {600} fontStyle='italic'>
+            {props.name} {props.actionText}
           </Box>
         </Grid>
-        <Grid container item xs={3} justifyContent='center'>
+        <Grid item xs={6} sm={3}>
+          <Box display="flex" justifyContent="flex-end" alignItems="center">
             <Button variant="default" onClick={props.clickedMarkAsRead} className={props.markAsReadColor}>
                 {props.markAsReadBtnText}
             </Button>
-        </Grid>
-        <Grid container item xs={1} justifyContent='flex-end'>
-          <DeleteModal
-            content="Doresti sa stergi notificarea?"
-            btn1Text="Anuleaza"
-            btn2Text="Sterge"
-          />
-        </Grid>
-      </Grid>
-      <Grid 
-        container 
-        direction="row">
-        <Grid direction="row" container item xs={4} >
-          <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-          {t("Route")} {props.plecare} - {props.destinatie}
           </Box>
         </Grid>
-        <Grid direction="row" container item xs={4} >
-          <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-          {t("PickupAddress")} {props.pickUpAdress}
-          </Box>
-        </Grid>
-        <Grid direction="row" container item xs={4} >
-          <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-          {t("Price")} {props.price}
+        <Grid item xs={6} sm={3}>
+          <Box display="flex" justifyContent="flex-end" alignItems="center">
+            <DeleteModal
+              content="Doresti sa stergi notificarea?"
+              btn1Text="Anuleaza"
+              btn2Text="Sterge"
+            />
           </Box>
         </Grid>
       </Grid>
-      <Grid container direction="row">
-        <Grid direction="row" container item xs={4} >
-          <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-          {t("PickupDate")} {props.dataPlecare}
+      <Grid container justifyContent="space-between" alignItems="center" spacing={1}>
+        <Grid item xs={4} sm={3}>
+          <Box m={2} fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
+            {t("Route")}: {props.plecare} - {props.destinatie}
           </Box>
         </Grid>
-        <Grid direction="row" container item xs={4} >
-          <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-          {t("DriverCardDestinationAddress")} {props.dropOffAdress}
+        <Grid item xs={4} sm={3}>
+          <Box m={2} fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
+            {t("PickupAddress")} {props.pickUpAdress}
           </Box>
         </Grid>
-        <Grid direction="row" container item xs={4} >
-          <Box fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-          {t("DriverCardType")} {props.tipTransport}
+        <Grid item xs={4} sm={3}>
+          <Box m={2} fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
+            {t("Price")}: {props.price}
+          </Box>
+        </Grid>
+      </Grid>
+      <Grid container justifyContent="space-between" alignItems="center" spacing={1}>
+        <Grid item xs={4} sm={3}>
+          <Box m={2} fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
+            {t("PickupDate")} {props.dataPlecare}
+          </Box>
+        </Grid>
+        <Grid item xs={4} sm={3}>
+          <Box m={2} fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
+            {t("DriverCardDestinationAddress")} {props.dropOffAdress}
+          </Box>
+        </Grid>
+        <Grid item xs={4} sm={3}>
+          <Box m={2} fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
+            {t("DriverCardType")} {props.tipTransport}
           </Box>
         </Grid>
       </Grid>
@@ -75,8 +75,7 @@ const NotificationsSummary = (props) => {
           </PrimaryButton>
         </Box>
       </Grid>
-      
-    </Grid>
+    </Box>
   );
 };
 
