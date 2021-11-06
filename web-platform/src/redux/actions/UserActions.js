@@ -13,7 +13,7 @@ export const fetchLogin = (email, password) => {
 
 return (dispatch) => {
     dispatch(fetchLoginRequest);
-    axios.post(data.baseUrl + "/login", {
+    axios.post(data.baseUrl + "/identity/login", {
         email: email, 
         password: password
     })
@@ -52,7 +52,7 @@ export const createNewUser = (newName, newPassword, newConfirmPassword, newUserA
 
 return(dispatch) => {
 dispatch(createNewUserRequest);
-axios.post(data.baseUrl+"/catalin/admin/users/",{
+axios.post(data.baseUrl+"/identity/register",{
     name: newName,
     password: newPassword,
     confirm_password: newConfirmPassword,

@@ -1,19 +1,19 @@
-import React from "react";
+import React from 'react';
 import {
-  Container,
-  Box,
-  Grid,
-  AccordionSummary,
-  AccordionDetails,
-  Accordion,
-  Typography,
-} from "@material-ui/core";
+    Container,
+    Box,
+    Grid,
+    AccordionSummary,
+    AccordionDetails,
+    Accordion,
+    Typography,
+  } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { useTranslation } from "react-i18next";
 import "../../../App.css";
 
-const FrequentQuestions = () => {
-  
+const CookiesPolicy=()=>{
+
   const { t } = useTranslation();
 
   return (
@@ -21,12 +21,12 @@ const FrequentQuestions = () => {
       <Grid container item xs={12} justifyContent="center" alignItems="center">
         <Grid container item xs={11} justifyContent="center">
           <Box mb={4} fontWeight={400} fontSize={22} textAlign={"center"}>
-            {t("FAQ")}
+            {t("PCO")}
           </Box>
         </Grid>
         <Grid container item xs={11} justifyContent="center">
           <Box mb={4} fontWeight={400} fontSize={14} textAlign={"left"}>
-            {t("FAQContent")}
+            {t("PCO0")}
           </Box>
         </Grid>
         <Grid container item xs={11} justifyContent="center">
@@ -37,12 +37,13 @@ const FrequentQuestions = () => {
               id="panel1a-header"
             >
               <Typography variant="caption" gutterBottom>
-                <b>{t("FAQ1")}</b>
+                <b>{t("PCO1")}</b>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="caption" display="block" gutterBottom>
-                {t("FAQ1Answear")}
+                {t("PCO1.1")}
+                <Box/>
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -53,12 +54,15 @@ const FrequentQuestions = () => {
               id="panel2a-header"
             >
               <Typography variant="caption" gutterBottom>
-                <b>{t("FAQ2")}</b>
+                <b>{t("PCO2")}</b>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="caption" display="block" gutterBottom>
-                {t("FAQ2Answear")}
+                {t("PCO2.1")}
+                <Box/>
+                {t("PCO2.2")}
+                <Box/>
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -69,12 +73,25 @@ const FrequentQuestions = () => {
               id="panel2a-header"
             >
               <Typography variant="caption" gutterBottom>
-                <b>{t("FAQ3")}</b>
+                <b>{t("PCO3")}</b>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="caption" display="block" gutterBottom>
-                {t("FAQ3Answear")}
+                {t("PCO3.1")}
+                <Box/>
+                {t("PCO3.2")}
+                <Box/>
+                {t("PCO3.3")}
+                <Box/>
+                {t("PCO3.4")}
+                <Box/>
+                {t("PCO3.5")}
+                <Box/>
+                {t("PCO3.6")}
+                <Box/>
+                {t("PCO3.7")}
+                <Box/>
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -85,12 +102,17 @@ const FrequentQuestions = () => {
               id="panel2a-header"
             >
               <Typography variant="caption" gutterBottom>
-                <b>{t("FAQ4")}</b>
+                <b>{t("PCO4")}</b>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="caption" display="block" gutterBottom>
-                {t("FAQ4Answear")}
+                {t("PCO4.1")}
+                <Box/>
+                {t("PCO4.2")}
+                <Box/>
+                {t("PCO4.3")}
+                <Box/>
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -101,12 +123,15 @@ const FrequentQuestions = () => {
               id="panel2a-header"
             >
               <Typography variant="caption" gutterBottom>
-                <b>{t("FAQ5")}</b>
+                <b>{t("PCO5")}</b>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="caption" display="block" gutterBottom>
-                {t("FAQ5Answear")}
+                {t("PCO5.1")}
+                <Box/>
+                {t("PCO5.2")}
+                <Box/>
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -117,60 +142,13 @@ const FrequentQuestions = () => {
               id="panel2a-header"
             >
               <Typography variant="caption" gutterBottom>
-                <b>{t("FAQ6")}</b>
+                <b>{t("PCO6")}</b>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="caption" display="block" gutterBottom>
-                {t("FAQ6Answear")}
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion style={{ minWidth: "100%" }}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
-              <Typography variant="caption" gutterBottom>
-                <b>{t("FAQ7")}</b>
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography variant="caption" display="block" gutterBottom>
-                {t("FAQ7Answear")}
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion style={{ minWidth: "100%" }}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
-              <Typography variant="caption" gutterBottom>
-                <b>{t("FAQ8")}</b>
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography variant="caption" display="block" gutterBottom>
-                {t("FAQ8Answear")}
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion style={{ minWidth: "100%" }}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
-              <Typography variant="caption" gutterBottom>
-                <b>{t("FAQ9")}</b>
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography variant="caption" display="block" gutterBottom>
-                {t("FAQ9Answear")}
+                {t("PCO6.1")}
+                <Box/>
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -178,6 +156,6 @@ const FrequentQuestions = () => {
       </Grid>
     </Container>
   );
-};
+}
 
-export default FrequentQuestions;
+export default CookiesPolicy;
