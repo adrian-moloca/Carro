@@ -47,7 +47,7 @@ const Login = ({fetchLogin, data}) => {
             </Box>
             </Grid>
             <Grid container item xs={10} xl={8} justifyContent='center'>  
-                <PrimaryButton onClick={() => fetchLogin(email, password)} className="ButtonTextSize" size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
+                <PrimaryButton onClick={() => {fetchLogin(email, password); localStorage.setItem('isLoggedIn', true)}} className="ButtonTextSize" size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
                 {t("Login")}
                 </PrimaryButton>
             </Grid>

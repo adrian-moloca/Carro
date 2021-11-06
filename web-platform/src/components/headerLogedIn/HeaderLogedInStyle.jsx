@@ -18,7 +18,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     textDecoration: 'none',
     maxWidth:'250px',
-    color:'inherit'
+    color:'inherit',
+    '&:hover':{
+      fontWeight: '500',
+    }
   },
 
 }));

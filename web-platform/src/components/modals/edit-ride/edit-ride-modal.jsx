@@ -101,7 +101,7 @@ const EditRideModal = (props) =>{
                                 </Grid>
                                 <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
                                     <CarroTextField select size='small' variant ='outlined' label={t("DriverCardType")} fullWidth value={transportType} onChange={(e)=>handleChangeTransportType(e)}>
-                                        {getTransportType().map((transport)=>(<MenuItem value={transport}>{transport}</MenuItem>))}
+                                        {getTransportType().map((transport, index)=>(<MenuItem key={index} value={transport}>{transport}</MenuItem>))}
                                     </CarroTextField>
                                 </Grid>
                                 <Grid container item xs={12}  md ={6} xl={6}  justifyContent='center'>

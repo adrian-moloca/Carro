@@ -14,7 +14,7 @@ const Conversations = () =>{
   return(
     <Container className='Primary-container-style'>
       <Grid container justifyContent='center'>
-        <Grid container item xs='12' justifyContent='center'S>
+        <Grid container item xs={12} justifyContent='center'>
           <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>Chat</Box>
         </Grid>
         <Grid container item xs={8} >

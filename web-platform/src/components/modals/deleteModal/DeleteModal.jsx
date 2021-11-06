@@ -15,6 +15,9 @@ const DeleteModal = (props) =>  {
     setOpen(true)
   };
   const handleClose = () => setOpen(false);
+  const handleDelete = () => {
+    handleClose();
+  }
   const { content, btn1Text, btn2Text } = props;
 
   return (
@@ -37,7 +40,7 @@ const DeleteModal = (props) =>  {
                 <SecondaryButton variant="outlined" onClick={handleClose}>{btn1Text}</SecondaryButton>
               </Box>
               <Box ml={2}>
-                <SecondaryButton variant="contained">{btn2Text}</SecondaryButton>
+                <SecondaryButton variant="contained" onClick={props.clickedBtn2}>{btn2Text}</SecondaryButton>
               </Box>
             </Box>
           </Box>

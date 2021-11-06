@@ -34,7 +34,6 @@ const Profile = (props) => {
     for(const file of files)
       temp.push(file)
     setMandatoryDocuments(temp);
-    console.log(mandatoryDocuments)
   }
 
   const handleDeleteFile=(index)=>{
@@ -126,7 +125,7 @@ const Profile = (props) => {
           })}
           {mandatoryDocuments.length ? (
                       <Grid item xs={5}>
-                        <PrimaryButton variant='contained' fullWidth>
+                        <PrimaryButton variant='contained' onClick={()=> console.log(mandatoryDocuments)} fullWidth>
                           {t('Send')}
                         </PrimaryButton>
                       </Grid> 

@@ -1,63 +1,53 @@
-import React from 'react';
-import { Link, IconButton, Box } from "@material-ui/core";
+import React, {Fragment} from 'react';
+import { Link } from 'react-router-dom';
+import { Grid, IconButton, Box } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useTranslation } from "react-i18next";
+import useStyles from '../../HeaderLogedOutStyle';
+
 const RenderMenuSBD = () => {
   const { t } = useTranslation();
-  const menuBtns = () => {
-    return (
-      <Box display="flex">
-        <Link href="/login" underline= 'none' color= 'inherit'>
-          <IconButton color="inherit">
-            <Box mr={1}>
-              <SearchIcon/>
-            </Box>
-            <Box fontSize={18}>
-             {t("SearchPackage")}
-            </Box>
-          </IconButton>
-        </Link>
-        <Link href="/login" underline= 'none' color= 'inherit'>
-          <IconButton color="inherit">
-            <Box mr={1}>
-              <DriveEtaIcon/>
-            </Box>
-            <Box fontSize={18}>
-            {t("SearchRide")}
-            </Box>
-          </IconButton>
-        </Link>
-        <Link href="/login" underline= 'none' color= 'inherit'>
-          <IconButton color="inherit">
-            <Box mr={1}>
-              <AccountCircleIcon/>
-            </Box>
-            <Box fontSize={18}>
-             {t("Login")}
-            </Box>
-          </IconButton>
-        </Link>
-        <Link href="/register" underline= 'none' color= 'inherit'>
-          <IconButton color="inherit">
-            <Box mr={1}>
-              <ExitToAppIcon/>
-            </Box>
-            <Box fontSize={18}>
-              {t("Register")}
-            </Box>
-          </IconButton>
-        </Link>
-      </Box>
-    );
-  };
+
+  const classes = useStyles();
 
   return(
-    <Box>
-      {menuBtns()}
-    </Box>
+      <Fragment>
+        <Grid container item md={3} justifyContent='center'>
+          <Link to="/login" className={classes.linkBtn}>
+              <SearchIcon/>
+              <Box fontSize={18} paddingLeft='5px'>
+              {t("SearchPackage")}
+              </Box>
+          </Link>
+        </Grid>
+        <Grid container item md={3} justifyContent='center'>
+          <Link to="/login" className={classes.linkBtn}>
+              <DriveEtaIcon/>
+              <Box fontSize={18} paddingLeft='5px'>
+              {t("SearchRide")}
+              </Box>
+          </Link>
+        </Grid>
+        <Grid container item md={3} justifyContent='center'>
+          <Link to="/login"  className={classes.linkBtn}>
+              <AccountCircleIcon/>
+              <Box fontSize={18} paddingLeft='5px'>
+              {t("Login")}
+              </Box>
+          </Link>
+        </Grid>
+        <Grid container item md={3} justifyContent='center'>
+          <Link to="/register" className={classes.linkBtn}>
+              <ExitToAppIcon/>
+              <Box fontSize={18} paddingLeft='5px'>
+                {t("Register")}
+              </Box>
+          </Link>
+        </Grid>
+      </Fragment>
   );
 };
 

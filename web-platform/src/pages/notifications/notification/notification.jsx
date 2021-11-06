@@ -26,7 +26,7 @@ const Notification = (props) =>{
       setMarkAsRead('Marcheaza ca citit')
       setMarkAsReadColor('Primary-color');
     }
-  }, []);
+  }, [read]);
 
   const handleMarkAsRead= (event)=>{
     const r = read;
@@ -71,6 +71,7 @@ const Notification = (props) =>{
                   markAsReadBtnText={markAsRead}
                   markAsReadColor={markAsReadColor}
                   clickedMarkAsRead={handleMarkAsRead}
+                  clickedDelete={props.clickedDelete}
           />
           <Collapse in={expanded} timeout={600}>
             <NotificationDetails

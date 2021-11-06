@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {BrowserRouter as Router , Route, Switch} from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import HeaderLogedOut from '../../components/headerLogedOut/HeaderLogedOut';
 import HeaderLogedIn from '../../components/headerLogedIn/HeaderLogedIn';
@@ -39,16 +39,20 @@ import Career from '../../pages/footer-pages/career/career';
 import MobileApplication from '../../pages/footer-pages/mobile-application/mobile-application';
 import WhyUseOurServices from '../../pages/footer-pages/why-use-our-services/why-use-our-services';
 import Vouchers from '../../pages/footer-pages/vouchers/vouchers';
+import ProtectedRoute from '../ProtectedRoute/protected-route';
 import './Routing.css';
 
 const Routes = () => {
-    
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const history = useHistory();
     const [collapsed, setCollapsed] = useState(false);
     const onCollapse = () => {
         setCollapsed(!collapsed);
       };
+
+    const[isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn')==='true')
+
+    useEffect(()=>{
+        localStorage.setItem('isLoggedIn', 'true');
+    }, [])
     
 
     // if(isLoggedIn === false) {
@@ -70,23 +74,24 @@ const Routes = () => {
                 // ) : (
                     <div className="sbd-container">
                         <div className="sbd-header">
-                            {/* <HeaderLogedOut/> */}
-                            <HeaderLogedIn/>
+                            {isLoggedIn === true ? <HeaderLogedIn/> : <HeaderLogedOut/>}
                         </div>
                         <div className="sbd-container-content">
                             <Switch>
+                                <ProtectedRoute path="/add-package" exact component={AddPackage}/>  {/* checked */}
+                                <ProtectedRoute path="/my-packages" exact component={MyPackages}/>  {/* checked */}
+                                <ProtectedRoute path="/my-rides" exact component={MyRides}/>  {/* checked */}
+                                <ProtectedRoute path="/notifications" exact component={Notifications}/>  {/* checked */}
+                                <ProtectedRoute path="/payment-method" exact component={PaymentMethod}/>
+                                <ProtectedRoute path="/payment-method/add-payment-method" exact component={AddPaymentMethod}/>
+                                <ProtectedRoute path="/profile" exact component={Profile}/>
+                                <ProtectedRoute path="/search-package" exact component={SearchPackage}/>
+                                <ProtectedRoute path="/search-ride" exact component={SearchRide}/>
+                                <ProtectedRoute path="/conversations" exact component={Conversations}/>
+                                <ProtectedRoute path="/conversations/chat" exact component={Chat}/>
+                                <ProtectedRoute path="/add-transport" exact component={AddTransport}/>  {/* checked */}
                                 <Route path="/" exact component={HomePage}/>
-                                <Route path="/add-package" exact component={AddPackage}/>  {/* checked */}
-                                <Route path="/my-packages" exact component={MyPackages}/>  {/* checked */}
-                                <Route path="/my-rides" exact component={MyRides}/>  {/* checked */}
-                                <Route path="/notifications" exact component={Notifications}/>  {/* checked */}
-                                <Route path="/payment-method" exact component={PaymentMethod}/>
-                                <Route path="/payment-method/add-payment-method" exact component={AddPaymentMethod}/>
-                                <Route path="/profile" exact component={Profile}/>
-                                <Route path="/search-package" exact component={SearchPackage}/>
-                                <Route path="/search-ride" exact component={SearchRide}/>
-                                <Route path="/conversations" exact component={Conversations}/>
-                                <Route path="/conversations/chat" exact component={Chat}/>
+                                <Route path="/home" exact component={HomePage}/>
                                 <Route path="/login" exact component={Login}/>
                                 <Route path="/login/forgot-password" exact component={ForgotPassword}/>
                                 <Route path="/reset-password" exact component={ResetPassword}/>
@@ -95,7 +100,6 @@ const Routes = () => {
                                 <Route path="/register/phone-number-verification" exact component={PhoneNumberVerification}/>
                                 <Route path="/register/select-plan" exact component={SelectPlan}/>
                                 <Route path="/register/select-plan/add-card" exact component={PremiumPlanPayment}/>
-                                <Route path="/add-transport" exact component={AddTransport}/>  {/* checked */}
                                 <Route path="/courier-profile" exact component={CourierProfile}/>
                                 <Route path="/admin-panel" exact component={adminPanel}/>
                                 <Route path="/how-it-works" exact component={HowItWorks}/>
@@ -110,7 +114,6 @@ const Routes = () => {
                                 <Route path="/mobile-application" exact component={MobileApplication}/>
                                 <Route path="/why-use-our-services" exact component={WhyUseOurServices}/>
                                 <Route path="/vouchers" exact component={Vouchers}/>
-                                <Route component={HomePage} />
                             </Switch>
                         </div>
                         <div className='sbd-footer'>

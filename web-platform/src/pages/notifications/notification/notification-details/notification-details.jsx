@@ -82,7 +82,7 @@ const NotificationDetails = (props) =>{
                                 </ButtonBase>
                             </Grid>
                             <Grid container item xs={12} justifyContent='center'>
-                                <Rating/>
+                                <Rating name={Driver.name}/>
                             </Grid>
                             <Grid container item xs={12} justifyContent='center'>
                                 <GreenCaroButton variant='contained'>TRIMITE</GreenCaroButton>

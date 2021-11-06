@@ -20,7 +20,7 @@ const NotificationsSummary = (props) => {
           </Box>
         </Grid>
         <Grid container item xs={3} justifyContent='center'>
-            <Button variant="default" onClick={props.clickedMarkAsRead} className={props.markAsReadColor}>
+            <Button variant='text' onClick={props.clickedMarkAsRead} className={props.markAsReadColor}>
                 {props.markAsReadBtnText}
             </Button>
         </Grid>
@@ -29,6 +29,7 @@ const NotificationsSummary = (props) => {
             content="Doresti sa stergi notificarea?"
             btn1Text="Anuleaza"
             btn2Text="Sterge"
+            clickedBtn2={props.clickedDelete}
           />
         </Grid>
       </Grid>
