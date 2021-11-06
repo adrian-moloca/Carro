@@ -83,10 +83,8 @@ const NotificationDetails = (props) =>{
                                     </ButtonBase>
                                 </Box>
                             </Grid>
-                            <Grid item xs={12}>
-                                <Box display="flex" justifyContent='center' alignItems="center" my={2}>
-                                    <Rating/>
-                                </Box>
+                            <Grid container item xs={12} justifyContent='center'>
+                                <Rating name={Driver.name}/>
                             </Grid>
                             <Grid item xs={12}>
                                 <Box display="flex" justifyContent='center' alignItems="center">

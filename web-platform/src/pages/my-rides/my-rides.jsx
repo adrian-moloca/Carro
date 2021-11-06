@@ -92,7 +92,7 @@ const MyRides = () => {
        {t('MyRides')}
       </Box>
       {ridesState.map((rideinf, index)=>
-          <Box mb={1.5} borderRadius='10px' boxShadow={3} >
+          <Box key={index} mb={1.5} borderRadius='10px' boxShadow={3} >
             <Ride ride={rideinf} departure={rideinf.departure} destination={rideinf.destination} departureDate={rideinf.departureDate}
                  departureAddress={rideinf.departureAddress} destinationAddress={rideinf.destinationAddress} estimatedTime={rideinf.estimatedTime}
                  transportType={rideinf.transportType} phoneNumber={rideinf.phoneNumber} rideStatus={rideinf.status} rideIndex={index + 1}

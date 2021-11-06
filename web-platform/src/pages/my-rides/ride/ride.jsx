@@ -105,13 +105,13 @@ const Ride = (props) =>{
                 <Grid container item xs = {1} sm = {1} md={1} lg={1}>
                   <Typography >{props.rideIndex}.</Typography>
                 </Grid>
-                <Grid container item xs={0} sm={0} md={2} lg={2} justifyContent='center'  alignItems='center' className='hide-on-mobile'>
+                <Grid container item md={2} lg={2} justifyContent='center'  alignItems='center' className='hide-on-mobile'>
                   <Box fontWeight= {600} fontStyle='italic' fontSize='13px'ù>{props.departure}</Box>
                 </Grid>
-                <Grid container  item xs={0} sm={0} md={1} lg={1} justifyContent='center' alignItems='center' className='hide-on-mobile'>
-                    <ArrowForward className={['Primary-color']} fontSize='small'/>
+                <Grid container  item md={1} lg={1} justifyContent='center' alignItems='center' className='hide-on-mobile'>
+                    <ArrowForward className={'Primary-color'} fontSize='small'/>
                 </Grid>
-                <Grid container item xs={0} sm={0} md={2} lg={2} justifyContent='center' alignItems='center' className='hide-on-mobile'>
+                <Grid container item md={2} lg={2} justifyContent='center' alignItems='center' className='hide-on-mobile'>
                   <Box fontWeight= {600} fontStyle='italic' fontSize='13px'>{props.destination}</Box>
                 </Grid>
                 <Grid container item xs={4} sm={4} md={3} lg={3} justifyContent='center' alignItems='center' >

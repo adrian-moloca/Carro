@@ -17,21 +17,19 @@ const NotificationsSummary = (props) => {
             {props.name} {props.actionText}
           </Box>
         </Grid>
-        <Grid item xs={6} sm={3}>
-          <Box display="flex" justifyContent="flex-end" alignItems="center">
-            <Button variant="default" onClick={props.clickedMarkAsRead} className={props.markAsReadColor}>
+        <Grid container item xs={6} sm={3} justifyContent='center'>
+            <Button variant='text' onClick={props.clickedMarkAsRead} className={props.markAsReadColor}>
                 {props.markAsReadBtnText}
             </Button>
           </Box>
         </Grid>
-        <Grid item xs={6} sm={3}>
-          <Box display="flex" justifyContent="flex-end" alignItems="center">
-            <DeleteModal
-              content="Doresti sa stergi notificarea?"
-              btn1Text="Anuleaza"
-              btn2Text="Sterge"
-            />
-          </Box>
+        <Grid container item xs={6} sm={3} justifyContent='flex-end'>
+          <DeleteModal
+            content="Doresti sa stergi notificarea?"
+            btn1Text="Anuleaza"
+            btn2Text="Sterge"
+            clickedBtn2={props.clickedDelete}
+          />
         </Grid>
       </Grid>
       <Grid container justifyContent="space-between" alignItems="center" spacing={1}>

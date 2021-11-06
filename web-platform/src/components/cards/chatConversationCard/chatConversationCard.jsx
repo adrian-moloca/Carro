@@ -9,7 +9,7 @@ const ChatConversationCard = (props) => {
   const classes = useStyles();
   
   return(
-    <Box display='flex' width='1' mt='5%' fullWidth p={1} borderRadius='10px' boxShadow={3}>
+    <Box display='flex' width='1' mt='5%' p={1} borderRadius='10px' boxShadow={3}>
         <Grid container>
           <Grid container item xs={2} alignItems='center' justifyContent='center'>
             <img src={props.profileImage} className={classes.profileImg}/>

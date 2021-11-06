@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, AppBar, Toolbar, IconButton, Box, Grid } from "@material-ui/core";
+import { Link } from 'react-router-dom';
+import { AppBar, Toolbar, IconButton, Box, Grid } from "@material-ui/core";
 import BasicSelect from '../../components/buttons/languageButton/languageButton';
 import CaroLogo from '../../assets/logo/CaroLogo.png';
 import RenderMobileMenu from './headerLogedOutComponents/headerLogedOutMobileMenu/headerLogedOutMobileMenu'
@@ -15,23 +16,17 @@ export default function PrimarySearchAppBar() {
       <Toolbar>
         <Grid container justifyContent="space-between" alignItems="center" >
           {/* render logo */}
-          <Grid item xs={1}>
-            <Box justifyContent="center" alignItems="center">
-              <Link href="/" underline= 'none' color= 'inherit'>
-                <IconButton>
+          <Grid container item md={3} justifyContent='flex-start'>
+              <Link to="/" style={{paddingTop:'10px', paddingBottom: '10px'}}> 
                   <img src={CaroLogo} alt={""}></img>
-                </IconButton>
               </Link>
-            </Box>
           </Grid>
           {/* render desktop btns */}
-          <Grid item xs={10} >
-            <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
+          <Grid container item md={6} className={classes.sectionDesktop}>
               <RenderMenuSBD/>
-            </Box>
           </Grid>
           {/* render language select */}
-          <Grid item xs={1}>
+          <Grid container item md={3} justifyContent='flex-end'>
             <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
               <BasicSelect/>
             </Box>

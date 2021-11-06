@@ -74,13 +74,14 @@ const Notifications =()=>{
     return(
         <Container className='Primary-container-style'>
             <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t('Notifications')}</Box>
+            {console.log(notifications)}
             <Grid container justifyContent='center'>
                 {notifications.map((not, index)=>{
-                    return  <Grid container item xs={12}>
+                    return  <Grid key={index} container item xs={12}>
                                 <Notification type={not.type} name={not.name} action={not.action} 
                                             departure={not.departure} destination={not.destination} price={not.price} transportType={not.transportType}
                                             departureAddress={not.departureAddress} destinationAddress={not.destinationAddress} departureDate={not.departureDate}
-                                            handleRead={(e)=>readNotification(e,index)} read={not.read} handleDelete={deleteNotification}/>
+                                            handleRead={(e)=>readNotification(e,index)} read={not.read} clickedDelete={()=>deleteNotification(index)}/>
                             </Grid>
                 })}
             </Grid>
