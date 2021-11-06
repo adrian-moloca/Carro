@@ -41,8 +41,6 @@ const Notification = (props) =>{
       setMarkAsRead('Marcheaza ca necitit');
       setMarkAsReadColor('Secondary-color');
     }
-    event.stopPropagation()
-
   }
 
     const handleDetailsBtn = () =>{
@@ -66,11 +64,11 @@ const Notification = (props) =>{
                   dropOffAdress={props.destinationAddress}
                   price={props.price}
                   read={props.read}
-                  clickedDetails={handleDetailsBtn}
+                  clickedDetails={()=>{handleDetailsBtn();  props.handleRead();}}
                   detailsBtnText={detailsBtn}
                   markAsReadBtnText={markAsRead}
                   markAsReadColor={markAsReadColor}
-                  clickedMarkAsRead={handleMarkAsRead}
+                  clickedMarkAsRead={()=>{handleMarkAsRead(); props.handleRead();}}
                   clickedDelete={props.clickedDelete}
           />
           <Collapse in={expanded} timeout={600}>

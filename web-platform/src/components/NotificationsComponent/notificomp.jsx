@@ -1,22 +1,27 @@
-import React from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { Badge, Box, IconButton } from '@material-ui/core';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 
 export default function BadgeVisibility() {
 
-  const [count, setCount] = React.useState(1);
-  const [invisible, setInvisible] = React.useState(false);
-  const handleBadgeVisibility = () => setInvisible(!invisible);
+  const [count, setCount] = useState(1);
+  const [unreadNotifications, setUnreadNotifications] = useState(Boolean(localStorage.getItem('unreadNotifications')))
+
+  useEffect(()=>{
+      
+    window.addEventListener('storage', ()=> setUnreadNotifications(Boolean(localStorage.getItem('unreadNotifications'))))
+    return ()=> window.removeEventListener('storage', ()=> setUnreadNotifications(Boolean(localStorage.getItem('unreadNotifications'))))
+  }, [])
 
   return (
     <Box display='flex' alignSelf='center' flexDirection='column' className={"Primary-color"}>
       <Box mr={1}>
         <Link to='/notifications' style={{textDecoration:'none'}}>
           <IconButton className={"Primary-color"} >
-            {/* <Badge color="secondary" badgeContent={count}> */}
+            <Badge color="secondary" badgeContent={count} invisible={!unreadNotifications}>
               <NotificationsNoneIcon/>
-            {/* </Badge> */}
+            </Badge>
           </IconButton>
         </Link>
         {/* <ButtonGroup>

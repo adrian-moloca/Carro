@@ -50,10 +50,10 @@ const Routes = () => {
         setCollapsed(!collapsed);
       };
 
-    const[isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn')==='true')
+    const[isLoggedIn, setIsLoggedIn] = useState(Boolean(localStorage.getItem('isLoggedIn')))
 
     useEffect(()=>{
-        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('isLoggedIn', true);
     }, [])
     
 

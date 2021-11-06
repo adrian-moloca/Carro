@@ -21,7 +21,6 @@ const NotificationsSummary = (props) => {
             <Button variant='text' onClick={props.clickedMarkAsRead} className={props.markAsReadColor}>
                 {props.markAsReadBtnText}
             </Button>
-          </Box>
         </Grid>
         <Grid container item xs={6} sm={3} justifyContent='flex-end'>
           <DeleteModal

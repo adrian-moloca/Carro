@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Container, Box, Grid} from '@material-ui/core';
 import { useTranslation } from "react-i18next";
 import Notification from './notification/notification';
@@ -30,7 +30,7 @@ const notifications_a = [
         departureDate: '26/08/2021 02:00am',
         price: '20 RON',
         transportType: 'Masina',
-        read: false,
+        read: true,
     },
     {
         type: 'cerere transport',
@@ -51,18 +51,15 @@ const Notifications =()=>{
 
     const { t } = useTranslation();
     const[notifications, setNotifications] = useState(notifications_a)
-    const readNotification = (event, index) => {
-        event.stopPropagation();
-        if(event.target.className.includes('details-button') || event.target.className.includes('label')){
+    const readNotification = (index) => {
         const temp = [...notifications];
         temp.map((el, i)=>{
-            if(i==index)
+            if(i===index)
             {
                 el.read=true
             }
         })
         setNotifications(temp);
-    }
     }
 
     const deleteNotification=(index)=>{
@@ -71,17 +68,24 @@ const Notifications =()=>{
         setNotifications(temp);
     }
 
+    useEffect(()=> {
+        localStorage.setItem('unreadNotifications', false)
+        notifications.map((not)=> {
+            if(!not.read) 
+                  localStorage.setItem('unreadNotifications', true)
+        });
+    },[notifications])
+
     return(
         <Container className='Primary-container-style'>
             <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t('Notifications')}</Box>
-            {console.log(notifications)}
             <Grid container justifyContent='center'>
-                {notifications.map((not, index)=>{
+                {notifications.map((not, index)=>{ 
                     return  <Grid key={index} container item xs={12}>
                                 <Notification type={not.type} name={not.name} action={not.action} 
                                             departure={not.departure} destination={not.destination} price={not.price} transportType={not.transportType}
                                             departureAddress={not.departureAddress} destinationAddress={not.destinationAddress} departureDate={not.departureDate}
-                                            handleRead={(e)=>readNotification(e,index)} read={not.read} clickedDelete={()=>deleteNotification(index)}/>
+                                            handleRead={()=>readNotification(index)} read={not.read} clickedDelete={()=>deleteNotification(index)}/>
                             </Grid>
                 })}
             </Grid>

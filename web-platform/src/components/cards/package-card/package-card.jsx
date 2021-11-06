@@ -85,7 +85,7 @@ const PackageCard = (props) =>{
             case 2:
                 return(
                     <Grid container justifyContent = 'center'  spacing={2}>
-                        <Grid container item xs={10} sm={4} ustifyContent = 'center'>
+                        <Grid container item xs={10} sm={4} justifyContent = 'center'>
                             <GreenCaroButton variant='contained' size='medium' fullWidth>
                                 {t("Approve")}
                             </GreenCaroButton>

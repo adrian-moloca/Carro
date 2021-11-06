@@ -96,7 +96,7 @@ const NotificationDetails = (props) =>{
                 );
             case 'transport anulat':
                 return(
-                    <Grid container xs={12} sm={6} justifyContent='center'>
+                    <Grid container justifyContent='center'>
                         <PackageCard packageQuantity={Package.packageQuantity} packageDimensions={Package.packageDimensions} 
                                 senderPhone={Package.senderPhone} destinatary={Package.destinatary} destinataryPhone={Package.destinataryPhone}
                                 packageWeight={Package.packageWeight} departureDate={Package.departureDate} price={Package.price}
@@ -106,7 +106,7 @@ const NotificationDetails = (props) =>{
                 );
             case 'cerere transport':
                 return(
-                    <Grid container xs={12} sm={6} justifyContent='center'>
+                    <Grid container justifyContent='center'>
                         <PackageCard packageQuantity={Package2.packageQuantity} packageDimensions={Package2.packageDimensions} 
                                 senderPhone={Package2.senderPhone} destinatary={Package2.destinatary} destinataryPhone={Package2.destinataryPhone}
                                 packageWeight={Package2.packageWeight} departureDate={Package2.departureDate} price={Package2.price}
