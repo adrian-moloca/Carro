@@ -62,6 +62,18 @@ const Notifications =()=>{
         setNotifications(temp);
     }
 
+    const handleReadStatus = (index) => {
+        const temp = [...notifications];
+        temp.map((el, i)=>{
+            if(i===index)
+            {
+                const prevStatus = el.read
+                el.read=!prevStatus
+            }
+        })
+        setNotifications(temp);
+    }
+
     const deleteNotification=(index)=>{
         const temp=[...notifications] 
         temp.splice(index, 1);
@@ -85,7 +97,7 @@ const Notifications =()=>{
                                 <Notification type={not.type} name={not.name} action={not.action} 
                                             departure={not.departure} destination={not.destination} price={not.price} transportType={not.transportType}
                                             departureAddress={not.departureAddress} destinationAddress={not.destinationAddress} departureDate={not.departureDate}
-                                            handleRead={()=>readNotification(index)} read={not.read} clickedDelete={()=>deleteNotification(index)}/>
+                                            readNotification={()=>readNotification(index)} handleReadStatus={()=>handleReadStatus(index)} read={not.read} clickedDelete={()=>deleteNotification(index)}/>
                             </Grid>
                 })}
             </Grid>
