@@ -61,7 +61,7 @@ const EditCreditCard = ({creditCard, ...props}) =>{
                                 <CarroTextField size='small' value={cardCVV} onChange={(e)=>setCardCVV(e.target.value)} variant ='outlined' label='CVV/CVC' fullWidth/>
                             </Grid>
                             <Grid container item xs={12} justifyContent='center'>
-                                    <PrimaryButton disabled = {cardNumber && expDate && cardHolder && cardCVV ? false : true} variant = 'contained' onClick={props.clickedSave} fullWidth>{t("SaveButton")}</PrimaryButton>
+                                <PrimaryButton disabled = {cardNumber && expDate && cardHolder && cardCVV ? false : true} variant = 'contained' onClick={props.clickedSave} fullWidth>{t("SaveButton")}</PrimaryButton>
                             </Grid>
                         </Grid>
                     </Container>

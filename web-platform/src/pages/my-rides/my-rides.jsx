@@ -80,7 +80,7 @@ const MyRides = () => {
     temp.forEach((ride, i)=>{
       if(index === i)
       {
-        ride.status = t('Closed');
+        ride.status = 4;
       }
     })
     setRidesState(temp);

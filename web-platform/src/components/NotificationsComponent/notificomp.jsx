@@ -9,10 +9,9 @@ export default function BadgeVisibility() {
   const [unreadNotifications, setUnreadNotifications] = useState(Boolean(localStorage.getItem('unreadNotifications')))
 
   useEffect(()=>{
-      
     window.addEventListener('storage', ()=> setUnreadNotifications(Boolean(localStorage.getItem('unreadNotifications'))))
     return ()=> window.removeEventListener('storage', ()=> setUnreadNotifications(Boolean(localStorage.getItem('unreadNotifications'))))
-  }, [])
+  })
 
   return (
     <Box display='flex' alignSelf='center' flexDirection='column' className={"Primary-color"}>
