@@ -39,6 +39,9 @@ export const USER_RESET_REQUEST = 'USER_RESET_REQUEST';
 export const USER_RESET_SUCCESS = 'USER_RESET_SUCCESS';
 export const USER_RESET_FAILURE = 'USER_RESET_FAILURE';
 
+//User notifications
+export const USER_NOTIFICATIONS = 'USER_NOTIFICATIONS';
+
 // User Login functions
 export const fetchLoginRequest = () => {
     return {
@@ -183,5 +186,13 @@ export const fetchUsersFailure = error => {
     return {
         type: USER_GET_FAILURE,
         payload: error
+    }
+}
+
+//Update unread notifications
+export const updateNotifications = notifications => {
+    return {
+        type: USER_NOTIFICATIONS,
+        payload: [...notifications],
     }
 }

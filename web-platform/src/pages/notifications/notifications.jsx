@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {Container, Box, Grid} from '@material-ui/core';
 import { useTranslation } from "react-i18next";
 import Notification from './notification/notification';
-import { ContactSupportOutlined } from '@material-ui/icons';
+import { connect } from 'react-redux';
+import { shareNotifications } from '../../redux/actions/UserActions';
 
 const notifications_a = [
     
@@ -47,7 +48,7 @@ const notifications_a = [
     },
 ];
 
-const Notifications =()=>{
+const Notifications =({shareNotifications})=>{
 
     const { t } = useTranslation();
     const[notifications, setNotifications] = useState(notifications_a)
@@ -81,12 +82,8 @@ const Notifications =()=>{
     }
 
     useEffect(()=> {
-        localStorage.setItem('unreadNotifications', false)
-        notifications.map((not)=> {
-            if(!not.read) 
-                  localStorage.setItem('unreadNotifications', true)
-        });
-    },[notifications])
+        shareNotifications(notifications);
+    }, [notifications])
 
     return(
         <Container className='Primary-container-style'>
@@ -106,4 +103,6 @@ const Notifications =()=>{
 
 }
 
-export default Notifications;
+const mapDispatchToProps = dispatch => ({shareNotifications: (notifications) => dispatch(shareNotifications(notifications))})
+
+export default connect(null, mapDispatchToProps)(Notifications);

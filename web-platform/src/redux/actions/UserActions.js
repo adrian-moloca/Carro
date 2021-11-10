@@ -4,7 +4,7 @@ import {fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure,
     fetchUsersRequest, fetchUsersSuccess, fetchUsersFailure,
     updateUserRequest, updateUserSuccess, updateUserFailure,
     deleteUserRequest, deleteUserSuccess, deleteUserFailure,
-    changePasswordUserRequest, changePasswordUserSuccess, changePasswordUserFailure,
+    changePasswordUserRequest, changePasswordUserSuccess, changePasswordUserFailure, updateNotifications,
 } from '../types/UserTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
@@ -139,4 +139,10 @@ return (dispatch) => {
         dispatch(fetchLogoutFailure(errorMsg))
     })
 }
+}
+
+export const shareNotifications = (notifications) => {
+    return(dispatch)=>{
+        dispatch(updateNotifications(notifications));
+    }
 }
