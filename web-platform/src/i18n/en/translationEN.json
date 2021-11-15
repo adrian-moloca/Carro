@@ -199,6 +199,7 @@
     "EditRide": "Edit ride",
     "Sender": "Sender",
     "Destinatary": "Destinatary",
-    "PaymentMethods": "Payment methods"
+    "PaymentMethods": "Payment methods",
+    "WriteHereYourIssue": "Write here the issue for reject"
 
 }

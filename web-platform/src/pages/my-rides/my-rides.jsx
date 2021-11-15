@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Container, Box } from '@material-ui/core'; 
 import Ride from './ride/ride';
 import { useTranslation } from "react-i18next";
+import { fetchMyRides } from '../../redux/actions/MyRidesActions';
 
 
 const MyRides = () => {
@@ -68,14 +69,12 @@ const MyRides = () => {
   const[ridesState, setRidesState] = useState(rides_a);
 
   const deleteRide = (event, index) =>{
-    event.stopPropagation();
     const temp = [...ridesState]
     temp.splice(index, 1);
     setRidesState(temp);
   }
 
   const closeRide=(event, index)=>{
-    event.stopPropagation();
     const temp=[...ridesState] 
     temp.forEach((ride, i)=>{
       if(index === i)
@@ -106,3 +105,5 @@ const MyRides = () => {
 };
 
 export default MyRides;
+
+const mapDispatchToProps = dispatch =>({fetchMyRides: ()=>dispatch(fetchMyRides())})

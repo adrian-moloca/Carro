@@ -14,6 +14,7 @@ import greyLine from '../../../assets/images/greyLine.png';
 import useStyles from './package-card-style';
 import { useTranslation } from 'react-i18next';
 import DeliverPackage from '../../modals/deliver-package/deliver-package';
+import RejectModal from '../../modals/reject-modal/reject-modal';
 
 const PackageCard = (props) =>{
 
@@ -91,9 +92,7 @@ const PackageCard = (props) =>{
                             </GreenCaroButton>
                         </Grid>
                         <Grid container item xs={10} sm={4} justifyContent = 'center'>
-                            <SecondaryButton variant='contained' size='medium' fullWidth>
-                                {t("Refuse")}
-                            </SecondaryButton>
+                            <RejectModal />
                         </Grid>
                     </Grid>
                 );
