@@ -1,6 +1,5 @@
 import React from 'react';
 import {Box, Grid, ButtonBase } from '@material-ui/core';
-import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import DeleteModal from '../../modals/deleteModal/DeleteModal';
 import useStyles from './chatConversationCardStyle';
 
@@ -28,7 +27,10 @@ const ChatConversationCard = (props) => {
           </Grid>
           <Grid container item xs={2}>
             <Grid container item xs={12} alignItems='flex-start' justifyContent='flex-end'>
-              <DeleteModal/>
+              <DeleteModal
+              content="Doresti sa stergi conversatia?"
+              btn1Text="Anuleaza"
+              btn2Text="Sterge"/>
             </Grid>
             <Grid container item xs={12} alignItems='flex-end' justifyContent='flex-end'>
               <Box fontWeight='400' fontSize='12px' fontStyle='italic' textAlign='right' className={'Secondary-color'}>{props.date}</Box>

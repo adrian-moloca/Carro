@@ -1,6 +1,5 @@
 import React from 'react';
 import {Box, Grid} from '@material-ui/core';
-import DeleteModal from '../../modals/deleteModal/DeleteModal';
 import useStyles from './commentCardStyle';
 
 const CommentCard = (props) => {
@@ -11,7 +10,7 @@ const CommentCard = (props) => {
     <Box display='flex' width='1' mt='30px' p={1} borderRadius='10px' boxShadow={3}>
         <Grid container>
           <Grid container item xs={2} alignItems='center' justifyContent='center'>
-            <img src={props.profileImage} className={classes.profileImg}/>
+            <img src={props.profileImage} className={classes.profileImg} alt="profile"/>
           </Grid>
           <Grid container item xs={8} justifyContent='center'>
               <Grid container>

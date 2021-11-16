@@ -2,7 +2,6 @@ import React from 'react'
 import { Box, FormControl, MenuItem, Select, Grid } from '@material-ui/core';
 import navRoFlag from '../../../assets/icon/navRoFlag.png';
 import navEnFlag from '../../../assets/icon/navEnFlag.png';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import useStyles from './languageButtonStyle';
 import i18n  from '../../../i18n/config';
 

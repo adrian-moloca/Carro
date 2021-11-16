@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import {Box, Grid, SvgIcon } from '@material-ui/core';
+import {Box, Grid } from '@material-ui/core';
 import ReactCardFlip from 'react-card-flip';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
@@ -159,11 +159,11 @@ const PackageCard = (props) =>{
                         <Box width='100%' textAlign='center' fontSize={22}>{props.price}</Box>
                     </Grid>
                     <Grid container item xs={12} xl={10} justifyContent = 'space-around' >
-                        <img src={fragileIco} className={classes.advSigns}/>
-                        <img src={fishIco} className={classes.advSigns}/>
-                        <img src={fireIco} className={classes.advSigns}/>
-                        <img src={handboxIco} className={classes.advSigns}/>
-                        <img src={animalprintsIco} className={classes.advSigns}/>
+                        <img src={fragileIco} className={classes.advSigns} alt=""/>
+                        <img src={fishIco} className={classes.advSigns} alt="fish"/>
+                        <img src={fireIco} className={classes.advSigns} alt="fire"/>
+                        <img src={handboxIco} className={classes.advSigns} alt="box"/>
+                        <img src={animalprintsIco} className={classes.advSigns} alt="animal"/>
                     </Grid>
                     {getFrontButtons(props.status, props.rideExists)}
                 </Grid>
