@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, Typography, Box, Link } from "@material-ui/core";
+import { Container, Grid, Typography, Box } from "@material-ui/core";
 import CheckIcon from "../../../assets/images/check.png";
 import DeclinedIcon from "../../../assets/images/decline.png";
 import PrimaryButton from "../../../components/buttons/primaryButton/primaryButton";

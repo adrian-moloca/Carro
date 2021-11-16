@@ -27,7 +27,7 @@ export default function PrimarySearchAppBar() {
               <RenderMenuSBD/>
           </Grid>
           {/* render right btns: notifications, my account, language */}
-          <Grid container item md={3} container justifyContent="flex-end"> 
+          <Grid container item md={3} justifyContent="flex-end"> 
             {/* notifications */}
             <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
               {/* <Link to="/notifications" style={{underline:'none'}}> */}

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Switch, Modal, Box} from '@material-ui/core';
+import { Modal, Box} from '@material-ui/core';
 import SecondaryButton from '../buttons/secondaryButton/secondaryButton';
 import GreenCaroButton from '../buttons/GreenCaroButton/GreenCaroButton';
 import PrimaryColorSwitch from './switch-primary-color/switch-primary-color';
