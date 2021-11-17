@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Container, Box } from '@material-ui/core'; 
 import Ride from './ride/ride';
 import { useTranslation } from "react-i18next";
-import { fetchMyRides } from '../../redux/actions/MyRidesActions';
+import { deleteRide, fetchMyRides } from '../../redux/actions/MyRidesActions';
+import { connect } from 'react-redux';
 
 
-const MyRides = () => {
+const MyRides = ({fetchMyRides, deleteRide, myRidesData}) => {
   const { t } = useTranslation();
 
   const rides_a = [
@@ -68,10 +69,11 @@ const MyRides = () => {
 
   const[ridesState, setRidesState] = useState(rides_a);
 
-  const deleteRide = (event, index) =>{
+  const cancRide = (index, id) =>{
     const temp = [...ridesState]
     temp.splice(index, 1);
     setRidesState(temp);
+    deleteRide(id);
   }
 
   const closeRide=(event, index)=>{
@@ -85,6 +87,10 @@ const MyRides = () => {
     setRidesState(temp);
   }
 
+  useEffect(()=>{
+    fetchMyRides();
+  }, [])
+
   return (
     <Container className={'Primary-container-style'} >
       <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>
@@ -95,7 +101,7 @@ const MyRides = () => {
             <Ride ride={rideinf} departure={rideinf.departure} destination={rideinf.destination} departureDate={rideinf.departureDate}
                  departureAddress={rideinf.departureAddress} destinationAddress={rideinf.destinationAddress} estimatedTime={rideinf.estimatedTime}
                  transportType={rideinf.transportType} phoneNumber={rideinf.phoneNumber} rideStatus={rideinf.status} rideIndex={index + 1}
-                 deleteRideClicked={(e)=>deleteRide(e, index)}
+                 deleteRideClicked={()=>cancRide(index, rideinf.id)}
                  closeRideClicked={(e)=>closeRide(e, index)}
             />
           </Box>  
@@ -104,6 +110,10 @@ const MyRides = () => {
   );
 };
 
-export default MyRides;
+const mapDispatchToProps = dispatch =>({
+  fetchMyRides: ()=>dispatch(fetchMyRides()),
+  deleteRide: (id)=>dispatch(deleteRide(id)),
+});
+const mapStateToProps = state =>({rides: state.myRidesData});
 
-const mapDispatchToProps = dispatch =>({fetchMyRides: ()=>dispatch(fetchMyRides())})
+export default connect(mapStateToProps, mapDispatchToProps)(MyRides);

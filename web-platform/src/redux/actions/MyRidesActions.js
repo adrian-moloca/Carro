@@ -26,7 +26,7 @@ export const createNewRide = (departureDate, fromCountry, fromCity, toCountry, t
 
 return(dispatch) => {
 dispatch(createNewRideRequest);
-axios.post(data.baseUrl+"/identity/register",{
+axios.post(data.baseUrl+"/myRides/",{
     departureDate: departureDate,
     fromCountry: fromCountry,
     fromCity: fromCity,

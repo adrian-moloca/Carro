@@ -32,7 +32,13 @@ const NotificationDetails = (props) =>{
         details: 'ceva de trimis',
         price: '15 RON',
         status: 6, 
-        rideExists: true,
+        packageSpecialMention: {
+            isFragile: true,
+            isFoodGrade: false,
+            isFlammable: false,
+            isHandleWithCare: true,
+            isAnimal: true,
+          },
     }
 
     const Package2 ={
@@ -49,7 +55,13 @@ const NotificationDetails = (props) =>{
         details: 'ceva de trimis',
         price: '15 RON',
         status: 2, 
-        rideExists: true,
+        packageSpecialMention: {
+            isFragile: true,
+            isFoodGrade: false,
+            isFlammable: false,
+            isHandleWithCare: true,
+            isAnimal: true,
+          },
     }
     
 
@@ -101,7 +113,7 @@ const NotificationDetails = (props) =>{
                                 senderPhone={Package.senderPhone} destinatary={Package.destinatary} destinataryPhone={Package.destinataryPhone}
                                 packageWeight={Package.packageWeight} departureDate={Package.departureDate} price={Package.price}
                                 departureAddress={Package.departureAddress} destinationAddress={Package.destinationAddress} details={Package.details}
-                                status= {Package.status} rideExists={Package.rideExists}/>
+                                status= {Package.status} specialMention={Package.packageSpecialMention}/>
                     </Grid>
                 );
             case 'cerere transport':
@@ -111,7 +123,7 @@ const NotificationDetails = (props) =>{
                                 senderPhone={Package2.senderPhone} destinatary={Package2.destinatary} destinataryPhone={Package2.destinataryPhone}
                                 packageWeight={Package2.packageWeight} departureDate={Package2.departureDate} price={Package2.price}
                                 departureAddress={Package2.departureAddress} destinationAddress={Package2.destinationAddress} details={Package2.details}
-                                status= {Package2.status} rideExists={Package2.rideExists}/>
+                                status= {Package2.status}  specialMention={Package2.packageSpecialMention}/>
                     </Grid>      
                 );
             default:

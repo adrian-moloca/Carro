@@ -3,7 +3,7 @@ import {Box, Grid, IconButton, Menu, MenuItem} from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { Edit } from '@material-ui/icons';
 import useStyles from './CreditCardStyle';
-
+import EditCreditCard from '../../modals/edit-credit-card/edit-credit-card';
 const CarroCreditCard = (props)=>{
 
     const classes = useStyles();
@@ -41,11 +41,7 @@ const CarroCreditCard = (props)=>{
                 <Grid container item xs={5} justifyContent='flex-end'>
                     <Box mx={2} mt={2} className={'Secondary-color'}>{props.cardHolder}</Box>
                 </Grid>
-                <Grid container item xs={1} justifyContent='flex-end'>
-                    <IconButton onClick={handleEdit} className={'Primary-color'}>
-                        <Edit fontSize='small'/>
-                    </IconButton>
-                </Grid>
+                <EditCreditCard creditCard={props.creditCard}/>
                 <Grid container item xs={11} justifyContent='flex-start'>
                     <Box mt={2} fontSize={25} fontWeight='500'>{props.cardNumber}</Box>
                 </Grid>

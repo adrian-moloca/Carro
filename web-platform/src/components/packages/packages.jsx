@@ -18,6 +18,13 @@ const packages_a = [
         price: '15 RON',
         status: 10,
         rideExists: true,
+        packageSpecialMention: {
+            isFragile: true,
+            isFoodGrade: false,
+            isFlammable: false,
+            isHandleWithCare: true,
+            isAnimal: true,
+          },
     }
 ]
 
@@ -31,7 +38,7 @@ const Packages = (props) =>{
                                     senderPhone={pack.senderPhone} destinatary={pack.destinatary} destinataryPhone={pack.destinataryPhone}
                                     packageWeight={pack.packageWeight} departureDate={pack.departureDate} price={pack.price}
                                     departureAddress={pack.departureAddress} destinationAddress={pack.destinationAddress} details={pack.details}
-                                    status= {pack.status} rideExists={pack.rideExists}/>
+                                    status= {pack.status} rideExists={pack.rideExists} specialMention={pack.packageSpecialMention}/>
                     </Grid>
             )} 
         </Fragment>

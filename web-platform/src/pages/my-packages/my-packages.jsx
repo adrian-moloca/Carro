@@ -22,6 +22,13 @@ const packages = [
     price: '150 RON',
     name: 'Pachetul meu',
     status: 1,
+    packageSpecialMention: {
+      isFragile: true,
+      isFoodGrade: false,
+      isFlammable: false,
+      isHandleWithCare: true,
+      isAnimal: false,
+    },
   },
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -36,6 +43,13 @@ const packages = [
     price: '150 RON',
     name: 'Pachetul meu',
     status:  2,
+    packageSpecialMention: {
+      isFragile: false,
+      isFoodGrade: true,
+      isFlammable: false,
+      isHandleWithCare: false,
+      isAnimal: false,
+    },
   },
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -51,6 +65,13 @@ const packages = [
     name: 'Pachetul meu',
     status:  3,
     location: 'PITESTI',
+    packageSpecialMention: {
+      isFragile: false,
+      isFoodGrade: false,
+      isFlammable: false,
+      isHandleWithCare: true,
+      isAnimal: false,
+    },
   },
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -65,6 +86,13 @@ const packages = [
     price: '150 RON',
     name: 'Pachetul meu',
     status:  3,
+    packageSpecialMention: {
+      isFragile: false,
+      isFoodGrade: true,
+      isFlammable: false,
+      isHandleWithCare: false,
+      isAnimal: false,
+    },
   },
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -79,6 +107,13 @@ const packages = [
     price: '150 RON',
     name: 'Pachetul meu',
     status:  5,
+    packageSpecialMention: {
+      isFragile: false,
+      isFoodGrade: false,
+      isFlammable: true,
+      isHandleWithCare: true,
+      isAnimal: false,
+    },
   },
   {
     departureDate: '26/08/2021 02:00 AM',
@@ -93,11 +128,19 @@ const packages = [
     price: '150 RON',
     name: 'Pachetul meu',
     status:  4,
+    packageSpecialMention: {
+      isFragile: true,
+      isFoodGrade: false,
+      isFlammable: false,
+      isHandleWithCare: true,
+      isAnimal: true,
+    },
   },
 ];
 
 
   const[packagesState, setPackagesState] = useState(packages);
+  
 
   const deletePackage=(event, index)=>{
       const temp=[...packagesState] 
@@ -125,7 +168,7 @@ const packages = [
                          departureAddress={packageinf.departureAddress} destinationAddress={packageinf.destinationAddress} packageType={packageinf.packageType}
                          weight={packageinf.weight} description={packageinf.description} dimensions={packageinf.dimensions} price={packageinf.price} name={packageinf.name}
                          status={packageinf.status} deletePackageClicked={(e)=>deletePackage(e, index)} packageLocation={packageinf.location}
-                         closePackageClicked={(e)=>closePackage(e, index)}
+                         closePackageClicked={(e)=>closePackage(e, index)} packageSpecialMention = {packageinf.packageSpecialMention}
                          />}
           )}
         </Container>

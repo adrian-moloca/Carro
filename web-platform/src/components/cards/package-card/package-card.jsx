@@ -5,11 +5,11 @@ import PrimaryButton from '../../buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import packageImg from '../../../assets/images/box-small.png';
-import fragileIco from '../../../assets/images/fragile.png';
-import fishIco from '../../../assets/images/environmentdang.png';
-import fireIco from '../../../assets/images/firedang.png';
-import handboxIco from '../../../assets/images/boxHands.png';
-import animalprintsIco from '../../../assets/images/animalPrints.png';
+import fragil from '../../../assets/images/fragil.png';
+import foodGrade from '../../../assets/images/foodGrade.png';
+import flammable from '../../../assets/images/flammable.png';
+import handleWithCare from '../../../assets/images/handleWithCare.png';
+import animal from '../../../assets/images/animal.png';
 import greyLine from '../../../assets/images/greyLine.png';
 import useStyles from './package-card-style';
 import { useTranslation } from 'react-i18next';
@@ -74,12 +74,12 @@ const PackageCard = (props) =>{
                     );
             case 6:
                 return(
-                    <Grid container justifyContent = 'center'  spacing={2}>
+                    <Grid container justifyContent = 'center'>
                         <Grid container item xs={10} justifyContent = 'center'>
-                            <Box my='10' className='Secondary-color' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
+                            <Box mt='5%' className='Secondary-color' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
                         </Grid>
                         <Grid container item xs={10} justifyContent = 'center'>
-                            <Box my='10%' className='Secondary-color' fontSize='18px' fontWeight='500'>Nu mai plec</Box>
+                            <Box my='3%' className='Secondary-color' fontSize='18px' fontWeight='500'>Nu mai plec</Box>
                         </Grid>
                     </Grid>
                 );
@@ -159,11 +159,11 @@ const PackageCard = (props) =>{
                         <Box width='100%' textAlign='center' fontSize={22}>{props.price}</Box>
                     </Grid>
                     <Grid container item xs={12} xl={10} justifyContent = 'space-around' >
-                        <img src={fragileIco} className={classes.advSigns} alt=""/>
-                        <img src={fishIco} className={classes.advSigns} alt="fish"/>
-                        <img src={fireIco} className={classes.advSigns} alt="fire"/>
-                        <img src={handboxIco} className={classes.advSigns} alt="box"/>
-                        <img src={animalprintsIco} className={classes.advSigns} alt="animal"/>
+                    <img src={fragil} className={props.specialMention.isFragile ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                    <img src={foodGrade} className={props.specialMention.isFoodGrade ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                    <img src={flammable} className={props.specialMention.isFlammable ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                    <img src={handleWithCare} className={props.specialMention.isHandleWithCare ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                    <img src={animal} className={props.specialMention.isAnimal ? classes.advStyle : classes.advNoneStyle} alt={""}/>
                     </Grid>
                     {getFrontButtons(props.status, props.rideExists)}
                 </Grid>

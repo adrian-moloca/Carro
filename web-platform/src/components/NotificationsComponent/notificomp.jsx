@@ -9,17 +9,17 @@ import {connect} from 'react-redux';
   const [hideBadge, setHideBadge] = useState(false)
   const [unreadNotifications, setUnreadNotifications] = useState([notifications.filter(el => el.read == false)]);
 
-  
-
   useEffect(()=>{
     const unread = notifications.filter(el => el.read == false)
     setUnreadNotifications(unread)
-
+  }, [notifications])
+  
+  useEffect(()=>{
     if(unreadNotifications.length>0)
       setHideBadge(false)
     else
       setHideBadge(true)
-  })
+  }, [unreadNotifications])
 
   return (
     <Box display='flex' alignSelf='center' flexDirection='column' className={"Primary-color"}>

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
 import CardSelected from '../../components/card-selected/card-selected';
 import { useTranslation } from "react-i18next";
-//TREBUIE FACUT REVIEW PE useLayoutEffect
 
 const PaymentMethod = () => {
   const { t } = useTranslation();

@@ -4,12 +4,108 @@ import { Country, City } from "country-state-city";
 import { useTranslation } from 'react-i18next';
 import { Autocomplete } from "@material-ui/lab";
 import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
-import PaginationSBD from "../../components/pagination/pagination";
+import {Pagination} from '@material-ui/lab';
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import CarroTextField from "../../components/textField/CarroTextField";
-import Packages from "../../components/packages/packages";
+import PackageCard from '../../components/cards/package-card/package-card';
+import usePagination from '../../components/pagination/use-pagination/use-pagination';
 
 const SearchPackages = () => {
+
+  const packages_a = [
+    {
+        sender: 'George Micu',
+        senderPhone: '0888888888',
+        destinatary: 'George Mare',
+        destinataryPhone: '0999999999',
+        packageQuantity: 1,
+        packageDimensions: '0x0x0',
+        packageWeight: '1 Kg',
+        departureDate: '26/08/2021 02:00 AM',
+        departureAddress: 'Lorem Ipsium Street',
+        destinationAddress: 'Lorem Ipsium Street',
+        details: 'ceva de trimis',
+        price: '15 RON',
+        status: 10,
+        rideExists: true,
+        packageSpecialMention: {
+            isFragile: true,
+            isFoodGrade: false,
+            isFlammable: false,
+            isHandleWithCare: true,
+            isAnimal: true,
+          },
+    },
+    {
+      sender: 'George Micu',
+      senderPhone: '0888888888',
+      destinatary: 'George Mare',
+      destinataryPhone: '0999999999',
+      packageQuantity: 1,
+      packageDimensions: '0x0x0',
+      packageWeight: '1 Kg',
+      departureDate: '26/08/2021 02:00 AM',
+      departureAddress: 'Lorem Ipsium Street',
+      destinationAddress: 'Lorem Ipsium Street',
+      details: 'ceva de trimis',
+      price: '15 RON',
+      status: 10,
+      rideExists: true,
+      packageSpecialMention: {
+          isFragile: false,
+          isFoodGrade: false,
+          isFlammable: false,
+          isHandleWithCare: false,
+          isAnimal: true,
+        },
+    },
+    {
+      sender: 'George Micu',
+      senderPhone: '0888888888',
+      destinatary: 'George Mare',
+      destinataryPhone: '0999999999',
+      packageQuantity: 1,
+      packageDimensions: '0x0x0',
+      packageWeight: '1 Kg',
+      departureDate: '26/08/2021 02:00 AM',
+      departureAddress: 'Lorem Ipsium Street',
+      destinationAddress: 'Lorem Ipsium Street',
+      details: 'ceva de trimis',
+      price: '15 RON',
+      status: 10,
+      rideExists: true,
+      packageSpecialMention: {
+          isFragile: false,
+          isFoodGrade: false,
+          isFlammable: true,
+          isHandleWithCare: true,
+          isAnimal: true,
+        },
+    },
+    {
+      sender: 'George Micu',
+      senderPhone: '0888888888',
+      destinatary: 'George Mare',
+      destinataryPhone: '0999999999',
+      packageQuantity: 1,
+      packageDimensions: '0x0x0',
+      packageWeight: '1 Kg',
+      departureDate: '26/08/2021 02:00 AM',
+      departureAddress: 'Lorem Ipsium Street',
+      destinationAddress: 'Lorem Ipsium Street',
+      details: 'ceva de trimis',
+      price: '15 RON',
+      status: 10,
+      rideExists: true,
+      packageSpecialMention: {
+          isFragile: false,
+          isFoodGrade: false,
+          isFlammable: true,
+          isHandleWithCare: true,
+          isAnimal: true,
+        },
+    },
+  ]
 
   const { t } = useTranslation();
   // state
@@ -29,6 +125,12 @@ const SearchPackages = () => {
     City.getCitiesOfCountry(country).map((city) => cities.push(city.name));
     return cities;
   };
+
+  const[packagesState, setPackagesState] = useState(packages_a);
+  const packages = usePagination(packagesState, 3)
+  
+  const [page, setPage] = React.useState(1);
+  const handleChange = (event, value) => {setPage(value); packages.jump(value)};
 
   // render
   return (
@@ -144,10 +246,28 @@ const SearchPackages = () => {
         </Grid>
       </Box>
       <Box display="flex" justifyContent="space-between" mt="3%">
-        <Packages/>
+      { packages.currentData().map((pack, index)=>
+          <Grid key={index} container item xs={12}  md={5}  xl={4} justifyContent='space-around'>
+            <PackageCard packageQuantity={pack.packageQuantity} packageDimensions={pack.packageDimensions} sender={pack.sender}
+                        senderPhone={pack.senderPhone} destinatary={pack.destinatary} destinataryPhone={pack.destinataryPhone}
+                        packageWeight={pack.packageWeight} departureDate={pack.departureDate} price={pack.price}
+                        departureAddress={pack.departureAddress} destinationAddress={pack.destinationAddress} details={pack.details}
+                        status= {pack.status} rideExists={pack.rideExists} specialMention={pack.packageSpecialMention}/>
+          </Grid>
+        )}
       </Box>
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">
-        <PaginationSBD /> 
+        <Box width='1' mt='5%' display='flex' justifyContent='center'>
+            <Pagination 
+              count={packages.maxPage} 
+              variant="outlined" 
+              shape="rounded" 
+              page={page} 
+              onChange={handleChange}
+              size='medium'
+
+            />
+          </Box> 
       </Box>
     </Container>
   );
