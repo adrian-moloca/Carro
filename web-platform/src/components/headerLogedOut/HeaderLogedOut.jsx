@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, IconButton, Box, Grid } from "@material-ui/core";
+import { AppBar, Toolbar, Box, Grid } from "@material-ui/core";
 import BasicSelect from '../../components/buttons/languageButton/languageButton';
 import CaroLogo from '../../assets/logo/CaroLogo.png';
 import RenderMobileMenu from './headerLogedOutComponents/headerLogedOutMobileMenu/headerLogedOutMobileMenu'

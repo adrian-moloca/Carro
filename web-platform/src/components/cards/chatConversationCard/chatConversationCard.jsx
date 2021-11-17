@@ -1,6 +1,5 @@
 import React from 'react';
 import {Box, Grid, ButtonBase } from '@material-ui/core';
-import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import DeleteModal from '../../modals/deleteModal/DeleteModal';
 import useStyles from './chatConversationCardStyle';
 import { useTranslation } from 'react-i18next';

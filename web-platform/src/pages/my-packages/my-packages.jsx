@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import { Container, Box } from '@material-ui/core';
 import Package from './package/package';
 import { useTranslation } from "react-i18next";

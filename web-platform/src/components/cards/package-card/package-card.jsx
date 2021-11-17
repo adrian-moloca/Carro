@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import {Box, Grid, SvgIcon } from '@material-ui/core';
+import {Box, Grid } from '@material-ui/core';
 import ReactCardFlip from 'react-card-flip';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';

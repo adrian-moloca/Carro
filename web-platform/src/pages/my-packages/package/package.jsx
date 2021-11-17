@@ -1,9 +1,8 @@
-import React, {Fragment, useState} from 'react';
-import { Box, Grid, Collapse, Typography, ButtonBase, } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Box, Grid, Collapse, Typography } from '@material-ui/core';
 import {ExpandMore, ExpandLess, ArrowForward } from '@material-ui/icons';
 import PackageDetails from './package-details/package-details';
 import ActionsByStatus from './actions-by-status/actions-by-status';
-import useStyles from  './package-style';
 import { useTranslation } from "react-i18next";
 import IconButtonNoVerticalPadding from '../../../components/buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 
@@ -38,8 +37,6 @@ const { t } = useTranslation();
         return 'Unkown Status';
     }
   }
-
-  const classes = useStyles();
 
   const[expanded, setExpanded] = useState(false);
   

@@ -6,20 +6,14 @@ import americanExpress from '../../assets/images/americanExpress.png';
 import discover from '../../assets/images/discover.png';
 import CarroRadio from '../radio/CarroRadio';
 import CarroCreditCard from '../cards/CreditCard/CreditCard';
-import CarroTextField from '../textField/CarroTextField';
-import CarroDatePicker from '../datePicker/CarroDatePicker';
-import PrimaryButton from '../buttons/primaryButton/primaryButton';
 import AddCard from '../add-card/add-card';
 import {Add} from '@material-ui/icons';
-import useStyles from './card-selectedStyle'
 import { useTranslation } from 'react-i18next';
 import EditCreditCard from '../modals/edit-credit-card/edit-credit-card';
 
 const CardSelected = (props) =>{
 
     const{t}=useTranslation();
-
-    const classes = useStyles();
 
     const[cardSelected, setCardSelected] = useState('cardOnline1');
     const[cardHolder, setCardHolder] = useState();
