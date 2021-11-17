@@ -1,10 +1,10 @@
 import React from 'react';
 import {Box, Grid} from '@material-ui/core';
-import fragile from '../../../../assets/images/fragile.png';
-import environmentdang from '../../../../assets/images/environmentdang.png';
-import firedang from '../../../../assets/images/firedang.png';
-import boxHands from '../../../../assets/images/boxHands.png';
-import animalPrints from '../../../../assets/images/animalPrints.png';
+import fragil from '../../../../assets/images/fragil.png';
+import foodGrade from '../../../../assets/images/foodGrade.png';
+import flammable from '../../../../assets/images/flammable.png';
+import handleWithCare from '../../../../assets/images/handleWithCare.png';
+import animal from '../../../../assets/images/animal.png';
 import Rides from '../../../../components/rides/rides';
 import useStyles from './package-details-style';
 import { useTranslation } from "react-i18next";
@@ -47,11 +47,11 @@ const PackageDetails = (props)=>{
                 <Box>{t("CardName")} {props.name}</Box>
             </Grid>
             <Grid container item xs={6} justifyContent='space-around'>
-                <img src={fragile} className={classes.advStyle} alt={""}/>
-                <img src={environmentdang} className={classes.advStyle} alt={""}/>
-                <img src={firedang} className={classes.advStyle} alt={""}/>
-                <img src={boxHands} className={classes.advStyle} alt={""}/>
-                <img src={animalPrints} className={classes.advStyle} alt={""}/>
+                <img src={fragil} className={props.specialMention.isFragile ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                <img src={foodGrade} className={props.specialMention.isFoodGrade ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                <img src={flammable} className={props.specialMention.isFlammable ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                <img src={handleWithCare} className={props.specialMention.isHandleWithCare ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                <img src={animal} className={props.specialMention.isAnimal ? classes.advStyle : classes.advNoneStyle} alt={""}/>
             </Grid>
         </Grid>
         <Box my='2%' fontSize={20}>{t("Transports")}</Box>

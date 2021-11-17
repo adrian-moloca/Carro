@@ -15,12 +15,15 @@ const AddTransport = () =>{
   const transports = [t("PublicTransport"), t("Car"), "Tir", t("Truck"), t("Minibus")]; 
 
   // state
-  const [departureDate, setDepartureDate] = useState(null);
-  const [departureCountry, setDepartureCountry] = useState(null);
-  const [destinationCountry, setDestinationCountry] = useState(null);
-  const [departureCity, setDepartureCity] = useState(null);
-  const [destinationCity, setDestinationCity] = useState(null);
-  const [transportType, setTransportType] = useState(null);
+  const [departureDate, setDepartureDate] = useState(new Date());
+  const [departureCountry, setDepartureCountry] = useState('');
+  const [destinationCountry, setDestinationCountry] = useState('');
+  const [departureCity, setDepartureCity] = useState('');
+  const [destinationCity, setDestinationCity] = useState('');
+  const [departureAddress, setDepartureAddress] = useState('');
+  const [destinationAddress, setDestinationAddress] = useState('');
+  const [transportType, setTransportType] = useState('');
+  const [estimatedTime, setEstimatedTime] = useState('');
   // event lisenters
   const handleChangeDepartureDate=(date)=> setDepartureDate(date);
   const handleChangeDepartureCountry=(event)=> setDepartureCountry(event.target.value);
@@ -28,6 +31,9 @@ const AddTransport = () =>{
   const handleChangeDepartureCity=(event)=> setDepartureCity(event.target.textContent);
   const handleChangeDestinationCity=(event)=> setDestinationCity(event.target.textContent);
   const handleChangeTransportType=(event)=> setTransportType(event.target.value)
+  const handleChangeDepartureAddress=(event)=> setDepartureAddress(event.target.value);
+  const handleChangeDestinationAddress=(event)=> setDestinationAddress(event.target.value);
+  const handleChangeEstimatedTime=(event)=> setEstimatedTime(event.target.value)
 
   const getTransportType = ()=> { return transports };
   const getCountries = ()=> { return Country.getAllCountries()};
@@ -36,6 +42,16 @@ const AddTransport = () =>{
       const cities = [];
       City.getCitiesOfCountry(country).map((city)=>(cities.push(city.name)));
       return cities;
+  }
+
+  const isFormComplete = () =>{
+    if(
+      departureDate && departureCountry && destinationCountry && departureCity && destinationCity && 
+      departureAddress && destinationAddress && transportType && estimatedTime
+    )
+        return true;
+    else
+        return false;
   }
 
   return(
@@ -52,34 +68,34 @@ const AddTransport = () =>{
               </CarroTextField>
           </Grid>
           <Grid container item xs={12} md ={6} xl={6}  justifyContent="center">
-            <CarroAutocomplete options={getCities(departureCountry)} label={t("SearchRideDepartureCity")} onChange={(e)=>handleChangeDepartureCity(e)}/>
+            <CarroAutocomplete options={getCities(departureCountry)} label={t("SearchRideDepartureCity")} onChange={handleChangeDepartureCity}/>
           </Grid>
           <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
-            <CarroTextField variant ='outlined' label={t("SearchRideDestinationCountry")} fullWidth select value={destinationCountry} onChange={(e)=>handleChangeDestinationCountry(e)}>
+            <CarroTextField variant ='outlined' label={t("SearchRideDestinationCountry")} fullWidth select value={destinationCountry} onChange={handleChangeDestinationCountry}>
               {getCountries().map((country)=>(
                   <MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>
               ))}
             </CarroTextField>
           </Grid>
           <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
-              <CarroAutocomplete options={getCities(destinationCountry)} label={t("SearchRideDestinationCity")} onChange={(e)=>handleChangeDestinationCity(e)}/>
+              <CarroAutocomplete options={getCities(destinationCountry)} label={t("SearchRideDestinationCity")} onChange={handleChangeDestinationCity}/>
           </Grid>
           <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
-              <CarroTextField variant ='outlined' label={t("DriverCardDepartureAddress")} fullWidth/>
+              <CarroTextField variant ='outlined' value={departureAddress} onChange={handleChangeDepartureAddress} label={t("DriverCardDepartureAddress")} fullWidth/>
           </Grid>
           <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
-              <CarroTextField variant ='outlined' label={t("DriverCardDestinationAddress")} fullWidth/>
+              <CarroTextField variant ='outlined' value={destinationAddress} onChange={handleChangeDestinationAddress} label={t("DriverCardDestinationAddress")} fullWidth/>
           </Grid>
           <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
-            <CarroDatePicker label={t("DriverCardDepartureDate")} value={departureDate} onChange={(e)=>handleChangeDepartureDate(e)}/>
+            <CarroDatePicker label={t("DriverCardDepartureDate")} value={departureDate} format='dd/MM/yyyy' onChange={handleChangeDepartureDate}/>
           </Grid>
           <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
-            <CarroTextField select variant ='outlined' label={t("DriverCardType")} fullWidth value={transportType} onChange={(e)=>handleChangeTransportType(e)}>
+            <CarroTextField select variant ='outlined' label={t("DriverCardType")} fullWidth value={transportType} onChange={handleChangeTransportType}>
               {getTransportType().map((transport)=>(<MenuItem value={transport}>{transport}</MenuItem>))}
             </CarroTextField>
           </Grid>
           <Grid container item xs={12}  md ={12} xl={12}  justifyContent='center'>
-              <CarroTextField variant ='outlined' label={t("DriverCardEstimatedHours")} fullWidth/>
+              <CarroTextField variant ='outlined' value={estimatedTime} onChange={handleChangeEstimatedTime} label={t("DriverCardEstimatedHours")} fullWidth/>
           </Grid>
         </Grid>
       </Box>
@@ -91,7 +107,7 @@ const AddTransport = () =>{
           </Link>
           </Grid>
           <Grid container item xs  justifyContent='center'>
-            <PrimaryButton endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Add')}</PrimaryButton>
+            <PrimaryButton disabled={!isFormComplete()} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Add')}</PrimaryButton>
           </Grid>
         </Grid>
       </Box>

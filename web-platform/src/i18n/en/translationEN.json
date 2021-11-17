@@ -200,6 +200,7 @@
     "Sender": "Sender",
     "Destinatary": "Destinatary",
     "PaymentMethods": "Payment methods",
-    "WriteHereYourIssue": "Write here the issue for reject"
+    "WriteHereYourIssue": "Write here the issue for reject",
+    "VerifyDelete": "Are you sure to delete this conversation?"
 
 }

@@ -3,10 +3,12 @@ import {Box, Grid, ButtonBase } from '@material-ui/core';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import DeleteModal from '../../modals/deleteModal/DeleteModal';
 import useStyles from './chatConversationCardStyle';
+import { useTranslation } from 'react-i18next';
 
 const ChatConversationCard = (props) => {
 
   const classes = useStyles();
+  const { t } = useTranslation();
   
   return(
     <Box display='flex' width='1' mt='5%' p={1} borderRadius='10px' boxShadow={3}>
@@ -28,7 +30,7 @@ const ChatConversationCard = (props) => {
           </Grid>
           <Grid container item xs={2}>
             <Grid container item xs={12} alignItems='flex-start' justifyContent='flex-end'>
-              <DeleteModal/>
+              <DeleteModal content={t('VerifyDelete')} btn1Text={t('DriverCardBackButton')} btn2Text={t('DeleteButton')} clickedBtn2={props.deleteConversation}/>
             </Grid>
             <Grid container item xs={12} alignItems='flex-end' justifyContent='flex-end'>
               <Box fontWeight='400' fontSize='12px' fontStyle='italic' textAlign='right' className={'Secondary-color'}>{props.date}</Box>

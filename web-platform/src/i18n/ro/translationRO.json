@@ -516,6 +516,7 @@
     "Sender": "Expeditor",
     "Destinatary": "Destinatar",
     "PaymentMethods": "Metode de plata",
-    "WriteHereYourIssue": "Scrie aici motivul pentru care refuzi"
+    "WriteHereYourIssue": "Scrie aici motivul pentru care refuzi",
+    "VerifyDelete": "Esti sigur ca doresti sa stergi aceasta conversatie?"
 
 }

@@ -28,15 +28,10 @@ const CarroDatePicker = (props)=>{
                     inputVariant="outlined"
                     variant='inline'
                     autoOk={true}
-                    label={props.label}
-                    views={props.views}
-                    format={props.format}
-                    openTo={props.openTo}
                     TextFieldComponent={CarroTextField}
                     fullWidth
                     defaultValue={props.defaultShow}
                     disablePast
-                    disabled={props.disabled}
                     {...props}
                 />  
             </ThemeProvider>

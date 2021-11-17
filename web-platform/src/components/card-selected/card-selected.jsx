@@ -196,9 +196,8 @@ const CardSelected = (props) =>{
                     <CarroCreditCard cardProvider = {value.cardProvider} cardHolder = {value.cardHolder}
                         cardNumber = {'**** **** **** ' + value.cardNumber.substr(value.cardNumber.length - 4, value.cardNumber.length)} 
                         dateEmission = {value.dateSaved} dateExp = {value.expDate} clickedDelete={()=>deleteCard(index, value.name)} 
-                        clickedEdit={()=>handleEditCard(index)}
+                        clickedEdit={()=>handleEditCard(index)} creditCard={value} clickedSaveButton={()=>handleSaveButtonEditCard(index)}
                     />
-                    <EditCreditCard creditCard={value} clickedSaveButton={()=>handleSaveButtonEditCard(index)}/>
                 </Grid>
                 <Grid container item  xs={12} sm={3} md={3} lg={3} xl={3} justifyContent='center' alignItems='center'>
                     <Box>
