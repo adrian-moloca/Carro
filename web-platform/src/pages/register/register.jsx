@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import { Container, Box, Grid, Checkbox, StepConnector, Avatar, Link } from "@material-ui/core";
+import { Container, Box, Grid, Checkbox, StepConnector, Avatar } from "@material-ui/core";
+import { Link } from 'react-router-dom';
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import GoogleIcon from "../../assets/images/GoogleIcon.png";
@@ -17,13 +18,19 @@ const Register = () => {
   const { t } = useTranslation();
   const classes = useStyles();
 
-  const [checked, setChecked] = React.useState(true);
-  const [state, setState] = React.useState({checkedA: true});
+  const [terms, setTerms] = useState(false);
 
   const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState(null);
   const [countryPhoneCode, setCountryPhoneCode] = useState(null);
 
-  const handleChange = (event) => {setState({ ...state, [event.target.name]: event.target.checked })};
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState(new Date());
+
+  // const handleChange = (event) => {setState({ ...state, [event.target.name]: event.target.checked })};
 
   return (
     <Container className={"Primary-container-style"}>
@@ -70,7 +77,7 @@ const Register = () => {
         <FormGroup row>
           <FormControlLabel
             classes={{ label: classes.label }}
-            control={<Checkbox checked={state.checkedA} onChange={handleChange} name="checkedA" color="default"/>}
+            control={<Checkbox checked={terms} onChange={() => setTerms(!terms)} name="checkedA" color="default"/>}
             label={t("TermsAndConditions")}
           />
         </FormGroup>
@@ -78,11 +85,13 @@ const Register = () => {
       </Box>
       <Box display="flex" justifyContent="center" mt="3%" mb="5%">
       <Grid container item xs={8}>
-        <PrimaryButton className="ButtonTextSize" fullWidth variant="contained" endIcon={<PersonAddIcon />}>
-          <Link href="/register/phone-number-verification" underline= 'none' color= 'inherit'>
+      <Link to="/register/phone-number-verification" style={{textDecoration: 'none', color: 'inherit', width: '100%'}}>
+        <PrimaryButton className="ButtonTextSize" fullWidth variant="contained" endIcon={<PersonAddIcon />} disabled={!terms}>
+          
           {t("Register")}
-          </Link>
+          
         </PrimaryButton>
+        </Link>
       </Grid>
       </Box>
       <Box display="flex" justifyContent="center" mb="3%">
