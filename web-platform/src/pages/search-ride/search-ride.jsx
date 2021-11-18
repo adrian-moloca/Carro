@@ -100,10 +100,10 @@ const SearchRide = () => {
 
   // state
   const { t } = useTranslation();
-  const [departureCountry, setDepartureCountry] = useState("RO");
-  const [destinationCountry, setDestinationCountry] = useState("RO");
-  const [departureCity, setDepartureCity] = useState("Bucharest");
-  const [destinationCity, setDestinationCity] = useState("Bucharest");
+  const [departureCountry, setDepartureCountry] = useState("");
+  const [destinationCountry, setDestinationCountry] = useState("");
+  const [departureCity, setDepartureCity] = useState("");
+  const [destinationCity, setDestinationCity] = useState("");
   // handlers
   const handleChangeDepartureCountry = (event) => setDepartureCountry(event.target.value);
   const handleChangeDestinationCountry = (event) => setDestinationCountry(event.target.value);

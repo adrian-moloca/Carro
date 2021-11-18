@@ -517,6 +517,11 @@
     "Destinatary": "Destinatar",
     "PaymentMethods": "Metode de plata",
     "WriteHereYourIssue": "Scrie aici motivul pentru care refuzi",
-    "VerifyDelete": "Esti sigur ca doresti sa stergi aceasta conversatie?"
-
+    "VerifyDelete": "Doresti sa stergi aceasta conversatie?",
+    "MarkAsRead": "Marcheaza ca citit",
+    "MarkAsUnread": "Marcheaza ca necitit",
+    "DeleteNotification": "Doresti sa stergi notificarea?",
+    "Delete": "Sterge",
+    "Back": "Inapoi"
+    
 }

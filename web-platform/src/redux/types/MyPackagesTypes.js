@@ -1,23 +1,23 @@
-// My Packages types
+//My Packages types
 
 // My Packages request
 export const MY_PACKAGES_REQUEST = 'MY_PACKAGES_REQUEST';
 export const MY_PACKAGES_SUCCESS = 'MY_PACKAGES_SUCCESS';
 export const MY_PACKAGES_FAILURE = 'MY_PACKAGES_FAILURE';
 
-// User Create new ride
+// User Create new package
 
 export const NEW_PACKAGE_REQUEST = 'NEW_PACKAGE_REQUEST';
 export const NEW_PACKAGE_SUCCESS = 'NEW_PACKAGE_SUCCESS';
 export const NEW_PACKAGE_FAILURE = 'NEW_PACKAGE_FAILURE';
 
-// Update ride
+// Update package
 
 export const PACKAGE_UPDATE_REQUEST = 'PACKAGE_UPDATE_REQUEST';
 export const PACKAGE_UPDATE_SUCCESS = 'PACKAGE_UPDATE_SUCCESS';
 export const PACKAGE_UPDATE_FAILURE = 'PACKAGE_UPDATE_FAILURE';
 
-// Delete ride
+// Delete package
 
 export const PACKAGE_DELETE_REQUEST = 'PACKAGE_DELETE_REQUEST';
 export const PACKAGE_DELETE_SUCCESS = 'PACKAGE_DELETE_SUCCESS';
@@ -65,7 +65,7 @@ export const createNewPackageFailure = error => {
     }
 }
 
-// Update ride
+// Update package
 
 export const updatePackageRequest = () => {
     return {
@@ -86,7 +86,7 @@ export const updatePackageFailure = error => {
     }
 }
 
-// Delete user
+// Delete package
 
 export const deletePackageRequest = () => {
     return {

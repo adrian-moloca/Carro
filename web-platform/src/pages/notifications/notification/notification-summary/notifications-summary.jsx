@@ -1,13 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Grid, Button } from '@material-ui/core';
 import PrimaryButton from '../../../../components/buttons/primaryButton/primaryButton';
 import DeleteModal from '../../../../components/modals/deleteModal/DeleteModal';
 import { useTranslation } from "react-i18next";
+import i18n from "../../../../i18n/config";
 
 const NotificationsSummary = (props) => {
 
   const { t } = useTranslation();
-  
+
+  const[markAsRead, setMarkAsRead] = useState('');
+  const[markAsReadColor, setMarkAsReadColor] = useState('');
+  const[detailsBtn, setDetailsBtn] = useState('');
+
+  useEffect(()=>{
+    if(props.read)
+    {
+      setMarkAsRead(t('MarkAsUnread'));
+      setMarkAsReadColor('Secondary-color');
+    }
+    else
+    {
+      setMarkAsRead(t('MarkAsRead'))
+      setMarkAsReadColor('Primary-color');
+    }
+  }, [props.read]);
+
+  useEffect(()=>{
+    if(props.expanded)
+      setDetailsBtn(t("DriverCardLessDetailsButton"))
+    else
+      setDetailsBtn(t("DriverCardDetailsButton"))
+  }, [props.expanded])
+
+  useEffect(()=>{
+    if(props.read)
+    {
+      setMarkAsRead(t('MarkAsUnread'));
+      setMarkAsReadColor('Secondary-color');
+    }
+    else
+    {
+      setMarkAsRead(t('MarkAsRead'))
+      setMarkAsReadColor('Primary-color');
+    }
+    if(props.expanded)
+      setDetailsBtn(t("DriverCardLessDetailsButton"))
+    else
+      setDetailsBtn(t("DriverCardDetailsButton"))
+
+  },[i18n.language])
 
   return (
     <Box>
@@ -18,15 +60,15 @@ const NotificationsSummary = (props) => {
           </Box>
         </Grid>
         <Grid container item xs={6} sm={3} justifyContent='center'>
-            <Button variant='text' onClick={props.clickedMarkAsRead} className={props.markAsReadColor}>
-                {props.markAsReadBtnText}
+            <Button variant='text' onClick={props.clickedMarkAsRead} className={markAsReadColor}>
+                {markAsRead}
             </Button>
         </Grid>
         <Grid container item xs={6} sm={3} justifyContent='flex-end'>
           <DeleteModal
-            content="Doresti sa stergi notificarea?"
-            btn1Text="Anuleaza"
-            btn2Text="Sterge"
+            content={t('DeleteNotification')}
+            btn1Text={t('Back')}
+            btn2Text={t('Delete')}
             clickedBtn2={props.clickedDelete}
           />
         </Grid>
@@ -68,7 +110,7 @@ const NotificationsSummary = (props) => {
       <Grid  container  direction="row" justifyContent="center">
         <Box mt={3}>
           <PrimaryButton variant="contained" onClick={props.clickedDetails} className={'details-button'}>
-            {props.detailsBtnText}
+            {detailsBtn}
           </PrimaryButton>
         </Box>
       </Grid>
