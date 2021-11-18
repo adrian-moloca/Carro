@@ -48,21 +48,25 @@ return (dispatch) => {
 }
 
 
-export const createNewUser = (newName, newPassword, newConfirmPassword, newUserAdmin,newCarNumber) => {
+export const createNewUser = (email, password, phoneNumber, firstName, lastName, dateOfBirth, termsAndConditions) => {
 
 return(dispatch) => {
 dispatch(createNewUserRequest);
 axios.post(data.baseUrl+"/identity/register",{
-    name: newName,
-    password: newPassword,
-    confirm_password: newConfirmPassword,
-    user_admin: newUserAdmin,
-    carNumber: newCarNumber,
+    email,
+    password,
+    phoneNumber,
+    firstName,
+    lastName,
+    dateOfBirth,
+    termsAndConditions
+
 })
 .then(response => {
     const Msg = response.data;
+    console.log('new user registration', Msg);
     dispatch(createNewUserSuccess(Msg));
-    dispatch(fetchUsers())
+    // dispatch(fetchUsers())
 }).catch(error => {
     const errorMsg = error;
     dispatch(createNewUserFailure(errorMsg))
