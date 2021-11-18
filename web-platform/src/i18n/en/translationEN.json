@@ -201,6 +201,11 @@
     "Destinatary": "Destinatary",
     "PaymentMethods": "Payment methods",
     "WriteHereYourIssue": "Write here the issue for reject",
-    "VerifyDelete": "Are you sure to delete this conversation?"
+    "VerifyDelete": "Do you want to delete this conversation?",
+    "MarkAsRead": "Mark as read",
+    "MarkAsUnread": "Mark as unread",
+    "DeleteNotification": "Do you want to delete this notification?",
+    "Delete": "Delete",
+    "Back": "Back"
 
 }

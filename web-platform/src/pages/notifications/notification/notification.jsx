@@ -10,23 +10,10 @@ const Notification = (props) =>{
     const classes = useStyles();
     const { t } = useTranslation();
     const[expanded, setExpanded] = useState(false)
-    const[detailsBtn, setDetailsBtn] = useState(t("DriverCardDetailsButton"));
     const[read, setRead] = useState(props.read);
-    const[markAsRead, setMarkAsRead] = useState('');
-    const[markAsReadColor, setMarkAsReadColor] = useState('');
+    
 
-  useEffect(()=>{
-    if(props.read)
-    {
-      setMarkAsRead('Marcheaza ca necitit');
-      setMarkAsReadColor('Secondary-color');
-    }
-    else
-    {
-      setMarkAsRead('Marcheaza ca citit')
-      setMarkAsReadColor('Primary-color');
-    }
-  });
+  
 
   /* const handleMarkAsRead= (event)=>{
     const r = read;
@@ -43,13 +30,7 @@ const Notification = (props) =>{
     }
   } */
 
-    const handleDetailsBtn = () =>{
-        if(!expanded)
-            setDetailsBtn(t("DriverCardLessDetailsButton"))
-        else
-            setDetailsBtn(t("DriverCardDetailsButton"))
-        setExpanded(!expanded)
-    }
+    
 
     return(
       <Box mb={1.5} borderRadius='12px' boxShadow={3} paddingX='20px' paddingY='12px'>
@@ -64,10 +45,8 @@ const Notification = (props) =>{
                   dropOffAdress={props.destinationAddress}
                   price={props.price}
                   read={props.read}
-                  clickedDetails={()=>{handleDetailsBtn();  props.readNotification();}}
-                  detailsBtnText={detailsBtn}
-                  markAsReadBtnText={markAsRead}
-                  markAsReadColor={markAsReadColor}
+                  expanded={expanded}
+                  clickedDetails={()=>{setExpanded(!expanded);  props.readNotification();}}
                   clickedMarkAsRead={()=>{props.handleReadStatus();}}
                   clickedDelete={props.clickedDelete}
           />

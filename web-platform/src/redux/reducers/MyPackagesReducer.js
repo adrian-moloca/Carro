@@ -12,74 +12,72 @@ let initialState = {
 }
 
 const myPackagesReducer = (state = initialState, action) => {
-switch (action.type) {
+    switch (action.type) {
 
-    case MY_PACKAGES_REQUEST:
-        return {
-            ...state,
-            loading: true,
-        }
-    case MY_PACKAGES_SUCCESS:
-        return{
-            ...state,
-            packages: action.payload,
-        }
-    case MY_PACKAGES_FAILURE:
-        return{
-            ...state,
-            hasErrors: true,
-        }    
-    case NEW_PACKAGE_REQUEST:
-        return {
-            ...state,
-            loading: true,
+        case MY_PACKAGES_REQUEST:
+            return {
+                ...state,
+                loading: true,
             }
-    case NEW_PACKAGE_SUCCESS:
-        return{
-            ...state,
-        }
-    case NEW_PACKAGE_FAILURE:
-        return{
-            ...state,
-            hasErrors: true,
-        }
-    case PACKAGE_UPDATE_REQUEST:
-        return {
-            ...state,
-            loading: true,
+        case MY_PACKAGES_SUCCESS:
+            return{
+                ...state,
+                packages: action.payload,
             }
-    case PACKAGE_UPDATE_SUCCESS:
-        return{
-            ...state,
-          
-        }
-    case PACKAGE_UPDATE_FAILURE:
-        return{
-            ...state,
-            hasErrors: true,
-        }
-    case PACKAGE_DELETE_REQUEST:
-        return {
-            ...state,
-            loading: true,
+        case MY_PACKAGES_FAILURE:
+            return{
+                ...state,
+                hasErrors: true,
+            }    
+        case NEW_PACKAGE_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                }
+        case NEW_PACKAGE_SUCCESS:
+            return{
+                ...state,
             }
-    case PACKAGE_DELETE_SUCCESS:
-        return{
-            ...state,
-        
-        }
-    case PACKAGE_DELETE_FAILURE:
-        return{
-            ...state,
-            hasErrors: true,
-        }
-    default: 
-        return  {
-            ...state,
-        }
-}
-
-
+        case NEW_PACKAGE_FAILURE:
+            return{
+                ...state,
+                hasErrors: true,
+            }
+        case PACKAGE_UPDATE_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                }
+        case PACKAGE_UPDATE_SUCCESS:
+            return{
+                ...state,
+            
+            }
+        case PACKAGE_UPDATE_FAILURE:
+            return{
+                ...state,
+                hasErrors: true,
+            }
+        case PACKAGE_DELETE_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                }
+        case PACKAGE_DELETE_SUCCESS:
+            return{
+                ...state,
+            
+            }
+        case PACKAGE_DELETE_FAILURE:
+            return{
+                ...state,
+                hasErrors: true,
+            }
+        default: 
+            return  {
+                ...state,
+            }
+    }
 }
 
 export default myPackagesReducer;
