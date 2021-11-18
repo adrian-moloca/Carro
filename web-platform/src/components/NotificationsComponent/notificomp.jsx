@@ -7,10 +7,10 @@ import {connect} from 'react-redux';
  const BadgeVisibility = ({notifications}) => {
 
   const [hideBadge, setHideBadge] = useState(false)
-  const [unreadNotifications, setUnreadNotifications] = useState([notifications.filter(el => el.read == false)]);
+  const [unreadNotifications, setUnreadNotifications] = useState(notifications ? notifications.filter(el => el.read == false) : []);
 
   useEffect(()=>{
-    const unread = notifications.filter(el => el.read == false)
+    const unread = notifications ? notifications.filter(el => el.read == false) : [];
     setUnreadNotifications(unread)
   }, [notifications])
   
