@@ -13,8 +13,10 @@ import PhoneTextField from "../../components/telephoneNumberField/PhoneTextField
 import useStyles from "./registerStyles";
 import "../../App.css";
 import { useTranslation } from "react-i18next";
+import { connect } from 'react-redux';
+import {createNewUser} from '../../redux/actions/UserActions';
 
-const Register = () => {
+const Register = ({createNewUser, data}) => {
   const { t } = useTranslation();
   const classes = useStyles();
 
@@ -25,7 +27,7 @@ const Register = () => {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('+40746812739');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState(new Date());
@@ -42,30 +44,30 @@ const Register = () => {
       <Box display="flex" justifyContent="space-evenly" mt="1%">
         <Grid container spacing={3} display="flex" justifyContent="center">
           <Grid container item xs={12} xl={6} justifyContent="center">
-            <CarroTextField variant="outlined" label={t("LastName")} fullWidth />
+            <CarroTextField variant="outlined" label={t("LastName")} fullWidth value={lastName} onChange={(e) => setLastName(e.target.value)}/>
           </Grid>
           <Grid container item xs={12} xl={6} justifyContent="center">
-            <CarroTextField variant="outlined" label={t("FirstName")} fullWidth />
+            <CarroTextField variant="outlined" label={t("FirstName")} fullWidth value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
           </Grid>
-          <Grid container item xs={12} xl={6} justifyContent="center">
-            <CarroTextField variant="outlined" label={t("PickupAddress")} fullWidth/>
+          {/* <Grid container item xs={12} xl={6} justifyContent="center">
+            <CarroTextField variant="outlined" label={t("PickupAddress")} fullWidth value={date} onChange={(e) => setLastName(e.target.value)}/>
+          </Grid> */}
+          <Grid item xs={12} sm={6}>
+            <CarroDatePicker label={t("Birthday")} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}} value={dateOfBirth} onChange={(value) => setDateOfBirth(value)} format='dd/MM/yyy' views={['month', 'year']}/>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <CarroDatePicker label={t("Birthday")} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}}/>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <CarroTextField variant="outlined" label={t("Mail")} fullWidth/>
+            <CarroTextField variant="outlined" label={t("Mail")} fullWidth value={email} onChange={(e) => setEmail(e.target.value)}/>
           </Grid>
           <Grid item xs={12} sm={6}>
             <PhoneTextField 
-              value={inputValuePhoneNumber}
-              onChange = {(e)=>setInputValuePhoneNumber(e.target.value)}
+              value={phoneNumber}
+              onChange = {(e) => console.log(e.target.value)}
               countryPhoneCode={countryPhoneCode} 
               handleselectcountry = {(e)=>setCountryPhoneCode(e.target.value)}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <CarroTextField variant="outlined" label={t("Password")} type="password" fullWidth/>
+            <CarroTextField variant="outlined" label={t("Password")} type="password" fullWidth value={password} onChange={(e) => setPassword(e.target.value)}/>
           </Grid>
           <Grid item xs={12} sm={6}>
             <CarroTextField variant="outlined" label={t("ConfirmPassword")} type="password" fullWidth/>
@@ -77,7 +79,7 @@ const Register = () => {
         <FormGroup row>
           <FormControlLabel
             classes={{ label: classes.label }}
-            control={<Checkbox checked={terms} onChange={() => setTerms(!terms)} name="checkedA" color="default"/>}
+            control={<Checkbox checked={terms} onChange={() => setTerms(!terms)} color="default"/>}
             label={t("TermsAndConditions")}
           />
         </FormGroup>
@@ -85,13 +87,15 @@ const Register = () => {
       </Box>
       <Box display="flex" justifyContent="center" mt="3%" mb="5%">
       <Grid container item xs={8}>
-      <Link to="/register/phone-number-verification" style={{textDecoration: 'none', color: 'inherit', width: '100%'}}>
-        <PrimaryButton className="ButtonTextSize" fullWidth variant="contained" endIcon={<PersonAddIcon />} disabled={!terms}>
+      {/* <Link to="/register/phone-number-verification" style={{textDecoration: 'none', color: 'inherit', width: '100%'}}> */}
+        <PrimaryButton className="ButtonTextSize" fullWidth variant="contained" endIcon={<PersonAddIcon />} disabled={!terms}
+          onClick={() => createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, 'True')}
+        >
           
           {t("Register")}
           
         </PrimaryButton>
-        </Link>
+        {/* </Link> */}
       </Grid>
       </Box>
       <Box display="flex" justifyContent="center" mb="3%">
@@ -117,4 +121,7 @@ const Register = () => {
   );
 };
 
-export default Register;
+const mapDispatchToProps = dispatch => ({createNewUser: (email, password, phoneNumber, firstName, lastName, dateOfBirth, termsAndConditions) => dispatch(createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, termsAndConditions))})
+const mapStateToProps = state => ({data: state.userData});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

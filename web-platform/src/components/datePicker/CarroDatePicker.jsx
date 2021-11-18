@@ -31,7 +31,7 @@ const CarroDatePicker = (props)=>{
                     TextFieldComponent={CarroTextField}
                     fullWidth
                     defaultValue={props.defaultShow}
-                    disablePast
+                    // disablePast
                     {...props}
                 />  
             </ThemeProvider>

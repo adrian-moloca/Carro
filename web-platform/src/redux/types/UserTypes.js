@@ -92,9 +92,10 @@ export const createNewUserRequest = () => {
     }
 }
 
-export const createNewUserSuccess = () => {
+export const createNewUserSuccess = (user) => {
     return {
         type: USER_NEWUSER_SUCCESS,
+        payload: user
     }
 }
 

@@ -45,6 +45,8 @@ switch (action.type) {
     case USER_NEWUSER_SUCCESS:
         return{
             ...state,
+            token: action.payload.token,
+            refreshToken: action.payload.refreshToken
         }
     case USER_NEWUSER_FAILURE:
         return{
