@@ -1,4 +1,4 @@
-import React, {useState, useLayoutEffect} from "react";
+import React, {useState, useLayoutEffect, useEffect} from "react";
 import { Container, Box, Grid, Checkbox, StepConnector, Avatar } from "@material-ui/core";
 import { Link } from 'react-router-dom';
 import FormGroup from "@material-ui/core/FormGroup";
@@ -18,6 +18,7 @@ import {createNewUser} from '../../redux/actions/UserActions';
 import mailValidator from "../../utils/Functions/mail-validator";
 import nameValidator from "../../utils/Functions/name-validator";
 import passwordValidator from "../../utils/Functions/password-validator";
+import phoneValidator from "../../utils/Functions/phone-validator";
 
 const Register = ({createNewUser, data}) => {
   const { t } = useTranslation();
@@ -35,11 +36,28 @@ const Register = ({createNewUser, data}) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState(new Date(Number(new Date().getFullYear()-14).toString()+'-'+Number(new Date().getMonth()+1).toString()+'-'+new Date().getDay().toString()));
+  const [hasErrors, setHasErrors] = useState(false);
 
   useLayoutEffect(()=>{
     setPhoneNumber(countryPhoneCode+inputValuePhoneNumber)
     console.log(phoneNumber)
   }, [inputValuePhoneNumber, countryPhoneCode])
+
+  useEffect(()=>{
+    setHasErrors(nameValidator(firstName))
+  }, [firstName])
+
+  useEffect(()=>{
+    setHasErrors(nameValidator(lastName))
+  }, [lastName])
+
+  useEffect(()=>{
+    setHasErrors(mailValidator(email))
+  }, [email])
+
+  useEffect(()=>{
+    setHasErrors(phoneValidator(inputValuePhoneNumber))
+  }, [inputValuePhoneNumber])
 
   return (
     <Container className={"Primary-container-style"}>
@@ -85,6 +103,7 @@ const Register = ({createNewUser, data}) => {
               onChange = {(e) => setInputValuePhoneNumber(e.target.value)}
               countryPhoneCode={countryPhoneCode} 
               handleSelectCountry = {(e)=>e.target.value.includes('+') ? setCountryPhoneCode(e.target.value) : setCountryPhoneCode('+' + e.target.value)}
+              error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
             />
           </Grid>
         </Grid>
@@ -102,7 +121,7 @@ const Register = ({createNewUser, data}) => {
       <Grid container item xs={8}>
       {/* <Link to="/register/phone-number-verification" style={{textDecoration: 'none', color: 'inherit', width: '100%'}}> */}
         <PrimaryButton className="ButtonTextSize" fullWidth variant="contained" endIcon={<PersonAddIcon />} 
-          disabled={terms && lastName && firstName && phoneNumber && email && password && confirmPassword && dateOfBirth && password===confirmPassword ? false : true}
+          disabled={terms && lastName && firstName && phoneNumber && email && password && confirmPassword && dateOfBirth && password===confirmPassword && !hasErrors ? false : true}
           onClick={() => createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, 'True')}
         >
           
