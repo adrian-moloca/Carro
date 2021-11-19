@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useLayoutEffect} from "react";
 import { Container, Box, Grid, Checkbox, StepConnector, Avatar } from "@material-ui/core";
 import { Link } from 'react-router-dom';
 import FormGroup from "@material-ui/core/FormGroup";
@@ -15,6 +15,9 @@ import "../../App.css";
 import { useTranslation } from "react-i18next";
 import { connect } from 'react-redux';
 import {createNewUser} from '../../redux/actions/UserActions';
+import mailValidator from "../../utils/Functions/mail-validator";
+import nameValidator from "../../utils/Functions/name-validator";
+import passwordValidator from "../../utils/Functions/password-validator";
 
 const Register = ({createNewUser, data}) => {
   const { t } = useTranslation();
@@ -22,17 +25,21 @@ const Register = ({createNewUser, data}) => {
 
   const [terms, setTerms] = useState(false);
 
-  const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState(null);
-  const [countryPhoneCode, setCountryPhoneCode] = useState(null);
+  const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState('');
+  const [countryPhoneCode, setCountryPhoneCode] = useState('');
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('+40746812739');
+  const [phoneNumber, setPhoneNumber] = useState(countryPhoneCode+inputValuePhoneNumber);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState(new Date());
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState(new Date(Number(new Date().getFullYear()-14).toString()+'-'+Number(new Date().getMonth()+1).toString()+'-'+new Date().getDay().toString()));
 
-  // const handleChange = (event) => {setState({ ...state, [event.target.name]: event.target.checked })};
+  useLayoutEffect(()=>{
+    setPhoneNumber(countryPhoneCode+inputValuePhoneNumber)
+    console.log(phoneNumber)
+  }, [inputValuePhoneNumber, countryPhoneCode])
 
   return (
     <Container className={"Primary-container-style"}>
@@ -44,51 +51,58 @@ const Register = ({createNewUser, data}) => {
       <Box display="flex" justifyContent="space-evenly" mt="1%">
         <Grid container spacing={3} display="flex" justifyContent="center">
           <Grid container item xs={12} xl={6} justifyContent="center">
-            <CarroTextField variant="outlined" label={t("LastName")} fullWidth value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+            <CarroTextField type='text' error={nameValidator(lastName)} helperText={nameValidator(lastName) ? t('LastNameOnlyLetters') : ''}
+                           variant="outlined" label={t("LastName")} fullWidth value={lastName} onChange={(e) => setLastName(e.target.value)}/>
           </Grid>
           <Grid container item xs={12} xl={6} justifyContent="center">
-            <CarroTextField variant="outlined" label={t("FirstName")} fullWidth value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+            <CarroTextField type='text'  error={nameValidator(firstName)} helperText={nameValidator(firstName) ? t('FirstNameOnlyLetters') : ''}
+                           variant="outlined" label={t("FirstName")} fullWidth value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <CarroTextField type='email' error={mailValidator(email)} helperText={mailValidator(email) ? t('ValidMail') : ''} 
+                            variant="outlined" label={t("Mail")} fullWidth value={email} onChange={(e) => setEmail(e.target.value)}/>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CarroTextField type="password" error={passwordValidator(password)} helperText={t('PasswordMustContain')}
+                            variant="outlined" label={t("Password")} fullWidth value={password} onChange={(e) => setPassword(e.target.value)}/>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CarroTextField type="password" error={password === confirmPassword ? false : true} helperText={password === confirmPassword ? '' : t('PasswordsMustBeEqual')} 
+                          variant="outlined" label={t("ConfirmPassword")} fullWidth value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
           </Grid>
           {/* <Grid container item xs={12} xl={6} justifyContent="center">
             <CarroTextField variant="outlined" label={t("PickupAddress")} fullWidth value={date} onChange={(e) => setLastName(e.target.value)}/>
           </Grid> */}
           <Grid item xs={12} sm={6}>
-            <CarroDatePicker label={t("Birthday")} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}} value={dateOfBirth} onChange={(value) => setDateOfBirth(value)} format='dd/MM/yyy' views={['month', 'year']}/>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <CarroTextField variant="outlined" label={t("Mail")} fullWidth value={email} onChange={(e) => setEmail(e.target.value)}/>
+            <CarroDatePicker label={t("Birthday")} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}}
+                            value={dateOfBirth} onChange={(value) => setDateOfBirth(value)} format='dd/MM/yyy' views={['date', 'month', 'year']}
+                            maxDate={Number(new Date().getFullYear()-14).toString()+'-'+Number(new Date().getMonth()+1).toString()+'-'+new Date().getDay().toString()}
+                            helperText={t('MinimumAgeForRegister')}/>
           </Grid>
           <Grid item xs={12} sm={6}>
             <PhoneTextField 
-              value={phoneNumber}
-              onChange = {(e) => console.log(e.target.value)}
+              value={inputValuePhoneNumber}
+              onChange = {(e) => setInputValuePhoneNumber(e.target.value)}
               countryPhoneCode={countryPhoneCode} 
-              handleselectcountry = {(e)=>setCountryPhoneCode(e.target.value)}
+              handleSelectCountry = {(e)=>e.target.value.includes('+') ? setCountryPhoneCode(e.target.value) : setCountryPhoneCode('+' + e.target.value)}
             />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <CarroTextField variant="outlined" label={t("Password")} type="password" fullWidth value={password} onChange={(e) => setPassword(e.target.value)}/>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <CarroTextField variant="outlined" label={t("ConfirmPassword")} type="password" fullWidth/>
           </Grid>
         </Grid>
       </Box>
-      <Box display="flex" justifyContent="center" ml="1%">
-      <Grid  container item xs={8}> 
-        <FormGroup row>
+      <Box display="flex" justifyContent="center" ml="1%" mt='2%'>
+      <Grid  container item xs={12}> 
           <FormControlLabel
             classes={{ label: classes.label }}
             control={<Checkbox checked={terms} onChange={() => setTerms(!terms)} color="default"/>}
             label={t("TermsAndConditions")}
           />
-        </FormGroup>
       </Grid>
       </Box>
       <Box display="flex" justifyContent="center" mt="3%" mb="5%">
       <Grid container item xs={8}>
       {/* <Link to="/register/phone-number-verification" style={{textDecoration: 'none', color: 'inherit', width: '100%'}}> */}
-        <PrimaryButton className="ButtonTextSize" fullWidth variant="contained" endIcon={<PersonAddIcon />} disabled={!terms}
+        <PrimaryButton className="ButtonTextSize" fullWidth variant="contained" endIcon={<PersonAddIcon />} 
+          disabled={terms && lastName && firstName && phoneNumber && email && password && confirmPassword && dateOfBirth && password===confirmPassword ? false : true}
           onClick={() => createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, 'True')}
         >
           

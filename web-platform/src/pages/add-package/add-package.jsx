@@ -1,5 +1,6 @@
 
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import { Container, Box, Stepper, Step, StepLabel, Grid,} from '@material-ui/core';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';
@@ -100,7 +101,13 @@ const AddPackage = () => {
                 <Box mt={5} mb={2} display ='flex' justifyContent='center'>
                   <Grid container spacing={7}>
                     <Grid container item xs={12} sm={6} md={6} lg={6} xl={6} justifyContent='center'>
-                      <SecondaryButton disabled={activeStep===0} onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton>
+                      { activeStep === 0 ? (
+                                            <Link to='/home' style={{textDecoration: 'none', color: 'inherit', width: '100%'}}>
+                                              <SecondaryButton startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('Home')}</SecondaryButton>
+                                            </Link>
+                                          ) : (
+                                            <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton>
+                                          )}
                     </Grid>
                     <Grid container item xs={12} sm={6} md={6} lg={6} xl={6} justifyContent='center'>
                       <PrimaryButton onClick={handleNext} endIcon={<ArrowForwardIos/>}
