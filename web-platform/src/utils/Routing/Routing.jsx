@@ -43,8 +43,9 @@ import ProtectedRoute from '../ProtectedRoute/protected-route';
 import PrivacyPolicy from '../../pages/footer-pages/privacy-policy/privacyPolicy';
 import CookiesPolicy from '../../pages/footer-pages/cookies-policy/cookiesPolicy';
 import './Routing.css';
+import { connect } from 'react-redux';
 
-const Routes = () => {
+const Routes = ({data}) => {
     const [collapsed, setCollapsed] = useState(false);
     const onCollapse = () => {
         setCollapsed(!collapsed);
@@ -76,7 +77,7 @@ const Routes = () => {
                 // ) : (
                     <div className="sbd-container">
                         <div className="sbd-header">
-                            {isLoggedIn === true ? <HeaderLogedIn/> : <HeaderLogedOut/>}
+                            {isLoggedIn === false ? <HeaderLogedIn/> : <HeaderLogedOut/>}
                         </div>
                         <div className="sbd-container-content">
                             <Switch>
@@ -131,4 +132,6 @@ const Routes = () => {
     )
 }
 
-export default Routes;
+const mapStateToProps = state => ({data: state.userData})
+
+export default connect(mapStateToProps, null)(Routes);

@@ -8,7 +8,7 @@ function ProtectedRoute({ component: Component, loggedIn, ...restOfProps }) {
         <Route
             {...restOfProps}
             render={(props) =>
-            localStorage.getItem('isLoggedIn') === 'true' ? <Component {...props} /> : <Redirect to="/login" />
+            localStorage.getItem('isLoggedIn') === 'false' ? <Component {...props} /> : <Redirect to="/login" />
             }
         />
     </React.Fragment>
