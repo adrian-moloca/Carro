@@ -10,6 +10,7 @@ const CarroAutocomplete =(props)=>{
             onChange={props.onChange}
             disabled={props.disabled}
             options={props.options}
+            getOptionSelected={(option, value) => option.id === value.id}
             autoHighlight
             getOptionLabel={(option) => option}
             renderOption={(option) => (

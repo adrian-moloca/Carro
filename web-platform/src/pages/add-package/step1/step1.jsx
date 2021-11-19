@@ -7,10 +7,6 @@ import { Country, City }  from 'country-state-city';
 import { useTranslation } from 'react-i18next';
 const StepOne = (props) =>{
     const { t } = useTranslation();
-    const [departureDate, setDepartureDate] = useState(new Date());
-    const [departureCountry, setDepartureCountry] = useState('');
-    const [departureCity, setDepartureCity] = useState('');
-    const [pickUpAddress, setPickUpAddress] = useState('');
 
     const getCountries = ()=> {
         const countries = [];
@@ -28,19 +24,19 @@ const StepOne = (props) =>{
         <Box display='flex' justifyContent='center' mt='5%'>
             <Grid container spacing={3} >
                 <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
-                            <CarroAutocomplete value={departureCountry} options={getCountries()}  label={t('SearchRideDepartureCountry')} onChange={(e)=>setDepartureCountry(e.target.textContent)}/>
+                            <CarroAutocomplete value={props.departureCountry} options={getCountries()}  label={t('SearchRideDepartureCountry')} onChange={(e)=>props.setDepartureCountry(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
-                            <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label={t('SearchRideDepartureCity')} onChange={(e)=>setDepartureCity(e.target.textContent)}/>
+                            <CarroAutocomplete value={props.departureCity} options={getCities(props.departureCountry)} label={t('SearchRideDepartureCity')} onChange={(e)=>props.setDepartureCity(e.target.textContent)}/>
                 </Grid>
                
                 
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                            <CarroTextField value = {pickUpAddress} onChange={(e)=>setPickUpAddress(e.target.value)} variant ='outlined' label={t('PickupAddress')} fullWidth/>
+                            <CarroTextField value = {props.pickUpAddress} onChange={(e)=>props.setPickUpAddress(e.target.value)} variant ='outlined' label={t('PickupAddress')} fullWidth />
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
                             <CarroDatePicker label={t('PickupDate')} format='dd/MM/yyyy'
-                                        value={departureDate} onChange={(date)=>setDepartureDate(date)}/>
+                                        value={props.departureDate} onChange={(date)=>props.setDepartureDate(date)}/>
                 </Grid>
             </Grid>
         </Box>
