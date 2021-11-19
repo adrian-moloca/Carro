@@ -8,8 +8,8 @@ const PhoneTextField = (props) =>{
     const { t } = useTranslation();
     return(
         <Grid container item justifyContent='space-between'>
-            <Grid container item xs={3} alignItems='center'>
-                <CarroTextField select value={props.countryPhoneCode} onChange={props.handleSelectCountry} fullWidth>
+            <Grid container item xs={3}>
+                <CarroTextField select value={props.countryPhoneCode} onChange={props.handleSelectCountry} label={t('CountryPhonecode')}  fullWidth>
                     {Country.getAllCountries().map((country, index)=>(
                         <MenuItem key={index} value={country.phonecode}>
                             {country.name} {country.phonecode.includes('+') ? '': '+'}{country.phonecode}
@@ -24,7 +24,9 @@ const PhoneTextField = (props) =>{
                     variant='outlined'  
                     fullWidth
                     value={props.value}
-                    onChange={props.onChange}/>
+                    onChange={props.onChange}
+                    error={props.error}
+                    helperText={props.helperText}/>
             </Grid>
         </Grid>
     );

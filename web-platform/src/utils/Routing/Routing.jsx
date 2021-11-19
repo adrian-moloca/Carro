@@ -92,6 +92,7 @@ const Routes = () => {
                                 <ProtectedRoute path="/conversations" exact component={Conversations}/>
                                 <ProtectedRoute path="/conversations/chat" exact component={Chat}/>
                                 <ProtectedRoute path="/add-transport" exact component={AddTransport}/>  {/* checked */}
+                                <ProtectedRoute path="/courier-profile" exact component={CourierProfile}/>
                                 <Route path="/" exact component={HomePage}/>
                                 <Route path="/home" exact component={HomePage}/>
                                 <Route path="/login" exact component={Login}/>
@@ -102,7 +103,6 @@ const Routes = () => {
                                 <Route path="/register/phone-number-verification" exact component={PhoneNumberVerification}/>
                                 <Route path="/register/select-plan" exact component={SelectPlan}/>
                                 <Route path="/register/select-plan/add-card" exact component={PremiumPlanPayment}/>
-                                <Route path="/courier-profile" exact component={CourierProfile}/>
                                 <Route path="/admin-panel" exact component={adminPanel}/>
                                 <Route path="/how-it-works" exact component={HowItWorks}/>
                                 <Route path="/about-us" exact component={AboutUs}/>

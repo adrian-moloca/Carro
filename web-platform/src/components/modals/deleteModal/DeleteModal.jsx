@@ -23,7 +23,7 @@ const DeleteModal = (props) =>  {
   return (
     <Fragment>
       <IconButton aria-label="delete" size='small' onClick={handleOpen}>
-        <DeleteOutline className={'Pink-carro'}/>
+        <DeleteOutline className={'Pink-carro'} fontSize={props.size}/>
       </IconButton>
       <Modal
         open={open}

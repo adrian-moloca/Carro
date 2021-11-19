@@ -11,45 +11,40 @@ const MyGrid = withStyles({'spacing-xs-4':{margin: 0}})(Grid)
 
 const PhoneNumberVerification = ()=>{
     const { t } = useTranslation();
-    const[sms, setSMS] = useState(null);
+    const[sms, setSMS] = useState('');
     const time = new Date();
-    // time.setMinute(time.getMinute() + 5);
-
+    time.setMinutes(time.getMinutes() + 5);
     return(
         <Container className = 'Primary-container-style'>
             <MyGrid container justifyContent='center' spacing={4}>
-                <Grid container item xs={12} justifyContent='center'>
+                <Grid container item xs={10} justifyContent='center'>
                     <Box  mb={3} fontSize={22} justifyContent='center' mt='3%'>
                     {t("ConfirmPhoneNumber")}
                     </Box>
                 </Grid>
-                <Grid container item xs={12} justifyContent='center'>
+                <Grid container item xs={10} justifyContent='center'>
                     <Box  mb={3} fontSize={18} justifyContent='center' mt='3%'>
                         {t("PhoneSMS")}
                     </Box>
                 </Grid>
-                <Grid container item xs={12} xl={6} justifyContent='center'>
-                    <Box mt = '3%' width='80%' >
+                <Grid container item xs={10} xl={6} justifyContent='center'>
                         <CarroTextField value = {sms} onChange={(e)=>setSMS(e.target.value)} variant ='outlined' label= {t("PhoneSMS")} fullWidth/>
-                    </Box>
                 </Grid>
-                <Grid container item xs={12} justifyContent='center'>
+                <Grid container item xs={10} justifyContent='center'>
                     <Timer expiryTimestamp={time}/>
                 </Grid>
-                <Box width="80%">
-                <Grid container item xs={12} xl={12} justifyContent='space-around'>
-                    <Box>
-                        <Link to='/register' style={{textDecoration:'none'}}>
+                <Grid container item xs={10} xl={10} justifyContent='space-between'>
+                    <Grid container item xs={5} xl={5}>
+                        <Link to='/register' style={{textDecoration:'none', width:'100%'}}>
                             <SecondaryButton className="ButtonTextSize" variant='outlined' fullWidth>{t("DriverCardBackButton")}</SecondaryButton>
                         </Link>
-                    </Box>
-                    <Box>
-                        <Link to='/register/select-plan' style={{textDecoration:'none'}}>
+                    </Grid>
+                    <Grid container item xs={5} xl={5}> 
+                        <Link to='/register/select-plan' style={{textDecoration:'none', width:'100%'}}>
                             <PrimaryButton   className="ButtonTextSize"  variant='contained' onClick={()=><Link to='/register/select-plan'/>} fullWidth>{t("ChoosePlan")}</PrimaryButton>
                         </Link>
-                    </Box>
+                    </Grid>
                 </Grid>
-                </Box>
             </MyGrid>
         </Container>
     );

@@ -1,9 +1,10 @@
 import React, {Fragment, useState} from 'react';
 import { Box, Grid, Typography, ButtonBase, Collapse} from '@material-ui/core'; 
-import {ExpandMore, ArrowForward, Delete, HighlightOff, ExpandLess} from '@material-ui/icons';
+import {ExpandMore, ArrowForward, HighlightOff, ExpandLess} from '@material-ui/icons';
 import IconButtonNoVerticalPadding from '../../../components/buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 import EditRide from './edit-ride/edit-ride';
 import RideDetails from './ride-details/ride-details';
+import DeleteModal from '../../../components/modals/deleteModal/DeleteModal';
 import { useTranslation } from "react-i18next";
 
 const Ride = (props) =>{
@@ -64,9 +65,7 @@ const Ride = (props) =>{
               <IconButtonNoVerticalPadding onClick={props.closeRideClicked}>
                     <HighlightOff className={'Pink-carro'} fontSize='small'/>
               </IconButtonNoVerticalPadding>
-              <IconButtonNoVerticalPadding onClick={props.deleteRideClicked}>
-                    <Delete className={'Pink-carro'} fontSize='small'/>
-              </IconButtonNoVerticalPadding>
+              <DeleteModal content={t('VerifyDeleteRide')} btn1Text={t('Back')} btn2Text={t('DeleteButton')} clickedBtn2={props.deleteRideClicked} size='small'/>
             </Fragment>
           );
         case 2:
