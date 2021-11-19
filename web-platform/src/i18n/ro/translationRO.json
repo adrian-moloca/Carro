@@ -528,5 +528,6 @@
     "FirstNameOnlyLetters": "Prenumele poate contine doar litere de la A-Z si a-z",
     "PasswordMustContain": "Parola trebuie sa contina: cel putin un caracter special, o litera mare, o cifra si de la 8 la 20 caractere",
     "PasswordsMustBeEqual": "Parolele trebuie sa fie egale",
-    "MinimumAgeForRegister": "Varsta minima pentru inregistrare e de 14 ani"
+    "MinimumAgeForRegister": "Varsta minima pentru inregistrare e de 14 ani",
+    "ValidPhoneNumber": "Introdu un numar de telefon valid (10 cifre)"
 }

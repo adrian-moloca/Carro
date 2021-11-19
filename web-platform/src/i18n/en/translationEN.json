@@ -212,6 +212,7 @@
     "FirstNameOnlyLetters": "First name must contain only chars from A-Z and a-z",
     "PasswordMustContain": "Password must contain: at least a special char, a capital letter, a number and from 8 to 20 chars",
     "PasswordsMustBeEqual": "Passwords must be equal",
-    "MinimumAgeForRegister": "Minimum age for registration is 14 years old"
+    "MinimumAgeForRegister": "Minimum age for registration is 14 years old",
+    "ValidPhoneNumber": "Type a valid phone number (10 numbers)"
 
 }
