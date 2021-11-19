@@ -18,6 +18,7 @@
     "country-state-city": "^3.0.1",
     "date-fns": "^2.23.0",
     "i18next": "^21.2.4",
+    "jwt-decode": "^3.1.2",
     "mui-phone-textfield": "^3.1.0",
     "react": "^17.0.2",
     "react-card-flip": "^1.1.3",

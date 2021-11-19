@@ -8,6 +8,7 @@ import {fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure,
 } from '../types/UserTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
+import jwt_decode from "jwt-decode";
 
 export const fetchLogin = (email, password) => {
 
@@ -19,7 +20,8 @@ return (dispatch) => {
     })
     .then(response => {
         // const user = response.data;
-        console.log(response.data);
+        console.log('decoded', jwt_decode(response.data.token));
+        
         setTimeout(() => {
             dispatch(fetchLoginSuccess(response.data));
         }, 800)
