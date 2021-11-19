@@ -35,7 +35,7 @@
     "AddPackageTitle": "Add package",
     "Finish": "Finish",
     "NextStep": "Next Step",
-    "PhoneNumber": "Phone number:",
+    "PhoneNumber": "Phone number",
     "PackageNumbers": "Number of packages",
     "ReceiverNume": "Receiver name",
     "ErrorMessage": " Sorry something didn't go well! Please try again!",
@@ -213,6 +213,8 @@
     "PasswordMustContain": "Password must contain: at least a special char, a capital letter, a number and from 8 to 20 chars",
     "PasswordsMustBeEqual": "Passwords must be equal",
     "MinimumAgeForRegister": "Minimum age for registration is 14 years old",
-    "ValidPhoneNumber": "Type a valid phone number (10 numbers)"
-
+    "ValidPhoneNumber": "Type a valid phone number (10 numbers)",
+    "CountryPhonecode": "Country phone code ",
+    "VerifyDeleteRide": "Do you want to delete this ride?",
+    "VerifyDeletePackage": "Do you want to delete this package?"
 }

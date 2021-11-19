@@ -20,7 +20,6 @@ const Timer = ({expiryTimestamp}) =>{
             <Box paddingBottom='20px' fontSize='20px' fontWeight='400' lineHeight='0.7' className={timerColor} display='flex' flexDirection='row'>
             {t("ValidationTimeCode")} <Box paddingX='10px' fontWeight='500'>{minutes}:{seconds.toString().padStart(2, '0')}</Box>
             </Box>
-            {start}
             {!isRunning ? 
                <ButtonBase onClick={()=>{
                    const time = new Date();

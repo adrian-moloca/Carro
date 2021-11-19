@@ -11,8 +11,8 @@ return (dispatch) => {
     dispatch(fetchNotificationsRequest);
     axios.get(data.baseUrl + "")
         .then(response => {
-            const myRides = response.data;
-            dispatch(fetchNotificationsSuccess(myRides));
+            const notifications = response.data;
+            dispatch(fetchNotificationsSuccess(notifications));
         }).catch(error => {
             const errorMsg = error;
             dispatch(fetchNotificationsFailure(errorMsg))

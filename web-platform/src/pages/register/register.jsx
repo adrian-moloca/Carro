@@ -31,7 +31,7 @@ const Register = ({createNewUser, data}) => {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState(countryPhoneCode+inputValuePhoneNumber);
+  const [phoneNumber, setPhoneNumber] = useState(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -39,7 +39,7 @@ const Register = ({createNewUser, data}) => {
   const [hasErrors, setHasErrors] = useState(false);
 
   useLayoutEffect(()=>{
-    setPhoneNumber(countryPhoneCode+inputValuePhoneNumber)
+    setPhoneNumber(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber)
     console.log(phoneNumber)
   }, [inputValuePhoneNumber, countryPhoneCode])
 
@@ -102,7 +102,7 @@ const Register = ({createNewUser, data}) => {
               value={inputValuePhoneNumber}
               onChange = {(e) => setInputValuePhoneNumber(e.target.value)}
               countryPhoneCode={countryPhoneCode} 
-              handleSelectCountry = {(e)=>e.target.value.includes('+') ? setCountryPhoneCode(e.target.value) : setCountryPhoneCode('+' + e.target.value)}
+              handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
               error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
             />
           </Grid>

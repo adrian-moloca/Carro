@@ -33,7 +33,7 @@ const StepTwo = (props) =>{
                     <CarroTextField variant ='outlined' label={t('ReceiverNume')}  fullWidth/>
                 </Grid>
                 <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
-                    <PhoneTextField value={inputValuePhoneNumber} onChange = {(e)=>setInputValuePhoneNumber(e.target.value)} countryphonecode={countryPhoneCode} handleselectcountry = {(e)=>setCountryPhoneCode(e.target.value)}/>
+                    <PhoneTextField value={inputValuePhoneNumber} onChange = {(e)=>setInputValuePhoneNumber(e.target.value)} countryPhoneCode={countryPhoneCode} handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}/>
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
                     <CarroAutocomplete value={destinationCountry} options={getCountries()} label={t('SearchRideDestinationCountry')} onChange={(e)=>setDestinationCountry(e.target.textContent)}/>
