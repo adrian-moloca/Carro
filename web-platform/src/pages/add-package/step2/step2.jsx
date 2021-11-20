@@ -13,7 +13,7 @@ const StepTwo = (props) =>{
     const [countryPhoneCode, setCountryPhoneCode] = useState(String(props.phoneNumber).substring(0, String(props.phoneNumber).length-10));
 
     useLayoutEffect(()=>{
-        props.setPhoneNumber(countryPhoneCode/* .includes('+') ? countryPhoneCode : ('+'+ countryPhoneCode) */ + inputValuePhoneNumber)
+        props.setPhoneNumber(/* countryPhoneCode.includes('+') ?  */countryPhoneCode/*  : ('+' + countryPhoneCode) */ + inputValuePhoneNumber)
     }, [inputValuePhoneNumber, countryPhoneCode])
 
     useEffect(()=>{
@@ -37,9 +37,7 @@ const StepTwo = (props) =>{
                                     value={props.destinataryName} onChange={(e)=> props.setDestinataryName(e.target.value)} variant ='outlined' label={t('ReceiverNume')}  fullWidth/>
                 </Grid>
                 <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
-                    <PhoneTextField value={inputValuePhoneNumber} onChange = {(e)=>{
-                                                                                setInputValuePhoneNumber(e.target.value);
-                                                                                console.log(props.phoneNumber)}}
+                    <PhoneTextField value={inputValuePhoneNumber} onChange = {(e)=>setInputValuePhoneNumber(e.target.value)}
                                     countryPhoneCode={countryPhoneCode} handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
                                     error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}/>
                 </Grid>

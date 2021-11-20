@@ -9,7 +9,7 @@ import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import SelectDriver from '../../modals/driver-select/driver-select';
 import useStyles from './ride-card-style';
 import { useTranslation } from 'react-i18next';
-import { SwapHorizontalCircleSharp } from '@material-ui/icons';
+import RejectModal from '../../modals/reject-modal/reject-modal';
 
 const RideCard =(props)=>{
     const { t } = useTranslation();
@@ -63,9 +63,7 @@ const RideCard =(props)=>{
                             </GreenCaroButton>
                         </Grid>
                         <Grid container item xs={8} justifyContent = 'center'>
-                            <SecondaryButton variant='contained' size='medium' fullWidth>
-                                {t("Refuse")}
-                            </SecondaryButton>
+                            <RejectModal rejectReason={props.rejectReason} setRejectReason={props.setRejectReason}/>
                         </Grid>
                     </Grid>
                 )
@@ -148,9 +146,7 @@ const RideCard =(props)=>{
             case 8:{
                 return(
                     <Grid container item xs={8} justifyContent='center'>
-                        <Box mt='40px' width={1}>
-                            <SecondaryButton variant='contained' fullWidth>REFUZA CU MOTIV</SecondaryButton>
-                        </Box>
+                        <RejectModal rejectReason={props.rejectReason} setRejectReason={props.setRejectReason}/>
                     </Grid>
                 );
             
@@ -158,9 +154,7 @@ const RideCard =(props)=>{
             case 10:{
                 return(
                     <Grid container item xs={8} justifyContent='center'>
-                        <Box mt='40px' width={1}>
-                            <SecondaryButton disabled variant='contained' fullWidth>REFUZA CU MOTIV</SecondaryButton>
-                        </Box>
+                        <RejectModal diabled={true} rejectReason={props.rejectReason} setRejectReason={props.setRejectReason}/>
                     </Grid>
                 );
             }
