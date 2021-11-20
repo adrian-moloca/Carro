@@ -11,7 +11,7 @@ import {Add} from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import EditCreditCard from '../modals/edit-credit-card/edit-credit-card';
 
-const CardSelected = (props) =>{
+const CreditCardsManager = (props) =>{
 
     const{t}=useTranslation();
 
@@ -35,7 +35,7 @@ const CardSelected = (props) =>{
     const [addCard, setAddCard] = useState(false);
 
     useEffect(()=>{
-        console.log('savedCardsData updated')
+        
     },[savedCardsData])
 
     const handleExpDate = (date)=>{
@@ -218,7 +218,7 @@ const CardSelected = (props) =>{
                 (
                     <Grid container item xs={8} justifyContent='flex-end'>
                         <Box>
-                            <ButtonBase className='Primary-color' onClick={handleAddCard}><Add fontSize='small'/> Adauga card</ButtonBase>
+                            <ButtonBase className='Primary-color' onClick={handleAddCard}><Add fontSize='small'/>Adauga card</ButtonBase>
                         </Box>
                     </Grid>
                 )
@@ -227,4 +227,4 @@ const CardSelected = (props) =>{
     );
 };
 
-export default CardSelected;
+export default CreditCardsManager;

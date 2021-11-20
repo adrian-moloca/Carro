@@ -3,7 +3,7 @@ import { Container, Box, Grid } from '@material-ui/core';
 import {CreditCard} from '@material-ui/icons/';
 import { Link } from 'react-router-dom';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
-import CardSelected from '../../components/card-selected/card-selected';
+import CreditCardsManager from '../../components/credit-cards-manager/credit-cards-manager';
 import { useTranslation } from "react-i18next";
 
 const PaymentMethod = () => {
@@ -20,7 +20,7 @@ const PaymentMethod = () => {
         </Grid>
         {cardSetted ? 
                 (
-                  <CardSelected marginTopAddCard={2} showSaveButtonAddCard='true'/> 
+                  <CreditCardsManager marginTopAddCard={2} showSaveButtonAddCard='true'/> 
                 ) 
                 : 
                 (

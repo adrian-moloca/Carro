@@ -77,7 +77,7 @@ const Routes = ({data}) => {
                 // ) : (
                     <div className="sbd-container">
                         <div className="sbd-header">
-                            {isLoggedIn === false ? <HeaderLogedIn/> : <HeaderLogedOut/>}
+                            {isLoggedIn === true ? <HeaderLogedIn/> : <HeaderLogedOut/>}
                         </div>
                         <div className="sbd-container-content">
                             <Switch>

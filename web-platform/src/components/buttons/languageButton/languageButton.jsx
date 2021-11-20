@@ -18,7 +18,7 @@ export default function BasicSelect() {
 
   return (
     <Box  sx={{ minWidth: 120 }} display="flex" alignItems="center" justifyContent="flex-end">
-      <FormControl fullWidth>
+      <FormControl>
         <Grid
           container
           item
