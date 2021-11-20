@@ -9,27 +9,25 @@ import { addressValidator } from "../../../utils/Functions/input-validators";
 
 const StepOne = (props) =>{
     const { t } = useTranslation();
-    const [departureDate, setDepartureDate] = useState(new Date());
-    const [departureCountry, setDepartureCountry] = useState('');
-    const [departureCity, setDepartureCity] = useState('');
-    const [pickUpAddress, setPickUpAddress] = useState('');
 
     return(
         <Box display='flex' justifyContent='center' mt='5%'>
             <Grid container spacing={3} >
                 <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
-                            <CarroAutocomplete value={departureCountry} options={getCountries()}  label={t('SearchRideDepartureCountry')} onChange={(e)=>setDepartureCountry(e.target.textContent)}/>
+                            <CarroAutocomplete value={props.departureCountry} options={getCountries()}  label={t('SearchRideDepartureCountry')} onChange={(e)=>props.setDepartureCountry(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
-                            <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label={t('SearchRideDepartureCity')} onChange={(e)=>setDepartureCity(e.target.textContent)}/>
+                            <CarroAutocomplete value={props.departureCity} options={getCities(props.departureCountry)} label={t('SearchRideDepartureCity')} onChange={(e)=>props.setDepartureCity(e.target.textContent)}/>
                 </Grid>
                
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                            <CarroTextField error={addressValidator(pickUpAddress)} helperText={addressValidator(pickUpAddress) ? t('ValidAddress') : ''} value = {pickUpAddress} onChange={(e)=>setPickUpAddress(e.target.value)} variant ='outlined' label={t('PickupAddress')} fullWidth/>
+                            <CarroTextField error={addressValidator(props.pickUpAddress)} helperText={addressValidator(props.pickUpAddress) ? t('ValidAddress') : ''}
+                                          value = {props.pickUpAddress} onChange={(e)=>props.setPickUpAddress(e.target.value)}
+                                          variant ='outlined' label={t('PickupAddress')} fullWidth/>
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
                             <CarroDatePicker label={t('PickupDate')} format='dd/MM/yyyy'
-                                        value={departureDate} onChange={(date)=>setDepartureDate(date)} disablePast/>
+                                        value={props.departureDate} onChange={(date)=>props.setDepartureDate(date)} disablePast/>
                 </Grid>
             </Grid>
         </Box>

@@ -1,4 +1,3 @@
-
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Box, Stepper, Step, StepLabel, Grid,} from '@material-ui/core';
@@ -32,8 +31,14 @@ const StepLabelPersonalized = withStyles({
 })(StepLabel);
 
 const AddPackage = () => {
+
   const { t } = useTranslation();
+  
   const [activeStep, setActiveStep] = useState(0);
+  const [pickUpAddress, setPickUpAddress] = useState('');
+  const [departureDate, setDepartureDate] = useState(new Date());
+  const [departureCountry, setDepartureCountry] = useState('');
+  const [departureCity, setDepartureCity] = useState('');
 
   const handleNext = ()=>{
     const nextActiveStep = activeStep === steps.length-1 ? activeStep : activeStep + 1;
@@ -41,7 +46,6 @@ const AddPackage = () => {
     
   };
   const handleBack = () => setActiveStep(activeStep-1);
-
 
   const steps = getSteps();
 
@@ -51,11 +55,11 @@ const AddPackage = () => {
     switch (step) {
       case 0:
         return (
-         <StepOne />
+         <StepOne pickUpAddress={pickUpAddress} setPickUpAddress={setPickUpAddress} departureDate={departureDate} setDepartureDate={setDepartureDate} departureCountry={departureCountry} setDepartureCountry={setDepartureCountry} departureCity={departureCity} setDepartureCity={setDepartureCity} />
         );
       case 1:
         return (
-          <StepTwo/>
+          <StepTwo pickUpAddress={pickUpAddress}/>
         );
       case 2:
         return (
