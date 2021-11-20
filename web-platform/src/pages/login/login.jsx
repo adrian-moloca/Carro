@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Box, Grid, FormControlLabel, Button } from '@material-ui/core';
 import googleicon from '../../assets/images/GoogleIcon.png';
@@ -12,14 +12,31 @@ import { useTranslation } from "react-i18next";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { connect } from 'react-redux';
 import {fetchLogin} from '../../redux/actions/UserActions';
+import { useHistory } from 'react-router-dom';
 
-const Login = ({fetchLogin, data}) => { 
+const Login = ({fetchLogin, data}) => {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(data.email.length > 0 ? true : false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const classes = useStyles();
   const { t } = useTranslation();
+  const history = useHistory();
+
+  const redirectAfterLoginSuccess = () => {
+    if(isLoggedIn === true) {
+        history.push('/home');
+    } else {
+      history.push('/login');
+    }
+  }
+
+  useEffect(() => {
+    setIsLoggedIn(data.email.length > 0 ? true : false);
+    setTimeout(() => {redirectAfterLoginSuccess()}, 500)
+  }, [data])
 
   return (
     <Container className={'Primary-container-style'}>
@@ -47,7 +64,10 @@ const Login = ({fetchLogin, data}) => {
             </Box>
             </Grid>
             <Grid container item xs={10} xl={8} justifyContent='center'>  
-                <PrimaryButton onClick={() => {fetchLogin(email, password); localStorage.setItem('isLoggedIn', true)}} className="ButtonTextSize" size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
+                <PrimaryButton onClick={() => {
+                  fetchLogin(email, password); 
+                }} 
+                  className="ButtonTextSize" size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
                 {t("Login")}
                 </PrimaryButton>
             </Grid>

@@ -19,16 +19,10 @@ return (dispatch) => {
         password: password
     })
     .then(response => {
-        // const user = response.data;
-        console.log('decoded', jwt_decode(response.data.token));
-        
-        setTimeout(() => {
-            dispatch(fetchLoginSuccess(response.data));
-        }, 800)
+        dispatch(fetchLoginSuccess(jwt_decode(response.data.token)));
     }).catch(error => {
         const errorMsg = error;
         dispatch(fetchLoginFailure(errorMsg));
-        console.log("Autentificare incorecta! Va rugam incercati din nou!");
     })
 }
 }

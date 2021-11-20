@@ -51,11 +51,11 @@ const Routes = ({data}) => {
         setCollapsed(!collapsed);
       };
 
-    const[isLoggedIn, setIsLoggedIn] = useState(Boolean(localStorage.getItem('isLoggedIn')))
+    const[isLoggedIn, setIsLoggedIn] = useState(data.email.length > 0 ? true : false)
 
     useEffect(()=>{
-        localStorage.setItem('isLoggedIn', true);
-    }, [])
+        setIsLoggedIn(data.email.length > 0 ? true : false);
+    }, [data])
     
 
     // if(isLoggedIn === false) {
@@ -77,7 +77,7 @@ const Routes = ({data}) => {
                 // ) : (
                     <div className="sbd-container">
                         <div className="sbd-header">
-                            {isLoggedIn === false ? <HeaderLogedIn/> : <HeaderLogedOut/>}
+                            {isLoggedIn === true ? <HeaderLogedIn/> : <HeaderLogedOut/>}
                         </div>
                         <div className="sbd-container-content">
                             <Switch>

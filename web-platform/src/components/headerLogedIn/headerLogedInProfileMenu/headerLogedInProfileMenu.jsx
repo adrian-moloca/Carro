@@ -103,7 +103,7 @@ const HeaderLogedInProfileMenu = () => {
               </MenuItem>
             </Link>
             <Link to="/" style={{textDecoration:'none' ,color:'inherit'}}>
-              <MenuItem dense onClick={handleAccountMenuClose}>
+              <MenuItem dense onClick={() => {setAnchorEl(null); localStorage.removeItem('state')}}>
                   <Box mr={2} className={"Pink-carro"}>
                     <CancelOutlined/>
                   </Box>

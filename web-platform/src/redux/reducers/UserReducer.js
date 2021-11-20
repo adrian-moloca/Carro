@@ -9,8 +9,18 @@ import {USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE,
 
 
 let initialState = {
-    token: "",
-    refreshToken: "",
+    UserRole: "",
+    email: "",
+    exp: 0,
+    iat: 0,
+    id: "",
+    isAdmin: "",
+    isUserValidated: "",
+    jti: "",
+    name: "",
+    nbf: 0,
+    phoneNumber: "",
+    sub: "",
     loading: false,
     hasErrors: false,
     notifications: [],
@@ -28,8 +38,18 @@ switch (action.type) {
     case USER_LOGIN_SUCCESS:
         return{
             ...state,
-            token: action.payload.token,
-            refreshToken: action.payload.refreshToken
+            UserRole: action.payload.UserRole,
+            email: action.payload.email,
+            exp: action.payload.exp,
+            iat: action.payload.iat,
+            id: action.payload.id,
+            isAdmin: action.payload.isAdmin,
+            isUserValidated: action.payload.isUserValidated,
+            jti: action.payload.jti,
+            name: action.payload.name,
+            nbf: action.payload.nbf,
+            phoneNumber: action.payload.phoneNumber,
+            sub: action.payload.sub,
         }
     case USER_LOGIN_FAILURE:
         return{
