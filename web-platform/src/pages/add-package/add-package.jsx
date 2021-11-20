@@ -39,6 +39,70 @@ const AddPackage = () => {
   const [departureDate, setDepartureDate] = useState(new Date());
   const [departureCountry, setDepartureCountry] = useState('');
   const [departureCity, setDepartureCity] = useState('');
+  const [destinataryName, setDestinataryName] = useState('');
+  const [destinationCountry, setDestinationCountry] = useState('');
+  const [destinationCity, setDestinationCity] = useState('');
+  const [destinataryAddress, setDestinataryAddress] = useState('');
+  const [destinataryPhoneNumber, setDestinataryPhoneNumber] = useState('');
+  const [packageSize, setPackageSize] = useState(new Number());
+  const [currency, setCurrency] = useState('');
+  const [weight, setWeight] = useState(new Number());
+  const [width, setWidth] = useState(new Number());
+  const [height, setHeight] = useState(new Number());
+  const [lenght, setLenght] = useState(new Number());
+  const [smallDescription, setSmallDescription] = useState('');
+  const [price, setPrice] = useState(new Number());
+  const [description, setDescription] = useState('');
+  const [isFlammable, setIsFlammable] = useState(false);
+  const [isFragile, setIsFragile] = useState(false);
+  const [isFoodGrade, setIsFoodGrade] = useState(false);
+  const [isHandleWithCare, setIsHandleWithCare] = useState(false);
+  const [isAnimal, setIsAnimal] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState(1);
+  const [hasErrors, setHasErrors] = useState(false);
+
+  function formsComplete(step){
+    switch(step){
+      case 0:
+        if(pickUpAddress && departureDate && departureCountry && departureCity && !hasErrors)
+          return true
+        else 
+          return false
+      case 1:
+        if(destinataryName && destinationCity && destinationCountry && destinataryAddress &&  destinataryPhoneNumber && !hasErrors)
+          return true
+        else
+          return false
+      case 2:{
+        if(packageSize==3)
+           if(packageSize && currency && weight && width && height && lenght && smallDescription && price && description && !hasErrors)
+              return true
+           else
+              return false
+        if(packageSize!=3)
+           if(packageSize && currency && weight && smallDescription && price && description && !hasErrors)
+              return true
+           else
+              return false
+      }
+      case 3:
+        if(paymentMethod)
+          return true
+        else 
+          return false
+      default:
+        return
+          'unkown step';
+    }
+    /* if(
+      (pickUpAddress && departureDate && departureCountry && departureCity && !hasErrors)
+      || (destinataryName && destinationCity && destinationCountry && destinataryAddress &&  destinataryPhoneNumber && !hasErrors)
+      || (packageSize==3 && packageSize && currency && weight && width && height && lenght && smallDescription && price && description && !hasErrors)
+      || (packageSize!=3 && packageSize &&currency && weight && smallDescription && price && description && !hasErrors)
+      )
+        return true;
+    else {} */
+  }
 
   const handleNext = ()=>{
     const nextActiveStep = activeStep === steps.length-1 ? activeStep : activeStep + 1;
@@ -55,19 +119,28 @@ const AddPackage = () => {
     switch (step) {
       case 0:
         return (
-         <StepOne pickUpAddress={pickUpAddress} setPickUpAddress={setPickUpAddress} departureDate={departureDate} setDepartureDate={setDepartureDate} departureCountry={departureCountry} setDepartureCountry={setDepartureCountry} departureCity={departureCity} setDepartureCity={setDepartureCity} />
+         <StepOne departureCountry={departureCountry} departureCity={departureCity}  pickUpAddress={pickUpAddress} departureDate={departureDate}
+                  setDepartureCountry={setDepartureCountry} setDepartureCity={setDepartureCity} setPickUpAddress={setPickUpAddress} setDepartureDate={setDepartureDate}
+                  setHasErrors={setHasErrors}/>
+
         );
       case 1:
         return (
-          <StepTwo pickUpAddress={pickUpAddress}/>
+          <StepTwo destinataryName={destinataryName} destinationCountry={destinationCountry} destinationCity={destinationCity} destinataryAddress={destinataryAddress} phoneNumber={destinataryPhoneNumber}
+                   setDestinataryName={setDestinataryName} setDestinationCountry={setDestinationCountry} setDestinationCity={setDestinationCity} setDestinataryAddress={setDestinataryAddress}
+                   setPhoneNumber={setDestinataryPhoneNumber} setHasErrors={setHasErrors}/>
         );
       case 2:
         return (
-          <StepThree/>
+          <StepThree packageSize={packageSize} weight={weight} width={width} height={height} lenght={lenght} currency={currency} price={price} smallDescription={smallDescription} description={description} 
+                     isFlammable={isFlammable} isFoodGrade={isFoodGrade} isFragile={isFragile} isHandleWithCare={isHandleWithCare} isAnimal={isAnimal} setPackageSize={setPackageSize} setWeight={setWeight}
+                     setWidth={setWidth} setHeight={setHeight} setLenght={setLenght} setCurrency={setCurrency} setSmallDescription={setSmallDescription} setDescription={setDescription} setPrice={setPrice}
+                     setIsFlammable={setIsFlammable} setIsFoodGrade={setIsFoodGrade} setIsFragile={setIsFragile} setIsHandleWithCare={setIsHandleWithCare} 
+                     setIsAnimal={setIsAnimal} setHasErrors={setHasErrors}/>
         );
       case 3:
         return(
-          <StepFour/>
+          <StepFour paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod}/>
         );
       default:
         return 'Unknown step';
@@ -94,7 +167,7 @@ const AddPackage = () => {
                       <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton>
                     </Grid>
                     <Grid container item  xs={12} sm={6} md={6} lg={6} xl={6} justifyContent='center'>
-                      <PrimaryButton endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Finish')}</PrimaryButton>
+                      <PrimaryButton disabled={!formsComplete(activeStep)} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Finish')}</PrimaryButton>
                     </Grid>
                   </Grid>
                 </Box>
@@ -114,7 +187,7 @@ const AddPackage = () => {
                                           )}
                     </Grid>
                     <Grid container item xs={12} sm={6} md={6} lg={6} xl={6} justifyContent='center'>
-                      <PrimaryButton onClick={handleNext} endIcon={<ArrowForwardIos/>}
+                      <PrimaryButton disabled={!formsComplete(activeStep)} onClick={handleNext} endIcon={<ArrowForwardIos/>}
                        variant='contained' fullWidth color="primary">{t('NextStep')}</PrimaryButton>
                     </Grid>
                   </Grid>

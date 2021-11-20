@@ -230,5 +230,6 @@
     "SmallDescriptionMustContain": "Small description must contain at least 1 word",
     "ValidNumberOfPackages": "Minumum number of packages that you can add is 1",
     "MinimumCharsDescription": "Description must contain at least 25 chars",
-    "CardNumberFormat": "Please use the 'XXXXXXXXXXXX1234' format"
+    "CardNumberFormat": "Please use the 'XXXXXXXXXXXX1234' format",
+    "CashOnDeliverySelected": "You selected to pay on delivery, the driver will be there soon! Wait him with the exact amount of cash."
 }

@@ -5,23 +5,10 @@ import PrimaryButton from "../../../components/buttons/primaryButton/primaryButt
 import SecondaryButton from "../../../components/buttons/secondaryButton/secondaryButton";
 import { useTranslation } from 'react-i18next';
 
-function renderPackages () {
-    return (<Package/>);
-};
-
 const StepThree = (props) =>{
     const { t } = useTranslation();
-    const[numberOfPackages, setNumberOfPackages] = useState(1);
-
-    const[packages, setPackages] = useState([1,]);
-
-    const errorMessage =()=> {
-        return(
-            <Box display='flex' justifyContent='center' fontSize={22} fontWeight={400}>
-               {t('ErrorMessage')}
-            </Box>
-        );
-    }
+    /* const[packages, setPackages] = useState([1,]); */
+    /* const[numberOfPackages, setNumberOfPackages] = useState(1);
 
     const increaseNumberOfpackages = () =>{
         const prevNumber = numberOfPackages;
@@ -41,12 +28,12 @@ const StepThree = (props) =>{
         temp.splice(index, 1);
         setNumberOfPackages(temp.length);
         setPackages(temp);
-    }
+    } */
 
 
     return(
         <Box display='flex' flexDirection='column' justifyContent='center'>
-          {numberOfPackages===packages.length ? (
+          {/* {numberOfPackages===packages.length ?(
               packages.map((pack, index)=>
                   <Box key={index} mt='5%' display='flex' flexDirection ='column' alignItems='center' fontSize={18} fontWeight={400}>
                       {pack !==1 ? ( 
@@ -55,17 +42,21 @@ const StepThree = (props) =>{
                           <Box display='flex' width='15%' justifyContent='flex-end'>
                               <SecondaryButton onClick={()=>deletePackage(index)} size='small' variant='outlined' fullWidth>{t('DeleteButton')}</SecondaryButton>
                             </Box>
-                      </Box> ) : null}  
-                    {renderPackages()}
-                  </Box>
-                  )) : (<Fragment>
-                            {errorMessage()}
-                        </Fragment>)}
-          <Grid container justifyContent='flex-end'>
+                      </Box> ) : ''} */}  
+                      <Package packageSize={props.packageSize} weight={props.weight} width={props.width} height={props.height} lenght={props.lenght} currency={props.currency}
+                               smallDescription={props.smallDescription} description={props.description} price={props.price} 
+                               flammable={props.isFlammable} foodGrade={props.isFoodGrade} fragile={props.isFragile}handleWithCare={props.isHandleWithCare} animal={props.isAnimal}
+                               setPackageSize={props.setPackageSize} setWeight={props.setWeight} setWidth={props.setWidth} setHeight={props.setHeight} setLenght={props.setLenght}
+                               setCurrency={props.setCurrency} setSmallDescription={props.setSmallDescription} setDescription={props.setDescription}setPrice={props.setPrice}
+                               setFlammable={props.setIsFlammable} setFoodGrade={props.setIsFoodGrade} setFragile={props.setIsFragile} setHandleWithCare={props.setIsHandleWithCare}
+                               setAnimal={props.setIsAnimal} setHasErrors={props.setHasErrors}/>
+                  {/* </Box>
+                  )) : '' }
+          {<Grid container justifyContent='flex-end'>
                <Box mt={3}>
                    <PrimaryButton size='small' variant='outlined' onClick={increaseNumberOfpackages}>{t('AddPackageButton')}</PrimaryButton>
                 </Box>
-          </Grid>
+          </Grid>} */}
       </Box>
     );
 };

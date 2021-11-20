@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Box, Grid } from "@material-ui/core";
 import CarroTextField from "../../../components/textField/CarroTextField";
 import CarroDatePicker from "../../../components/datePicker/CarroDatePicker";
@@ -9,6 +9,10 @@ import { addressValidator } from "../../../utils/Functions/input-validators";
 
 const StepOne = (props) =>{
     const { t } = useTranslation();
+
+    useEffect(()=>{
+        props.setHasErrors(addressValidator(props.pickUpAddress))
+    }, [props.pickUpAddress])
 
     return(
         <Box display='flex' justifyContent='center' mt='5%'>
