@@ -103,7 +103,7 @@
     "RegisterThrough": "Register through",
     "LoginThrough": "Login through",
     "ConfirmPhoneNumber": "Confirm phone number",
-    "PhoneSMS": "Write the SMS code",
+    "PhoneSMS": "Type the code received by sms",
     "SmsReceived": "Received SMS",
     "ChoosePlan": "Choose plan",
     "ValidationTimeCode": "Validation Time",
@@ -200,7 +200,7 @@
     "Sender": "Sender",
     "Destinatary": "Destinatary",
     "PaymentMethods": "Payment methods",
-    "WriteHereYourIssue": "Write here the issue for reject",
+    "WriteHereYourReason": "Write here your reason",
     "VerifyDelete": "Do you want to delete this conversation?",
     "MarkAsRead": "Mark as read",
     "MarkAsUnread": "Mark as unread",
@@ -230,5 +230,6 @@
     "SmallDescriptionMustContain": "Small description must contain at least 1 word",
     "ValidNumberOfPackages": "Minumum number of packages that you can add is 1",
     "MinimumCharsDescription": "Description must contain at least 25 chars",
-    "CardNumberFormat": "Please use the 'XXXXXXXXXXXX1234' format"
+    "CardNumberFormat": "Please use the 'XXXXXXXXXXXX1234' format",
+    "CashOnDeliverySelected": "You selected to pay on delivery, the driver will be there soon! Wait him with the exact amount of cash."
 }

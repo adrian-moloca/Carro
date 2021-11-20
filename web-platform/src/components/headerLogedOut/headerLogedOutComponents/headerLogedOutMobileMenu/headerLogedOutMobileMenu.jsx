@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link, IconButton, MenuItem, Menu, Grid, Box } from "@material-ui/core";
+import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
+import { IconButton, MenuItem, Menu, Grid, Box } from "@material-ui/core";
 import BasicSelect from '../../../buttons/languageButton/languageButton';
 import SearchIcon from '@material-ui/icons/Search';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
@@ -10,7 +11,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 const RenderMobileMenu = () => {
 
   // State
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const handleMobileMenuClose = () => setMobileMoreAnchorEl(null);
   const handleMobileMenuOpen = (event) => setMobileMoreAnchorEl(event.currentTarget);
@@ -25,60 +26,52 @@ const RenderMobileMenu = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
       >
-        <Grid container display="flex" justifyContent="center" alignItems="center" fullWidth>
+        <Grid container display="flex" justifyContent="center" alignItems="center">
           <Grid item xs={12}>
             <MenuItem>
-              <Link href="/login" underline= 'none' color= 'inherit'>
-                <IconButton color="inherit">
+              <Link to="/login" style={{display: 'flex', textDecoration:'none', color: 'inherit', width:'100%'}}>
                   <Box mr={2}>
                     <SearchIcon/>
                   </Box>
                   <Box>
                     Cauta Pachet
                   </Box>
-                </IconButton>
               </Link>
             </MenuItem>
           </Grid>
           <Grid item xs={12}>
             <MenuItem>
-              <Link href="/login" underline= 'none' color= 'inherit'>
-                <IconButton color="inherit">
+              <Link to="/login"  style={{display: 'flex', textDecoration:'none',color: 'inherit', width:'100%'}}>
                   <Box mr={2}>
                     <DriveEtaIcon/>
                   </Box>
                   <Box>
                     Cauta Transport
                   </Box>
-                </IconButton>
               </Link>
             </MenuItem>
           </Grid>
           <Grid item xs={12}>
             <MenuItem>
-              <Link href="/login" underline= 'none' color= 'inherit'>
-                <IconButton color="inherit">
+              <Link to="/login"  style={{display: 'flex', textDecoration:'none', color: 'inherit', width:'100%'}}>
                   <Box mr={2}>
                     <AccountCircleIcon/>
                   </Box>
                   <Box>
                     Autentificare
                   </Box>
-                </IconButton>
               </Link>
             </MenuItem>
           </Grid>
           <Grid item xs={12}>
             <MenuItem>
-              <Link href="/register" underline= 'none' color= 'inherit'>
-                <IconButton color="inherit">
+              <Link to="/register"  style={{display: 'flex', textDecoration:'none', color: 'inherit', width:'100%'}}>
                   <Box mr={2}>
                     <ExitToAppIcon/>
                   </Box>
                   <Box>
                     Inregistrare
                   </Box>
-                </IconButton>
               </Link>
             </MenuItem>
           </Grid>

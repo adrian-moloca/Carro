@@ -11,7 +11,7 @@ const PhoneTextField = (props) =>{
             <Grid container item xs={3}>
                 <CarroTextField select value={props.countryPhoneCode} onChange={props.handleSelectCountry} label={t('CountryPhonecode')}  fullWidth>
                     {Country.getAllCountries().map((country, index)=>(
-                        <MenuItem key={index} value={country.phonecode}>
+                        <MenuItem key={country.name} value={country.phonecode} style={{fontSize: 'smaller'}}>
                             {country.name} {country.phonecode.includes('+') ? '': '+'}{country.phonecode}
                         </MenuItem> 
                     ))}

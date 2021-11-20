@@ -7,7 +7,7 @@ import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import GreyLine from '../../../assets/images/greyLine.png';
 import useStyles from './driver-select-style';
-import CardSelected from '../../card-selected/card-selected';
+import CreditCardsManager from '../../credit-cards-manager/credit-cards-manager';
 import AddCard from '../../add-card/add-card';
 import CarroRadio from '../../radio/CarroRadio';
 import { useTranslation } from "react-i18next";
@@ -101,7 +101,7 @@ const SelectDriver=(props)=>{
                             {payment === 'cardOnline' ? (
                                     localStorage.getItem('paymentMethodExist') ? (   
                                                         <MyGrid container item xs={12} justifyContent='center' spacing={2}>
-                                                            <CardSelected/>
+                                                            <CreditCardsManager/>
                                                         </MyGrid>) : (
                                                         <Fragment>
                                                             <MyGrid container item xs={12} justifyContent='center' spacing={2}>

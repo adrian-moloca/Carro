@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Grid,
   InputAdornment,
@@ -16,19 +16,33 @@ import { numberValidator } from "../../../utils/Functions/input-validators";
 const Package = (props) => {
   const { t } = useTranslation();
 
-  const [packageSize, setPackageSize] = useState(new Number());
-  const [currency, setCurrency] = useState('');
-  const [weight, setWeight] = useState(new Number());
-  const [smallDescription, setSmallDescription] = useState('');
-  const [price, setPrice] = useState(new Number());
-  const [packagesNumber, setPackagesNumber] = useState(1);
-  const [description, setDescription] = useState('');
+  useEffect(()=>{
+    props.setHasErrors(numberValidator(props.weight))
+  }, [props.weight])
 
+  useEffect(()=>{
+    props.setHasErrors(numberValidator(props.width))
+  }, [props.width])
 
-  const [Inflamabil, setInflamabil] = useState(false);
-  const [Fragil, setFragil] = useState(false);
-  const [Perisabil, setPerisabil] = useState(false);
-  const [Animal, setAnimal] = useState(false);
+  useEffect(()=>{
+    props.setHasErrors(numberValidator(props.height))
+  }, [props.height])
+
+  useEffect(()=>{
+    props.setHasErrors(numberValidator(props.lenght))
+  }, [props.lenght])
+
+  useEffect(()=>{
+    props.setHasErrors(numberValidator(props.price))
+  }, [props.price])
+
+  useEffect(()=>{
+    props.setHasErrors(props.smallDescription.length <= 3 && props.smallDescription!='')
+  }, [props.smallDescription])
+
+  useEffect(()=>{
+    props.setHasErrors(props.description.length < 25 && props.description!='')
+  }, [props.description])
 
   const packageSizes = [
     {
@@ -90,30 +104,36 @@ const Package = (props) => {
       case 3: return(
                       <Fragment>
                         <Grid container item xs={4} justifyContent="center">
-                            <CarroTextField variant="outlined" label={t("Width")} fullWidth
-                                          InputProps={{
-                                            startAdornment: (
-                                              <InputAdornment position="start">m</InputAdornment>
-                                            ),
-                                          }}
+                            <CarroTextField error={numberValidator(props.width)} helperText={numberValidator(props.width) ? t('OnlyNumbers') : ''}
+                                            variant="outlined" value={props.width} onChange={(e)=>props.setWidth(e.target.value)}
+                                            label={t("Width")} fullWidth
+                                            InputProps={{
+                                              startAdornment: (
+                                                <InputAdornment position="start">m</InputAdornment>
+                                              ),
+                                            }}
                             />
                         </Grid>
                         <Grid container item xs={4} justifyContent="center">
-                            <CarroTextField variant="outlined" label={t("Height")} fullWidth
-                                          InputProps={{
-                                            startAdornment: (
-                                              <InputAdornment position="start">m</InputAdornment>
-                                            ),
-                                          }}
+                            <CarroTextField error={numberValidator(props.height)} helperText={numberValidator(props.height) ? t('OnlyNumbers') : ''}
+                                            variant="outlined" value={props.height} onChange={(e)=>props.setHeight(e.target.value)}
+                                            label={t("Height")} fullWidth
+                                            InputProps={{
+                                              startAdornment: (
+                                                <InputAdornment position="start">m</InputAdornment>
+                                              ),
+                                            }}
                             />
                         </Grid>
                         <Grid container item xs={4} justifyContent="center">
-                            <CarroTextField variant="outlined" label={t("Length")} fullWidth
-                                          InputProps={{
-                                            startAdornment: (
-                                              <InputAdornment position="start">m</InputAdornment>
-                                            ),
-                                          }}
+                            <CarroTextField error={numberValidator(props.lenght)} helperText={numberValidator(props.lenght) ? t('OnlyNumbers') : ''}
+                                            variant="outlined" value={props.lenght} onChange={(e)=>props.setLenght(e.target.value)}
+                                            label={t("Length")} fullWidth
+                                            InputProps={{
+                                              startAdornment: (
+                                                <InputAdornment position="start">m</InputAdornment>
+                                              ),
+                                            }}
                             />
                         </Grid>
                         <Grid container justifyContent="center">
@@ -127,34 +147,30 @@ const Package = (props) => {
                     );
   }}
 
-  const handleSizeSelect = (event) => {
-    setPackageSize(event.target.value);
+  const handleFlammableCheckboxClick = (event) => {
+    event.target.checked ? props.setFlammable(true) : props.setFlammable(false);
   };
 
-  const handleCurrencySelect = (event) => {
-    setCurrency(event.target.value);
+  const handleFragileCheckboxClick = (event) => {
+    event.target.checked ? props.setFragile(true) : props.setFragile(false);
   };
 
-  const handleInflamabilCheckboxClick = (event) => {
-    event.target.checked ? setInflamabil(true) : setInflamabil(false);
-  };
-
-  const handleFragilCheckboxClick = (event) => {
-    event.target.checked ? setFragil(true) : setFragil(false);
-  };
-
-  const handlePerisabilCheckboxClick = (event) => {
-    event.target.checked ? setPerisabil(true) : setPerisabil(false);
+  const handleFoodGradeCheckboxClick = (event) => {
+    event.target.checked ? props.setFoodGrade(true) : props.setFoodGrade(false);
   };
 
   const handleAnimalCheckboxClick = (event) => {
-    event.target.checked ? setAnimal(true) : setAnimal(false);
+    event.target.checked ? props.setAnimal(true) : props.setAnimal(false);
+  };
+
+  const handleHandleWithCareCheckboxClick = (event) => {
+    event.target.checked ? props.setHandleWithCare(true) : props.setHandleWithCare(false);
   };
 
   return (
     <Grid container spacing={3}>
       <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
-        <CarroTextField variant ='outlined' label={t("Sizing")} fullWidth select value={packageSize} onChange={handleSizeSelect}>
+        <CarroTextField variant ='outlined' label={t("Sizing")} fullWidth select value={props.packageSize} onChange={(e)=>props.setPackageSize(e.target.value)}>
                 {packageSizes.map((option)=>(
                     <MenuItem key={option.value} value={option.value}>
                     {option.label}
@@ -165,10 +181,10 @@ const Package = (props) => {
       <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
         <CarroTextField
           type='number'
-          error={numberValidator(weight)}
-          helperText={numberValidator(weight ? t('OnlyNumbers') : '')}
-          value={weight}
-          onChange={(e)=>setWeight(e.target.value)}
+          error={numberValidator(props.weight)}
+          helperText={numberValidator(props.weight) ? t('OnlyNumbers') : ''}
+          value={props.weight}
+          onChange={(e)=>props.setWeight(e.target.value)}
           variant="outlined"
           label={t("Weight")}
           fullWidth
@@ -179,26 +195,26 @@ const Package = (props) => {
           }}
         />
       </Grid>
-      {getPackagesSizesContent(packageSize)}
-      <Grid container item xs={12} justifyContent="center">
-        <CarroTextField variant="outlined" error={smallDescription.length <= 3 && smallDescription!=''}  
-                        helperText={smallDescription.length <= 3 && smallDescription!='' ? t('SmallDescriptionMustContain') : ''} 
-                        value={smallDescription} onChange={(e)=>  setSmallDescription(e.target.value)} label={t("SmallDescription")} fullWidth />
+      {getPackagesSizesContent(props.packageSize)}
+      <Grid container item xs={6} justifyContent="center">
+        <CarroTextField variant="outlined" error={props.smallDescription.length <= 3 && props.smallDescription!=''}  
+                        helperText={props.smallDescription.length <= 3 && props.smallDescription!='' ? t('SmallDescriptionMustContain') : ''} 
+                        value={props.smallDescription} onChange={(e)=>props.setSmallDescription(e.target.value)} label={t("SmallDescription")} fullWidth />
       </Grid>
-      <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
+      <Grid container item xs={6} justifyContent="center">
         <CarroTextField
           variant="outlined"
           type='number'
-          value={price}
-          onChange={(e)=>setPrice(e.target.value)}
-          error={numberValidator(price)}
-          helperText={numberValidator(price) ? t('ValidNumber') : ''}
+          value={props.price}
+          onChange={(e)=>props.setPrice(e.target.value)}
+          error={numberValidator(props.price)}
+          helperText={numberValidator(props.price) ? t('ValidNumber') : ''}
           label={t("Price")}
           fullWidth
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <Select value={currency} onChange={handleCurrencySelect}>
+                <Select value={props.currency} onChange={(e)=>props.setCurrency(e.target.value)}>
                   {currencies.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
@@ -210,38 +226,48 @@ const Package = (props) => {
           }}
         />
       </Grid>
-      <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
-        <CarroTextField type='number' error={packagesNumber < 1 || numberValidator(packagesNumber)}
-                        helperText={packagesNumber < 1 || numberValidator(packagesNumber) ? t('ValidNumberOfPackages') : ''}
-                        value={packagesNumber} onChange={(e)=>setPackagesNumber(e.target.value)} 
+      {/* <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
+        <CarroTextField type='number' error={props.packagesNumber < 1 || numberValidator(props.packagesNumber)}
+                        helperText={props.packagesNumber < 1 || numberValidator(props.packagesNumber) ? t('ValidNumberOfPackages') : ''}
+                        value={props.packagesNumber} onChange={(e)=>props.setPackagesNumber(e.target.value)} 
                         variant="outlined" label={t("PackageNumbers")} fullWidth />
-      </Grid>
+      </Grid> */}
       <Grid container item xs={12} justifyContent="center">
-        <CarroTextField error={description.length < 25 && description!=''} 
-                        helperText={description.length < 25 && description!='' ? t('MinimumCharsDescription') : ''}
-                      value={description} onChange={(e)=>setDescription(e.target.value)}
+        <CarroTextField error={props.description.length < 25 && props.description!=''} 
+                        helperText={props.description.length < 25 && props.description!='' ? t('MinimumCharsDescription') : ''}
+                      value={props.description} onChange={(e)=>props.setDescription(e.target.value)}
                       variant="outlined" label={t("Description")} multiline rows={4} fullWidth/>
       </Grid>
-      <Grid container item xs={12} justifyContent="space-between">
+      <Grid container item xs={12} justifyContent='space-between'>
         <FormControlLabel
-          onChange={handleInflamabilCheckboxClick}
+          onChange={handleFlammableCheckboxClick}
           control={<CarroCheckbox />}
           label={t("Inflammable")}
+          checked={props.flammable}
         />
         <FormControlLabel
-          onChange={handleFragilCheckboxClick}
+          onChange={handleFragileCheckboxClick}
           control={<CarroCheckbox />}
           label={t("Fragile")}
+          checked={props.fragile}
         />
         <FormControlLabel
-          onChange={handlePerisabilCheckboxClick}
+          onChange={handleFoodGradeCheckboxClick}
           control={<CarroCheckbox />}
           label={t("Perishable")}
+          checked={props.foodGrade}
         />
         <FormControlLabel
           onChange={handleAnimalCheckboxClick}
           control={<CarroCheckbox />}
           label="Animal"
+          checked={props.animal}
+        />
+        <FormControlLabel
+          onChange={handleHandleWithCareCheckboxClick}
+          control={<CarroCheckbox />}
+          label="Animal"
+          checked={props.handleWithCare}
         />
       </Grid>
     </Grid>

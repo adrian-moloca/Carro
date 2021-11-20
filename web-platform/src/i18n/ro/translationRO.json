@@ -516,7 +516,7 @@
     "Sender": "Expeditor",
     "Destinatary": "Destinatar",
     "PaymentMethods": "Metode de plata",
-    "WriteHereYourIssue": "Scrie aici motivul pentru care refuzi",
+    "WriteHereYourReason": "Scrie aici motivul pentru care refuzi",
     "VerifyDelete": "Doresti sa stergi aceasta conversatie?",
     "MarkAsRead": "Marcheaza ca citit",
     "MarkAsUnread": "Marcheaza ca necitit",
@@ -544,5 +544,6 @@
     "SmallDescriptionMustContain": "Scurta descriere trebuie sa contina cel putin un cuvant",
     "ValidNumberOfPackages": "Numarul minim de pachete in adaugare e 1",
     "MinimumCharsDescription": "Descrierea trebuie sa contina cel putin 25 litere",
-    "CardNumberFormat": "Va rugam sa folositi formatul 'XXXXXXXXXXXX1234'"
+    "CardNumberFormat": "Va rugam sa folositi formatul 'XXXXXXXXXXXX1234'",
+    "CashOnDeliverySelected": "Ati selectat plata la sosirea pachetului, soferul o sa vina curand! Pregatiti suma exacta de cash pana la sosirea soferului."
 }

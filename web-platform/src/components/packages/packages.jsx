@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Grid } from '@material-ui/core';
 import PackageCard from '../cards/package-card/package-card';
 
@@ -16,7 +16,7 @@ const packages_a = [
         destinationAddress: 'Lorem Ipsium Street',
         details: 'ceva de trimis',
         price: '15 RON',
-        status: 10,
+        status: 2,
         rideExists: true,
         packageSpecialMention: {
             isFragile: true,
@@ -30,6 +30,8 @@ const packages_a = [
 
 const Packages = (props) =>{
 
+    const [rejectReason, setRejectReason] = useState('');
+
     return (
         <Fragment>
             {packages_a.map((pack, index)=>
@@ -38,7 +40,8 @@ const Packages = (props) =>{
                                     senderPhone={pack.senderPhone} destinatary={pack.destinatary} destinataryPhone={pack.destinataryPhone}
                                     packageWeight={pack.packageWeight} departureDate={pack.departureDate} price={pack.price}
                                     departureAddress={pack.departureAddress} destinationAddress={pack.destinationAddress} details={pack.details}
-                                    status= {pack.status} rideExists={pack.rideExists} specialMention={pack.packageSpecialMention}/>
+                                    status= {pack.status} rideExists={pack.rideExists} specialMention={pack.packageSpecialMention}
+                                    rejectReason={rejectReason} setRejectReason={setRejectReason}/>
                     </Grid>
             )} 
         </Fragment>

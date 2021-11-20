@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core";
 import CarroRadio from "../../../components/radio/CarroRadio";
 import CarroCheckbox from "../../../components/checkbox/CarroCheckbox";
 import AddCard from "../../../components/add-card/add-card";
-import CardSelected from "../../../components/card-selected/card-selected";
+import CreditCardsManager from "../../../components/credit-cards-manager/credit-cards-manager";
 import { useTranslation } from "react-i18next";
 const RadioGroupPersonalized = withStyles({
     root:{
@@ -14,48 +14,29 @@ const RadioGroupPersonalized = withStyles({
   
   })(RadioGroup);
 
-const StepFour = () =>{
-  const { t } = useTranslation();
-    const [cardNumber, setCardNumber] = useState('');
+const StepFour = (props) =>{
+    const { t } = useTranslation();
 
-    const[expDate, setExpDate] = useState(new Date());
-
-    const[completeName, setCompleteName] = useState('');
-
-    const[CVV, setCVV] = useState('');
-
-    const[payment, setPayment] = useState('cardOnline');
-
-    const [cardSetted, setCardSetted] =  useState(true);
-
-    const[savingData, setSavingData] = useState(false);
-
-    const handlePayment = (event)=>{
-        setPayment(event.target.value);
-      };
-
-    const handleSaveData = (event) =>{
-        !event.target.checked ? setSavingData(false) : setSavingData(true);
-    }
-
-    const handleSetCompleteName = (event) =>{
-      if(savingData)
-        setCompleteName(event.target.value)
-    }
-  
-    const handleSetCardNumber = (event) =>{
-      if(savingData)
-        setCardNumber(event.target.value)
-    }
-  
-    const handleSetExpDate=(date)=>{
-      if(savingData)
-        setExpDate(date);
-    }
-  
-    const handleSetCVV = (event) =>{
-      if(savingData)
-        setCVV(event.target.value);
+    function getPaymentMethod(paymentSelected){
+        switch(paymentSelected){
+          case 1:{
+            return(
+                <CreditCardsManager cardSelected={true} showSaveButtonAddCard={true}/>
+              );
+          }
+          case 2:{
+            return(
+                <Box>Here the data for the payment order</Box>
+            );
+          }
+          case 3:{
+            return(
+                <Grid container item xs={12} justifyContent="center">
+                    <Box fontWeight={400} fontSize={18} textAlign='center'>{t("CashOnDeliverySelected")}</Box>
+                </Grid>
+            );
+          }
+        }
     }
 
     return(
@@ -65,29 +46,13 @@ const StepFour = () =>{
                   <Box fontWeight={500} fontSize={22}>{t("PaymentMethod")}</Box>
                 </Grid>
                 <Grid container item xs={12} justifyContent="center">
-                    <RadioGroupPersonalized row value = {payment} onChange={handlePayment} >                   
-                        <FormControlLabel value = 'cardOnline' control={<CarroRadio/>} label={t("Card")}/>
-                        <FormControlLabel value = 'ordinDePlata' control={<CarroRadio/>} label={t("PaymentOrder")}/>
-                        <FormControlLabel value = 'ramburs' control={<CarroRadio/>} label={t("CashOnDelivery")}/>
+                    <RadioGroupPersonalized row value = {props.paymentMethod} onChange={(e)=>props.setPaymentMethod(parseInt(e.target.value))} >                   
+                        <FormControlLabel value = {1} control={<CarroRadio/>} label={t("Card")}/>
+                        <FormControlLabel value = {2} control={<CarroRadio/>} label={t("PaymentOrder")}/>
+                        <FormControlLabel value = {3} control={<CarroRadio/>} label={t("CashOnDelivery")}/>
                     </RadioGroupPersonalized>
                 </Grid>
-                {payment === 'cardOnline' ? (
-                  cardSetted 
-                    ? <CardSelected cardSelected={localStorage.getItem("paymentMethodExist")}/>
-                    :(<Fragment>
-                        <AddCard 
-                          cardNumber = {cardNumber} 
-                          cardNumberSet = {(e)=>handleSetCardNumber(e)} 
-                          expDate={expDate} 
-                          expDateSet={handleSetExpDate} 
-                          completeName = {completeName} 
-                          completeNameSet={(e)=>handleSetCompleteName(e)} cvv={CVV} cvvSet={(e)=>handleSetCVV(e)}
-                        />
-                        <Grid container item xs={12} justifyContent='flex-end'>
-                            <FormControlLabel onChange = {handleSaveData} control={<CarroCheckbox/>} label={t("SaveData")}/>
-                        </Grid>
-                      </Fragment>)
-                ) : null}
+                {getPaymentMethod(props.paymentMethod)}
               </Grid>
           </Box>
     );

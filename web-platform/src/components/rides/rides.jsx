@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import {Grid} from '@material-ui/core';
 import RideCard from '../cards/ride-card/ride-card';
 import profilePhotoLeft from '../../assets/images/photoprofile1.png';
@@ -31,7 +31,7 @@ const rides_a = [
         destinationAddress: 'Lorem Ipsium Street',
         departureDate: '26/08/2021 02:00 AM',
         rate: 4.5,
-        status: 1,
+        status: 2,
     },
     {
         image: profilePhotoRight,
@@ -49,6 +49,7 @@ const rides_a = [
 ]
 
 const Rides = (props) =>{
+    const[rejectReason, setRejectReason] = useState('')
  
     return(
         <Fragment>
@@ -67,6 +68,8 @@ const Rides = (props) =>{
                         estimatedTime={driver.estimatedTime}
                         status={driver.status}
                         packageExists= {driver.packageExists}
+                        rejectReason={rejectReason}
+                        setRejectReason={setRejectReason}
                     />
                 </Grid>
             )}

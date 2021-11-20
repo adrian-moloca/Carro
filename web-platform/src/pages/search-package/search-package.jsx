@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Container, Box, Grid, MenuItem } from "@material-ui/core";
-import { Country, City } from "country-state-city";
 import { useTranslation } from 'react-i18next';
-import { Autocomplete } from "@material-ui/lab";
 import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
 import {Pagination} from '@material-ui/lab';
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
-import CarroTextField from "../../components/textField/CarroTextField";
 import PackageCard from '../../components/cards/package-card/package-card';
 import usePagination from '../../components/pagination/use-pagination/use-pagination';
+import CarroAutocomplete from '../../components/autocomplete/CarroAutocomplete';
+import {getCountries, getCities} from '../../utils/Functions/countries-city-functions';
 
 const SearchPackages = () => {
 
@@ -114,17 +113,10 @@ const SearchPackages = () => {
   const [departureCity, setDepartureCity] = useState('');
   const [destinationCity, setDestinationCity] = useState('');
 
-  const handleChangeDepartureCountry = (event) => setDepartureCountry(event.target.value);
-  const handleChangeDestinationCountry = (event) => setDestinationCountry(event.target.value);
+  const handleChangeDepartureCountry = (event) => setDepartureCountry(event.target.textContent);
+  const handleChangeDestinationCountry = (event) => setDestinationCountry(event.target.textContent);
   const handleChangeDepartureCity = (event) => setDepartureCity(event.target.textContent);
   const handleChangeDestinationCity = (event) => setDestinationCity(event.target.textContent);
-  const getCountries = () => {return Country.getAllCountries()};
-
-  const getCities = (country) => {
-    const cities = [];
-    City.getCitiesOfCountry(country).map((city) => cities.push(city.name));
-    return cities;
-  };
 
   const[packagesState, setPackagesState] = useState(packages_a);
   const packages = usePagination(packagesState, 3)
@@ -143,98 +135,16 @@ const SearchPackages = () => {
       <Box display="flex" justifyContent="space-evenly" mt="3%">
         <Grid container spacing={3} justifyContent="space-between">
           <Grid container item xs={12} md={6} xl={3} justifyContent="center">
-            <CarroTextField
-              variant="outlined"
-              label= {t('SearchRideDepartureCountry')}
-              InputLabelProps={{
-                style: { fontSize: "17px", marginTop: "3px" },
-              }}
-              fullWidth
-              select
-              value={departureCountry}
-              onChange={handleChangeDepartureCountry}
-            >
-              {getCountries().map((country) => (
-                <MenuItem key={country.isoCode} value={country.isoCode}>
-                  {country.name}
-                </MenuItem>
-              ))}
-            </CarroTextField>
+            <CarroAutocomplete value={departureCountry} options={getCountries()} label={t('SearchRideDepartureCountry')} onChange={handleChangeDepartureCountry}/>
           </Grid>
           <Grid container item xs={12} md={6} xl={3} justifyContent="center">
-            <Autocomplete
-              options={getCities(departureCountry)}
-              autoHighlight
-              autoSelect
-              getOptionLabel={(option) => option}
-              renderOption={(option) => (
-                <React.Fragment>{option}</React.Fragment>
-              )}
-              renderInput={(params) => (
-                <CarroTextField
-                  {...params}
-                  label={t('SearchRideDepartureCity')}
-                  InputLabelProps={{
-                    style: { fontSize: "17px", marginTop: "3px"},
-                  }}
-                  variant="outlined"
-                  inputProps={{
-                    ...params.inputProps,
-                    autoComplete: "new-password", // disable autocomplete and autofill
-                  }}
-                  fullWidth
-                />
-              )}
-              onChange={handleChangeDepartureCity}
-              fullWidth
-            />
+            <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label={t('SearchRideDepartureCountry')} onChange={handleChangeDepartureCity}/>
           </Grid>
           <Grid container item xs={12} md={6} xl={3} justifyContent="center">
-            <CarroTextField
-              variant="outlined"
-              label={t('SearchRideDestinationCountry')}
-              InputLabelProps={{
-                style: { fontSize: "17px", marginTop: "3px" },
-              }}
-              fullWidth
-              select
-              value={destinationCountry}
-              onChange={handleChangeDestinationCountry}
-            >
-              {getCountries().map((country) => (
-                <MenuItem key={country.isoCode} value={country.isoCode}>
-                  {country.name}
-                </MenuItem>
-              ))}
-            </CarroTextField>
+            <CarroAutocomplete value={destinationCountry} options={getCountries()}  label={t('SearchRideDestinationCountry')} onChange={handleChangeDestinationCountry}/>
           </Grid>
           <Grid container item xs={12} md={6} xl={3} justifyContent="center">
-            <Autocomplete
-              options={getCities(destinationCountry)}
-              autoHighlight
-              autoSelect
-              getOptionLabel={(option) => option}
-              renderOption={(option) => (
-                <React.Fragment>{option}</React.Fragment>
-              )}
-              renderInput={(params) => (
-                <CarroTextField
-                  {...params}
-                  label={t('SearchRideDestinationCity')}
-                  InputLabelProps={{
-                    style: { fontSize: "17px", marginTop: "3px" },
-                  }}
-                  variant="outlined"
-                  inputProps={{
-                    ...params.inputProps,
-                    autoComplete: "new-password", // disable autocomplete and autofill
-                  }}
-                  fullWidth
-                />
-              )}
-              onChange={handleChangeDestinationCity}
-              fullWidth
-            />
+            <CarroAutocomplete value={destinationCity} options={getCities(destinationCountry)} label={t('SearchRideDepartureCountry')} onChange={handleChangeDestinationCity}/>
           </Grid>
         </Grid>
       </Box>
