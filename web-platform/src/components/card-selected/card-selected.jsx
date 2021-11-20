@@ -16,10 +16,10 @@ const CardSelected = (props) =>{
     const{t}=useTranslation();
 
     const[cardSelected, setCardSelected] = useState('cardOnline1');
-    const[cardHolder, setCardHolder] = useState();
-    const[cardNumber, setCardNumber] = useState();
-    const[cardCVV, setCardCVV] = useState();
-    const[expDate, setExpDate] = useState();
+    const[cardHolder, setCardHolder] = useState('');
+    const[cardNumber, setCardNumber] = useState('');
+    const[cardCVV, setCardCVV] = useState('');
+    const[expDate, setExpDate] = useState(new Date());
     const [savedCardsData, setSavedCardsData] = useState([
         {
             name:'cardOnline1',

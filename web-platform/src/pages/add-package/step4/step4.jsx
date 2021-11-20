@@ -16,13 +16,13 @@ const RadioGroupPersonalized = withStyles({
 
 const StepFour = () =>{
   const { t } = useTranslation();
-    const [cardNumber, setCardNumber] = useState(null);
+    const [cardNumber, setCardNumber] = useState('');
 
-    const[expDate, setExpDate] = useState(null);
+    const[expDate, setExpDate] = useState(new Date());
 
-    const[completeName, setCompleteName] = useState(null);
+    const[completeName, setCompleteName] = useState('');
 
-    const[CVV, setCVV] = useState(null);
+    const[CVV, setCVV] = useState('');
 
     const[payment, setPayment] = useState('cardOnline');
 

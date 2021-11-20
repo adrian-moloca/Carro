@@ -3,11 +3,16 @@ import { Link } from 'react-router-dom';
 import { Badge, Box, IconButton } from '@material-ui/core';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import {connect} from 'react-redux';
+import { fetchNotifications } from '../../redux/actions/NotificationsActions';
 
- const BadgeVisibility = ({notifications}) => {
+ const BadgeVisibility = ({notifications, fetchNotifications}) => {
 
   const [hideBadge, setHideBadge] = useState(false)
   const [unreadNotifications, setUnreadNotifications] = useState(notifications ? notifications.filter(el => el.read == false) : []);
+
+  useEffect(()=>{
+    fetchNotifications();
+  }, [])
 
   useEffect(()=>{
     const unread = notifications ? notifications.filter(el => el.read == false) : [];
@@ -54,6 +59,9 @@ import {connect} from 'react-redux';
   );
 }
 
-const mapStateToProps = state => ({notifications: state.userData.notifications})
-export default connect(mapStateToProps, null)(BadgeVisibility);
+const mapStateToProps = state => ({notifications: state.notificationsData.notifications})
+const mapDispatchToProps = dispatch => ({
+    fetchNotifications: ()=>dispatch(fetchNotifications()),
+})
+export default connect(mapStateToProps, mapDispatchToProps)(BadgeVisibility);
 

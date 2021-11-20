@@ -9,7 +9,7 @@ export const fetchNotifications = () => {
 
 return (dispatch) => {
     dispatch(fetchNotificationsRequest);
-    axios.get(data.baseUrl + "")
+    axios.get(data.baseUrl + "/notifications/")
         .then(response => {
             const notifications = response.data;
             dispatch(fetchNotificationsSuccess(notifications));
@@ -24,7 +24,7 @@ export const updateNotification = (id, read) => {
 
 return(dispatch) => {
     dispatch(updateNotificationRequest);
-    axios.patch(data.baseUrl+"" + id,{
+    axios.patch(data.baseUrl+"/notifications/" + id,{
             read: read,
         })
         .then(response => {
@@ -41,7 +41,7 @@ export const deleteNotification = (id) => {
 
 return(dispatch) => {
     dispatch(deleteNotificationRequest);
-    axios.delete(data.baseUrl+"" +id ,{
+    axios.delete(data.baseUrl+"/notifications/" +id ,{
         })
         .then(response => {
             const Msg = response.data;

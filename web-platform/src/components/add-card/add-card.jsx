@@ -4,25 +4,30 @@ import CarroDatePicker from '../datePicker/CarroDatePicker';
 import CarroTextField from '../textField/CarroTextField';
 import PrimaryButton from '../buttons/primaryButton/primaryButton';
 import { useTranslation } from "react-i18next";
+import { cardNumberValidator, cvvValidator, nameValidator } from '../../utils/Functions/input-validators';
 const AddCard = (rest) =>{
     const { t } = useTranslation();
-    const {dateValue, handleDateSelect, ...props} = rest;
+    const {...props} = rest;
     return (
         <Fragment>
             <Grid container item xs={12} justifyContent='center'>
                 <Box mt={props.marginTop}fontWeight={500} fontSize={16}>{t("AddCard")}</Box>
             </Grid>
             <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
-                <CarroTextField size='small' value={props.cardNumber} onChange={props.cardNumberSet} variant ='outlined' label={t("AddCard")} fullWidth/>
+                <CarroTextField type='phone' error={cardNumberValidator(props.cardNumber)} helperText={cardNumberValidator(props.cardNumber) ? t('CardNumberFormat') : ''} 
+                                size='small' value={props.cardNumber} onChange={props.cardNumberSet} variant ='outlined' label={t("AddCard")} fullWidth/>
             </Grid>
             <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                <CarroDatePicker size='small' value={dateValue} onChange={handleDateSelect} views={["month","year"]} format="MM/yy" openTo='month' label={t("LastDate")}/>  
+                <CarroDatePicker size='small' disablePast value={props.expDate} onChange={props.expDateSet} views={["month","year"]} format="MM/yy" label={t("LastDate")}/>  
             </Grid>
             <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                <CarroTextField size='small' value ={props.completeName} onChange={props.completeNameSet} variant ='outlined' label={t("CardName")} fullWidth/>
+                <CarroTextField error={nameValidator(props.completeName)} helperText={nameValidator(props.completeName) ? t('OnlyChars') : ''}
+                                size='small' value ={props.completeName} onChange={props.completeNameSet} 
+                                variant ='outlined' label={t("CardName")} fullWidth/>
             </Grid>
             <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                <CarroTextField size='small' value={props.cvv} onChange={props.cvvSet} variant ='outlined' label='CVV/CVC' fullWidth/>
+                <CarroTextField type='phone' error={cvvValidator(props.cvv)} helperText={cvvValidator(props.cvv) ? t('OnlyNumbers')+' '+t('AndNotLessOrMore') : ''}
+                                size='small' value={props.cvv} onChange={props.cvvSet} variant ='outlined' label='CVV/CVC' fullWidth/>
             </Grid>
             <Grid container item xs={12} justifyContent='center'>
                 <Box display={props.showSaveButton ? props.showSaveButton : 'none'} width={0.7} marginBottom={2}>

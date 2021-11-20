@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import CarroTextField from '../textField/CarroTextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -12,10 +12,10 @@ const CarroAutocomplete =(props)=>{
             options={props.options}
             autoHighlight
             getOptionLabel={(option) => option}
-            renderOption={(option) => (
-                        <React.Fragment>
+            renderOption={(option, index) => (
+                        <Fragment key={index}>
                             {option} 
-                        </React.Fragment>
+                        </Fragment>
             )}
             renderInput={(params) => (
                 <CarroTextField
