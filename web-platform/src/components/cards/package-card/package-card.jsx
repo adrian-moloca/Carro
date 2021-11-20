@@ -92,7 +92,7 @@ const PackageCard = (props) =>{
                             </GreenCaroButton>
                         </Grid>
                         <Grid container item xs={10} sm={4} justifyContent = 'center'>
-                            <RejectModal />
+                            <RejectModal rejectReason={props.rejectReason} setRejectReason={props.setRejectReason}/>
                         </Grid>
                     </Grid>
                 );

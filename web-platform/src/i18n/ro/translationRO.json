@@ -516,7 +516,7 @@
     "Sender": "Expeditor",
     "Destinatary": "Destinatar",
     "PaymentMethods": "Metode de plata",
-    "WriteHereYourIssue": "Scrie aici motivul pentru care refuzi",
+    "WriteHereYourReason": "Scrie aici motivul pentru care refuzi",
     "VerifyDelete": "Doresti sa stergi aceasta conversatie?",
     "MarkAsRead": "Marcheaza ca citit",
     "MarkAsUnread": "Marcheaza ca necitit",
