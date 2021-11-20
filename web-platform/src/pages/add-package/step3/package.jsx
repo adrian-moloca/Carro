@@ -11,13 +11,19 @@ import { Fragment } from "react";
 import CarroTextField from "../../../components/textField/CarroTextField";
 import CarroCheckbox from "../../../components/checkbox/CarroCheckbox";
 import { useTranslation } from "react-i18next";
+import { numberValidator } from "../../../utils/Functions/input-validators";
 
 const Package = (props) => {
   const { t } = useTranslation();
 
-  const [packageSize, setPackageSize] = useState(1);
+  const [packageSize, setPackageSize] = useState(new Number());
+  const [currency, setCurrency] = useState('');
+  const [weight, setWeight] = useState(new Number());
+  const [smallDescription, setSmallDescription] = useState('');
+  const [price, setPrice] = useState(new Number());
+  const [packagesNumber, setPackagesNumber] = useState(1);
+  const [description, setDescription] = useState('');
 
-  const [currency, setCurrency] = useState("ron");
 
   const [Inflamabil, setInflamabil] = useState(false);
   const [Fragil, setFragil] = useState(false);
@@ -158,6 +164,11 @@ const Package = (props) => {
       </Grid>
       <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
         <CarroTextField
+          type='number'
+          error={numberValidator(weight)}
+          helperText={numberValidator(weight ? t('OnlyNumbers') : '')}
+          value={weight}
+          onChange={(e)=>setWeight(e.target.value)}
           variant="outlined"
           label={t("Weight")}
           fullWidth
@@ -170,18 +181,24 @@ const Package = (props) => {
       </Grid>
       {getPackagesSizesContent(packageSize)}
       <Grid container item xs={12} justifyContent="center">
-        <CarroTextField variant="outlined" label={t("SmallDescription")} fullWidth />
+        <CarroTextField variant="outlined" error={smallDescription.length <= 3 && smallDescription!=''}  
+                        helperText={smallDescription.length <= 3 && smallDescription!='' ? t('SmallDescriptionMustContain') : ''} 
+                        value={smallDescription} onChange={(e)=>  setSmallDescription(e.target.value)} label={t("SmallDescription")} fullWidth />
       </Grid>
       <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
         <CarroTextField
           variant="outlined"
+          type='number'
+          value={price}
+          onChange={(e)=>setPrice(e.target.value)}
+          error={numberValidator(price)}
+          helperText={numberValidator(price) ? t('ValidNumber') : ''}
           label={t("Price")}
           fullWidth
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
                 <Select value={currency} onChange={handleCurrencySelect}>
-                  {" "}
                   {currencies.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
@@ -194,11 +211,16 @@ const Package = (props) => {
         />
       </Grid>
       <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
-        <CarroTextField variant="outlined" label={t("PackageNumbers")} fullWidth />
+        <CarroTextField type='number' error={packagesNumber < 1 || numberValidator(packagesNumber)}
+                        helperText={packagesNumber < 1 || numberValidator(packagesNumber) ? t('ValidNumberOfPackages') : ''}
+                        value={packagesNumber} onChange={(e)=>setPackagesNumber(e.target.value)} 
+                        variant="outlined" label={t("PackageNumbers")} fullWidth />
       </Grid>
       <Grid container item xs={12} justifyContent="center">
-        <CarroTextField
-          variant="outlined" label={t("Description")} multiline rows={4} fullWidth/>
+        <CarroTextField error={description.length < 25 && description!=''} 
+                        helperText={description.length < 25 && description!='' ? t('MinimumCharsDescription') : ''}
+                      value={description} onChange={(e)=>setDescription(e.target.value)}
+                      variant="outlined" label={t("Description")} multiline rows={4} fullWidth/>
       </Grid>
       <Grid container item xs={12} justifyContent="space-between">
         <FormControlLabel

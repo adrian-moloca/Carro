@@ -3,7 +3,7 @@ import { Select, InputAdornment, MenuItem, Grid } from '@material-ui/core';
 import CarroTextField from '../textField/CarroTextField';
 import {Country} from 'country-state-city';
 import { useTranslation } from 'react-i18next';
-import phoneValidator from '../../utils/Functions/phone-validator';
+
 const PhoneTextField = (props) =>{
     const { t } = useTranslation();
     return(

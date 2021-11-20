@@ -1,7 +1,5 @@
 import React, {useState, useLayoutEffect, useEffect} from "react";
 import { Container, Box, Grid, Checkbox, StepConnector, Avatar } from "@material-ui/core";
-import { Link } from 'react-router-dom';
-import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import GoogleIcon from "../../assets/images/GoogleIcon.png";
 import FacebookIcon from "../../assets/images/facebook-icon.png";
@@ -15,10 +13,7 @@ import "../../App.css";
 import { useTranslation } from "react-i18next";
 import { connect } from 'react-redux';
 import {createNewUser} from '../../redux/actions/UserActions';
-import mailValidator from "../../utils/Functions/mail-validator";
-import nameValidator from "../../utils/Functions/name-validator";
-import passwordValidator from "../../utils/Functions/password-validator";
-import phoneValidator from "../../utils/Functions/phone-validator";
+import {mailValidator, nameValidator, passwordValidator, phoneValidator} from "../../utils/Functions/input-validators";
 
 const Register = ({createNewUser, data}) => {
   const { t } = useTranslation();
