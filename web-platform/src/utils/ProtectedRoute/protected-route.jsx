@@ -4,7 +4,7 @@ import { RootStateOrAny, useSelector } from 'react-redux';
 
 function ProtectedRoute({ component: Component, loggedIn, ...restOfProps }) {
 
-    const isLoggedIn = useSelector((state: RootStateOrAny) => state.userData.email.length > 0 ? true : false);
+    const isLoggedIn = useSelector((state: RootStateOrAny) => String(state.userData.email).length > 0 ? true : false);
 
     return (
     <React.Fragment>

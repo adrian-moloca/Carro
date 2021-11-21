@@ -4,6 +4,8 @@ import {MY_RIDES_REQUEST, MY_RIDES_SUCCESS, MY_RIDES_FAILURE,
     RIDE_DELETE_REQUEST, RIDE_DELETE_SUCCESS, RIDE_DELETE_FAILURE,
 } from '../types/MyRidesTypes';
 
+/* http://mongo-api.carrointernational.ro/api/v1/rides?
+fromCountry=s&fromCity=s&toCountry=s&toCity=s&pageNumber=1&pageSize=25 */
 
 let initialState = {
     rides: [],

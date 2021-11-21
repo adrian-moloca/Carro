@@ -14,29 +14,39 @@ import { useTranslation } from "react-i18next";
 import { connect } from 'react-redux';
 import {createNewUser} from '../../redux/actions/UserActions';
 import {mailValidator, nameValidator, passwordValidator, phoneValidator} from "../../utils/Functions/input-validators";
+import { useHistory } from "react-router";
 
 const Register = ({createNewUser, data}) => {
+  
   const { t } = useTranslation();
   const classes = useStyles();
+  const history = useHistory();
 
-  const [terms, setTerms] = useState(false);
-
+  const [userCreated, setUserCreated] = useState(String(data.token).length > 0 ? true : false);
   const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState('');
   const [countryPhoneCode, setCountryPhoneCode] = useState('');
-
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState(new Date(Number(new Date().getFullYear()-14).toString()+'-'+Number(new Date().getMonth()+1).toString()+'-'+new Date().getDay().toString()));
+  const [dateOfBirth, setDateOfBirth] = useState(new Date(new Date().getFullYear()-14, new Date().getMonth(),new Date().getDate(), 0));
+  const [terms, setTerms] = useState(false);
   const [hasErrors, setHasErrors] = useState(false);
 
   useLayoutEffect(()=>{
     setPhoneNumber(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber)
     console.log(phoneNumber)
   }, [inputValuePhoneNumber, countryPhoneCode])
+
+  const redirectPhoneNumberVerification = () => {
+    if(userCreated === true) {
+        history.push('/register/phone-number-verification');
+    } else {
+        history.push('/register');
+    }
+  }
 
   useEffect(()=>{
     setHasErrors(nameValidator(firstName))
@@ -50,9 +60,16 @@ const Register = ({createNewUser, data}) => {
     setHasErrors(mailValidator(email))
   }, [email])
 
+  
   useEffect(()=>{
     setHasErrors(phoneValidator(inputValuePhoneNumber))
+    console.log((new Date().getFullYear()-14).toString())
   }, [inputValuePhoneNumber])
+  
+  useEffect(() => {
+    setUserCreated(String(data.token).length > 0 ? true : false);
+    setTimeout(() => {redirectPhoneNumberVerification()}, 500)
+  }, [data])
 
   return (
     <Container className={"Primary-container-style"}>
@@ -87,10 +104,9 @@ const Register = ({createNewUser, data}) => {
             <CarroTextField variant="outlined" label={t("PickupAddress")} fullWidth value={date} onChange={(e) => setLastName(e.target.value)}/>
           </Grid> */}
           <Grid item xs={12} sm={6}>
-            <CarroDatePicker label={t("Birthday")} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}}
-                            value={dateOfBirth} onChange={(value) => setDateOfBirth(value)} format='dd/MM/yyy' views={['date', 'month', 'year']}
-                            maxDate={Number(new Date().getFullYear()-14).toString()+'-'+Number(new Date().getMonth()+1).toString()+'-'+new Date().getDay().toString()}
-                            helperText={t('MinimumAgeForRegister')}/>
+            <CarroDatePicker label={t("Birthday")} value={dateOfBirth} onChange={(date) => setDateOfBirth(date)} format='dd/MM/yyyy' views={["year", "month", "date"]}
+                            maxDate={(new Date().getFullYear()-14).toString()+'-'+(new Date().getMonth()+1).toString()+'-'+new Date().getDate().toString()}
+                            helperText={t('MinimumAgeForRegister')} openTo="year"/>
           </Grid>
           <Grid item xs={12} sm={6}>
             <PhoneTextField 
