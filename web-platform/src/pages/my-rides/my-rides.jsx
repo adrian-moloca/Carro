@@ -78,7 +78,7 @@ const MyRides = ({fetchMyRides, deleteRide, myRidesData}) => {
 
   const closeRide=(event, index)=>{
     const temp=[...ridesState] 
-    temp.forEach((ride, i)=>{
+    temp.map((ride, i)=>{
       if(index === i)
       {
         ride.status = 4;

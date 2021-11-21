@@ -150,7 +150,7 @@ const packages = [
 
   const closePackage=(event, index)=>{
       const temp=[...packagesState] 
-      temp.forEach((pack, i)=>{
+      temp.map((pack, i)=>{
         if(index === i)
         {
           pack.status = 5;
