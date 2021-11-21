@@ -36,7 +36,7 @@ const PhoneNumberVerification = ()=>{
                 <Grid container item xs={10} xl={10} justifyContent='space-between'>
                     <Grid container item xs={5} xl={5}>
                         <Link to='/register' style={{textDecoration:'none', width:'100%'}}>
-                            <SecondaryButton className="ButtonTextSize" variant='outlined' fullWidth>{t("DriverCardBackButton")}</SecondaryButton>
+                            <SecondaryButton onClick={()=> localStorage.removeItem('state')}className="ButtonTextSize" variant='outlined' fullWidth>{t("DriverCardBackButton")}</SecondaryButton>
                         </Link>
                     </Grid>
                     <Grid container item xs={5} xl={5}> 

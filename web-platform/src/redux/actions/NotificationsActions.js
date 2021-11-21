@@ -5,17 +5,17 @@ import {fetchNotificationsRequest, fetchNotificationsSuccess, fetchNotifications
 import axios from 'axios';
 import data from '../../utils/constants';
 
-export const fetchNotifications = () => {
+export const fetchNotifications = (userId) => {
 
 return (dispatch) => {
     dispatch(fetchNotificationsRequest);
-    axios.get(data.baseUrl + "/notifications/")
+    axios.post(data.baseUrl + "/notifications/", {
+            userId: userId
+        })
         .then(response => {
-            const notifications = response.data;
-            dispatch(fetchNotificationsSuccess(notifications));
+            dispatch(fetchNotificationsSuccess(response.data));
         }).catch(error => {
-            const errorMsg = error;
-            dispatch(fetchNotificationsFailure(errorMsg))
+            dispatch(fetchNotificationsFailure(error))
         })
 }
 }

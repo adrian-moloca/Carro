@@ -16,7 +16,7 @@ const RenderMenuSBD = () => {
   return(
       <Fragment>
         <Grid container item md={3} justifyContent='center'>
-          <Link to="/login" className={classes.linkBtn}>
+          <Link to="/search-package" className={classes.linkBtn}>
               <SearchIcon/>
               <Box fontSize={18} paddingLeft='5px'>
               {t("SearchPackage")}
@@ -24,7 +24,7 @@ const RenderMenuSBD = () => {
           </Link>
         </Grid>
         <Grid container item md={3} justifyContent='center'>
-          <Link to="/login" className={classes.linkBtn}>
+          <Link to="/search-ride" className={classes.linkBtn}>
               <DriveEtaIcon/>
               <Box fontSize={18} paddingLeft='5px'>
               {t("SearchRide")}

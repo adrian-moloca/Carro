@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Box, Grid, MenuItem } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import { Container, Box, Grid } from "@material-ui/core";
 import { useTranslation } from 'react-i18next';
 import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
 import {Pagination} from '@material-ui/lab';
@@ -8,103 +8,10 @@ import PackageCard from '../../components/cards/package-card/package-card';
 import usePagination from '../../components/pagination/use-pagination/use-pagination';
 import CarroAutocomplete from '../../components/autocomplete/CarroAutocomplete';
 import {getCountries, getCities} from '../../utils/Functions/countries-city-functions';
+import { connect } from "react-redux";
+import { searchPackages } from "../../redux/actions/PackagesActions";
 
-const SearchPackages = () => {
-
-  const packages_a = [
-    {
-        sender: 'George Micu',
-        senderPhone: '0888888888',
-        destinatary: 'George Mare',
-        destinataryPhone: '0999999999',
-        packageQuantity: 1,
-        packageDimensions: '0x0x0',
-        packageWeight: '1 Kg',
-        departureDate: '26/08/2021 02:00 AM',
-        departureAddress: 'Lorem Ipsium Street',
-        destinationAddress: 'Lorem Ipsium Street',
-        details: 'ceva de trimis',
-        price: '15 RON',
-        status: 10,
-        rideExists: true,
-        packageSpecialMention: {
-            isFragile: true,
-            isFoodGrade: false,
-            isFlammable: false,
-            isHandleWithCare: true,
-            isAnimal: true,
-          },
-    },
-    {
-      sender: 'George Micu',
-      senderPhone: '0888888888',
-      destinatary: 'George Mare',
-      destinataryPhone: '0999999999',
-      packageQuantity: 1,
-      packageDimensions: '0x0x0',
-      packageWeight: '1 Kg',
-      departureDate: '26/08/2021 02:00 AM',
-      departureAddress: 'Lorem Ipsium Street',
-      destinationAddress: 'Lorem Ipsium Street',
-      details: 'ceva de trimis',
-      price: '15 RON',
-      status: 10,
-      rideExists: true,
-      packageSpecialMention: {
-          isFragile: false,
-          isFoodGrade: false,
-          isFlammable: false,
-          isHandleWithCare: false,
-          isAnimal: true,
-        },
-    },
-    {
-      sender: 'George Micu',
-      senderPhone: '0888888888',
-      destinatary: 'George Mare',
-      destinataryPhone: '0999999999',
-      packageQuantity: 1,
-      packageDimensions: '0x0x0',
-      packageWeight: '1 Kg',
-      departureDate: '26/08/2021 02:00 AM',
-      departureAddress: 'Lorem Ipsium Street',
-      destinationAddress: 'Lorem Ipsium Street',
-      details: 'ceva de trimis',
-      price: '15 RON',
-      status: 10,
-      rideExists: true,
-      packageSpecialMention: {
-          isFragile: false,
-          isFoodGrade: false,
-          isFlammable: true,
-          isHandleWithCare: true,
-          isAnimal: true,
-        },
-    },
-    {
-      sender: 'George Micu',
-      senderPhone: '0888888888',
-      destinatary: 'George Mare',
-      destinataryPhone: '0999999999',
-      packageQuantity: 1,
-      packageDimensions: '0x0x0',
-      packageWeight: '1 Kg',
-      departureDate: '26/08/2021 02:00 AM',
-      departureAddress: 'Lorem Ipsium Street',
-      destinationAddress: 'Lorem Ipsium Street',
-      details: 'ceva de trimis',
-      price: '15 RON',
-      status: 10,
-      rideExists: true,
-      packageSpecialMention: {
-          isFragile: false,
-          isFoodGrade: false,
-          isFlammable: true,
-          isHandleWithCare: true,
-          isAnimal: true,
-        },
-    },
-  ]
+const SearchPackages = ({data, searchPackages}) => {
 
   const { t } = useTranslation();
   // state
@@ -113,16 +20,20 @@ const SearchPackages = () => {
   const [departureCity, setDepartureCity] = useState('');
   const [destinationCity, setDestinationCity] = useState('');
 
-  const handleChangeDepartureCountry = (event) => setDepartureCountry(event.target.textContent);
-  const handleChangeDestinationCountry = (event) => setDestinationCountry(event.target.textContent);
-  const handleChangeDepartureCity = (event) => setDepartureCity(event.target.textContent);
-  const handleChangeDestinationCity = (event) => setDestinationCity(event.target.textContent);
+  const handleChangeDepartureCountry = (event, newValue) => setDepartureCountry(newValue);
+  const handleChangeDestinationCountry = (event, newValue) => setDestinationCountry(newValue);
+  const handleChangeDepartureCity = (event, newValue) => setDepartureCity(newValue);
+  const handleChangeDestinationCity = (event, newValue) => setDestinationCity(newValue);
 
-  const[packagesState, setPackagesState] = useState(packages_a);
+  const[packagesState, setPackagesState] = useState(data);
   const packages = usePagination(packagesState, 3)
   
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {setPage(value); packages.jump(value)};
+
+  useEffect(()=>{
+    setPackagesState(data)
+  }, [data])
 
   // render
   return (
@@ -150,7 +61,9 @@ const SearchPackages = () => {
       </Box>
       <Box display="flex" justifyContent="space-evenly" mt="3%">
           <Grid item xs={11} md={5} xl={3}>
-            <PrimaryButton fullWidth variant="contained" endIcon={<FindInPageRoundedIcon/>}>
+            <PrimaryButton onClick={searchPackages(departureCountry, departureCity, destinationCountry, destinationCity)} 
+                           disabled={departureCountry && departureCity && destinationCountry && destinationCity ? false : true}
+                           fullWidth variant="contained" endIcon={<FindInPageRoundedIcon/>}>
               {t('SearchRideButton')}
           </PrimaryButton>
         </Grid>
@@ -183,4 +96,7 @@ const SearchPackages = () => {
   );
 };
 
-export default SearchPackages;
+const mapDispatchToProps = dispatch => ({searchPackages: (fromCountry, fromCity, toCountry, toCity) => dispatch(searchPackages(fromCountry, fromCity, toCountry, toCity))})
+const mapStateToProps = state => ({data: state.packagesData.packages})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPackages);

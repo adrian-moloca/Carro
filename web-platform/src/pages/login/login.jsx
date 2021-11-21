@@ -17,7 +17,7 @@ import { mailValidator } from '../../utils/Functions/input-validators';
 
 const Login = ({fetchLogin, data}) => {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(data.email.length > 0 ? true : false);
+  const [isLoggedIn, setIsLoggedIn] = useState(String(data.email).length > 0 ? true : false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,12 +30,12 @@ const Login = ({fetchLogin, data}) => {
     if(isLoggedIn === true) {
         history.push('/home');
     } else {
-      history.push('/login');
+        history.push('/login');
     }
   }
 
   useEffect(() => {
-    setIsLoggedIn(data.email.length > 0 ? true : false);
+    setIsLoggedIn(String(data.email).length > 0 ? true : false);
     setTimeout(() => {redirectAfterLoginSuccess()}, 500)
   }, [data])
 
@@ -67,8 +67,8 @@ const Login = ({fetchLogin, data}) => {
             </Box>
             </Grid>
             <Grid container item xs={10} xl={8} justifyContent='center'>  
-                <PrimaryButton onClick={() => {fetchLogin(email.toLowerCase(), password);}} className="ButtonTextSize" size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
-                {t("Login")}
+                <PrimaryButton disabled={email && password && !mailValidator(email) ? false : true} onClick={() => {fetchLogin(email.toLowerCase(), password);}} className="ButtonTextSize" size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
+                    {t("Login")}
                 </PrimaryButton>
             </Grid>
         </Grid>
@@ -79,8 +79,7 @@ const Login = ({fetchLogin, data}) => {
             </Grid>
             <Grid container item xs={2} xl={2} justifyContent='center'>
                 <Box textAlign='center' className="ButtonTextSize">
-                
-                {t("LoginThrough")}
+                    {t("LoginThrough")}
                 </Box>
             </Grid>
             <Grid container item xs={5} alignItems='center'>

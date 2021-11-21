@@ -1,10 +1,9 @@
 import {USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE,
-    USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, USER_LOGOUT_FAILURE,
-    USER_NEWUSER_REQUEST, USER_NEWUSER_SUCCESS, USER_NEWUSER_FAILURE,
+    USER_LOGOUT, USER_NEWUSER_REQUEST, USER_NEWUSER_SUCCESS, USER_NEWUSER_FAILURE,
     USER_GET_REQUEST, USER_GET_SUCCESS, USER_GET_FAILURE,
     USER_UPDATE_REQUEST, USER_UPDATE_SUCCESS, USER_UPDATE_FAILURE,
     USER_DELETE_REQUEST, USER_DELETE_SUCCESS, USER_DELETE_FAILURE,
-    USER_RESET_REQUEST, USER_RESET_SUCCESS, USER_RESET_FAILURE, USER_NOTIFICATIONS,
+    USER_RESET_REQUEST, USER_RESET_SUCCESS, USER_RESET_FAILURE,
 } from '../types/UserTypes';
 
 
@@ -23,7 +22,8 @@ let initialState = {
     sub: "",
     loading: false,
     hasErrors: false,
-    notifications: [],
+    token: "",
+    refreshToken: "",
 }
 
 const userReducer = (state = initialState, action) => {
@@ -141,25 +141,21 @@ switch (action.type) {
             hasErrors: true,
         }
     //Logout
-    case USER_LOGOUT_REQUEST:
+    case USER_LOGOUT:
         return {
             ...state,
-            loading: true,
-        }
-    case USER_LOGOUT_SUCCESS:
-        return {
-            ...state,
-            token: '',
-            refreshToken: '',
-        }
-    case USER_LOGOUT_FAILURE:
-        return {   
-            hasErrors: true,
-        }
-    case USER_NOTIFICATIONS:
-        return {
-            ...state,
-            notifications: action.payload,
+            UserRole: "",
+            email: "",
+            exp: 0,
+            iat: 0,
+            id: "",
+            isAdmin: "",
+            isUserValidated: "",
+            jti: "",
+            name: "",
+            nbf: 0,
+            phoneNumber: "",
+            sub: "",
         }
     default: 
         return  {
