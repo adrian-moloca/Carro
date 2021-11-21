@@ -10,8 +10,8 @@ const CarroAutocomplete =(props)=>{
             onChange={props.onChange}
             disabled={props.disabled}
             options={props.options}
-            getOptionSelected={(option, value) => option.id === value.id}
-            autoHighlight
+            autoComplete
+            autoSelect
             getOptionLabel={(option) => option}
             renderOption={(option, index) => (
                         <Fragment key={index}>
@@ -23,9 +23,9 @@ const CarroAutocomplete =(props)=>{
                     {...params}
                     label={props.label}
                     variant="outlined"
-                    inputProps={{
+                    /* inputProps={{
                         ...params.inputProps, // disable autocomplete and autofill
-                    }}
+                    }} */
                 fullWidth/>
             )}
             size={props.size}

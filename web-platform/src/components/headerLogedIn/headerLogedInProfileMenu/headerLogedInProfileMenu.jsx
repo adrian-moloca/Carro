@@ -7,8 +7,10 @@ import {LocalMallOutlined, LocalShippingOutlined, AccountCircleOutlined,
 import { Fade } from "@material-ui/core";
 import useStyles from './headerLogedInProfileMenuStyle'
 import { useTranslation } from 'react-i18next';
+import { connect } from "react-redux";
+import { fetchLogout } from "../../../redux/types/UserTypes";
 
-const HeaderLogedInProfileMenu = () => {
+const HeaderLogedInProfileMenu = ({fetchLogout}) => {
   const { t } = useTranslation();
   // State
   const [anchorEl, setAnchorEl]= useState(null);
@@ -24,13 +26,6 @@ const HeaderLogedInProfileMenu = () => {
   const [userType, setUserType] = useState(null);
   
   const classes = useStyles();
-
-  const users = [
-    {
-      value: "userAdmin",
-      label: "Profil admin",
-    },
-  ]
 
   return(
     <Fragment>
@@ -103,7 +98,7 @@ const HeaderLogedInProfileMenu = () => {
               </MenuItem>
             </Link>
             <Link to="/" style={{textDecoration:'none' ,color:'inherit'}}>
-              <MenuItem dense onClick={() => {setAnchorEl(null); localStorage.removeItem('state')}}>
+              <MenuItem dense onClick={() => {setAnchorEl(null); localStorage.removeItem('state'); fetchLogout()}}>
                   <Box mr={2} className={"Pink-carro"}>
                     <CancelOutlined/>
                   </Box>
@@ -135,4 +130,6 @@ const HeaderLogedInProfileMenu = () => {
   );
 };
 
-export default HeaderLogedInProfileMenu;
+const mapDispatchToProps = dispatch => ({fetchLogout: () => dispatch(fetchLogout())})
+
+export default connect(null, mapDispatchToProps)(HeaderLogedInProfileMenu);

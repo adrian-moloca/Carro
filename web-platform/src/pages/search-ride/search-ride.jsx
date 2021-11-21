@@ -1,101 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import { Container, Box, Grid} from "@material-ui/core";
 import {Pagination} from '@material-ui/lab';
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
-import profilePhotoLeft from '../../assets/images/photoprofile1.png';
-import profilePhotoMiddle from '../../assets/images/photoprofile2.png';
-import profilePhotoRight from '../../assets/images/photoprofile3.png';
 import RideCard from "../../components/cards/ride-card/ride-card";
 import { useTranslation } from 'react-i18next';
 import usePagination from '../../components/pagination/use-pagination/use-pagination';
 import CarroAutocomplete from "../../components/autocomplete/CarroAutocomplete";
 import { getCountries, getCities } from "../../utils/Functions/countries-city-functions";
+import { searchRides } from "../../redux/actions/RidesActions";
+import { connect } from "react-redux";
 
-const SearchRide = () => {
-
-  const rides_a = [
-    {
-        image: profilePhotoLeft,
-        name: 'Marius Popescu',
-        transportType: 'Masina',
-        estimatedTime: '7 ore',
-        departure: 'Timisoara, Romania',
-        destination: 'Bucuresti, Romania',
-        departureAddress: 'Lorem Ipsium Street',
-        destinationAddress: 'Lorem Ipsium Street',
-        departureDate: '26/08/2021 02:00 AM',
-        rate: 4.5,
-        status: 0,
-        packageExists: false,
-    },
-    {
-        image: profilePhotoMiddle,
-        name: 'Marius Popescu',
-        transportType: 'Masina',
-        estimatedTime: '7 ore',
-        departure: 'Timisoara, Romania',
-        destination: 'Bucuresti, Romania',
-        departureAddress: 'Lorem Ipsium Street',
-        destinationAddress: 'Lorem Ipsium Street',
-        departureDate: '26/08/2021 02:00 AM',
-        rate: 4.5,
-        status: 1,
-    },
-    {
-        image: profilePhotoRight,
-        name: 'Marius Popescu',
-        transportType: 'Masina',
-        estimatedTime: '7 ore',
-        departure: 'Timisoara, Romania',
-        destination: 'Bucuresti, Romania',
-        departureAddress: 'Lorem Ipsium Street',
-        destinationAddress: 'Lorem Ipsium Street',
-        departureDate: '26/08/2021 02:00 AM',
-        rate: 4.5,
-        status: 10,
-    },
-    {
-      image: profilePhotoLeft,
-      name: 'Ioan Mures',
-      transportType: 'Masina',
-      estimatedTime: '7 ore',
-      departure: 'Timisoara, Romania',
-      destination: 'Bucuresti, Romania',
-      departureAddress: 'Lorem Ipsium Street',
-      destinationAddress: 'Lorem Ipsium Street',
-      departureDate: '26/08/2021 02:00 AM',
-      rate: 4.5,
-      status: 0,
-      packageExists: false,
-  },
-  {
-      image: profilePhotoMiddle,
-      name: 'Ioan Mures',
-      transportType: 'Masina',
-      estimatedTime: '7 ore',
-      departure: 'Timisoara, Romania',
-      destination: 'Bucuresti, Romania',
-      departureAddress: 'Lorem Ipsium Street',
-      destinationAddress: 'Lorem Ipsium Street',
-      departureDate: '26/08/2021 02:00 AM',
-      rate: 4.5,
-      status: 1,
-  },
-  {
-      image: profilePhotoRight,
-      name: 'Ioan Mures',
-      transportType: 'Masina',
-      estimatedTime: '7 ore',
-      departure: 'Timisoara, Romania',
-      destination: 'Bucuresti, Romania',
-      departureAddress: 'Lorem Ipsium Street',
-      destinationAddress: 'Lorem Ipsium Street',
-      departureDate: '26/08/2021 02:00 AM',
-      rate: 4.5,
-      status: 10,
-  },
-]
+const SearchRide = ({data, searchRides}) => {
 
   // state
   const { t } = useTranslation();
@@ -104,15 +20,18 @@ const SearchRide = () => {
   const [departureCity, setDepartureCity] = useState("");
   const [destinationCity, setDestinationCity] = useState("");
   // handlers
-  const handleChangeDepartureCountry = (event) => setDepartureCountry(event.target.textContent);
-  const handleChangeDestinationCountry = (event) => setDestinationCountry(event.target.textContent);
-  const handleChangeDepartureCity = (event) => setDepartureCity(event.target.textContent);
-  const handleChangeDestinationCity = (event) => setDestinationCity(event.target.textContent);
-  const[ridesState, setRidesState] = useState(rides_a);
+  const handleChangeDepartureCountry = (event, newValue) => setDepartureCountry(newValue);
+  const handleChangeDestinationCountry = (event, newValue) => setDestinationCountry(newValue);
+  const handleChangeDepartureCity = (event, newValue) => setDepartureCity(newValue);
+  const handleChangeDestinationCity = (event, newValue) => setDestinationCity(newValue);
+  const[ridesState, setRidesState] = useState(data);
   const rides = usePagination(ridesState, 3)
-  
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {setPage(value); rides.jump(value)};
+
+  useEffect(()=>{
+    setRidesState(data)
+  }, [data])
 
   return (
     <Container className={"Primary-container-style"}>
@@ -140,7 +59,9 @@ const SearchRide = () => {
       </Box>
       <Box display="flex" justifyContent="space-evenly" my="3%">
         <Grid item xs={11} md={5} xl={3}>
-          <PrimaryButton fullWidth variant="contained" endIcon={<DriveEtaIcon />}>
+          <PrimaryButton onClick={searchRides(departureCountry, departureCity, destinationCountry, destinationCity)}
+                         disabled={departureCountry && departureCity && destinationCountry && destinationCity ? false : true}
+                         variant="contained" endIcon={<DriveEtaIcon />} fullWidth>
             {t('SearchRideButton')}
           </PrimaryButton>
         </Grid>
@@ -182,4 +103,7 @@ const SearchRide = () => {
   );
 };
 
-export default SearchRide;
+const mapDispatchToProps = dispatch => ({searchRides: (fromCountry, fromCity, toCountry, toCity) => dispatch(searchRides(fromCountry, fromCity, toCountry, toCity))})
+const mapStateToProps = state => ({data: state.ridesData.rides})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchRide);

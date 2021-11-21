@@ -27,7 +27,7 @@ const SelectPlan = () => {
     <Container>
       <Grid container justifyContent="space-between" alignItems="center">
       
-        <Grid xs={12} xl={5} justifyContent="space-between" alignItems="center">
+        <Grid xs={5} xl={5} justifyContent="space-between" alignItems="center">
           <Box mt='15%' mb='10%' className={classes.SmallContainer} display="flex" flexDirection="column" alignItems="center">
           <Typography variant="h6" gutterBottom component="div">
             Cont Basic
@@ -102,7 +102,7 @@ const SelectPlan = () => {
           </Grid>
           </Box>
         </Grid>
-        <Grid xs={12} xl={5} justifyContent="space-between" alignItems="center">
+        <Grid xs={5} xl={5} justifyContent="space-between" alignItems="center">
           <Box mt='10%' mb='15%' className={classes.SmallContainer} display="flex" flexDirection="column" alignItems="center">
           <Typography variant="h6" gutterBottom component="div">
             Cont Premium

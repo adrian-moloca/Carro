@@ -27,7 +27,7 @@ export const fetchNotificationsRequest = () => {
 export const fetchNotificationsSuccess = notifications => {
     return {
         type: NOTIFICATIONS_SUCCESS,
-        payload: notifications
+        payload: [...notifications]
     }
 }
 

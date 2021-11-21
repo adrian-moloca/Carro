@@ -6,9 +6,7 @@ export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
 export const USER_LOGIN_FAILURE = 'USER_LOGIN_FAILURE';
 
 // User Logput
-export const USER_LOGOUT_REQUEST = 'USER_LOGOUT_REQUEST';
-export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';
-export const USER_LOGOUT_FAILURE = 'USER_LOGOUT_FAILURE';
+export const USER_LOGOUT = 'USER_LOGOUT';
 
 // User Create new User
 
@@ -42,7 +40,7 @@ export const USER_RESET_FAILURE = 'USER_RESET_FAILURE';
 //User notifications
 export const USER_NOTIFICATIONS = 'USER_NOTIFICATIONS';
 
-// User Login functions
+// User Login/Logout functions
 export const fetchLoginRequest = () => {
     return {
         type: USER_LOGIN_REQUEST,
@@ -63,23 +61,9 @@ export const fetchLoginFailure = error => {
     }
 }
 
-export const fetchLogoutRequest = () => {
+export const fetchLogout = () => {
     return {
-        type: USER_LOGOUT_REQUEST,
-    }
-}
-
-export const fetchLogoutSuccess = (user) => {
-    return {
-        type: USER_LOGOUT_SUCCESS,
-        payload: user
-    }
-}
-
-export const fetchLogoutFailure = error => {
-    return {
-        type: USER_LOGOUT_FAILURE,
-        payload: error
+        type: USER_LOGOUT,
     }
 }
 
@@ -187,13 +171,5 @@ export const fetchUsersFailure = error => {
     return {
         type: USER_GET_FAILURE,
         payload: error
-    }
-}
-
-//Update unread notifications
-export const updateNotifications = notifications => {
-    return {
-        type: USER_NOTIFICATIONS,
-        payload: [...notifications],
     }
 }

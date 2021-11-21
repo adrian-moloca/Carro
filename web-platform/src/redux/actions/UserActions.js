@@ -1,6 +1,5 @@
 import {fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure,
-    fetchLogoutRequest, fetchLogoutSuccess, fetchLogoutFailure,
-    createNewUserRequest, createNewUserSuccess, createNewUserFailure,
+    fetchLogout, createNewUserRequest, createNewUserSuccess, createNewUserFailure,
     fetchUsersRequest, fetchUsersSuccess, fetchUsersFailure,
     updateUserRequest, updateUserSuccess, updateUserFailure,
     deleteUserRequest, deleteUserSuccess, deleteUserFailure,
@@ -59,9 +58,7 @@ axios.post(data.baseUrl+"/identity/register",{
 
 })
 .then(response => {
-    const Msg = response.data;
-    console.log('new user registration', Msg);
-    dispatch(createNewUserSuccess(Msg));
+    dispatch(createNewUserSuccess(jwt_decode(response.data.token)));
     // dispatch(fetchUsers())
 }).catch(error => {
     const errorMsg = error;
@@ -129,20 +126,6 @@ axios.delete(data.baseUrl+"/catalin/admin/users/" +id ,{
 export const Logout = (_id) => {
 
 return (dispatch) => {
-    dispatch(fetchLogoutRequest);
-    axios.patch(data.baseUrl + "/catalin/admin/users/logout/"+_id)
-    .then(response => {
-        dispatch(fetchLogoutSuccess(response.data.user));
-        dispatch(fetchUsers())
-    }).catch(error => {
-        const errorMsg = error;
-        dispatch(fetchLogoutFailure(errorMsg))
-    })
+    dispatch(fetchLogout);
 }
-}
-
-export const shareNotifications = (notifications) => {
-    return(dispatch)=>{
-        dispatch(updateNotifications(notifications));
-    }
 }
