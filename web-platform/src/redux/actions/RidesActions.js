@@ -6,7 +6,7 @@ export const searchRides = (fromCountry, fromCity, toCountry, toCity) => {
 
 return (dispatch) => {
     dispatch(searchRidesRequest);
-    axios.get(data.baseUrl + "/rides?"+fromCountry+"=s&"+fromCity+"=s&"+toCountry+"=s&"+toCity+"=2s&pageNumber=1&pageSize=25")
+    axios.get(data.baseUrl + "/rides?fromCountry="+fromCountry+"&fromCity="+fromCity+"&toCountry="+toCountry+"&toCity="+toCity+"&pageNumber=1&pageSize=25")
     .then(response => {
         const rides = response.data;
         dispatch(searchRidesSuccess(rides));
@@ -16,3 +16,4 @@ return (dispatch) => {
     })
 }
 }
+

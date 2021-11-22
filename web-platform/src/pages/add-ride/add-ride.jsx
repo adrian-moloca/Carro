@@ -10,10 +10,13 @@ import SecondaryButton from '../../components/buttons/secondaryButton/secondaryB
 import {ArrowBackIos, ArrowForwardIos}  from '@material-ui/icons';
 import { useTranslation } from "react-i18next";
 import {addressValidator, numberValidator} from "../../utils/Functions/input-validators";
+import { connect } from "react-redux";
+import { createNewRide } from "../../redux/actions/MyRidesActions";
 
-const AddTransport = () =>{
+
+const AddRide = ({data, createNewRide}) =>{
   const { t } = useTranslation();
-  const transports = [t("PublicTransport"), t("Car"), "Tir", t("Truck"), t("Minibus")]; 
+  const transports = [t("PublicTransport"), t("Car"), t("Tir"), t("Truck"), t("Minibus")]; 
 
   // state
   const [departureDate, setDepartureDate] = useState(new Date());
@@ -28,10 +31,10 @@ const AddTransport = () =>{
   const [hasErrors, setHasErrors] = useState(false);
   // event lisenters
   const handleChangeDepartureDate=(date)=> setDepartureDate(date);
-  const handleChangeDepartureCountry=(event)=> setDepartureCountry(event.target.textContent);
-  const handleChangeDestinationCountry=(event)=> setDestinationCountry(event.target.textContent);
-  const handleChangeDepartureCity=(event)=> setDepartureCity(event.target.textContent);
-  const handleChangeDestinationCity=(event)=> setDestinationCity(event.target.textContent);
+  const handleChangeDepartureCountry=(event, newValue)=> setDepartureCountry(newValue);
+  const handleChangeDestinationCountry=(event, newValue)=> setDestinationCountry(newValue);
+  const handleChangeDepartureCity=(event, newValue)=> setDepartureCity(newValue);
+  const handleChangeDestinationCity=(event, newValue)=> setDestinationCity(newValue);
   const handleChangeTransportType=(event)=> setTransportType(event.target.value)
   const handleChangeDepartureAddress=(event)=> setDepartureAddress(event.target.value);
   const handleChangeDestinationAddress=(event)=> setDestinationAddress(event.target.value);
@@ -106,7 +109,8 @@ const AddTransport = () =>{
             </Link>
             </Grid>
             <Grid container item xs  justifyContent='center'>
-              <PrimaryButton disabled={!isFormComplete()} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Add')}</PrimaryButton>
+              <PrimaryButton onClick={()=>createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, data.token)} 
+                            disabled={!isFormComplete()} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Add')}</PrimaryButton>
             </Grid>
         </Grid>
       </Box>
@@ -114,4 +118,8 @@ const AddTransport = () =>{
   );
 };
 
-export default AddTransport;
+const mapDispatchToProps = dispatch => ({createNewRide: (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token) => dispatch(createNewRide(departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token))})
+
+const mapStateToProps = state => ({data: state.userData})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddRide);

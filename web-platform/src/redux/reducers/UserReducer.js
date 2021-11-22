@@ -38,18 +38,19 @@ switch (action.type) {
     case USER_LOGIN_SUCCESS:
         return{
             ...state,
-            UserRole: action.payload.UserRole,
-            email: action.payload.email,
-            exp: action.payload.exp,
-            iat: action.payload.iat,
-            id: action.payload.id,
-            isAdmin: action.payload.isAdmin,
+            UserRole: action.payload.user.UserRole,
+            email: action.payload.user.email,
+            exp: action.payload.user.exp,
+            iat: action.payload.user.iat,
+            id: action.payload.user.id,
+            isAdmin: action.payload.user.isAdmin,
             isUserValidated: action.payload.isUserValidated,
-            jti: action.payload.jti,
-            name: action.payload.name,
-            nbf: action.payload.nbf,
-            phoneNumber: action.payload.phoneNumber,
-            sub: action.payload.sub,
+            jti: action.payload.user.jti,
+            name: action.payload.user.name,
+            nbf: action.payload.user.nbf,
+            phoneNumber: action.payload.user.phoneNumber,
+            sub: action.payload.user.sub,
+            token: action.payload.token
         }
     case USER_LOGIN_FAILURE:
         return{
@@ -156,6 +157,10 @@ switch (action.type) {
             nbf: 0,
             phoneNumber: "",
             sub: "",
+            loading: false,
+            hasErrors: false,
+            token: "",
+            refreshToken: "",
         }
     default: 
         return  {

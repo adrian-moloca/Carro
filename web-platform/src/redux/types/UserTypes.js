@@ -47,10 +47,10 @@ export const fetchLoginRequest = () => {
     }
 }
 
-export const fetchLoginSuccess = users => {
+export const fetchLoginSuccess = (user, token) => {
     return {
         type: USER_LOGIN_SUCCESS,
-        payload: users
+        payload: {user, token}
     }
 }
 

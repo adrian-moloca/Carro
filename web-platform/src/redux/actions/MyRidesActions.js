@@ -22,11 +22,11 @@ return (dispatch) => {
 }
 
 
-export const createNewRide = (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType) => {
+export const createNewRide = (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token) => {
 
 return(dispatch) => {
 dispatch(createNewRideRequest);
-axios.post(data.baseUrl+"/myRides/",{
+axios.post(data.baseUrl+"/rides", {
     departureDate: departureDate,
     fromCountry: fromCountry,
     fromCity: fromCity,
@@ -36,14 +36,18 @@ axios.post(data.baseUrl+"/myRides/",{
     destinationAddress: destinationAddress,
     estimatedTime: estimatedTime,
     trasportType: trasportType,
-})
+}, {headers: {
+    'Authorization': `Bearer ${token}`,
+    'Content-type': 'application/json'
+}})
 .then(response => {
-    const Msg = response.data;
-    dispatch(createNewRideSuccess(Msg));
+    const ride = response.data;
+    dispatch(createNewRideSuccess(ride));
     dispatch(fetchMyRides())
 }).catch(error => {
     const errorMsg = error;
     dispatch(createNewRideFailure(errorMsg))
+    console.log( error )
 })
 }
 }

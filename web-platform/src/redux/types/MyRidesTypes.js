@@ -5,7 +5,7 @@ export const MY_RIDES_REQUEST = 'MY_RIDES_REQUEST';
 export const MY_RIDES_SUCCESS = 'MY_RIDES_SUCCESS';
 export const MY_RIDES_FAILURE = 'MY_RIDES_FAILURE';
 
-// User Create new ride
+// Create new ride
 
 export const NEW_RIDE_REQUEST = 'NEW_RIDE_REQUEST';
 export const NEW_RIDE_SUCCESS = 'NEW_RIDE_SUCCESS';
@@ -52,9 +52,10 @@ export const createNewRideRequest = () => {
     }
 }
 
-export const createNewRideSuccess = () => {
+export const createNewRideSuccess = ride => {
     return {
         type: NEW_RIDE_SUCCESS,
+        payload: ride
     }
 }
 
@@ -86,7 +87,7 @@ export const updateRideFailure = error => {
     }
 }
 
-// Delete user
+// Delete ride
 
 export const deleteRideRequest = () => {
     return {
