@@ -61,7 +61,7 @@ const SearchPackages = ({data, searchPackages}) => {
       </Box>
       <Box display="flex" justifyContent="space-evenly" mt="3%">
           <Grid item xs={11} md={5} xl={3}>
-            <PrimaryButton onClick={searchPackages(departureCountry, departureCity, destinationCountry, destinationCity)} 
+            <PrimaryButton onClick={()=>searchPackages(departureCountry, departureCity, destinationCountry, destinationCity)} 
                            disabled={departureCountry && departureCity && destinationCountry && destinationCity ? false : true}
                            fullWidth variant="contained" endIcon={<FindInPageRoundedIcon/>}>
               {t('SearchRideButton')}

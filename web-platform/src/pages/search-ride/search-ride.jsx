@@ -59,7 +59,7 @@ const SearchRide = ({data, searchRides}) => {
       </Box>
       <Box display="flex" justifyContent="space-evenly" my="3%">
         <Grid item xs={11} md={5} xl={3}>
-          <PrimaryButton onClick={searchRides(departureCountry, departureCity, destinationCountry, destinationCity)}
+          <PrimaryButton onClick={()=>searchRides(departureCountry, departureCity, destinationCountry, destinationCity)}
                          disabled={departureCountry && departureCity && destinationCountry && destinationCity ? false : true}
                          variant="contained" endIcon={<DriveEtaIcon />} fullWidth>
             {t('SearchRideButton')}

@@ -22,7 +22,7 @@ import AddPaymentMethod from '../../pages/payment-method/add-payment-method/add-
 import Profile from '../../pages/profile/profile';
 import SearchPackage from '../../pages/search-package/search-package';
 import SearchRide from '../../pages/search-ride/search-ride';
-import AddTransport from '../../pages/add-transport/add-transport';
+import AddRide from '../../pages/add-ride/add-ride';
 import CourierProfile from '../../pages/courier-profile/courier-profile';
 import Conversations from '../../pages/conversations/conversations';
 import Chat from '../../pages/conversations/chat/chat';
@@ -99,7 +99,7 @@ const Routes = ({data}) => {
                                 <ProtectedRoute path="/search-ride" exact component={SearchRide}/>
                                 <ProtectedRoute path="/conversations" exact component={Conversations}/>
                                 <ProtectedRoute path="/conversations/chat" exact component={Chat}/>
-                                <ProtectedRoute path="/add-transport" exact component={AddTransport}/>  {/* checked */}
+                                <ProtectedRoute path="/add-transport" exact component={AddRide}/>  {/* checked */}
                                 <ProtectedRoute path="/courier-profile" exact component={CourierProfile}/>
                                 <Route path="/" exact component={HomePage}/>
                                 <Route path="/home" exact component={HomePage}/>

@@ -18,7 +18,7 @@ return (dispatch) => {
         password: password
     })
     .then(response => {
-        dispatch(fetchLoginSuccess(jwt_decode(response.data.token)));
+        dispatch(fetchLoginSuccess(jwt_decode(response.data.token), response.data.token));
     }).catch(error => {
         const errorMsg = error;
         dispatch(fetchLoginFailure(errorMsg));
@@ -58,7 +58,7 @@ axios.post(data.baseUrl+"/identity/register",{
 
 })
 .then(response => {
-    dispatch(createNewUserSuccess(jwt_decode(response.data.token)));
+    dispatch(createNewUserSuccess(response.data));
     // dispatch(fetchUsers())
 }).catch(error => {
     const errorMsg = error;

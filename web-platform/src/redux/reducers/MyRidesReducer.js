@@ -39,6 +39,7 @@ switch (action.type) {
     case NEW_RIDE_SUCCESS:
         return{
             ...state,
+            rides: [action.payload]
         }
     case NEW_RIDE_FAILURE:
         return{
