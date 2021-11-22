@@ -29,8 +29,8 @@ const Package = (props) => {
   }, [props.height])
 
   useEffect(()=>{
-    props.setHasErrors(numberValidator(props.lenght))
-  }, [props.lenght])
+    props.setHasErrors(numberValidator(props.length))
+  }, [props.length])
 
   useEffect(()=>{
     props.setHasErrors(numberValidator(props.price))
@@ -126,8 +126,8 @@ const Package = (props) => {
                             />
                         </Grid>
                         <Grid container item xs={4} justifyContent="center">
-                            <CarroTextField error={numberValidator(props.lenght)} helperText={numberValidator(props.lenght) ? t('OnlyNumbers') : ''}
-                                            variant="outlined" value={props.lenght} onChange={(e)=>props.setLenght(e.target.value)}
+                            <CarroTextField error={numberValidator(props.length)} helperText={numberValidator(props.length) ? t('OnlyNumbers') : ''}
+                                            variant="outlined" value={props.length} onChange={(e)=>props.setLength(e.target.value)}
                                             label={t("Length")} fullWidth
                                             InputProps={{
                                               startAdornment: (

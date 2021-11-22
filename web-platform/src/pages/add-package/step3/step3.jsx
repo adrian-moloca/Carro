@@ -43,10 +43,10 @@ const StepThree = (props) =>{
                               <SecondaryButton onClick={()=>deletePackage(index)} size='small' variant='outlined' fullWidth>{t('DeleteButton')}</SecondaryButton>
                             </Box>
                       </Box> ) : ''} */}  
-                      <Package packageSize={props.packageSize} weight={props.weight} width={props.width} height={props.height} lenght={props.lenght} currency={props.currency}
+                      <Package packageSize={props.packageSize} weight={props.weight} width={props.width} height={props.height} length={props.length} currency={props.currency}
                                smallDescription={props.smallDescription} description={props.description} price={props.price} 
                                flammable={props.isFlammable} foodGrade={props.isFoodGrade} fragile={props.isFragile}handleWithCare={props.isHandleWithCare} animal={props.isAnimal}
-                               setPackageSize={props.setPackageSize} setWeight={props.setWeight} setWidth={props.setWidth} setHeight={props.setHeight} setLenght={props.setLenght}
+                               setPackageSize={props.setPackageSize} setWeight={props.setWeight} setWidth={props.setWidth} setHeight={props.setHeight} setLength={props.setLength}
                                setCurrency={props.setCurrency} setSmallDescription={props.setSmallDescription} setDescription={props.setDescription}setPrice={props.setPrice}
                                setFlammable={props.setIsFlammable} setFoodGrade={props.setIsFoodGrade} setFragile={props.setIsFragile} setHandleWithCare={props.setIsHandleWithCare}
                                setAnimal={props.setIsAnimal} setHasErrors={props.setHasErrors}/>
