@@ -2,7 +2,7 @@ import {fetchMyPackagesRequest, fetchMyPackagesSuccess, fetchMyPackagesFailure,
     createNewPackageRequest, createNewPackageSuccess, createNewPackageFailure,
     updatePackageRequest, updatePackageSuccess, updatePackageFailure,
     deletePackageRequest, deletePackageSuccess, deletePackageFailure,
-} from '../types/MyRidesTypes';
+} from '../types/MyPackagesTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
 
@@ -22,24 +22,36 @@ return (dispatch) => {
 }
 
 
-export const createNewPackage = (departureDate, departure, destination, departureAddress, destinationAddress, packageType, dimensions, weight, description, price, name, status,
-    isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal) => {
+export const createNewPackage = (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress,
+                                 packageType, weight, height, length, width, description, price, currency, name, status, destinataryName,
+                                 phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token) => {
 
 return(dispatch) => {
 dispatch(createNewPackageRequest);
-axios.post(data.baseUrl+"",{
+axios.post(data.baseUrl+"/packages",{
     departureDate: departureDate,
-    departure: departure,
-    destination: destination,
+    fromCountry: fromCountry,
+    fromCity: fromCity,
+    toCountry: toCountry,
+    toCity: toCity,
     departureAddress: departureAddress,
-    destinationAddress: destinationAddress,
     packageType: packageType,
-    dimensions: dimensions,
-    weight: weight,
     description: description,
     price: price,
+    currency: currency,
     name: name,
     status:  status,
+    packageReceiver: {
+        name: destinataryName,
+        phoneNumber: phoneNumber,
+        destinationAddress: destinationAddress,
+      },
+    packageDimensions: {
+        height: height,
+        length: length,
+        width: width,
+        weight: weight,
+    },
     packageSpecialMention: {
         isFragile: isFragile,
         isFoodGrade: isFoodGrade,
@@ -47,6 +59,11 @@ axios.post(data.baseUrl+"",{
         isHandleWithCare: isHandleWithCare,
         isAnimal: isAnimal,
     },
+}, {
+    headers:{
+        'Authorization': `Bearer ${token}`,
+        'Content-type': 'application/json'
+    }
 })
 .then(response => {
     const Msg = response.data;

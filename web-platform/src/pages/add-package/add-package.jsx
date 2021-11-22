@@ -10,6 +10,8 @@ import StepThree from './step3/step3';
 import StepFour from './step4/step4';
 import { withStyles } from '@material-ui/styles';
 import { useTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
+import { createNewPackage } from '../../redux/actions/MyPackagesActions';
 
 const StepLabelPersonalized = withStyles({
       root:{
@@ -30,7 +32,7 @@ const StepLabelPersonalized = withStyles({
 
 })(StepLabel);
 
-const AddPackage = () => {
+const AddPackage = ({data, createNewPackage}) => {  
 
   const { t } = useTranslation();
   
@@ -49,7 +51,7 @@ const AddPackage = () => {
   const [weight, setWeight] = useState(new Number());
   const [width, setWidth] = useState(new Number());
   const [height, setHeight] = useState(new Number());
-  const [lenght, setLenght] = useState(new Number());
+  const [length, setLength] = useState(new Number());
   const [smallDescription, setSmallDescription] = useState('');
   const [price, setPrice] = useState(new Number());
   const [description, setDescription] = useState('');
@@ -75,7 +77,7 @@ const AddPackage = () => {
           return false
       case 2:{
         if(packageSize==3)
-           if(packageSize && currency && weight && width && height && lenght && smallDescription && price && description && !hasErrors)
+           if(packageSize && currency && weight && width && height && length && smallDescription && price && description && !hasErrors)
               return true
            else
               return false
@@ -132,9 +134,9 @@ const AddPackage = () => {
         );
       case 2:
         return (
-          <StepThree packageSize={packageSize} weight={weight} width={width} height={height} lenght={lenght} currency={currency} price={price} smallDescription={smallDescription} description={description} 
+          <StepThree packageSize={packageSize} weight={weight} width={width} height={height} length={length} currency={currency} price={price} smallDescription={smallDescription} description={description} 
                      isFlammable={isFlammable} isFoodGrade={isFoodGrade} isFragile={isFragile} isHandleWithCare={isHandleWithCare} isAnimal={isAnimal} setPackageSize={setPackageSize} setWeight={setWeight}
-                     setWidth={setWidth} setHeight={setHeight} setLenght={setLenght} setCurrency={setCurrency} setSmallDescription={setSmallDescription} setDescription={setDescription} setPrice={setPrice}
+                     setWidth={setWidth} setHeight={setHeight} setLength={setLength} setCurrency={setCurrency} setSmallDescription={setSmallDescription} setDescription={setDescription} setPrice={setPrice}
                      setIsFlammable={setIsFlammable} setIsFoodGrade={setIsFoodGrade} setIsFragile={setIsFragile} setIsHandleWithCare={setIsHandleWithCare} 
                      setIsAnimal={setIsAnimal} setHasErrors={setHasErrors}/>
         );
@@ -167,7 +169,10 @@ const AddPackage = () => {
                       <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton>
                     </Grid>
                     <Grid container item  xs={12} sm={6} md={6} lg={6} xl={6} justifyContent='center'>
-                      <PrimaryButton disabled={!formsComplete(activeStep)} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Finish')}</PrimaryButton>
+                      <PrimaryButton  onClick={()=>createNewPackage(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, pickUpAddress, destinataryAddress,
+                                                                    packageSize, weight, height, length, width, description, price, currency, smallDescription, 1, destinataryName,
+                                                                    destinataryPhoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, data.token)}
+                                      disabled={!formsComplete(activeStep)} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Finish')}</PrimaryButton>
                     </Grid>
                   </Grid>
                 </Box>
@@ -200,4 +205,8 @@ const AddPackage = () => {
   );
 };
 
-export default AddPackage;
+const mapDispatchToProps = dispatch => ({createNewPackage: (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, name, status, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token) =>dispatch(createNewPackage(departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, name, status, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token))})
+
+const mapStateToProps = state => ({data: state.userData})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddPackage);
