@@ -49,8 +49,8 @@ const SearchRide = ({ridesData, userData, searchRides, clean}) => {
   function notFoundAnyRide(){
     if(clickedSearch)
       return (
-        <Box>
-          {'Not found any ride on this route'}
+        <Box fontSize={20}>
+          {t('RidesNotFound')}
         </Box>
       );
     else
@@ -71,13 +71,13 @@ const SearchRide = ({ridesData, userData, searchRides, clean}) => {
             <CarroAutocomplete value={departureCountry} options={getCountries()} label={t('SearchRideDepartureCountry')} onChange={handleChangeDepartureCountry}/>
           </Grid>
           <Grid container item xs={12} md={6} xl={3} justifyContent="center">
-            <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label={t('SearchRideDepartureCountry')} onChange={handleChangeDepartureCity}/>
+            <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label={t('SearchRideDepartureCity')} onChange={handleChangeDepartureCity}/>
           </Grid>
           <Grid container item xs={12} md={6} xl={3} justifyContent="center">
             <CarroAutocomplete value={destinationCountry} options={getCountries()}  label={t('SearchRideDestinationCountry')} onChange={handleChangeDestinationCountry}/>
           </Grid>
           <Grid container item xs={12} md={6} xl={3} justifyContent="center">
-            <CarroAutocomplete value={destinationCity} options={getCities(destinationCountry)} label={t('SearchRideDepartureCountry')} onChange={handleChangeDestinationCity}/>
+            <CarroAutocomplete value={destinationCity} options={getCities(destinationCountry)} label={t('SearchRideDestinationCity')} onChange={handleChangeDestinationCity}/>
           </Grid>
         </Grid>
       </Box>
@@ -94,7 +94,7 @@ const SearchRide = ({ridesData, userData, searchRides, clean}) => {
         </Grid>
       </Box>
       <Grid container justifyContent='space-around'>
-      { ridesData.rides ? 
+      { ridesData.rides.lenght > 0 ? 
         rides.currentData().map((ride)=> <GetRide id={ride.id} departure={ride.departure} destination={ride.destination}
                                                   departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress}
                                                   departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType}

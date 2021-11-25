@@ -234,5 +234,6 @@
     "CashOnDeliverySelected": "You selected to pay on delivery, the driver will be there soon! Wait him with the exact amount of cash.",
     "SmallPackageSizeContent": "Small package - Width<=30cm, Length<=30cm, Height<=30cm (ex. envelope, shoes box, jewel box, etc.)",
     "MediumPackageSizeContent": "Medium package - 30cm<Width<=100cm, 30cm<Length<=100cm, 30cm<Height<=100cm (ex. chair box, bag etc.)",
-    "BigPackageSizeContent": "Big package - More than a cubic meter"
+    "BigPackageSizeContent": "Big package - More than a cubic meter",
+    "RidesNotFound": "Not found any ride on the selected Route"
 }

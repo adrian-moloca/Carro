@@ -548,5 +548,6 @@
     "CashOnDeliverySelected": "Ati selectat plata la sosirea pachetului, soferul o sa vina curand! Pregatiti suma exacta de cash pana la sosirea soferului.",
     "SmallPackageSizeContent": "Pachet mic - Latimea<=30cm, Lungimea<=30cm, Inaltimea<=30cm (ex. plicuri,cutii pantofi,cutii bijuterii, etc.)",
     "MediumPackageSizeContent": "Pachet mediu - 30cm<Latimea<=100cm, 30cm<Lungimea<=100cm, 30cm<Inaltimea<=100cm (ex. bagaje de cala, cutii cu scaune, etc.)",
-    "BigPackageSizeContent": "Pachet mare - Depaseste un metru cub"
+    "BigPackageSizeContent": "Pachet mare - Depaseste un metru cub",
+    "RidesNotFound": "Nu a fost gasita nici o cursa pe ruta selectata"
 }
