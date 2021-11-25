@@ -16,7 +16,19 @@ import { createNewRide } from "../../redux/actions/MyRidesActions";
 
 const AddRide = ({data, createNewRide}) =>{
   const { t } = useTranslation();
-  const transports = [t("PublicTransport"), t("Car"), t("Tir"), t("Truck"), t("Minibus")]; 
+  const transports = [
+    {
+        type: 0, 
+        label: t("PublicTransport"),
+    },
+    {   type: 1,
+        label: t("Car"),
+    },
+    {
+        type: 2,
+        label: t("Truck"),
+    }  
+  ]
 
   // state
   const [departureDate, setDepartureDate] = useState(new Date());
@@ -26,7 +38,7 @@ const AddRide = ({data, createNewRide}) =>{
   const [destinationCity, setDestinationCity] = useState('');
   const [departureAddress, setDepartureAddress] = useState('');
   const [destinationAddress, setDestinationAddress] = useState('');
-  const [transportType, setTransportType] = useState('');
+  const [transportType, setTransportType] = useState(new Number());
   const [estimatedTime, setEstimatedTime] = useState(new Number());
   const [hasErrors, setHasErrors] = useState(false);
   // event lisenters
@@ -38,7 +50,7 @@ const AddRide = ({data, createNewRide}) =>{
   const handleChangeTransportType=(event)=> setTransportType(event.target.value)
   const handleChangeDepartureAddress=(event)=> setDepartureAddress(event.target.value);
   const handleChangeDestinationAddress=(event)=> setDestinationAddress(event.target.value);
-  const handleChangeEstimatedTime=(event)=> setEstimatedTime(event.target.value)
+  const handleChangeEstimatedTime=(event)=> setEstimatedTime(event.target.value);
 
   const isFormComplete = () =>{
     if(
@@ -64,7 +76,7 @@ const AddRide = ({data, createNewRide}) =>{
 
   return(
     <Container className='Primary-container-style'>
-      <Box mb={2} fontWeight={400} fontSize={30} textAlign={'center'}>{t("AddTransport")}</Box>
+      <Box display='flex' justifyContent='center' fontSize={22} fontWeight={400}>{t("AddTransport")}</Box>
       <Box display='flex' justifyContent='center' mt='5%'>
           <Grid container spacing={3} >
             <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
@@ -92,7 +104,7 @@ const AddRide = ({data, createNewRide}) =>{
             </Grid>
             <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
               <CarroTextField select variant ='outlined' label={t("RideType")} fullWidth value={transportType} onChange={handleChangeTransportType}>
-                {transports.map((transport, index)=>(<MenuItem key={index*371} value={transport}>{transport}</MenuItem>))}
+                 {transports.map((transport, index)=>(<MenuItem key={index*371} value={transport.type}>{transport.label}</MenuItem>))}
               </CarroTextField>
             </Grid>
             <Grid container item xs={12}  md ={12} xl={12}  justifyContent='center'>
@@ -109,7 +121,7 @@ const AddRide = ({data, createNewRide}) =>{
             </Link>
             </Grid>
             <Grid container item xs  justifyContent='center'>
-              <PrimaryButton onClick={()=>createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, data.token)} 
+              <PrimaryButton onClick={()=>createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress,              destinationAddress, estimatedTime, transportType, data.token)} 
                             disabled={!isFormComplete()} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Add')}</PrimaryButton>
             </Grid>
         </Grid>

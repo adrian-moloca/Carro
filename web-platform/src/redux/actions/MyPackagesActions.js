@@ -62,7 +62,6 @@ axios.post(data.baseUrl+"/packages",{
 }, {
     headers:{
         'Authorization': `Bearer ${token}`,
-        'Content-type': 'application/json'
     }
 })
 .then(response => {
@@ -76,24 +75,36 @@ axios.post(data.baseUrl+"/packages",{
 }
 }
 
-export const updatePackage = (id, departureDate, departure, destination, departureAddress, destinationAddress, packageType, dimensions, weight, description, price, name, status,
-    isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal) => {
+export const updatePackage = (id, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress,
+                              packageType, weight, height, length, width, description, price, currency, name, status, destinataryName,
+                              phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token) => {
 
 return(dispatch) => {
     dispatch(updatePackageRequest);
     axios.patch(data.baseUrl+"" + id,{
         departureDate: departureDate,
-        departure: departure,
-        destination: destination,
+        fromCountry: fromCountry,
+        fromCity: fromCity,
+        toCountry: toCountry,
+        toCity: toCity,
         departureAddress: departureAddress,
-        destinationAddress: destinationAddress,
         packageType: packageType,
-        dimensions: dimensions,
-        weight: weight,
         description: description,
         price: price,
+        currency: currency,
         name: name,
         status:  status,
+        packageReceiver: {
+            name: destinataryName,
+            phoneNumber: phoneNumber,
+            destinationAddress: destinationAddress,
+        },
+        packageDimensions: {
+            height: height,
+            length: length,
+            width: width,
+            weight: weight,
+        },
         packageSpecialMention: {
             isFragile: isFragile,
             isFoodGrade: isFoodGrade,
@@ -101,7 +112,7 @@ return(dispatch) => {
             isHandleWithCare: isHandleWithCare,
             isAnimal: isAnimal,
         },
-})
+    })
 .then(response => {
     dispatch(updatePackageSuccess(id));
     dispatch(fetchMyPackages())

@@ -49,13 +49,13 @@ const SearchPackages = ({data, searchPackages}) => {
             <CarroAutocomplete value={departureCountry} options={getCountries()} label={t('SearchRideDepartureCountry')} onChange={handleChangeDepartureCountry}/>
           </Grid>
           <Grid container item xs={12} md={6} xl={3} justifyContent="center">
-            <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label={t('SearchRideDepartureCountry')} onChange={handleChangeDepartureCity}/>
+            <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label={t('SearchRideDepartureCity')} onChange={handleChangeDepartureCity}/>
           </Grid>
           <Grid container item xs={12} md={6} xl={3} justifyContent="center">
             <CarroAutocomplete value={destinationCountry} options={getCountries()}  label={t('SearchRideDestinationCountry')} onChange={handleChangeDestinationCountry}/>
           </Grid>
           <Grid container item xs={12} md={6} xl={3} justifyContent="center">
-            <CarroAutocomplete value={destinationCity} options={getCities(destinationCountry)} label={t('SearchRideDepartureCountry')} onChange={handleChangeDestinationCity}/>
+            <CarroAutocomplete value={destinationCity} options={getCities(destinationCountry)} label={t('SearchRideDestinationCity')} onChange={handleChangeDestinationCity}/>
           </Grid>
         </Grid>
       </Box>

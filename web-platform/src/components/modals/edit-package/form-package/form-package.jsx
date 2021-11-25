@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect, useLayoutEffect } from 'react';
 import {Grid, Box, Select, MenuItem, InputAdornment} from '@material-ui/core';
 import CarroAutocomplete from '../../../autocomplete/CarroAutocomplete';
 import CarroCheckbox from '../../../checkbox/CarroCheckbox';
@@ -6,8 +6,10 @@ import CarroTextField from '../../../textField/CarroTextField';
 import CarroDatePicker from '../../../datePicker/CarroDatePicker';
 import PhoneTextField from '../../../telephoneNumberField/PhoneTextField';
 import { FormControlLabel } from '@material-ui/core';
-import { Country, City }  from 'country-state-city';
+import { getCountries, getCities } from '../../../../utils/Functions/countries-city-functions';
+import { numberValidator, phoneValidator, addressValidator, nameValidator } from '../../../../utils/Functions/input-validators';
 import { useTranslation } from "react-i18next";
+import GetPackagesSizesContent from '../../../../utils/Functions/get-packages-sizes-content';
 
 const   FormPackage = (props) =>{
     const { t } = useTranslation();
@@ -46,160 +48,176 @@ const   FormPackage = (props) =>{
         },
     ];
 
-    const [departureDate, setDepartureDate] = useState(new Date());
-    const [departureCountry, setDepartureCountry] = useState('RO');
-    const [destinationCountry, setDestinationCountry] = useState('RO');
-    const [departureCity, setDepartureCity] = useState('Cluj-Napoca');
-    const [destinationCity, setDestinationCity] = useState('Cluj-Napoca');
-    const [pickUpAddress, setPickUpAddress] = useState('');
     const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState('');
     const [countryPhoneCode, setCountryPhoneCode] = useState('');
-    const[destinataryAddress, setDestinataryAddress] = useState('');
-    const[packageSize, setPackageSize] = useState('');
-    const[currency, setCurrency] = useState('');
-    const[Inflamabil, setInflamabil]= useState(false);
-    const[Fragil, setFragil]= useState(false);
-    const[Perisabil, setPerisabil]= useState(false);
-    const[Animal, setAnimal]= useState(false);
 
-    const handleSizeSelect = (event) =>{
-        setPackageSize(event.target.value);
+    useLayoutEffect(()=>{
+        props.setPhoneNumber(countryPhoneCode + inputValuePhoneNumber)
+    }, [inputValuePhoneNumber, countryPhoneCode])
+
+    useEffect(()=>{
+        props.setHasErrors(addressValidator(props.pickUpAddress))
+    }, [props.pickUpAddress])
+
+    useEffect(()=>{
+        props.setHasErrors(nameValidator(props.destinataryName))
+    }, [props.destinataryName])
+
+    useEffect(()=>{
+        props.setHasErrors(phoneValidator(inputValuePhoneNumber))
+    }, [inputValuePhoneNumber])
+
+    useEffect(()=>{
+        props.setHasErrors(addressValidator(props.destinataryAddress))
+    }, [props.destinataryAddress])
+    
+    useEffect(()=>{
+        props.setHasErrors(numberValidator(props.weight))
+    }, [props.weight])
+
+    useEffect(()=>{
+        props.setHasErrors(numberValidator(props.width))
+    }, [props.width])
+
+    useEffect(()=>{
+        props.setHasErrors(numberValidator(props.height))
+    }, [props.height])
+
+    useEffect(()=>{
+        props.setHasErrors(numberValidator(props.length))
+    }, [props.length])
+
+    useEffect(()=>{
+        props.setHasErrors(numberValidator(props.price))
+    }, [props.price])
+
+    useEffect(()=>{
+        props.setHasErrors(props.smallDescription.length <= 3 && props.smallDescription!='')
+    }, [props.smallDescription])
+
+    useEffect(()=>{
+        props.setHasErrors(props.description.length < 25 && props.description!='')
+    }, [props.description])
+
+    const handleFlammableCheckboxClick = (event) => {
+        event.target.checked ? props.setFlammable(true) : props.setFlammable(false);
     };
     
-    const handleCurrencySelect = (event) =>{
-        setCurrency(event.target.value);
+    const handleFragileCheckboxClick = (event) => {
+        event.target.checked ? props.setFragile(true) : props.setFragile(false);
     };
-
-    const handleselectcountry = (event) =>{
-        setCountryPhoneCode(event.target.value);
+    
+    const handleFoodGradeCheckboxClick = (event) => {
+        event.target.checked ? props.setFoodGrade(true) : props.setFoodGrade(false);
     };
-
-    const handleInflamabilCheckboxClick = (event)=>{
-        event.target.checked ? setInflamabil(true) : setInflamabil(false)
-    } 
-
-    const handleFragilCheckboxClick = (event)=>{
-        event.target.checked ? setFragil(true) : setFragil(false)
-    }
-
-    const handlePerisabilCheckboxClick = (event)=>{
-        event.target.checked ? setPerisabil(true) : setPerisabil(false)
-    }
-
-    const handleAnimalCheckboxClick = (event)=>{
-        event.target.checked ? setAnimal(true) : setAnimal(false)
-    }    
-
-    const getCountries = ()=> {
-        const countries = [];
-        Country.getAllCountries().map((country)=>(countries.push(country.isoCode)));
-        return countries;
-    }
-
-    const getCities = (country) =>{
-        const cities = [];
-        City.getCitiesOfCountry(country).map((city)=>(cities.push(city.name)));
-        return cities;
-    }
-
+    
+    const handleAnimalCheckboxClick = (event) => {
+        event.target.checked ? props.setAnimal(true) : props.setAnimal(false);
+    };
+    
+    const handleHandleWithCareCheckboxClick = (event) => {
+        event.target.checked ? props.setHandleWithCare(true) : props.setHandleWithCare(false);
+    };
 
     return(
         <Box display='flex' justifyContent='center' mt='5%' mb='5%' fontSize='13px'>
             <Grid container spacing={1} >
-                <Grid container item xs={6} justifyContent="center">
-                            <CarroAutocomplete size='small' value={departureCountry} options={getCountries()}  label= {t("SearchRideDepartureCountry")} onChange={(e)=>setDepartureCountry(e.target.textContent)}/>
+                <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
+                            <CarroAutocomplete value={props.departureCountry} options={getCountries()}  label={t('SearchRideDepartureCountry')} onChange={(e)=>props.setDepartureCountry(e.target.textContent)}/>
                 </Grid>
-                <Grid container item xs={6} justifyContent="center">
-                            <CarroAutocomplete size='small' value={departureCity} options={getCities(departureCountry)} label={t("SearchRideDepartureCity")} onChange={(e)=>setDepartureCity(e.target.textContent)}/>
+                <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
+                            <CarroAutocomplete value={props.departureCity} options={getCities(props.departureCountry)} label={t('SearchRideDepartureCity')} onChange={(e)=>props.setDepartureCity(e.target.textContent)}/>
                 </Grid>
-                <Grid container item xs={6} justifyContent='center'>
-                            <CarroAutocomplete size='small' value={destinationCountry} options={getCountries()} label={t("SearchRideDestinationCountry")} onChange={(e)=>setDestinationCountry(e.target.textContent)}/>
+                <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
+                            <CarroTextField error={addressValidator(props.pickUpAddress)} helperText={addressValidator(props.pickUpAddress) ? t('ValidAddress') : ''}
+                                        value = {props.pickUpAddress} onChange={(e)=>props.setPickUpAddress(e.target.value)}
+                                        variant ='outlined' label={t('PickupAddress')} fullWidth/>
                 </Grid>
-                <Grid container item xs={6} justifyContent='center'>
-                            <CarroAutocomplete size='small' value = {destinationCity} options={getCities(destinationCountry)} label={t("SearchRideDestinationCity")} onChange={(e)=>setDestinationCity(e.target.textContent)}/>
+                <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
+                            <CarroDatePicker label={t('PickupDate')} format='dd/MM/yyyy'
+                                        value={props.departureDate} onChange={(date)=>props.setDepartureDate(date)} disablePast/>
                 </Grid>
-                <Grid container item xs={6} justifyContent='center'>
-                            <CarroTextField size='small' value = {pickUpAddress} onChange={(e)=>setPickUpAddress(e.target.value)} variant ='outlined' label={t("DriverCardDepartureAddress")} fullWidth/>
+                <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
+                <CarroTextField error={nameValidator(props.destinataryName)} helperText={nameValidator(props.destinataryName) ? t('OnlyChars') : ''}
+                                            value={props.destinataryName} onChange={(e)=> props.setDestinataryName(e.target.value)} variant ='outlined' label={t('ReceiverNume')}  fullWidth/>
                 </Grid>
-                <Grid container item xs={6} justifyContent='center'>
-                            <CarroDatePicker size='small' label={t("DriverCardDepartureDate")} format='dd/MM/yyyy'
-                                        value={departureDate} onChange={(date)=>setDepartureDate(date)}/>
+                <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
+                            <PhoneTextField value={inputValuePhoneNumber} onChange = {(e)=>setInputValuePhoneNumber(e.target.value)}
+                                            countryPhoneCode={countryPhoneCode} handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
+                                            error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}/>
                 </Grid>
-                <Grid container item xs={6} justifyContent="center">
-                    <CarroTextField size='small' variant ='outlined' label={t("ReceiverNume")} fullWidth/>
+                <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
+                            <CarroAutocomplete value={props.destinationCountry} options={getCountries()} label={t('SearchRideDestinationCountry')} onChange={(e)=>props.setDestinationCountry(e.target.textContent)}/>
                 </Grid>
-                <Grid container item xs={6} justifyContent="center">
-                    <PhoneTextField 
-                        size='small'
-                        inputValue={inputValuePhoneNumber} 
-                        handleinputvalue = {(e)=>setInputValuePhoneNumber(e.target.value)}
-                        countryphonecode={countryPhoneCode} 
-                        handleselectcountry = {handleselectcountry}
-                    />
+                <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
+                            <CarroAutocomplete value = {props.destinationCity} options={getCities(props.destinationCountry)} label={t('SearchRideDestinationCity')} onChange={(e)=>props.setDestinationCity(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={12} justifyContent='center'>
-                    <CarroTextField 
-                        size='small'
-                        value = {destinataryAddress} 
-                        onChange={(e)=> setDestinataryAddress(e.target.value)}
-                        variant ='outlined' 
-                        label={t("DriverCardDestinationAddress")}
-                        fullWidth
-                    />
+                            <CarroTextField value={props.destinataryAddress} error={addressValidator(props.destinataryAddress)} helperText={addressValidator(props.destinataryAddress) ? t('ValidAddress') : ''}
+                                            onChange={(e)=>props.setDestinataryAddress(e.target.value)} variant ='outlined' label={t('DestinationAddress')} fullWidth/>
+                </Grid>
+                <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
+                            <CarroTextField variant ='outlined' label={t("Sizing")} fullWidth select value={props.packageSize} onChange={(e)=>props.setPackageSize(e.target.value)}>
+                                            {packageSizes.map((option)=>(
+                                                    <MenuItem key={option.value} value={option.value}>
+                                                                        {option.label}
+                                                    </MenuItem>
+                                            ))}
+                            </CarroTextField>
+                </Grid>
+                <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
+                            <CarroTextField type='number' error={numberValidator(props.weight)} helperText={numberValidator(props.weight) ? t('OnlyNumbers') : ''}
+                                            value={props.weight}
+                                            onChange={(e)=>props.setWeight(e.target.value)}
+                                            variant="outlined"
+                                            label={t("Weight")}
+                                            fullWidth
+                                            InputProps={{
+                                                startAdornment: (
+                                                <InputAdornment position="start">Kg</InputAdornment>
+                                                ),
+                                            }}
+                            />
+                </Grid>
+                <GetPackagesSizesContent size={props.packageSize} width={props.width} length={props.length} height={props.height} setWidth={props.setWidth} setLength={props.setLength} setHeight={props.setHeight}/>
+                <Grid container item xs={6} justifyContent="center">
+                                <CarroTextField variant="outlined" error={props.smallDescription.length <= 3 && props.smallDescription!=''}  
+                                                helperText={props.smallDescription.length <= 3 && props.smallDescription!='' ? t('SmallDescriptionMustContain') : ''} 
+                                                value={props.smallDescription} onChange={(e)=>props.setSmallDescription(e.target.value)} label={t("SmallDescription")} fullWidth />
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
-                <CarroTextField size='small' variant ='outlined' label={t("Sizing")} fullWidth select value={packageSize} onChange={handleSizeSelect}>
-                    {packageSizes.map((option)=>(
-                        <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                        </MenuItem>
-                    ))}
-                </CarroTextField>
-            </Grid>
-            <Grid container item xs={6} justifyContent="center">
-                <CarroTextField size='small' variant ='outlined' label={t("Weight")} fullWidth
-                    InputProps={{startAdornment: <InputAdornment position="start">Kg</InputAdornment>}}/>
-            </Grid>
-            {packageSize==='big' ? (
-                <Fragment>
-                <Grid  container item xs={4} justifyContent="center">
-                    <CarroTextField size='small' variant ='outlined' label={t("Width")}  fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                                <CarroTextField variant="outlined" type='number' value={props.price} onChange={(e)=>props.setPrice(e.target.value)}
+                                                error={numberValidator(props.price)} helperText={numberValidator(props.price) ? t('ValidNumber') : ''}
+                                                label={t("Price")} fullWidth
+                                                InputProps={{ startAdornment: (
+                                                            <InputAdornment position="start">
+                                                                <Select value={props.currency} onChange={(e)=>props.setCurrency(e.target.value)}>
+                                                                {currencies.map((option) => (
+                                                                    <MenuItem key={option.value} value={option.value}>
+                                                                    {option.label}
+                                                                    </MenuItem>
+                                                                ))}
+                                                                </Select>
+                                                            </InputAdornment>
+                                                            ),
+                                                        }}
+                                />
                 </Grid>
-                <Grid  container item xs={4} justifyContent="center">
-                    <CarroTextField size='small' variant ='outlined' label={t("Height")}  fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                <Grid container item xs={12} justifyContent="center">
+                                            <CarroTextField error={props.description.length < 25 && props.description!=''} 
+                                                            helperText={props.description.length < 25 && props.description!='' ? t('MinimumCharsDescription') : ''}
+                                                            value={props.description} onChange={(e)=>props.setDescription(e.target.value)}
+                                                            variant="outlined" label={t("Description")} multiline rows={4} fullWidth/>
                 </Grid>
-                <Grid  container item xs={4} justifyContent="center">
-                    <CarroTextField size='small' variant ='outlined' label={t("Length")} fullWidth InputProps={{startAdornment: <InputAdornment position="start">m</InputAdornment>}}/>
+                <Grid container item xs={12} justifyContent='space-between'>
+                                            <FormControlLabel onChange={handleFlammableCheckboxClick} control={<CarroCheckbox />} label={t("Inflammable")} checked={props.flammable}/>
+                                            <FormControlLabel onChange={handleFragileCheckboxClick} control={<CarroCheckbox />} label={t("Fragile")} checked={props.fragile}/>
+                                            <FormControlLabel onChange={handleFoodGradeCheckboxClick} control={<CarroCheckbox />} label={t("Perishable")} checked={props.foodGrade}/>
+                                            <FormControlLabel onChange={handleAnimalCheckboxClick} control={<CarroCheckbox />} label="Animal" checked={props.animal}/>
+                                            <FormControlLabel onChange={handleHandleWithCareCheckboxClick} control={<CarroCheckbox />} label="HandleWithCare" checked={props.handleWithCare}/>
                 </Grid>
-                </Fragment>
-            ):("")}
-            <Grid container item xs={12} justifyContent='center'>
-                <CarroTextField size='small' variant ='outlined' label={t("SmallDescription")} fullWidth/>
             </Grid>
-            <Grid container item xs={6} justifyContent="center">
-                <CarroTextField size='small' variant ='outlined' label={t("Price")} fullWidth InputProps={{startAdornment: 
-                    <InputAdornment position="start">
-                        <Select value={currency} onChange={handleCurrencySelect}> {currencies.map((option)=>(
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>))}
-                        </Select>
-                    </InputAdornment>}}/>
-            </Grid>
-            <Grid container item xs={6} justifyContent="center">
-                <CarroTextField size='small' variant ='outlined' label={t("PackageNumbers")} fullWidth/>
-            </Grid>
-            <Grid container item xs={12} justifyContent='center'>
-                <CarroTextField size='small' variant ='outlined' label={t("Description")} multiline={true} rows={4} fullWidth/>
-            </Grid>
-            <Grid container item xs={12} justifyContent='space-between'>            
-                <FormControlLabel onChange = {handleInflamabilCheckboxClick} control={<CarroCheckbox/>} label={t("Inflammable")}/>
-                <FormControlLabel onChange = {handleFragilCheckboxClick} control={<CarroCheckbox/>} label={t("Fragile")}/>
-                <FormControlLabel onChange = {handlePerisabilCheckboxClick} control={<CarroCheckbox/>} label={t("Perishable")}/>
-                <FormControlLabel onChange = {handleAnimalCheckboxClick} control={<CarroCheckbox/>} label='Animal'/>
-            </Grid>
-        </Grid>
-    </Box>
+        </Box>
 
     );
 }

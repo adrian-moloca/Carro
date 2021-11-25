@@ -50,7 +50,8 @@ switch (action.type) {
             nbf: action.payload.user.nbf,
             phoneNumber: action.payload.user.phoneNumber,
             sub: action.payload.user.sub,
-            token: action.payload.token
+            token: action.payload.token,
+            refreshToken: action.payload.refreshToken
         }
     case USER_LOGIN_FAILURE:
         return{

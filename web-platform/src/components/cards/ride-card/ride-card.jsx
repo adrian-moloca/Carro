@@ -22,6 +22,19 @@ const RideCard =(props)=>{
         setIsFlipped(!temp);
     }
 
+    function getTransportType(type){
+        switch(type){
+            case 1:   
+                return t("PublicTransport");
+            case 2:   
+                return t("Car");
+            case 3:   
+                return t("Truck");
+            default: 
+                return 'Unkown transport type';
+        }
+    }
+
     function getFrontCardBtns(status){
         
         switch(status){
@@ -183,7 +196,7 @@ const RideCard =(props)=>{
                         <Box fontSize='15px' fontWeight='500'>{t('DriverCardDestination')} {props.destinatie}</Box>
                     </Grid>
                     <Grid container item xs={12}>
-                        <Box marginBottom='5%' fontSize='15px' fontWeight='500'>{t('DriverCardType')} {props.transportType}</Box>
+                        <Box marginBottom='5%' fontSize='15px' fontWeight='500'>{t('DriverCardType')} {getTransportType(parseInt(props.transportType))}</Box>
                     </Grid>
                     <Grid container item xs={8} justifyContent='space-around'>
                         <Rating value={props.driverRate} readOnly precision={0.5}/>

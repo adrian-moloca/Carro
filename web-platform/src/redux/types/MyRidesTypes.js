@@ -52,10 +52,10 @@ export const createNewRideRequest = () => {
     }
 }
 
-export const createNewRideSuccess = ride => {
+export const createNewRideSuccess = rides => {
     return {
         type: NEW_RIDE_SUCCESS,
-        payload: ride
+        payload: rides
     }
 }
 
