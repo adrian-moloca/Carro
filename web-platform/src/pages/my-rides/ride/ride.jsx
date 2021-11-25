@@ -2,7 +2,7 @@ import React, {Fragment, useState} from 'react';
 import { Box, Grid, Typography, ButtonBase, Collapse} from '@material-ui/core'; 
 import {ExpandMore, ArrowForward, HighlightOff, ExpandLess} from '@material-ui/icons';
 import IconButtonNoVerticalPadding from '../../../components/buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
-import EditRide from './edit-ride/edit-ride';
+import EditRideModal from '../../../components/modals/edit-ride/edit-ride-modal';
 import RideDetails from './ride-details/ride-details';
 import DeleteModal from '../../../components/modals/deleteModal/DeleteModal';
 import { useTranslation } from "react-i18next";
@@ -61,7 +61,10 @@ const Ride = (props) =>{
         case 1:
           return(
             <Fragment>
-              <EditRide ride={props.ride}/>
+              <EditRideModal ride={props.ride} departureDate={props.departureDate} 
+                             departureCountry={String(props.departure).substring(String(props.departure).indexOf(',')+2)} departureCity={String(props.departure).substring(0, String(props.departure).indexOf(','))}
+                             destinationCountry={String(props.destination).substring(String(props.destination).indexOf(',')+2)} destinationCity={String(props.destination).substring(0, String(props.destination).indexOf(','))} 
+                             departureAddress={props.departureAddress} destinationAddress={props.destinationAddress} transportType={props.transportType} estimatedTime={props.estimatedTime}/>
               <IconButtonNoVerticalPadding onClick={props.closeRideClicked}>
                     <HighlightOff className={'Pink-carro'} fontSize='small'/>
               </IconButtonNoVerticalPadding>

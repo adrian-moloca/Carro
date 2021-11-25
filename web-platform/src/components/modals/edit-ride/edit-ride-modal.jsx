@@ -1,8 +1,7 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Box, Grid, MenuItem, Container, Modal, Fade} from "@material-ui/core";
 import CarroTextField from "../../textField/CarroTextField";
 import CarroDatePicker from "../../datePicker/CarroDatePicker";
-import { Country, City }  from 'country-state-city';
 import SecondaryButton from "../../buttons/secondaryButton/secondaryButton";
 import GreenCaroButton from "../../buttons/GreenCaroButton/GreenCaroButton";
 import CarroAutocomplete from "../../autocomplete/CarroAutocomplete";
@@ -10,37 +9,71 @@ import IconButtonNoVerticalPadding from "../../buttons/icon-button/icon-button-n
 import { Close, Create } from "@material-ui/icons";
 import { useTranslation } from "react-i18next";
 import useStyles from "./edit-ride-modal-style";
+import { getCountries, getCities } from "../../../utils/Functions/countries-city-functions";
+import { addressValidator, numberValidator } from "../../../utils/Functions/input-validators";
 
 const EditRideModal = (props) =>{
   const { t } = useTranslation();
 
   const classes=useStyles();
 
-  const transports = [t("PublicTransport"), t("Car"), "Tir", t("Truck"), t("Minibus")]; 
+  const transports = [
+    {
+        type: 0, 
+        label: t("PublicTransport"),
+    },
+    {   type: 1,
+        label: t("Car"),
+    },
+    {
+        type: 2,
+        label: t("Truck"),
+    }  
+  ]
 
   // state
-  const [departureDate, setDepartureDate] = useState(null);
-  const [departureCountry, setDepartureCountry] = useState(null);
-  const [destinationCountry, setDestinationCountry] = useState(null);
-  const [departureCity, setDepartureCity] = useState(null);
-  const [destinationCity, setDestinationCity] = useState(null);
-  const [transportType, setTransportType] = useState(null);
-  const[open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [departureDate, setDepartureDate] = useState(new Date(String(props.departureDate).substring(6, 10),Number(String(props.departureDate).substring(3, 5))-1,String(props.departureDate).substring(0, 2)));
+  const [departureCountry, setDepartureCountry] = useState(props.departureCountry);
+  const [destinationCountry, setDestinationCountry] = useState(props.destinationCountry);
+  const [departureCity, setDepartureCity] = useState(props.departureCity);
+  const [destinationCity, setDestinationCity] = useState(props.destinationCity);
+  const [departureAddress, setDepartureAddress] = useState(props.departureAddress);
+  const [destinationAddress, setDestinationAddress] = useState(props.destinationAddress);
+  const [transportType, setTransportType] = useState(Number(props.transportType));
+  const [estimatedTime, setEstimatedTime] = useState(Number(String(props.estimatedTime).charAt(0)));
+  const [hasErrors, setHasErrors] = useState(false);
   // event lisenters
   const handleChangeDepartureDate=(date)=> setDepartureDate(date);
-  const handleChangeDepartureCountry=(event)=> setDepartureCountry(event.target.value);
-  const handleChangeDestinationCountry=(event)=> setDestinationCountry(event.target.value);
-  const handleChangeDepartureCity=(event)=> setDepartureCity(event.target.textContent);
-  const handleChangeDestinationCity=(event)=> setDestinationCity(event.target.textContent);
+  const handleChangeDepartureCountry=(event, newValue)=> setDepartureCountry(newValue);
+  const handleChangeDestinationCountry=(event, newValue)=> setDestinationCountry(newValue);
+  const handleChangeDepartureCity=(event, newValue)=> setDepartureCity(newValue);
+  const handleChangeDestinationCity=(event, newValue)=> setDestinationCity(newValue);
   const handleChangeTransportType=(event)=> setTransportType(event.target.value)
+  const handleChangeDepartureAddress=(event)=> setDepartureAddress(event.target.value);
+  const handleChangeDestinationAddress=(event)=> setDestinationAddress(event.target.value);
+  const handleChangeEstimatedTime=(event)=> setEstimatedTime(event.target.value);
 
-  const getTransportType = ()=> { return transports };
-  const getCountries = ()=> { return Country.getAllCountries()};
+  useEffect(()=>{
+    setHasErrors(addressValidator(departureAddress))
+  }, [departureAddress])
 
-  const getCities = (country) =>{
-      const cities = [];
-      City.getCitiesOfCountry(country).map((city)=>(cities.push(city.name)));
-      return cities;
+  useEffect(()=>{
+    setHasErrors(addressValidator(destinationAddress))
+  }, [destinationAddress])
+
+  useEffect(()=>{
+    setHasErrors(numberValidator(estimatedTime))
+  }, [estimatedTime])
+
+  const isFormComplete = () =>{
+    if(
+      departureDate && departureCountry && destinationCountry && departureCity && destinationCity && 
+      departureAddress && destinationAddress && transportType && estimatedTime && !hasErrors
+    )
+        return true;
+    else
+        return false;
   }
 
   const handleOpen = ()=>{
@@ -70,42 +103,39 @@ const EditRideModal = (props) =>{
                                 </IconButtonNoVerticalPadding>
                             </Grid>
                         </Grid>
-                        <Box display='flex' justifyContent='center' mt='5%' mb='5%'>
+                        <Box display='flex' justifyContent='center' mt='5%'>
                             <Grid container spacing={3} >
                                 <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
-                                    <CarroTextField size='small' variant ='outlined' label={t("SearchRideDepartureCountry")} fullWidth
-                                        select value={departureCountry} onChange={handleChangeDepartureCountry}>
-                                            {getCountries().map((country)=>(
-                                                <MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>
-                                            ))}
-                                    </CarroTextField>
+                                    <CarroAutocomplete value={departureCountry} options={getCountries()}  label={t('SearchRideDepartureCountry')} onChange={handleChangeDepartureCountry}/>
                                 </Grid>
                                 <Grid container item xs={12} md ={6} xl={6}  justifyContent="center">
-                                    <CarroAutocomplete size='small' options={getCities(departureCountry)} label={t("SearchRideDepartureCity")} onChange={(e)=>handleChangeDepartureCity(e)}/>
+                                    <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label={t("SearchRideDepartureCity")} onChange={handleChangeDepartureCity}/>
                                 </Grid>
                                 <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
-                                    <CarroTextField size='small' variant ='outlined' label={t("SearchRideDestinationCountry")} fullWidth select value={destinationCountry} onChange={(e)=>handleChangeDestinationCountry(e)}>
-                                    {getCountries().map((country)=>(
-                                        <MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>
-                                    ))}
+                                    <CarroAutocomplete value={destinationCountry} options={getCountries()}  label={t('SearchRideDestinationCountry')} onChange={handleChangeDestinationCountry}/>
+                                </Grid>
+                                <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
+                                    <CarroAutocomplete value={destinationCity} options={getCities(destinationCountry)} label={t("SearchRideDestinationCity")} onChange={handleChangeDestinationCity}/>
+                                </Grid>
+                                <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
+                                    <CarroTextField error={addressValidator(departureAddress)} helperText={addressValidator(departureAddress) ? t('ValidAddress') : ''}
+                                                    variant ='outlined' value={departureAddress} onChange={handleChangeDepartureAddress} label={t("DepartureAddress")} fullWidth/>
+                                </Grid>
+                                <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
+                                    <CarroTextField error={addressValidator(destinationAddress)} helperText={addressValidator(destinationAddress) ? t('ValidAddress') : ''}
+                                                    variant ='outlined' value={destinationAddress} onChange={handleChangeDestinationAddress} label={t("DestinationAddress")} fullWidth/>
+                                </Grid>
+                                <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
+                                    <CarroDatePicker label={t("DriverCardDepartureDate")} value={departureDate} format='dd/MM/yyyy' onChange={handleChangeDepartureDate} disablePast/>
+                                </Grid>
+                                <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
+                                    <CarroTextField select variant ='outlined' label={t("RideType")} fullWidth value={transportType} onChange={handleChangeTransportType}>
+                                        {transports.map((transport, index)=>(<MenuItem key={index*371} value={transport.type}>{transport.label}</MenuItem>))}
                                     </CarroTextField>
                                 </Grid>
-                                <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
-                                    <CarroAutocomplete size='small' options={getCities(destinationCountry)} label={t("SearchRideDestinationCity")} onChange={(e)=>handleChangeDestinationCity(e)}/>
-                                </Grid>
-                                <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
-                                    <CarroTextField size='small' variant ='outlined' label={t("DriverCardDepartureAddress")} fullWidth/>
-                                </Grid>
-                                <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
-                                    <CarroDatePicker size='small' label={t("DriverCardDepartureDate")} value={departureDate} onChange={(e)=>handleChangeDepartureDate(e)}/>
-                                </Grid>
-                                <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
-                                    <CarroTextField select size='small' variant ='outlined' label={t("DriverCardType")} fullWidth value={transportType} onChange={(e)=>handleChangeTransportType(e)}>
-                                        {getTransportType().map((transport, index)=>(<MenuItem key={index} value={transport}>{transport}</MenuItem>))}
-                                    </CarroTextField>
-                                </Grid>
-                                <Grid container item xs={12}  md ={6} xl={6}  justifyContent='center'>
-                                    <CarroTextField size='small'  variant ='outlined' label={t("DriverCardEstimatedHours")} fullWidth/>
+                                <Grid container item xs={12}  md ={12} xl={12}  justifyContent='center'>
+                                    <CarroTextField type='number' error={numberValidator(estimatedTime)} helperText={numberValidator(estimatedTime) ? t('ValidEstimatedTime') : ''}
+                                                    variant ='outlined' value={estimatedTime} onChange={handleChangeEstimatedTime} label={t("EstimatedHours")} fullWidth/>
                                 </Grid>
                             </Grid>
                         </Box>
@@ -114,7 +144,7 @@ const EditRideModal = (props) =>{
                                             <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("CloseButton")}</SecondaryButton>     
                                 </Grid>
                                 <Grid container item xs={3} justifyContent="center">
-                                            <GreenCaroButton variant='contained' fullWidth>{t("SaveButton")}</GreenCaroButton>
+                                            <GreenCaroButton disabled={!isFormComplete()} variant='contained' fullWidth>{t("SaveButton")}</GreenCaroButton>
                                 </Grid>
                         </Grid>
                     </Container>

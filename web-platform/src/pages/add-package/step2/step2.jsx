@@ -6,6 +6,7 @@ import PhoneTextField from "../../../components/telephoneNumberField/PhoneTextFi
 import { useTranslation } from 'react-i18next';
 import { addressValidator, nameValidator, phoneValidator } from "../../../utils/Functions/input-validators";
 import { getCities, getCountries } from "../../../utils/Functions/countries-city-functions";
+import { NewReleases } from "@material-ui/icons";
 
 const StepTwo = (props) =>{
     const { t } = useTranslation();
@@ -42,10 +43,10 @@ const StepTwo = (props) =>{
                                     error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}/>
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                    <CarroAutocomplete value={props.destinationCountry} options={getCountries()} label={t('SearchRideDestinationCountry')} onChange={(e)=>props.setDestinationCountry(e.target.textContent)}/>
+                    <CarroAutocomplete value={props.destinationCountry} options={getCountries()} label={t('SearchRideDestinationCountry')} onChange={(e, newValue)=>props.setDestinationCountry(newValue)}/>
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                    <CarroAutocomplete value = {props.destinationCity} options={getCities(props.destinationCountry)} label={t('SearchRideDestinationCity')} onChange={(e)=>props.setDestinationCity(e.target.textContent)}/>
+                    <CarroAutocomplete value = {props.destinationCity} options={getCities(props.destinationCountry)} label={t('SearchRideDestinationCity')} onChange={(e, newValue)=>props.setDestinationCity(newValue)}/>
                 </Grid>
                 <Grid container item xs={12} justifyContent='center'>
                     <CarroTextField value={props.destinataryAddress} error={addressValidator(props.destinataryAddress)} helperText={addressValidator(props.destinataryAddress) ? t('ValidAddress') : ''}

@@ -125,7 +125,7 @@ axios.delete(data.baseUrl+"/catalin/admin/users/" +id ,{
 
 export const Logout = (_id) => {
 
-return (dispatch) => {
-    dispatch(fetchLogout);
-}
+    return (dispatch) => {
+        dispatch(fetchLogout);
+    }
 }

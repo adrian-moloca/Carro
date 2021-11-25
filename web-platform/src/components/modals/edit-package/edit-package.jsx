@@ -42,7 +42,7 @@ const EditPackage = (props) =>{
                                 </Grid>
                             </Grid>
                         </Box>
-                        <FormPackage/>
+                        <FormPackage departureCountry={props.departureCountry}/>
                     <Grid container justifyContent='space-around'>
                             <Grid container item xs={3} justifyContent="center">
                                         <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("CloseButton")}</SecondaryButton>     

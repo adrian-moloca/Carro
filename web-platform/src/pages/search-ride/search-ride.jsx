@@ -8,10 +8,14 @@ import { useTranslation } from 'react-i18next';
 import usePagination from '../../components/pagination/use-pagination/use-pagination';
 import CarroAutocomplete from "../../components/autocomplete/CarroAutocomplete";
 import { getCountries, getCities } from "../../utils/Functions/countries-city-functions";
-import { searchRides } from "../../redux/actions/RidesActions";
+import { searchRides, clean, getRide } from "../../redux/actions/RidesActions";
 import { connect } from "react-redux";
+import GetRide from "./get-ride";
+import { useHistory } from "react-router";
 
-const SearchRide = ({data, searchRides}) => {
+const SearchRide = ({ridesData, userData, searchRides, clean}) => {
+
+  const history = useHistory();
 
   // state
   const { t } = useTranslation();
@@ -24,14 +28,35 @@ const SearchRide = ({data, searchRides}) => {
   const handleChangeDestinationCountry = (event, newValue) => setDestinationCountry(newValue);
   const handleChangeDepartureCity = (event, newValue) => setDepartureCity(newValue);
   const handleChangeDestinationCity = (event, newValue) => setDestinationCity(newValue);
-  const[ridesState, setRidesState] = useState(data);
+    
+  const[ridesState, setRidesState] = useState(Array(ridesData.rides).length > 0 ? ridesData.rides : []);
   const rides = usePagination(ridesState, 3)
+  
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {setPage(value); rides.jump(value)};
+  
+  const [clickedSearch, setClickedSearch] = useState(false);
 
   useEffect(()=>{
-    setRidesState(data)
-  }, [data])
+    Array(ridesData.rides).length > 0 ? setRidesState(ridesData.rides) : []
+  }, [ridesData.rides])
+
+  useEffect(()=>{
+      const unlisten = history.listen(()=>{clean(); /* localStorage.setItem */})
+      return unlisten;
+  }, [])
+
+  function notFoundAnyRide(){
+    if(clickedSearch)
+      return (
+        <Box>
+          {'Not found any ride on this route'}
+        </Box>
+      );
+    else
+        return ' '
+  }
+
 
   return (
     <Container className={"Primary-container-style"}>
@@ -40,7 +65,6 @@ const SearchRide = ({data, searchRides}) => {
         {t('SearchRideTitle')}
         </Box>
       </Grid>
-
       <Box display="flex" justifyContent="space-evenly" mt="3%">
         <Grid container spacing={3} justifyContent="space-between">
           <Grid container item xs={12} md={6} xl={3} justifyContent="center">
@@ -59,7 +83,10 @@ const SearchRide = ({data, searchRides}) => {
       </Box>
       <Box display="flex" justifyContent="space-evenly" my="3%">
         <Grid item xs={11} md={5} xl={3}>
-          <PrimaryButton onClick={()=>searchRides(departureCountry, departureCity, destinationCountry, destinationCity)}
+          <PrimaryButton onClick={()=>{
+                                      searchRides(departureCountry, departureCity, destinationCountry, destinationCity, userData.token);
+                                      setClickedSearch(true);
+                                    }}
                          disabled={departureCountry && departureCity && destinationCountry && destinationCity ? false : true}
                          variant="contained" endIcon={<DriveEtaIcon />} fullWidth>
             {t('SearchRideButton')}
@@ -67,24 +94,12 @@ const SearchRide = ({data, searchRides}) => {
         </Grid>
       </Box>
       <Grid container justifyContent='space-around'>
-      { rides.currentData().map((ride, index)=>
-          <Grid key ={index} container item xs={12} sm={5}  md={4} lg={4}  xl={4} justifyContent='center'>
-              <RideCard 
-                  image={ride.image} 
-                  name={ride.name}
-                  transportType={ride.transportType}
-                  driverRate={ride.rate}
-                  plecare={ride.departure}
-                  destinatie={ride.destination}
-                  departureDate={ride.departureDate}
-                  departureAddress={ride.departureAddress}
-                  destinationAddress={ride.destinationAddress}
-                  estimatedTime={ride.estimatedTime}
-                  status={ride.status}
-                  packageExists= {ride.packageExists}
-              />
-          </Grid>
-        )}
+      { ridesData.rides ? 
+        rides.currentData().map((ride)=> <GetRide id={ride.id} departure={ride.departure} destination={ride.destination}
+                                                  departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress}
+                                                  departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType}
+                                                  state={ride.status}/>) : notFoundAnyRide()
+      }
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">
           <Box width='1' mt='5%' display='flex' justifyContent='center'>
@@ -103,7 +118,12 @@ const SearchRide = ({data, searchRides}) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({searchRides: (fromCountry, fromCity, toCountry, toCity) => dispatch(searchRides(fromCountry, fromCity, toCountry, toCity))})
-const mapStateToProps = state => ({data: state.ridesData.rides})
+const mapDispatchToProps = (dispatch) => {
+   return{ 
+    searchRides: (fromCountry, fromCity, toCountry, toCity, token) => dispatch(searchRides(fromCountry, fromCity, toCountry, toCity, token)),
+    clean: () => dispatch(clean())
+  }
+}
+const mapStateToProps = state => ({ridesData: state.ridesData, userData: state.userData})
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchRide);

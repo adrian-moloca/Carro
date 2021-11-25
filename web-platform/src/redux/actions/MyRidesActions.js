@@ -35,14 +35,12 @@ axios.post(data.baseUrl+"/rides", {
     departureAddress: departureAddress,
     destinationAddress: destinationAddress,
     estimatedTime: estimatedTime,
-    trasportType: trasportType,
+    transportType: trasportType,
 }, {headers: {
     'Authorization': `Bearer ${token}`,
-    'Content-type': 'application/json'
 }})
 .then(response => {
-    const ride = response.data;
-    dispatch(createNewRideSuccess(ride));
+    dispatch(createNewRideSuccess(response.data));
     dispatch(fetchMyRides())
 }).catch(error => {
     const errorMsg = error;

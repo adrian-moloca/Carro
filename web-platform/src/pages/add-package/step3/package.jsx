@@ -12,6 +12,7 @@ import CarroTextField from "../../../components/textField/CarroTextField";
 import CarroCheckbox from "../../../components/checkbox/CarroCheckbox";
 import { useTranslation } from "react-i18next";
 import { numberValidator } from "../../../utils/Functions/input-validators";
+import GetPackagesSizesContent from "../../../utils/Functions/get-packages-sizes-content";
 
 const Package = (props) => {
   const { t } = useTranslation();
@@ -19,18 +20,6 @@ const Package = (props) => {
   useEffect(()=>{
     props.setHasErrors(numberValidator(props.weight))
   }, [props.weight])
-
-  useEffect(()=>{
-    props.setHasErrors(numberValidator(props.width))
-  }, [props.width])
-
-  useEffect(()=>{
-    props.setHasErrors(numberValidator(props.height))
-  }, [props.height])
-
-  useEffect(()=>{
-    props.setHasErrors(numberValidator(props.length))
-  }, [props.length])
 
   useEffect(()=>{
     props.setHasErrors(numberValidator(props.price))
@@ -78,75 +67,6 @@ const Package = (props) => {
     },
   ];
 
-  function getPackagesSizesContent(size){
-
-    switch(size){
-      case 1: return(
-                      <Grid container item justifyContent="center">
-                        <Box fontSize={12} color={"#9C9C9C"}>
-                          {
-                            "Pachet mic - Latimea<=30cm, Lungimea<=30cm, Inaltimea<=30cm (ex. plicuri,cutii pantofi,cutii bijuterii, etc.)"
-                          }
-                        </Box>
-                      </Grid>
-                    );
-      case 2: return(
-                      <Fragment>
-                        <Grid container justifyContent="center">
-                          <Box fontSize={12} color={"#9C9C9C"}>
-                            {
-                              "Pachet mediu - 30cm<Latimea<=100cm, 30cm<Lungimea<=100cm, 30cm<Inaltimea<=100cm (ex. bagaje de cala, cutii cu scaune, etc.)"
-                            }
-                          </Box>
-                        </Grid>
-                      </Fragment>
-                    );
-      case 3: return(
-                      <Fragment>
-                        <Grid container item xs={4} justifyContent="center">
-                            <CarroTextField error={numberValidator(props.width)} helperText={numberValidator(props.width) ? t('OnlyNumbers') : ''}
-                                            variant="outlined" value={props.width} onChange={(e)=>props.setWidth(e.target.value)}
-                                            label={t("Width")} fullWidth
-                                            InputProps={{
-                                              startAdornment: (
-                                                <InputAdornment position="start">m</InputAdornment>
-                                              ),
-                                            }}
-                            />
-                        </Grid>
-                        <Grid container item xs={4} justifyContent="center">
-                            <CarroTextField error={numberValidator(props.height)} helperText={numberValidator(props.height) ? t('OnlyNumbers') : ''}
-                                            variant="outlined" value={props.height} onChange={(e)=>props.setHeight(e.target.value)}
-                                            label={t("Height")} fullWidth
-                                            InputProps={{
-                                              startAdornment: (
-                                                <InputAdornment position="start">m</InputAdornment>
-                                              ),
-                                            }}
-                            />
-                        </Grid>
-                        <Grid container item xs={4} justifyContent="center">
-                            <CarroTextField error={numberValidator(props.length)} helperText={numberValidator(props.length) ? t('OnlyNumbers') : ''}
-                                            variant="outlined" value={props.length} onChange={(e)=>props.setLength(e.target.value)}
-                                            label={t("Length")} fullWidth
-                                            InputProps={{
-                                              startAdornment: (
-                                                <InputAdornment position="start">m</InputAdornment>
-                                              ),
-                                            }}
-                            />
-                        </Grid>
-                        <Grid container justifyContent="center">
-                          <Box fontSize={14} color={"#9C9C9C"}>
-                            {
-                              "Pachet Mare - Depaseste un metru cub"
-                            }
-                          </Box>
-                        </Grid>
-                      </Fragment>
-                    );
-  }}
-
   const handleFlammableCheckboxClick = (event) => {
     event.target.checked ? props.setFlammable(true) : props.setFlammable(false);
   };
@@ -179,10 +99,7 @@ const Package = (props) => {
         </CarroTextField>
       </Grid>
       <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
-        <CarroTextField
-          type='number'
-          error={numberValidator(props.weight)}
-          helperText={numberValidator(props.weight) ? t('OnlyNumbers') : ''}
+        <CarroTextField type='number' error={numberValidator(props.weight)} helperText={numberValidator(props.weight) ? t('OnlyNumbers') : ''}
           value={props.weight}
           onChange={(e)=>props.setWeight(e.target.value)}
           variant="outlined"
@@ -195,7 +112,7 @@ const Package = (props) => {
           }}
         />
       </Grid>
-      {getPackagesSizesContent(props.packageSize)}
+      <GetPackagesSizesContent size={props.packageSize} width={props.width} length={props.length} height={props.height} setWidth={props.setWidth} setLength={props.setLength} setHeight={props.setHeight} setHasErrors={props.setHasErrors}/>
       <Grid container item xs={6} justifyContent="center">
         <CarroTextField variant="outlined" error={props.smallDescription.length <= 3 && props.smallDescription!=''}  
                         helperText={props.smallDescription.length <= 3 && props.smallDescription!='' ? t('SmallDescriptionMustContain') : ''} 
@@ -266,7 +183,7 @@ const Package = (props) => {
         <FormControlLabel
           onChange={handleHandleWithCareCheckboxClick}
           control={<CarroCheckbox />}
-          label="Animal"
+          label="HandleWithCare"
           checked={props.handleWithCare}
         />
       </Grid>

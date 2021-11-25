@@ -24,7 +24,7 @@ switch (action.type) {
     case MY_RIDES_SUCCESS:
         return{
             ...state,
-            rides: action.payload,
+            rides: [...action.payload.data],
         }
     case MY_RIDES_FAILURE:
         return{
@@ -39,7 +39,7 @@ switch (action.type) {
     case NEW_RIDE_SUCCESS:
         return{
             ...state,
-            rides: [action.payload]
+            ride: action.payload,
         }
     case NEW_RIDE_FAILURE:
         return{

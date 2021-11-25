@@ -18,10 +18,10 @@ const StepOne = (props) =>{
         <Box display='flex' justifyContent='center' mt='5%'>
             <Grid container spacing={3} >
                 <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
-                            <CarroAutocomplete value={props.departureCountry} options={getCountries()}  label={t('SearchRideDepartureCountry')} onChange={(e)=>props.setDepartureCountry(e.target.textContent)}/>
+                            <CarroAutocomplete value={props.departureCountry} options={getCountries()}  label={t('SearchRideDepartureCountry')} onChange={(e, newValue)=>props.setDepartureCountry(newValue)}/>
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
-                            <CarroAutocomplete value={props.departureCity} options={getCities(props.departureCountry)} label={t('SearchRideDepartureCity')} onChange={(e)=>props.setDepartureCity(e.target.textContent)}/>
+                            <CarroAutocomplete value={props.departureCity} options={getCities(props.departureCountry)} label={t('SearchRideDepartureCity')} onChange={(e, newValue)=>props.setDepartureCity(newValue)}/>
                 </Grid>
                
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
