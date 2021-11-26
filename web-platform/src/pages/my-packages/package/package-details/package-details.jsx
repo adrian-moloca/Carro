@@ -23,7 +23,7 @@ const PackageDetails = (props)=>{
                 <Box>{t("DriverCardDestination")} {props.destination}</Box>
             </Grid>
             <Grid container item xs={6}>
-                <Box>{t("PickupAddress")} {props.departureAddress}</Box>
+                <Box>{t("PickupAddress")}: {props.departureAddress}</Box>
             </Grid>
             <Grid container item xs={6}>
                 <Box>{t("DriverCardDestinationAddress")} {props.destinationAddress}</Box>
@@ -38,13 +38,13 @@ const PackageDetails = (props)=>{
                 <Box>{t("Weight")} {props.weight}</Box>
             </Grid>
             <Grid container item xs={6}>
-                <Box>{t("Description")} {props.description}</Box>
+                <Box>{t("Description")}: {props.description}</Box>
             </Grid>
             <Grid container item xs={6}>
-                <Box>{t("Price")} {props.price}</Box>
+                <Box>{t("Price")}: {props.price}</Box>
             </Grid>
             <Grid container item xs={6}>
-                <Box>{t("CardName")} {props.name}</Box>
+                <Box>{t("CardName")}: {props.name}</Box>
             </Grid>
             <Grid container item xs={6} justifyContent='space-around'>
                 <img src={fragil} className={props.specialMention.isFragile ? classes.advStyle : classes.advNoneStyle} alt={""}/>

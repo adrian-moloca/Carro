@@ -11,7 +11,7 @@ export const GET_RIDE_SUCCESS = 'GET_RIDE_SUCCESS';
 export const GET_RIDE_FAILURE = 'GET_RIDE_FAILURE';
 
 //Clean Rides
-export const CLEAN_RIDE_DATA = 'CLEAN_RIDE_DATA';
+export const CLEAN_RIDES_DATA = 'CLEAN_RIDES_DATA';
 
 // search rides functions
 export const searchRidesRequest = () => {
@@ -56,9 +56,9 @@ export const getRideFailure = error => {
 }
 
 //clean ridesData
-export const cleanRideData = () =>{
+export const cleanRidesData = () =>{
     return{
-        type: CLEAN_RIDE_DATA,
+        type: CLEAN_RIDES_DATA,
     }
 }
 

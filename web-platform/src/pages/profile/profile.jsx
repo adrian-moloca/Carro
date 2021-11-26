@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from "react";
-import { Country, City }  from 'country-state-city';
 import { Link } from "react-router-dom";
 import { Container, Box, Grid, MenuItem, FormControlLabel, IconButton} from "@material-ui/core";
 import CarroAutocomplete from "../../components/autocomplete/CarroAutocomplete";
 import CarroTextField from "../../components/textField/CarroTextField";
+import PhoneTextField from "../../components/telephoneNumberField/PhoneTextField";
 import SeeProfileBtn from "../../components/buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn"
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
 import CarroCheckbox from "../../components/checkbox/CarroCheckbox";
@@ -13,18 +13,28 @@ import useStyles from "./profileStyle";
 import {SaveAlt, Create, Cancel} from '@material-ui/icons';
 import "../../App.css";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
+import { getCountries, getCities } from "../../utils/Functions/countries-city-functions";
+import { connect } from "react-redux";
+import { capitalizeFirstLetter } from "../../utils/Functions/capitalize-first-letter";
+import { phoneValidator } from "../../utils/Functions/input-validators";
 
-const Profile = (props) => {
+const Profile = ({userData}) => {
 
   const classes = useStyles();
   const { t } = useTranslation();
+  const [firstName, setFirstName] = useState(capitalizeFirstLetter(String(userData.name).substring(0, String(userData.name).indexOf(' '))))
+  const [lastName, setLastName] = useState(capitalizeFirstLetter(String(userData.name).substring(String(userData.name).indexOf(' ')+1, String(userData.name).length)))
+  const [email, setEmail] = useState(userData.email);
+  const [countryPhoneCode, setCountryPhoneCode] = useState(String(userData.phoneNumber).substring(1, String(userData.phoneNumber).length-10));
+  const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState(String(userData.phoneNumber).substring(String(userData.phoneNumber).length-10, String(userData.phoneNumber).length));
+  const [dateOfBirth, setDateOfBirth] = useState(new Date(new Date().getFullYear()-14, new Date().getMonth(),new Date().getDate(), 0));
   const [legalPersonChecked, setLegalPersonChecked] = useState(false);
   const [mandatoryDocuments, setMandatoryDocuments] = useState([]);
   const [departureCountry, setDepartureCountry] = useState('');
   const [departureCity, setDepartureCity] = useState('');
   const [onEditMode, setOnEditMode] = useState(false);
-  const handleChangeDepartureCountry=(event)=> setDepartureCountry(event.target.value);
-  const handleChangeDepartureCity=(event)=> setDepartureCity(event.target.textContent);
+  const handleChangeDepartureCountry=(event, newValue)=> setDepartureCountry(newValue);
+  const handleChangeDepartureCity=(event, newValue)=> setDepartureCity(newValue);
   const handleLegalPersonCheckboxClick = (event) => {
     event.target.checked ? setLegalPersonChecked(true) : setLegalPersonChecked(false);
   };
@@ -40,15 +50,6 @@ const Profile = (props) => {
     const temp = [...mandatoryDocuments];
     temp.splice(index, 1);
     setMandatoryDocuments(temp);
-  }
-
-  const getCountries = ()=> {
-    return Country.getAllCountries();
-  }
-  const getCities = (country) =>{
-      const cities = [];
-      City.getCitiesOfCountry(country).map((city)=>(cities.push(city.name)));
-      return cities;
   }
 
   return (
@@ -76,25 +77,32 @@ const Profile = (props) => {
       <Box display="flex" justifyContent="space-evenly" mt="1%">
         <Grid container spacing={3} display="flex" justifyContent="center">
           <Grid item xs={12} sm={6}>
-            <CarroTextField variant="outlined" label={t("LastName")} fullWidth disabled = {!onEditMode}/>
+            <CarroTextField value={lastName} variant="outlined" label={t("LastName")} fullWidth disabled = {!onEditMode}/>
           </Grid>
           <Grid item xs={12} sm={6} >
-            <CarroTextField variant="outlined" label={t("FirstName")} fullWidth disabled = {!onEditMode}/>
+            <CarroTextField value={firstName} variant="outlined" label={t("FirstName")} fullWidth disabled = {!onEditMode}/>
           </Grid>
           <Grid item xs={12}>
-            <CarroTextField variant="outlined" label={t("PickupAddress")} fullWidth disabled = {!onEditMode}/>
+            <CarroTextField variant="outlined" label={t("Address")} fullWidth disabled = {!onEditMode}/>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <CarroTextField variant="outlined" label={t("PhoneNumber")} fullWidth disabled = {!onEditMode}/>
+            <PhoneTextField value={inputValuePhoneNumber}
+              onChange = {(e) => setInputValuePhoneNumber(e.target.value)}
+              countryPhoneCode={countryPhoneCode} 
+              handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
+              error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
+              disabled={!onEditMode}/>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <CarroDatePicker label={t("Birthday")} disabled = {!onEditMode} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}}/>
+            <CarroDatePicker value={dateOfBirth} onChange={(date) => setDateOfBirth(date)} format='dd/MM/yyyy' views={["year", "month", "date"]}
+                             minDate={(new Date().getFullYear()-14).toString()+'-'+(new Date().getMonth()+1).toString()+'-'+new Date().getDate().toString()}
+                             label={t("Birthday")} disabled = {!onEditMode} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}} openTo="year"/>
           </Grid>
           <Grid item xs={12} sm={6}>
             <CarroTextField variant="outlined" label={t("Languages")} fullWidth disabled = {!onEditMode}/>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <CarroTextField variant="outlined" label={t("Mail")} fullWidth disabled = {!onEditMode}/>
+            <CarroTextField value={email} variant="outlined" label={t("Mail")} fullWidth disabled = {!onEditMode}/>
           </Grid>
           <Grid item xs={12}>
             <CarroTextField variant="outlined" label={t("Particularities")} fullWidth disabled = {!onEditMode}/>
@@ -125,7 +133,7 @@ const Profile = (props) => {
           })}
           {mandatoryDocuments.length ? (
                       <Grid item xs={5}>
-                        <PrimaryButton variant='contained' onClick={()=> console.log(mandatoryDocuments)} fullWidth>
+                        <PrimaryButton variant='contained' /* onClick={} */ fullWidth>
                           {t('Send')}
                         </PrimaryButton>
                       </Grid> 
@@ -204,4 +212,6 @@ const Profile = (props) => {
   );
 };
 
-export default Profile;
+const mapStateToProps = state =>({userData: state.userData})
+
+export default connect(mapStateToProps, null)(Profile);

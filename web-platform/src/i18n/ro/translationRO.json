@@ -27,7 +27,7 @@
     "Weight": "Greutate:",
     "PickupDate": "Data ridicare",
     "PickupAddress": "Adresa ridicare",
-    "Adress": "Adresa",
+    "Address": "Adresa",
     "Price": "Pret",
     "DeliverButton": "Livreaza",
     "Reason": "Respinge cu motiv",
@@ -549,5 +549,8 @@
     "SmallPackageSizeContent": "Pachet mic - Latimea<=30cm, Lungimea<=30cm, Inaltimea<=30cm (ex. plicuri,cutii pantofi,cutii bijuterii, etc.)",
     "MediumPackageSizeContent": "Pachet mediu - 30cm<Latimea<=100cm, 30cm<Lungimea<=100cm, 30cm<Inaltimea<=100cm (ex. bagaje de cala, cutii cu scaune, etc.)",
     "BigPackageSizeContent": "Pachet mare - Depaseste un metru cub",
-    "RidesNotFound": "Nu a fost gasita nici o cursa pe ruta selectata"
+    "RidesNotFound": "Nu a fost gasita nici o cursa pe ruta selectata",
+    "PackagesNotFound": "Nu a fost gasit nici un pachet pe ruta selectata",
+    "NoRidesAdded": "Nu ai adaugata nici o cursa la profilul tau!",
+    "NoPackagesAdded": "Nu ai adaugat nici un pachet la profilul tau!"
 }

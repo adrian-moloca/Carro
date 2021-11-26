@@ -1,4 +1,4 @@
-import {SEARCH_PACKAGES_REQUEST, SEARCH_PACKAGES_SUCCESS, SEARCH_PACKAGES_FAILURE,
+import {SEARCH_PACKAGES_REQUEST, SEARCH_PACKAGES_SUCCESS, SEARCH_PACKAGES_FAILURE, CLEAN_PACKAGES_DATA
 } from '../types/PackagesTypes';
 
 /* http://mongo-api.carrointernational.ro/api/v1/rides?
@@ -27,6 +27,11 @@ switch (action.type) {
         return{
             ...state,
             hasErrors: true,
+        }
+    case CLEAN_PACKAGES_DATA:
+        return{
+            ...state,
+            packages: [],
         }    
     default: 
         return  {

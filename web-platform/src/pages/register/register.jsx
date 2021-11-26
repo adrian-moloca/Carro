@@ -37,7 +37,6 @@ const Register = ({createNewUser, data}) => {
 
   useLayoutEffect(()=>{
     setPhoneNumber(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber)
-    console.log(phoneNumber)
   }, [inputValuePhoneNumber, countryPhoneCode])
 
   const redirectPhoneNumberVerification = () => {
@@ -63,7 +62,6 @@ const Register = ({createNewUser, data}) => {
   
   useEffect(()=>{
     setHasErrors(phoneValidator(inputValuePhoneNumber))
-    console.log((new Date().getFullYear()-14).toString())
   }, [inputValuePhoneNumber])
   
   useEffect(() => {

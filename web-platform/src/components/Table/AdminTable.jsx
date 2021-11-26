@@ -48,7 +48,6 @@ function filterUsers(value, filter){
   if(value.numePrenume.toString().toLowerCase().includes(filter.toString().toLowerCase()) || 
     value.email.toString().toLowerCase().includes(filter.toString().toLowerCase()) || filter<=0)
   {
-    console.log(value)
     return value;
 
   }

@@ -3,12 +3,11 @@ import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import { Container, Box, Grid} from "@material-ui/core";
 import {Pagination} from '@material-ui/lab';
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
-import RideCard from "../../components/cards/ride-card/ride-card";
 import { useTranslation } from 'react-i18next';
 import usePagination from '../../components/pagination/use-pagination/use-pagination';
 import CarroAutocomplete from "../../components/autocomplete/CarroAutocomplete";
 import { getCountries, getCities } from "../../utils/Functions/countries-city-functions";
-import { searchRides, clean, getRide } from "../../redux/actions/RidesActions";
+import { searchRides, clean } from "../../redux/actions/RidesActions";
 import { connect } from "react-redux";
 import GetRide from "./get-ride";
 import { useHistory } from "react-router";
@@ -42,7 +41,7 @@ const SearchRide = ({ridesData, userData, searchRides, clean}) => {
   }, [ridesData.rides])
 
   useEffect(()=>{
-      const unlisten = history.listen(()=>{clean(); /* localStorage.setItem */})
+      const unlisten = history.listen(()=>{clean()})
       return unlisten;
   }, [])
 

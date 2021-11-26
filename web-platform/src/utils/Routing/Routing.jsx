@@ -62,7 +62,7 @@ const Routes = ({data}) => {
 
     useEffect(()=>{
         setIsLoggedIn(String(data.email).length > 0 ? true : false)
-    }, [data])
+    }, [data.email])
     
 
     // if(isLoggedIn === false) {

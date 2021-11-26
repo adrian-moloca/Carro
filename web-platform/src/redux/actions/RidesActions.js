@@ -1,4 +1,4 @@
-import {searchRidesRequest, searchRidesSuccess, searchRidesFailure, getRideRequest, getRideSuccess, getRideFailure, cleanRideData} from '../types/RidesTypes';
+import {searchRidesRequest, searchRidesSuccess, searchRidesFailure, getRideRequest, getRideSuccess, getRideFailure, cleanRidesData} from '../types/RidesTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
 
@@ -44,7 +44,7 @@ export const getRide = (rideID, token) => {
 
 export const clean = () => {
     return (dispatch) => {
-        dispatch(cleanRideData());
+        dispatch(cleanRidesData());
     }
 }
 

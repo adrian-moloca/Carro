@@ -33,7 +33,7 @@ export const fetchMyRidesRequest = () => {
 export const fetchMyRidesSuccess = rides => {
     return {
         type: MY_RIDES_SUCCESS,
-        payload: rides
+        payload: [...rides]
     }
 }
 

@@ -31,7 +31,7 @@ const PackageCard = (props) =>{
 
     function getFrontButtons(status, rideExists){
         switch(status){
-            case 0:
+            case null:
                 if(rideExists)
                     return(
                         <Grid container item xs={10} justifyContent = 'center'>
@@ -147,8 +147,8 @@ const PackageCard = (props) =>{
                         <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
                     </Grid>
                     <Grid container item xs={12} spacing={1}justifyContent = 'flex-start'>
-                        <Box px={1} fontSize={14}>{t('PickupDate')} {props.departureDate}</Box>   
-                        <Box px={1} fontSize={14}>{t('PickupAddress')} {props.departureAddress}</Box>
+                        <Box px={1} fontSize={14}>{t('PickupDate')}: {props.departureDate}</Box>   
+                        <Box px={1} fontSize={14}>{t('PickupAddress')}: {props.departureAddress}</Box>
                         <Box px={1} fontSize={14}>{t('DriverCardDestinationAddress')} {props.destinationAddress}</Box>
                     </Grid>
                     <Grid container item xs={12} justifyContent = 'center'>

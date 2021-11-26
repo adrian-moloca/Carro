@@ -40,7 +40,7 @@ const GetPackagesSizesContent = (props) => {
       case 3: return(
                       <Fragment>
                         <Grid container item xs={4} justifyContent="center">
-                            <CarroTextField error={numberValidator(props.width)} helperText={numberValidator(props.width) ? t('OnlyNumbers') : ''}
+                            <CarroTextField type='number' error={numberValidator(props.width)} helperText={numberValidator(props.width) ? t('OnlyNumbers') : ''}
                                             variant="outlined" value={props.width} onChange={(e)=>props.setWidth(e.target.value)}
                                             label={t("Width")} fullWidth
                                             InputProps={{
@@ -51,7 +51,7 @@ const GetPackagesSizesContent = (props) => {
                             />
                         </Grid>
                         <Grid container item xs={4} justifyContent="center">
-                            <CarroTextField error={numberValidator(props.height)} helperText={numberValidator(props.height) ? t('OnlyNumbers') : ''}
+                            <CarroTextField type='number' error={numberValidator(props.height)} helperText={numberValidator(props.height) ? t('OnlyNumbers') : ''}
                                             variant="outlined" value={props.height} onChange={(e)=>props.setHeight(e.target.value)}
                                             label={t("Height")} fullWidth
                                             InputProps={{
@@ -62,7 +62,7 @@ const GetPackagesSizesContent = (props) => {
                             />
                         </Grid>
                         <Grid container item xs={4} justifyContent="center">
-                            <CarroTextField error={numberValidator(props.length)} helperText={numberValidator(props.length) ? t('OnlyNumbers') : ''}
+                            <CarroTextField type='number' error={numberValidator(props.length)} helperText={numberValidator(props.length) ? t('OnlyNumbers') : ''}
                                             variant="outlined" value={props.length} onChange={(e)=>props.setLength(e.target.value)}
                                             label={t("Length")} fullWidth
                                             InputProps={{

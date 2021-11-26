@@ -1,5 +1,5 @@
-import React, { useState, Fragment} from "react";
-import { Link } from "react-router-dom";
+import React, { useState, Fragment, useEffect} from "react";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import { ButtonBase, MenuItem, Menu, Grid, Box} from "@material-ui/core";
 import {LocalMallOutlined, LocalShippingOutlined, AccountCircleOutlined,
       CreditCardOutlined, CancelOutlined, AccountCircle,
@@ -8,11 +8,18 @@ import { Fade } from "@material-ui/core";
 import useStyles from './headerLogedInProfileMenuStyle'
 import { useTranslation } from 'react-i18next';
 import { connect } from "react-redux";
+import { compose } from "redux";
 import { fetchLogout } from "../../../redux/types/UserTypes";
+import { fetchMyPackages } from "../../../redux/actions/MyPackagesActions";
+import { withRouter } from "react-router";
+import { fetchMyRides } from "../../../redux/actions/MyRidesActions";
 
-const HeaderLogedInProfileMenu = ({fetchLogout}) => {
+const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetchMyRides, myPackagesData, myRidesData}) => {
   const { t } = useTranslation();
+  const history = useHistory();
   // State
+  const[fetchMyPackagesSuccess, setFetchMyPackagesSuccess] = useState(false);
+  const[fetchMyRidesSuccess, setFetchMyRidesSuccess] = useState(false);
   const [anchorEl, setAnchorEl]= useState(null);
   const accountMenuOpen = Boolean(anchorEl);
   
@@ -22,6 +29,27 @@ const HeaderLogedInProfileMenu = ({fetchLogout}) => {
   const handleAccountMenuClose = () =>{
     setAnchorEl(null);
   }
+  const redirectAfterFetchMyPackagesSuccess = () => {
+    if(fetchMyPackagesSuccess === true)
+        history.push('/my-packages');
+    else 
+        history.push('/home');
+  }
+
+  const redirectAfterFetchMyRidesSuccess = () => {
+    if(fetchMyRidesSuccess === true)
+        history.push('/my-rides');
+    else 
+        history.push('/home');
+  }
+
+  useEffect(() => {
+    setFetchMyPackagesSuccess(myPackagesData.hasErrors === true ? false : true);
+  }, [myPackagesData])
+
+  useEffect(() => {
+    setFetchMyRidesSuccess(myRidesData.hasErrors === true ? false : true);
+  }, [myRidesData])
 
   const [userType, setUserType] = useState(null);
   
@@ -47,8 +75,11 @@ const HeaderLogedInProfileMenu = ({fetchLogout}) => {
             onClose={handleAccountMenuClose}
             id="account-menu"
       >
-            <Link to="/my-packages" style={{textDecoration:'none' ,color:'inherit'}}>
-              <MenuItem dense onClick={handleAccountMenuClose}>
+              <MenuItem dense onClick={()=>{
+                        handleAccountMenuClose();
+                        redirectAfterFetchMyPackagesSuccess()
+                        fetchMyPackages(userData.token);
+                }}>
                   <Box mr={2} className={"Primary-color"}>
                     <LocalMallOutlined/>
                   </Box>
@@ -56,9 +87,12 @@ const HeaderLogedInProfileMenu = ({fetchLogout}) => {
                     {t("MyPackages")}
                   </Box>
               </MenuItem>
-            </Link>
             <Link to="/my-rides" style={{textDecoration:'none' ,color:'inherit'}}>
-              <MenuItem dense onClick={handleAccountMenuClose}>
+              <MenuItem dense onClick={()=>{
+                        handleAccountMenuClose();
+                        redirectAfterFetchMyRidesSuccess()
+                        fetchMyRides(userData.token);
+                }}>
                   <Box mr={2} className={"Primary-color"}>
                     <LocalShippingOutlined/>
                   </Box>
@@ -130,6 +164,15 @@ const HeaderLogedInProfileMenu = ({fetchLogout}) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({fetchLogout: () => dispatch(fetchLogout())})
+const mapDispatchToProps = (dispatch) => ({
+  fetchLogout: () => dispatch(fetchLogout()),
+  fetchMyPackages: (token) => dispatch(fetchMyPackages(token)),
+  fetchMyRides: (token) => dispatch(fetchMyRides(token))
+})
 
-export default connect(null, mapDispatchToProps)(HeaderLogedInProfileMenu);
+const mapStateToProps = state =>({userData: state.userData, myPackagesData: state.myPackagesData, myRidesData: state.myRidesData})
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps),
+)(HeaderLogedInProfileMenu);
