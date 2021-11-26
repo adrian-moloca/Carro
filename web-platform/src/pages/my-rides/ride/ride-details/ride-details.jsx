@@ -4,6 +4,19 @@ import Packages from '../../../../components/packages/packages';
 import { useTranslation } from "react-i18next";
 const RideDetails = (props) =>{
 
+  function getTransportType(type){
+      switch(type){
+          case 1:   
+              return t("PublicTransport");
+          case 2:   
+              return t("Car");
+          case 3:   
+              return t("Truck");
+          default: 
+              return 'Unkown transport type';
+      }
+  }
+
     const[rideExists, setRideExists] = useState(true);
     const { t } = useTranslation();
 
@@ -24,16 +37,16 @@ const RideDetails = (props) =>{
                       <Box >{t("DriverCardEstimatedHours")} {props.estimatedTime}</Box>                        
                     </Grid>
                     <Grid container item xs={6}>
-                      <Box>{t("PickupAddress")} {props.departureAddress}</Box>
+                      <Box>{t("PickupAddress")}: {props.departureAddress}</Box>
                     </Grid>
                     <Grid container item xs={6}>
                       <Box>{t("DriverCardDestinationAddress")} {props.destinationAddress}</Box>
                     </Grid>
                     <Grid container item xs={6}>
-                      <Box>{t("DriverCardType")} {props.transportType}</Box>  
+                      <Box>{t("DriverCardType")} {getTransportType(parseInt(props.transportType))}</Box>  
                     </Grid>
                     <Grid container item xs={6}>
-                      <Box>{t("PhoneNumber")} {props.phoneNumber}</Box>
+                      <Box>{t("PhoneNumber")}: {props.phoneNumber}</Box>
                     </Grid>
                     <Grid container item xs={12}>
                         <Box fontSize={13} mb = '2%' className={'Secondary-color'}>

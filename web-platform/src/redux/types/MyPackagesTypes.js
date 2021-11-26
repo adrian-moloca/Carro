@@ -33,7 +33,7 @@ export const fetchMyPackagesRequest = () => {
 export const fetchMyPackagesSuccess = packages => {
     return {
         type: MY_PACKAGES_SUCCESS,
-        payload: packages
+        payload: [...packages]
     }
 }
 
@@ -52,9 +52,10 @@ export const createNewPackageRequest = () => {
     }
 }
 
-export const createNewPackageSuccess = () => {
+export const createNewPackageSuccess = newPackage => {
     return {
         type: NEW_PACKAGE_SUCCESS,
+        payload: newPackage
     }
 }
 

@@ -1,6 +1,6 @@
 import {SEARCH_RIDES_REQUEST, SEARCH_RIDES_SUCCESS, SEARCH_RIDES_FAILURE,
         GET_RIDE_REQUEST, GET_RIDE_SUCCESS, GET_RIDE_FAILURE,
-        CLEAN_RIDE_DATA
+        CLEAN_RIDES_DATA
 } from '../types/RidesTypes';
 
 /* http://mongo-api.carrointernational.ro/api/v1/rides?
@@ -70,7 +70,7 @@ switch (action.type) {
             hasErrors: true,
         }
 
-    case CLEAN_RIDE_DATA:
+    case CLEAN_RIDES_DATA:
         return{
             ...state,
             rides: [],

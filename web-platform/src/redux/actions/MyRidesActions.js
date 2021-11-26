@@ -6,20 +6,23 @@ import {fetchMyRidesRequest, fetchMyRidesSuccess, fetchMyRidesFailure,
 import axios from 'axios';
 import data from '../../utils/constants';
 
-export const fetchMyRides = () => {
+export const fetchMyRides = (token) => {
 
-return (dispatch) => {
-    dispatch(fetchMyRidesRequest);
-    axios.get(data.baseUrl + "/myRides/")
-    .then(response => {
-        const myRides = response.data;
-        dispatch(fetchMyRidesSuccess(myRides));
-    }).catch(error => {
-        const errorMsg = error;
-        dispatch(fetchMyRidesFailure(errorMsg))
-    })
-}
-}
+    return (dispatch) => {
+        dispatch(fetchMyRidesRequest);
+        axios.get(data.baseUrl + "/my-rides",{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            }})
+        .then(response => {
+            const myRides = [...response.data.data];
+            dispatch(fetchMyRidesSuccess(myRides));
+        }).catch(error => {
+            const errorMsg = error;
+            dispatch(fetchMyRidesFailure(errorMsg))
+        })
+    }
+    }
 
 
 export const createNewRide = (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token) => {
@@ -45,7 +48,6 @@ axios.post(data.baseUrl+"/rides", {
 }).catch(error => {
     const errorMsg = error;
     dispatch(createNewRideFailure(errorMsg))
-    console.log( error )
 })
 }
 }

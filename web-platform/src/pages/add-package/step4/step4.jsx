@@ -19,11 +19,11 @@ const StepFour = (props) =>{
 
     function getPaymentMethod(paymentSelected){
         switch(paymentSelected){
-          case 1:{
+          /* case 1:{
             return(
                 <CreditCardsManager cardSelected={true} showSaveButtonAddCard={true}/>
               );
-          }
+          } */
           case 2:{
             return(
                 <Box>Here the data for the payment order</Box>
@@ -47,7 +47,7 @@ const StepFour = (props) =>{
                 </Grid>
                 <Grid container item xs={12} justifyContent="center">
                     <RadioGroupPersonalized row value = {props.paymentMethod} onChange={(e)=>props.setPaymentMethod(parseInt(e.target.value))} >                   
-                        <FormControlLabel value = {1} control={<CarroRadio/>} label={t("Card")}/>
+                        {/* <FormControlLabel value = {1} control={<CarroRadio/>} label={t("Card")}/> */}
                         <FormControlLabel value = {2} control={<CarroRadio/>} label={t("PaymentOrder")}/>
                         <FormControlLabel value = {3} control={<CarroRadio/>} label={t("CashOnDelivery")}/>
                     </RadioGroupPersonalized>

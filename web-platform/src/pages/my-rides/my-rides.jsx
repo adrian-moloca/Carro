@@ -6,68 +6,10 @@ import { deleteRide, fetchMyRides } from '../../redux/actions/MyRidesActions';
 import { connect } from 'react-redux';
 
 
-const MyRides = ({fetchMyRides, deleteRide, myRidesData}) => {
+const MyRides = ({myRidesData, deleteRide}) => {
   const { t } = useTranslation();
 
-  const rides_a = [
-    {
-      departure: 'Timisoara, Romania',
-      destination: 'Bucuresti, Romania',
-      departureDate: '25/12/2021 02:00 AM',
-      estimatedTime: '5 ore',
-      departureAddress: 'Lorem impsium Street',
-      destinationAddress: 'Lorem impsium Street',
-      transportType: 1,
-      phoneNumber: '0888888888',
-      status: 1,
-    },
-    {
-      departure: 'Timisoara, Romania',
-      destination: 'Bucuresti, Romania',
-      departureDate: '26/08/2021 02:00 AM',
-      estimatedTime: '5 ore',
-      departureAddress: 'Lorem impsium Street',
-      destinationAddress: 'Lorem impsium Street',
-      transportType: 1,
-      phoneNumber: '0888888888',
-      status: 2,
-    },
-    {
-      departure: 'Timisoara, Romania',
-      destination: 'Bucuresti, Romania',
-      departureDate: '26/08/2021 02:00 AM',
-      estimatedTime: '5 ore',
-      departureAddress: 'Lorem impsium Street',
-      destinationAddress: 'Lorem impsium Street',
-      transportType: 1,
-      phoneNumber: '0888888888',
-      status:  3,
-    },
-    {
-      departure: 'Timisoara, Romania',
-      destination: 'Bucuresti, Romania',
-      departureDate: '26/08/2021 02:00 AM',
-      estimatedTime: '5 ore',
-      departureAddress: 'Lorem impsium Street',
-      destinationAddress: 'Lorem impsium Street',
-      transportType: 1,
-      phoneNumber: '0888888888',
-      status:  4,
-    },
-    {
-      departure: 'Timisoara, Romania',
-      destination: 'Bucuresti, Romania',
-      departureDate: '26/08/2021 02:00 AM',
-      estimatedTime: '5 ore',
-      departureAddress: 'Lorem impsium Street',
-      destinationAddress: 'Lorem impsium Street',
-      transportType: 1,
-      phoneNumber: '0888888888',
-      status: 5,
-    },
-  ];
-
-  const[ridesState, setRidesState] = useState(rides_a);
+  const[ridesState, setRidesState] = useState(myRidesData.rides.length > 0 ? myRidesData.rides : []);
 
   const cancRide = (index, id) =>{
     const temp = [...ridesState]
@@ -88,32 +30,32 @@ const MyRides = ({fetchMyRides, deleteRide, myRidesData}) => {
   }
 
   useEffect(()=>{
-    fetchMyRides();
-  }, [])
+    myRidesData.rides.length > 0 ? setRidesState(myRidesData.rides) : []
+  }, [myRidesData])
 
   return (
     <Container className={'Primary-container-style'} >
       <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>
        {t('MyRides')}
       </Box>
-      {ridesState.map((rideinf, index)=>
-          <Box key={index} mb={1.5} borderRadius='10px' boxShadow={3} >
-            <Ride ride={rideinf} departure={rideinf.departure} destination={rideinf.destination} departureDate={rideinf.departureDate}
-                 departureAddress={rideinf.departureAddress} destinationAddress={rideinf.destinationAddress} estimatedTime={rideinf.estimatedTime}
-                 transportType={rideinf.transportType} phoneNumber={rideinf.phoneNumber} rideStatus={rideinf.status} rideIndex={index + 1}
-                 deleteRideClicked={()=>cancRide(index, rideinf.id)}
-                 closeRideClicked={(e)=>closeRide(e, index)}
-            />
-          </Box>  
-      )}
+      {ridesState.length > 0 ? (
+        ridesState.map((rideinf, index)=>{
+          return <Box key={index} mb={1.5} borderRadius='10px' boxShadow={3} >
+                    <Ride ride={rideinf} departure={rideinf.departure} destination={rideinf.destination} departureDate={rideinf.departureDate.substr(0, 10)}
+                          departureAddress={rideinf.departureAddress} destinationAddress={rideinf.destinationAddress} estimatedTime={rideinf.estimatedTime}
+                          transportType={rideinf.transportType} phoneNumber={rideinf.phoneNumber} rideStatus={rideinf.status} rideIndex={index + 1}
+                          deleteRideClicked={()=>cancRide(index, rideinf.id)}
+                          closeRideClicked={(e)=>closeRide(e, index)}
+                    />
+                  </Box>  
+      })) : <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t("NoRidesAdded")}</Box>}
     </Container>
   );
 };
 
 const mapDispatchToProps = dispatch =>({
-  fetchMyRides: ()=>dispatch(fetchMyRides()),
   deleteRide: (id)=>dispatch(deleteRide(id)),
 });
-const mapStateToProps = state =>({rides: state.myRidesData});
+const mapStateToProps = state =>({myRidesData: state.myRidesData});
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyRides);

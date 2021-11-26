@@ -221,6 +221,7 @@
     "EstimatedHours": "Estimated number of hours",
     "DepartureAddress": "Departure address",
     "DestinationAddress": "Destination address",
+    "Address": "Address",
     "RideType": "Transport type",
     "ValidEstimatedTime": "We please you to use only numbers",
     "OnlyNumbers": "Type only numbers",
@@ -235,5 +236,8 @@
     "SmallPackageSizeContent": "Small package - Width<=30cm, Length<=30cm, Height<=30cm (ex. envelope, shoes box, jewel box, etc.)",
     "MediumPackageSizeContent": "Medium package - 30cm<Width<=100cm, 30cm<Length<=100cm, 30cm<Height<=100cm (ex. chair box, bag etc.)",
     "BigPackageSizeContent": "Big package - More than a cubic meter",
-    "RidesNotFound": "Not found any ride on the selected Route"
+    "RidesNotFound": "Not found any ride on the selected Route",
+    "PackagesNotFound": "Not found any package on the selected Route",
+    "NoRidesAdded": "You don't added any ride in your profile!",
+    "NoPackagesAdded": "You don't added any package in your profile!"
 }

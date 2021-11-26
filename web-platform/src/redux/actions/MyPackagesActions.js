@@ -6,14 +6,17 @@ import {fetchMyPackagesRequest, fetchMyPackagesSuccess, fetchMyPackagesFailure,
 import axios from 'axios';
 import data from '../../utils/constants';
 
-export const fetchMyPackages = () => {
+export const fetchMyPackages = (token) => {
 
 return (dispatch) => {
     dispatch(fetchMyPackagesRequest);
-    axios.get(data.baseUrl + "")
+    axios.get(data.baseUrl + "/my-packages",{
+        headers:{
+            'Authorization': `Bearer ${token}`,
+        }})
     .then(response => {
-        const myRides = response.data;
-        dispatch(fetchMyPackagesSuccess(myRides));
+        const myPackages = [...response.data.data];
+        dispatch(fetchMyPackagesSuccess(myPackages));
     }).catch(error => {
         const errorMsg = error;
         dispatch(fetchMyPackagesFailure(errorMsg))
@@ -23,42 +26,48 @@ return (dispatch) => {
 
 
 export const createNewPackage = (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress,
-                                 packageType, weight, height, length, width, description, price, currency, name, status, destinataryName,
-                                 phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token) => {
+                                 packageType, weight, height, length, width, description, price, currency, destinataryName,
+                                 phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, senderName, token) => {
 
 return(dispatch) => {
 dispatch(createNewPackageRequest);
 axios.post(data.baseUrl+"/packages",{
-    departureDate: departureDate,
-    fromCountry: fromCountry,
-    fromCity: fromCity,
-    toCountry: toCountry,
-    toCity: toCity,
-    departureAddress: departureAddress,
-    packageType: packageType,
-    description: description,
-    price: price,
-    currency: currency,
-    name: name,
-    status:  status,
-    packageReceiver: {
-        name: destinataryName,
-        phoneNumber: phoneNumber,
-        destinationAddress: destinationAddress,
-      },
-    packageDimensions: {
-        height: height,
-        length: length,
-        width: width,
-        weight: weight,
-    },
-    packageSpecialMention: {
-        isFragile: isFragile,
-        isFoodGrade: isFoodGrade,
-        isFlammable: isFlammable,
-        isHandleWithCare: isHandleWithCare,
-        isAnimal: isAnimal,
-    },
+        packageSender: {
+            fromCountry: fromCountry,
+            fromCity: fromCity,
+            departureAddress: departureAddress,
+            departureDate: departureDate,
+            senderName: senderName,
+        },
+        packageReceiver:
+        {
+            name:destinataryName,
+            phoneNumber:phoneNumber,
+            toCountry:toCountry,
+            toCity:toCity,
+            destinationAddress:destinationAddress,
+            receiverName:destinataryName,
+        },
+        packageInfo:{
+            packageType: packageType,
+            price:price,
+            numberOfPackages: 1,
+            description:description,
+            currency:currency,
+            packageDimensions:{
+                height:height,
+                length:length,
+                width:width,
+                weight:weight
+            },
+            packageSpecialMention:{
+                isFragile:isFragile,
+                isFoodGrade:isFoodGrade,
+                isFlammable:isFlammable,
+                isHandleWithCare:isHandleWithCare,
+                isAnimal:isAnimal
+            }
+        }   
 }, {
     headers:{
         'Authorization': `Bearer ${token}`,
