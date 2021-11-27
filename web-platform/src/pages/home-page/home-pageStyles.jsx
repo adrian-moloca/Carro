@@ -4,7 +4,9 @@ import BgImage from "../../assets/images/bgimg.png";
 const useStyles = makeStyles({
 
   BgColorBtn:{ 
-    backgroundColor:'white',
+    backgroundColor:'#fff',
+    border: '1px solid #BDBDBD',
+    boxShadow: '0px 4px 4px rgba(0, 180, 216, 0.44)',
 
     '&:hover':{
         fontWeight: '500',
