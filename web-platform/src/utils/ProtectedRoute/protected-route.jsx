@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { RootStateOrAny, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 
-function ProtectedRoute({ component: Component, loggedIn, ...restOfProps }) {
+function ProtectedRoute({ component: Component, data, ...restOfProps }) {
 
-    const isLoggedIn = useSelector((state: RootStateOrAny) => String(state.userData.email).length > 0 ? true : false);
+    const [isLoggedIn, setIsLoggedIn] = useState(data.email.length > 0 ? true : false);
 
+    useEffect(() => {
+        setIsLoggedIn(data.email.length > 0 ? true : false);
+    }, [data])
+    
     return (
     <React.Fragment>
         <Route
@@ -18,4 +23,6 @@ function ProtectedRoute({ component: Component, loggedIn, ...restOfProps }) {
     );
 }
 
-export default ProtectedRoute;
+const mapStateToProps = state => ({data: state.userData})
+
+export default connect(mapStateToProps, null)(ProtectedRoute);

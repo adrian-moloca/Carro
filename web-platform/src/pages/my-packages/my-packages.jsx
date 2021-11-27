@@ -30,8 +30,8 @@ const { t } = useTranslation();
   }
 
   useEffect(()=>{
-    myPackagesData.packages.length > 0 ? setPackagesState(myPackagesData.packages) : []
-  }, [myPackagesData])
+    myPackagesData.packages.length > 0 ? setPackagesState(myPackagesData.packages) : setPackagesState([])
+  }, [myPackagesData, packagesState])
 
   return (
 

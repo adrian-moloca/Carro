@@ -76,7 +76,7 @@ axios.post(data.baseUrl+"/packages",{
 .then(response => {
     const Msg = response.data;
     dispatch(createNewPackageSuccess(Msg));
-    dispatch(fetchMyPackages())
+    dispatch(fetchMyPackages(token))
 }).catch(error => {
     const errorMsg = error;
     dispatch(createNewPackageFailure(errorMsg))
@@ -124,7 +124,7 @@ return(dispatch) => {
     })
 .then(response => {
     dispatch(updatePackageSuccess(id));
-    dispatch(fetchMyPackages())
+    dispatch(fetchMyPackages(token))
 }).catch(error => {
     const errorMsg = error;
     dispatch(updatePackageFailure(errorMsg))

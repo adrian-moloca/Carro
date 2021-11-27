@@ -44,12 +44,9 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
   }
 
   useEffect(() => {
-    setFetchMyPackagesSuccess(myPackagesData.hasErrors === true ? false : true);
-  }, [myPackagesData])
-
-  useEffect(() => {
     setFetchMyRidesSuccess(myRidesData.hasErrors === true ? false : true);
-  }, [myRidesData])
+    setFetchMyPackagesSuccess(myPackagesData.hasErrors === true ? false : true);
+  }, [myRidesData, myPackagesData, userData])
 
   const [userType, setUserType] = useState(null);
   

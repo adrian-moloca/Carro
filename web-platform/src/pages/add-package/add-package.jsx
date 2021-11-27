@@ -169,9 +169,7 @@ const AddPackage = ({data, createNewPackage}) => {
                       <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton>
                     </Grid>
                     <Grid container item  xs={12} sm={6} md={6} lg={6} xl={6} justifyContent='center'>
-                      <PrimaryButton  onClick={()=>createNewPackage(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, pickUpAddress, destinataryAddress,
-                                                                    packageSize, weight, height, length, width, description, price, currency, destinataryName,
-                                                                    destinataryPhoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, data.name, data.token)}
+                      <PrimaryButton  onClick={()=>createNewPackage(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, pickUpAddress, destinataryAddress,packageSize, weight, height, length, width, description, price, currency, destinataryName,destinataryPhoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, data.name, data.token)}
                                       disabled={!formsComplete(activeStep)} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Finish')}</PrimaryButton>
                     </Grid>
                   </Grid>

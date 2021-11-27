@@ -17,11 +17,13 @@ const myPackagesReducer = (state = initialState, action) => {
         case MY_PACKAGES_REQUEST:
             return {
                 ...state,
+                hasErrors: false,
                 loading: true,
             }
         case MY_PACKAGES_SUCCESS:
             return{
                 ...state,
+                hasErrors: false,
                 packages: action.payload,
             }
         case MY_PACKAGES_FAILURE:
@@ -32,11 +34,13 @@ const myPackagesReducer = (state = initialState, action) => {
         case NEW_PACKAGE_REQUEST:
             return {
                 ...state,
+                hasErrors: false,
                 loading: true,
                 }
         case NEW_PACKAGE_SUCCESS:
             return{
                 ...state,
+                hasErrors: false,
                 package: action.payload,
             }
         case NEW_PACKAGE_FAILURE:
@@ -47,11 +51,13 @@ const myPackagesReducer = (state = initialState, action) => {
         case PACKAGE_UPDATE_REQUEST:
             return {
                 ...state,
+                hasErrors: false,
                 loading: true,
                 }
         case PACKAGE_UPDATE_SUCCESS:
             return{
                 ...state,
+                hasErrors: false,
             
             }
         case PACKAGE_UPDATE_FAILURE:
@@ -62,12 +68,13 @@ const myPackagesReducer = (state = initialState, action) => {
         case PACKAGE_DELETE_REQUEST:
             return {
                 ...state,
+                hasErrors: false,
                 loading: true,
                 }
         case PACKAGE_DELETE_SUCCESS:
             return{
                 ...state,
-            
+                hasErrors: false,
             }
         case PACKAGE_DELETE_FAILURE:
             return{
@@ -77,6 +84,7 @@ const myPackagesReducer = (state = initialState, action) => {
         default: 
             return  {
                 ...state,
+                hasErrors: false,
             }
     }
 }
