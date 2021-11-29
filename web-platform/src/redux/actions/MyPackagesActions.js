@@ -1,7 +1,7 @@
 import {fetchMyPackagesRequest, fetchMyPackagesSuccess, fetchMyPackagesFailure,
     createNewPackageRequest, createNewPackageSuccess, createNewPackageFailure,
     updatePackageRequest, updatePackageSuccess, updatePackageFailure,
-    deletePackageRequest, deletePackageSuccess, deletePackageFailure,
+    deletePackageRequest, deletePackageSuccess, deletePackageFailure, cleanMyPackagesData,
 } from '../types/MyPackagesTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
@@ -132,19 +132,28 @@ return(dispatch) => {
 }
 }
 
-export const deletePackage = (id) => {
+export const deletePackage = (id, token) => {
 
 return(dispatch) => {
 dispatch(deletePackageRequest);
-axios.delete(data.baseUrl+"" +id ,{
+axios.delete(data.baseUrl+"/my-packages/{id:"+id+"}",{
+    headers:{
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+    }
 })
 .then(response => {
-    const Msg = response.data;
-    dispatch(deletePackageSuccess(Msg));
-    dispatch(fetchMyPackages())
+    dispatch(deletePackageSuccess());
+    dispatch(fetchMyPackages(token))
 }).catch(error => {
     const errorMsg = error;
     dispatch(deletePackageFailure(errorMsg))
 })
 }
+}
+
+export const clean = () => {
+    return (dispatch)=>{
+        dispatch(cleanMyPackagesData());
+    }
 }

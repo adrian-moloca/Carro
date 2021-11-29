@@ -23,6 +23,10 @@ export const RIDE_DELETE_REQUEST = 'RIDE_DELETE_REQUEST';
 export const RIDE_DELETE_SUCCESS = 'RIDE_DELETE_SUCCESS';
 export const RIDE_DELETE_FAILURE = 'RIDE_DELETE_FAILURE';
 
+// Clean rides
+
+export const CLEAN_MY_RIDES_DATA = 'CLEAN_MY_RIDES_DATA';
+
 // My Rides functions
 export const fetchMyRidesRequest = () => {
     return {
@@ -105,5 +109,11 @@ export const deleteRideFailure = error => {
     return {
         type: RIDE_DELETE_FAILURE,
         payload: error
+    }
+}
+
+export const cleanMyRidesData = () =>{
+    return {
+        type: CLEAN_MY_RIDES_DATA,
     }
 }

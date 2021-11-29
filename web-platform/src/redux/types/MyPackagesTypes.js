@@ -23,6 +23,10 @@ export const PACKAGE_DELETE_REQUEST = 'PACKAGE_DELETE_REQUEST';
 export const PACKAGE_DELETE_SUCCESS = 'PACKAGE_DELETE_SUCCESS';
 export const PACKAGE_DELETE_FAILURE = 'PACKAGE_DELETE_FAILURE';
 
+// Clear Data
+
+export const CLEAN_MY_PACKAGES_DATA = 'CLEAN_MY_PACKAGES_DATA';
+
 // My Packages functions
 export const fetchMyPackagesRequest = () => {
     return {
@@ -105,5 +109,11 @@ export const deletePackageFailure = error => {
     return {
         type: PACKAGE_DELETE_FAILURE,
         payload: error
+    }
+}
+
+export const cleanMyPackagesData = () =>{
+    return {
+        type: CLEAN_MY_PACKAGES_DATA,
     }
 }
