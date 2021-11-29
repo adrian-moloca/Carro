@@ -1,7 +1,7 @@
 import {fetchMyRidesRequest, fetchMyRidesSuccess, fetchMyRidesFailure,
     createNewRideRequest, createNewRideSuccess, createNewRideFailure,
     updateRideRequest, updateRideSuccess, updateRideFailure,
-    deleteRideRequest, deleteRideSuccess, deleteRideFailure,
+    deleteRideRequest, deleteRideSuccess, deleteRideFailure, cleanMyRidesData
 } from '../types/MyRidesTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
@@ -77,19 +77,28 @@ return(dispatch) => {
 }
 }
 
-export const deleteRide = (id) => {
+export const deleteRide = (id, token) => {
 
-return(dispatch) => {
-dispatch(deleteRideRequest);
-axios.delete(data.baseUrl+"/myRides/" +id ,{
-})
-.then(response => {
-    const Msg = response.data;
-    dispatch(deleteRideSuccess(Msg));
-    dispatch(fetchMyRides())
-}).catch(error => {
-    const errorMsg = error;
-    dispatch(deleteRideFailure(errorMsg))
-})
+    return(dispatch) => {
+        dispatch(deleteRideRequest);
+        axios.delete(data.baseUrl+"/my-rides/"+id,{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            dispatch(deleteRideSuccess());
+            dispatch(fetchMyRides(token))
+        }).catch(error => {
+            const errorMsg = error;
+            dispatch(deleteRideFailure(errorMsg))
+        })
+    }
 }
+
+export const clean = () => {
+    return (dispatch)=>{
+        dispatch(cleanMyRidesData());
+    }
 }

@@ -2,21 +2,17 @@ import React, {useEffect, useState} from 'react';
 import { Container, Box } from '@material-ui/core'; 
 import Ride from './ride/ride';
 import { useTranslation } from "react-i18next";
-import { deleteRide, fetchMyRides } from '../../redux/actions/MyRidesActions';
+import { deleteRide, clean } from '../../redux/actions/MyRidesActions';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router';
 
 
-const MyRides = ({myRidesData, deleteRide}) => {
+const MyRides = ({myRidesData, userData, deleteRide, clean}) => {
   const { t } = useTranslation();
 
-  const[ridesState, setRidesState] = useState(myRidesData.rides.length > 0 ? myRidesData.rides : []);
+  const history = useHistory();
 
-  const cancRide = (index, id) =>{
-    const temp = [...ridesState]
-    temp.splice(index, 1);
-    setRidesState(temp);
-    deleteRide(id);
-  }
+  const[ridesState, setRidesState] = useState(myRidesData.rides.length > 0 ? myRidesData.rides : []);
 
   const closeRide=(event, index)=>{
     const temp=[...ridesState] 
@@ -28,6 +24,11 @@ const MyRides = ({myRidesData, deleteRide}) => {
     })
     setRidesState(temp);
   }
+
+  useEffect(()=>{
+    const unlisten = history.listen(()=>{clean()})
+    return unlisten;
+  }, [])
 
   useEffect(()=>{
     myRidesData.rides.length > 0 ? setRidesState(myRidesData.rides) : []
@@ -44,7 +45,7 @@ const MyRides = ({myRidesData, deleteRide}) => {
                     <Ride ride={rideinf} departure={rideinf.departure} destination={rideinf.destination} departureDate={rideinf.departureDate.substr(0, 10)}
                           departureAddress={rideinf.departureAddress} destinationAddress={rideinf.destinationAddress} estimatedTime={rideinf.estimatedTime}
                           transportType={rideinf.transportType} phoneNumber={rideinf.phoneNumber} rideStatus={rideinf.status} rideIndex={index + 1}
-                          deleteRideClicked={()=>cancRide(index, rideinf.id)}
+                          deleteRideClicked={()=>deleteRide(rideinf.id, userData.token)}
                           closeRideClicked={(e)=>closeRide(e, index)}
                     />
                   </Box>  
@@ -54,8 +55,9 @@ const MyRides = ({myRidesData, deleteRide}) => {
 };
 
 const mapDispatchToProps = dispatch =>({
-  deleteRide: (id)=>dispatch(deleteRide(id)),
+  deleteRide: (id, token)=>dispatch(deleteRide(id, token)),
+  clean: () => dispatch(clean()),
 });
-const mapStateToProps = state =>({myRidesData: state.myRidesData});
+const mapStateToProps = state =>({myRidesData: state.myRidesData, userData: state.userData});
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyRides);
