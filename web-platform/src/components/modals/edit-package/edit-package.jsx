@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useLayoutEffect } from 'react';
 import {Container, Grid, Box, Modal, Fade} from '@material-ui/core';
 import useStyles from './edit-package-style';
 import { Close, Create } from '@material-ui/icons';
@@ -13,6 +13,31 @@ const EditPackage = (props) =>{
     const classes = useStyles();
 
     const[open, setOpen] = useState(false);
+
+    const [pickUpAddress, setPickUpAddress] = useState(props.pickUpAddress);
+    const [departureDate, setDepartureDate] = useState(new Date(Number(String(props.departureDate).substr(0, 4)),Number(String(props.departureDate).substr(5,2)),Number(String(props.departureDate).substr(8,2)), 0));
+    const [departureCountry, setDepartureCountry] = useState(String(props.departure).substring(String(props.departure).indexOf(',')+2, String(props.departure).length));
+    const [departureCity, setDepartureCity] = useState(String(props.departure).substring(0, String(props.departure).indexOf(',')));
+    const [destinataryName, setDestinataryName] = useState(props.destinataryName);
+    const [destinationCountry, setDestinationCountry] = useState(String(props.destination).substring(String(props.destination).indexOf(',')+2, String(props.destination).length));
+    const [destinationCity, setDestinationCity] = useState(String(props.destination).substring(0, String(props.destination).indexOf(',')));
+    const [destinataryAddress, setDestinataryAddress] = useState(props.destinataryAddress);
+    const [destinataryPhoneNumber, setDestinataryPhoneNumber] = useState(props.destinataryPhoneNumber);
+    const [packageSize, setPackageSize] = useState(props.packageSize);
+    const [currency, setCurrency] = useState(String(props.price).substr(String(props.price).indexOf(' ')+1));
+    const [weight, setWeight] = useState(props.weight);
+    const [width, setWidth] = useState(props.width);
+    const [height, setHeight] = useState(props.height);
+    const [length, setLength] = useState(props.length);
+    const [smallDescription, setSmallDescription] = useState(props.smallDescription);
+    const [price, setPrice] = useState(String(props.price).substr(0, String(props.price).indexOf(' ')));
+    const [description, setDescription] = useState(props.description);
+    const [isFlammable, setIsFlammable] = useState(props.isFlammable);
+    const [isFragile, setIsFragile] = useState(props.isFragile);
+    const [isFoodGrade, setIsFoodGrade] = useState(props.isFoodGrade);
+    const [isHandleWithCare, setIsHandleWithCare] = useState(props.isHandleWithCare);
+    const [isAnimal, setIsAnimal] = useState(props.isAnimal);
+    const [hasErrors, setHasErrors] = useState(false);
 
     const handleOpen = ()=>{
         setOpen(true);
@@ -42,7 +67,17 @@ const EditPackage = (props) =>{
                                 </Grid>
                             </Grid>
                         </Box>
-                        <FormPackage departureCountry={props.departureCountry}/>
+                        <FormPackage departureCountry={departureCountry} departureCity={departureCity} pickUpAddress={pickUpAddress}
+                                     departureDate={departureDate} destinataryName={destinataryName} phoneNumber={destinataryPhoneNumber}
+                                     destinataryName={destinataryName} destinationCountry={destinationCountry} destinationCity={destinationCity} destinataryAddress={destinataryAddress}
+                                     packageSize={packageSize} weight={weight} width={width} length={length} height={height} smallDescription={smallDescription} price={price} currency={currency}
+                                     description={description} flammable={isFlammable} fragile={isFragile} foodGrade={isFoodGrade} animal={isAnimal} handleWithCare={isHandleWithCare} hasErrors={hasErrors}
+                                     setDepartureCountry={setDepartureCountry} setDepartureCity={setDepartureCity} setPickUpAddress={setPickUpAddress} setDepartureDate={setDepartureDate}
+                                     setPackageSize={setPackageSize} setWeight={setWeight} setWidth={setWidth} setHeight={setHeight} setLength={setLength} setCurrency={setCurrency} 
+                                     setDestinataryName={setDestinataryName} setDestinationCountry={setDestinationCountry} setDestinationCity={setDestinationCity} setDestinataryAddress={setDestinataryAddress}
+                                     setPhoneNumber={setDestinataryPhoneNumber} setSmallDescription={setSmallDescription} setDescription={setDescription} 
+                                     setPrice={setPrice} setFlammable={setIsFlammable} setFoodGrade={setIsFoodGrade} setFragile={setIsFragile} setHandleWithCare={setIsHandleWithCare} setAnimal={setIsAnimal}
+                                     setHasErrors={setHasErrors}/>
                     <Grid container justifyContent='space-around'>
                             <Grid container item xs={3} justifyContent="center">
                                         <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("CloseButton")}</SecondaryButton>     
