@@ -10,7 +10,7 @@ const EditOpenPackage = (props) =>{
     }
 
     return (
-            <EditPackage pickUpAddress={props.package.departureAddress} departureDate={props.package.departuredate} departure={props.package.departure}
+            <EditPackage pickUpAddress={props.package.departureAddress} departureDate={props.package.departureDate} departure={props.package.departure}
                          destinataryAddress={props.package.packageReceiver.destinationAddress} destination={props.package.destination}
                          destinataryPhoneNumber={props.package.packageReceiver.phoneNumber} destinataryName={props.package.packageReceiver.receiverName}
                          packageSize={props.package.packageType} price={props.package.price} weight={props.package.weight} width={String(props.package.dimensions).substring(0, String(props.package.dimensions).indexOf('x'))}

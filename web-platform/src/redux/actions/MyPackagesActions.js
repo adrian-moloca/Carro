@@ -85,45 +85,55 @@ axios.post(data.baseUrl+"/packages",{
 }
 
 export const updatePackage = (id, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress,
-                              packageType, weight, height, length, width, description, price, currency, name, status, destinataryName,
-                              phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token) => {
+                                packageType, weight, height, length, width, description, price, currency, destinataryName,
+                                phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, senderName, token) => {
 
 return(dispatch) => {
     dispatch(updatePackageRequest);
     axios.patch(data.baseUrl+"" + id,{
-        departureDate: departureDate,
-        fromCountry: fromCountry,
-        fromCity: fromCity,
-        toCountry: toCountry,
-        toCity: toCity,
-        departureAddress: departureAddress,
-        packageType: packageType,
-        description: description,
-        price: price,
-        currency: currency,
-        name: name,
-        status:  status,
-        packageReceiver: {
-            name: destinataryName,
-            phoneNumber: phoneNumber,
-            destinationAddress: destinationAddress,
+        packageSender: {
+            fromCountry: fromCountry,
+            fromCity: fromCity,
+            departureAddress: departureAddress,
+            departureDate: departureDate,
+            senderName: senderName,
         },
-        packageDimensions: {
-            height: height,
-            length: length,
-            width: width,
-            weight: weight,
+        packageReceiver:
+        {
+            name:destinataryName,
+            phoneNumber:phoneNumber,
+            toCountry:toCountry,
+            toCity:toCity,
+            destinationAddress:destinationAddress,
+            receiverName:destinataryName,
         },
-        packageSpecialMention: {
-            isFragile: isFragile,
-            isFoodGrade: isFoodGrade,
-            isFlammable: isFlammable,
-            isHandleWithCare: isHandleWithCare,
-            isAnimal: isAnimal,
-        },
+        packageInfo:{
+            packageType: packageType,
+            price:price,
+            numberOfPackages: 1,
+            description:description,
+            currency:currency,
+            packageDimensions:{
+                height:height,
+                length:length,
+                width:width,
+                weight:weight
+            },
+            packageSpecialMention:{
+                isFragile:isFragile,
+                isFoodGrade:isFoodGrade,
+                isFlammable:isFlammable,
+                isHandleWithCare:isHandleWithCare,
+                isAnimal:isAnimal
+            }
+        }   
+    }, {
+        headers:{
+            'Authorization': `Bearer ${token}`,
+        }
     })
 .then(response => {
-    dispatch(updatePackageSuccess(id));
+    dispatch(updatePackageSuccess(response.data));
     dispatch(fetchMyPackages(token))
 }).catch(error => {
     const errorMsg = error;
