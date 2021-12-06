@@ -15,7 +15,7 @@ const EditPackage = (props) =>{
     const[open, setOpen] = useState(false);
 
     const [pickUpAddress, setPickUpAddress] = useState(props.pickUpAddress);
-    const [departureDate, setDepartureDate] = useState(new Date(Number(String(props.departureDate).substr(0, 4)),Number(String(props.departureDate).substr(5,2)),Number(String(props.departureDate).substr(8,2)), 0));
+    const [departureDate, setDepartureDate] = useState(new Date(parseInt(String(props.departureDate).substring(0, 4)),parseInt(String(props.departureDate).substring(5,7)) - 1,parseInt(String(props.departureDate).substring(8,10)), 0));
     const [departureCountry, setDepartureCountry] = useState(String(props.departure).substring(String(props.departure).indexOf(',')+2, String(props.departure).length));
     const [departureCity, setDepartureCity] = useState(String(props.departure).substring(0, String(props.departure).indexOf(',')));
     const [destinataryName, setDestinataryName] = useState(props.destinataryName);
@@ -25,7 +25,7 @@ const EditPackage = (props) =>{
     const [destinataryPhoneNumber, setDestinataryPhoneNumber] = useState(props.destinataryPhoneNumber);
     const [packageSize, setPackageSize] = useState(props.packageSize);
     const [currency, setCurrency] = useState(String(props.price).substr(String(props.price).indexOf(' ')+1));
-    const [weight, setWeight] = useState(props.weight);
+    const [weight, setWeight] = useState(String(props.weight).substr(0, String(props.price).indexOf(' ')));
     const [width, setWidth] = useState(props.width);
     const [height, setHeight] = useState(props.height);
     const [length, setLength] = useState(props.length);
@@ -83,7 +83,7 @@ const EditPackage = (props) =>{
                                         <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("CloseButton")}</SecondaryButton>     
                             </Grid>
                             <Grid container item xs={3} justifyContent="center">
-                                        <GreenCaroButton variant='contained' fullWidth>{t("SaveButton")}</GreenCaroButton>
+                                        <GreenCaroButton variant='contained' onClick={console.log('')}fullWidth>{t("SaveButton")}</GreenCaroButton>
                             </Grid>
                     </Grid>
                     </Container>

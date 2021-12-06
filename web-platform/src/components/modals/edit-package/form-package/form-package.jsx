@@ -16,15 +16,15 @@ const   FormPackage = (props) =>{
 
     const packageSizes = [
         {
-          value: 'small',
+          value: 1,
           label: t("Small"),
         },
         {
-          value: 'medium',
+          value: 2,
           label: t("Medium"),
         },
         {
-          value: 'big',
+          value: 3,
           label: t("Big"),
         },
     ];
@@ -48,8 +48,8 @@ const   FormPackage = (props) =>{
         },
     ];
 
-    const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState(props.inputValuePhoneNumber);
-    const [countryPhoneCode, setCountryPhoneCode] = useState(props.countryPhoneCode);
+    const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState(String(props.phoneNumber).substring(String(props.phoneNumber).length-10, String(props.phoneNumber).length));
+    const [countryPhoneCode, setCountryPhoneCode] = useState(String(props.phoneNumber).substring(0, String(props.phoneNumber).length-10));
 
     useLayoutEffect(()=>{
         props.setPhoneNumber(countryPhoneCode + inputValuePhoneNumber)
@@ -134,7 +134,7 @@ const   FormPackage = (props) =>{
                                         variant ='outlined' label={t('PickupAddress')} fullWidth/>
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                            <CarroDatePicker size='small' label={t('PickupDate')} format='dd/MM/yyyy'
+                            <CarroDatePicker size='small' label={t('PickupDate')} format='yyyy/MM/dd'
                                         value={props.departureDate} onChange={(date)=>props.setDepartureDate(date)} disablePast/>
                 </Grid>
                 <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
