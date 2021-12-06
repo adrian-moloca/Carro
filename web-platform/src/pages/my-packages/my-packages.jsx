@@ -40,7 +40,6 @@ useEffect(()=>{
           <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t("MyPackages")}</Box>
           {packagesState.length > 0 ? (
             packagesState.map((packageinf, index) => {
-                    console.log(packageinf)
                     return <Package key={index} package={packageinf} packageIndex={index + 1} departureDate={packageinf.departureDate.substr(0, 10)} departure={packageinf.departure} destination={packageinf.destination}
                          departureAddress={packageinf.departureAddress} destinationAddress={packageinf.destinationAddress} packageType={packageinf.packageType}
                          weight={packageinf.weight} description={packageinf.description} dimensions={packageinf.dimensions} price={packageinf.price} name={packageinf.name}
