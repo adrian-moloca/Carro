@@ -1,18 +1,22 @@
-import React, {useState, useLayoutEffect, useEffect} from "react";
-import { Container, Box, Grid, Checkbox, StepConnector, Avatar } from "@material-ui/core";
+import React, {useState, useLayoutEffect, useEffect, Fragment} from "react";
+import { Container, Box, Grid, Checkbox, StepConnector, Avatar, ButtonBase, IconButton } from "@material-ui/core";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import GoogleIcon from "../../assets/images/GoogleIcon.png";
 import FacebookIcon from "../../assets/images/facebook-icon.png";
 import CarroTextField from "../../components/textField/CarroTextField";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
+import CarroAutocomplete from "../../components/autocomplete/CarroAutocomplete";
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import PhoneTextField from "../../components/telephoneNumberField/PhoneTextField";
 import useStyles from "./registerStyles";
+import AvatarImage from "../../assets/images/avatarImg.png";
 import "../../App.css";
 import { useTranslation } from "react-i18next";
 import { connect } from 'react-redux';
+import { getCountries, getCities } from "../../utils/Functions/countries-city-functions";
 import {createNewUser} from '../../redux/actions/UserActions';
+import CarroCheckbox from "../../components/checkbox/CarroCheckbox";
 import {mailValidator, nameValidator, passwordValidator, phoneValidator} from "../../utils/Functions/input-validators";
 import { useHistory } from "react-router";
 
@@ -25,6 +29,7 @@ const Register = ({createNewUser, data}) => {
   const [userCreated, setUserCreated] = useState(String(data.token).length > 0 ? true : false);
   const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState('');
   const [countryPhoneCode, setCountryPhoneCode] = useState('');
+  const [profilePhoto, setProfilePhoto] = useState(AvatarImage);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber);
@@ -34,6 +39,7 @@ const Register = ({createNewUser, data}) => {
   const [dateOfBirth, setDateOfBirth] = useState(new Date(new Date().getFullYear()-14, new Date().getMonth(),new Date().getDate(), 0));
   const [terms, setTerms] = useState(false);
   const [hasErrors, setHasErrors] = useState(false);
+  /* const [legalPersonChecked, setLegalPersonChecked] = useState(false); */
 
   useLayoutEffect(()=>{
     setPhoneNumber(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber)
@@ -69,6 +75,10 @@ const Register = ({createNewUser, data}) => {
     setTimeout(() => {redirectPhoneNumberVerification()}, 500)
   }, [data])
 
+  /* const handleLegalPersonCheckboxClick = (event) => {
+    event.target.checked ? setLegalPersonChecked(true) : setLegalPersonChecked(false);
+  }; */
+
   return (
     <Container className={"Primary-container-style"}>
       <Grid container display="flex" justifyContent="center">
@@ -78,6 +88,12 @@ const Register = ({createNewUser, data}) => {
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="1%">
         <Grid container spacing={3} display="flex" justifyContent="center">
+          <Grid container item xs={12} justifyContent="center">
+            <label style={{cursor: 'pointer', height:'60px', width: '60px'}}>
+              <input type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=> setProfilePhoto(URL.createObjectURL(e.target.files[0])) }/>
+              <Avatar className={classes.profilePhotoEdit} src={profilePhoto}/>
+            </label>
+          </Grid>
           <Grid container item xs={12} xl={6} justifyContent="center">
             <CarroTextField type='text' error={nameValidator(lastName)} helperText={nameValidator(lastName) ? t('LastNameOnlyLetters') : ''}
                            variant="outlined" label={t("LastName")} fullWidth value={lastName} onChange={(e) => setLastName(e.target.value)}/>
@@ -115,16 +131,46 @@ const Register = ({createNewUser, data}) => {
               error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
             />
           </Grid>
+        {/* <Grid item xs={6} justifyContent='right'>
+            <FormControlLabel
+              onChange={handleLegalPersonCheckboxClick}
+              control={<CarroCheckbox/>}
+              label={t("LegalPerson")}
+            />
+          </Grid> */}
+          <Grid item xs={12}> 
+            <FormControlLabel
+              classes={{ label: classes.label }}
+              control={<CarroCheckbox checked={terms} onChange={() => setTerms(!terms)}/>}
+              label={t("TermsAndConditions")}
+            />
+          </Grid>
+          {/* {legalPersonChecked ? (
+              <Fragment>
+                <Grid container item xs={12} sm={6}>
+                  <CarroTextField variant="outlined" label={t("CompanyName")} fullWidth />
+                </Grid>
+                <Grid container item xs={12} sm={6} justifyContent="center">
+                  <CarroTextField variant="outlined" label={t("CUI")} fullWidth />
+                </Grid>
+                <Grid container item xs={12} sm={6} justifyContent="center">
+                  <CarroTextField variant="outlined" label={t("Adress")} fullWidth />
+                </Grid>
+                <Grid container item xs={12} sm={6} justifyContent="center">
+                  <CarroAutocomplete options={getCountries()}  label={t('Country')}/>
+                </Grid>
+                <Grid container item xs={12} sm={6} justifyContent="center">
+                  <CarroAutocomplete options={getCities()}  label={t('City')}/>
+                </Grid>
+                <Grid container item xs={12} sm={6} justifyContent="center">
+                  <CarroTextField variant="outlined" label={t("CompanyEmail")} fullWidth />
+                </Grid>
+                <Grid container item xs={12} sm={6} justifyContent="center">
+                  <CarroTextField variant="outlined" label={t("PhoneNumber")} fullWidth/>
+                </Grid>  
+              </Fragment>
+          ) : ''} */}
         </Grid>
-      </Box>
-      <Box display="flex" justifyContent="center" ml="1%" mt='2%'>
-      <Grid  container item xs={12}> 
-          <FormControlLabel
-            classes={{ label: classes.label }}
-            control={<Checkbox checked={terms} onChange={() => setTerms(!terms)} color="default"/>}
-            label={t("TermsAndConditions")}
-          />
-      </Grid>
       </Box>
       <Box display="flex" justifyContent="center" mt="3%" mb="5%">
       <Grid container item xs={8}>

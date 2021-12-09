@@ -1,7 +1,6 @@
 import React, {Fragment} from 'react';
 import EditOpenPackage from '../edit-open-package/edit-open-package';
 import TrackPackage from '../track-package/track-package';
-import PartialEditPackage from '../partial-edit-package/partial-edit-package';
 import IconButtonNoVerticalPadding from '../../../../components/buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 import { HighlightOff } from '@material-ui/icons';
 import DeleteModal from '../../../../components/modals/deleteModal/DeleteModal';
@@ -25,7 +24,7 @@ const ActionsByStatus = (props) =>{
           case 2:
               return(
                 <Fragment>
-                    <PartialEditPackage package= {props.package}/>
+                    <EditOpenPackage package= {props.package} partialEdit={true}/>
                     <TrackPackage departure={props.departure} destination={props.destination} 
                                   departureDate={props.departureDate} packageLocation={props.packageLocation}
                     />
@@ -34,7 +33,7 @@ const ActionsByStatus = (props) =>{
           case 3:
               return(
                 <Fragment>
-                    <PartialEditPackage package= {props.package}/>
+                    <EditOpenPackage package= {props.package} partialEdit={true}/>
                     <TrackPackage departure={props.departure} destination={props.destination} 
                                   departureDate={props.departureDate} packageLocation={props.packageLocation}
                     />  

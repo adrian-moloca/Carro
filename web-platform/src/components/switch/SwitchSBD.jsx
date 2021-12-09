@@ -52,7 +52,7 @@ const SwitchSBD = (props) => {
               <SecondaryButton variant="outlined" onClick={handleCloseOff}>{btn1OffText}</SecondaryButton>
             </Box>
             <Box ml={2}>
-              <SecondaryButton  variant="contained" onClick={()=> {setToggle(false), setOpenOff(false)}}>{btn2OffText}</SecondaryButton>
+              <SecondaryButton  variant="contained" onClick={()=> {setToggle(false); setOpenOff(false)}}>{btn2OffText}</SecondaryButton>
             </Box>
           </Box>
         </Box>
@@ -72,7 +72,7 @@ const SwitchSBD = (props) => {
               <SecondaryButton variant="outlined" onClick={handleCloseOn}>{btn1OnText}</SecondaryButton>
             </Box>
             <Box ml={2}>
-              <GreenCaroButton variant="contained" onClick={()=> {setToggle(true), setOpenOn(false)}}>{btn2OnText}</GreenCaroButton>
+              <GreenCaroButton variant="contained" onClick={()=> {setToggle(true); setOpenOn(false)}}>{btn2OnText}</GreenCaroButton>
             </Box>
           </Box>
         </Box>

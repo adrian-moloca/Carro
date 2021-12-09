@@ -52,11 +52,11 @@ axios.post(data.baseUrl+"/rides", {
 }
 }
 
-export const updateRide = (id, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType) => {
+export const updateRide = (id, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token) => {
 
 return(dispatch) => {
     dispatch(updateRideRequest);
-    axios.patch(data.baseUrl+"/myRides/" + id,{
+    axios.patch(data.baseUrl+"/my-rides/" + id,{
         departureDate: departureDate,
         fromCountry: fromCountry,
         fromCity: fromCity,
@@ -66,9 +66,13 @@ return(dispatch) => {
         destinationAddress: destinationAddress,
         estimatedTime: estimatedTime,
         trasportType: trasportType,
+}, {
+    headers:{
+        'Authorization': `Bearer ${token}`,
+    }
 })
 .then(response => {
-    dispatch(updateRideSuccess(id));
+    dispatch(updateRideSuccess(response));
     dispatch(fetchMyRides())
 }).catch(error => {
     const errorMsg = error;

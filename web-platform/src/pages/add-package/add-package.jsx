@@ -75,26 +75,24 @@ const AddPackage = ({data, createNewPackage}) => {
           return true
         else
           return false
-      case 2:{
+      case 2:
         if(packageSize==3)
            if(packageSize && currency && weight && width && height && length && smallDescription && price && description && !hasErrors)
               return true
            else
               return false
-        if(packageSize!=3)
+        else
            if(packageSize && currency && weight && smallDescription && price && description && !hasErrors)
               return true
            else
               return false
-      }
       case 3:
-        if(paymentMethod)
+        if(paymentMethod==0)
           return true
         else 
           return false
       default:
-        return
-          'unkown step';
+        return 'unkown step'
     }
     /* if(
       (pickUpAddress && departureDate && departureCountry && departureCity && !hasErrors)
@@ -152,7 +150,7 @@ const AddPackage = ({data, createNewPackage}) => {
   return (
     <Container className={'Primary-container-style'}>
       <Box display='flex' justifyContent='center' fontSize={22} fontWeight={400}>{t('AddPackageTitle')}</Box>
-      <Stepper activeStep={activeStep}>
+      <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (
               <Step key={label}>
                 <StepLabelPersonalized>{label}</StepLabelPersonalized>
