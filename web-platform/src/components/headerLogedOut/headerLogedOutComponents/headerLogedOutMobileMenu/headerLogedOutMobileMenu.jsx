@@ -28,7 +28,7 @@ const RenderMobileMenu = () => {
       >
         <Grid container display="flex" justifyContent="center" alignItems="center">
           <Grid item xs={12}>
-            <MenuItem>
+            <MenuItem onClick={handleMobileMenuClose}>
               <Link to="/login" style={{display: 'flex', textDecoration:'none', color: 'inherit', width:'100%'}}>
                   <Box mr={2}>
                     <SearchIcon/>
@@ -40,7 +40,7 @@ const RenderMobileMenu = () => {
             </MenuItem>
           </Grid>
           <Grid item xs={12}>
-            <MenuItem>
+            <MenuItem onClick={handleMobileMenuClose}>
               <Link to="/login"  style={{display: 'flex', textDecoration:'none',color: 'inherit', width:'100%'}}>
                   <Box mr={2}>
                     <DriveEtaIcon/>
@@ -52,7 +52,7 @@ const RenderMobileMenu = () => {
             </MenuItem>
           </Grid>
           <Grid item xs={12}>
-            <MenuItem>
+            <MenuItem onClick={handleMobileMenuClose}>
               <Link to="/login"  style={{display: 'flex', textDecoration:'none', color: 'inherit', width:'100%'}}>
                   <Box mr={2}>
                     <AccountCircleIcon/>
@@ -64,7 +64,7 @@ const RenderMobileMenu = () => {
             </MenuItem>
           </Grid>
           <Grid item xs={12}>
-            <MenuItem>
+            <MenuItem onClick={handleMobileMenuClose}>
               <Link to="/register"  style={{display: 'flex', textDecoration:'none', color: 'inherit', width:'100%'}}>
                   <Box mr={2}>
                     <ExitToAppIcon/>

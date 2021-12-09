@@ -7,8 +7,10 @@ import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import IconButtonNoVerticalPadding from '../../buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 import FormPackage from './form-package/form-package';
 import { useTranslation } from "react-i18next";
+import { updatePackage } from '../../../redux/actions/MyPackagesActions';
+import { connect } from 'react-redux';
 
-const EditPackage = (props) =>{
+const EditPackage = ({data, updatePackage, ...props}) =>{
     const { t } = useTranslation();
     const classes = useStyles();
 
@@ -67,7 +69,7 @@ const EditPackage = (props) =>{
                                 </Grid>
                             </Grid>
                         </Box>
-                        <FormPackage departureCountry={departureCountry} departureCity={departureCity} pickUpAddress={pickUpAddress}
+                        <FormPackage partialEdit={props.partialEdit} departureCountry={departureCountry} departureCity={departureCity} pickUpAddress={pickUpAddress}
                                      departureDate={departureDate} destinataryName={destinataryName} phoneNumber={destinataryPhoneNumber}
                                      destinataryName={destinataryName} destinationCountry={destinationCountry} destinationCity={destinationCity} destinataryAddress={destinataryAddress}
                                      packageSize={packageSize} weight={weight} width={width} length={length} height={height} smallDescription={smallDescription} price={price} currency={currency}
@@ -83,7 +85,7 @@ const EditPackage = (props) =>{
                                         <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("CloseButton")}</SecondaryButton>     
                             </Grid>
                             <Grid container item xs={3} justifyContent="center">
-                                        <GreenCaroButton variant='contained' onClick={console.log('')}fullWidth>{t("SaveButton")}</GreenCaroButton>
+                                        <GreenCaroButton variant='contained' onClick={()=> updatePackage(props.id, departureDate, departureCountry, departureCity, destinationCountry, destinationCity, pickUpAddress, destinataryAddress, packageSize, weight, height, length, width, description, price, currency, destinataryName, destinataryPhoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, data.token)} fullWidth>{t("SaveButton")}</GreenCaroButton>
                             </Grid>
                     </Grid>
                     </Container>
@@ -95,4 +97,6 @@ const EditPackage = (props) =>{
 
 }
 
-export default EditPackage;
+const mapDispatchToProps = dispatch =>({updatePackage: (id, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token) =>dispatch(updatePackage(id, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token))})
+const mapStateToProps = state => ({data: state.userData})
+export default connect(mapStateToProps, mapDispatchToProps)(EditPackage);

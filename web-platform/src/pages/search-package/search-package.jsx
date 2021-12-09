@@ -48,7 +48,7 @@ const SearchPackages = ({packagesData, userData, searchPackages}) => {
   }
 
   useEffect(()=>{
-    Array(packagesData.packages).length > 0 ? setPackagesState(packagesData.packages) : []
+    Array(packagesData.packages).length > 0 ? setPackagesState(packagesData.packages) : setPackagesState([])
   }, [packagesData.packages])
 
   useEffect(()=>{

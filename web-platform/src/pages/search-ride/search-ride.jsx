@@ -37,7 +37,7 @@ const SearchRide = ({ridesData, userData, searchRides, clean}) => {
   const [clickedSearch, setClickedSearch] = useState(false);
 
   useEffect(()=>{
-    Array(ridesData.rides).length > 0 ? setRidesState(ridesData.rides) : []
+    Array(ridesData.rides).length > 0 ? setRidesState(ridesData.rides) : setRidesState([])
   }, [ridesData.rides])
 
   useEffect(()=>{

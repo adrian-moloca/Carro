@@ -21,6 +21,7 @@ return (dispatch) => {
         dispatch(fetchLoginSuccess(jwt_decode(response.data.token), response.data.token));
     }).catch(error => {
         const errorMsg = error;
+        alert('Combinatia "user - parola" este gresita');
         dispatch(fetchLoginFailure(errorMsg));
     })
 }

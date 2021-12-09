@@ -11,8 +11,10 @@ import { useTranslation } from "react-i18next";
 import useStyles from "./edit-ride-modal-style";
 import { getCountries, getCities } from "../../../utils/Functions/countries-city-functions";
 import { addressValidator, numberValidator } from "../../../utils/Functions/input-validators";
+import { updateRide } from "../../../redux/actions/MyRidesActions";
+import { connect } from "react-redux";
 
-const EditRideModal = (props) =>{
+const EditRideModal = ({data, updateRide, ...props}) =>{
   const { t } = useTranslation();
 
   const classes=useStyles();
@@ -33,7 +35,7 @@ const EditRideModal = (props) =>{
 
   // state
   const [open, setOpen] = useState(false);
-  const [departureDate, setDepartureDate] = useState(new Date(String(props.departureDate).substring(6, 10),Number(String(props.departureDate).substring(3, 5))-1,String(props.departureDate).substring(0, 2)));
+  const [departureDate, setDepartureDate] = useState(new Date(parseInt(String(props.departureDate).substring(0, 4)),parseInt(String(props.departureDate).substring(5,7)) - 1,parseInt(String(props.departureDate).substring(8,10)), 0));
   const [departureCountry, setDepartureCountry] = useState(props.departureCountry);
   const [destinationCountry, setDestinationCountry] = useState(props.destinationCountry);
   const [departureCity, setDepartureCity] = useState(props.departureCity);
@@ -144,7 +146,7 @@ const EditRideModal = (props) =>{
                                             <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("CloseButton")}</SecondaryButton>     
                                 </Grid>
                                 <Grid container item xs={3} justifyContent="center">
-                                            <GreenCaroButton disabled={!isFormComplete()} variant='contained' fullWidth>{t("SaveButton")}</GreenCaroButton>
+                                            <GreenCaroButton disabled={!isFormComplete()} onClick={()=>updateRide(props.ride.id, departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, data.token)} variant='contained' fullWidth>{t("SaveButton")}</GreenCaroButton>
                                 </Grid>
                         </Grid>
                     </Container>
@@ -154,4 +156,6 @@ const EditRideModal = (props) =>{
   );
 };
 
-export default EditRideModal;
+const mapDispatchToProps = dispatch =>({updateRide: (id, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token) =>dispatch(updateRide(id, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token))})
+const mapStateToProps = state => ({data: state.userData})
+export default connect(mapStateToProps, mapDispatchToProps)(EditRideModal);

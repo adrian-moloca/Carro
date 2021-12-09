@@ -31,7 +31,7 @@ const MyRides = ({myRidesData, userData, deleteRide, clean}) => {
   }, [])
 
   useEffect(()=>{
-    myRidesData.rides.length > 0 ? setRidesState(myRidesData.rides) : []
+    myRidesData.rides.length > 0 ? setRidesState(myRidesData.rides) : setRidesState([])
   }, [myRidesData])
 
   return (
