@@ -3,6 +3,7 @@ import { Container, Box } from '@material-ui/core';
 import Package from './package/package';
 import { useTranslation } from "react-i18next";
 import { connect } from 'react-redux';
+import { fetchMyPackages } from '../../redux/actions/MyPackagesActions';
 import { clean, deletePackage } from '../../redux/actions/MyPackagesActions';
 import { useHistory } from 'react-router';
 
@@ -25,10 +26,14 @@ const closePackage=(event, index)=>{
     setPackagesState(temp);
 }
 
-useEffect(()=>{
-  const unlisten = history.listen(()=>{clean()})
-  return unlisten;
-}, [])
+  useEffect(()=>{
+    const unlisten = history.listen(()=>{clean()})
+    return unlisten;
+  }, [])
+
+  useEffect(()=>{
+    fetchMyPackages(userData.token)
+  }, [])
 
   useEffect(()=>{
     myPackagesData.packages.length > 0 ? setPackagesState(myPackagesData.packages) : setPackagesState([])

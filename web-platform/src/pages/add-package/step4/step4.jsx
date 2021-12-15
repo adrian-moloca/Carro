@@ -36,6 +36,9 @@ const StepFour = (props) =>{
                 </Grid>
             );
           }
+          default:{
+            return '';
+          }
         }
     }
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Box, Grid, MenuItem, Container} from "@material-ui/core";
 import CarroTextField from "../../components/textField/CarroTextField";
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
@@ -14,18 +14,20 @@ import { connect } from "react-redux";
 import { createNewRide } from "../../redux/actions/MyRidesActions";
 
 
-const AddRide = ({data, createNewRide}) =>{
+const AddRide = ({data, ridesData ,createNewRide}) =>{
   const { t } = useTranslation();
+  const history = useHistory();
+
   const transports = [
     {
-        type: 0, 
+        type: 1, 
         label: t("PublicTransport"),
     },
-    {   type: 1,
+    {   type: 2,
         label: t("Car"),
     },
     {
-        type: 2,
+        type: 3,
         label: t("Truck"),
     }  
   ]
@@ -38,9 +40,11 @@ const AddRide = ({data, createNewRide}) =>{
   const [destinationCity, setDestinationCity] = useState('');
   const [departureAddress, setDepartureAddress] = useState('');
   const [destinationAddress, setDestinationAddress] = useState('');
-  const [transportType, setTransportType] = useState(new Number());
-  const [estimatedTime, setEstimatedTime] = useState(new Number());
+  const [transportType, setTransportType] = useState(0);
+  const [estimatedTime, setEstimatedTime] = useState(0);
   const [hasErrors, setHasErrors] = useState(false);
+  const [requestSent, sentRequestSent] = useState(false);
+
   // event lisenters
   const handleChangeDepartureDate=(date)=> setDepartureDate(date);
   const handleChangeDepartureCountry=(event, newValue)=> setDepartureCountry(newValue);
@@ -73,6 +77,21 @@ const AddRide = ({data, createNewRide}) =>{
   useEffect(()=>{
     setHasErrors(numberValidator(estimatedTime))
   }, [estimatedTime])
+
+  const redirectAfterRideCreated= () => {
+      if(ridesData.hasErrors === true) {
+          alert('Crearea cursei a esuat');
+      } else {
+          history.push('/my-packages');
+      }
+  }
+
+useEffect(()=>{
+
+  if(requestSent)
+    setTimeout(() => {redirectAfterRideCreated()}, 500);
+
+}, [ridesData])
 
   return(
     <Container className='Primary-container-style'>
@@ -121,7 +140,7 @@ const AddRide = ({data, createNewRide}) =>{
             </Link>
             </Grid>
             <Grid container item xs  justifyContent='center'>
-              <PrimaryButton onClick={()=>createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress,              destinationAddress, estimatedTime, transportType, data.token)} 
+              <PrimaryButton onClick={()=>{createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, data.token); sentRequestSent(true)}} 
                             disabled={!isFormComplete()} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Add')}</PrimaryButton>
             </Grid>
         </Grid>
@@ -132,6 +151,6 @@ const AddRide = ({data, createNewRide}) =>{
 
 const mapDispatchToProps = dispatch => ({createNewRide: (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token) => dispatch(createNewRide(departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token))})
 
-const mapStateToProps = state => ({data: state.userData})
+const mapStateToProps = state => ({data: state.userData, ridesData: state.myRidesData})
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddRide);
