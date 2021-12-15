@@ -40,6 +40,7 @@ switch (action.type) {
         return{
             ...state,
             ride: action.payload,
+            hasErrors: false
         }
     case NEW_RIDE_FAILURE:
         return{
@@ -78,10 +79,7 @@ switch (action.type) {
         }
     case CLEAN_MY_RIDES_DATA:
         return{
-            ...state,
-            rides: [],
-            loading: false,
-            hasErrors: false,
+            ...initialState,
         }
     default: 
         return  {

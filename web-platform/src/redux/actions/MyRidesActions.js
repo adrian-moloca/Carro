@@ -43,6 +43,7 @@ axios.post(data.baseUrl+"/rides", {
     'Authorization': `Bearer ${token}`,
 }})
 .then(response => {
+    alert("Cursa creata cu succes")
     dispatch(createNewRideSuccess(response.data));
     dispatch(fetchMyRides())
 }).catch(error => {

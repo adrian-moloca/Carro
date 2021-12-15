@@ -38,6 +38,7 @@ const myPackagesReducer = (state = initialState, action) => {
             return{
                 ...state,
                 package: action.payload,
+                hasErrors: false
             }
         case NEW_PACKAGE_FAILURE:
             return{
@@ -74,10 +75,7 @@ const myPackagesReducer = (state = initialState, action) => {
             }
         case CLEAN_MY_PACKAGES_DATA:
             return{
-                ...state,
-                packages: [],
-                loading: false,
-                hasErrors: false,
+                ...initialState,
             }
         default: 
             return  {

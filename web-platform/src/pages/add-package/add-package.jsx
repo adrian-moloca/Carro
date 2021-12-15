@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Box, Stepper, Step, StepLabel, Grid,} from '@material-ui/core';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
@@ -8,6 +8,7 @@ import StepOne from './step1/step1';
 import StepTwo from './step2/step2';
 import StepThree from './step3/step3';
 import StepFour from './step4/step4';
+import { useHistory } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -32,9 +33,10 @@ const StepLabelPersonalized = withStyles({
 
 })(StepLabel);
 
-const AddPackage = ({data, createNewPackage}) => {  
+const AddPackage = ({data, packageData, createNewPackage}) => {  
 
   const { t } = useTranslation();
+  const history = useHistory();
   
   const [activeStep, setActiveStep] = useState(0);
   const [pickUpAddress, setPickUpAddress] = useState('');
@@ -46,22 +48,23 @@ const AddPackage = ({data, createNewPackage}) => {
   const [destinationCity, setDestinationCity] = useState('');
   const [destinataryAddress, setDestinataryAddress] = useState('');
   const [destinataryPhoneNumber, setDestinataryPhoneNumber] = useState('');
-  const [packageSize, setPackageSize] = useState(new Number());
+  const [packageSize, setPackageSize] = useState(0);
   const [currency, setCurrency] = useState('');
-  const [weight, setWeight] = useState(new Number());
-  const [width, setWidth] = useState(new Number());
-  const [height, setHeight] = useState(new Number());
-  const [length, setLength] = useState(new Number());
+  const [weight, setWeight] = useState(0);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [length, setLength] = useState(0);
   const [smallDescription, setSmallDescription] = useState('');
-  const [price, setPrice] = useState(new Number());
+  const [price, setPrice] = useState(0);
   const [description, setDescription] = useState('');
   const [isFlammable, setIsFlammable] = useState(false);
   const [isFragile, setIsFragile] = useState(false);
   const [isFoodGrade, setIsFoodGrade] = useState(false);
   const [isHandleWithCare, setIsHandleWithCare] = useState(false);
   const [isAnimal, setIsAnimal] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState(1);
+  const [paymentMethod, setPaymentMethod] = useState(0);
   const [hasErrors, setHasErrors] = useState(false);
+  const [requestSent, setRequestSent] = useState(false);
 
   function formsComplete(step){
     switch(step){
@@ -76,7 +79,7 @@ const AddPackage = ({data, createNewPackage}) => {
         else
           return false
       case 2:
-        if(packageSize==3)
+        if(packageSize===3)
            if(packageSize && currency && weight && width && height && length && smallDescription && price && description && !hasErrors)
               return true
            else
@@ -87,7 +90,7 @@ const AddPackage = ({data, createNewPackage}) => {
            else
               return false
       case 3:
-        if(paymentMethod==0)
+        if(paymentMethod!==0)
           return true
         else 
           return false
@@ -114,6 +117,21 @@ const AddPackage = ({data, createNewPackage}) => {
   const steps = getSteps();
 
   function getSteps(){return [t('Sender'),t('Destinatary'),t('PackageDetails'),t('PaymentMethod')]};
+
+  const redirectAfterPackageCreated= () => {
+      if(packageData.hasErrors === true) {
+        alert('Crearea pachetului a esuat');
+    } else {
+        history.push('/my-packages');
+    }
+  }
+
+  useEffect(()=>{
+
+    if(requestSent)
+      setTimeout(() => {redirectAfterPackageCreated()}, 500);
+
+  }, [packageData])
 
   function getStepContent(step) {
     switch (step) {
@@ -167,7 +185,8 @@ const AddPackage = ({data, createNewPackage}) => {
                       <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton>
                     </Grid>
                     <Grid container item  xs={12} sm={6} md={6} lg={6} xl={6} justifyContent='center'>
-                      <PrimaryButton  onClick={()=>createNewPackage(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, pickUpAddress, destinataryAddress,packageSize, weight, height, length, width, description, price, currency, destinataryName,destinataryPhoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, data.name, data.token)}
+                      <PrimaryButton  onClick={()=>{createNewPackage(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, pickUpAddress, destinataryAddress,packageSize, weight, height, length, width, description, price, currency, destinataryName,destinataryPhoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, data.name, data.token);
+                                                    setRequestSent(true)}}
                                       disabled={!formsComplete(activeStep)} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Finish')}</PrimaryButton>
                     </Grid>
                   </Grid>
@@ -203,6 +222,6 @@ const AddPackage = ({data, createNewPackage}) => {
 
 const mapDispatchToProps = dispatch => ({createNewPackage: (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, senderName, token) =>dispatch(createNewPackage(departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, senderName, token))})
 
-const mapStateToProps = state => ({data: state.userData})
+const mapStateToProps = state => ({data: state.userData, packageData: state.myPackagesData})
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddPackage);
