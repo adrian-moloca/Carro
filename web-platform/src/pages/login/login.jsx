@@ -14,8 +14,9 @@ import { connect } from 'react-redux';
 import {fetchLogin} from '../../redux/actions/UserActions';
 import { useHistory } from 'react-router-dom';
 import { mailValidator } from '../../utils/Functions/input-validators';
+import { fetchNotifications } from '../../redux/actions/NotificationsActions';
 
-const Login = ({fetchLogin, data}) => {
+const Login = ({fetchLogin, fetchNotifications, data}) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(String(data.email).length > 0 ? true : false);
 
@@ -29,6 +30,7 @@ const Login = ({fetchLogin, data}) => {
   const redirectAfterLoginSuccess = () => {
     if(isLoggedIn === true) {
         history.push('/home');
+        fetchNotifications(data.token)
     } else {
         history.push('/login');
     }
@@ -96,7 +98,7 @@ const Login = ({fetchLogin, data}) => {
   )
 }
 
-const mapDispatchToProps = dispatch => ({fetchLogin: (email,password) => dispatch(fetchLogin(email, password))})
+const mapDispatchToProps = dispatch => ({fetchLogin: (email,password) => dispatch(fetchLogin(email, password)), fetchNotifications: (token) => dispatch(fetchNotifications(token))})
 const mapStateToProps = state => ({data: state.userData})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

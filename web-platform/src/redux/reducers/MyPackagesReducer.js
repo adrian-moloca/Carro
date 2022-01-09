@@ -23,6 +23,7 @@ const myPackagesReducer = (state = initialState, action) => {
             return{
                 ...state,
                 packages: action.payload,
+                hasErrors: false,
             }
         case MY_PACKAGES_FAILURE:
             return{
@@ -53,6 +54,7 @@ const myPackagesReducer = (state = initialState, action) => {
         case PACKAGE_UPDATE_SUCCESS:
             return{
                 ...state,
+                hasErrors: false
             }
         case PACKAGE_UPDATE_FAILURE:
             return{

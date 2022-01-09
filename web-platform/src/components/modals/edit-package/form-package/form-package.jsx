@@ -123,18 +123,18 @@ const   FormPackage = (props) =>{
         <Box display='flex' justifyContent='center' mt='5%' mb='5%' fontSize='13px'>
             <Grid container spacing={1} >
                 <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
-                            <CarroAutocomplete disabled={!props.partialEdit} size='small' value={props.departureCountry} options={getCountries()}  label={t('SearchRideDepartureCountry')} onChange={(e)=>props.setDepartureCountry(e.target.textContent)}/>
+                            <CarroAutocomplete disabled={props.partialEdit} size='small' value={props.departureCountry} options={getCountries()}  label={t('SearchRideDepartureCountry')} onChange={(e)=>props.setDepartureCountry(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
-                            <CarroAutocomplete disabled={!props.partialEdit} size='small' value={props.departureCity} options={getCities(props.departureCountry)} label={t('SearchRideDepartureCity')} onChange={(e)=>props.setDepartureCity(e.target.textContent)}/>
+                            <CarroAutocomplete disabled={props.partialEdit} size='small' value={props.departureCity} options={getCities(props.departureCountry)} label={t('SearchRideDepartureCity')} onChange={(e)=>props.setDepartureCity(e.target.textContent)}/>
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                            <CarroTextField disabled={!props.partialEdit} size='small' error={addressValidator(props.pickUpAddress)} helperText={addressValidator(props.pickUpAddress) ? t('ValidAddress') : ''}
+                            <CarroTextField disabled={props.partialEdit} size='small' error={addressValidator(props.pickUpAddress)} helperText={addressValidator(props.pickUpAddress) ? t('ValidAddress') : ''}
                                         value = {props.pickUpAddress} onChange={(e)=>props.setPickUpAddress(e.target.value)}
                                         variant ='outlined' label={t('PickupAddress')} fullWidth/>
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                            <CarroDatePicker disabled={!props.partialEdit} size='small' label={t('PickupDate')} format='yyyy/MM/dd'
+                            <CarroDatePicker disabled={props.partialEdit} size='small' label={t('PickupDate')} format='yyyy/MM/dd'
                                         value={props.departureDate} onChange={(date)=>props.setDepartureDate(date)} disablePast/>
                 </Grid>
                 <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
@@ -157,7 +157,7 @@ const   FormPackage = (props) =>{
                                             onChange={(e)=>props.setDestinataryAddress(e.target.value)} variant ='outlined' label={t('DestinationAddress')} fullWidth/>
                 </Grid>
                 <Grid container item xs={12} md ={6} xl={6} justifyContent="center">
-                            <CarroTextField disabled={!props.partialEdit} size='small' variant ='outlined' label={t("Sizing")} fullWidth select value={props.packageSize} onChange={(e)=>props.setPackageSize(e.target.value)}>
+                            <CarroTextField disabled={props.partialEdit} size='small' variant ='outlined' label={t("Sizing")} fullWidth select value={props.packageSize} onChange={(e)=>props.setPackageSize(e.target.value)}>
                                             {packageSizes.map((option)=>(
                                                     <MenuItem key={option.value} value={option.value}>
                                                                         {option.label}
@@ -166,7 +166,7 @@ const   FormPackage = (props) =>{
                             </CarroTextField>
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent="center">
-                            <CarroTextField disabled={!props.partialEdit} size='small' type='number' error={numberValidator(props.weight)} helperText={numberValidator(props.weight) ? t('OnlyNumbers') : ''}
+                            <CarroTextField disabled={props.partialEdit} size='small' type='number' error={numberValidator(props.weight)} helperText={numberValidator(props.weight) ? t('OnlyNumbers') : ''}
                                             value={props.weight}
                                             onChange={(e)=>props.setWeight(e.target.value)}
                                             variant="outlined"
@@ -181,12 +181,12 @@ const   FormPackage = (props) =>{
                 </Grid>
                 <GetPackagesSizesContent size={props.packageSize} width={props.width} length={props.length} height={props.height} setWidth={props.setWidth} setLength={props.setLength} setHeight={props.setHeight} setHasErrors={props.setHasErrors}/>
                 <Grid container item xs={6} justifyContent="center">
-                                <CarroTextField  disabled={!props.partialEdit} size='small' variant="outlined" error={String(props.smallDescription).length <= 3 && props.smallDescription!=''}  
+                                <CarroTextField  disabled={props.partialEdit} size='small' variant="outlined" error={String(props.smallDescription).length <= 3 && props.smallDescription!=''}  
                                                 helperText={String(props.smallDescription).length <= 3 && props.smallDescription!='' ? t('SmallDescriptionMustContain') : ''} 
                                                 value={props.smallDescription} onChange={(e)=>props.setSmallDescription(e.target.value)} label={t("SmallDescription")} fullWidth />
                 </Grid>
                 <Grid container item xs={6} justifyContent="center">
-                                <CarroTextField disabled={!props.partialEdit} size='small' variant="outlined" type='number' value={props.price} onChange={(e)=>props.setPrice(e.target.value)}
+                                <CarroTextField disabled={props.partialEdit} size='small' variant="outlined" type='number' value={props.price} onChange={(e)=>props.setPrice(e.target.value)}
                                                 error={numberValidator(props.price)} helperText={numberValidator(props.price) ? t('ValidNumber') : ''}
                                                 label={t("Price")} fullWidth
                                                 InputProps={{ startAdornment: (
@@ -204,17 +204,17 @@ const   FormPackage = (props) =>{
                                 />
                 </Grid>
                 <Grid container item xs={12} justifyContent="center">
-                                            <CarroTextField  disabled={!props.partialEdit} size='small' error={String(props.description).length < 25 && props.description!=''} 
+                                            <CarroTextField  disabled={props.partialEdit} size='small' error={String(props.description).length < 25 && props.description!=''} 
                                                             helperText={String(props.description).length < 25 && props.description!='' ? t('MinimumCharsDescription') : ''}
                                                             value={props.description} onChange={(e)=>props.setDescription(e.target.value)}
                                                             variant="outlined" label={t("Description")} multiline rows={4} fullWidth/>
                 </Grid>
                 <Grid container item xs={12} justifyContent='space-between'>
-                                            <FormControlLabel disabled={!props.partialEdit} onChange={handleFlammableCheckboxClick} control={<CarroCheckbox />} label={t("Inflammable")} checked={props.flammable}/>
-                                            <FormControlLabel disabled={!props.partialEdit} onChange={handleFragileCheckboxClick} control={<CarroCheckbox />} label={t("Fragile")} checked={props.fragile}/>
-                                            <FormControlLabel disabled={!props.partialEdit} onChange={handleFoodGradeCheckboxClick} control={<CarroCheckbox />} label={t("Perishable")} checked={props.foodGrade}/>
-                                            <FormControlLabel disabled={!props.partialEdit} onChange={handleAnimalCheckboxClick} control={<CarroCheckbox />} label="Animal" checked={props.animal}/>
-                                            <FormControlLabel disabled={!props.partialEdit} onChange={handleHandleWithCareCheckboxClick} control={<CarroCheckbox />} label="HandleWithCare" checked={props.handleWithCare}/>
+                                            <FormControlLabel disabled={props.partialEdit} onChange={handleFlammableCheckboxClick} control={<CarroCheckbox />} label={t("Inflammable")} checked={props.flammable}/>
+                                            <FormControlLabel disabled={props.partialEdit} onChange={handleFragileCheckboxClick} control={<CarroCheckbox />} label={t("Fragile")} checked={props.fragile}/>
+                                            <FormControlLabel disabled={props.partialEdit} onChange={handleFoodGradeCheckboxClick} control={<CarroCheckbox />} label={t("Perishable")} checked={props.foodGrade}/>
+                                            <FormControlLabel disabled={props.partialEdit} onChange={handleAnimalCheckboxClick} control={<CarroCheckbox />} label="Animal" checked={props.animal}/>
+                                            <FormControlLabel disabled={props.partialEdit} onChange={handleHandleWithCareCheckboxClick} control={<CarroCheckbox />} label="HandleWithCare" checked={props.handleWithCare}/>
                 </Grid>
             </Grid>
         </Box>

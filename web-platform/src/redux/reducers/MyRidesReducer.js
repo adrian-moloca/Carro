@@ -25,6 +25,7 @@ switch (action.type) {
         return{
             ...state,
             rides: action.payload,
+            hasErrors: false
         }
     case MY_RIDES_FAILURE:
         return{
@@ -55,7 +56,7 @@ switch (action.type) {
     case RIDE_UPDATE_SUCCESS:
         return{
             ...state,
-          
+            hasErrors: false
         }
     case RIDE_UPDATE_FAILURE:
         return{
@@ -70,7 +71,7 @@ switch (action.type) {
     case RIDE_DELETE_SUCCESS:
         return{
             ...state,
-        
+            hasErrors: false
         }
     case RIDE_DELETE_FAILURE:
         return{

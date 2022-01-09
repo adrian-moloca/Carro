@@ -146,7 +146,7 @@ export const deletePackage = (id, token) => {
 
 return(dispatch) => {
 dispatch(deletePackageRequest);
-axios.delete(data.baseUrl+"/my-packages/{id:"+id+"}",{
+axios.delete(data.baseUrl+"/packages/"+id,{
     headers:{
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'

@@ -86,7 +86,7 @@ export const deleteRide = (id, token) => {
 
     return(dispatch) => {
         dispatch(deleteRideRequest);
-        axios.delete(data.baseUrl+"/my-rides/"+id,{
+        axios.delete(data.baseUrl+"/rides/"+id,{
             headers:{
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'

@@ -11,7 +11,7 @@ import {ArrowBackIos, ArrowForwardIos}  from '@material-ui/icons';
 import { useTranslation } from "react-i18next";
 import {addressValidator, numberValidator} from "../../utils/Functions/input-validators";
 import { connect } from "react-redux";
-import { createNewRide } from "../../redux/actions/MyRidesActions";
+import { createNewRide, fetchMyRides } from "../../redux/actions/MyRidesActions";
 
 
 const AddRide = ({data, ridesData ,createNewRide}) =>{
@@ -43,7 +43,6 @@ const AddRide = ({data, ridesData ,createNewRide}) =>{
   const [transportType, setTransportType] = useState(0);
   const [estimatedTime, setEstimatedTime] = useState(0);
   const [hasErrors, setHasErrors] = useState(false);
-  const [requestSent, sentRequestSent] = useState(false);
 
   // event lisenters
   const handleChangeDepartureDate=(date)=> setDepartureDate(date);
@@ -54,7 +53,7 @@ const AddRide = ({data, ridesData ,createNewRide}) =>{
   const handleChangeTransportType=(event)=> setTransportType(event.target.value)
   const handleChangeDepartureAddress=(event)=> setDepartureAddress(event.target.value);
   const handleChangeDestinationAddress=(event)=> setDestinationAddress(event.target.value);
-  const handleChangeEstimatedTime=(event)=> setEstimatedTime(event.target.value);
+  const handleChangeEstimatedTime=(event)=> setEstimatedTime(parseInt(event.target.value));
 
   const isFormComplete = () =>{
     if(
@@ -82,16 +81,9 @@ const AddRide = ({data, ridesData ,createNewRide}) =>{
       if(ridesData.hasErrors === true) {
           alert('Crearea cursei a esuat');
       } else {
-          history.push('/my-packages');
+          history.push('/my-rides');
       }
   }
-
-useEffect(()=>{
-
-  if(requestSent)
-    setTimeout(() => {redirectAfterRideCreated()}, 500);
-
-}, [ridesData])
 
   return(
     <Container className='Primary-container-style'>
@@ -140,7 +132,10 @@ useEffect(()=>{
             </Link>
             </Grid>
             <Grid container item xs  justifyContent='center'>
-              <PrimaryButton onClick={()=>{createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, data.token); sentRequestSent(true)}} 
+              <PrimaryButton onClick={()=>{createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, data.token); 
+                                           fetchMyRides(data.token) 
+                                           setTimeout(() => {redirectAfterRideCreated()}, 500)
+                                          }} 
                             disabled={!isFormComplete()} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Add')}</PrimaryButton>
             </Grid>
         </Grid>
