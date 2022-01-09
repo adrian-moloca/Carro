@@ -15,7 +15,7 @@ return (dispatch) => {
             }
         })
         .then(response => {
-            dispatch(fetchNotificationsSuccess(response.data));
+            dispatch(fetchNotificationsSuccess(response.data.data));
         }).catch(error => {
             console.log(error.message)
             dispatch(fetchNotificationsFailure(error))

@@ -4,60 +4,61 @@ import { useTranslation } from "react-i18next";
 import Notification from './notification/notification';
 import { connect } from 'react-redux';
 
-const notifications_a = [
+// const notifications_a = [
     
-    {
-        type: 'colet livrat',
-        name: 'Marius Popescu',
-        action: 'a efectuat livrarea coletului tau! Lasa un review.',
-        departure: 'Timisoara',
-        destination: 'Bucuresti',
-        departureAddress: '1 Decembrie',
-        destinationAddress: '2 Mai',
-        departureDate: '26/08/2021 02:00am',
-        price: '20 RON',
-        transportType: 'Masina', 
-        read: true,
-    },
-    {
-        type: 'transport anulat',
-        name: 'Marius Popescu',
-        action: 'a anulat transportul pentru coletul tau.',
-        departure: 'Timisoara',
-        destination: 'Bucuresti',
-        departureAddress: '1 Decembrie',
-        destinationAddress: '2 Mai',
-        departureDate: '26/08/2021 02:00am',
-        price: '20 RON',
-        transportType: 'Masina',
-        read: true,
-    },
-    {
-        type: 'cerere transport',
-        name: 'Marius Popescu',
-        action: 'a facut o cerere de transport pe ruta ta!',
-        departure: 'Timisoara',
-        destination: 'Bucuresti',
-        departureAddress: '1 Decembrie',
-        destinationAddress: '2 Mai',
-        departureDate: '26/08/2021 02:00am',
-        price: '20 RON',
-        transportType: 'Masina',
-        read: false,
-    },
-];
+//     {
+//         type: 'colet livrat',
+//         name: 'Marius Popescu',
+//         action: 'a efectuat livrarea coletului tau! Lasa un review.',
+//         departure: 'Timisoara',
+//         destination: 'Bucuresti',
+//         departureAddress: '1 Decembrie',
+//         destinationAddress: '2 Mai',
+//         departureDate: '26/08/2021 02:00am',
+//         price: '20 RON',
+//         transportType: 'Masina', 
+//         read: true,
+//     },
+//     {
+//         type: 'transport anulat',
+//         name: 'Marius Popescu',
+//         action: 'a anulat transportul pentru coletul tau.',
+//         departure: 'Timisoara',
+//         destination: 'Bucuresti',
+//         departureAddress: '1 Decembrie',
+//         destinationAddress: '2 Mai',
+//         departureDate: '26/08/2021 02:00am',
+//         price: '20 RON',
+//         transportType: 'Masina',
+//         read: true,
+//     },
+//     {
+//         type: 'cerere transport',
+//         name: 'Marius Popescu',
+//         action: 'a facut o cerere de transport pe ruta ta!',
+//         departure: 'Timisoara',
+//         destination: 'Bucuresti',
+//         departureAddress: '1 Decembrie',
+//         destinationAddress: '2 Mai',
+//         departureDate: '26/08/2021 02:00am',
+//         price: '20 RON',
+//         transportType: 'Masina',
+//         read: false,
+//     },
+// ];
 
-const Notifications =()=>{
+const Notifications =({notificationsData, userData})=>{
 
     const { t } = useTranslation();
-    const[notifications, setNotifications] = useState(notifications_a)
+    const[notifications, setNotifications] = useState(notificationsData)
     const readNotification = (index) => {
         const temp = [...notifications];
         temp.map((el, i)=>{
             if(i===index)
             {
-                el.read=true
+                el.read = true;
             }
+            return el;
         })
         setNotifications(temp);
     }
@@ -67,9 +68,10 @@ const Notifications =()=>{
         temp.map((el, i)=>{
             if(i===index)
             {
-                const prevStatus = el.read
-                el.read=!prevStatus
+                const prevStatus = el.isRead;
+                el.isRead = !prevStatus;
             }
+            return el;
         })
         setNotifications(temp);
     }
@@ -98,6 +100,10 @@ const Notifications =()=>{
 
 }
 
-/* const mapDispatchToProps = dispatch => ({shareNotifications: (notifications) => dispatch(shareNotifications(notifications))}) */
+const mapStateToProps = state => ({
+    notificationsData: state.notificationsData.notifications,
+    userData : state.userData
+  })
 
-export default connect(null, null)(Notifications);
+
+export default connect(mapStateToProps, null)(Notifications);
