@@ -79,7 +79,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
       >
               <MenuItem dense onClick={()=>{
                         handleAccountMenuClose();
-                        redirectAfterFetchMyPackagesSuccess()
+                        setTimeout(()=>redirectAfterFetchMyPackagesSuccess(), 500)
                         fetchMyPackages(userData.token);
                 }}>
                   <Box mr={2} className={"Primary-color"}>

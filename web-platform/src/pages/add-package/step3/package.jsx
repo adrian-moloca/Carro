@@ -123,7 +123,7 @@ const Package = (props) => {
           variant="outlined"
           type='number'
           value={props.price}
-          onChange={(e)=>props.setPrice(e.target.value)}
+          onChange={(e)=>props.setPrice(parseInt(e.target.value))}
           error={numberValidator(props.price)}
           helperText={numberValidator(props.price) ? t('ValidNumber') : ''}
           label={t("Price")}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Container, Box, Grid } from '@material-ui/core';
 import Timer from '../../../components/timer/timer';
 import CarroTextField from '../../../components/textField/CarroTextField';
@@ -7,12 +8,17 @@ import PrimaryButton from '../../../components/buttons/primaryButton/primaryButt
 import SecondaryButton from '../../../components/buttons/secondaryButton/secondaryButton';
 import { withStyles } from '@material-ui/styles';
 import { useTranslation } from "react-i18next";
+import axios from 'axios';
+import data from '../../../utils/constants';
+
 const MyGrid = withStyles({'spacing-xs-4':{margin: 0}})(Grid)
 
 const PhoneNumberVerification = ()=>{
     const { t } = useTranslation();
     const[sms, setSMS] = useState('');
     const time = new Date();
+    const history = useHistory();
+
     time.setMinutes(time.getMinutes() + 5);
     return(
         <Container className = 'Primary-container-style'>
@@ -40,9 +46,7 @@ const PhoneNumberVerification = ()=>{
                         </Link>
                     </Grid>
                     <Grid container item xs={5} xl={5}> 
-                        <Link to='/register/select-plan' style={{textDecoration:'none', width:'100%'}}>
-                            <PrimaryButton   className="ButtonTextSize"  variant='contained' onClick={()=><Link to='/register/select-plan'/>} fullWidth>{t("ChoosePlan")}</PrimaryButton>
-                        </Link>
+                            <PrimaryButton   className="ButtonTextSize"  variant='contained' onClick={()=>axios.get(data.baseUrl+"/phone-validation/"+sms).then(()=>history.push("/register/select-plan")).catch(()=>alert("Something went wrong!"))} fullWidth>{t("ChoosePlan")}</PrimaryButton>
                     </Grid>
                 </Grid>
             </MyGrid>

@@ -9,27 +9,22 @@ import { useHistory } from 'react-router';
 
 const MyPackages = ({myPackagesData, userData, deletePackage, clean}) => {
 
-const { t } = useTranslation();
+  const { t } = useTranslation();
 
-const history = useHistory();
+  const history = useHistory();
 
-const[packagesState, setPackagesState] = useState(myPackagesData.packages.length > 0 ? myPackagesData.packages : []);
+  const[packagesState, setPackagesState] = useState(myPackagesData.packages.length > 0 ? myPackagesData.packages : []);
 
-const closePackage=(event, index)=>{
-    const temp=[...packagesState] 
-    temp.map((pack, i)=>{
-      if(index === i)
-      {
-        pack.status = 5;
-      }
-    })
-    setPackagesState(temp);
-}
-
-  useEffect(()=>{
-    const unlisten = history.listen(()=>{clean()})
-    return unlisten;
-  }, [])
+  const closePackage=(event, index)=> {
+      const temp=[...packagesState] 
+      temp.map((pack, i)=>{
+        if(index === i)
+        {
+          pack.status = 5;
+        }
+      })
+      setPackagesState(temp);
+  }
 
   useEffect(()=>{
     fetchMyPackages(userData.token)
@@ -40,7 +35,6 @@ const closePackage=(event, index)=>{
   }, [myPackagesData])
 
   return (
-
         <Container className='Primary-container-style'>
           <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t("MyPackages")}</Box>
           {packagesState.length > 0 ? (

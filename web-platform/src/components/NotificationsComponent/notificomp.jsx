@@ -5,19 +5,19 @@ import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import {connect} from 'react-redux';
 import { fetchNotifications } from '../../redux/actions/NotificationsActions';
 
- const BadgeVisibility = ({notifications, userID, fetchNotifications}) => {
+ const BadgeVisibility = ({notificationsData, userData, fetchNotifications}) => {
 
   const [hideBadge, setHideBadge] = useState(false)
-  const [unreadNotifications, setUnreadNotifications] = useState(notifications ? notifications.filter(el => el.read == false) : []);
+  const [unreadNotifications, setUnreadNotifications] = useState(notificationsData.notifications && notificationsData.notifications.length > 0 ? notificationsData.notifications.filter(el => el.isRead === false) : []);
 
   useEffect(()=>{
-    fetchNotifications(userID);
+    fetchNotifications(userData.token);
   }, [])
 
   useEffect(()=>{
-    const unread = notifications ? notifications.filter(el => el.read == false) : [];
+    const unread = notificationsData.notifications && notificationsData.notifications.length ? notificationsData.notifications.filter(el => el.read == false) : [];
     setUnreadNotifications(unread)
-  }, [notifications])
+  }, [notificationsData])
   
   useEffect(()=>{
     if(unreadNotifications.length>0)
@@ -30,7 +30,7 @@ import { fetchNotifications } from '../../redux/actions/NotificationsActions';
     <Box display='flex' alignSelf='center' flexDirection='column' className={"Primary-color"}>
       <Box mr={1}>
         <Link to='/notifications' style={{textDecoration:'none'}}>
-          <IconButton className={"Primary-color"} onClick={()=>fetchNotifications(userID)}>
+          <IconButton className={"Primary-color"} onClick={()=>fetchNotifications(userData.token)}>
             <Badge color="secondary" badgeContent={unreadNotifications.length} invisible={hideBadge}>
               <NotificationsNoneIcon/>
             </Badge>
@@ -60,8 +60,8 @@ import { fetchNotifications } from '../../redux/actions/NotificationsActions';
 }
 
 const mapStateToProps = state => ({
-              notifications: state.notificationsData.notifications,
-              userID : state.userData.id
+              notificationsData: state.notificationsData,
+              userData : state.userData
             })
-const mapDispatchToProps = dispatch => ({fetchNotifications: () => dispatch(fetchNotifications())})
+const mapDispatchToProps = dispatch => ({fetchNotifications: (token) => dispatch(fetchNotifications(token))})
 export default connect(mapStateToProps, mapDispatchToProps)(BadgeVisibility);

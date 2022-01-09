@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Container, Box, Grid, MenuItem, FormControlLabel, IconButton} from "@material-ui/core";
 import CarroAutocomplete from "../../components/autocomplete/CarroAutocomplete";
 import CarroTextField from "../../components/textField/CarroTextField";
@@ -17,8 +17,11 @@ import { getCountries, getCities } from "../../utils/Functions/countries-city-fu
 import { connect } from "react-redux";
 import { capitalizeFirstLetter } from "../../utils/Functions/capitalize-first-letter";
 import { phoneValidator } from "../../utils/Functions/input-validators";
+import { fetchCourierProfile } from "../../redux/actions/CourierActions";
 
-const Profile = ({userData}) => {
+const Profile = ({userData, courierProfile, fetchCourierProfile}) => {
+
+  const history = useHistory();
 
   const classes = useStyles();
   const { t } = useTranslation();
@@ -52,6 +55,14 @@ const Profile = ({userData}) => {
     setMandatoryDocuments(temp);
   }
 
+  const redirectAfterFetchCourierProfile = () => {
+      if(courierProfile.hasErrors === true){
+        alert("Profilul curierului nu este disponibil")
+      }else{
+        history.push("/courier-profile")
+      }
+  }
+
   return (
     <Container className={"Primary-container-style"}>
       {/* head */}
@@ -64,9 +75,10 @@ const Profile = ({userData}) => {
         </Grid>
         <Grid container item xs={2} >
             <Box display="flex" alignItems="center" justifyContent='center' fontSize={10} className={'Secondary-color'}>
-              <Link to="/courier-profile" style={{textDecoration: "none"}}>
-                <SeeProfileBtn>{t("ViewProfile")}</SeeProfileBtn>
-              </Link>
+                <SeeProfileBtn onClick={()=>{
+                    fetchCourierProfile(userData.id, userData.token)
+                    setTimeout(()=>redirectAfterFetchCourierProfile(), 500)
+                }}>{t("ViewProfile")}</SeeProfileBtn>
             </Box>
         </Grid>
       </Grid>
@@ -212,6 +224,7 @@ const Profile = ({userData}) => {
   );
 };
 
-const mapStateToProps = state =>({userData: state.userData})
+const mapStateToProps = state =>({userData: state.userData, courierProfile: state.courierData})
+const mapDispatchToProps = dispatch =>({fetchCourierProfile: (userId, token) => dispatch(fetchCourierProfile(userId, token))})
 
-export default connect(mapStateToProps, null)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

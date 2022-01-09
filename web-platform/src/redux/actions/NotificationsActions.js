@@ -5,16 +5,19 @@ import {fetchNotificationsRequest, fetchNotificationsSuccess, fetchNotifications
 import axios from 'axios';
 import data from '../../utils/constants';
 
-export const fetchNotifications = (userId) => {
+export const fetchNotifications = (token) => {
 
 return (dispatch) => {
     dispatch(fetchNotificationsRequest);
-    axios.post(data.baseUrl + "/notifications/", {
-            userId: userId
+    axios.get(data.baseUrl + "/notifications", {
+            headers: {
+                "Authorization": `Bearer ${token}`,
+            }
         })
         .then(response => {
             dispatch(fetchNotificationsSuccess(response.data));
         }).catch(error => {
+            console.log(error.message)
             dispatch(fetchNotificationsFailure(error))
         })
 }
@@ -29,7 +32,6 @@ return(dispatch) => {
         })
         .then(response => {
             dispatch(updateNotificationSuccess(id));
-            dispatch(fetchNotifications())
         }).catch(error => {
             const errorMsg = error;
             dispatch(updateNotificationFailure(errorMsg))
@@ -46,7 +48,6 @@ return(dispatch) => {
         .then(response => {
             const Msg = response.data;
             dispatch(deleteNotificationSuccess(Msg));
-            dispatch(fetchNotifications())
         }).catch(error => {
             const errorMsg = error;
             dispatch(deleteNotificationFailure(errorMsg))

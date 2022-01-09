@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Container, Box } from '@material-ui/core'; 
 import Ride from './ride/ride';
 import { useTranslation } from "react-i18next";
-import { deleteRide, clean } from '../../redux/actions/MyRidesActions';
+import { deleteRide, clean, fetchMyRides } from '../../redux/actions/MyRidesActions';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 
@@ -26,8 +26,7 @@ const MyRides = ({myRidesData, userData, deleteRide, clean}) => {
   }
 
   useEffect(()=>{
-    const unlisten = history.listen(()=>{clean()})
-    return unlisten;
+    fetchMyRides(userData.token)
   }, [])
 
   useEffect(()=>{
