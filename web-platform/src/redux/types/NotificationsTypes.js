@@ -5,17 +5,17 @@ export const NOTIFICATIONS_REQUEST = 'NOTIFICATIONS_REQUEST';
 export const NOTIFICATIONS_SUCCESS = 'NOTIFICATIONS_SUCCESS';
 export const NOTIFICATIONS_FAILURE = 'NOTIFICATIONS_FAILURE';
 
-// Update Notification
-
-export const NOTIFICATION_UPDATE_REQUEST = 'NOTIFICATION_UPDATE_REQUEST';
-export const NOTIFICATION_UPDATE_SUCCESS = 'NOTIFICATION_UPDATE_SUCCESS';
-export const NOTIFICATION_UPDATE_FAILURE = 'NOTIFICATION_UPDATE_FAILURE';
+// Mark as Read Notification
+export const NOTIFICATIONS_AS_READ_REQUEST = 'NOTIFICATIONS_AS_READ_REQUEST';
+export const NOTIFICATIONS_AS_READ_SUCCESS = 'NOTIFICATIONS_AS_READ_SUCCESS';
+export const NOTIFICATIONS_AS_READ_FAILURE = 'NOTIFICATIONS_AS_READ_FAILURE';
 
 // Delete Notification
 
 export const NOTIFICATION_DELETE_REQUEST = 'NOTIFICATION_DELETE_REQUEST';
 export const NOTIFICATION_DELETE_SUCCESS = 'NOTIFICATION_DELETE_SUCCESS';
 export const NOTIFICATION_DELETE_FAILURE = 'NOTIFICATION_DELETE_FAILURE';
+
 
 // Notifications functions
 export const fetchNotificationsRequest = () => {
@@ -38,23 +38,22 @@ export const fetchNotificationsFailure = error => {
     }
 }
 
-// Update Notification
-
-export const updateNotificationRequest = () => {
+// Mark as Read
+export const markAsReadNotificationRequest = () => {
     return {
-        type: NOTIFICATION_UPDATE_REQUEST,
+        type: NOTIFICATIONS_AS_READ_REQUEST,
     }
 }
 
-export const updateNotificationSuccess = () => {
+export const markAsReadNotificationSuccess = () => {
     return {
-        type: NOTIFICATION_UPDATE_SUCCESS,
+        type: NOTIFICATIONS_AS_READ_SUCCESS,
     }
 }
 
-export const updateNotificationFailure = error => {
+export const markAsReadNotificationFailure = error => {
     return {
-        type: NOTIFICATION_UPDATE_FAILURE,
+        type: NOTIFICATIONS_AS_READ_FAILURE,
         payload: error
     }
 }

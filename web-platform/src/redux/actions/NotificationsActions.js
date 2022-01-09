@@ -1,6 +1,5 @@
 import {fetchNotificationsRequest, fetchNotificationsSuccess, fetchNotificationsFailure,
-    updateNotificationRequest, updateNotificationSuccess, updateNotificationFailure,
-    deleteNotificationRequest, deleteNotificationSuccess, deleteNotificationFailure,
+    deleteNotificationRequest, deleteNotificationSuccess, deleteNotificationFailure,markAsReadNotificationRequest,markAsReadNotificationSuccess, markAsReadNotificationFailure
 } from '../types/NotificationsTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
@@ -23,34 +22,42 @@ return (dispatch) => {
 }
 }
 
-export const updateNotification = (id, read) => {
+export const markAsReadNotification = (token, notificationId) => {
 
-return(dispatch) => {
-    dispatch(updateNotificationRequest);
-    axios.patch(data.baseUrl+"/notifications/" + id,{
-            read: read,
-        })
-        .then(response => {
-            dispatch(updateNotificationSuccess(id));
-        }).catch(error => {
-            const errorMsg = error;
-            dispatch(updateNotificationFailure(errorMsg))
-        })
+    return (dispatch) => {
+        dispatch(markAsReadNotificationRequest);
+        axios.patch(data.baseUrl + "/notifications/"+notificationId+"/is-read", {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
+            })
+            .then(response => {
+                console.log(response);
+                dispatch(markAsReadNotificationSuccess());
+                dispatch(fetchNotifications(token))
+            }).catch(error => {
+                console.log(error.message)
+                dispatch(markAsReadNotificationFailure(error))
+            })
     }
 }
 
-export const deleteNotification = (id) => {
+export const deleteNotification = (token, notificationId) => {
 
 return(dispatch) => {
     dispatch(deleteNotificationRequest);
-    axios.delete(data.baseUrl+"/notifications/" +id ,{
+    axios.delete(data.baseUrl+"/notifications/"+notificationId ,{
+            headers: {
+                "Authorization": `Bearer ${token}`,
+            }
         })
         .then(response => {
-            const Msg = response.data;
-            dispatch(deleteNotificationSuccess(Msg));
+            console.log(response.data);
+            dispatch(deleteNotificationSuccess());
+            dispatch(fetchNotifications(token))
         }).catch(error => {
-            const errorMsg = error;
-            dispatch(deleteNotificationFailure(errorMsg))
+            console.log(error)
+            dispatch(deleteNotificationFailure(error));
         })
     }
 }

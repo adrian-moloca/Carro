@@ -47,40 +47,45 @@ import { connect } from 'react-redux';
 //     },
 // ];
 
-const Notifications =({notificationsData, userData})=>{
+const Notifications =({notificationsData})=>{
 
     const { t } = useTranslation();
-    const[notifications, setNotifications] = useState(notificationsData)
-    const readNotification = (index) => {
-        const temp = [...notifications];
-        temp.map((el, i)=>{
-            if(i===index)
-            {
-                el.read = true;
-            }
-            return el;
-        })
-        setNotifications(temp);
-    }
+    const[notifications, setNotifications] = useState(notificationsData);
 
-    const handleReadStatus = (index) => {
-        const temp = [...notifications];
-        temp.map((el, i)=>{
-            if(i===index)
-            {
-                const prevStatus = el.isRead;
-                el.isRead = !prevStatus;
-            }
-            return el;
-        })
-        setNotifications(temp);
-    }
+    useEffect(() => {
+        setNotifications(notificationsData);
+    },[notificationsData, t])
 
-    const deleteNotification=(index)=>{
-        const temp=[...notifications] 
-        temp.splice(index, 1);
-        setNotifications(temp);
-    }
+    // const readNotification = (index) => {
+    //     const temp = [...notifications];
+    //     temp.map((el, i)=>{
+    //         if(i===index)
+    //         {
+    //             el.isRead = true;
+    //         }
+    //         return el;
+    //     })
+    //     setNotifications(temp);
+    // }
+
+    // const handleReadStatus = (index) => {
+    //     const temp = [...notifications];
+    //     temp.map((el, i)=>{
+    //         if(i===index)
+    //         {
+    //             const prevStatus = el.isRead;
+    //             el.isRead = !prevStatus;
+    //         }
+    //         return el;
+    //     })
+    //     setNotifications(temp);
+    // }
+
+    // const deleteNotification=(index)=>{
+    //     const temp=[...notifications] 
+    //     temp.splice(index, 1);
+    //     setNotifications(temp);
+    // }
 
     return(
         <Container className='Primary-container-style'>
@@ -89,9 +94,8 @@ const Notifications =({notificationsData, userData})=>{
                 {notifications.map((not, index)=>{ 
                     return  <Grid key={index} container item xs={12}>
                                 <Notification type={not.type} name={not.name} action={not.action} 
-                                            departure={not.departure} destination={not.destination} price={not.price} transportType={not.transportType}
-                                            departureAddress={not.departureAddress} destinationAddress={not.destinationAddress} departureDate={not.departureDate}
-                                            readNotification={()=>readNotification(index)} handleReadStatus={()=>handleReadStatus(index)} read={not.read} clickedDelete={()=>deleteNotification(index)}/>
+                                            departure={not.departure} destination={not.destination} price={not.price} transportType={not.transportType} notificationId={not.id}
+                                            departureAddress={not.departureAddress} destinationAddress={not.destinationAddress} departureDate={not.departureDate} read={not.isRead}/>
                             </Grid>
                 })}
             </Grid>
@@ -100,10 +104,7 @@ const Notifications =({notificationsData, userData})=>{
 
 }
 
-const mapStateToProps = state => ({
-    notificationsData: state.notificationsData.notifications,
-    userData : state.userData
-  })
+const mapStateToProps = state => ({notificationsData: state.notificationsData.notifications})
 
 
 export default connect(mapStateToProps, null)(Notifications);
