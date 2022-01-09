@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 import { createNewRide, fetchMyRides } from "../../redux/actions/MyRidesActions";
 
 
-const AddRide = ({data, ridesData ,createNewRide}) =>{
+const AddRide = ({userData, ridesData ,createNewRide}) =>{
   const { t } = useTranslation();
   const history = useHistory();
 
@@ -94,7 +94,7 @@ const AddRide = ({data, ridesData ,createNewRide}) =>{
               <CarroAutocomplete value={departureCountry} options={getCountries()}  label={t('SearchRideDepartureCountry')} onChange={handleChangeDepartureCountry}/>
             </Grid>
             <Grid container item xs={12} md ={6} xl={6}  justifyContent="center">
-              <CarroAutocomplete options={getCities(departureCountry)} label={t("SearchRideDepartureCity")} onChange={handleChangeDepartureCity}/>
+              <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label={t("SearchRideDepartureCity")} onChange={handleChangeDepartureCity}/>
             </Grid>
             <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
               <CarroAutocomplete value={destinationCountry} options={getCountries()}  label={t('SearchRideDestinationCountry')} onChange={handleChangeDestinationCountry}/>
@@ -132,8 +132,8 @@ const AddRide = ({data, ridesData ,createNewRide}) =>{
             </Link>
             </Grid>
             <Grid container item xs  justifyContent='center'>
-              <PrimaryButton onClick={()=>{createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, data.token); 
-                                           fetchMyRides(data.token) 
+              <PrimaryButton onClick={()=>{createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, userData.token); 
+                                           fetchMyRides(userData.token) 
                                            setTimeout(() => {redirectAfterRideCreated()}, 500)
                                           }} 
                             disabled={!isFormComplete()} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Add')}</PrimaryButton>
@@ -146,6 +146,6 @@ const AddRide = ({data, ridesData ,createNewRide}) =>{
 
 const mapDispatchToProps = dispatch => ({createNewRide: (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token) => dispatch(createNewRide(departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token))})
 
-const mapStateToProps = state => ({data: state.userData, ridesData: state.myRidesData})
+const mapStateToProps = state => ({userData: state.userData, ridesData: state.myRidesData})
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddRide);

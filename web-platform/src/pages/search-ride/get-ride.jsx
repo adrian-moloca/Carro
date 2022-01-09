@@ -17,7 +17,7 @@ const GetRide = (props) =>{
     const[departureDate, setDepartureDate] = useState(props.departureDate);
     const[estimatedTime, setEstimatedTime] = useState(props.estimatedTime);
     const[state, setState] = useState(props.state);
-    /* const[packageExists, setPackageExists] = useState(props.packageExists); */
+    const[packageExists, setPackageExists] = useState(true);
 
 
     useEffect(()=>{
@@ -31,9 +31,9 @@ const GetRide = (props) =>{
         setDepartureAddress(props.departureAddress);
         setDestinationAddress(props.destinationAddress);
         setDepartureDate(props.departureDate);
-        setEstimatedTime(props.EstimatedTime);
+        setEstimatedTime(props.estimatedTime);
         setState(props.state);
-        /* setPackageExists(ridesData.ride.packageExists); */
+        setPackageExists(true);
         
     }, [props.id, props.transportType, props.departure, props.destination, props.departureAddress, props.destinationAddress, props.departureDate,props.estimatedTime, props.state]);
 
@@ -46,18 +46,18 @@ const GetRide = (props) =>{
                 /* driverRate={rate} */
                 plecare={departure}
                 destinatie={destination}
-                destinatie={departureDate}
+                departureDate={departureDate}
                 departureAddress={departureAddress}
                 destinationAddress={destinationAddress}
                 estimatedTime={estimatedTime}
                 status={state}
-                /* packageExists= {packageExists} */
+                packageExists= {packageExists}
             />
           </Grid>
     );
 }
 
-const mapDispatchToProps = dispatch =>({GetRide: (ride, token) => dispatch(getRide(ride, token))})
+const mapDispatchToProps = dispatch =>({getRide: (ride, token) => dispatch(getRide(ride, token))})
 const mapStateToProps = state => ({ridesData: state.ridesData})
 
 export default connect(mapStateToProps, mapDispatchToProps)(GetRide);

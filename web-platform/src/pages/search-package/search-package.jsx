@@ -10,9 +10,9 @@ import CarroAutocomplete from '../../components/autocomplete/CarroAutocomplete';
 import {getCountries, getCities} from '../../utils/Functions/countries-city-functions';
 import { connect } from "react-redux";
 import { searchPackages, clean } from "../../redux/actions/PackagesActions";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
-const SearchPackages = ({packagesData, userData, searchPackages}) => {
+const SearchPackages = ({packagesData, userData, searchPackages, clean}) => {
 
   const { t } = useTranslation();
   const history = useHistory();
@@ -28,7 +28,7 @@ const SearchPackages = ({packagesData, userData, searchPackages}) => {
   const handleChangeDepartureCity = (event, newValue) => setDepartureCity(newValue);
   const handleChangeDestinationCity = (event, newValue) => setDestinationCity(newValue);
 
-  const[packagesState, setPackagesState] = useState(Array(packagesData.packages).length > 0 ? packagesData.packages : []);
+  const[packagesState, setPackagesState] = useState([]);
   const packages = usePagination(packagesState, 3)
   
   const [page, setPage] = React.useState(1);
@@ -48,13 +48,13 @@ const SearchPackages = ({packagesData, userData, searchPackages}) => {
   }
 
   useEffect(()=>{
-    Array(packagesData.packages).length > 0 ? setPackagesState(packagesData.packages) : setPackagesState([])
-  }, [packagesData.packages])
+    Array(packagesData.packages).length > 0 ? setPackagesState(packagesData.packages) : setPackagesState([]);
+  }, [packagesData.packages]);
 
   useEffect(()=>{
-      const unlisten = history.listen(()=>{clean()})
-      return unlisten;
-  }, [])
+    const unlisten = history.listen(() => clean());
+    return unlisten;
+  }, []);
 
   // render
   return (
