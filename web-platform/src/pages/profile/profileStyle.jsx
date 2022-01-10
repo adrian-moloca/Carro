@@ -20,6 +20,17 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
   },
+  profilePhotoEdit: {
+    height: '70px', 
+    width: '70px',
+    '&:hover':{
+        filter: "contrast(50%)",
+    }
+  },
+  profilePhoto: {
+    height: '70px', 
+    width: '70px',
+  }
 });
 
 export default useStyles;

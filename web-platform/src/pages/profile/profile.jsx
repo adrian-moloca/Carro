@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { Container, Box, Grid, MenuItem, FormControlLabel, IconButton} from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+import { Container, Box, Grid, Avatar, MenuItem, FormControlLabel, IconButton} from "@material-ui/core";
 import CarroAutocomplete from "../../components/autocomplete/CarroAutocomplete";
 import CarroTextField from "../../components/textField/CarroTextField";
 import PhoneTextField from "../../components/telephoneNumberField/PhoneTextField";
 import SeeProfileBtn from "../../components/buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn"
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
 import CarroCheckbox from "../../components/checkbox/CarroCheckbox";
-import profilePhotoMiddle from "../../assets/images/photoprofile1.png";
+import AvatarImage from "../../assets/images/avatarImg.png";
 import { useTranslation } from "react-i18next";
 import useStyles from "./profileStyle";
 import {SaveAlt, Create, Cancel} from '@material-ui/icons';
@@ -25,6 +25,7 @@ const Profile = ({userData, courierProfile, fetchCourierProfile}) => {
 
   const classes = useStyles();
   const { t } = useTranslation();
+  const [profilePhoto, setProfilePhoto] = useState('');
   const [firstName, setFirstName] = useState(capitalizeFirstLetter(String(userData.name).substring(0, String(userData.name).indexOf(' '))))
   const [lastName, setLastName] = useState(capitalizeFirstLetter(String(userData.name).substring(String(userData.name).indexOf(' ')+1, String(userData.name).length)))
   const [email, setEmail] = useState(userData.email);
@@ -33,11 +34,11 @@ const Profile = ({userData, courierProfile, fetchCourierProfile}) => {
   const [dateOfBirth, setDateOfBirth] = useState(new Date(new Date().getFullYear()-14, new Date().getMonth(),new Date().getDate(), 0));
   const [legalPersonChecked, setLegalPersonChecked] = useState(false);
   const [mandatoryDocuments, setMandatoryDocuments] = useState([]);
-  const [departureCountry, setDepartureCountry] = useState('');
-  const [departureCity, setDepartureCity] = useState('');
+  const [country, setCountry] = useState('');
+  const [city, setCity] = useState('');
   const [onEditMode, setOnEditMode] = useState(false);
-  const handleChangeDepartureCountry=(event, newValue)=> setDepartureCountry(newValue);
-  const handleChangeDepartureCity=(event, newValue)=> setDepartureCity(newValue);
+  const handleChangeCountry=(event, newValue)=> setCountry(newValue);
+  const handleChangeCity=(event, newValue)=> setCity(newValue);
   const handleLegalPersonCheckboxClick = (event) => {
     event.target.checked ? setLegalPersonChecked(true) : setLegalPersonChecked(false);
   };
@@ -82,12 +83,22 @@ const Profile = ({userData, courierProfile, fetchCourierProfile}) => {
             </Box>
         </Grid>
       </Grid>
-      <Box display="flex" justifyContent="center" mb="3%">
-        <img src={profilePhotoMiddle} alt={""}/>
-      </Box>
       {/* required infos */}
       <Box display="flex" justifyContent="space-evenly" mt="1%">
         <Grid container spacing={3} display="flex" justifyContent="center">
+          <Grid container item xs={12} justifyContent="center">
+                <label style={{cursor: 'pointer', height:'60px', width: '60px'}}>
+                  <input type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=> setProfilePhoto(URL.createObjectURL(e.target.files[0]))} disabled={!onEditMode}/>
+                  <Avatar className={onEditMode ? classes.profilePhotoEdit : classes.profilePhoto} src={profilePhoto && profilePhoto.length > 0 ? profilePhoto : AvatarImage}/>
+                </label>
+          </Grid>
+          {onEditMode ? (
+                  <Grid container item xs={12} justifyContent="center">
+                    <Box style={{color: "#00b4d8",  fontSize: '12px'}}>
+                      Apasati poza pentru a edita
+                    </Box>
+                  </Grid>
+              ) : null}
           <Grid item xs={12} sm={6}>
             <CarroTextField value={lastName} variant="outlined" label={t("LastName")} fullWidth disabled = {!onEditMode}/>
           </Grid>
@@ -99,11 +110,11 @@ const Profile = ({userData, courierProfile, fetchCourierProfile}) => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <PhoneTextField value={inputValuePhoneNumber}
-              onChange = {(e) => setInputValuePhoneNumber(e.target.value)}
-              countryPhoneCode={countryPhoneCode} 
-              handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
-              error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
-              disabled={!onEditMode}/>
+                            onChange = {(e) => setInputValuePhoneNumber(e.target.value)}
+                            countryPhoneCode={countryPhoneCode} 
+                            handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
+                            error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
+                            disabled={!onEditMode}/>
           </Grid>
           <Grid item xs={12} sm={6}>
             <CarroDatePicker value={dateOfBirth} onChange={(date) => setDateOfBirth(date)} format='dd/MM/yyyy' views={["year", "month", "date"]}
@@ -169,12 +180,12 @@ const Profile = ({userData, courierProfile, fetchCourierProfile}) => {
                   <CarroTextField variant="outlined" label={t("Adress")} fullWidth disabled = {!onEditMode}/>
                 </Grid>
                 <Grid container item xs={12} sm={6} justifyContent="center">
-                  <CarroTextField variant ='outlined' label={t("Country")} fullWidth disabled = {!onEditMode} select value={departureCountry} onChange={(e)=>handleChangeDepartureCountry(e)}>
+                  <CarroTextField variant ='outlined' label={t("Country")} fullWidth disabled = {!onEditMode} select value={country} onChange={(e)=>handleChangeCountry(e)}>
                     {getCountries().map((country)=>(<MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>))}
                   </CarroTextField>
                 </Grid>
                 <Grid container item xs={12} sm={6} justifyContent="center">
-                  <CarroAutocomplete disabled = {!onEditMode} options={getCities(departureCountry)} label={t("City")} onChange={(e)=>handleChangeDepartureCity(e)}/>
+                  <CarroAutocomplete disabled = {!onEditMode} options={getCities(country)} label={t("City")} onChange={(e)=>handleChangeCity(e)}/>
                 </Grid>
                 <Grid container item xs={12} sm={6} justifyContent="center">
                   <CarroTextField disabled = {!onEditMode} variant="outlined" label={t("CompanyEmail")} fullWidth />

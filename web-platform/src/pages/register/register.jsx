@@ -19,6 +19,9 @@ import {createNewUser} from '../../redux/actions/UserActions';
 import CarroCheckbox from "../../components/checkbox/CarroCheckbox";
 import {mailValidator, nameValidator, passwordValidator, phoneValidator} from "../../utils/Functions/input-validators";
 import { useHistory } from "react-router";
+import { getBase64Image } from "../../utils/Functions/base64Image";
+import axios from "axios";
+import utilData from '../../utils/constants';
 
 const Register = ({createNewUser, data}) => {
   
@@ -29,7 +32,7 @@ const Register = ({createNewUser, data}) => {
   const [userCreated, setUserCreated] = useState(String(data.token).length > 0 ? true : false);
   const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState('');
   const [countryPhoneCode, setCountryPhoneCode] = useState('');
-  const [profilePhoto, setProfilePhoto] = useState(AvatarImage);
+  const [profilePhoto, setProfilePhoto] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber);
@@ -45,11 +48,18 @@ const Register = ({createNewUser, data}) => {
     setPhoneNumber(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber)
   }, [inputValuePhoneNumber, countryPhoneCode])
 
-  const redirectPhoneNumberVerification = () => {
+  async function redirectPhoneNumberVerification(){
+    const base64Image = getBase64Image(profilePhoto); 
     if(userCreated === true) {
-        history.push('/register/phone-number-verification');
+      if(profilePhoto.length > 0) {
+        axios.put(utilData.baseUrl + '/users/profile-images', {
+            profileImage: base64Image,
+        }).then(()=>history.push('/register/phone-number-verification')).catch(error=>console.log(error))
+      } else {
+        history.push('/register/phone-number-verification')
+      }
     } else {
-        history.push('/register');
+        alert('Register failed');
     }
   }
 
@@ -90,9 +100,14 @@ const Register = ({createNewUser, data}) => {
         <Grid container spacing={3} display="flex" justifyContent="center">
           <Grid container item xs={12} justifyContent="center">
             <label style={{cursor: 'pointer', height:'60px', width: '60px'}}>
-              <input type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=> setProfilePhoto(URL.createObjectURL(e.target.files[0])) }/>
-              <Avatar className={classes.profilePhotoEdit} src={profilePhoto}/>
+              <input type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=> setProfilePhoto(URL.createObjectURL(e.target.files[0]))}/>
+              <Avatar className={classes.profilePhotoEdit} src={profilePhoto && profilePhoto.length > 0 ? profilePhoto : AvatarImage}/>
             </label>
+          </Grid>
+          <Grid container item xs={12} justifyContent="center">
+            <Box style={{color: "#00b4d8",  fontSize: '12px'}}>
+              Apasati poza pentru a edita
+            </Box>
           </Grid>
           <Grid container item xs={12} xl={6} justifyContent="center">
             <CarroTextField type='text' error={nameValidator(lastName)} helperText={nameValidator(lastName) ? t('LastNameOnlyLetters') : ''}
@@ -112,7 +127,7 @@ const Register = ({createNewUser, data}) => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <CarroTextField type="password" error={password === confirmPassword ? false : true} helperText={password === confirmPassword ? '' : t('PasswordsMustBeEqual')} 
-                          variant="outlined" label={t("ConfirmPassword")} fullWidth value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
+                            variant="outlined" label={t("ConfirmPassword")} fullWidth value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
           </Grid>
           {/* <Grid container item xs={12} xl={6} justifyContent="center">
             <CarroTextField variant="outlined" label={t("PickupAddress")} fullWidth value={date} onChange={(e) => setLastName(e.target.value)}/>
