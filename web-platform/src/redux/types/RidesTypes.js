@@ -10,6 +10,11 @@ export const GET_RIDE_REQUEST = 'GET_RIDE_REQUEST';
 export const GET_RIDE_SUCCESS = 'GET_RIDE_SUCCESS';
 export const GET_RIDE_FAILURE = 'GET_RIDE_FAILURE';
 
+// Drivers under package 
+export const DRIVERS_UNDER_PACKAGE_REQUEST = 'DRIVERS_UNDER_PACKAGE_REQUEST';
+export const DRIVERS_UNDER_PACKAGE_SUCCESS = 'DRIVERS_UNDER_PACKAGE_SUCCESS';
+export const DRIVERS_UNDER_PACKAGE_FAILURE = 'DRIVERS_UNDER_PACKAGE_FAILURE';
+
 //Clean Rides
 export const CLEAN_RIDES_DATA = 'CLEAN_RIDES_DATA';
 
@@ -53,6 +58,28 @@ export const getRideFailure = error => {
         type: GET_RIDE_FAILURE,
         payload: error
     }
+}
+
+//drivers under package functions 
+
+export const driversUnderPackageRequest = () =>  {
+    return {
+        type: DRIVERS_UNDER_PACKAGE_REQUEST
+    }    
+}
+
+export const driversUnderPackageSuccess = rides =>  {
+    return {
+        type: DRIVERS_UNDER_PACKAGE_SUCCESS,
+        payload: rides
+    }    
+}
+
+export const driversUnderPackageFailure = error =>  {
+    return {
+        type: DRIVERS_UNDER_PACKAGE_FAILURE,
+        payload: error
+    }    
 }
 
 //clean ridesData

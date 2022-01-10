@@ -38,7 +38,7 @@ const myPackagesReducer = (state = initialState, action) => {
         case NEW_PACKAGE_SUCCESS:
             return{
                 ...state,
-                package: action.payload,
+                packages: action.payload,
                 hasErrors: false
             }
         case NEW_PACKAGE_FAILURE:

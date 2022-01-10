@@ -43,6 +43,7 @@ axios.post(data.baseUrl+"/rides", {
     'Authorization': `Bearer ${token}`,
 }})
 .then(response => {
+    const Msg = response.data;
     alert("Cursa creata cu succes")
     dispatch(createNewRideSuccess(response.data));
     dispatch(fetchMyRides(token))
@@ -57,7 +58,7 @@ export const updateRide = (id, departureDate, fromCountry, fromCity, toCountry, 
 
 return(dispatch) => {
     dispatch(updateRideRequest);
-    axios.patch(data.baseUrl+"/my-rides/" + id,{
+    axios.patch(data.baseUrl+"/rides/" + id,{
         departureDate: departureDate,
         fromCountry: fromCountry,
         fromCity: fromCity,

@@ -11,7 +11,7 @@ import {ArrowBackIos, ArrowForwardIos}  from '@material-ui/icons';
 import { useTranslation } from "react-i18next";
 import {addressValidator, numberValidator} from "../../utils/Functions/input-validators";
 import { connect } from "react-redux";
-import { createNewRide, fetchMyRides } from "../../redux/actions/MyRidesActions";
+import { createNewRide } from "../../redux/actions/MyRidesActions";
 
 
 const AddRide = ({userData, ridesData ,createNewRide}) =>{
@@ -43,6 +43,7 @@ const AddRide = ({userData, ridesData ,createNewRide}) =>{
   const [transportType, setTransportType] = useState(0);
   const [estimatedTime, setEstimatedTime] = useState(0);
   const [hasErrors, setHasErrors] = useState(false);
+  const [requestSent, setRequestSent] = useState(false);
 
   // event lisenters
   const handleChangeDepartureDate=(date)=> setDepartureDate(date);
@@ -84,6 +85,13 @@ const AddRide = ({userData, ridesData ,createNewRide}) =>{
           history.push('/my-rides');
       }
   }
+
+  useEffect(()=>{
+
+    if(requestSent)
+      setTimeout(() => {redirectAfterRideCreated()}, 500);
+
+  }, [ridesData])
 
   return(
     <Container className='Primary-container-style'>
@@ -132,9 +140,8 @@ const AddRide = ({userData, ridesData ,createNewRide}) =>{
             </Link>
             </Grid>
             <Grid container item xs  justifyContent='center'>
-              <PrimaryButton onClick={()=>{createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, userData.token); 
-                                           fetchMyRides(userData.token) 
-                                           setTimeout(() => {redirectAfterRideCreated()}, 500)
+              <PrimaryButton onClick={()=>{createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, data.token); 
+                                           setRequestSent(true) 
                                           }} 
                             disabled={!isFormComplete()} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Add')}</PrimaryButton>
             </Grid>
