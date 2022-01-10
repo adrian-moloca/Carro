@@ -67,7 +67,7 @@ const NotificationDetails = (props) =>{
 
     function getNotificationContent(type){
         switch(type){
-            case 'colet livrat':
+            case 9:
                 return(
                     <Grid container justifyContent='space-between'>
                         <Grid item xs={5}>
@@ -106,7 +106,7 @@ const NotificationDetails = (props) =>{
                         </Grid>
                     </Grid>
                 );
-            case 'transport anulat':
+            case 6:
                 return(
                     <Grid container justifyContent='center'>
                         <PackageCard packageQuantity={Package.packageQuantity} packageDimensions={Package.packageDimensions} 
@@ -116,7 +116,7 @@ const NotificationDetails = (props) =>{
                                 status= {Package.status} specialMention={Package.packageSpecialMention}/>
                     </Grid>
                 );
-            case 'cerere transport':
+            case 1:
                 return(
                     <Grid container justifyContent='center'>
                         <PackageCard packageQuantity={Package2.packageQuantity} packageDimensions={Package2.packageDimensions} 

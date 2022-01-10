@@ -4,8 +4,10 @@ import PrimaryButton from '../../../../components/buttons/primaryButton/primaryB
 import DeleteModal from '../../../../components/modals/deleteModal/DeleteModal';
 import { useTranslation } from "react-i18next";
 import i18n from "../../../../i18n/config";
+import { connect } from 'react-redux';
+import { markAsReadNotification, deleteNotification } from "../../../../redux/actions/NotificationsActions";
 
-const NotificationsSummary = (props) => {
+const NotificationsSummary = ({userData, markAsReadNotification, deleteNotification, props}) => {
 
   const { t } = useTranslation();
 
@@ -51,6 +53,13 @@ const NotificationsSummary = (props) => {
 
   },[i18n.language])
 
+  const detailsNotification = () => {
+    props.clickedDetails();
+    if(props.read === false) {
+      markAsReadNotification(userData.token, props.notificationId);
+    }
+  }
+
   return (
     <Box>
       <Grid container justifyContent="space-between" alignItems="center">
@@ -60,7 +69,7 @@ const NotificationsSummary = (props) => {
           </Box>
         </Grid>
         <Grid container item xs={6} sm={3} justifyContent='center'>
-            <Button variant='text' onClick={props.clickedMarkAsRead} className={markAsReadColor}>
+            <Button variant='text' onClick={() => markAsReadNotification(userData.token, props.notificationId)} className={markAsReadColor}>
                 {markAsRead}
             </Button>
         </Grid>
@@ -69,7 +78,7 @@ const NotificationsSummary = (props) => {
             content={t('DeleteNotification')}
             btn1Text={t('Back')}
             btn2Text={t('Delete')}
-            clickedBtn2={props.clickedDelete}
+            clickedBtn2={deleteNotification(userData.token, props.notificationId)}
           />
         </Grid>
       </Grid>
@@ -109,7 +118,7 @@ const NotificationsSummary = (props) => {
       </Grid>
       <Grid  container  direction="row" justifyContent="center">
         <Box mt={3}>
-          <PrimaryButton variant="contained" onClick={props.clickedDetails} className={'details-button'}>
+          <PrimaryButton variant="contained" onClick={detailsNotification()} className={'details-button'}>
             {detailsBtn}
           </PrimaryButton>
         </Box>
@@ -118,4 +127,11 @@ const NotificationsSummary = (props) => {
   );
 };
 
-export default NotificationsSummary;
+const mapDispatchToProps = dispatch => ({
+  markAsReadNotification: (token, notificationId) => dispatch(markAsReadNotification(token, notificationId)),
+  deleteNotification: (token, notificationId) => dispatch(deleteNotification(token, notificationId)),
+});
+
+const mapStateToProps = state => ({userData: state.userData})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationsSummary);

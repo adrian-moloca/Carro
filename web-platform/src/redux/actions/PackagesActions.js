@@ -6,7 +6,7 @@ export const searchPackages = (fromCountry, fromCity, toCountry, toCity, token) 
 
     return (dispatch) => {
         dispatch(searchPackagesRequest);
-        axios.get(data.baseUrl + "/packages?fromCountry="+fromCountry+"&fromCity="+fromCity+"&toCountry="+toCountry+"&toCity="+toCity+"&pageNumber=1&pageSize=25",
+        axios.get(data.baseUrl + "/packages?FromCountry="+fromCountry+"&FromCity="+fromCity+"&ToCountry="+toCountry+"&ToCity="+toCity+"&PageNumber=1&PageSize=25",
         {
             headers: {
                 'Authorization': `Bearer ${token}`,
