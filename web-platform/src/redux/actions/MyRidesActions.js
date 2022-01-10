@@ -45,8 +45,8 @@ axios.post(data.baseUrl+"/rides", {
 .then(response => {
     const Msg = response.data;
     alert("Cursa creata cu succes")
-    dispatch(createNewRideSuccess(Msg));
-    /* dispatch(fetchMyRides(token)) */
+    dispatch(createNewRideSuccess(response.data));
+    dispatch(fetchMyRides(token))
 }).catch(error => {
     const errorMsg = error;
     dispatch(createNewRideFailure(errorMsg))

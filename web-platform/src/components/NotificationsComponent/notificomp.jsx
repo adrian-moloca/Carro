@@ -15,7 +15,7 @@ import { fetchNotifications } from '../../redux/actions/NotificationsActions';
   }, [])
 
   useEffect(()=>{
-    const unread = notificationsData.notifications && notificationsData.notifications.length ? notificationsData.notifications.filter(el => el.read == false) : [];
+    const unread = notificationsData.notifications && notificationsData.notifications.length > 0 ? notificationsData.notifications.filter(el => el.isRead === false) : [];
     setUnreadNotifications(unread)
   }, [notificationsData])
   

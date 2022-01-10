@@ -94,7 +94,7 @@ const SearchRide = ({ridesData, userData, searchRides, clean}) => {
       </Box>
       <Grid container justifyContent='space-around'>
       { ridesData.rides.length > 0 ? 
-        rides.currentData().map((ride)=> <GetRide id={ride.id} departure={ride.departure} destination={ride.destination}
+        rides.currentData().map((ride)=> <GetRide key={ride.id} id={ride.id} departure={ride.departure} destination={ride.destination}
                                                   departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress}
                                                   departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType}
                                                   state={ride.status}/>) : notFoundAnyRide()

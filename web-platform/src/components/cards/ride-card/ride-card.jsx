@@ -38,7 +38,7 @@ const RideCard =(props)=>{
     function getFrontCardBtns(status){
         
         switch(status){
-            case 0:
+            case 1:
                 return (
                     <Fragment>
                         <SelectDriver 
@@ -59,7 +59,7 @@ const RideCard =(props)=>{
                         </Grid>
                     </Fragment>
                 )
-            case 1:
+            case 9:
                 return(
                     <Grid container item xs={8} justifyContent='center'>
                         <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>
@@ -125,21 +125,21 @@ const RideCard =(props)=>{
     function getBackCardBtns(status, packageExists){
         
         switch(status){
-            case 0:{
+            case 1:{
                 if(packageExists)
                     return(
                         <Fragment>
-                            <Grid container item xs={8} justifyContent='center'>
+                            <Grid container item xs={11} justifyContent='center'>
                                 <Box my='4%'>
                                     <PrimaryButton variant='outlined' fullWidth>
-                                        <Box fontSize='10px'>CERE TRANSPORT - CEVA MIC</Box>
+                                        <Box fontSize='14px'>CERE TRANSPORT - CEVA MIC</Box>
                                     </PrimaryButton>
                                 </Box>
                             </Grid>
-                            <Grid container item xs={8} justifyContent='center'>
+                            <Grid container item xs={11} justifyContent='center'>
                                 <Box my='2%'>
                                     <PrimaryButton variant='outlined' fullWidth>
-                                        <Box fontSize='10px'>CERE TRANSPORT - CEVA MEDIU</Box>
+                                        <Box fontSize='14px'>CERE TRANSPORT - CEVA MEDIU</Box>
                                     </PrimaryButton>
                                 </Box>
                             </Grid>

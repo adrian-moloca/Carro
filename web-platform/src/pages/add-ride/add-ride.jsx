@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 import { createNewRide } from "../../redux/actions/MyRidesActions";
 
 
-const AddRide = ({data, ridesData ,createNewRide}) =>{
+const AddRide = ({userData, ridesData ,createNewRide}) =>{
   const { t } = useTranslation();
   const history = useHistory();
 
@@ -153,6 +153,6 @@ const AddRide = ({data, ridesData ,createNewRide}) =>{
 
 const mapDispatchToProps = dispatch => ({createNewRide: (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token) => dispatch(createNewRide(departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token))})
 
-const mapStateToProps = state => ({data: state.userData, ridesData: state.myRidesData})
+const mapStateToProps = state => ({userData: state.userData, ridesData: state.myRidesData})
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddRide);

@@ -1,8 +1,6 @@
 import {NOTIFICATIONS_REQUEST, NOTIFICATIONS_SUCCESS, NOTIFICATIONS_FAILURE,
-    NOTIFICATION_UPDATE_REQUEST, NOTIFICATION_UPDATE_SUCCESS, NOTIFICATION_UPDATE_FAILURE,
-    NOTIFICATION_DELETE_REQUEST, NOTIFICATION_DELETE_SUCCESS, NOTIFICATION_DELETE_FAILURE,
+    NOTIFICATION_DELETE_REQUEST, NOTIFICATION_DELETE_SUCCESS, NOTIFICATION_DELETE_FAILURE,NOTIFICATIONS_AS_READ_REQUEST,NOTIFICATIONS_AS_READ_SUCCESS,NOTIFICATIONS_AS_READ_FAILURE
 } from '../types/NotificationsTypes';
-
 
 let initialState = {
     notifications: [],
@@ -27,17 +25,18 @@ const notificationsReducer = (state = initialState, action) => {
             return{
                 ...state,
                 hasErrors: true,
-            }    
-        case NOTIFICATION_UPDATE_REQUEST:
-            return {
+            }
+        case NOTIFICATIONS_AS_READ_REQUEST: 
+            return{
                 ...state,
                 loading: true,
             }
-        case NOTIFICATION_UPDATE_SUCCESS:
+        case NOTIFICATIONS_AS_READ_SUCCESS: 
             return{
-                ...state,  
+                ...state,
+                hasErrors: false,
             }
-        case NOTIFICATION_UPDATE_FAILURE:
+        case NOTIFICATIONS_AS_READ_FAILURE: 
             return{
                 ...state,
                 hasErrors: true,
