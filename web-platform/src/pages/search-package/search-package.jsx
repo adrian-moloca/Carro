@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { Container, Box, Grid } from "@material-ui/core";
 import { useTranslation } from 'react-i18next';
 import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { searchPackages, clean } from "../../redux/actions/PackagesActions";
 import { useHistory } from "react-router";
 
-const SearchPackages = ({packagesData, userData, searchPackages}) => {
+const SearchPackages = ({packagesData, userData, searchPackages, clean}) => {
 
   const { t } = useTranslation();
   const history = useHistory();
@@ -120,7 +120,7 @@ const SearchPackages = ({packagesData, userData, searchPackages}) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
         searchPackages: (fromCountry, fromCity, toCountry, toCity, token) => dispatch(searchPackages(fromCountry, fromCity, toCountry, toCity, token)),
         clean: () => dispatch(clean())
 })

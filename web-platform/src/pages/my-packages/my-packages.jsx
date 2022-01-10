@@ -39,11 +39,11 @@ const MyPackages = ({myPackagesData, userData, deletePackage, clean}) => {
           <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t("MyPackages")}</Box>
           {packagesState.length > 0 ? (
             packagesState.map((packageinf, index) => {
-                    return <Package key={index} package={packageinf} packageIndex={index + 1} departureDate={packageinf.departureDate.substr(0, 10)} departure={packageinf.departure} destination={packageinf.destination}
+                    return <Package key={index} package={packageinf} packageIndex={index + 1} packageId={packageinf.id} departureDate={packageinf.departureDate.substr(0, 10)} departure={packageinf.departure} destination={packageinf.destination}
                          departureAddress={packageinf.departureAddress} destinationAddress={packageinf.destinationAddress} packageType={packageinf.packageType}
                          weight={packageinf.weight} description={packageinf.description} dimensions={packageinf.dimensions} price={packageinf.price} name={packageinf.name}
                          status={packageinf.status} deletePackageClicked={()=>deletePackage(packageinf.id, userData.token)} packageLocation={packageinf.location}
-                         closePackageClicked={(e)=>closePackage(e, index)} packageSpecialMention = {packageinf.packageSpecialMention}/>                  
+                         closePackageClicked={(e)=>closePackage(e, index)} packageSpecialMention = {packageinf.packageSpecialMention} token={userData.token}/>                  
               })) : <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t("NoPackagesAdded")}</Box> 
             }
         </Container>

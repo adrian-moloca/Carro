@@ -93,7 +93,7 @@ const SearchRide = ({ridesData, userData, searchRides, clean}) => {
         </Grid>
       </Box>
       <Grid container justifyContent='space-around'>
-      { ridesData.rides.lenght > 0 ? 
+      { ridesData.rides.length > 0 ? 
         rides.currentData().map((ride)=> <GetRide id={ride.id} departure={ride.departure} destination={ride.destination}
                                                   departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress}
                                                   departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType}

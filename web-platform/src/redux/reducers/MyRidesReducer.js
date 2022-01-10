@@ -40,7 +40,7 @@ switch (action.type) {
     case NEW_RIDE_SUCCESS:
         return{
             ...state,
-            ride: action.payload,
+            rides: action.payload,
             hasErrors: false
         }
     case NEW_RIDE_FAILURE:

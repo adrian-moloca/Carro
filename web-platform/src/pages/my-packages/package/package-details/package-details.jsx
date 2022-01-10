@@ -56,7 +56,7 @@ const PackageDetails = (props)=>{
         </Grid>
         <Box my='2%' fontSize={20}>{t("Transports")}</Box>
         <Grid container justifyContent='center'>
-            <Rides/>
+            <Rides packageId={props.packageId} token={props.token}/>
         </Grid>
     </Box>  
     );

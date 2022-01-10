@@ -95,7 +95,7 @@ const { t } = useTranslation();
                         <PackageDetails departure={props.departure} destination={props.destination} departureAddress={props.departureAddress} 
                             destinationAddress={props.destinationAddress} packageType={props.packageType} weight={props.weight} dimensions={props.dimensions}
                             description={props.description} price={props.price} name={props.name} departureDate={props.departureDate}
-                            packageLocation={props.packageLocation} specialMention={props.packageSpecialMention}/>
+                            packageLocation={props.packageLocation} specialMention={props.packageSpecialMention} packageId={props.packageId} token={props.token}/>
             </Collapse>
       </Box>  
   );

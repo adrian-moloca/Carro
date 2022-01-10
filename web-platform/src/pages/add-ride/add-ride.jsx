@@ -11,7 +11,7 @@ import {ArrowBackIos, ArrowForwardIos}  from '@material-ui/icons';
 import { useTranslation } from "react-i18next";
 import {addressValidator, numberValidator} from "../../utils/Functions/input-validators";
 import { connect } from "react-redux";
-import { createNewRide, fetchMyRides } from "../../redux/actions/MyRidesActions";
+import { createNewRide } from "../../redux/actions/MyRidesActions";
 
 
 const AddRide = ({data, ridesData ,createNewRide}) =>{
@@ -43,6 +43,7 @@ const AddRide = ({data, ridesData ,createNewRide}) =>{
   const [transportType, setTransportType] = useState(0);
   const [estimatedTime, setEstimatedTime] = useState(0);
   const [hasErrors, setHasErrors] = useState(false);
+  const [requestSent, setRequestSent] = useState(false);
 
   // event lisenters
   const handleChangeDepartureDate=(date)=> setDepartureDate(date);
@@ -85,6 +86,13 @@ const AddRide = ({data, ridesData ,createNewRide}) =>{
       }
   }
 
+  useEffect(()=>{
+
+    if(requestSent)
+      setTimeout(() => {redirectAfterRideCreated()}, 500);
+
+  }, [ridesData])
+
   return(
     <Container className='Primary-container-style'>
       <Box display='flex' justifyContent='center' fontSize={22} fontWeight={400}>{t("AddTransport")}</Box>
@@ -94,7 +102,7 @@ const AddRide = ({data, ridesData ,createNewRide}) =>{
               <CarroAutocomplete value={departureCountry} options={getCountries()}  label={t('SearchRideDepartureCountry')} onChange={handleChangeDepartureCountry}/>
             </Grid>
             <Grid container item xs={12} md ={6} xl={6}  justifyContent="center">
-              <CarroAutocomplete options={getCities(departureCountry)} label={t("SearchRideDepartureCity")} onChange={handleChangeDepartureCity}/>
+              <CarroAutocomplete value={departureCity} options={getCities(departureCountry)} label={t("SearchRideDepartureCity")} onChange={handleChangeDepartureCity}/>
             </Grid>
             <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
               <CarroAutocomplete value={destinationCountry} options={getCountries()}  label={t('SearchRideDestinationCountry')} onChange={handleChangeDestinationCountry}/>
@@ -133,8 +141,7 @@ const AddRide = ({data, ridesData ,createNewRide}) =>{
             </Grid>
             <Grid container item xs  justifyContent='center'>
               <PrimaryButton onClick={()=>{createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, data.token); 
-                                           fetchMyRides(data.token) 
-                                           setTimeout(() => {redirectAfterRideCreated()}, 500)
+                                           setRequestSent(true) 
                                           }} 
                             disabled={!isFormComplete()} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Add')}</PrimaryButton>
             </Grid>

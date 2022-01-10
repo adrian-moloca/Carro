@@ -1,4 +1,4 @@
-import {searchRidesRequest, searchRidesSuccess, searchRidesFailure, getRideRequest, getRideSuccess, getRideFailure, cleanRidesData} from '../types/RidesTypes';
+import {searchRidesRequest, searchRidesSuccess, searchRidesFailure, getRideRequest, getRideSuccess, getRideFailure, driversUnderPackageRequest, driversUnderPackageSuccess, driversUnderPackageFailure, cleanRidesData} from '../types/RidesTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
 
@@ -33,7 +33,7 @@ export const getRide = (rideID, token) => {
             }
         })
         .then(response => {
-            const ride = [...response.data];
+            const ride = [...response.data.data];
             dispatch(getRideSuccess(ride));
         }).catch(error => {
             const errorMsg = error;
@@ -42,12 +42,20 @@ export const getRide = (rideID, token) => {
     }
 }
 
+export const driversUnderPackage = (packageId, token) => {
+    
+    return(dispatch)=> {
+        dispatch(driversUnderPackageRequest);
+        axios.get(data.baseUrl+'my-packages/'+packageId+"/drivers&pageNumber=1&pageSize=15", {
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            }
+        }).then((response)=>driversUnderPackageSuccess(response.data.data)).catch(error=>driversUnderPackageFailure(error))
+    } 
+}
+
 export const clean = () => {
     return (dispatch) => {
         dispatch(cleanRidesData());
     }
 }
-
-
-
-
