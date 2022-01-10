@@ -7,17 +7,17 @@ import { connect } from 'react-redux';
 const GetRide = (props) =>{
     /* const[image, setImage] = useState(ridesData.ride ? ridesData.ride.image : '');
     const[name, setName] = useState(ridesData.ride.name ? ridesData.ride.name : ''); */
-    const[id, setID] = useState(props.id);
-    const[transportType, setTransportType] = useState(props.transportType);
+    const [id, setID] = useState(props.id);
+    const [transportType, setTransportType] = useState(props.transportType);
     /* const[rate, setRate] = useState(props.rate); */
-    const[departure, setDeparture] = useState(props.departure);
-    const[destination, setDestination] = useState(props.destination);
-    const[departureAddress, setDepartureAddress] = useState(props.departureAddress);
-    const[destinationAddress, setDestinationAddress] = useState(props.destinationAddress);
-    const[departureDate, setDepartureDate] = useState(props.departureDate);
-    const[estimatedTime, setEstimatedTime] = useState(props.estimatedTime);
-    const[state, setState] = useState(props.state);
-    const[packageExists, setPackageExists] = useState(true);
+    const [departure, setDeparture] = useState(props.departure);
+    const [destination, setDestination] = useState(props.destination);
+    const [departureAddress, setDepartureAddress] = useState(props.departureAddress);
+    const [destinationAddress, setDestinationAddress] = useState(props.destinationAddress);
+    const [departureDate, setDepartureDate] = useState(props.departureDate);
+    const [estimatedTime, setEstimatedTime] = useState(props.estimatedTime);
+    const [state, setState] = useState(props.state);
+    const [packageExists, setPackageExists] = useState(props.packageExists);
 
 
     useEffect(()=>{
@@ -33,9 +33,9 @@ const GetRide = (props) =>{
         setDepartureDate(props.departureDate);
         setEstimatedTime(props.estimatedTime);
         setState(props.state);
-        setPackageExists(true);
+        setPackageExists(props.packageExists);
         
-    }, [props.id, props.transportType, props.departure, props.destination, props.departureAddress, props.destinationAddress, props.departureDate,props.estimatedTime, props.state]);
+    }, [props.id, props.transportType, props.departure, props.destination, props.departureAddress, props.destinationAddress, props.departureDate,props.estimatedTime, props.state, props.packageExists]);
 
     return(
         <Grid key ={id} container item xs={12} sm={5}  md={4} lg={4}  xl={4} justifyContent='center'>

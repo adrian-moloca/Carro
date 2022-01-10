@@ -1,3 +1,3 @@
 export default {
-    baseUrl: "https://mongo-api.carrofuturedelivery.com/api/v1",
+    baseUrl: "https://dev-api.carrofuturedelivery.com/api/v1",
   };
