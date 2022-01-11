@@ -42,6 +42,9 @@ const Register = ({createNewUser, data}) => {
   /* const [legalPersonChecked, setLegalPersonChecked] = useState(false); */
 
   useLayoutEffect(()=>{
+    if(countryPhoneCode.slice(-1) == 0 && inputValuePhoneNumber[0] == 0) {
+      setInputValuePhoneNumber(inputValuePhoneNumber.substring(1))
+    }
     setPhoneNumber(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber)
   }, [inputValuePhoneNumber, countryPhoneCode])
 
