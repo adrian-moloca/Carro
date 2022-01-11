@@ -32,7 +32,7 @@ const Register = ({createNewUser, data}) => {
   const [profilePhoto, setProfilePhoto] = useState(AvatarImage);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber);
+  const [phoneNumber, setPhoneNumber] = useState(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + ((countryPhoneCode.slice(-1) == 0 && inputValuePhoneNumber[0] == 0) ? inputValuePhoneNumber.substring(1) : inputValuePhoneNumber));
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -42,9 +42,6 @@ const Register = ({createNewUser, data}) => {
   /* const [legalPersonChecked, setLegalPersonChecked] = useState(false); */
 
   useLayoutEffect(()=>{
-    if(countryPhoneCode.slice(-1) == 0 && inputValuePhoneNumber[0] == 0) {
-      setInputValuePhoneNumber(inputValuePhoneNumber.substring(1))
-    }
     setPhoneNumber(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber)
   }, [inputValuePhoneNumber, countryPhoneCode])
 
