@@ -44,17 +44,17 @@ const RideCard =(props)=>{
                 return (
                     <Fragment>
                         <SelectDriver 
-                            image={props.image}
-                            name={props.name}
-                            driverRate={props.driverRate}
-                            plecare={props.plecare}
-                            destinatie= {props.destinatie}
+                            image = {props.image}
+                            name = {props.name}
+                            driverRate = {props.driverRate}
+                            plecare = {props.plecare}
+                            destinatie = {props.destinatie}
                             tipTransport = {props.transportType}
                             dataPlecare = {props.departureDate}
                         />
                         <Grid container item xs={8} justifyContent='center'>
                             <Box mb='2%' width={1}>
-                                <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
+                                <PrimaryButton variant='contained'  onClick = {handleClick} fullWidth>
                                     {t('DriverCardDetailsButton')}
                                 </PrimaryButton>
                             </Box>

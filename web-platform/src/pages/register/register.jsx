@@ -35,7 +35,7 @@ const Register = ({createNewUser, data}) => {
   const [profilePhoto, setProfilePhoto] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber);
+  const [phoneNumber, setPhoneNumber] = useState(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + ((countryPhoneCode.slice(-1) == 0 && inputValuePhoneNumber[0] == 0) ? inputValuePhoneNumber.substring(1) : inputValuePhoneNumber));
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');

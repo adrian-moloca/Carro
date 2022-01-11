@@ -10,7 +10,7 @@ import { getCountries, getCities } from "../../utils/Functions/countries-city-fu
 import { searchRides, clean } from "../../redux/actions/RidesActions";
 import { connect } from "react-redux";
 import GetRide from "./get-ride";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 const SearchRide = ({ridesData, userData, searchRides, clean}) => {
 
@@ -22,6 +22,7 @@ const SearchRide = ({ridesData, userData, searchRides, clean}) => {
   const [destinationCountry, setDestinationCountry] = useState("");
   const [departureCity, setDepartureCity] = useState("");
   const [destinationCity, setDestinationCity] = useState("");
+
   // handlers
   const handleChangeDepartureCountry = (event, newValue) => setDepartureCountry(newValue);
   const handleChangeDestinationCountry = (event, newValue) => setDestinationCountry(newValue);
@@ -43,7 +44,12 @@ const SearchRide = ({ridesData, userData, searchRides, clean}) => {
   useEffect(()=>{
       const unlisten = history.listen(()=>{clean()})
       return unlisten;
-  }, [])
+  }, []);
+
+  const searchForRides = () => {
+    searchRides(departureCountry, departureCity, destinationCountry, destinationCity, userData.token);
+    setClickedSearch(true);
+  }
 
   function notFoundAnyRide(){
     if(clickedSearch)
@@ -82,10 +88,7 @@ const SearchRide = ({ridesData, userData, searchRides, clean}) => {
       </Box>
       <Box display="flex" justifyContent="space-evenly" my="3%">
         <Grid item xs={11} md={5} xl={3}>
-          <PrimaryButton onClick={()=>{
-                                      searchRides(departureCountry, departureCity, destinationCountry, destinationCity, userData.token);
-                                      setClickedSearch(true);
-                                    }}
+          <PrimaryButton onClick={()=>{searchForRides()}}
                          disabled={departureCountry && departureCity && destinationCountry && destinationCity ? false : true}
                          variant="contained" endIcon={<DriveEtaIcon />} fullWidth>
             {t('SearchRideButton')}
@@ -94,11 +97,7 @@ const SearchRide = ({ridesData, userData, searchRides, clean}) => {
       </Box>
       <Grid container justifyContent='space-around'>
       { ridesData.rides.length > 0 ? 
-        rides.currentData().map((ride)=> <GetRide key={ride.id} id={ride.id} departure={ride.departure} destination={ride.destination}
-                                                  departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress}
-                                                  departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType}
-                                                  state={ride.status}/>) : notFoundAnyRide()
-      }
+        rides.currentData().map((ride)=> <GetRide key={ride.id} id={ride.id} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} state={ride.status} packageExists={ride.packageExists} {...ride}/>) : notFoundAnyRide()}
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">
           <Box width='1' mt='5%' display='flex' justifyContent='center'>
@@ -120,7 +119,7 @@ const SearchRide = ({ridesData, userData, searchRides, clean}) => {
 const mapDispatchToProps = (dispatch) => {
    return{ 
     searchRides: (fromCountry, fromCity, toCountry, toCity, token) => dispatch(searchRides(fromCountry, fromCity, toCountry, toCity, token)),
-    clean: () => dispatch(clean())
+    clean: () => dispatch(clean()),
   }
 }
 const mapStateToProps = state => ({ridesData: state.ridesData, userData: state.userData})
