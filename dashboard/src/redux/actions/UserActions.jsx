@@ -24,6 +24,5 @@ export const loginUser = (username, password) => {
                 fetchUserFailure(err);
             }
         });
-        console.log('test')
     }
 }

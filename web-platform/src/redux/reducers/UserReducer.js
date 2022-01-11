@@ -4,6 +4,8 @@ import {USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE,
     USER_UPDATE_REQUEST, USER_UPDATE_SUCCESS, USER_UPDATE_FAILURE,
     USER_DELETE_REQUEST, USER_DELETE_SUCCESS, USER_DELETE_FAILURE,
     USER_RESET_REQUEST, USER_RESET_SUCCESS, USER_RESET_FAILURE,
+    USER_PROFILE_IMAGE_REQUEST, USER_PROFILE_IMAGE_SUCCESS, USER_PROFILE_IMAGE_FAILURE,
+    USER_PERSONAL_INFO_REQUEST, USER_PERSONAL_INFO_SUCCESS, USER_PERSONAL_INFO_FAILURE
 } from '../types/UserTypes';
 
 
@@ -24,6 +26,17 @@ let initialState = {
     hasErrors: false,
     token: "",
     refreshToken: "",
+    profileImage: "",
+    personalInfo: {
+        email: "",
+        firstName: "",
+        lastName: "",
+        dateOfBirth: "",
+        phoneNumber: "",
+        address: "",
+        city: "",
+        country: ""
+    },
 }
 
 const userReducer = (state = initialState, action) => {
@@ -162,7 +175,64 @@ switch (action.type) {
             hasErrors: false,
             token: "",
             refreshToken: "",
+            profileImage: "",
+            personalInfo:{
+                email:"",
+                firstName: "",
+                lastName: "",
+                dateOfBirth: "",
+                phoNumber: "",
+                address: "",
+                city: "",
+                country: ""
+            }
         }
+    //Profile Image
+    case USER_PROFILE_IMAGE_REQUEST:{
+        return {
+            ...state,
+            loading: true
+        }
+    }
+    case USER_PROFILE_IMAGE_SUCCESS:{
+        return {
+            ...state,
+            profileImage: "data:image/png;base64," + action.payload.profileImage
+        }
+    }
+    case USER_PROFILE_IMAGE_FAILURE:{
+        return {
+            ...state,
+        }
+    }
+    //Personal Info
+    case USER_PERSONAL_INFO_REQUEST:{
+        return {
+            ...state,
+            loading: true
+        }
+    }
+    case USER_PERSONAL_INFO_SUCCESS:{
+        return {
+            ...state,
+            personalInfo: {
+                email: action.payload.email,
+                firstName: action.payload.firstName,
+                lastName: action.payload.lastName,
+                dateOfBirth: action.payload.dateOfBirth,
+                phoneNumber: action.payload.phoneNumber,
+                address: action.payload.address,
+                city: action.payload.city,
+                country: action.payload.country
+            }
+        }
+    }
+    case USER_PERSONAL_INFO_FAILURE:{
+        return {
+            ...state,
+        }
+    }
+
     default: 
         return  {
             ...state,

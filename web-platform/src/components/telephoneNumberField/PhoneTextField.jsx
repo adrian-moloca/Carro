@@ -9,7 +9,7 @@ const PhoneTextField = (props) =>{
     return(
         <Grid container item justifyContent='space-between'>
             <Grid container item xs={3}>
-                <CarroTextField disabled={props.disabled} select value={props.countryPhoneCode} onChange={props.handleSelectCountry} label={t('CountryPhonecode')}  fullWidth>
+                <CarroTextField disabled={props.disabled} select value={/* Country.getCountryByCode() ?  */props.countryPhoneCode/*  : String(props.countryPhoneCode) */} onChange={props.handleSelectCountry} label={t('CountryPhonecode')}  fullWidth>
                     {Country.getAllCountries().map((country, index)=>(
                         <MenuItem key={country.name} value={country.phonecode} style={{fontSize: 'smaller'}}>
                             {country.name} {country.phonecode.includes('+') ? '': '+'}{country.phonecode}
