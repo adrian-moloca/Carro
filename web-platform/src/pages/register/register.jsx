@@ -42,6 +42,7 @@ const Register = ({createNewUser, data}) => {
   const [dateOfBirth, setDateOfBirth] = useState(new Date(new Date().getFullYear()-14, new Date().getMonth(),new Date().getDate(), 0));
   const [terms, setTerms] = useState(false);
   const [hasErrors, setHasErrors] = useState(false);
+  const [clickedRegister, setClickedRegister] = useState(false);
   /* const [legalPersonChecked, setLegalPersonChecked] = useState(false); */
 
   useLayoutEffect(()=>{
@@ -49,11 +50,17 @@ const Register = ({createNewUser, data}) => {
   }, [inputValuePhoneNumber, countryPhoneCode])
 
   async function redirectPhoneNumberVerification(){
-    const base64Image = getBase64Image(profilePhoto); 
     if(userCreated === true) {
       if(profilePhoto.length > 0) {
+        const img = new Image();
+        img.src = profilePhoto;
+        const base64Image = getBase64Image(img); 
         axios.put(utilData.baseUrl + '/users/profile-images', {
             profileImage: base64Image,
+        }, {
+            headers:{
+              'Authorization': `Bearer ${data.token}`,
+            }
         }).then(()=>history.push('/register/phone-number-verification')).catch(error=>console.log(error))
       } else {
         history.push('/register/phone-number-verification')
@@ -81,9 +88,11 @@ const Register = ({createNewUser, data}) => {
   }, [inputValuePhoneNumber])
   
   useEffect(() => {
-    setUserCreated(String(data.token).length > 0 ? true : false);
-    setTimeout(() => {redirectPhoneNumberVerification()}, 500)
-  }, [data])
+    if(clickedRegister){
+        setUserCreated(String(data.token).length > 0 ? true : false);
+        setTimeout(() => {redirectPhoneNumberVerification()}, 500);
+    }
+  }, [clickedRegister])
 
   /* const handleLegalPersonCheckboxClick = (event) => {
     event.target.checked ? setLegalPersonChecked(true) : setLegalPersonChecked(false);
@@ -99,7 +108,7 @@ const Register = ({createNewUser, data}) => {
       <Box display="flex" justifyContent="space-evenly" mt="1%">
         <Grid container spacing={3} display="flex" justifyContent="center">
           <Grid container item xs={12} justifyContent="center">
-            <label style={{cursor: 'pointer', height:'60px', width: '60px'}}>
+            <label style={{cursor: 'pointer', height:'60px', width: '60px', justifyContent:'center'}}>
               <input type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=> setProfilePhoto(URL.createObjectURL(e.target.files[0]))}/>
               <Avatar className={classes.profilePhotoEdit} src={profilePhoto && profilePhoto.length > 0 ? profilePhoto : AvatarImage}/>
             </label>
@@ -192,7 +201,7 @@ const Register = ({createNewUser, data}) => {
       {/* <Link to="/register/phone-number-verification" style={{textDecoration: 'none', color: 'inherit', width: '100%'}}> */}
         <PrimaryButton className="ButtonTextSize" fullWidth variant="contained" endIcon={<PersonAddIcon />} 
           disabled={terms && lastName && firstName && phoneNumber && email && password && confirmPassword && dateOfBirth && password===confirmPassword && !hasErrors ? false : true}
-          onClick={() => createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, 'True')}
+          onClick={() =>{createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, 'True'); setClickedRegister(true)}}
         >
           
           {t("Register")}

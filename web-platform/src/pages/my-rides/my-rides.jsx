@@ -43,7 +43,7 @@ const MyRides = ({myRidesData, userData, deleteRide, clean}) => {
           return <Box key={index} mb={1.5} borderRadius='10px' boxShadow={3} >
                     <Ride ride={rideinf} departure={rideinf.departure} destination={rideinf.destination} departureDate={rideinf.departureDate.substr(0, 10)}
                           departureAddress={rideinf.departureAddress} destinationAddress={rideinf.destinationAddress} estimatedTime={rideinf.estimatedTime}
-                          transportType={rideinf.transportType} phoneNumber={rideinf.phoneNumber} rideStatus={rideinf.status} rideIndex={index + 1}
+                          transportType={rideinf.transportType} phoneNumber={rideinf.phoneNumber} rideStatus={rideinf.mainStatus} rideIndex={index + 1}
                           deleteRideClicked={()=>deleteRide(rideinf.id, userData.token)}
                           closeRideClicked={(e)=>closeRide(e, index)}
                     />

@@ -186,7 +186,7 @@ const RideCard =(props)=>{
             <Box display='flex' width='1' height='400px' p={1} borderRadius='10px' boxShadow={3}>
                 <Grid container justifyContent='center'>
                     <Grid container item xs={12} justifyContent='center'>
-                        <img src={props.image} className={classes.profileImg} alt={""}/>
+                        <img src={"data:image/png;base64," + props.image} className={classes.profileImg} alt={""}/>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center'>
                         <Box fontSize='20px' fontWeight='500'>{props.name}</Box>

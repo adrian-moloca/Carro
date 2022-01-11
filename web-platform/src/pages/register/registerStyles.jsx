@@ -10,6 +10,7 @@ const useStyles = makeStyles({
     profilePhotoEdit: {
         height: '70px', 
         width: '70px',
+        left: '-5px',
         '&:hover':{
             filter: "contrast(50%)",
         }

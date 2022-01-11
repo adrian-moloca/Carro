@@ -187,7 +187,7 @@ const AddPackage = ({data, packageData, createNewPackage}) => {
                       <SecondaryButton onClick={handleBack} startIcon={<ArrowBackIos/>} variant='outlined' fullWidth>{t('DriverCardBackButton')}</SecondaryButton>
                     </Grid>
                     <Grid container item  xs={12} sm={6} md={6} lg={6} xl={6} justifyContent='center'>
-                      <PrimaryButton  onClick={()=>{createNewPackage(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, pickUpAddress, destinataryAddress,packageSize, weight, height, length, width, description, price, currency, destinataryName,destinataryPhoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, data.name, data.token);
+                      <PrimaryButton  onClick={()=>{createNewPackage(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, pickUpAddress, destinataryAddress,packageSize, weight, height, length, width, smallDescription, description, price, currency, destinataryName,destinataryPhoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, data.name, data.token);
                                                     setRequestSent(true)}}
                                       disabled={!formsComplete(activeStep)} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Finish')}</PrimaryButton>
                     </Grid>
@@ -222,7 +222,7 @@ const AddPackage = ({data, packageData, createNewPackage}) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({createNewPackage: (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, senderName, token) =>dispatch(createNewPackage(departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, senderName, token))})
+const mapDispatchToProps = dispatch => ({createNewPackage: (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, smallDescription, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, senderName, token) =>dispatch(createNewPackage(departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, smallDescription, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, senderName, token))})
 
 const mapStateToProps = state => ({data: state.userData, packageData: state.myPackagesData})
 

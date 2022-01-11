@@ -3,6 +3,8 @@ import {fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure,
     fetchUsersRequest, fetchUsersSuccess, fetchUsersFailure,
     updateUserRequest, updateUserSuccess, updateUserFailure,
     deleteUserRequest, deleteUserSuccess, deleteUserFailure,
+    getUserProfileImageRequest, getUserProfileImageSuccess, getUserProfileImageFailure,
+    getUserPersonalInfoRequest, getUserPersonalInfoSuccess, getUserPersonalInfoFailure, 
     changePasswordUserRequest, changePasswordUserSuccess, changePasswordUserFailure, updateNotifications,
 } from '../types/UserTypes';
 import axios from 'axios';
@@ -128,5 +130,39 @@ export const Logout = (_id) => {
 
     return (dispatch) => {
         dispatch(fetchLogout);
+    }
+}
+
+export const getUserProfileImage = (token) => {
+
+    return (dispatch) => {
+        dispatch(getUserProfileImageRequest);
+        axios.get(data.baseUrl + "/users/profile-images", {
+            headers:{
+              'Authorization': `Bearer ${token}`,
+            }}).then(response => {
+            const image = response.data.data;
+            dispatch(getUserProfileImageSuccess(image));
+        }).catch(error => {
+            const errorMsg = error;
+            dispatch(getUserProfileImageFailure(errorMsg))
+        })
+    }
+}
+
+export const getUserPersonalInfo = (token) => {
+
+    return (dispatch) => {
+        dispatch(getUserPersonalInfoRequest);
+        axios.get(data.baseUrl + "/users/personal-infos", {
+            headers:{
+              'Authorization': `Bearer ${token}`,
+            }}).then(response => {
+            const info = response.data.data;
+            dispatch(getUserPersonalInfoSuccess(info));
+        }).catch(error => {
+            const errorMsg = error;
+            dispatch(getUserPersonalInfoFailure(errorMsg))
+        })
     }
 }

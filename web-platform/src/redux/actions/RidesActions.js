@@ -6,7 +6,7 @@ export const searchRides = (fromCountry, fromCity, toCountry, toCity, token) => 
 
     return (dispatch) => {
         dispatch(searchRidesRequest);
-        axios.get(data.baseUrl + "/rides?FromCountry="+fromCountry+"&FromCity="+fromCity+"&ToCountry="+toCountry+"&ToCity="+toCity+"&PageNumber=1&PageSize=25",
+        axios.get(data.baseUrl + "/drivers?FromCountry="+fromCountry+"&FromCity="+fromCity+"&ToCountry="+toCountry+"&ToCity="+toCity+"&PageNumber=1&PageSize=25",
         {
             headers: {
                 'Authorization': `Bearer ${token}`,
