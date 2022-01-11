@@ -40,6 +40,16 @@ export const USER_RESET_FAILURE = 'USER_RESET_FAILURE';
 //User notifications
 export const USER_NOTIFICATIONS = 'USER_NOTIFICATIONS';
 
+// User Profile Image 
+export const USER_PROFILE_IMAGE_REQUEST = 'USER_PROFILE_IMAGE_REQUEST';
+export const USER_PROFILE_IMAGE_SUCCESS = 'USER_PROFILE_IMAGE_SUCCESS';
+export const USER_PROFILE_IMAGE_FAILURE = 'USER_PROFILE_IMAGE_FAILURE';
+
+// User Personal Info
+export const USER_PERSONAL_INFO_REQUEST = 'USER_PERSONAL_INFO_REQUEST';
+export const USER_PERSONAL_INFO_SUCCESS = 'USER_PERSONAL_INFO_SUCCESS';
+export const USER_PERSONAL_INFO_FAILURE = 'USER_PERSONAL_INFO_FAILURE';
+
 // User Login/Logout functions
 export const fetchLoginRequest = () => {
     return {
@@ -170,6 +180,48 @@ export const fetchUsersSuccess = user => {
 export const fetchUsersFailure = error => {
     return {
         type: USER_GET_FAILURE,
+        payload: error
+    }
+}
+
+// Get User Profile Image 
+export const getUserProfileImageRequest = () => {
+    return {
+        type: USER_PROFILE_IMAGE_REQUEST,
+    }
+}
+
+export const getUserProfileImageSuccess = image => {
+    return {
+        type: USER_PROFILE_IMAGE_SUCCESS,
+        payload: image
+    }
+}
+
+export const getUserProfileImageFailure = error => {
+    return {
+        type: USER_PROFILE_IMAGE_FAILURE,
+        payload: error
+    }
+}
+
+// Get User Personal Info
+export const getUserPersonalInfoRequest = () => {
+    return {
+        type: USER_PERSONAL_INFO_REQUEST,
+    }
+}
+
+export const getUserPersonalInfoSuccess = personalInfo => {
+    return {
+        type: USER_PERSONAL_INFO_SUCCESS,
+        payload: personalInfo
+    }
+}
+
+export const getUserPersonalInfoFailure = error => {
+    return {
+        type: USER_PERSONAL_INFO_FAILURE,
         payload: error
     }
 }

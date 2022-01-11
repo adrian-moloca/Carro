@@ -15,6 +15,8 @@ const RideCard =(props)=>{
     const { t } = useTranslation();
     const classes = useStyles();
 
+    const status = {...props.status}
+
     const[isFlipped, setIsFlipped] = useState(false);
 
     const handleClick = () => {
@@ -76,7 +78,7 @@ const RideCard =(props)=>{
                             </GreenCaroButton>
                         </Grid>
                         <Grid container item xs={8} justifyContent = 'center'>
-                            <RejectModal rejectReason={props.rejectReason} setRejectReason={props.setRejectReason}/>
+                            <RejectModal rejectReason={status.rejectReason} setRejectReason={props.setRejectReason}/>
                         </Grid>
                     </Grid>
                 )
@@ -159,7 +161,7 @@ const RideCard =(props)=>{
             case 8:{
                 return(
                     <Grid container item xs={8} justifyContent='center'>
-                        <RejectModal rejectReason={props.rejectReason} setRejectReason={props.setRejectReason}/>
+                        <RejectModal rejectReason={status.rejectReason} setRejectReason={props.setRejectReason}/>
                     </Grid>
                 );
             
@@ -167,7 +169,7 @@ const RideCard =(props)=>{
             case 10:{
                 return(
                     <Grid container item xs={8} justifyContent='center'>
-                        <RejectModal diabled={true} rejectReason={props.rejectReason} setRejectReason={props.setRejectReason}/>
+                        <RejectModal diabled={true} rejectReason={status.rejectReason} setRejectReason={props.setRejectReason}/>
                     </Grid>
                 );
             }
@@ -184,7 +186,7 @@ const RideCard =(props)=>{
             <Box display='flex' width='1' height='400px' p={1} borderRadius='10px' boxShadow={3}>
                 <Grid container justifyContent='center'>
                     <Grid container item xs={12} justifyContent='center'>
-                        <img src={props.image} className={classes.profileImg} alt={""}/>
+                        <img src={"data:image/png;base64," + props.image} className={classes.profileImg} alt={""}/>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center'>
                         <Box fontSize='20px' fontWeight='500'>{props.name}</Box>
@@ -201,7 +203,7 @@ const RideCard =(props)=>{
                     <Grid container item xs={8} justifyContent='space-around'>
                         <Rating value={props.driverRate} readOnly precision={0.5}/>
                     </Grid>
-                    {getFrontCardBtns(props.status)}
+                    {getFrontCardBtns(status.status)}
                 </Grid>
             </Box>
                 
@@ -228,7 +230,7 @@ const RideCard =(props)=>{
                     <Grid container item xs={12}>
                         <Box fontSize='15px' fontWeight='500' paddingBottom='4%'>{t('DriverCardEstimatedHours')} {props.estimatedTime}</Box>
                     </Grid>
-                    {getBackCardBtns(props.status, props.packageExists)}
+                    {getBackCardBtns(status.status, props.packageExists)}
                     <Grid container item xs={8} justifyContent='center'>
                         <Box mt='8%' mb='2%' width={1}>
                             <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>

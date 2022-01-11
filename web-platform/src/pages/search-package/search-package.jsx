@@ -96,9 +96,9 @@ const SearchPackages = ({packagesData, userData, searchPackages, clean}) => {
       { packagesData.packages.length > 0 ? packages.currentData().map((pack, index)=>
           <Grid key={index} container item xs={12}  md={5}  xl={4} justifyContent='space-around'>
             <PackageCard packageQuantity={pack.numberOfPackages} packageDimensions={pack.dimensions} sender={pack.sender}
-                        senderPhone={pack.senderPhone} destinatary={pack.name} destinataryPhone={'+'+pack.packageReceiver.phoneNumber}
+                        senderPhone={pack.senderPhone} destinatary={pack.name} destinataryPhone={'+'/* +pack.packageReceiver.phoneNumber */}
                         packageWeight={pack.weight} departureDate={pack.departureDate.substr(0, 10)} price={pack.price}
-                        departureAddress={pack.departureAddress} destinationAddress={pack.packageReceiver.destinationAddress} details={pack.description}
+                        departureAddress={pack.departureAddress} destinationAddress={pack.destinationAddress} details={pack.description}
                         status= {pack.status} rideExists={pack.rideExists} specialMention={pack.packageSpecialMention}/>
           </Grid> ) : notFoundAnyRide()
         }

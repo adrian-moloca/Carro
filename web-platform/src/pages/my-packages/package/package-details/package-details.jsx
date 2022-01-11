@@ -12,6 +12,19 @@ const PackageDetails = (props)=>{
     const { t } = useTranslation();
     const classes = useStyles();
 
+    const getPackageType = (type) => {
+        switch(type){
+            case 1:
+                return t("Small");
+            case 2:
+                return t("Medium");
+            case 3:
+                return t("Big");
+            default:
+                return 'package';
+        }
+    }
+
     return(
     <Box borderRadius='10px' alignItems='center'  boxShadow={3} display ='flex' flexDirection='column' mt='15px' mx='3%' p='2%'>
         <Box my='2%' fontSize={20}>{t("PackageDetails")}</Box>
@@ -29,7 +42,7 @@ const PackageDetails = (props)=>{
                 <Box>{t("DriverCardDestinationAddress")} {props.destinationAddress}</Box>
             </Grid>
             <Grid container item xs={6}>
-                <Box>{t("PackageType")} {props.packageType}</Box>
+                <Box>{t("PackageType")} {getPackageType(props.packageType)}</Box>
             </Grid>
             <Grid container item xs={6}>
                 <Box>{t("Sizing")} {props.dimensions}</Box>

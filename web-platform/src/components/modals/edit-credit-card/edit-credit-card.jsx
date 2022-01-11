@@ -73,7 +73,7 @@ const EditCreditCard = ({creditCard, ...props}) =>{
                             </Grid>
                         </Box>
                         <Grid container>
-                            <PrimaryButton disabled = {cardNumber && expDate && cardHolder && cardCVV ? false : true} variant = 'contained' onClick={()=>{console.log('send new card data'); handleClose()}} fullWidth>{t("SaveButton")}</PrimaryButton>
+                            <PrimaryButton disabled = {cardNumber && expDate && cardHolder && cardCVV ? false : true} variant = 'contained' onClick={()=>{handleClose()}} fullWidth>{t("SaveButton")}</PrimaryButton>
                         </Grid>
                     </Container>
                 </Fade>

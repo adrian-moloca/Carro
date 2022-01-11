@@ -19,6 +19,9 @@ import {createNewUser} from '../../redux/actions/UserActions';
 import CarroCheckbox from "../../components/checkbox/CarroCheckbox";
 import {mailValidator, nameValidator, passwordValidator, phoneValidator} from "../../utils/Functions/input-validators";
 import { useHistory } from "react-router";
+import { getBase64Image } from "../../utils/Functions/base64Image";
+import axios from "axios";
+import utilData from '../../utils/constants';
 
 const Register = ({createNewUser, data}) => {
   
@@ -29,7 +32,7 @@ const Register = ({createNewUser, data}) => {
   const [userCreated, setUserCreated] = useState(String(data.token).length > 0 ? true : false);
   const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState('');
   const [countryPhoneCode, setCountryPhoneCode] = useState('');
-  const [profilePhoto, setProfilePhoto] = useState(AvatarImage);
+  const [profilePhoto, setProfilePhoto] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + ((countryPhoneCode.slice(-1) == 0 && inputValuePhoneNumber[0] == 0) ? inputValuePhoneNumber.substring(1) : inputValuePhoneNumber));
@@ -39,17 +42,31 @@ const Register = ({createNewUser, data}) => {
   const [dateOfBirth, setDateOfBirth] = useState(new Date(new Date().getFullYear()-14, new Date().getMonth(),new Date().getDate(), 0));
   const [terms, setTerms] = useState(false);
   const [hasErrors, setHasErrors] = useState(false);
+  const [clickedRegister, setClickedRegister] = useState(false);
   /* const [legalPersonChecked, setLegalPersonChecked] = useState(false); */
 
   useLayoutEffect(()=>{
     setPhoneNumber(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber)
   }, [inputValuePhoneNumber, countryPhoneCode])
 
-  const redirectPhoneNumberVerification = () => {
+  async function redirectPhoneNumberVerification(){
     if(userCreated === true) {
-        history.push('/register/phone-number-verification');
+      if(profilePhoto.length > 0) {
+        const img = new Image();
+        img.src = profilePhoto;
+        const base64Image = getBase64Image(img); 
+        axios.put(utilData.baseUrl + '/users/profile-images', {
+            profileImage: base64Image,
+        }, {
+            headers:{
+              'Authorization': `Bearer ${data.token}`,
+            }
+        }).then(()=>history.push('/register/phone-number-verification')).catch(error=>console.log(error))
+      } else {
+        history.push('/register/phone-number-verification')
+      }
     } else {
-        history.push('/register');
+        alert('Register failed');
     }
   }
 
@@ -71,9 +88,11 @@ const Register = ({createNewUser, data}) => {
   }, [inputValuePhoneNumber])
   
   useEffect(() => {
-    setUserCreated(String(data.token).length > 0 ? true : false);
-    setTimeout(() => {redirectPhoneNumberVerification()}, 500)
-  }, [data])
+    if(clickedRegister){
+        setUserCreated(String(data.token).length > 0 ? true : false);
+        setTimeout(() => {redirectPhoneNumberVerification()}, 500);
+    }
+  }, [clickedRegister])
 
   /* const handleLegalPersonCheckboxClick = (event) => {
     event.target.checked ? setLegalPersonChecked(true) : setLegalPersonChecked(false);
@@ -89,10 +108,15 @@ const Register = ({createNewUser, data}) => {
       <Box display="flex" justifyContent="space-evenly" mt="1%">
         <Grid container spacing={3} display="flex" justifyContent="center">
           <Grid container item xs={12} justifyContent="center">
-            <label style={{cursor: 'pointer', height:'60px', width: '60px'}}>
-              <input type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=> setProfilePhoto(URL.createObjectURL(e.target.files[0])) }/>
-              <Avatar className={classes.profilePhotoEdit} src={profilePhoto}/>
+            <label style={{cursor: 'pointer', height:'60px', width: '60px', justifyContent:'center'}}>
+              <input type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=> setProfilePhoto(URL.createObjectURL(e.target.files[0]))}/>
+              <Avatar className={classes.profilePhotoEdit} src={profilePhoto && profilePhoto.length > 0 ? profilePhoto : AvatarImage}/>
             </label>
+          </Grid>
+          <Grid container item xs={12} justifyContent="center">
+            <Box style={{color: "#00b4d8",  fontSize: '12px'}}>
+              Apasati poza pentru a edita
+            </Box>
           </Grid>
           <Grid container item xs={12} xl={6} justifyContent="center">
             <CarroTextField type='text' error={nameValidator(lastName)} helperText={nameValidator(lastName) ? t('LastNameOnlyLetters') : ''}
@@ -112,7 +136,7 @@ const Register = ({createNewUser, data}) => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <CarroTextField type="password" error={password === confirmPassword ? false : true} helperText={password === confirmPassword ? '' : t('PasswordsMustBeEqual')} 
-                          variant="outlined" label={t("ConfirmPassword")} fullWidth value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
+                            variant="outlined" label={t("ConfirmPassword")} fullWidth value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
           </Grid>
           {/* <Grid container item xs={12} xl={6} justifyContent="center">
             <CarroTextField variant="outlined" label={t("PickupAddress")} fullWidth value={date} onChange={(e) => setLastName(e.target.value)}/>
@@ -177,7 +201,7 @@ const Register = ({createNewUser, data}) => {
       {/* <Link to="/register/phone-number-verification" style={{textDecoration: 'none', color: 'inherit', width: '100%'}}> */}
         <PrimaryButton className="ButtonTextSize" fullWidth variant="contained" endIcon={<PersonAddIcon />} 
           disabled={terms && lastName && firstName && phoneNumber && email && password && confirmPassword && dateOfBirth && password===confirmPassword && !hasErrors ? false : true}
-          onClick={() => createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, 'True')}
+          onClick={() =>{createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, 'True'); setClickedRegister(true)}}
         >
           
           {t("Register")}

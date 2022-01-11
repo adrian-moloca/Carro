@@ -26,7 +26,7 @@ return (dispatch) => {
 
 
 export const createNewPackage = (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress,
-                                 packageType, weight, height, length, width, description, price, currency, destinataryName,
+                                 packageType, weight, height, length, width, smallDescription, description, price, currency, destinataryName,
                                  phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, senderName, token) => {
 
 return(dispatch) => {
@@ -37,18 +37,18 @@ axios.post(data.baseUrl+"/packages",{
             fromCity: fromCity,
             departureAddress: departureAddress,
             departureDate: departureDate,
-            senderName: senderName,
+            senderName: senderName.replace(",", " "),
         },
         packageReceiver:
         {
-            name:destinataryName,
-            phoneNumber:phoneNumber,
+            phoneNumber: phoneNumber.includes("+") ? phoneNumber : "+"+phoneNumber,
             toCountry:toCountry,
             toCity:toCity,
             destinationAddress:destinationAddress,
             receiverName:destinataryName,
         },
         packageInfo:{
+            name:smallDescription,
             packageType: packageType,
             price:price,
             numberOfPackages: 1,
