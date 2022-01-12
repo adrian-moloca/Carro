@@ -115,12 +115,12 @@ const PersonalInformation = ({userData, getUserPersonalInfo})=>{
           </Grid>
           <Grid container item sm={5}  justifyContent="center">
             {onEditMode ? (
-                    <PrimaryButton variant='contained' onClick={()=>updateChangedData()} style={{height:35, width:250}} fullWidth>
+                    <PrimaryButton variant='contained' onClick={()=>updateChangedData()} style={{height:35, width:250, marginTop:"10px"}} fullWidth>
                         <Box px='10px'>{t('SaveButton')}</Box>
                         <SaveAlt fontSize='small'/>
                     </PrimaryButton>
                 ) : (
-                    <PrimaryButton variant='contained' onClick={()=>setOnEditMode(true)} style={{height:35, width:250}} fullWidth>
+                    <PrimaryButton variant='contained' onClick={()=>setOnEditMode(true)} style={{height:35, width:250,  marginTop:"10px"}} fullWidth>
                         <Box px='10px'>{t('EditButton')}</Box>
                         <Create fontSize='small'/>
                     </PrimaryButton>

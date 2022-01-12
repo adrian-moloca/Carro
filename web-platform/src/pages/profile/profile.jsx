@@ -116,7 +116,7 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
                     <Grid container item sm={10} justifyContent="space-evenly">
                         <Box width={"100%"} display={"flex"} marginTop={"45px"} marginBottom={"45px"}>
                             <Grid container justifyContent="space-around">
-                            {getCurrentSection()}
+                              {getCurrentSection()}
                             </Grid>
                         </Box>
                     </Grid>
