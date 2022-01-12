@@ -109,7 +109,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
                 </Box>
               </MenuItem>
             </Link>
-            <Link to="/payment-method" style={{textDecoration:'none' ,color:'inherit'}}>
+            {/* <Link to="/payment-method" style={{textDecoration:'none' ,color:'inherit'}}>
               <MenuItem dense onClick={handleAccountMenuClose}>
                   <Box mr={2} className={"Primary-color"}>
                     <CreditCardOutlined/>
@@ -119,7 +119,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
                   </Box>
               </MenuItem>
             </Link>
-            {/* <Link to="/conversations" style={{textDecoration:'none' ,color:'inherit'}}>
+            <Link to="/conversations" style={{textDecoration:'none' ,color:'inherit'}}>
               <MenuItem dense onClick={handleAccountMenuClose}>
                   <Box mr={2} className={"Primary-color"}>
                     <Message/>
