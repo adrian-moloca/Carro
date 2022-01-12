@@ -4,8 +4,9 @@ import {fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure,
     updateUserRequest, updateUserSuccess, updateUserFailure,
     deleteUserRequest, deleteUserSuccess, deleteUserFailure,
     getUserProfileImageRequest, getUserProfileImageSuccess, getUserProfileImageFailure,
-    getUserPersonalInfoRequest, getUserPersonalInfoSuccess, getUserPersonalInfoFailure, 
-    changePasswordUserRequest, changePasswordUserSuccess, changePasswordUserFailure,
+    getUserPersonalInfoRequest, getUserPersonalInfoSuccess, getUserPersonalInfoFailure,
+    getUserOptionalInfoRequest, getUserOptionalInfoSuccess, getUserOptionalInfoFailure, 
+    changePasswordUserRequest, changePasswordUserSuccess, changePasswordUserFailure, updateNotifications,
 } from '../types/UserTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
@@ -20,7 +21,7 @@ return (dispatch) => {
         password: password
     })
     .then(response => {
-        dispatch(fetchLoginSuccess(jwt_decode(response.data.token), response.data.token));
+        dispatch(fetchLoginSuccess(jwt_decode(response.data.token), response.data.token, response.data.refreshToken));
     }).catch(error => {
         const errorMsg = error;
         alert('Combinatia "user - parola" este gresita');
@@ -142,7 +143,7 @@ axios.delete(data.baseUrl+"/catalin/admin/users/" +id ,{
 }
 
 export const Logout = (_id) => {
-
+    window.localStorage.clear()
     return (dispatch) => {
         dispatch(fetchLogout);
     }
@@ -178,6 +179,23 @@ export const getUserPersonalInfo = (token) => {
         }).catch(error => {
             const errorMsg = error;
             dispatch(getUserPersonalInfoFailure(errorMsg))
+        })
+    }
+}
+
+export const getUserOptionalInfo = (token) => {
+
+    return (dispatch) => {
+        dispatch(getUserOptionalInfoRequest);
+        axios.get(data.baseUrl + "/users/optional-infos", {
+            headers:{
+              'Authorization': `Bearer ${token}`,
+            }}).then(response => {
+            const info = response.data.data;
+            dispatch(getUserOptionalInfoSuccess(info));
+        }).catch(error => {
+            const errorMsg = error;
+            dispatch(getUserOptionalInfoFailure(errorMsg))
         })
     }
 }

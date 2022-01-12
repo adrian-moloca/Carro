@@ -44,6 +44,7 @@ import PrivacyPolicy from '../../pages/footer-pages/privacy-policy/privacyPolicy
 import CookiesPolicy from '../../pages/footer-pages/cookies-policy/cookiesPolicy';
 import './Routing.css';
 import { connect } from 'react-redux';
+import { State } from 'country-state-city';
 
 const Routes = ({data}) => {
     const [collapsed, setCollapsed] = useState(false);
@@ -63,6 +64,14 @@ const Routes = ({data}) => {
     useEffect(()=>{
         setIsLoggedIn(String(data.email).length > 0 ? true : false)
     }, [data.email])
+
+    if(isLoggedIn){
+        if(!data.rememberMe){
+            window.onbeforeunload = function(){
+                window.localStorage.clear()
+            } 
+        }
+    }
     
 
     // if(isLoggedIn === false) {
