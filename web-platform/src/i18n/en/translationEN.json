@@ -240,5 +240,12 @@
     "PackagesNotFound": "Not found any package on the selected Route",
     "NoRidesAdded": "You don't added any ride in your profile!",
     "NoPackagesAdded": "You don't added any package in your profile!",
-    "NoIteractionWithYourPackage": "You don't have any iteracton with this package yet."
+    "NoIteractionWithYourPackage": "You don't have any iteracton with this package yet.",
+    "PersonalInfo": "Personal Info",
+    "OptionalInfo": "Optional Info",
+    "Company": "Company",
+    "MandatoryDocuments": "Mandatory documents",
+    "Settings": "Settings",
+    "Languages": "Languages",
+    "DescriptionUser": "Description"
 }

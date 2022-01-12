@@ -1,4 +1,11 @@
 // User action types
+export const REMEMBER_ME = 'REMEMBER_ME';
+
+//update Token
+export const REFRESH_TOKEN = 'REFRESH_TOKEN';
+
+//
+export const TOKEN_VALIDATED_TOGGLE = 'TOKEN_VALIDATED_TOGGLE';
 
 // User Login
 export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
@@ -50,6 +57,34 @@ export const USER_PERSONAL_INFO_REQUEST = 'USER_PERSONAL_INFO_REQUEST';
 export const USER_PERSONAL_INFO_SUCCESS = 'USER_PERSONAL_INFO_SUCCESS';
 export const USER_PERSONAL_INFO_FAILURE = 'USER_PERSONAL_INFO_FAILURE';
 
+// User Optional Info
+// User Personal Info
+export const USER_OPTIONAL_INFO_REQUEST = 'USER_OPTIONAL_INFO_REQUEST';
+export const USER_OPTIONAL_INFO_SUCCESS = 'USER_OPTIONAL_INFO_SUCCESS';
+export const USER_OPTIONAL_INFO_FAILURE = 'USER_OPTIONAL_INFO_FAILURE';
+
+// remember me toggle
+export const rememberMeToggle = () => {
+    return {
+        type: REMEMBER_ME,
+    }
+}
+
+// refresh tokens
+export const refreshTokens = (token, refreshToken)=>{
+    return{
+        type: REFRESH_TOKEN,
+        payload: {token, refreshToken}
+    }
+}
+
+// token validated toggle 
+export const tokenValidatedToggle = () => {
+    return {
+        type: TOKEN_VALIDATED_TOGGLE,
+    }
+}
+
 // User Login/Logout functions
 export const fetchLoginRequest = () => {
     return {
@@ -57,10 +92,10 @@ export const fetchLoginRequest = () => {
     }
 }
 
-export const fetchLoginSuccess = (user, token) => {
+export const fetchLoginSuccess = (user, token, refreshToken) => {
     return {
         type: USER_LOGIN_SUCCESS,
-        payload: {user, token}
+        payload: {user, token, refreshToken}
     }
 }
 
@@ -225,3 +260,25 @@ export const getUserPersonalInfoFailure = error => {
         payload: error
     }
 }
+
+//get User Optional Info
+export const getUserOptionalInfoRequest = () => {
+    return {
+        type: USER_OPTIONAL_INFO_REQUEST,
+    }
+}
+
+export const getUserOptionalInfoSuccess = optionalInfo => {
+    return {
+        type: USER_OPTIONAL_INFO_SUCCESS,
+        payload: optionalInfo
+    }
+}
+
+export const getUserOptionalInfoFailure = error => {
+    return {
+        type: USER_OPTIONAL_INFO_FAILURE,
+        payload: error
+    }
+}
+

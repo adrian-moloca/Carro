@@ -49,7 +49,7 @@ export function passwordValidator(password){
 }
 
 export function phoneValidator(phone){
-    const phoneFormat =  /^[0-9].{9}$/
+    const phoneFormat =  /^[0-9].{9,10}$/
     if(phoneFormat.test(phone) || String(phone).length==0)
     {
         return false;

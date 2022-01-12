@@ -15,13 +15,15 @@ import {fetchLogin} from '../../redux/actions/UserActions';
 import { useHistory } from 'react-router-dom';
 import { mailValidator } from '../../utils/Functions/input-validators';
 import { fetchNotifications } from '../../redux/actions/NotificationsActions';
+import { rememberMeToggle } from '../../redux/types/UserTypes';
 
-const Login = ({fetchLogin, fetchNotifications, data}) => {
+const Login = ({fetchLogin, fetchNotifications, rememberMeToggle, data}) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(String(data.email).length > 0 ? true : false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
 
   const classes = useStyles();
   const { t } = useTranslation();
@@ -32,7 +34,7 @@ const Login = ({fetchLogin, fetchNotifications, data}) => {
         history.push('/home');
         fetchNotifications(data.token)
     } else {
-        history.push('/login');
+        console.log('error auth')
     }
   }
 
@@ -59,6 +61,7 @@ const Login = ({fetchLogin, fetchNotifications, data}) => {
             <Grid container item xs={10} xl={8} justifyContent='space-between'>  
             <Box display ='flex'>
               <FormControlLabel 
+                checked={data.rememberMe} onChange={()=>rememberMeToggle()}
                 control={<CarroCheckbox color='default'/>}
                 label={t("SaveData")}/>
             </Box>
@@ -98,7 +101,7 @@ const Login = ({fetchLogin, fetchNotifications, data}) => {
   )
 }
 
-const mapDispatchToProps = dispatch => ({fetchLogin: (email,password) => dispatch(fetchLogin(email, password)), fetchNotifications: (token) => dispatch(fetchNotifications(token))})
+const mapDispatchToProps = dispatch => ({fetchLogin: (email,password) => dispatch(fetchLogin(email, password)), fetchNotifications: (token) => dispatch(fetchNotifications(token)), rememberMeToggle: () => dispatch(rememberMeToggle())})
 const mapStateToProps = state => ({data: state.userData})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -5,11 +5,14 @@ import {USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE,
     USER_DELETE_REQUEST, USER_DELETE_SUCCESS, USER_DELETE_FAILURE,
     USER_RESET_REQUEST, USER_RESET_SUCCESS, USER_RESET_FAILURE,
     USER_PROFILE_IMAGE_REQUEST, USER_PROFILE_IMAGE_SUCCESS, USER_PROFILE_IMAGE_FAILURE,
-    USER_PERSONAL_INFO_REQUEST, USER_PERSONAL_INFO_SUCCESS, USER_PERSONAL_INFO_FAILURE
+    USER_PERSONAL_INFO_REQUEST, USER_PERSONAL_INFO_SUCCESS, USER_PERSONAL_INFO_FAILURE,
+    USER_OPTIONAL_INFO_REQUEST, USER_OPTIONAL_INFO_SUCCESS, USER_OPTIONAL_INFO_FAILURE,
+    REMEMBER_ME, REFRESH_TOKEN, TOKEN_VALIDATED_TOGGLE
 } from '../types/UserTypes';
 
 
 let initialState = {
+    rememberMe: false,
     UserRole: "",
     email: "",
     exp: 0,
@@ -26,6 +29,7 @@ let initialState = {
     hasErrors: false,
     token: "",
     refreshToken: "",
+    isTokenValidated: false,
     profileImage: "",
     personalInfo: {
         email: "",
@@ -37,10 +41,44 @@ let initialState = {
         city: "",
         country: ""
     },
+    optionalInfo:{
+        languages: "",
+        description: "",
+        car: {
+            registrationNumber: "",
+            model: "",
+            color: "",
+            brand: ""
+        }
+    }
 }
 
 const userReducer = (state = initialState, action) => {
 switch (action.type) {
+    
+    //remember me
+    case REMEMBER_ME:{
+        return {
+            ...state,
+            rememberMe: !state.rememberMe
+        }
+    }
+
+    // refresh tokens
+    case REFRESH_TOKEN:{
+        return{
+            ...state, 
+            token: action.payload.token,
+            refreshToken: action.payload.refreshToken
+        }
+    }
+
+    case TOKEN_VALIDATED_TOGGLE:{
+        return {
+            ...state,
+            isTokenValidated: !state.isTokenValidated
+        }
+    }
 
     //Login
     case USER_LOGIN_REQUEST:
@@ -161,6 +199,7 @@ switch (action.type) {
     case USER_LOGOUT:
         return {
             ...state,
+            rememberMe: false,
             UserRole: "",
             email: "",
             exp: 0,
@@ -187,6 +226,16 @@ switch (action.type) {
                 address: "",
                 city: "",
                 country: ""
+            },
+            optionalInfo:{
+                languages: "",
+                description: "",
+                car: {
+                    registrationNumber: "",
+                    model: "",
+                    color: "",
+                    brand: ""
+                }
             }
         }
     //Profile Image
@@ -230,6 +279,32 @@ switch (action.type) {
         }
     }
     case USER_PERSONAL_INFO_FAILURE:{
+        return {
+            ...state,
+        }
+    }
+    case USER_OPTIONAL_INFO_REQUEST:{
+        return {
+            ...state,
+            loading: true
+        }
+    }
+    case USER_OPTIONAL_INFO_SUCCESS:{
+        return {
+            ...state,
+            personalInfo: {
+                languages: action.payload.languages,
+                description: action.payload.languages,
+                car: {
+                    registrationNumber: action.payload.car.registrationNumber,
+                    model: action.payload.car.model,
+                    color: action.payload.car.color,
+                    brand: action.payload.car.brand
+                }
+            }
+        }
+    }
+    case USER_OPTIONAL_INFO_FAILURE:{
         return {
             ...state,
         }
