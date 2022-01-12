@@ -214,7 +214,7 @@
     "PasswordsMustBeEqual": "Passwords must be equal",
     "MinimumAgeForRegister": "Minimum age for registration is 14 years old",
     "ValidPhoneNumber": "Type a valid phone number (10 numbers)",
-    "CountryPhonecode": "Country phone code ",
+    "CountryPhonecode": "Phone code ",
     "VerifyDeleteRide": "Do you want to delete this ride?",
     "VerifyDeletePackage": "Do you want to delete this package?",
     "ValidAddress": "Type a valid address",
