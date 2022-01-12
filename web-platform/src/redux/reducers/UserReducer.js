@@ -7,6 +7,7 @@ import {USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE,
     USER_PROFILE_IMAGE_REQUEST, USER_PROFILE_IMAGE_SUCCESS, USER_PROFILE_IMAGE_FAILURE,
     USER_PERSONAL_INFO_REQUEST, USER_PERSONAL_INFO_SUCCESS, USER_PERSONAL_INFO_FAILURE,
     USER_OPTIONAL_INFO_REQUEST, USER_OPTIONAL_INFO_SUCCESS, USER_OPTIONAL_INFO_FAILURE,
+    USER_COMPANY_REQUEST, USER_COMPANY_SUCCESS, USER_COMPANY_FAILURE,
     REMEMBER_ME, REFRESH_TOKEN, TOKEN_VALIDATED_TOGGLE
 } from '../types/UserTypes';
 
@@ -50,7 +51,17 @@ let initialState = {
             color: "",
             brand: ""
         }
-    }
+    },
+    company:{
+        isCompany: false,
+        name: "",
+        email: "",
+        taxIdentificationNumber: "",
+        address: "",
+        city: "",
+        country: "",
+        phoneNumber: ""
+    },
 }
 
 const userReducer = (state = initialState, action) => {
@@ -292,16 +303,16 @@ switch (action.type) {
     case USER_OPTIONAL_INFO_SUCCESS:{
         return {
             ...state,
-            optionalInfo: {
-                languages: action.payload.languages,
-                description: action.payload.description,
-                car: {
-                    registrationNumber: action.payload.car.registrationNumber,
-                    model: action.payload.car.model,
-                    color: action.payload.car.color,
-                    brand: action.payload.car.brand
-                }
-            }
+            company:{
+                isCompany: action.payload.isCompany,
+                name: action.payload.name,
+                email: action.payload.email,
+                taxIdentificationNumber: action.payload.taxIdentificationNumber,
+                address: action.payload.address,
+                city: action.payload.city,
+                country: action.payload.country,
+                phoneNumber: action.payload.phoneNumber
+            },
         }
     }
     case USER_OPTIONAL_INFO_FAILURE:{

@@ -58,10 +58,15 @@ export const USER_PERSONAL_INFO_SUCCESS = 'USER_PERSONAL_INFO_SUCCESS';
 export const USER_PERSONAL_INFO_FAILURE = 'USER_PERSONAL_INFO_FAILURE';
 
 // User Optional Info
-// User Personal Info
 export const USER_OPTIONAL_INFO_REQUEST = 'USER_OPTIONAL_INFO_REQUEST';
 export const USER_OPTIONAL_INFO_SUCCESS = 'USER_OPTIONAL_INFO_SUCCESS';
 export const USER_OPTIONAL_INFO_FAILURE = 'USER_OPTIONAL_INFO_FAILURE';
+
+// User Company 
+export const USER_COMPANY_REQUEST = 'USER_COMPANY_REQUEST';
+export const USER_COMPANY_SUCCESS = 'USER_COMPANY_SUCCESS';
+export const USER_COMPANY_FAILURE = 'USER_COMPANY_FAILURE';
+
 
 // remember me toggle
 export const rememberMeToggle = () => {
@@ -278,6 +283,27 @@ export const getUserOptionalInfoSuccess = optionalInfo => {
 export const getUserOptionalInfoFailure = error => {
     return {
         type: USER_OPTIONAL_INFO_FAILURE,
+        payload: error
+    }
+}
+
+//get User Company
+export const getUserCompanyRequest = () => {
+    return {
+        type: USER_COMPANY_REQUEST,
+    }
+}
+
+export const getUserCompanySuccess = company => {
+    return {
+        type: USER_COMPANY_SUCCESS,
+        payload: company
+    }
+}
+
+export const getUserCompanyFailure = error => {
+    return {
+        type: USER_COMPANY_FAILURE,
         payload: error
     }
 }

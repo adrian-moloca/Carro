@@ -6,7 +6,8 @@ import {fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure,
     getUserProfileImageRequest, getUserProfileImageSuccess, getUserProfileImageFailure,
     getUserPersonalInfoRequest, getUserPersonalInfoSuccess, getUserPersonalInfoFailure,
     getUserOptionalInfoRequest, getUserOptionalInfoSuccess, getUserOptionalInfoFailure, 
-    changePasswordUserRequest, changePasswordUserSuccess, changePasswordUserFailure, updateNotifications,
+    getUserCompanyRequest, getUserCompanySuccess, getUserCompanyFailure,
+    changePasswordUserRequest, changePasswordUserSuccess, changePasswordUserFailure, updateNotifications, 
 } from '../types/UserTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
@@ -196,6 +197,23 @@ export const getUserOptionalInfo = (token) => {
         }).catch(error => {
             const errorMsg = error;
             dispatch(getUserOptionalInfoFailure(errorMsg))
+        })
+    }
+}
+
+export const getUserCompany = (token) => {
+
+    return (dispatch) => {
+        dispatch(getUserCompanyRequest);
+        axios.get(data.baseUrl + "/users/companies", {
+            headers:{
+              'Authorization': `Bearer ${token}`,
+            }}).then(response => {
+            const company = response.data.data;
+            dispatch(getUserCompanySuccess(company));
+        }).catch(error => {
+            const errorMsg = error;
+            dispatch(getUserCompanyFailure(errorMsg))
         })
     }
 }

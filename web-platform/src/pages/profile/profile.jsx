@@ -4,7 +4,6 @@ import { Container, Box, Grid, Avatar, ButtonBase} from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import CarroTextField from "../../components/textField/CarroTextField";
 import SeeProfileBtn from "../../components/buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn"
-import CarroCheckbox from "../../components/checkbox/CarroCheckbox";
 import AvatarImage from "../../assets/images/avatarImg.png";
 import { useTranslation } from "react-i18next";
 import useStyles from "./profileStyle";
@@ -18,7 +17,9 @@ import { getBase64Image } from "../../utils/Functions/base64Image";
 import utilData from '../../utils/constants';
 import { getUserProfileImage } from "../../redux/actions/UserActions";
 import PersonalInformation from "./personal-information/personal-information";
-import OptionalInformation from "./company/company";
+import OptionalInformation from "./optional-information/optional-information";
+import Company from "./company/company";
+import Settings from "./settings/settings";
 
 const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileImage}) => {
 
@@ -29,7 +30,7 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
     const [profilePhoto, setProfilePhoto] = useState('');
     const [profilePhotoChanged, setProfilePhotoChanged] = useState(false);  
 
-    const sections = [t('PersonalInfo'), t('OptionalInfo'), t('Company'), t('MandatoryDocuments'), t('Settings')];
+    const sections = [t('PersonalInfo'), t('OptionalInfo'), t('Company'),/*  t('MandatoryDocuments'), */ t('Settings')];
     const [currentSection, setCurrentSection] = useState(0);
 
     async function updateChangedData(){
@@ -75,6 +76,14 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
           case 1:
             return(
                 <OptionalInformation/>
+            );
+          case 2:
+            return(
+                <Company/>
+            );
+          case 3: 
+            return(
+                <Settings/>
             );
           default:
             return(
