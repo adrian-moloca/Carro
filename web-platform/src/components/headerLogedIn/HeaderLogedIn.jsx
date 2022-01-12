@@ -40,7 +40,7 @@ export default function PrimarySearchAppBar() {
             </Box>
             {/* language btn */}
             <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
-              <BasicSelect handler={null}/>
+              <BasicSelect/>
             </Box>
           </Grid>
         </Grid>

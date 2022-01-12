@@ -11,13 +11,13 @@ import { fetchMyPackages } from "../../../redux/actions/MyPackagesActions";
 import { withRouter } from "react-router";
 import { fetchMyRides } from "../../../redux/actions/MyRidesActions";
 
-const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages, fetchMyRides, myPackagesData, myRidesData, setMobileMoreAnchorEl}) => {
+const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages, fetchMyRides, myPackagesData, myRidesData, handler}) => {
 
     const {t} = useTranslation();
     const history = useHistory();
     const classes = useStyles();
 
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [fetchMyPackagesSuccess, setFetchMyPackagesSuccess] = useState(false);
     const [fetchMyRidesSuccess, setFetchMyRidesSuccess] = useState(false);
 
@@ -29,7 +29,7 @@ const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages,
 
         fetchMyPackages(userData.token);
 
-        setMobileMoreAnchorEl(false);
+        handler(false);
 
         setTimeout(() => {
             if(fetchMyPackagesSuccess === true)
@@ -44,7 +44,7 @@ const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages,
 
         fetchMyRides(userData.token);
 
-        setMobileMoreAnchorEl(false);
+        handler(false);
 
         setTimeout(() => {
             if(fetchMyRidesSuccess === true)
@@ -59,7 +59,7 @@ const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages,
 
         fetchLogout();
 
-        setMobileMoreAnchorEl(false);
+        handler(false);
 
         localStorage.removeItem('state');
 
@@ -103,7 +103,7 @@ const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages,
                         </ListItem>
                     </Link>
                     <Link to="/profile" style={{textDecoration:'none' ,color:'inherit'}}>
-                        <ListItem dense onClick={() => setMobileMoreAnchorEl(false)}>
+                        <ListItem dense onClick={() => handler(false)}>
                             <Box mr={2} className={"Primary-color"}>
                                 <AccountCircleOutlined/>
                             </Box>
@@ -112,8 +112,8 @@ const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages,
                             </Box>
                         </ListItem>
                     </Link>
-                    <Link to="/payment-method" style={{textDecoration:'none' ,color:'inherit'}}>
-                        <ListItem dense onClick={() => setMobileMoreAnchorEl(false)}>
+                    {/* <Link to="/payment-method" style={{textDecoration:'none' ,color:'inherit'}}>
+                        <ListItem dense onClick={() => handler(false)}>
                             <Box mr={2} className={"Primary-color"}>
                                 <CreditCardOutlined/>
                             </Box>
@@ -122,7 +122,7 @@ const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages,
                             </Box>
                         </ListItem>
                     </Link>
-                    {/* <Link to="/conversations" style={{textDecoration:'none' ,color:'inherit'}}>
+                    <Link to="/conversations" style={{textDecoration:'none' ,color:'inherit'}}>
                     <ListItem dense onClick={() => setMobileMoreAnchorEl(false)}>
                         <Box mr={2} className={"Primary-color"}>
                             <Message/>
@@ -148,7 +148,7 @@ const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages,
                                 <Box className={classes.borderForAdmin}></Box>
                             </Grid>
                             <Link to="/admin-panel" style={{textDecoration:'none' ,color:'inherit'}}>
-                                <ListItem dense onClick={() => setMobileMoreAnchorEl(false)}>
+                                <ListItem dense onClick={() => handler(false)}>
                                     <Box mr={2} className={"Primary-color"}>
                                         <Security/>
                                     </Box>

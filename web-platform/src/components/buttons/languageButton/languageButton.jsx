@@ -14,7 +14,7 @@ const BasicSelect = ({handler}) => {
   const handleChange = (event) => {
     setLanguage(event.target.value);
     i18n.changeLanguage(event.target.value);
-    if(handler !== null){
+    if(handler !== undefined){
       setTimeout(() => {handler(false)}, 100);
     }
   };

@@ -45,9 +45,9 @@ const LogedInMobileMenu = () => {
                   </Box>
                 </ListItem>
             </Link>
-                <HeaderLogedInProfileMenuMobile setMobileMoreAnchorEl={handleSliderMenu}/>
+                <HeaderLogedInProfileMenuMobile handler={handleSliderMenu}/>
             <ListItem>
-                <BasicSelect setMobileMoreAnchorEl={handleSliderMenu}/>
+                <BasicSelect handler={handleSliderMenu}/>
             </ListItem>
           </List>
       </Drawer>
