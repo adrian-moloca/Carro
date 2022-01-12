@@ -64,6 +64,24 @@ const OptionalInformation = ({userData, getUserOptionalInfo})=>{
           <Grid container item sm={11}>
             <CarroTextField value={description} variant="outlined" label={t("DescriptionUser")} onChange={(e)=>{setDescription(e.target.value); setOptionalInfoChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
           </Grid>
+          <Grid container item sm={11}>
+            <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"}>
+              {t("CarInfo")}
+            </Box>
+          </Grid>
+          <Grid container item sm={5}>
+            <CarroTextField value={carBrand} variant="outlined" label={t("CarBrand")} onChange={(e)=>{setCarBrand(e.target.value); setOptionalInfoChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
+          </Grid>
+          <Grid container item sm={5}>
+            <CarroTextField value={carModel} variant="outlined" label={t("CarModel")} onChange={(e)=>{setCarModel(e.target.value); setOptionalInfoChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
+          </Grid>
+          <Grid container item sm={5}>
+            <CarroTextField value={carRegistrationNumber} variant="outlined" label={t("CarNR")} onChange={(e)=>{setCarRegistrationNumber(e.target.value); setOptionalInfoChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
+          </Grid>
+          <Grid container item sm={5}>
+            <CarroTextField value={carColor} variant="outlined" label={t("Color")} onChange={(e)=>{setCarColor(e.target.value); setOptionalInfoChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
+          </Grid>
+
           {/* <Grid container item sm={5}>
             <CarroTextField value={firstName} variant="outlined" label={t("FirstName")} onChange={(e)=>{setFirstName(e.target.value);  setPersonalInfoChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
           </Grid>
@@ -94,12 +112,12 @@ const OptionalInformation = ({userData, getUserOptionalInfo})=>{
           </Grid>*/}
           <Grid container item sm={5}  justifyContent="center"> 
             {onEditMode ? (
-                    <PrimaryButton variant='contained' onClick={()=>updateChangedData()} style={{height:35, width:250}} fullWidth>
+                    <PrimaryButton variant='contained' onClick={()=>updateChangedData()} style={{height:35, width:250, marginTop:"10px"}} fullWidth>
                         <Box px='10px'>{t('SaveButton')}</Box>
                         <SaveAlt fontSize='small'/>
                     </PrimaryButton>
                 ) : (
-                    <PrimaryButton variant='contained' onClick={()=>setOnEditMode(true)} style={{height:35, width:250}} fullWidth>
+                    <PrimaryButton variant='contained' onClick={()=>setOnEditMode(true)} style={{height:35, width:250,  marginTop:"10px"}} fullWidth>
                         <Box px='10px'>{t('EditButton')}</Box>
                         <Create fontSize='small'/>
                     </PrimaryButton>
