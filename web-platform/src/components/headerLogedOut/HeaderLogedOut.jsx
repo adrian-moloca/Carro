@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Box, Grid } from "@material-ui/core";
 import BasicSelect from '../../components/buttons/languageButton/languageButton';
 import CaroLogo from '../../assets/logo/CaroLogo.png';
-import RenderMobileMenu from './headerLogedOutComponents/headerLogedOutMobileMenu/headerLogedOutMobileMenu'
+import LogedOutMobileMenu from './headerLogedOutComponents/headerLogedOutMobileMenu/headerLogedOutMobileMenu'
 import RenderMenuSBD from './headerLogedOutComponents/headerLogedOutMenu/headerLogedOutMenu';
 import useStyles from './HeaderLogedOutStyle'
 
@@ -34,7 +34,7 @@ export default function PrimarySearchAppBar() {
         </Grid>
         {/* render mobile menu btns*/}
         <Box className={classes.sectionMobile}>
-          <RenderMobileMenu/>
+          <LogedOutMobileMenu/>
         </Box>
       </Toolbar>
     </AppBar>
