@@ -67,7 +67,6 @@
     "Register": "Inregistrare",
     "Birthday": "Data nasterii",
     "Mail": "Adresa de email",
-    "Languages": "Limbi cunoscute",
     "Password": "Parola",
     "ConfirmPassword": "Confirma parola",
     "TermsAndConditions": "Termeni si conditii",
@@ -483,12 +482,10 @@
     "Profile": "Profil",
     "Particularities": "Particularitati",
     "AddDocuments": "INCARCA DOCUMENTELE OBLIGATORII",
-    "LegalPerson": "Persoana juridica",
     "CompanyName:": "Numele companiei",
     "CUI": "CUI",
     "Country": "Tara",
     "City": "Oras",
-    "CompanyEmail": "Email companie",
     "CarInfo": "Informatii autoturism (OPTIONAL)",
     "CarModel": "Model",
     "CarBrand": "Brand",
@@ -560,5 +557,10 @@
     "MandatoryDocuments": "Documente obligatorii",
     "Settings": "Setari",
     "Languages": "Limbi cunoscute",
-    "DescriptionUser": "Particularitati"
+    "DescriptionUser": "Particularitati",
+    "IsCompany": "Sunt o persoana juridica",
+    "CompanyName": "Numele firmei",
+    "TaxIdentificationNumber": "CUI",
+    "CompanyEmail": "Email firma",
+    "OnlyCompany": "*Se completeaza doar pentru persoanele juridice"
 }
