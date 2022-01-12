@@ -1,11 +1,9 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Container, Box, Grid, Avatar, MenuItem, FormControlLabel, IconButton} from "@material-ui/core";
-import CarroAutocomplete from "../../components/autocomplete/CarroAutocomplete";
+import { Container, Box, Grid, Avatar, ButtonBase} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import CarroTextField from "../../components/textField/CarroTextField";
-import PhoneTextField from "../../components/telephoneNumberField/PhoneTextField";
 import SeeProfileBtn from "../../components/buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn"
-import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
 import CarroCheckbox from "../../components/checkbox/CarroCheckbox";
 import AvatarImage from "../../assets/images/avatarImg.png";
 import { useTranslation } from "react-i18next";
@@ -13,67 +11,130 @@ import useStyles from "./profileStyle";
 import {SaveAlt, Create, Cancel} from '@material-ui/icons';
 import "../../App.css";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
-import { getCountries, getCities } from "../../utils/Functions/countries-city-functions";
 import { connect } from "react-redux";
-import { capitalizeFirstLetter } from "../../utils/Functions/capitalize-first-letter";
-import { phoneValidator } from "../../utils/Functions/input-validators";
 import { fetchCourierProfile } from "../../redux/actions/CourierActions";
 import axios from "axios";
 import { getBase64Image } from "../../utils/Functions/base64Image";
 import utilData from '../../utils/constants';
-import { getUserProfileImage, getUserPersonalInfo } from "../../redux/actions/UserActions";
+import { getUserProfileImage } from "../../redux/actions/UserActions";
+import PersonalInformation from "./personal-information/personal-information";
+import OptionalInformation from "./optional-information/optional-information";
 
-const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileImage, getUserPersonalInfo}) => {
+const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileImage}) => {
 
-  const history = useHistory();
+    const history = useHistory();
+    const classes = useStyles();
+    const { t } = useTranslation();
+  
+    const [profilePhoto, setProfilePhoto] = useState('');
+    const [profilePhotoChanged, setProfilePhotoChanged] = useState(false);  
 
-  const classes = useStyles();
-  const { t } = useTranslation();
-  const [profilePhoto, setProfilePhoto] = useState('');
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState('');
-  const [countryPhoneCode, setCountryPhoneCode] = useState();
-  const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState();
-  const [address, setAddress] = useState('') 
-  const [dateOfBirth, setDateOfBirth] = useState(new Date(new Date().getFullYear()-14, new Date().getMonth(),new Date().getDate(), 0));
-  const [legalPersonChecked, setLegalPersonChecked] = useState(false);
+    const sections = [t('PersonalInfo'), t('OptionalInfo'), t('Company'), t('MandatoryDocuments'), t('Settings')];
+    const [currentSection, setCurrentSection] = useState(0);
+
+    async function updateChangedData(){
+      if(profilePhotoChanged){
+      const img = new Image();
+      img.src = profilePhoto;
+        const base64Image = getBase64Image(img); 
+            axios.put(utilData.baseUrl + '/users/profile-images', {
+                profileImage: base64Image,
+            }, {
+          headers:{
+          'Authorization': `Bearer ${userData.token}`,
+          }
+        }).catch((error)=>{console.log(error); alert('profile photo changes failed')})
+      }
+      
+    }
+
+    useEffect(()=>{
+        if(profilePhotoChanged)
+          updateChangedData()
+        getUserProfileImage(userData.token)
+    }, [profilePhotoChanged])
+
+    useEffect(()=>{
+	    userData.profileImage && userData.profileImage.length > 0 ? setProfilePhoto(userData.profileImage) : setProfilePhoto('')
+    }, [userData.profileImage])
+
+  const redirectAfterFetchCourierProfile = () => {
+        if(courierProfile.hasErrors === true){
+            alert("Profilul curierului nu este disponibil")
+        }else{
+            history.push("/courier-profile")
+        }
+  }
+
+  function getCurrentSection(){
+      switch(currentSection){
+          case 0: 
+            return(
+                <PersonalInformation/>
+            );
+          case 1:
+            return(
+                <OptionalInformation/>
+            );
+      }
+  }
+
+  return(
+        <Container className={"Primary-container-style"}>
+            <Grid container justifyContent="center" alignItems="center" > 
+                <Grid container item sm={3} justifyContent="center">
+                    <Box fontWeight={400} fontSize={21} alignItems={"center"} textAlign={"center"} >{userData.name.replace(",", "").toLocaleUpperCase()}</Box>
+                </Grid>
+                <Grid container item sm={3} justifyContent="center">
+                    <label style={{cursor: 'pointer', height:'60px', width: '60px'}}>
+                        <input type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=>{setProfilePhoto(URL.createObjectURL(e.target.files[0])); setProfilePhotoChanged(true)}}/>
+                            <Avatar className={classes.profilePhotoEdit} src={profilePhoto && profilePhoto.length > 0 ? profilePhoto : AvatarImage}/>
+                    </label>
+                </Grid>
+                <Grid container item sm={3} justifyContent="center">
+                    <SeeProfileBtn onClick={()=>{
+                            fetchCourierProfile(userData.id, userData.token)
+                            setTimeout(()=>redirectAfterFetchCourierProfile(), 500)
+                    }}>
+                            {t("ViewProfile")}
+                    </SeeProfileBtn>
+                </Grid>
+            </Grid>
+            <Box className={classes.MyProfileStyle}>
+                <Grid container>
+                    <Grid container item sm={2} justifyContent="center">
+                        {sections.map((section, index)=>{
+                                return(
+                                    <ButtonBase style={{width:"100%"}} onClick={()=>setCurrentSection(index)}>
+                                        <Box height={window.innerHeight*0.50/sections.length} style={{display:"flex", backgroundColor: currentSection === index ? "#00b4d8" : "#ffffff", width: "100%", borderTopLeftRadius: index === 0 ? "15px" : 0, borderBottomLeftRadius: index === sections.length-1 ? "15px" : 0}}>
+                                            <Box style={{color: currentSection === index ? "#ffffff" : "#00b4d8", fontSize:"20px", paddingLeft:"15px", paddingRight: "15px", width:"100%", textAlign:"center", paddingTop:"18px"}}>{section}</Box>
+                                        </Box>
+                                    </ButtonBase>
+                                );
+                        })}
+                    </Grid>
+                    <Grid container item sm={10} justifyContent="space-evenly">
+                        <Box width={"100%"} display={"flex"} marginTop={"45px"} marginBottom={"45px"}>
+                            <Grid container justifyContent="space-around">
+                            {getCurrentSection()}
+                            </Grid>
+                        </Box>
+                    </Grid>
+                </Grid>
+            </Box>
+        </Container>
+  );
+  
+  {/* const [legalPersonChecked, setLegalPersonChecked] = useState(false);
   const [mandatoryDocuments, setMandatoryDocuments] = useState([]);
-  const [country, setCountry] = useState('');
-  const [city, setCity] = useState('');
-  const [onEditMode, setOnEditMode] = useState(false);
-  const [profilePhotoChanged, setProfilePhotoChanged] = useState(false);
-  const [personalInfoChanged, setPersonalInfoChanged] = useState(false);
+  const[onEditMode, setOnEditMode] = useState(false);
   const [inUpdateDataHasErrors, setInUpdateDataHasErrors] = useState(false);
-  const handleChangeCountry=(event, newValue)=> setCountry(newValue);
-  const handleChangeCity=(event, newValue)=> setCity(newValue);
+  
   const handleLegalPersonCheckboxClick = (event) => {
     event.target.checked ? setLegalPersonChecked(true) : setLegalPersonChecked(false);
   };
 
-  useEffect(()=>{
-    getUserProfileImage(userData.token)
-    getUserPersonalInfo(userData.token)
-  }, [onEditMode])
-
-  useEffect(()=>{
-	userData.profileImage && userData.profileImage.length > 0 ? setProfilePhoto(userData.profileImage) : setProfilePhoto('')
-	userData.personalInfo.email && userData.personalInfo.email.length > 0 ? setEmail(userData.personalInfo.email) : setEmail('')
-	userData.personalInfo.firstName && userData.personalInfo.firstName.length > 0 ? setFirstName(userData.personalInfo.firstName) : setFirstName('')
-	userData.personalInfo.lastName && userData.personalInfo.lastName.length > 0 ? setLastName(userData.personalInfo.lastName) : setLastName('')
-	userData.personalInfo.dateOfBirth && userData.personalInfo.dateOfBirth.length > 0 ? setDateOfBirth(userData.personalInfo.dateOfBirth) : setDateOfBirth('')
-	if(userData.personalInfo.phoneNumber && userData.personalInfo.phoneNumber.length > 0){
-			setCountryPhoneCode(String(userData.personalInfo.phoneNumber).substring(0, String(userData.personalInfo.phoneNumber).length-10))
-			setInputValuePhoneNumber(String(userData.personalInfo.phoneNumber).substring(String(userData.personalInfo.phoneNumber).length-10, String(userData.personalInfo.phoneNumber).length))
-	} else {
-			setCountryPhoneCode('')
-			setInputValuePhoneNumber('')
-	}
-	userData.personalInfo.address && userData.personalInfo.address.length > 0 ? setAddress(userData.personalInfo.address) : setAddress('')
-	userData.personalInfo.city && userData.personalInfo.city.length > 0 ? setCity(userData.personalInfo.city) : setCity('')
-	userData.personalInfo.country && userData.personalInfo.country.length > 0 ? setCountry(userData.personalInfo.country) : setCountry('')
-
-  }, [userData.profileImage, userData.personalInfo])
+  
 
   async function updateChangedData(){
       if(profilePhotoChanged){
@@ -88,7 +149,7 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
 				  }
 			  }).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)})
       }
-	  if(personalInfoChanged){
+	  /* if(personalInfoChanged){
 			axios.put(utilData.baseUrl + '/users/personal-info', {
 				firstName: firstName,
 				lastName: lastName,
@@ -102,7 +163,7 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
 					'Authorization': `Bearer ${userData.token}`,
 				}
 			}).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)})
-	  }
+	  } 
 	  if(!inUpdateDataHasErrors){ 
 		    setOnEditMode(false);
 	  } else {
@@ -124,17 +185,9 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
     setMandatoryDocuments(temp);
   }
 
-  const redirectAfterFetchCourierProfile = () => {
-      if(courierProfile.hasErrors === true){
-        alert("Profilul curierului nu este disponibil")
-      }else{
-        history.push("/courier-profile")
-      }
-  }
-
   return (
     <Container className={"Primary-container-style"}>
-      {/* head */}
+      {/* head 
       <Grid container justifyContent="space-between" alignItems="center"> 
         <Grid container item xs={2} >
           <Box mb={4} fontWeight={400} fontSize={22}></Box>
@@ -151,15 +204,10 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
             </Box>
         </Grid>
       </Grid>
-      {/* required infos */}
+      {/* required infos 
       <Box display="flex" justifyContent="space-evenly" mt="1%">
         <Grid container spacing={3} display="flex" justifyContent="center">
-          <Grid container item xs={12} justifyContent="center">
-                <label style={{cursor: 'pointer', height:'60px', width: '60px'}}>
-                  <input type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=>{setProfilePhoto(URL.createObjectURL(e.target.files[0])); setProfilePhotoChanged(true)}} disabled={!onEditMode}/>
-                  <Avatar className={onEditMode ? classes.profilePhotoEdit : classes.profilePhoto} src={profilePhoto && profilePhoto.length > 0 ? profilePhoto : AvatarImage}/>
-                </label>
-          </Grid>
+          
           {onEditMode ? (
                   <Grid container item xs={12} justifyContent="center">
                     <Box style={{color: "#00b4d8",  fontSize: '12px'}}>
@@ -167,33 +215,9 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
                     </Box>
                   </Grid>
               ) : null}
-          <Grid item xs={12} sm={6}>
-            <CarroTextField value={lastName} variant="outlined" label={t("LastName")} onChange={(e)=>{setLastName(e.target.value); setPersonalInfoChanged(true)}} fullWidth disabled = {!onEditMode}/>
-          </Grid>
-          <Grid item xs={12} sm={6} >
-            <CarroTextField value={firstName} variant="outlined" label={t("FirstName")} onChange={(e)=>{setFirstName(e.target.value);  setPersonalInfoChanged(true)}} fullWidth disabled = {!onEditMode}/>
-          </Grid>
-          <Grid item xs={12}>
-            <CarroTextField variant="outlined" label={t("Address")} fullWidth disabled = {!onEditMode}/>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <PhoneTextField value={inputValuePhoneNumber}
-                            onChange = {(e) => setInputValuePhoneNumber(e.target.value)}
-                            countryPhoneCode={countryPhoneCode} 
-                            handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
-                            error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
-                            disabled={!onEditMode}/>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <CarroDatePicker value={dateOfBirth} onChange={(date) => setDateOfBirth(date)} format='dd/MM/yyyy' views={["year", "month", "date"]}
-                             maxDate={(new Date().getFullYear()-14).toString()+'-'+(new Date().getMonth()+1).toString()+'-'+new Date().getDate().toString()}
-                             label={t("Birthday")} disabled = {!onEditMode} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}} openTo="year"/>
-          </Grid>
+         
           <Grid item xs={12} sm={6}>
             <CarroTextField variant="outlined" label={t("Languages")} fullWidth disabled = {!onEditMode}/>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <CarroTextField value={email} variant="outlined" label={t("Mail")} fullWidth disabled = {!onEditMode}/>
           </Grid>
           <Grid item xs={12}>
             <CarroTextField variant="outlined" label={t("Particularities")} fullWidth disabled = {!onEditMode}/>
@@ -224,7 +248,7 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
           })}
           {mandatoryDocuments.length ? (
                       <Grid item xs={5}>
-                        <PrimaryButton variant='contained' /* onClick={} */ fullWidth>
+                        <PrimaryButton variant='contained' /* onClick={}  fullWidth>
                           {t('Send')}
                         </PrimaryButton>
                       </Grid> 
@@ -247,14 +271,7 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
                 <Grid container item xs={12} sm={6} justifyContent="center">
                   <CarroTextField variant="outlined" label={t("Adress")} fullWidth disabled = {!onEditMode}/>
                 </Grid>
-                <Grid container item xs={12} sm={6} justifyContent="center">
-                  <CarroTextField variant ='outlined' label={t("Country")} fullWidth disabled = {!onEditMode} select value={country} onChange={(e)=>handleChangeCountry(e)}>
-                    {getCountries().map((country)=>(<MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>))}
-                  </CarroTextField>
-                </Grid>
-                <Grid container item xs={12} sm={6} justifyContent="center">
-                  <CarroAutocomplete disabled = {!onEditMode} options={getCities(country)} label={t("City")} onChange={(e)=>handleChangeCity(e)}/>
-                </Grid>
+                
                 <Grid container item xs={12} sm={6} justifyContent="center">
                   <CarroTextField disabled = {!onEditMode} variant="outlined" label={t("CompanyEmail")} fullWidth />
                 </Grid>
@@ -298,10 +315,10 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
         </Grid>
       </Box>
     </Container>
-  );
-};
+  ); */}
+}
 
 const mapStateToProps = state =>({userData: state.userData, courierProfile: state.courierData})
-const mapDispatchToProps = dispatch =>({fetchCourierProfile: (userId, token) => dispatch(fetchCourierProfile(userId, token)), getUserProfileImage: (token) => dispatch(getUserProfileImage(token)), getUserPersonalInfo: (token) => dispatch(getUserPersonalInfo(token))})
+const mapDispatchToProps = dispatch =>({fetchCourierProfile: (userId, token) => dispatch(fetchCourierProfile(userId, token)), getUserProfileImage: (token) => dispatch(getUserProfileImage(token))})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

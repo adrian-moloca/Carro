@@ -553,5 +553,12 @@
     "PackagesNotFound": "Nu a fost gasit nici un pachet pe ruta selectata",
     "NoRidesAdded": "Nu ai adaugata nici o cursa la profilul tau!",
     "NoPackagesAdded": "Nu ai adaugat nici un pachet la profilul tau!",
-    "NoIteractionWithYourPackage": "Nu aveti nici o iteratie la acet colet inca."
+    "NoIteractionWithYourPackage": "Nu aveti nici o iteratie la acet colet inca.",
+    "PersonalInfo": "Informatii personale",
+    "OptionalInfo": "Informatii optionale",
+    "Company": "Persoana juridica",
+    "MandatoryDocuments": "Documente obligatorii",
+    "Settings": "Setari",
+    "Languages": "Limbi cunoscute",
+    "DescriptionUser": "Particularitati"
 }

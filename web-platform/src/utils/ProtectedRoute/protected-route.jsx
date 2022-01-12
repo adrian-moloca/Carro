@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { connect } from 'react-redux';
+import jwtDecode from 'jwt-decode';
 
 function ProtectedRoute({ component: Component, data, ...restOfProps }) {
 
@@ -10,6 +11,8 @@ function ProtectedRoute({ component: Component, data, ...restOfProps }) {
     useEffect(() => {
         setIsLoggedIn(data.email.length > 0 ? true : false);
     }, [data])
+
+    
     
     return (
     <React.Fragment>
