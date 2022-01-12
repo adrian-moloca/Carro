@@ -292,7 +292,7 @@ switch (action.type) {
     case USER_OPTIONAL_INFO_SUCCESS:{
         return {
             ...state,
-            personalInfo: {
+            optionalInfo: {
                 languages: action.payload.languages,
                 description: action.payload.languages,
                 car: {

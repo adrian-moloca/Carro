@@ -35,12 +35,23 @@ const OptionalInformation = ({userData, getUserOptionalInfo})=>{
     useEffect(()=>{
         userData.optionalInfo.languages && userData.optionalInfo.languages.length > 0 ? setLanguages(userData.optionalInfo.languages) : setLanguages('')
         userData.optionalInfo.description && userData.optionalInfo.description.length > 0 ? setDescription(userData.optionalInfo.description) : setDescription('')
+        userData.optionalInfo.car.brand && userData.optionalInfo.car.brand.length > 0 ? setCarBrand(userData.optionalInfo.car.brand) : setCarBrand('')
+        userData.optionalInfo.car.model && userData.optionalInfo.car.model.length > 0 ? setCarModel(userData.optionalInfo.car.model) : setCarModel('')
+        userData.optionalInfo.car.registrationNumber && userData.optionalInfo.car.registrationNumber.length > 0 ? setCarRegistrationNumber(userData.optionalInfo.car.registrationNumber) : setCarRegistrationNumber('')
+        userData.optionalInfo.car.color && userData.optionalInfo.car.color.length > 0 ? setCarColor(userData.optionalInfo.car.color) : setCarColor('')
       }, [userData.optionalInfo])
 
     async function updateChangedData(){
         if(optionalInfoChanged){
             axios.put(utilData.baseUrl + '/users/optional-infos', {
                 languages: languages,
+                description: description,
+                car:{
+                  brand: carBrand,
+                  model: carModel,
+                  registrationNumber: carRegistrationNumber,
+                  color: carColor
+                }
             }, {
                 headers:{
                     'Authorization': `Bearer ${userData.token}`,
