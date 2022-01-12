@@ -5,7 +5,7 @@ import navEnFlag from '../../../assets/icon/navEnFlag.png';
 import useStyles from './languageButtonStyle';
 import i18n  from '../../../i18n/config';
 
-const BasicSelect = ({setMobileMoreAnchorEl}) => {
+const BasicSelect = ({handler}) => {
 
   const classes = useStyles();
 
@@ -14,9 +14,9 @@ const BasicSelect = ({setMobileMoreAnchorEl}) => {
   const handleChange = (event) => {
     setLanguage(event.target.value);
     i18n.changeLanguage(event.target.value);
-    setTimeout(() => {
-      setMobileMoreAnchorEl(false);
-    }, 100)
+    if(handler !== null){
+      setTimeout(() => {handler(false)}, 100);
+    }
   };
 
   return (
@@ -31,7 +31,7 @@ const BasicSelect = ({setMobileMoreAnchorEl}) => {
               <Select
                 value={language}
                 defaultValue={"lagnguage"}
-                onChange={handleChange}
+                onChange={(event) => {handleChange(event)}}
                 className={classes.langsStyle}
                 labelId="demo-simple-select-error-label"
                 id="demo-simple-select-error"

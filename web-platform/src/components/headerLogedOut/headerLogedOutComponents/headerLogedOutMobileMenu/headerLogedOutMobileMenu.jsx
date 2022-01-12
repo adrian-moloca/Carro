@@ -18,9 +18,13 @@ const LogedOutMobileMenu = () => {
   // State
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(false);
 
+  const handleSliderMenu = (value) => {
+    setMobileMoreAnchorEl(value);
+  }
+
   useEffect(() => {
 
-  }, [t])
+  }, [t, setMobileMoreAnchorEl])
 
   const mobile = () => {
     return (
@@ -59,7 +63,7 @@ const LogedOutMobileMenu = () => {
               </ListItem>
           </Link>
           <ListItem>
-              <BasicSelect setMobileMoreAnchorEl={setMobileMoreAnchorEl}/>
+              <BasicSelect handler={handleSliderMenu}/>
           </ListItem>
         </List>
       </Drawer>

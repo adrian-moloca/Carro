@@ -17,16 +17,20 @@ const LogedInMobileMenu = () => {
   // State
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(false);
 
+  const handleSliderMenu = (value) => {
+    setMobileMoreAnchorEl(value);
+  }
+
   useEffect(() => {
 
-  }, [t])
+  }, [t, setMobileMoreAnchorEl])
 
   const mobile = () => {
     return (
-      <Drawer anchor={'right'} open={mobileMoreAnchorEl} onClose={() => setMobileMoreAnchorEl(false)}>
+      <Drawer anchor={'right'} open={mobileMoreAnchorEl} onClose={() => handleSliderMenu(false)}>
         <List>
             <Link to="/search-package" className={classes.linkBtn}>  
-                <ListItem onClick={() => setMobileMoreAnchorEl(false)}>
+                <ListItem onClick={() => handleSliderMenu(false)}>
                   <SearchIcon/>
                   <Box fontSize={18} marginLeft='10px'>
                   {t("SearchPackage")}
@@ -34,16 +38,16 @@ const LogedInMobileMenu = () => {
                 </ListItem>
             </Link>
             <Link to="/search-ride" className={classes.linkBtn}>
-                <ListItem onClick={() => setMobileMoreAnchorEl(false)}>
+                <ListItem onClick={() => handleSliderMenu(false)}>
                   <DriveEtaIcon/>
                   <Box fontSize={18} marginLeft='10px'>
                   {t("SearchRideTitle")}
                   </Box>
                 </ListItem>
             </Link>
-                <HeaderLogedInProfileMenuMobile setMobileMoreAnchorEl={setMobileMoreAnchorEl}/>
+                <HeaderLogedInProfileMenuMobile setMobileMoreAnchorEl={handleSliderMenu}/>
             <ListItem>
-                <BasicSelect setMobileMoreAnchorEl={setMobileMoreAnchorEl}/>
+                <BasicSelect setMobileMoreAnchorEl={handleSliderMenu}/>
             </ListItem>
           </List>
       </Drawer>
@@ -55,7 +59,7 @@ const LogedInMobileMenu = () => {
       <IconButton
         aria-label="show more"
         aria-haspopup="true"
-        onClick={() => setMobileMoreAnchorEl(true)}
+        onClick={() => handleSliderMenu(true)}
         color="inherit"
       >
         <MenuIcon />

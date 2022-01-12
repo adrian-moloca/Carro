@@ -28,7 +28,7 @@ export default function PrimarySearchAppBar() {
           {/* render language select */}
           <Grid container item md={3} justifyContent='flex-end'>
             <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
-              <BasicSelect/>
+              <BasicSelect handler={null}/>
             </Box>
           </Grid>
         </Grid>
