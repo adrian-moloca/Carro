@@ -294,7 +294,7 @@ switch (action.type) {
             ...state,
             optionalInfo: {
                 languages: action.payload.languages,
-                description: action.payload.languages,
+                description: action.payload.description,
                 car: {
                     registrationNumber: action.payload.car.registrationNumber,
                     model: action.payload.car.model,

@@ -18,7 +18,7 @@ import { getBase64Image } from "../../utils/Functions/base64Image";
 import utilData from '../../utils/constants';
 import { getUserProfileImage } from "../../redux/actions/UserActions";
 import PersonalInformation from "./personal-information/personal-information";
-import OptionalInformation from "./optional-information/optional-information";
+import OptionalInformation from "./company/company";
 
 const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileImage}) => {
 
@@ -75,6 +75,10 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
           case 1:
             return(
                 <OptionalInformation/>
+            );
+          default:
+            return(
+                'error'
             );
       }
   }
