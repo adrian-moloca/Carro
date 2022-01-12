@@ -50,10 +50,6 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
   useEffect(()=>{
     setFetchMyPackagesSuccess(myPackagesData.hasErrors === true ? false : true);
   }, [myPackagesData, userData])
-
-
-
-  const [userType, setUserType] = useState(null);
   
   const classes = useStyles();
 
@@ -113,7 +109,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
                 </Box>
               </MenuItem>
             </Link>
-            <Link to="/payment-method" style={{textDecoration:'none' ,color:'inherit'}}>
+            {/* <Link to="/payment-method" style={{textDecoration:'none' ,color:'inherit'}}>
               <MenuItem dense onClick={handleAccountMenuClose}>
                   <Box mr={2} className={"Primary-color"}>
                     <CreditCardOutlined/>
@@ -132,7 +128,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
                     Chat
                   </Box>
               </MenuItem>
-            </Link>
+            </Link> */}
             <Link to="/" style={{textDecoration:'none' ,color:'inherit'}}>
               <MenuItem dense onClick={() => {setAnchorEl(null); localStorage.removeItem('state'); fetchLogout()}}>
                   <Box mr={2} className={"Pink-carro"}>
@@ -143,12 +139,9 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
                   </Box>
               </MenuItem>
             </Link>
-          {/* {userType === "userAdmin" ? ( */}
-            <Grid item xs={12}>
+          {userData.UserRole === "Admin" ? (<div><Grid item xs={12}>
               <Box className={classes.borderForAdmin}></Box>
             </Grid>
-          {/* ): null}  */}
-          {/* {userType === "userAdmin" ? ( */}
               <Link to="/admin-panel" style={{textDecoration:'none' ,color:'inherit'}}>
                 <MenuItem dense onClick={handleAccountMenuClose}>
                       <Box mr={2} className={"Primary-color"}>
@@ -158,8 +151,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
                         {t("AdminPanel")}
                       </Box>
                 </MenuItem>
-              </Link>
-          {/* ): null}  */}
+              </Link></div>): null}
       </Menu>
     </Fragment>
 

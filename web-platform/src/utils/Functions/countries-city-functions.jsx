@@ -18,7 +18,11 @@ export function getCountryIsoCode(selCountry){
 export function getCities(country){
     const cities = [];
     const countryIso = getCountryIsoCode(country);
-    City.getCitiesOfCountry(countryIso).map((city)=>(cities.push(city.name)));
+    City.getCitiesOfCountry(countryIso).map((city)=>{
+        if(city.name == 'Bucharest') 
+            city.name = 'Bucureşti';
+        cities.push(city.name)
+    });
     return cities;
 }
 

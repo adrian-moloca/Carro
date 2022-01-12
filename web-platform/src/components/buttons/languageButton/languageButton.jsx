@@ -5,15 +5,18 @@ import navEnFlag from '../../../assets/icon/navEnFlag.png';
 import useStyles from './languageButtonStyle';
 import i18n  from '../../../i18n/config';
 
-export default function BasicSelect() {
+const BasicSelect = ({handler}) => {
 
   const classes = useStyles();
 
-  const [language, setLanguage] = React.useState('ro');
+  const [language, setLanguage] = React.useState(i18n.language);
 
   const handleChange = (event) => {
     setLanguage(event.target.value);
     i18n.changeLanguage(event.target.value);
+    if(handler !== null){
+      setTimeout(() => {handler(false)}, 100);
+    }
   };
 
   return (
@@ -28,7 +31,7 @@ export default function BasicSelect() {
               <Select
                 value={language}
                 defaultValue={"lagnguage"}
-                onChange={handleChange}
+                onChange={(event) => {handleChange(event)}}
                 className={classes.langsStyle}
                 labelId="demo-simple-select-error-label"
                 id="demo-simple-select-error"
@@ -56,3 +59,5 @@ export default function BasicSelect() {
     </Box>
   );
 }
+
+export default BasicSelect;

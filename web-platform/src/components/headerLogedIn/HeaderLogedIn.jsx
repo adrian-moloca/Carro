@@ -5,7 +5,7 @@ import CaroLogo from '../../assets/logo/CaroLogo.png';
 import BadgeVisibility from '../NotificationsComponent/notificomp';
 import BasicSelect from '../buttons/languageButton/languageButton'
 import RenderMenuSBD from './headerLogedInMenu/headerLogedInMenu';
-import RenderMobileMenu from './headerLogedInMobileMenu/headerLogedInMobileMenu';
+import LogedInMobileMenu from './headerLogedInMobileMenu/headerLogedInMobileMenu';
 import HeaderLogedInProfileMenu from './headerLogedInProfileMenu/headerLogedInProfileMenu'
 import useStyles from './HeaderLogedInStyle';
 
@@ -40,14 +40,14 @@ export default function PrimarySearchAppBar() {
             </Box>
             {/* language btn */}
             <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
-              <BasicSelect/>
+              <BasicSelect handler={null}/>
             </Box>
           </Grid>
         </Grid>
         {/* mobile */}
         <Box className={classes.sectionMobile} display="flex">
             <BadgeVisibility/>
-          <RenderMobileMenu/>
+          <LogedInMobileMenu/>
         </Box>
       </Toolbar>
     </AppBar>

@@ -2,25 +2,22 @@ import React, {useEffect, useState} from 'react';
 import { Container, Box } from '@material-ui/core'; 
 import Ride from './ride/ride';
 import { useTranslation } from "react-i18next";
-import { deleteRide, clean, fetchMyRides } from '../../redux/actions/MyRidesActions';
+import { deleteRide, fetchMyRides } from '../../redux/actions/MyRidesActions';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router';
 
-
-const MyRides = ({myRidesData, userData, deleteRide, clean}) => {
+const MyRides = ({myRidesData, userData, deleteRide}) => {
   const { t } = useTranslation();
-
-  const history = useHistory();
 
   const[ridesState, setRidesState] = useState(myRidesData.rides.length > 0 ? myRidesData.rides : []);
 
   const closeRide=(event, index)=>{
     const temp=[...ridesState] 
-    temp.map((ride, i)=>{
+    temp.filter((ride, i)=>{
       if(index === i)
       {
         ride.status = 4;
       }
+      return ride;
     })
     setRidesState(temp);
   }
@@ -53,10 +50,7 @@ const MyRides = ({myRidesData, userData, deleteRide, clean}) => {
   );
 };
 
-const mapDispatchToProps = dispatch =>({
-  deleteRide: (id, token)=>dispatch(deleteRide(id, token)),
-  clean: () => dispatch(clean()),
-});
+const mapDispatchToProps = dispatch =>({deleteRide: (id, token)=>dispatch(deleteRide(id, token))});
 const mapStateToProps = state =>({myRidesData: state.myRidesData, userData: state.userData});
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyRides);

@@ -10,16 +10,34 @@ import { withStyles } from '@material-ui/styles';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
 import data from '../../../utils/constants';
+import { connect } from "react-redux";
 
 const MyGrid = withStyles({'spacing-xs-4':{margin: 0}})(Grid)
 
-const PhoneNumberVerification = ()=>{
+const PhoneNumberVerification = ({token})=>{
     const { t } = useTranslation();
     const[sms, setSMS] = useState('');
     const time = new Date();
     const history = useHistory();
 
-    time.setMinutes(time.getMinutes() + 5);
+    const selectPlanAction = () => {
+        axios.get(data.baseUrl+"/phone-validation/"+sms, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        })
+        .then((res) => {
+            console.log('response from phone validation :', res);
+            history.push("/home")
+        })
+        .catch((err)=> {
+            console.log('Error from phone vaidation: ', err);
+            alert("Something went wrong!")
+        });
+    }
+
+    time.setSeconds(time.getSeconds() + 30);
+
     return(
         <Container className = 'Primary-container-style'>
             <MyGrid container justifyContent='center' spacing={4}>
@@ -37,16 +55,16 @@ const PhoneNumberVerification = ()=>{
                         <CarroTextField value = {sms} onChange={(e)=>setSMS(e.target.value)} variant ='outlined' label= {t("PhoneSMS")} fullWidth/>
                 </Grid>
                 <Grid container item xs={10} justifyContent='center'>
-                    <Timer expiryTimestamp={time}/>
+                    <Timer expiryTimestamp={time} token={token}/>
                 </Grid>
                 <Grid container item xs={10} xl={10} justifyContent='space-between'>
                     <Grid container item xs={5} xl={5}>
                         <Link to='/register' style={{textDecoration:'none', width:'100%'}}>
-                            <SecondaryButton onClick={()=> localStorage.removeItem('state')}className="ButtonTextSize" variant='outlined' fullWidth>{t("DriverCardBackButton")}</SecondaryButton>
+                            <SecondaryButton onClick={()=> localStorage.removeItem('state')} className="ButtonTextSize" variant='outlined' fullWidth>{t("DriverCardBackButton")}</SecondaryButton>
                         </Link>
                     </Grid>
                     <Grid container item xs={5} xl={5}> 
-                            <PrimaryButton   className="ButtonTextSize"  variant='contained' onClick={()=>axios.get(data.baseUrl+"/phone-validation/"+sms).then(()=>history.push("/register/select-plan")).catch(()=>alert("Something went wrong!"))} fullWidth>{t("ChoosePlan")}</PrimaryButton>
+                            <PrimaryButton   className="ButtonTextSize"  variant='contained' onClick={() => selectPlanAction()} fullWidth>{t("ChoosePlan")}</PrimaryButton>
                     </Grid>
                 </Grid>
             </MyGrid>
@@ -54,4 +72,6 @@ const PhoneNumberVerification = ()=>{
     );
 };
 
-export default PhoneNumberVerification;
+const mapStateToProps = state => ({token: state.userData.token})
+
+export default connect(mapStateToProps, null)(PhoneNumberVerification);

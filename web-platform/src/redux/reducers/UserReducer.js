@@ -1,6 +1,6 @@
 import {USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE,
     USER_LOGOUT, USER_NEWUSER_REQUEST, USER_NEWUSER_SUCCESS, USER_NEWUSER_FAILURE,
-    USER_GET_REQUEST, USER_GET_SUCCESS, USER_GET_FAILURE,
+    // USER_GET_REQUEST, USER_GET_SUCCESS, USER_GET_FAILURE,
     USER_UPDATE_REQUEST, USER_UPDATE_SUCCESS, USER_UPDATE_FAILURE,
     USER_DELETE_REQUEST, USER_DELETE_SUCCESS, USER_DELETE_FAILURE,
     USER_RESET_REQUEST, USER_RESET_SUCCESS, USER_RESET_FAILURE,
@@ -113,11 +113,13 @@ switch (action.type) {
     case USER_NEWUSER_REQUEST:
         return {
             ...state,
+            hasErrors: false,
             loading: true,
             }
     case USER_NEWUSER_SUCCESS:
         return{
             ...state,
+            hasErrors: false,
             token: action.payload.token,
             refreshToken: action.payload.refreshToken
         }

@@ -50,7 +50,7 @@ return (dispatch) => {
 export const createNewUser = (email, password, phoneNumber, firstName, lastName, dateOfBirth, termsAndConditions) => {
 
 return(dispatch) => {
-dispatch(createNewUserRequest);
+dispatch(createNewUserRequest());
 axios.post(data.baseUrl+"/identity/register",{
     email,
     password,
@@ -63,7 +63,22 @@ axios.post(data.baseUrl+"/identity/register",{
 })
 .then(response => {
     dispatch(createNewUserSuccess(response.data));
-    // dispatch(fetchUsers())
+    dispatch(fetchLoginSuccess(jwt_decode(response.data.token), response.data.token));
+    setTimeout(() => {
+        axios.post(data.baseUrl+"/phone-validation", {
+            message: "Codul pentru verificarea numarului de telefon"
+        },{
+            headers: {
+                'Authorization': `Bearer ${response.data.token}`,
+            }
+        })
+        .then(res => {
+            console.log('validation: ', res);
+        })
+        .catch(err => {
+            console.log('error from validation: ', err);
+        })
+    }, 500)
 }).catch(error => {
     const errorMsg = error;
     dispatch(createNewUserFailure(errorMsg))

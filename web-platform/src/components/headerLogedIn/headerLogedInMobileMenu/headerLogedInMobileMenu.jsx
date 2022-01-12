@@ -1,56 +1,56 @@
-import React from 'react';
-import HeaderLogedInProfileMenu from '../headerLogedInProfileMenu/headerLogedInProfileMenu'
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IconButton, MenuItem, Menu, Box } from "@material-ui/core";
+import { IconButton, List, ListItem, Drawer, Box } from "@material-ui/core";
 import BasicSelect from '../../buttons/languageButton/languageButton';
 import SearchIcon from '@material-ui/icons/Search';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import MenuIcon from '@material-ui/icons/Menu';
 import useStyles from '../HeaderLogedInStyle';
+import { useTranslation } from 'react-i18next';
+import HeaderLogedInProfileMenuMobile from './headerLogedInProfileMenuMobile';
 
-const RenderMobileMenu = () => {
+const LogedInMobileMenu = () => {
 
-  const classes=useStyles();
+  const classes = useStyles();
+  const {t} = useTranslation();
 
   // State
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const handleMobileMenuClose = () => setMobileMoreAnchorEl(null);
-  const handleMobileMenuOpen = (event) => setMobileMoreAnchorEl(event.currentTarget);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(false);
+
+  const handleSliderMenu = (value) => {
+    setMobileMoreAnchorEl(value);
+  }
+
+  useEffect(() => {
+
+  }, [t, setMobileMoreAnchorEl])
 
   const mobile = () => {
     return (
-      <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-      >
+      <Drawer anchor={'right'} open={mobileMoreAnchorEl} onClose={() => handleSliderMenu(false)}>
+        <List>
             <Link to="/search-package" className={classes.linkBtn}>  
-                <MenuItem onClick={handleMobileMenuClose}>
+                <ListItem onClick={() => handleSliderMenu(false)}>
                   <SearchIcon/>
                   <Box fontSize={18} marginLeft='10px'>
-                    Cauta Pachet
+                  {t("SearchPackage")}
                   </Box>
-                </MenuItem>
+                </ListItem>
             </Link>
             <Link to="/search-ride" className={classes.linkBtn}>
-                <MenuItem onClick={handleMobileMenuClose}>
+                <ListItem onClick={() => handleSliderMenu(false)}>
                   <DriveEtaIcon/>
                   <Box fontSize={18} marginLeft='10px'>
-                    Cauta Transport
+                  {t("SearchRideTitle")}
                   </Box>
-                </MenuItem>
+                </ListItem>
             </Link>
-            <MenuItem onClick={handleMobileMenuClose}>
-                <HeaderLogedInProfileMenu/>
-            </MenuItem>
-            <MenuItem onClick={handleMobileMenuClose}>
-                <BasicSelect/>
-            </MenuItem>
-      </Menu>
+                <HeaderLogedInProfileMenuMobile setMobileMoreAnchorEl={handleSliderMenu}/>
+            <ListItem>
+                <BasicSelect setMobileMoreAnchorEl={handleSliderMenu}/>
+            </ListItem>
+          </List>
+      </Drawer>
     );
   };
 
@@ -59,7 +59,7 @@ const RenderMobileMenu = () => {
       <IconButton
         aria-label="show more"
         aria-haspopup="true"
-        onClick={handleMobileMenuOpen}
+        onClick={() => handleSliderMenu(true)}
         color="inherit"
       >
         <MenuIcon />
@@ -69,4 +69,4 @@ const RenderMobileMenu = () => {
   );
 };
 
-export default RenderMobileMenu;
+export default LogedInMobileMenu;
