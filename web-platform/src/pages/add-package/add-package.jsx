@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Box, Stepper, Step, StepLabel, Grid,} from '@material-ui/core';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
@@ -126,14 +126,13 @@ const AddPackage = ({data, packageData, createNewPackage}) => {
     }
   }
 
-  
 
   useEffect(()=>{
 
     if(requestSent)
       setTimeout(() => {redirectAfterPackageCreated()}, 500);
 
-  }, [packageData])
+  }, [packageData, requestSent])
 
   function getStepContent(step) {
     switch (step) {

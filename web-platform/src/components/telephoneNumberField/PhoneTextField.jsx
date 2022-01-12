@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select, InputAdornment, MenuItem, Grid } from '@material-ui/core';
+import { MenuItem, Grid } from '@material-ui/core';
 import CarroTextField from '../textField/CarroTextField';
 import {Country} from 'country-state-city';
 import { useTranslation } from 'react-i18next';

@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles";
-import Edit from "../../assets/images/edit.png";
 
 const useStyles = makeStyles({
 

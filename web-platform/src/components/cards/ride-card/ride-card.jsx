@@ -5,7 +5,6 @@ import {Rating} from '@material-ui/lab';
 import ReactCardFlip from 'react-card-flip';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';
-import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import SelectDriver from '../../modals/driver-select/driver-select';
 import useStyles from './ride-card-style';
 import { useTranslation } from 'react-i18next';

@@ -15,7 +15,6 @@ import "../../App.css";
 import PrimaryButton from "../../components/buttons/primaryButton/primaryButton";
 import { getCountries, getCities } from "../../utils/Functions/countries-city-functions";
 import { connect } from "react-redux";
-import { capitalizeFirstLetter } from "../../utils/Functions/capitalize-first-letter";
 import { phoneValidator } from "../../utils/Functions/input-validators";
 import { fetchCourierProfile } from "../../redux/actions/CourierActions";
 import axios from "axios";

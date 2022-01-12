@@ -5,7 +5,7 @@ import {fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure,
     deleteUserRequest, deleteUserSuccess, deleteUserFailure,
     getUserProfileImageRequest, getUserProfileImageSuccess, getUserProfileImageFailure,
     getUserPersonalInfoRequest, getUserPersonalInfoSuccess, getUserPersonalInfoFailure, 
-    changePasswordUserRequest, changePasswordUserSuccess, changePasswordUserFailure, updateNotifications,
+    changePasswordUserRequest, changePasswordUserSuccess, changePasswordUserFailure,
 } from '../types/UserTypes';
 import axios from 'axios';
 import data from '../../utils/constants';

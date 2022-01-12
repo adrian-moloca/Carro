@@ -4,24 +4,22 @@ import Package from './package/package';
 import { useTranslation } from "react-i18next";
 import { connect } from 'react-redux';
 import { fetchMyPackages } from '../../redux/actions/MyPackagesActions';
-import { clean, deletePackage } from '../../redux/actions/MyPackagesActions';
-import { useHistory } from 'react-router';
+import { deletePackage } from '../../redux/actions/MyPackagesActions';
 
-const MyPackages = ({myPackagesData, userData, deletePackage, clean}) => {
+const MyPackages = ({myPackagesData, userData, deletePackage}) => {
 
   const { t } = useTranslation();
-
-  const history = useHistory();
 
   const[packagesState, setPackagesState] = useState(myPackagesData.packages.length > 0 ? myPackagesData.packages : []);
 
   const closePackage=(event, index)=> {
       const temp=[...packagesState] 
-      temp.map((pack, i)=>{
+      temp.filter((pack, i)=>{
         if(index === i)
         {
           pack.status = 5;
         }
+        return pack;
       })
       setPackagesState(temp);
   }
@@ -50,7 +48,7 @@ const MyPackages = ({myPackagesData, userData, deletePackage, clean}) => {
       );
 };
 
-const mapDispatchToProps = dispatch => ({deletePackage: (id, token) =>dispatch(deletePackage(id, token)), clean: ()=> dispatch(clean())})
+const mapDispatchToProps = dispatch => ({deletePackage: (id, token) =>dispatch(deletePackage(id, token))});
 const mapStateToProps = state =>({myPackagesData: state.myPackagesData, userData: state.userData})
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyPackages);
