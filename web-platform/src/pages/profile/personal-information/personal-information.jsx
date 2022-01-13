@@ -60,6 +60,7 @@ const PersonalInformation = ({userData, getUserPersonalInfo})=>{
             axios.put(utilData.baseUrl + '/users/personal-infos', {
                 firstName: firstName,
                 lastName: lastName,
+                email: email,
                 address: address,
                 city: city,
                 country: country,
