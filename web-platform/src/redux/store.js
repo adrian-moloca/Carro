@@ -5,18 +5,18 @@ import thunk from 'redux-thunk';
 
 const middleware = [thunk];
 
-const saveToLocalStorage = (state) => {
+const saveToStorage = (state) => {
     try {
         const serializedState = JSON.stringify(state);
-        localStorage.setItem('state', serializedState);
+        state.userData.rememberMe ?  localStorage.setItem('state', serializedState) : sessionStorage.setItem('state', serializedState) 
     } catch(err) {
         console.log(err);
     }
 }
 
-const loadFromLocalStorage = () => {
+const loadFromStorage = () => {
     try {
-        const serializedState = localStorage.getItem('state');
+        const serializedState = localStorage.getItem('state') === null ? sessionStorage.getItem('state') : localStorage.getItem('state');
         if(serializedState === null) return undefined
         return JSON.parse(serializedState);
     } catch(err) {
@@ -25,11 +25,11 @@ const loadFromLocalStorage = () => {
     }
 }
 
-const persistedState = loadFromLocalStorage();
+const persistedState = loadFromStorage();
 
 const store = createStore(rootReducer, persistedState, composeWithDevTools(applyMiddleware(...middleware)));
 
-store.subscribe(() =>saveToLocalStorage(store.getState()));
+store.subscribe(() =>saveToStorage(store.getState()));
 
 
 export default store;
