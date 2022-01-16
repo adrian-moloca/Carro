@@ -139,7 +139,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
                   </Box>
               </MenuItem>
             </Link>
-          {userData.UserRole === "Admin" ? (<div><Grid item xs={12}>
+          {userData.UserRole !== "Admin" ? (<div><Grid item xs={12}>
               <Box className={classes.borderForAdmin}></Box>
             </Grid>
               <Link to="/admin-panel" style={{textDecoration:'none' ,color:'inherit'}}>

@@ -85,7 +85,7 @@ const CourierProfile = ({courierData, userData, resetCourierDataChanged}) =>{
       <Box m='2%' display='flex' flexDirection='column' justifyContent="center"  width='0.939' p={1} borderRadius='10px' boxShadow={3}>
         <DriverProfileCard
           image={profileImage}
-          name={name}
+          name={name.replace(",", "")}
           rate={rate} 
           masina={carBrand}
           model={carModel}
