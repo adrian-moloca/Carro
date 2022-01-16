@@ -44,7 +44,7 @@ const CloseAccountModal=(props)=>{
                             </Grid>
                         </Box>
                         <Grid container justifyContent='center' spacing={5}>
-                            <Grid container item xs={8} justifyContent='center'>
+                            <Grid container item xs={11} justifyContent='center'>
                                 <CarroTextField  value = {props.closeReason} onChange={(e)=>props.setCloseReason(e.target.value)} variant ='outlined' label={t("WriteHereYourReasonCloseAccount")} fullWidth/>
                             </Grid>
                             <Grid container item xs={5} justifyContent='center'>
