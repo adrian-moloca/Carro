@@ -23,6 +23,12 @@ export const RIDE_DELETE_REQUEST = 'RIDE_DELETE_REQUEST';
 export const RIDE_DELETE_SUCCESS = 'RIDE_DELETE_SUCCESS';
 export const RIDE_DELETE_FAILURE = 'RIDE_DELETE_FAILURE';
 
+// Close ride
+
+export const RIDE_CLOSE_REQUEST = 'RIDE_CLOSE_REQUEST';
+export const RIDE_CLOSE_SUCCESS = 'RIDE_CLOSE_SUCCESS';
+export const RIDE_CLOSE_FAILURE = 'RIDE_CLOSE_FAILURE';
+
 // Clean rides
 
 export const CLEAN_MY_RIDES_DATA = 'CLEAN_MY_RIDES_DATA';
@@ -108,6 +114,25 @@ export const deleteRideSuccess = () => {
 export const deleteRideFailure = error => {
     return {
         type: RIDE_DELETE_FAILURE,
+        payload: error
+    }
+}
+
+export const closeRideRequest = () => {
+    return {
+        type: RIDE_CLOSE_REQUEST,
+    }
+}
+
+export const closeRideSuccess = () => {
+    return {
+        type: RIDE_CLOSE_SUCCESS,
+    }
+}
+
+export const closeRideFailure = error => {
+    return {
+        type: RIDE_CLOSE_FAILURE,
         payload: error
     }
 }

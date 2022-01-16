@@ -1,9 +1,9 @@
 import React, { useState, Fragment, useEffect} from "react";
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { Link, useHistory, /* Redirect */ } from "react-router-dom";
 import { ButtonBase, MenuItem, Menu, Grid, Box} from "@material-ui/core";
 import {LocalMallOutlined, LocalShippingOutlined, AccountCircleOutlined,
-      CreditCardOutlined, CancelOutlined, AccountCircle,
-      Message, Security} from '@material-ui/icons';
+      /* CreditCardOutlined, */ CancelOutlined, AccountCircle,
+      /* Message, */ Security} from '@material-ui/icons';
 import { Fade } from "@material-ui/core";
 import useStyles from './headerLogedInProfileMenuStyle'
 import { useTranslation } from 'react-i18next';
@@ -130,7 +130,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
               </MenuItem>
             </Link> */}
             <Link to="/" style={{textDecoration:'none' ,color:'inherit'}}>
-              <MenuItem dense onClick={() => {setAnchorEl(null); localStorage.removeItem('state'); fetchLogout()}}>
+              <MenuItem dense onClick={() => {setAnchorEl(null); window.localStorage.removeItem('state'); fetchLogout()}}>
                   <Box mr={2} className={"Pink-carro"}>
                     <CancelOutlined/>
                   </Box>

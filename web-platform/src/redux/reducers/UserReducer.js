@@ -8,6 +8,7 @@ import {USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE,
     USER_PERSONAL_INFO_REQUEST, USER_PERSONAL_INFO_SUCCESS, USER_PERSONAL_INFO_FAILURE,
     USER_OPTIONAL_INFO_REQUEST, USER_OPTIONAL_INFO_SUCCESS, USER_OPTIONAL_INFO_FAILURE,
     USER_COMPANY_REQUEST, USER_COMPANY_SUCCESS, USER_COMPANY_FAILURE,
+    PROFILE_STATUS_REQUEST, PROFILE_STATUS_SUCCESS, PROFILE_STATUS_FAILURE,
     REMEMBER_ME, REFRESH_TOKEN, TOKEN_VALIDATED_TOGGLE
 } from '../types/UserTypes';
 
@@ -19,8 +20,8 @@ let initialState = {
     exp: 0,
     iat: 0,
     id: "",
+    isUserValidated: false,
     isAdmin: "",
-    isUserValidated: "",
     jti: "",
     name: "",
     nbf: 0,
@@ -62,6 +63,17 @@ let initialState = {
         country: "",
         phoneNumber: ""
     },
+    profileStatus:{
+        isCompany: false,
+        isPersonalInfoCompleted: false,
+        isIdentityCardUploaded: false,
+        isIdentityCardValidated: false,
+        isPhoneNumberValidated: false,
+        isUserValidated: false,
+        isSubscriptionPayed: false,
+        rejectReason: "",
+        invalidateReason: ""
+    }
 }
 
 const userReducer = (state = initialState, action) => {
@@ -209,7 +221,6 @@ switch (action.type) {
     //Logout
     case USER_LOGOUT:
         return {
-            ...state,
             rememberMe: false,
             UserRole: "",
             email: "",
@@ -247,6 +258,27 @@ switch (action.type) {
                     color: "",
                     brand: ""
                 }
+            },        
+            company:{
+                isCompany: false,
+                name: "",
+                email: "",
+                taxIdentificationNumber: "",
+                address: "",
+                city: "",
+                country: "",
+                phoneNumber: ""
+            },
+            profileStatus:{
+                isCompany: false,
+                isPersonalInfoCompleted: false,
+                isIdentityCardUploaded: false,
+                isIdentityCardValidated: false,
+                isPhoneNumberValidated: false,
+                isUserValidated: false,
+                isSubscriptionPayed: false,
+                rejectReason: "",
+                invalidateReason: ""
             }
         }
     //Profile Image
@@ -303,8 +335,36 @@ switch (action.type) {
     case USER_OPTIONAL_INFO_SUCCESS:{
         return {
             ...state,
+            optionalInfo:{
+                languages: action.payload.languages,
+                description: action.payload.description,
+                car: {
+                    registrationNumber: action.payload.car.registrationNumber,
+                    model: action.payload.car.model,
+                    color: action.payload.car.color,
+                    brand: action.payload.car.brand
+                }
+            },
+            hasErrors: false
+        }
+    }
+    case USER_OPTIONAL_INFO_FAILURE:{
+        return {
+            ...state,
+            hasErrors: true
+        }
+    }
+    case USER_COMPANY_REQUEST:{
+        return {
+            ...state,
+            loading: true
+        }
+    }
+    case USER_COMPANY_SUCCESS:{
+        return {
+            ...state,
             company:{
-                isCompany: action.payload.isCompany,
+                isCompany:  action.payload.isCompany,
                 name: action.payload.name,
                 email: action.payload.email,
                 taxIdentificationNumber: action.payload.taxIdentificationNumber,
@@ -313,14 +373,44 @@ switch (action.type) {
                 country: action.payload.country,
                 phoneNumber: action.payload.phoneNumber
             },
+            hasErrors: false
         }
     }
-    case USER_OPTIONAL_INFO_FAILURE:{
+    case USER_COMPANY_FAILURE:{
         return {
             ...state,
+            hasErrors: true
         }
     }
-
+    case PROFILE_STATUS_REQUEST:{
+        return {
+            ...state,
+            loading: true
+        }
+    }
+    case PROFILE_STATUS_SUCCESS:{
+        return {
+            ...state,    
+            profileStatus:{
+                isCompany: action.payload.isCompany,
+                isPersonalInfoCompleted: action.payload.isPersonalInfoCompleted,
+                isIdentityCardUploaded: action.payload.isIdentityCardUploaded,
+                isIdentityCardValidated: action.payload.isCompany.isIdentityCardValidated,
+                isPhoneNumberValidated: action.payload.isPhoneNumberValidated,
+                isUserValidated: action.payload.isUserValidated,
+                isSubscriptionPayed: action.payload.isSubscriptionPayed,
+                rejectReason: action.payload.rejectReason,
+                invalidateReason: action.payload.invalidateReason
+            },
+            hasErrors: false
+        }
+    }
+    case PROFILE_STATUS_FAILURE:{
+        return {
+            ...state,
+            hasErrors: true
+        }
+    }
     default: 
         return  {
             ...state,

@@ -1,26 +1,25 @@
 import React, {Fragment} from 'react';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton'
 import { Modal, IconButton, Box, Fade } from '@material-ui/core';
-import {DeleteOutline} from '@material-ui/icons';
-import useStyles from './DeleteModalStyle'
+import { HighlightOff} from '@material-ui/icons';
+import useStyles from './close-item-modal-style';
 import { useTranslation } from "react-i18next";
 
-const DeleteModal = (props) =>  {
-
-  const { t } = useTranslation();
+const CloseItemModal = (props) =>  {
   const classes = useStyles();
   // state & handlers
   const [open, setOpen] = React.useState(false);
-  const handleOpen = (event) => {
+  const handleOpen = () => {
     setOpen(true)
   };
   const handleClose = () => setOpen(false);
+
   const { content, btn1Text, btn2Text } = props;
 
   return (
     <Fragment>
       <IconButton aria-label="delete" size='small' onClick={handleOpen}>
-        <DeleteOutline className={'Pink-carro'} fontSize={props.size}/>
+        <HighlightOff className={'Pink-carro'} fontSize={props.size}/>
       </IconButton>
       <Modal
         open={open}
@@ -47,4 +46,4 @@ const DeleteModal = (props) =>  {
   );
 };
 
-export default DeleteModal;
+export default CloseItemModal;

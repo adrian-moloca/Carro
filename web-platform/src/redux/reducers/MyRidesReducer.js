@@ -1,7 +1,8 @@
 import {MY_RIDES_REQUEST, MY_RIDES_SUCCESS, MY_RIDES_FAILURE,
     NEW_RIDE_REQUEST, NEW_RIDE_SUCCESS, NEW_RIDE_FAILURE,
     RIDE_UPDATE_REQUEST, RIDE_UPDATE_SUCCESS, RIDE_UPDATE_FAILURE,
-    RIDE_DELETE_REQUEST, RIDE_DELETE_SUCCESS, RIDE_DELETE_FAILURE, CLEAN_MY_RIDES_DATA
+    RIDE_DELETE_REQUEST, RIDE_DELETE_SUCCESS, RIDE_DELETE_FAILURE,
+    RIDE_CLOSE_REQUEST, RIDE_CLOSE_SUCCESS, RIDE_CLOSE_FAILURE, CLEAN_MY_RIDES_DATA
 } from '../types/MyRidesTypes';
 
 /* http://mongo-api.carrointernational.ro/api/v1/rides?
@@ -78,6 +79,21 @@ switch (action.type) {
             ...state,
             hasErrors: true,
         }
+    case RIDE_CLOSE_REQUEST:
+        return {
+            ...state,
+            loading: true,
+            }
+    case RIDE_CLOSE_SUCCESS:
+        return{
+            ...state,
+            hasErrors: false
+        }
+    case RIDE_CLOSE_FAILURE:
+        return{
+            ...state,
+            hasErrors: true,
+        }    
     case CLEAN_MY_RIDES_DATA:
         return{
             ...initialState,

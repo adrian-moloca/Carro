@@ -7,6 +7,7 @@ import {fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure,
     getUserPersonalInfoRequest, getUserPersonalInfoSuccess, getUserPersonalInfoFailure,
     getUserOptionalInfoRequest, getUserOptionalInfoSuccess, getUserOptionalInfoFailure, 
     getUserCompanyRequest, getUserCompanySuccess, getUserCompanyFailure,
+    getProfileStatusRequest, getProfileStatusSuccess, getProfileStatusFailure,
     changePasswordUserRequest, changePasswordUserSuccess, changePasswordUserFailure, updateNotifications, 
 } from '../types/UserTypes';
 import axios from 'axios';
@@ -143,13 +144,6 @@ axios.delete(data.baseUrl+"/catalin/admin/users/" +id ,{
 }
 }
 
-export const Logout = (_id) => {
-    window.localStorage.clear()
-    return (dispatch) => {
-        dispatch(fetchLogout);
-    }
-}
-
 export const getUserProfileImage = (token) => {
 
     return (dispatch) => {
@@ -214,6 +208,23 @@ export const getUserCompany = (token) => {
         }).catch(error => {
             const errorMsg = error;
             dispatch(getUserCompanyFailure(errorMsg))
+        })
+    }
+}
+
+export const getProfileStatus = (token) => {
+
+    return (dispatch) => {
+        dispatch(getProfileStatusRequest);
+        axios.get(data.baseUrl + "/users/user-statuses", {
+            headers:{
+              'Authorization': `Bearer ${token}`,
+            }}).then(response => {
+            const statuses = response.data.data;
+            dispatch(getProfileStatusSuccess(statuses));
+        }).catch(error => {
+            const errorMsg = error;
+            dispatch(getProfileStatusFailure(errorMsg))
         })
     }
 }

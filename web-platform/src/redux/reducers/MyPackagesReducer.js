@@ -1,7 +1,8 @@
 import {MY_PACKAGES_REQUEST, MY_PACKAGES_SUCCESS, MY_PACKAGES_FAILURE,
     NEW_PACKAGE_REQUEST, NEW_PACKAGE_SUCCESS, NEW_PACKAGE_FAILURE,
     PACKAGE_UPDATE_REQUEST, PACKAGE_UPDATE_SUCCESS, PACKAGE_UPDATE_FAILURE,
-    PACKAGE_DELETE_REQUEST, PACKAGE_DELETE_SUCCESS, PACKAGE_DELETE_FAILURE, CLEAN_MY_PACKAGES_DATA
+    PACKAGE_DELETE_REQUEST, PACKAGE_DELETE_SUCCESS, PACKAGE_DELETE_FAILURE,
+    PACKAGE_CLOSE_REQUEST, PACKAGE_CLOSE_SUCCESS, PACKAGE_CLOSE_FAILURE, CLEAN_MY_PACKAGES_DATA
 } from '../types/MyPackagesTypes';
 
 
@@ -71,6 +72,20 @@ const myPackagesReducer = (state = initialState, action) => {
                 ...state,
             }
         case PACKAGE_DELETE_FAILURE:
+            return{
+                ...state,
+                hasErrors: true,
+            }
+        case PACKAGE_CLOSE_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                }
+        case PACKAGE_CLOSE_SUCCESS:
+            return{
+                ...state,
+            }
+        case PACKAGE_CLOSE_FAILURE:
             return{
                 ...state,
                 hasErrors: true,

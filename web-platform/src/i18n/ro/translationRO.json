@@ -562,5 +562,24 @@
     "CompanyName": "Numele firmei",
     "TaxIdentificationNumber": "CUI",
     "CompanyEmail": "Email firma",
-    "OnlyCompany": "*Se completeaza doar pentru persoanele juridice"
+    "OnlyCompany": "*Se completeaza doar pentru persoanele juridice",
+    "ChangePasswordOption": "Schimbare parola",
+    "ChangePassword": "Schimba parola",
+    "OldPassword": "Parola veche",
+    "NewPassword": "Parola noua",
+    "ConfirmNewPassword": "Confirma noua parola",
+    "CloseAccount": "Inchidere cont",
+    "WriteHereYourReasonCloseAccount": "Scrie aici motivul pentru care vrei sa iti inchizi contul",
+    "CloseYourAccount": "Inchide contul",
+    "IdChargedWithSuccess": "BULETIN INCARCAT CU SUCCESS.",
+    "ItWillBeVerified": "VA FI VERIFICAT IN CEL MAI SCURT TIMP",
+    "NoDocumentsUploaded": "NU AI DOCUMENTE INCARCATE.",
+    "UploadRequestedDocuments": "INCARCA DOCUMENTELE NECESARE",
+    "UploadId": "INCARCA BULETIN",
+    "AcceptedDocuments": "DOCUMENTE ACCEPTATE:",
+    "IdDriveLicenseBirthCert": "BULETIN, PERMIS AUTO, CERTIFICAT DE NASTERE",
+    "CloseRide": "Inchide cursa",
+    "ClosePackage": "Inchide pachetul"
+    
+
 }

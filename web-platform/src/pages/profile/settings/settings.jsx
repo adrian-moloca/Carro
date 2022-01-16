@@ -1,41 +1,41 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { Grid, Box, FormControlLabel } from '@material-ui/core';
+import React, { Fragment, useState, useEffect } from 'react';
+import { Grid, Box } from '@material-ui/core';
+import { passwordValidator } from '../../../utils/Functions/input-validators';
 import PrimaryButton from '../../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../../components/buttons/secondaryButton/secondaryButton';
+import CloseAccountModal from '../../../components/modals/close-account/close-account-modal';
 import CarroTextField from '../../../components/textField/CarroTextField';
-import CarroCheckbox from '../../../components/checkbox/CarroCheckbox';
-import CarroAutocomplete from '../../../components/autocomplete/CarroAutocomplete';
-import PhoneTextField from '../../../components/telephoneNumberField/PhoneTextField';
-import { SaveAlt, Create } from '@material-ui/icons';
-import { connect } from 'react-redux';
-import { getUserCompany } from '../../../redux/actions/UserActions';
 import { useTranslation } from 'react-i18next';
-import { getCountries, getCities } from '../../../utils/Functions/countries-city-functions';
-import { phoneValidator } from '../../../utils/Functions/input-validators';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import utilData from '../../../utils/constants';
+import { fetchLogout } from '../../../redux/types/UserTypes';
 
-const Settings = ({userData, getUserCompany})=>{
+const Settings = ({userData, fetchLogout})=>{
     
     const {t} = useTranslation();
 
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('')
-    const [confirmNewPassword, setConfirmNewPassword] = useState(''); 
+    const [confirmNewPassword, setConfirmNewPassword] = useState('');
+    const [closeReason, setCloseReason] = useState(''); 
 
     const [changePassword, setChangePassword] = useState(false);
+    const [hasErrors, setHasErrors] = useState(false);
     const [inUpdateDataHasErrors, setInUpdateDataHasErrors] = useState(false);
     const [fieldsComplete, setFieldsComplete] = useState(false);
 
-    async function updateChangedData(){
+    async function updatePassword(){
         if(fieldsComplete){
-            axios.put(utilData.baseUrl + '/users/companies', {
-                
+            axios.post(utilData.baseUrl + '/identity/change-password', {
+                    oldPassword: oldPassword,
+                    newPassword: newPassword
             }, {
                 headers:{
                     'Authorization': `Bearer ${userData.token}`,
                 }
-            }).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)})
+            }).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)}).finally(()=>{})
         }
         if(!inUpdateDataHasErrors){ 
                 setChangePassword(false);
@@ -45,48 +45,83 @@ const Settings = ({userData, getUserCompany})=>{
         }
     }
 
+    async function closeAccount(){
+        axios.post(utilData.baseUrl + '/identity/close-account', {
+                closeReason: closeReason
+        }, {
+            headers:{
+                'Authorization': `Bearer ${userData.token}`,
+            }
+        }).then(()=>{window.localStorage.clear();}).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)}).finally(()=>{})
+        if(!inUpdateDataHasErrors){ 
+                setChangePassword(false);
+        } else {
+                alert('Close has errors, try later please.');
+                setInUpdateDataHasErrors(false); 
+        }
+    }
+
+    useEffect(() => {
+        if(oldPassword && newPassword && (newPassword === confirmNewPassword) && !hasErrors ){
+            setFieldsComplete(true)
+        } else {
+            setFieldsComplete(false)
+        }
+    }, [oldPassword, newPassword, confirmNewPassword, hasErrors])
+
+    useEffect(()=>{
+        setHasErrors(passwordValidator(oldPassword))
+    }, [oldPassword])
+
+    useEffect(()=>{
+        setHasErrors(passwordValidator(newPassword))
+    }, [newPassword])
+
+    useEffect(()=>{
+        setHasErrors(passwordValidator(confirmNewPassword))
+    }, [confirmNewPassword])
+
 
     return(
         <Fragment>
             {changePassword ? (
                     <Fragment>
                         <Grid container item sm={11}>
-                            <CarroTextField value={oldPassword} variant="outlined" label={t("OldPassword")} onChange={(e)=>{setOldPassword(e.target.value);}} size="small" fullWidth/>
+                            <CarroTextField required type='password' value={oldPassword} variant="outlined" label={t("OldPassword")} error={passwordValidator(oldPassword)} onChange={(e)=>{setOldPassword(e.target.value);}} size="small" fullWidth/>
                         </Grid> 
                         <Grid container item sm={11}>
-                            <CarroTextField value={newPassword} variant="outlined" label={t("NewProfile")} onChange={(e)=>{setNewPassword(e.target.value);}} size="small" fullWidth/>
+                            <CarroTextField required type='password' value={newPassword} variant="outlined" label={t("NewPassword")} error={passwordValidator(newPassword)} onChange={(e)=>{setNewPassword(e.target.value);}} size="small" fullWidth/>
                         </Grid> 
                         <Grid container item sm={11}>
-                            <CarroTextField value={confirmNewPassword} variant="outlined" label={t("ConfirmNewPassword")} onChange={(e)=>{setConfirmNewPassword(e.target.value);}} size="small" fullWidth/>
+                            <CarroTextField required type='password' value={confirmNewPassword} variant="outlined" label={t("ConfirmNewPassword")} error={passwordValidator(confirmNewPassword)} onChange={(e)=>{setConfirmNewPassword(e.target.value); }} size="small" fullWidth/>
                         </Grid> 
-                        <Grid container item sm={11}  justifyContent="center">
-                            <PrimaryButton variant='contained' onClick={()=>updateChangedData()} style={{height:35, width:250, marginTop:"10px"}} fullWidth>
+                        <Grid container item sm={12}  justifyContent="center">
+                            <PrimaryButton variant='contained' onClick={async ()=>updatePassword()} style={{height:35, width:250, marginTop:"10px"}} disabled={!fieldsComplete} fullWidth>
                                 <Box px='10px'>{t('ChangePassword')}</Box>
-                                <SaveAlt fontSize='small'/>
                             </PrimaryButton>
                         </Grid>
-                        <Grid container item sm={11}  justifyContent="center">
+                        <Grid container item sm={12}  justifyContent="center">
                             <SecondaryButton variant='contained' onClick={()=>setChangePassword(false)} style={{height:35, width:250, marginTop:"4px"}} fullWidth>
                                 <Box px='10px'>{t('Cancel')}</Box>
-                                <SaveAlt fontSize='small'/>
                             </SecondaryButton>
                         </Grid>
                     </Fragment>
                 ) : (
                     <Fragment>
                         <Box alignItems={"center"} width={"100%"}>
-                            <Grid container item sm={11}  justifyContent="center">
-                                <PrimaryButton variant='contained' onClick={()=>setChangePassword(true)} style={{height:35, width:250}} fullWidth>
+                            <Grid container item sm={12}  justifyContent="center">
+                                <PrimaryButton variant='contained' onClick={()=>setChangePassword(true)} style={{height:35, width:250, marginTop: "11%"}} fullWidth>
                                     <Box px='10px'>{t('ChangePasswordOption')}</Box>
-                                    <SaveAlt fontSize='small'/>
                                 </PrimaryButton>
                             </Grid>
-                            <Grid container item sm={11}  justifyContent="center">
-                                <SecondaryButton variant='contained' onClick={()=>updateChangedData()} style={{height:35, width:250, marginTop:"10px"}} fullWidth>
-                                    <Box px='10px'>{t('Logout')}</Box>
-                                    <SaveAlt fontSize='small'/>
-                                </SecondaryButton>
+                            <Grid container item sm={12}  justifyContent="center">
+                                <Link to="/" style={{textDecoration:'none' ,color:'inherit'}}>
+                                    <SecondaryButton variant='contained' onClick={()=>{window.localStorage.clear(); fetchLogout();}} style={{height:35, width:250, marginTop:"15px"}} fullWidth>
+                                        <Box px='10px'>{t('Logout')}</Box>
+                                    </SecondaryButton>
+                                </Link>
                             </Grid>
+                            <CloseAccountModal closeReason={closeReason} setCloseReason={setCloseReason} closeAccountClicked={closeAccount}/>
                         </Box>
                     </Fragment>
             )}  
@@ -95,5 +130,5 @@ const Settings = ({userData, getUserCompany})=>{
 }
 
 const mapStateToProps = (state) =>({userData: state.userData})
-const mapDispatchToProps = (dispatch) =>({getUserCompany: (token) => dispatch(getUserCompany(token))})
+const mapDispatchToProps = (dispatch) =>({fetchLogout: () => dispatch(fetchLogout())})
 export default connect(mapStateToProps, mapDispatchToProps)(Settings)

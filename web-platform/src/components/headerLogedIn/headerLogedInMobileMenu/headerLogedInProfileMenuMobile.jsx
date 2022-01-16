@@ -1,5 +1,5 @@
 import React, {useState, Fragment, useEffect} from 'react';
-import { AccountCircle, ExpandLess, ExpandMore, LocalMallOutlined,LocalShippingOutlined, AccountCircleOutlined, CreditCardOutlined, CancelOutlined, Security } from '@material-ui/icons';
+import { AccountCircle, ExpandLess, ExpandMore, LocalMallOutlined,LocalShippingOutlined, AccountCircleOutlined, /* CreditCardOutlined, */ CancelOutlined, Security } from '@material-ui/icons';
 import { List, ListItem, Collapse, Box, Grid} from '@material-ui/core';
 import { Link, useHistory } from "react-router-dom";
 import useStyles from '../headerLogedInProfileMenu/headerLogedInProfileMenuStyle'
@@ -61,7 +61,7 @@ const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages,
 
         handler(false);
 
-        localStorage.removeItem('state');
+        window.localStorage.removeItem('state');
 
     }
 

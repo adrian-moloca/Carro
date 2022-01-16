@@ -67,6 +67,10 @@ export const USER_COMPANY_REQUEST = 'USER_COMPANY_REQUEST';
 export const USER_COMPANY_SUCCESS = 'USER_COMPANY_SUCCESS';
 export const USER_COMPANY_FAILURE = 'USER_COMPANY_FAILURE';
 
+//
+export const PROFILE_STATUS_REQUEST = 'PROFILE_STATUS_REQUEST';
+export const PROFILE_STATUS_SUCCESS = 'PROFILE_STATUS_SUCCESS';
+export const PROFILE_STATUS_FAILURE = 'PROFILE_STATUS_FAILURE';
 
 // remember me toggle
 export const rememberMeToggle = () => {
@@ -304,6 +308,27 @@ export const getUserCompanySuccess = company => {
 export const getUserCompanyFailure = error => {
     return {
         type: USER_COMPANY_FAILURE,
+        payload: error
+    }
+}
+
+//get Profile Status
+export const getProfileStatusRequest = () => {
+    return {
+        type: PROFILE_STATUS_REQUEST,
+    }
+}
+
+export const getProfileStatusSuccess = status => {
+    return {
+        type: PROFILE_STATUS_SUCCESS,
+        payload: status
+    }
+}
+
+export const getProfileStatusFailure = error => {
+    return {
+        type: PROFILE_STATUS_FAILURE,
         payload: error
     }
 }
