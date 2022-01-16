@@ -131,9 +131,9 @@ const Ride = (props) =>{
               </Grid>
             </Grid>
             <Collapse in={expanded} timeout={600}>
-              <RideDetails departure={props.departure} destination={props.destination} departureDate={props.departureDate} 
+              <RideDetails rideId={props.rideId} departure={props.departure} destination={props.destination} departureDate={props.departureDate} 
                         estimatedTime={props.estimatedTime} departureAddress={props.departureAddress} destinationAddress={props.destinationAddress} 
-                        transportType={props.transportType} phoneNumber={props.phoneNumber}/>
+                        transportType={props.transportType} phoneNumber={props.phoneNumber} token={props.token}/>
             </Collapse>
       </Box>
   );

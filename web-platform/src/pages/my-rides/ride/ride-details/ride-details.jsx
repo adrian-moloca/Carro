@@ -22,8 +22,9 @@ const RideDetails = (props) =>{
 
     return(
         <Fragment>
-            <Box borderRadius='10px'  boxShadow={3} display ='flex' px='4%' pt='2%' mt = '2%'>
-                <Grid container spacing={0} justifyContent='center' className="ButtonTextSize">
+            <Box borderRadius='10px' alignItems='center'  boxShadow={3} display ='flex' flexDirection='column' mt='15px' mx='3%' p='2%'>
+                <Box my='2%' fontSize={20}>{t("RideDetails")}</Box>
+                <Grid container justifyContent='center'>
                     <Grid container item xs={6}>
                       <Box >{t('DriverCardDeparture')} {props.departure}</Box>
                     </Grid>
@@ -54,9 +55,10 @@ const RideDetails = (props) =>{
                         </Box>
                     </Grid>
                 </Grid>
-              </Box>
-              <Box mx={-2} mt={1} p='2%' borderTop={1} borderColor= 'grey.400' >
-                <Packages/> 
+              <Box my='2%' fontSize={20} justifyContent={"center"}>{t("Packages")}</Box>
+              <Grid container justifyContent='center'>
+                <Packages rideId={props.rideId} token={props.token}/> 
+              </Grid>
               </Box>
         </Fragment>
     );

@@ -38,18 +38,18 @@ const ActionsByStatus = (props) =>{
                     />  
                 </Fragment>
               );
-          case 5:
-            return(
-                <Fragment>
-                    
-                </Fragment>
-              );
           case 4:
             return(
                 <Fragment>
-                    
+                     
                 </Fragment>
           );
+          case 5:
+            return(
+                <Fragment>
+                     
+                </Fragment>
+              );
           default:
               return('Unkown status');
     }

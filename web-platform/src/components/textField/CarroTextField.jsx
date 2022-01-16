@@ -8,6 +8,14 @@ const CarroTextField = withStyles({
         marginBottom: "15px"
       },
 
+      '.MuiFormControl-root':{
+        marginRight: "20px"
+      },
+
+      '& .MuiSelect-select.MuiSelect-select':{
+        paddingRight: "20px"
+      },
+
       '& label.Mui-focused': {
         color: '#00b4d8',
       },

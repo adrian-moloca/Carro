@@ -53,14 +53,7 @@ let initialState = {
         destinationAddress: "",
         transportType: 0,
         phoneNumber: "",
-        statuses: [
-            {
-                id: "",
-                status: "",
-                rejectReason: "",
-                packageId: "",
-            }
-        ]
+        statuses: []
     },
     loading: false,
     hasErrors: false,

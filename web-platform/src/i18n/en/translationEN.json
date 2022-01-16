@@ -266,6 +266,11 @@
     "AcceptedDocuments": "ACCEPTED DOCUMENTS:",
     "IdDriveLicenseBirthCert": "ID, DRIVE LICENSE, BIRTH CERTIFICATE",
     "CloseRide": "Close ride",
-    "ClosePackage": "Close package"
-    
+    "ClosePackage": "Close package",
+    "NumberNotValidated": "NUMBER NOT VALIDATED!",
+    "VerifyNow": "VERIFY NOW",
+    "DocumentsValidated": "DOCUMENTS VALIDATED",
+    "NoIteractionWithYourRide": "You don't have any iteracton with this ride yet.",
+    "RideDetails": "Ride details",
+    "Packages": "Packages"
 }

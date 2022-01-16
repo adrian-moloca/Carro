@@ -51,34 +51,41 @@ const MandatoryDocuments = ({userData, getProfileStatus})=>{
 
     return(
         <Fragment>
-            {userData.profileStatus.isIdentityCardUploaded ? (
-                    <Fragment>
-                        <Grid container item sm={12}  justifyContent='center' style={{height: "50px", marginTop:"14%"}}>
-                            <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}> {t('IdChargedWithSuccess')}</Box>
-                            <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('ItWillBeVerified')}</Box>
-                        </Grid>
-                    </Fragment>
-                ) : (
-                    <Fragment>
-                        <Grid container item sm={12} justifyContent='center' style={{height: "50px", marginTop:"3%"}}>
-                            <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('NoDocumentsUploaded')}</Box>
-                            <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('UploadRequestedDocuments')}</Box>
-                        </Grid>
-                        <Grid container item sm={12} justifyContent='center'>
-                            <label style={{cursor: 'pointer', height:'35px', width: '250px'}}>
-                                <input id='myFileInput' type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=> setMandatory(e.target.files[0])}/>
-                                <PrimaryButton variant='contained' onClick={()=>{document.getElementById('myFileInput').click()}} style={{height:35, width:250, marginTop: "5%"}}>
-                                    <Box px='10px'>{t('UploadId')}</Box>
-                                    <AttachFile fontSize='small'/>
-                                </PrimaryButton>
-                            </label>
-                        </Grid>
-                        <Grid container item sm={12} justifyContent='center' style={{height: "50px", marginTop:"3%"}}>
-                            <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('AcceptedDocuments')}</Box>
-                            <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('IdDriveLicenseBirthCert')}</Box>
-                        </Grid>
-                    </Fragment>
-            )}  
+            {!userData.profileStatus.isIdentityCardValidated ? (
+                    userData.profileStatus.isIdentityCardUploaded ? (
+                            <Fragment>
+                                <Grid container item sm={12}  justifyContent='center' style={{height: "50px", marginTop:"14%"}}>
+                                    <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}> {t('IdChargedWithSuccess')}</Box>
+                                    <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('ItWillBeVerified')}</Box>
+                                </Grid>
+                            </Fragment>
+                        ) : (
+                            <Fragment>
+                                <Grid container item sm={12} justifyContent='center' style={{height: "50px", marginTop:"3%"}}>
+                                    <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('NoDocumentsUploaded')}</Box>
+                                    <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('UploadRequestedDocuments')}</Box>
+                                </Grid>
+                                <Grid container item sm={12} justifyContent='center'>
+                                    <label style={{cursor: 'pointer', height:'35px', width: '250px'}}>
+                                        <input id='myFileInput' type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=> setMandatory(e.target.files[0])}/>
+                                        <PrimaryButton variant='contained' onClick={()=>{document.getElementById('myFileInput').click()}} style={{height:35, width:250, marginTop: "5%"}}>
+                                            <Box px='10px'>{t('UploadId')}</Box>
+                                            <AttachFile fontSize='small'/>
+                                        </PrimaryButton>
+                                    </label>
+                                </Grid>
+                                <Grid container item sm={12} justifyContent='center' style={{height: "50px", marginTop:"3%"}}>
+                                    <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('AcceptedDocuments')}</Box>
+                                    <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('IdDriveLicenseBirthCert')}</Box>
+                                </Grid>
+                            </Fragment>
+                    )) : (
+                        <Fragment>
+                            <Grid container item sm={12}  justifyContent='center' style={{height: "50px", marginTop:"14%"}}>
+                                <Box color={"green"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}> {t('DocumentsValidated')}</Box>
+                            </Grid>
+                        </Fragment>
+                    )  }
         </Fragment>
     );
 }

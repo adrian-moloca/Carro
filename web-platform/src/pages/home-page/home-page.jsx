@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import BoxIcon from "../../assets/images/box.png";
 import CarIcon from "../../assets/images/car.png";
@@ -9,11 +9,20 @@ import { Container, Box, Grid } from "@material-ui/core";
 import useStyles from "./home-pageStyles";
 import "./home-pageStyles.jsx";
 import { useTranslation } from 'react-i18next';
+import { getUserPersonalInfo, getProfileStatus } from "../../redux/actions/UserActions";
+import { connect } from "react-redux";
 
-const HomePage = () => {
+const HomePage = ({userData, getUserPersonalInfo, getProfileStatus}) => {
   
   const classes = useStyles();
   const { t } = useTranslation();
+
+  useEffect(()=>{
+      if(userData.token && userData.token.length > 0){
+        getUserPersonalInfo(userData.token)
+        getProfileStatus(userData.token)
+      }
+  }, [])
 
   return (
     <Container className={classes.FirstSection}>
@@ -91,5 +100,6 @@ const HomePage = () => {
     </Container>
   );
 };
-
-export default HomePage;
+const mapStateToProps = (state) =>({userData: state.userData})
+const mapDispatchToProps = (dispatch) =>({getUserPersonalInfo: (token) => dispatch(getUserPersonalInfo(token)), getProfileStatus: (token) => dispatch(getProfileStatus(token))})
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

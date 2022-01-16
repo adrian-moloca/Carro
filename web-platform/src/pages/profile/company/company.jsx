@@ -45,7 +45,7 @@ const Company = ({userData, getUserCompany})=>{
         userData.company.city && userData.company.city.length > 0 && isCompany ? setCity(userData.company.city) : setCity('')
         userData.company.country && userData.company.country.length > 0 && isCompany ? setCountry(userData.company.country) : setCountry('')
         if(userData.company.phoneNumber && userData.company.phoneNumber.length > 0 && isCompany){
-                setCountryPhoneCode(String(userData.company.phoneNumber).substring(0, String(userData.company.phoneNumber).length-10) === '+4' ? '40' : String(userData.company.phoneNumber).substring(0, String(userData.company.phoneNumber).length-10))
+                setCountryPhoneCode(String(userData.company.phoneNumber).substring(0, String(userData.company.phoneNumber).length-10))
                 setInputValuePhoneNumber(String(userData.company.phoneNumber).substring(String(userData.company.phoneNumber).length-10, String(userData.company.phoneNumber).length))
         } else {
                 setCountryPhoneCode('')
@@ -70,7 +70,7 @@ const Company = ({userData, getUserCompany})=>{
                 address: address,
                 city: city,
                 country: country,
-                phoneNumber: countryPhoneCode.endsWith("0") && inputValuePhoneNumber.charAt(0) === "0" ? countryPhoneCode.substring(0,countryPhoneCode.length-1) +inputValuePhoneNumber : countryPhoneCode + inputValuePhoneNumber,
+                phoneNumber: countryPhoneCode + inputValuePhoneNumber,
             }, {
                 headers:{
                     'Authorization': `Bearer ${userData.token}`,
@@ -122,8 +122,8 @@ const Company = ({userData, getUserCompany})=>{
           <Grid container item sm={window.innerWidth <= 850 ? 11 : 5}>
             <PhoneTextField value={inputValuePhoneNumber}
                             onChange = {(e) => {setInputValuePhoneNumber(e.target.value); setCompanyChanged(true)}}
-                            countryPhoneCode={countryPhoneCode == '+4' ? '40' : countryPhoneCode.substring(1, countryPhoneCode.length-1)} 
-                            handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value.includes('+') ? e.target.value : '+'+e.target.value)}
+                            countryPhoneCode={countryPhoneCode} 
+                            handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
                             error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
                             disabled={!onEditMode} size="small"/>
           </Grid>

@@ -10,8 +10,8 @@ const EditOpenPackage = (props) =>{
     }
 
     return (
-            <EditPackage partialEdit={props.partialEdit} id={props.package.id} pickUpAddress={props.package.departureAddress} departureDate={props.package.departureDate} departure={props.package.departure}
-                         destinataryAddress={props.package.packageReceiver.destinationAddress} destination={props.package.destination}
+            <EditPackage partialEdit={props.partialEdit} id={props.package.id} pickUpAddress={props.package.packageSender.departureAddress} departureDate={props.package.departureDate} departure={props.package.packageSender.departure}
+                         destinataryAddress={props.package.packageReceiver.destinationAddress} destination={props.package.packageReceiver.destination}
                          destinataryPhoneNumber={props.package.packageReceiver.phoneNumber} destinataryName={props.package.packageReceiver.receiverName}
                          packageSize={props.package.packageInfo.packageType} price={props.package.packageInfo.price} weight={props.package.packageInfo.weight} width={String(props.package.packageInfo.dimensions).substring(0, String(props.package.packageInfo.dimensions).indexOf('x'))}
                          length={String(props.package.packageInfo.dimensions).substring(String(props.package.packageInfo.dimensions).indexOf('x')+1, getPositionSecOcc(props.package.packageInfo.dimensions,'x', 2))}

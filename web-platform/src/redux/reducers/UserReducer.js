@@ -112,6 +112,7 @@ switch (action.type) {
     case USER_LOGIN_SUCCESS:
         return{
             ...state,
+            hasErrors:false,
             UserRole: action.payload.user.UserRole,
             email: action.payload.user.email,
             exp: action.payload.user.exp,
@@ -143,6 +144,18 @@ switch (action.type) {
         return{
             ...state,
             hasErrors: false,
+            UserRole: action.payload.user.UserRole,
+            email: action.payload.user.email,
+            exp: action.payload.user.exp,
+            iat: action.payload.user.iat,
+            id: action.payload.user.id,
+            isAdmin: action.payload.user.isAdmin,
+            isUserValidated: action.payload.isUserValidated,
+            jti: action.payload.user.jti,
+            name: action.payload.user.name,
+            nbf: action.payload.user.nbf,
+            phoneNumber: action.payload.user.phoneNumber,
+            sub: action.payload.user.sub,
             token: action.payload.token,
             refreshToken: action.payload.refreshToken
         }

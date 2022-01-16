@@ -36,7 +36,7 @@ const PhoneNumberVerification = ({token})=>{
         });
     }
 
-    time.setSeconds(time.getSeconds() + 30);
+    time.setSeconds(time.getSeconds() + 300);
 
     return(
         <Container className = 'Primary-container-style'>
@@ -59,8 +59,8 @@ const PhoneNumberVerification = ({token})=>{
                 </Grid>
                 <Grid container item xs={10} xl={10} justifyContent='space-between'>
                     <Grid container item xs={5} xl={5}>
-                        <Link to='/register' style={{textDecoration:'none', width:'100%'}}>
-                            <SecondaryButton onClick={()=> localStorage.removeItem('state')} className="ButtonTextSize" variant='outlined' fullWidth>{t("DriverCardBackButton")}</SecondaryButton>
+                        <Link to='/home' style={{textDecoration:'none', width:'100%'}}>
+                            <SecondaryButton /* onClick={()=> localStorage.removeItem('state')} */ className="ButtonTextSize" variant='outlined' fullWidth>{t("VerifyLater")}</SecondaryButton>
                         </Link>
                     </Grid>
                     <Grid container item xs={5} xl={5}> 

@@ -39,7 +39,7 @@ const RideCard =(props)=>{
     function getFrontCardBtns(status){
         
         switch(status){
-            case 1:
+            case 0:
                 return (
                     <Fragment>
                         <SelectDriver 
