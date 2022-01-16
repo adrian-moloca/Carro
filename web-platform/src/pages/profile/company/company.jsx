@@ -97,7 +97,7 @@ const Company = ({userData, getUserCompany})=>{
             />
           </Grid>
           <Grid container item sm={11}>
-            <Box color={"#A0A0A0"} fontWeight={500} fontSize={15} textAlign={"center"}>
+            <Box color={"#A0A0A0"} fontWeight={500} fontSize={15} marginBottom={"15px"} textAlign={"center"}>
               {t("OnlyCompany")}
             </Box>
           </Grid>

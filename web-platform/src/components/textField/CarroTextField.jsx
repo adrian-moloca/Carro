@@ -4,6 +4,10 @@ import { withStyles } from "@material-ui/styles";
 const CarroTextField = withStyles({
     root: {
       
+      '& .MuiInputBase-root':{
+        marginBottom: "15px"
+      },
+
       '& label.Mui-focused': {
         color: '#00b4d8',
       },
