@@ -68,7 +68,7 @@ const Routes = ({data}) => {
     if(isLoggedIn){
         if(!data.rememberMe){
             window.onbeforeunload = function(){
-                window.localStorage.clear()
+              window.localStorage.removeItem('state')
             } 
         }
     }
