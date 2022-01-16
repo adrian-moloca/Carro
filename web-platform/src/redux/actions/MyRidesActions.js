@@ -59,7 +59,7 @@ export const updateRide = (id, departureDate, fromCountry, fromCity, toCountry, 
 
 return(dispatch) => {
     dispatch(updateRideRequest);
-    axios.patch(data.baseUrl+"/rides/" + id,{
+    axios.put(data.baseUrl+"/rides/" + id,{
         departureDate: departureDate,
         fromCountry: fromCountry,
         fromCity: fromCity,
@@ -68,7 +68,7 @@ return(dispatch) => {
         departureAddress: departureAddress,
         destinationAddress: destinationAddress,
         estimatedTime: estimatedTime,
-        trasportType: trasportType,
+        transportType: trasportType,
 }, {
     headers:{
         'Authorization': `Bearer ${token}`,
@@ -76,7 +76,7 @@ return(dispatch) => {
 })
 .then(response => {
     dispatch(updateRideSuccess(response));
-    dispatch(fetchMyRides())
+    dispatch(fetchMyRides(token))
 }).catch(error => {
     const errorMsg = error;
     dispatch(updateRideFailure(errorMsg))

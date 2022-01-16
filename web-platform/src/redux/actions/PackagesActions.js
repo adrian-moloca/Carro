@@ -1,4 +1,5 @@
-import {searchPackagesRequest, searchPackagesSuccess, searchPackagesFailure, cleanPackagesData} from '../types/PackagesTypes';
+import {searchPackagesRequest, searchPackagesSuccess, searchPackagesFailure, cleanPackagesData,
+       packagesUnderRideRequest, packagesUnderRideSuccess, packagesUnderRideFailure} from '../types/PackagesTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
 
@@ -20,6 +21,18 @@ export const searchPackages = (fromCountry, fromCity, toCountry, toCity, token) 
             dispatch(searchPackagesFailure(errorMsg))
         })
     }
+}
+
+export const packagesUnderRide = (rideId, token) => {
+    
+    return(dispatch)=> {
+        dispatch(packagesUnderRideRequest);
+        axios.get(data.baseUrl+'my-packages/'+rideId+"/packages&pageNumber=1&pageSize=15", {
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            }
+        }).then((response)=>packagesUnderRideSuccess(response.data.data)).catch(error=>packagesUnderRideFailure(error))
+    } 
 }
 
 export const clean = () => {

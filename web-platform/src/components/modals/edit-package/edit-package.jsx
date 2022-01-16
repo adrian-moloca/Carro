@@ -17,8 +17,8 @@ const EditPackage = ({data, updatePackage, ...props}) =>{
     const[open, setOpen] = useState(false);
 
     const [pickUpAddress, setPickUpAddress] = useState(props.pickUpAddress);
-    const [departureDate, setDepartureDate] = useState(new Date(parseInt(String(props.departureDate).substring(0, 4)),parseInt(String(props.departureDate).substring(5,7)) - 1,parseInt(String(props.departureDate).substring(8,10)), 0));
-    const [departureCountry, setDepartureCountry] = useState(String(props.departure).substring(String(props.departure).indexOf(',')+2, String(props.departure).length));
+    const [departureDate, setDepartureDate] = useState(props.departureDate);
+    const [departureCountry, setDepartureCountry] = useState(String(props.departure).substring(String(props.departure).indexOf(',')+1, String(props.departure).length));
     const [departureCity, setDepartureCity] = useState(String(props.departure).substring(0, String(props.departure).indexOf(',')));
     const [destinataryName, setDestinataryName] = useState(props.destinataryName);
     const [destinationCountry, setDestinationCountry] = useState(String(props.destination).substring(String(props.destination).indexOf(',')+2, String(props.destination).length));
@@ -27,7 +27,7 @@ const EditPackage = ({data, updatePackage, ...props}) =>{
     const [destinataryPhoneNumber, setDestinataryPhoneNumber] = useState(props.destinataryPhoneNumber);
     const [packageSize, setPackageSize] = useState(props.packageSize);
     const [currency, setCurrency] = useState(String(props.price).substr(String(props.price).indexOf(' ')+1));
-    const [weight, setWeight] = useState(String(props.weight).substr(0, String(props.price).indexOf(' ')));
+    const [weight, setWeight] = useState(parseInt(String(props.weight).replace('Kg', "")));
     const [width, setWidth] = useState(props.width);
     const [height, setHeight] = useState(props.height);
     const [length, setLength] = useState(props.length);
@@ -71,7 +71,7 @@ const EditPackage = ({data, updatePackage, ...props}) =>{
                         </Box>
                         <FormPackage partialEdit={props.partialEdit} departureCountry={departureCountry} departureCity={departureCity} pickUpAddress={pickUpAddress}
                                      departureDate={departureDate} destinataryName={destinataryName} phoneNumber={destinataryPhoneNumber}
-                                     destinataryName={destinataryName} destinationCountry={destinationCountry} destinationCity={destinationCity} destinataryAddress={destinataryAddress}
+                                     destinationCountry={destinationCountry} destinationCity={destinationCity} destinataryAddress={destinataryAddress}
                                      packageSize={packageSize} weight={weight} width={width} length={length} height={height} smallDescription={smallDescription} price={price} currency={currency}
                                      description={description} flammable={isFlammable} fragile={isFragile} foodGrade={isFoodGrade} animal={isAnimal} handleWithCare={isHandleWithCare} hasErrors={hasErrors}
                                      setDepartureCountry={setDepartureCountry} setDepartureCity={setDepartureCity} setPickUpAddress={setPickUpAddress} setDepartureDate={setDepartureDate}
@@ -85,7 +85,7 @@ const EditPackage = ({data, updatePackage, ...props}) =>{
                                         <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("CloseButton")}</SecondaryButton>     
                             </Grid>
                             <Grid container item xs={3} justifyContent="center">
-                                        <GreenCaroButton variant='contained' onClick={()=> updatePackage(props.id, departureDate, departureCountry, departureCity, destinationCountry, destinationCity, pickUpAddress, destinataryAddress, packageSize, weight, height, length, width, description, price, currency, destinataryName, destinataryPhoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, data.token)} fullWidth>{t("SaveButton")}</GreenCaroButton>
+                                        <GreenCaroButton variant='contained' onClick={()=>{ updatePackage(props.id, data.personalInfo.lastName+' '+data.personalInfo.firstName, smallDescription, departureDate, departureCountry, departureCity, destinationCountry, destinationCity, pickUpAddress, destinataryAddress, packageSize, weight, height, length, width, description, price, currency, destinataryName, destinataryPhoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, data.token); handleClose()}} fullWidth>{t("SaveButton")}</GreenCaroButton>
                             </Grid>
                     </Grid>
                     </Container>
@@ -97,6 +97,6 @@ const EditPackage = ({data, updatePackage, ...props}) =>{
 
 }
 
-const mapDispatchToProps = dispatch =>({updatePackage: (id, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token) =>dispatch(updatePackage(id, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token))})
+const mapDispatchToProps = dispatch =>({updatePackage: (id, senderName, packageName, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token) =>dispatch(updatePackage(id, senderName, packageName, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token))})
 const mapStateToProps = state => ({data: state.userData})
 export default connect(mapStateToProps, mapDispatchToProps)(EditPackage);

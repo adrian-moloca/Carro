@@ -130,10 +130,10 @@ export const createNewUserRequest = () => {
     }
 }
 
-export const createNewUserSuccess = (user) => {
+export const createNewUserSuccess = (user, token, refreshToken) => {
     return {
         type: USER_NEWUSER_SUCCESS,
-        payload: user
+        payload: {user, token, refreshToken}
     }
 }
 

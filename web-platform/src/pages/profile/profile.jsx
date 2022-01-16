@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Container, Box, Grid, Avatar, ButtonBase, Modal, Fade} from "@material-ui/core";
 import SeeProfileBtn from "../../components/buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn"
 import AvatarImage from "../../assets/images/avatarImg.png";

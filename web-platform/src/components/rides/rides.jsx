@@ -28,7 +28,8 @@ const Rides = (props) =>{
                 <Grid container item xs={12} justifyContent='center' style={{height: '400px'}}>
                     <CircularProgress/>
                 </Grid>
-            ) : (driversUnder && driversUnder.length > 0 ? driversUnder.map((driver, index)=> 
+            ) : (driversUnder && driversUnder.length > 0 ? (
+                driversUnder.map((driver, index)=> 
                                 <Grid key ={index} container item xs={12} sm={5}  md={4} lg={4}  xl={4} justifyContent='space-around'>
                                     <RideCard 
                                         id={driver.id}
@@ -48,7 +49,7 @@ const Rides = (props) =>{
                                         rejectReason={driver.status}
                                     />
                                 </Grid>
-                    ) : (
+                    )) : (
                         <Grid container item xs={12} justifyContent='center' style={{height: '50px'}}>
                             <Box>
                                 {t("NoIteractionWithYourPackage")}

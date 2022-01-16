@@ -28,7 +28,7 @@ const PackageDetails = (props)=>{
     return(
     <Box borderRadius='10px' alignItems='center'  boxShadow={3} display ='flex' flexDirection='column' mt='15px' mx='3%' p='2%'>
         <Box my='2%' fontSize={20}>{t("PackageDetails")}</Box>
-        <Grid container justifyContent='center' className="ButtonTextSize" >
+        <Grid container justifyContent='center' >
             <Grid container item xs={6}>
                 <Box>{t("DriverCardDeparture")} {props.departure}</Box>
             </Grid>
@@ -60,11 +60,11 @@ const PackageDetails = (props)=>{
                 <Box>{t("CardName")}: {props.name}</Box>
             </Grid>
             <Grid container item xs={6} justifyContent='space-around'>
-                <img src={fragil} className={props.specialMention.isFragile ? classes.advStyle : classes.advNoneStyle} alt={""}/>
-                <img src={foodGrade} className={props.specialMention.isFoodGrade ? classes.advStyle : classes.advNoneStyle} alt={""}/>
-                <img src={flammable} className={props.specialMention.isFlammable ? classes.advStyle : classes.advNoneStyle} alt={""}/>
-                <img src={handleWithCare} className={props.specialMention.isHandleWithCare ? classes.advStyle : classes.advNoneStyle} alt={""}/>
-                <img src={animal} className={props.specialMention.isAnimal ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                <img src={fragil} className={Boolean(props.specialMention.isFragile).valueOf() ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                <img src={foodGrade} className={Boolean(props.specialMention.isFoodGrade).valueOf() ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                <img src={flammable} className={Boolean(props.specialMention.isFlammable).valueOf() ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                <img src={handleWithCare} className={Boolean(props.specialMention.isHandleWithCare).valueOf() ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                <img src={animal} className={Boolean(props.specialMention.isAnimal).valueOf() ? classes.advStyle : classes.advNoneStyle} alt={""}/>
             </Grid>
         </Grid>
         <Box my='2%' fontSize={20}>{t("Transports")}</Box>

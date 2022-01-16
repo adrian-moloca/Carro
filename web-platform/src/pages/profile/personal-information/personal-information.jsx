@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Grid, Box } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import PrimaryButton from '../../../components/buttons/primaryButton/primaryButton';
 import CarroTextField from '../../../components/textField/CarroTextField';
 import PhoneTextField from '../../../components/telephoneNumberField/PhoneTextField';
@@ -7,14 +8,14 @@ import CarroDatePicker from '../../../components/datePicker/CarroDatePicker';
 import CarroAutocomplete from '../../../components/autocomplete/CarroAutocomplete';
 import { SaveAlt, Create } from '@material-ui/icons';
 import { connect } from 'react-redux';
-import { getUserPersonalInfo } from '../../../redux/actions/UserActions';
+import { getUserPersonalInfo, getProfileStatus } from '../../../redux/actions/UserActions';
 import { useTranslation } from 'react-i18next';
 import { getCountries , getCities} from '../../../utils/Functions/countries-city-functions';
 import { phoneValidator, mailValidator } from '../../../utils/Functions/input-validators';
 import axios from 'axios';
 import utilData from '../../../utils/constants';
 
-const PersonalInformation = ({userData, getUserPersonalInfo})=>{
+const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=>{
     
     const {t} = useTranslation();
 
@@ -32,9 +33,31 @@ const PersonalInformation = ({userData, getUserPersonalInfo})=>{
     const [inUpdateDataHasErrors, setInUpdateDataHasErrors] = useState(false);
     const [personalInfoChanged, setPersonalInfoChanged] = useState(false);
 
+    async function getValidationCode(){
+        setTimeout(() => {
+          axios.post(utilData.baseUrl+"/phone-validation", {
+              message: "Codul pentru verificarea numarului de telefon"
+          },{
+              headers: {
+                  'Authorization': `Bearer ${userData.token}`,
+              }
+          })
+          .then(res => {
+              console.log('validation: ', res);
+          })
+          .catch(err => {
+              console.log('error from validation: ', err);
+          })
+      }, 500)
+    } 
+
     useEffect(()=>{
         getUserPersonalInfo(userData.token)
     }, [onEditMode])
+
+    useEffect(()=>{
+        getProfileStatus(userData.token)      
+    }, [])
 
     useEffect(()=>{
         userData.personalInfo.email && userData.personalInfo.email.length > 0 ? setEmail(userData.personalInfo.email) : setEmail('')
@@ -42,7 +65,7 @@ const PersonalInformation = ({userData, getUserPersonalInfo})=>{
         userData.personalInfo.lastName && userData.personalInfo.lastName.length > 0 ? setLastName(userData.personalInfo.lastName) : setLastName('')
         userData.personalInfo.dateOfBirth && userData.personalInfo.dateOfBirth.length > 0 ? setDateOfBirth(userData.personalInfo.dateOfBirth) : setDateOfBirth('')
         if(userData.personalInfo.phoneNumber && userData.personalInfo.phoneNumber.length > 0){
-                setCountryPhoneCode(String(userData.personalInfo.phoneNumber).substring(0, String(userData.personalInfo.phoneNumber).length-10) === '+4' ? '40' : String(userData.personalInfo.phoneNumber).substring(0, String(userData.personalInfo.phoneNumber).length-10))
+                setCountryPhoneCode(String(userData.personalInfo.phoneNumber).substring(0, String(userData.personalInfo.phoneNumber).length-10))
                 setInputValuePhoneNumber(String(userData.personalInfo.phoneNumber).substring(String(userData.personalInfo.phoneNumber).length-10, String(userData.personalInfo.phoneNumber).length))
         } else {
                 setCountryPhoneCode('')
@@ -64,7 +87,7 @@ const PersonalInformation = ({userData, getUserPersonalInfo})=>{
                 address: address,
                 city: city,
                 country: country,
-                phoneNumber: countryPhoneCode.endsWith("0") && inputValuePhoneNumber.charAt(0) === "0" ? countryPhoneCode.substring(0,countryPhoneCode.length-1) +inputValuePhoneNumber : countryPhoneCode + inputValuePhoneNumber ,
+                phoneNumber: countryPhoneCode + inputValuePhoneNumber,
                 dateOfBirth: dateOfBirth
             }, {
                 headers:{
@@ -92,10 +115,17 @@ const PersonalInformation = ({userData, getUserPersonalInfo})=>{
           <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
             <PhoneTextField value={inputValuePhoneNumber}
                             onChange = {(e) => {setInputValuePhoneNumber(e.target.value); setPersonalInfoChanged(true)}}
-                            countryPhoneCode={countryPhoneCode == '+4' ? '40' : countryPhoneCode.substring(1, countryPhoneCode.length-1)} 
-                            handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value.includes('+') ? e.target.value : '+'+e.target.value)}
+                            countryPhoneCode={countryPhoneCode} 
+                            handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
                             error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
                             disabled={!onEditMode} size="small"/>
+            {!Boolean(userData.profileStatus.isPhoneNumberValidated).valueOf()  ?  (
+                            <Box color={"red"} fontWeight={400} fontSize={18} textAlign={"left"} width={"100%"} marginBottom={"5px"}> 
+                              {t('NumberNotValidated')+' '} 
+                              <Link to='/register/phone-number-verification' onClick={()=> getValidationCode()} style={{color:"red"}}>
+                                {t('VerifyNow')}
+                              </Link>
+                            </Box>):null}
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
             <CarroDatePicker value={dateOfBirth} onChange={(date) =>{ setDateOfBirth(date); setPersonalInfoChanged(true) }} format='dd/MM/yyyy' views={["year", "month", "date"]}
@@ -132,5 +162,5 @@ const PersonalInformation = ({userData, getUserPersonalInfo})=>{
 }
 
 const mapStateToProps = (state) =>({userData: state.userData})
-const mapDispatchToProps = (dispatch) =>({getUserPersonalInfo: (token) => dispatch(getUserPersonalInfo(token))})
+const mapDispatchToProps = (dispatch) =>({getUserPersonalInfo: (token) => dispatch(getUserPersonalInfo(token)), getProfileStatus: (token) => dispatch(getProfileStatus(token))})
 export default connect(mapStateToProps, mapDispatchToProps)(PersonalInformation)

@@ -21,14 +21,14 @@ const EditRideModal = ({data, updateRide, ...props}) =>{
 
   const transports = [
     {
-        type: 0, 
+        type: 1, 
         label: t("PublicTransport"),
     },
-    {   type: 1,
+    {   type: 2,
         label: t("Car"),
     },
     {
-        type: 2,
+        type: 3,
         label: t("Truck"),
     }  
   ]
@@ -128,7 +128,7 @@ const EditRideModal = ({data, updateRide, ...props}) =>{
                                                     variant ='outlined' value={destinationAddress} onChange={handleChangeDestinationAddress} label={t("DestinationAddress")} fullWidth/>
                                 </Grid>
                                 <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
-                                    <CarroDatePicker label={t("DriverCardDepartureDate")} value={departureDate} format='dd/MM/yyyy' onChange={handleChangeDepartureDate} disablePast/>
+                                    <CarroDatePicker label={t("DriverCardDepartureDate")} value={departureDate} format='dd/MM/yyyy' onChange={(date)=>handleChangeDepartureDate(date)} disablePast/>
                                 </Grid>
                                 <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
                                     <CarroTextField select variant ='outlined' label={t("RideType")} fullWidth value={transportType} onChange={handleChangeTransportType}>
@@ -146,7 +146,7 @@ const EditRideModal = ({data, updateRide, ...props}) =>{
                                             <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("CloseButton")}</SecondaryButton>     
                                 </Grid>
                                 <Grid container item xs={3} justifyContent="center">
-                                            <GreenCaroButton disabled={!isFormComplete()} onClick={()=>updateRide(props.ride.id, departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, data.token)} variant='contained' fullWidth>{t("SaveButton")}</GreenCaroButton>
+                                            <GreenCaroButton disabled={!isFormComplete()} onClick={()=>{updateRide(props.ride.id, departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, data.token); handleClose() }} variant='contained' fullWidth>{t("SaveButton")}</GreenCaroButton>
                                 </Grid>
                         </Grid>
                     </Container>

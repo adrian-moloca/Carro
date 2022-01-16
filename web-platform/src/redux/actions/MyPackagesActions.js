@@ -86,22 +86,22 @@ axios.post(data.baseUrl+"/packages",{
 }
 }
 
-export const updatePackage = (id, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress,
+export const updatePackage = (id, senderName, packageName, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress,
                                 packageType, weight, height, length, width, description, price, currency, destinataryName,
                                 phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token) => {
 
 return(dispatch) => {
     dispatch(updatePackageRequest);
-    axios.patch(data.baseUrl+"/my-packages/" + id,{
+    axios.put(data.baseUrl+"/packages/" + id,{
         packageSender: {
             fromCountry: fromCountry,
             fromCity: fromCity,
             departureAddress: departureAddress,
             departureDate: departureDate,
+            senderName: senderName
         },
         packageReceiver:
         {
-            name:destinataryName,
             phoneNumber:phoneNumber,
             toCountry:toCountry,
             toCity:toCity,
@@ -109,6 +109,7 @@ return(dispatch) => {
             receiverName:destinataryName,
         },
         packageInfo:{
+            name:packageName,
             packageType: packageType,
             price:price,
             numberOfPackages: 1,

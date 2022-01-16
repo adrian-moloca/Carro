@@ -579,7 +579,13 @@
     "AcceptedDocuments": "DOCUMENTE ACCEPTATE:",
     "IdDriveLicenseBirthCert": "BULETIN, PERMIS AUTO, CERTIFICAT DE NASTERE",
     "CloseRide": "Inchide cursa",
-    "ClosePackage": "Inchide pachetul"
+    "ClosePackage": "Inchide pachetul",
+    "NumberNotValidated": "NUMAR NEVALIDAT!",
+    "VerifyNow": "VERIFICA ACUM",
+    "DocumentsValidated": "DOCUMENTE VALIDATE",
+    "NoIteractionWithYourRide": "Inca nu exista nici o iteratie la cursa ta.",
+    "RideDetails": "Detalii cursa",
+    "Packages": "Pachete"
     
 
 }

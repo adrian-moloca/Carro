@@ -64,8 +64,7 @@ axios.post(data.baseUrl+"/identity/register",{
 
 })
 .then(response => {
-    dispatch(createNewUserSuccess(response.data));
-    dispatch(fetchLoginSuccess(jwt_decode(response.data.token), response.data.token));
+    dispatch(createNewUserSuccess(jwt_decode(response.data.token), response.data.token, response.data.refreshToken));
     setTimeout(() => {
         axios.post(data.baseUrl+"/phone-validation", {
             message: "Codul pentru verificarea numarului de telefon"

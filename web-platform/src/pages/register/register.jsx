@@ -27,13 +27,13 @@ const Register = ({createNewUser, data}) => {
   const classes = useStyles();
   const history = useHistory();
 
-  const [userCreated, setUserCreated] = useState(String(data.token).length > 0 ? true : false);
+  const [userCreated, setUserCreated] = useState(false);
   const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState('');
   const [countryPhoneCode, setCountryPhoneCode] = useState('');
   const [profilePhoto, setProfilePhoto] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + ((parseInt(countryPhoneCode.slice(-1)) === 0 && parseInt(inputValuePhoneNumber[0]) === 0) ? inputValuePhoneNumber.substring(1) : inputValuePhoneNumber));
+  const [phoneNumber, setPhoneNumber] = useState(countryPhoneCode + inputValuePhoneNumber);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -44,12 +44,12 @@ const Register = ({createNewUser, data}) => {
   /* const [legalPersonChecked, setLegalPersonChecked] = useState(false); */
 
   useLayoutEffect(()=>{
-    setPhoneNumber(countryPhoneCode.includes('+') ? countryPhoneCode : ('+' + countryPhoneCode) + inputValuePhoneNumber)
+    setPhoneNumber(countryPhoneCode + inputValuePhoneNumber)
   }, [inputValuePhoneNumber, countryPhoneCode])
 
   async function redirectPhoneNumberVerification(){
     if(userCreated === true) {
-      if(profilePhoto.length > 0) {
+      if(profilePhoto.length > 20) {
         axios.put(utilData.baseUrl + '/users/profile-images', {
             profileImage: profilePhoto.replace("data:image/jpeg;base64," || "data:image/png;base64," || "data:image/jpg;base64,", ""),
         }, {
@@ -60,9 +60,7 @@ const Register = ({createNewUser, data}) => {
       } else {
         history.push('/register/phone-number-verification')
       }
-    } else {
-        alert('Register failed');
-    }
+    } 
   }
 
   async function setPhoto(file){
@@ -89,10 +87,10 @@ const Register = ({createNewUser, data}) => {
   
   useEffect(() => {
     if(clickedRegister){
-        setUserCreated(String(data.token).length > 0 ? true : false);
+        setUserCreated(data.email === email ? true : false);
         setTimeout(() => {redirectPhoneNumberVerification()}, 500);
     }
-  }, [clickedRegister])
+  }, [data])
 
   /* const handleLegalPersonCheckboxClick = (event) => {
     event.target.checked ? setLegalPersonChecked(true) : setLegalPersonChecked(false);
