@@ -12,7 +12,7 @@ export const fetchCourierProfile = (userId, token) => {
         }).then(response => {
             const courierProfile = response.data.data;
             dispatch(fetchCourierProfileSuccess(courierProfile))
-        }).catch(error=> dispatch(fetchCourierProfileFailure(error)))
+        }).catch(error=> {dispatch(fetchCourierProfileFailure(error)); alert("Courier profile isn't disponible")})
 
     }
 }

@@ -585,7 +585,8 @@
     "DocumentsValidated": "DOCUMENTE VALIDATE",
     "NoIteractionWithYourRide": "Inca nu exista nici o iteratie la cursa ta.",
     "RideDetails": "Detalii cursa",
-    "Packages": "Pachete"
+    "Packages": "Pachete",
+    "NoComments": "User-ul nu are inca nici un comentariu."
     
 
 }

@@ -27,7 +27,7 @@ export const packagesUnderRide = (rideId, token) => {
     
     return(dispatch)=> {
         dispatch(packagesUnderRideRequest);
-        axios.get(data.baseUrl+'my-packages/'+rideId+"/packages&pageNumber=1&pageSize=15", {
+        axios.get(data.baseUrl+'/my-packages/'+rideId+"/packages", {
             headers:{
                 'Authorization': `Bearer ${token}`,
             }

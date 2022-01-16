@@ -1,4 +1,4 @@
-import {COURIER_PROFILE_REQUEST, COURIER_PROFILE_SUCCESS, COURIER_PROFILE_FAILURE,
+import {COURIER_PROFILE_REQUEST, COURIER_PROFILE_SUCCESS, COURIER_PROFILE_FAILURE, RESET_COURIER_DATA_CHANGED
 } from '../types/CourierTypes';
 
 
@@ -25,6 +25,7 @@ let initialState = {
     },
     loading: false,
     hasErrors: false,
+    courierDataChanged: false
 }
 
 const courierReducer = (state = initialState, action) => {
@@ -39,6 +40,7 @@ const courierReducer = (state = initialState, action) => {
             return{
                 ...state,
                 courier: action.payload,
+                courierDataChanged: true,
                 hasErrors: false,
             }
         case COURIER_PROFILE_FAILURE:
@@ -46,6 +48,11 @@ const courierReducer = (state = initialState, action) => {
                 ...state,
                 hasErrors: true,
             }   
+        case RESET_COURIER_DATA_CHANGED:
+            return{
+                ...state,
+                courierDataChanged: false
+            }
         default: 
             return  {
                 ...state,

@@ -46,7 +46,7 @@ export const driversUnderPackage = (packageId, token) => {
     
     return(dispatch)=> {
         dispatch(driversUnderPackageRequest);
-        axios.get(data.baseUrl+'my-packages/'+packageId+"/drivers&pageNumber=1&pageSize=15", {
+        axios.get(data.baseUrl+'/my-packages/'+packageId+"/drivers", {
             headers:{
                 'Authorization': `Bearer ${token}`,
             }
