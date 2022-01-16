@@ -9,8 +9,11 @@ import SelectDriver from '../../modals/driver-select/driver-select';
 import useStyles from './ride-card-style';
 import { useTranslation } from 'react-i18next';
 import RejectModal from '../../modals/reject-modal/reject-modal';
+import SeeProfileBtn from '../../buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn';
+import {fetchCourierProfile} from '../../../redux/actions/CourierActions';
+import { connect } from 'react-redux';
 
-const RideCard =(props)=>{
+const RideCard =({userData, fetchCourierProfile, ...props})=>{
     const { t } = useTranslation();
     const classes = useStyles();
 
@@ -184,6 +187,13 @@ const RideCard =(props)=>{
 
             <Box display='flex' width='1' height='400px' p={1} borderRadius='10px' boxShadow={3}>
                 <Grid container justifyContent='center'>
+                    <Grid container item xs={12} justifyContent="flex-end">
+                        <SeeProfileBtn onClick={()=>{
+                                fetchCourierProfile(props.id, userData.token)
+                        }} style={{fontSize:"12px", height: "30px"}}>
+                                {t("ViewProfile")}
+                        </SeeProfileBtn>
+                    </Grid>
                     <Grid container item xs={12} justifyContent='center'>
                         <img src={"data:image/png;base64," + props.image} className={classes.profileImg} alt={""}/>
                     </Grid>
@@ -245,4 +255,7 @@ const RideCard =(props)=>{
     );
 };
 
-export default RideCard;
+const mapStateToProps = (state) => ({userData: state.userData})
+const mapDispatchToProps = (dispatch) =>({fetchCourierProfile: (userId, token) => dispatch(fetchCourierProfile(userId, token))})
+
+export default connect(mapStateToProps, mapDispatchToProps)(RideCard);

@@ -272,5 +272,6 @@
     "DocumentsValidated": "DOCUMENTS VALIDATED",
     "NoIteractionWithYourRide": "You don't have any iteracton with this ride yet.",
     "RideDetails": "Ride details",
-    "Packages": "Packages"
+    "Packages": "Packages",
+    "NoComments": "No comments yet for this user."
 }

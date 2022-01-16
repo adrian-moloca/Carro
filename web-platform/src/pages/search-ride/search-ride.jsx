@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import GetRide from "./get-ride";
 import { useHistory } from "react-router-dom";
 
-const SearchRide = ({ridesData, userData, searchRides, clean}) => {
+const SearchRide = ({ridesData, userData, courierData, searchRides, clean}) => {
 
   const history = useHistory();
 
@@ -40,6 +40,12 @@ const SearchRide = ({ridesData, userData, searchRides, clean}) => {
   useEffect(()=>{
     Array(ridesData.rides).length > 0 ? setRidesState(ridesData.rides) : setRidesState([])
   }, [ridesData.rides])
+
+
+  useEffect(()=>{    
+    if(courierData.courierDataChanged)
+      history.push('/courier-profile')
+  }, [courierData])
 
   useEffect(()=>{
       const unlisten = history.listen(()=>{clean()})
@@ -122,6 +128,6 @@ const mapDispatchToProps = (dispatch) => {
     clean: () => dispatch(clean()),
   }
 }
-const mapStateToProps = state => ({ridesData: state.ridesData, userData: state.userData})
+const mapStateToProps = state => ({ridesData: state.ridesData, userData: state.userData, courierData: state.courierData})
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchRide);

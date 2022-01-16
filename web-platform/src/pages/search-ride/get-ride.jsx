@@ -34,12 +34,13 @@ const GetRide = (props) =>{
         setEstimatedTime(props.estimatedTime);
         setState(props.state);
         setPackageExists(props.packageExists);
-        
+        setID(props.id)
     }, [props.id, props.image, props.name, props.rate, props.transportType, props.departure, props.destination, props.departureAddress, props.destinationAddress, props.departureDate,props.estimatedTime, props.state, props.packageExists]);
 
     return(
         <Grid key ={id} container item xs={12} sm={5}  md={4} lg={4}  xl={4} justifyContent='center'>
             <RideCard 
+                id={id}
                 image={image} 
                 name={name}
                 transportType={transportType}
