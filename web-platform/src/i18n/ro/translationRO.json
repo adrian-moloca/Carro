@@ -586,7 +586,25 @@
     "NoIteractionWithYourRide": "Inca nu exista nici o iteratie la cursa ta.",
     "RideDetails": "Detalii cursa",
     "Packages": "Pachete",
-    "NoComments": "User-ul nu are inca nici un comentariu."
-    
+    "NoComments": "User-ul nu are inca nici un comentariu.",
+    "Validated": "Validat",
+    "NotValidated": "Nevalidat",
+    "Active": "Activ",
+    "NaturalPerson": "Persoana fizica",
+    "Unpaid":"Neachitat",
+    "Paid":"Achitat",
+    "Users": "Utilizatori",
+    "PackagesRides": "Pachete/Curse",
+    "DeleteUser": "Doresti sa stergi user-ul?",
+    "Name": "Nume",
+    "DataCreated": "Data creari",
+    "ValidationStatus":"Status validare",
+    "AccountStatus":"Status cont",
+    "isCompany":"Persoana juridica",
+    "SubscriptionStatus":"Status subscriptie",
+    "Actions":"Actiuni",
+    "NameOrEmail":"Nume ori email",
+    "RidesDetails":"Detalii curse",
+    "PackagesDetails": "Detalii pachete"
 
 }
