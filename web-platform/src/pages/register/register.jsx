@@ -50,11 +50,8 @@ const Register = ({createNewUser, data}) => {
   async function redirectPhoneNumberVerification(){
     if(userCreated === true) {
       if(profilePhoto.length > 0) {
-        const img = new Image();
-        img.src = profilePhoto;
-        const base64Image = getBase64Image(img); 
         axios.put(utilData.baseUrl + '/users/profile-images', {
-            profileImage: base64Image,
+            profileImage: profilePhoto.replace("data:image/jpeg;base64," || "data:image/png;base64," || "data:image/jpg;base64,", ""),
         }, {
             headers:{
               'Authorization': `Bearer ${data.token}`,
@@ -67,6 +64,11 @@ const Register = ({createNewUser, data}) => {
         alert('Register failed');
     }
   }
+
+  async function setPhoto(file){
+    const base64 = await getBase64Image(file)
+    setProfilePhoto(base64)
+}
 
   useEffect(()=>{
     setHasErrors(nameValidator(firstName))
@@ -107,7 +109,7 @@ const Register = ({createNewUser, data}) => {
         <Grid container spacing={3} display="flex" justifyContent="center">
           <Grid container item xs={12} justifyContent="center">
             <label style={{cursor: 'pointer', height:'60px', width: '60px', justifyContent:'center'}}>
-              <input type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=> setProfilePhoto(URL.createObjectURL(e.target.files[0]))}/>
+              <input type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=> setPhoto(e.target.files[0])}/>
               <Avatar className={classes.profilePhotoEdit} src={profilePhoto && profilePhoto.length > 0 ? profilePhoto : AvatarImage}/>
             </label>
           </Grid>

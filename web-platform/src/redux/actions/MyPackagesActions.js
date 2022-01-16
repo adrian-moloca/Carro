@@ -1,7 +1,8 @@
 import {fetchMyPackagesRequest, fetchMyPackagesSuccess, fetchMyPackagesFailure,
     createNewPackageRequest, createNewPackageSuccess, createNewPackageFailure,
     updatePackageRequest, updatePackageSuccess, updatePackageFailure,
-    deletePackageRequest, deletePackageSuccess, deletePackageFailure, cleanMyPackagesData,
+    deletePackageRequest, deletePackageSuccess, deletePackageFailure,
+    closePackageRequest, closePackageSuccess, closePackageFailure, cleanMyPackagesData,
 } from '../types/MyPackagesTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
@@ -144,22 +145,45 @@ return(dispatch) => {
 
 export const deletePackage = (id, token) => {
 
-return(dispatch) => {
-dispatch(deletePackageRequest);
-axios.delete(data.baseUrl+"/packages/"+id,{
-    headers:{
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+    return(dispatch) => {
+        dispatch(deletePackageRequest);
+        axios.delete(data.baseUrl+"/packages/"+id,{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            dispatch(deletePackageSuccess());
+            dispatch(fetchMyPackages(token))
+        }).catch(error => {
+            const errorMsg = error;
+            dispatch(deletePackageFailure(errorMsg))
+        })
     }
-})
-.then(response => {
-    dispatch(deletePackageSuccess());
-    dispatch(fetchMyPackages(token))
-}).catch(error => {
-    const errorMsg = error;
-    dispatch(deletePackageFailure(errorMsg))
-})
 }
+
+export const closePackage = (id, token) => {
+
+    return(dispatch) => {
+        dispatch(closePackageRequest);
+        axios.patch(data.baseUrl+"/packages/"+id,[{
+                path: "/mainStatus",
+                op: "replace",
+                value: "1"
+        }],{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            }
+        })
+        .then(response => {
+            dispatch(closePackageSuccess());
+            dispatch(fetchMyPackages(token))
+        }).catch(error => {
+            const errorMsg = error;
+            dispatch(closePackageFailure(errorMsg))
+        })
+    }
 }
 
 export const clean = () => {

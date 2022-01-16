@@ -2,25 +2,13 @@ import React, {useEffect, useState} from 'react';
 import { Container, Box } from '@material-ui/core'; 
 import Ride from './ride/ride';
 import { useTranslation } from "react-i18next";
-import { deleteRide, fetchMyRides } from '../../redux/actions/MyRidesActions';
+import { deleteRide, closeRide, fetchMyRides } from '../../redux/actions/MyRidesActions';
 import { connect } from 'react-redux';
 
-const MyRides = ({myRidesData, userData, deleteRide}) => {
+const MyRides = ({myRidesData, userData, deleteRide, closeRide}) => {
   const { t } = useTranslation();
 
   const[ridesState, setRidesState] = useState(myRidesData.rides.length > 0 ? myRidesData.rides : []);
-
-  const closeRide=(event, index)=>{
-    const temp=[...ridesState] 
-    temp.filter((ride, i)=>{
-      if(index === i)
-      {
-        ride.status = 4;
-      }
-      return ride;
-    })
-    setRidesState(temp);
-  }
 
   useEffect(()=>{
     fetchMyRides(userData.token)
@@ -42,7 +30,7 @@ const MyRides = ({myRidesData, userData, deleteRide}) => {
                           departureAddress={rideinf.departureAddress} destinationAddress={rideinf.destinationAddress} estimatedTime={rideinf.estimatedTime}
                           transportType={rideinf.transportType} phoneNumber={rideinf.phoneNumber} rideStatus={rideinf.mainStatus} rideIndex={index + 1}
                           deleteRideClicked={()=>deleteRide(rideinf.id, userData.token)}
-                          closeRideClicked={(e)=>closeRide(e, index)}
+                          closeRideClicked={()=>closeRide(rideinf.id, userData.token)}
                     />
                   </Box>  
       })) : <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t("NoRidesAdded")}</Box>}
@@ -50,7 +38,7 @@ const MyRides = ({myRidesData, userData, deleteRide}) => {
   );
 };
 
-const mapDispatchToProps = dispatch =>({deleteRide: (id, token)=>dispatch(deleteRide(id, token))});
+const mapDispatchToProps = dispatch =>({deleteRide: (id, token)=>dispatch(deleteRide(id, token)), closeRide: (id, token)=>dispatch(closeRide(id, token))});
 const mapStateToProps = state =>({myRidesData: state.myRidesData, userData: state.userData});
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyRides);

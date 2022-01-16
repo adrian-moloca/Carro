@@ -24,13 +24,13 @@ const { t } = useTranslation();
         return (
           <Box fontSize='13px' className={'Primary-color'} textAlign='center'>{t('InTransit')}</Box>
         );  
-      case 5:
-        return (
-          <Box fontSize='13px' className={'Pink-carro'} textAlign='center'>{t('Closed')}</Box>
-        );
-      case 4:
-        return (
-          <Box fontSize='13px' className={'Pink-carro'} textAlign='center'>{t('Delivered')}</Box>
+        case 4:
+          return (
+            <Box fontSize='13px' className={'Pink-carro'} textAlign='center'>{t('Closed')}</Box>
+            );
+        case 5:
+          return (
+            <Box fontSize='13px' className={'Pink-carro'} textAlign='center'>{t('Delivered')}</Box>
         );
 
       default:

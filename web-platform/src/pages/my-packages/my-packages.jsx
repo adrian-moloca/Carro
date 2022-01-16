@@ -4,26 +4,14 @@ import Package from './package/package';
 import { useTranslation } from "react-i18next";
 import { connect } from 'react-redux';
 import { fetchMyPackages } from '../../redux/actions/MyPackagesActions';
-import { deletePackage } from '../../redux/actions/MyPackagesActions';
+import { deletePackage, closePackage } from '../../redux/actions/MyPackagesActions';
 
-const MyPackages = ({myPackagesData, userData, deletePackage}) => {
+const MyPackages = ({myPackagesData, userData, deletePackage, closePackage}) => {
 
   const { t } = useTranslation();
 
   const[packagesState, setPackagesState] = useState(myPackagesData.packages.length > 0 ? myPackagesData.packages : []);
-
-  const closePackage=(event, index)=> {
-      const temp=[...packagesState] 
-      temp.filter((pack, i)=>{
-        if(index === i)
-        {
-          pack.status = 5;
-        }
-        return pack;
-      })
-      setPackagesState(temp);
-  }
-
+  
   useEffect(()=>{
     fetchMyPackages(userData.token)
   }, [])
@@ -41,14 +29,14 @@ const MyPackages = ({myPackagesData, userData, deletePackage}) => {
                          departureAddress={packageinf.packageSender.departureAddress} destinationAddress={packageinf.packageReceiver.destinationAddress} packageType={packageinf.packageInfo.packageType}
                          weight={packageinf.packageInfo.weight} description={packageinf.packageInfo.description} dimensions={packageinf.packageInfo.dimensions} price={packageinf.packageInfo.price} name={packageinf.packageInfo.name}
                          status={packageinf.mainStatus} deletePackageClicked={()=>deletePackage(packageinf.id, userData.token)} packageLocation={packageinf.location}
-                         closePackageClicked={(e)=>closePackage(e, index)} packageSpecialMention = {packageinf.packageSpecialMention} token={userData.token}/>                  
+                         closePackageClicked={()=>closePackage(packageinf.id, userData.token)} packageSpecialMention = {packageinf.packageSpecialMention} token={userData.token}/>                  
               })) : <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t("NoPackagesAdded")}</Box> 
             }
         </Container>
       );
 };
 
-const mapDispatchToProps = dispatch => ({deletePackage: (id, token) =>dispatch(deletePackage(id, token))});
+const mapDispatchToProps = dispatch => ({deletePackage: (id, token) =>dispatch(deletePackage(id, token)), closePackage: (id, token) =>dispatch(closePackage(id, token))});
 const mapStateToProps = state =>({myPackagesData: state.myPackagesData, userData: state.userData})
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyPackages);

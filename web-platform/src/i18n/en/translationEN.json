@@ -249,5 +249,23 @@
     "CompanyName": "Company name",
     "TaxIdentificationNumber": "Tax Identification Number",
     "CompanyEmail": "Company email",
-    "OnlyCompany": "*Complete only if company"
+    "OnlyCompany": "*Complete only if company",
+    "ChangePasswordOption": "Change passsword",
+    "ChangePassword": "Change password",
+    "OldPassword": "Old password",
+    "NewPassword": "New password",
+    "ConfirmNewPassword": "Confirm new password",
+    "CloseAccount": "Close account",
+    "WriteHereYourReasonCloseAccount": "Write here your reason that makes you close your account",
+    "CloseYourAccount": "Close your account",
+    "IdChargedWithSuccess": "ID UPLOADED WITH SUCCESS.",
+    "ItWillBeVerified": "IT WILL BE VERIFIED AS SOON AS POSSIBLE",
+    "NoDocumentsUploaded": "YOU DON'T HAVE UPLOADED DOCUMENTS",
+    "UploadRequestedDocuments": "UPLOAD REQUESTED DOCUMENTS",
+    "UploadId": "UPLOAD ID",
+    "AcceptedDocuments": "ACCEPTED DOCUMENTS:",
+    "IdDriveLicenseBirthCert": "ID, DRIVE LICENSE, BIRTH CERTIFICATE",
+    "CloseRide": "Close ride",
+    "ClosePackage": "Close package"
+    
 }

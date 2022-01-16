@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Grid, Box, MenuItem } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 import PrimaryButton from '../../../components/buttons/primaryButton/primaryButton';
 import CarroTextField from '../../../components/textField/CarroTextField';
 import PhoneTextField from '../../../components/telephoneNumberField/PhoneTextField';
@@ -83,13 +83,13 @@ const PersonalInformation = ({userData, getUserPersonalInfo})=>{
 
     return(
         <Fragment>
-          <Grid container item sm={5}>
+          <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
             <CarroTextField value={lastName} variant="outlined" label={t("LastName")} onChange={(e)=>{setLastName(e.target.value); setPersonalInfoChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
           </Grid>
-          <Grid container item sm={5}>
+          <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
             <CarroTextField value={firstName} variant="outlined" label={t("FirstName")} onChange={(e)=>{setFirstName(e.target.value);  setPersonalInfoChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
           </Grid>
-          <Grid container item sm={5}>
+          <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
             <PhoneTextField value={inputValuePhoneNumber}
                             onChange = {(e) => {setInputValuePhoneNumber(e.target.value); setPersonalInfoChanged(true)}}
                             countryPhoneCode={countryPhoneCode == '+4' ? '40' : countryPhoneCode.substring(1, countryPhoneCode.length-1)} 
@@ -97,24 +97,24 @@ const PersonalInformation = ({userData, getUserPersonalInfo})=>{
                             error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
                             disabled={!onEditMode} size="small"/>
           </Grid>
-          <Grid container item sm={5}>
+          <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
             <CarroDatePicker value={dateOfBirth} onChange={(date) =>{ setDateOfBirth(date); setPersonalInfoChanged(true) }} format='dd/MM/yyyy' views={["year", "month", "date"]}
                              maxDate={(new Date().getFullYear()-14).toString()+'-'+(new Date().getMonth()+1).toString()+'-'+new Date().getDate().toString()}
                              label={t("Birthday")} disabled = {!onEditMode} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}} openTo="year" size={"small"}/>
           </Grid>
-          <Grid container item sm={5}>
+          <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
             <CarroTextField value={email} variant="outlined" error={mailValidator(email)} label={t("Mail")} size="small" onChange={(e)=>{setEmail(e.target.value); setPersonalInfoChanged(true)}} fullWidth disabled = {!onEditMode}/>
           </Grid>
-          <Grid container item sm={5}>
+          <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
             <CarroTextField value={address}variant="outlined" label={t("Address")} size="small" fullWidth onChange={(e)=>{setAddress(e.target.value); setPersonalInfoChanged(true)}} disabled = {!onEditMode}/>
           </Grid>
-          <Grid container item sm={5} justifyContent="center">
+          <Grid container item sm={window.innerWidth <= 850 ? 10 : 5} justifyContent="center">
             <CarroAutocomplete label={t("Country")} disabled = {!onEditMode} size="small" value={country} options={getCountries()} onChange={(e, newValue)=>{handleChangeCountry(newValue); setPersonalInfoChanged(true)}}/>
           </Grid> 
-          <Grid container item sm={5}  justifyContent="center">
+          <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}  justifyContent="center">
             <CarroAutocomplete disabled = {!onEditMode} options={getCities(country)} size="small" label={t("City")} value={city} onChange={(e, newValue)=>{handleChangeCity(newValue); setPersonalInfoChanged(true)}}/>
           </Grid>
-          <Grid container item sm={5}  justifyContent="center">
+          <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}  justifyContent="center">
             {onEditMode ? (
                     <PrimaryButton variant='contained' onClick={()=>updateChangedData()} style={{height:35, width:250, marginTop:"10px"}} fullWidth>
                         <Box px='10px'>{t('SaveButton')}</Box>

@@ -23,6 +23,12 @@ export const PACKAGE_DELETE_REQUEST = 'PACKAGE_DELETE_REQUEST';
 export const PACKAGE_DELETE_SUCCESS = 'PACKAGE_DELETE_SUCCESS';
 export const PACKAGE_DELETE_FAILURE = 'PACKAGE_DELETE_FAILURE';
 
+// Close package
+
+export const PACKAGE_CLOSE_REQUEST = 'PACKAGE_CLOSE_REQUEST';
+export const PACKAGE_CLOSE_SUCCESS = 'PACKAGE_CLOSE_SUCCESS';
+export const PACKAGE_CLOSE_FAILURE = 'PACKAGE_CLOSE_FAILURE';
+
 // Clear Data
 
 export const CLEAN_MY_PACKAGES_DATA = 'CLEAN_MY_PACKAGES_DATA';
@@ -108,6 +114,25 @@ export const deletePackageSuccess = () => {
 export const deletePackageFailure = error => {
     return {
         type: PACKAGE_DELETE_FAILURE,
+        payload: error
+    }
+}
+
+export const closePackageRequest = () => {
+    return {
+        type: PACKAGE_CLOSE_REQUEST,
+    }
+}
+
+export const closePackageSuccess = () => {
+    return {
+        type: PACKAGE_CLOSE_SUCCESS,
+    }
+}
+
+export const closePackageFailure = error => {
+    return {
+        type: PACKAGE_CLOSE_FAILURE,
         payload: error
     }
 }
