@@ -49,27 +49,9 @@ const users = [
     isSubscriptionPaid: true,
   },
 ]
-
-
-function getActions(actions){
-  
-  switch(actions){
-    case 'delete':
-      return(
-        <DeleteModal
-        content="Doresti sa stergi utilizatorul?"
-        btn1Text="Anuleaza"
-        btn2Text="Sterge"
-        />
-        );
-        default:
-          return 'err';
-        }
-        
-      }
       
-      const useStyles = makeStyles({
-        root: {
+const useStyles = makeStyles({
+  root: {
     width: "100%",
   },
   container: {
@@ -82,14 +64,14 @@ export default function StickyHeadTable(props) {
   const {t} = useTranslation()
 
   const columns = [
-    { id: "name", label: t("Name"), minWidth: 100},
-    { id: "dataCreated", label: t('DataCreated'), minWidth: 100},
-    { id: "email", label: "Email", minWidth: 150},
-    { id: "isUserValidated", label: t('ValidationStatus'), minWidth: 100 },
-    { id: "isAccountClosed", label: t('AccountStatus'), minWidth: 100 },
-    { id: "isCompany", label: t('isCompany'), minWidth: 130 },
-    { id: "isSubscriptionPaid", label: t('SubscriptionStatus'), minWidth: 130 },
-    { id: "actiuni", label: t('Actions'), minWidth: 70 },
+    { id: "name1", label: t("Name"), minWidth: 100},
+    { id: "dataCreated1", label: t('DataCreated'), minWidth: 100},
+    { id: "email1", label: "Email", minWidth: 150},
+    { id: "isUserValidated1", label: t('ValidationStatus'), minWidth: 100 },
+    { id: "isAccountClosed1", label: t('AccountStatus'), minWidth: 100 },
+    { id: "isCompany1", label: t('isCompany'), minWidth: 130 },
+    { id: "isSubscriptionPaid1", label: t('SubscriptionStatus'), minWidth: 130 },
+    { id: "actiuni1", label: t('Actions'), minWidth: 70 },
   ];
   
   const classes = useStyles();
@@ -209,10 +191,10 @@ export default function StickyHeadTable(props) {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((user, index) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={1} key={user.email}>
+                  <TableRow hover role="checkbox" tabIndex={1} key={user.email+index*1111}>
                     {getRow(user.name, user.dataCreated, user.email, user.isUserValidated, user.isAccountClosed, user.isCompany, user.isSubscriptionPaid).map((el, index)=>{
                           return(
-                            <TableCell key={user.id} align='center'>
+                            <TableCell key={user.id*index*1111} align='center'>
                                 {el}
                             </TableCell> 
                           );

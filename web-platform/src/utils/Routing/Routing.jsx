@@ -42,9 +42,9 @@ import Vouchers from '../../pages/footer-pages/vouchers/vouchers';
 import ProtectedRoute from '../ProtectedRoute/protected-route';
 import PrivacyPolicy from '../../pages/footer-pages/privacy-policy/privacyPolicy';
 import CookiesPolicy from '../../pages/footer-pages/cookies-policy/cookiesPolicy';
+import RidesDetails from '../../pages/admin-panel/rides-details/rides-details';
 import './Routing.css';
 import { connect } from 'react-redux';
-import { State } from 'country-state-city';
 
 const Routes = ({data}) => {
     const [collapsed, setCollapsed] = useState(false);
@@ -110,6 +110,8 @@ const Routes = ({data}) => {
                                 <ProtectedRoute path="/conversations/chat" exact component={Chat}/>
                                 <ProtectedRoute path="/add-transport" exact component={AddRide}/>  {/* checked */}
                                 <ProtectedRoute path="/courier-profile" exact component={CourierProfile}/>
+                                <ProtectedRoute path="/admin-panel" exact component={adminPanel}/>
+                                <ProtectedRoute path="/admin-panel/rides-details" exact component={RidesDetails}/>
                                 <Route path="/" exact component={HomePage}/>
                                 <Route path="/home" exact component={HomePage}/>
                                 <Route path="/login" exact component={Login}/>
@@ -120,7 +122,6 @@ const Routes = ({data}) => {
                                 <Route path="/register/phone-number-verification" exact component={PhoneNumberVerification}/>
                                 <Route path="/register/select-plan" exact component={SelectPlan}/>
                                 <Route path="/register/select-plan/add-card" exact component={PremiumPlanPayment}/>
-                                <Route path="/admin-panel" exact component={adminPanel}/>
                                 <Route path="/how-it-works" exact component={HowItWorks}/>
                                 <Route path="/about-us" exact component={AboutUs}/>
                                 <Route path="/frequent-questions" exact component={FrequentQuestions}/>
