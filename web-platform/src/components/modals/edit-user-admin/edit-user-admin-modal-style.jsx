@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 
     identityCardImg:{
         maxHeight: '250px',
-        maxWidth:'250px',
+        maxWidth:'180px',
         border: '1px solid #BDBDBD',
     },
     starsStyle:{

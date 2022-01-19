@@ -6,50 +6,6 @@ import DeleteModal from '../modals/deleteModal/DeleteModal';
 import { useTranslation } from 'react-i18next';
 import EditUserAdmin from '../modals/edit-user-admin/edit-user-admin-modal';
 
-
-const users = [
-  {
-    id: '5526161351351',
-    name: 'Marius Popescu',
-    dataCreated: '',
-    email: 'MariusPopescu1@gmail.com',
-    isUserValidated: true,
-    isAccountClosed: true,
-    isCompany: true,
-    isSubscriptionPaid: false,
-  },
-  {
-    id: '5526161346452',
-    name: 'Marius Popescu',
-    dataCreated: '',
-    email: 'MariusPopescu1@gmail.com',
-    isUserValidated: false,
-    isAccountClosed: false,
-    isCompany: false,
-    isSubscriptionPaid: true,
-  },
-  {
-    id: '5546456551351',
-    name: 'Marius Popescu',
-    dataCreated: '',
-    email: 'MariusPopescu1@gmail.com',
-    isUserValidated: false,
-    isAccountClosed: false,
-    isCompany: false,
-    isSubscriptionPaid: true,
-  },
-  {
-    id: '5511211222114',
-    name: 'Marius Popescu',
-    dataCreated: '',
-    email: 'MariusPopescu1@gmail.com',
-    isUserValidated: false,
-    isAccountClosed: false,
-    isCompany: false,
-    isSubscriptionPaid: true,
-  },
-]
-      
 const useStyles = makeStyles({
   root: {
     width: "100%",
@@ -77,7 +33,7 @@ export default function StickyHeadTable(props) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [rows, setRows] = useState(users)
+  const [rows, setRows] = useState([])
   
   function filterUsers(value, filter){
     
@@ -89,7 +45,7 @@ export default function StickyHeadTable(props) {
     }
   }
   
-  function getRow(name, dataCreated, email, isUserValidated, isAccountClosed, isCompany, isSubscriptionPaid){
+  function getRow(id, name, dataCreated, email, isUserValidated, isAccountClosed, isCompany, isSubscriptionPaid){
     return(
       [
         <Box display='flex' justifyContent='center'>
@@ -104,7 +60,7 @@ export default function StickyHeadTable(props) {
         isUserValidated ? (
             <Box display='flex' justifyContent='center'>
                 {t('Validated')}
-                <DoneAll style={{color:"green", marginLeft: "10px"}} size="small"/>
+                <DoneAll style={{color:"#34D02D", marginLeft: "10px"}} size="small"/>
             </Box>
         ) : (
           <Box display='flex' justifyContent='center'>
@@ -115,7 +71,7 @@ export default function StickyHeadTable(props) {
         !isAccountClosed ? (
             <Box display='flex' justifyContent='center'>
                 {t('Active')}
-                <DoneAll style={{color:"green", marginLeft: "10px"}} size="small"/>
+                <DoneAll style={{color:"#34D02D", marginLeft: "10px"}} size="small"/>
             </Box>
         ) : (
           <Box display='flex' justifyContent='center'>
@@ -135,7 +91,7 @@ export default function StickyHeadTable(props) {
         isSubscriptionPaid ? (
           <Box display='flex' justifyContent='center'>
               {t('Paid')}
-              <DoneAll style={{color:"green", marginLeft: "10px"}} size="small"/>
+              <DoneAll style={{color:"#34D02D", marginLeft: "10px"}} size="small"/>
           </Box>
         ) : (
           <Box display='flex' justifyContent='center'>
@@ -144,16 +100,20 @@ export default function StickyHeadTable(props) {
           </Box>
         ),
         <Box>
-          <EditUserAdmin/>
-          <DeleteModal content={t('DeleteUser')} btn1Text={t('Back')} btn2Text={t('DeleteButton')} clickedBtn2={props.deleteUserClicked} size='small'/>
+          <EditUserAdmin userCardClicked={()=>props.userCardClicked(id)}/>
+          <DeleteModal content={t('DeleteUser')} btn1Text={t('Back')} btn2Text={t('DeleteButton')} clickedBtn2={()=>props.deleteUserClicked(id)} size='small'/>
         </Box>
       ]
     );
   }
 
   useEffect(()=>{
-    setRows(users.filter((value)=>filterUsers(value, props.searched)))
+    setRows(props.users.filter((value)=>filterUsers(value, props.searched)))
   }, [props.searched])
+
+  useEffect(()=>{
+      props.users && props.users.length > 0 ? setRows(props.users) : setRows([])
+  }, [props.users])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -189,10 +149,10 @@ export default function StickyHeadTable(props) {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((user, index) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={1} key={user.email+index*1111}>
-                    {getRow(user.name, user.dataCreated, user.email, user.isUserValidated, user.isAccountClosed, user.isCompany, user.isSubscriptionPaid).map((el, index)=>{
+                  <TableRow hover role="checkbox" tabIndex={1} key={user.email}>
+                    {getRow(user.id, user.name, user.dateCreated, user.email, user.isUserValidated, user.isAccountClosed, user.isCompany, user.isSubscriptionPaid).map((el, index)=>{
                           return(
-                            <TableCell key={user.id*index*1111} align='center'>
+                            <TableCell key={user.id+(index*1111).toString()} align='center'>
                                 {el}
                             </TableCell> 
                           );
@@ -206,7 +166,7 @@ export default function StickyHeadTable(props) {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={users.length}
+        count={props.users.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
