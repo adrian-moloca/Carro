@@ -13,8 +13,9 @@ import { fetchLogout } from "../../../redux/types/UserTypes";
 import { fetchMyPackages } from "../../../redux/actions/MyPackagesActions";
 import { withRouter } from "react-router";
 import { fetchMyRides } from "../../../redux/actions/MyRidesActions";
+import { adminGetUsers } from "../../../redux/actions/AdminActions";
 
-const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetchMyRides, myPackagesData, myRidesData}) => {
+const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetchMyRides, adminGetUsers, myPackagesData, myRidesData}) => {
   const { t } = useTranslation();
   const history = useHistory();
   // State
@@ -143,7 +144,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
               <Box className={classes.borderForAdmin}></Box>
             </Grid>
               <Link to="/admin-panel" style={{textDecoration:'none' ,color:'inherit'}}>
-                <MenuItem dense onClick={handleAccountMenuClose}>
+                <MenuItem dense onClick={()=>{handleAccountMenuClose(); adminGetUsers(userData.token)}}>
                       <Box mr={2} className={"Primary-color"}>
                         <Security/>
                       </Box>
@@ -161,7 +162,8 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
 const mapDispatchToProps = (dispatch) => ({
   fetchLogout: () => dispatch(fetchLogout()),
   fetchMyPackages: (token) => dispatch(fetchMyPackages(token)),
-  fetchMyRides: (token) => dispatch(fetchMyRides(token))
+  fetchMyRides: (token) => dispatch(fetchMyRides(token)),
+  adminGetUsers: (token) => dispatch(adminGetUsers(token))
 })
 
 const mapStateToProps = state =>({userData: state.userData, myPackagesData: state.myPackagesData, myRidesData: state.myRidesData})

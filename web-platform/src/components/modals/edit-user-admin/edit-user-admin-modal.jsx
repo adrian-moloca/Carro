@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from 'react';
-import {Container, Grid, Box, Modal, Fade, FormControlLabel, MenuItem} from '@material-ui/core';
+import React, { Fragment, useEffect, useState } from 'react';
+import {Container, Grid, Box, Modal, Fade, FormControlLabel, MenuItem, LinearProgress} from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 import useStyles from './edit-user-admin-modal-style';
 import { Close, AssignmentInd } from '@material-ui/icons';
@@ -17,38 +17,44 @@ import { updatePackage } from '../../../redux/actions/MyPackagesActions';
 import { connect } from 'react-redux';
 import { getCountries, getCities } from '../../../utils/Functions/countries-city-functions';
 
-const EditUserAdmin = ({data, updatePackage, ...props}) =>{
+const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
     const { t } = useTranslation();
     const classes = useStyles();
 
     const userRoles = [
         {
-            value: 1, 
+            value: 0, 
             label: 'User'
         },
         {
-            value: 2, 
+            value: 1, 
             label: 'Admin'
         },
     ]
 
     const[open, setOpen] = useState(false);
 
-    const [dataCreated, setDataCreated] = useState(new Date(new Date().getFullYear()-14, new Date().getMonth(),new Date().getDate(), 0));
-    const [userRole, setUserRole] = useState(1);
-    const [profileImage, setProfileImage] = useState('')
-    const [rate, setRate] = useState(0)
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
+    const [dateCreated, setDateCreated] = useState('');
+    const [userRole, setUserRole] = useState(0);
+    const [profileImage, setProfileImage] = useState('');
+    const [identityCardImage, setIdentityCardImage] = useState('');
+    const [rate, setRate] = useState(0);
+    const [fiveStarRate, setFiveStarRate] = useState(0);
+    const [fourStarRate, setFourStarRate] = useState(0);
+    const [threeStarRate, setThreeStarRate] = useState(0);
+    const [twoStarRate, setTwoStarRate] = useState(0);
+    const [oneStarRate, setOneStarRate] = useState(0);
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [countryPhoneCode, setCountryPhoneCode] = useState('');
     const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState('');
-    const [address, setAddress] = useState('') 
+    const [address, setAddress] = useState(''); 
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
-    const [dateOfBirth, setDateOfBirth] = useState(new Date(new Date().getFullYear()-14, new Date().getMonth(),new Date().getDate(), 0));
+    const [dateOfBirth, setDateOfBirth] = useState('');
     const [idNumber, setIdNumber] = useState('');
-    const [serial, setSerial] = useState('');
+    const [numberSeries, setNumberSeries] = useState('');
     const [rejectIssue, setRejectIssue] = useState('');
     const [isCompany, setIsCompany] = useState(false);
     const [personalInfo, setPersonalInfo] = useState(false);
@@ -58,7 +64,48 @@ const EditUserAdmin = ({data, updatePackage, ...props}) =>{
     const [userValidated, setUserValidated] = useState(false);
     const [subscriptionPaid, setSubscriptionPaid] = useState(false);
     const [freeTrial, setFreeTrial] = useState(false);
+    const [closeAccountCreated, setCloseAccountCreated] = useState('');
+    const [closeAccountReason, setCloseAccountReason] = useState('');
     const [hasErrors, setHasErrors] = useState(false);
+
+    useEffect(()=>{
+        userClickedData.dateCreated && userClickedData.dateCreated.length > 0 ? setDateCreated(userClickedData.dateCreated) : setDateCreated('')
+        userClickedData.role ? setUserRole(userClickedData.role) : setUserRole(0)
+        userClickedData.email && userClickedData.email.length > 0 ? setEmail(userClickedData.email) : setEmail('')
+        userClickedData.personalInfo.firstName && userClickedData.personalInfo.firstName.length > 0 ? setFirstName(userClickedData.personalInfo.firstName) : setFirstName('')
+        userClickedData.personalInfo.lastName && userClickedData.personalInfo.lastName.length > 0 ? setLastName(userClickedData.personalInfo.lastName) : setFirstName('')
+        userClickedData.personalInfo.dateOfBirth && userClickedData.personalInfo.dateOfBirth.length > 0 ? setDateOfBirth(userClickedData.personalInfo.dateOfBirth) : setDateOfBirth('')
+        if(userClickedData.personalInfo.phoneNumber && userClickedData.personalInfo.phoneNumber.length > 0){
+            setCountryPhoneCode(String(userClickedData.personalInfo.phoneNumber).substring(0, String(userClickedData.personalInfo.phoneNumber).length-10))
+            setInputValuePhoneNumber(String(userClickedData.personalInfo.phoneNumber).substring(String(userClickedData.personalInfo.phoneNumber).length-10, String(userClickedData.personalInfo.phoneNumber).length))
+        } else {
+                setCountryPhoneCode('')
+                setInputValuePhoneNumber('')
+        }
+        userClickedData.personalInfo.address && userClickedData.personalInfo.address.length > 0 ? setAddress(userClickedData.personalInfo.address) : setAddress('')
+        userClickedData.personalInfo.city && userClickedData.personalInfo.city.length > 0 ? setCity(userClickedData.personalInfo.city) : setCity('')
+        userClickedData.personalInfo.country && userClickedData.personalInfo.country.length > 0 ? setCountry(userClickedData.personalInfo.country) : setCountry('')
+        userClickedData.profile.profileImage && userClickedData.profile.profileImage.length > 0 ? setProfileImage(userClickedData.profile.profileImage) : setProfileImage('')
+        userClickedData.profile.rate && userClickedData.profile.rate > 0 ? setRate(userClickedData.profile.rate) : setRate(0)
+        userClickedData.identityCard.attachment && userClickedData.identityCard.attachment.length > 0 ? setIdentityCardImage(userClickedData.identityCard.attachment) : setIdentityCardImage('')
+        userClickedData.identityCard.cnp && userClickedData.identityCard.cnp.length > 0 ? setIdNumber(userClickedData.identityCard.cnp) : setIdNumber('');
+        userClickedData.identityCard.numberSeries && userClickedData.identityCard.numberSeries.length > 0 ? setNumberSeries(userClickedData.identityCard.numberSeries) : setNumberSeries('');
+        userClickedData.userStatus.isCompany ? setIsCompany(userClickedData.userStatus.isCompany) : setIsCompany(false);
+        userClickedData.userStatus.isPersonalInfoCompleted ? setPersonalInfo(userClickedData.userStatus.isPersonalInfoCompleted) : setPersonalInfo(false);
+        userClickedData.userStatus.isIdentityCardValided ? setIdentityCardVerified(userClickedData.userStatus.isIdentityCardValided) : setIdentityCardVerified(false);
+        userClickedData.userStatus.isPhoneNumberVerified ? setPhoneNumber(userClickedData.userStatus.isPhoneNumberVerified) : setPhoneNumber(false);
+        userClickedData.userStatus.isIdentityCardUploaded ? setIdentityCardUploaded(userClickedData.userStatus.isIdentityCardUploaded) : setIdentityCardUploaded(false);
+        userClickedData.userStatus.isUserValidated ? setUserValidated(userClickedData.userStatus.isUserValidated) : setUserValidated(false);
+        userClickedData.userStatus.isSubscriptionPaid ? setSubscriptionPaid(userClickedData.userStatus.isSubscriptionPaid) : setSubscriptionPaid(false);
+        userClickedData.userStatus.isTrial ? setFreeTrial(userClickedData.userStatus.isTrial) : setFreeTrial(false);
+        userClickedData.closeAccount.dateCreated && userClickedData.closeAccount.dateCreated.length > 0 ? setCloseAccountCreated(userClickedData.closeAccount.dateCreated) : setCloseAccountCreated('');
+        userClickedData.closeAccount.closeReason && userClickedData.closeAccount.closeReason.length > 0 ? setCloseAccountReason(userClickedData.closeAccount.closeReason) : setCloseAccountReason('');
+        userClickedData.profile.starRate.fiveStarCount && userClickedData.profile.starRate.fiveStarCount > 0 ? setFiveStarRate(userClickedData.profile.starRate.fiveStarCount) : setFiveStarRate(0)
+        userClickedData.profile.starRate.fourStarCount && userClickedData.profile.starRate.fourStarCount > 0 ? setFourStarRate(userClickedData.profile.starRate.fourStarCount) : setFourStarRate(0)
+        userClickedData.profile.starRate.threeStarCount && userClickedData.profile.starRate.threeStarCount > 0 ? setThreeStarRate(userClickedData.profile.starRate.threeStarCount) : setThreeStarRate(0)
+        userClickedData.profile.starRate.twoStarCount && userClickedData.profile.starRate.twoStarCount > 0 ? setTwoStarRate(userClickedData.profile.starRate.twoStarCount) : setTwoStarRate(0)
+        userClickedData.profile.starRate.oneStarCount && userClickedData.profile.starRate.oneStarCount > 0 ? setOneStarRate(userClickedData.profile.starRate.oneStarCount) : setOneStarRate(0)
+    }, [userClickedData])
 
     const handleOpen = ()=>{
         setOpen(true);
@@ -98,7 +145,7 @@ const EditUserAdmin = ({data, updatePackage, ...props}) =>{
 
     return(
         <Fragment>
-            <IconButtonNoVerticalPadding name='edit' onClick={handleOpen}>
+            <IconButtonNoVerticalPadding name='edit' onClick={()=>{handleOpen(); props.userCardClicked()}}>
                 <AssignmentInd style={{color:"#00B4D8"}} size="small"/>
             </IconButtonNoVerticalPadding>
             <Modal open={open} onClose={handleClose}  className='modal'>
@@ -119,12 +166,42 @@ const EditUserAdmin = ({data, updatePackage, ...props}) =>{
                         <Grid container>
                             <Grid container item xs={4} justifyContent='center' style={{paddingBottom:"15px"}}>
                                 <Grid container item xs={12} justifyContent='center'>
-                                    <img src={profileImage} className={classes.profileImg}  alt={""}/>
+                                    <img src={"data:image/png;base64,"+ profileImage} className={classes.profileImg}  alt={""}/>
                                 </Grid>
                                 <Grid container item xs={12} justifyContent='center'>
                                     <Box marginTop='7%'>
                                         <Rating readOnly precision={0.1} value={rate}/>
                                     </Box>
+                                </Grid>
+                                <Grid container item xs={11} justifyContent='center'>
+                                    <Grid container item xs={9} justifyContent='flex-start'>
+                                        <LinearProgress variant='buffer' color='primary' value={(fiveStarRate/fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)*100}/>
+                                        <Box paddingLeft={"5px"}>{fiveStarRate}</Box>
+                                    </Grid>
+                                </Grid>
+                                <Grid container item xs={11} justifyContent='center'>
+                                    <Grid container item xs={9} justifyContent='flex-start'>
+                                        <LinearProgress variant='buffer' color='primary' value={(fourStarRate/fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)*100}/>
+                                        <Box paddingLeft={"5px"}>{fourStarRate}</Box>
+                                    </Grid>
+                                </Grid>
+                                <Grid container item xs={11} justifyContent='center'>
+                                    <Grid container item xs={9} justifyContent='flex-start'>
+                                        <LinearProgress variant='buffer' color='primary' value={(threeStarRate/fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)*100}/>
+                                        <Box paddingLeft={"5px"}>{threeStarRate}</Box>
+                                    </Grid>
+                                </Grid>
+                                <Grid container item xs={11} justifyContent='center'>
+                                    <Grid container item xs={9} justifyContent='flex-start'>
+                                        <LinearProgress variant='buffer' color='primary' value={(twoStarRate/fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)*100}/>
+                                        <Box paddingLeft={"5px"}>{twoStarRate}</Box>
+                                    </Grid>
+                                </Grid>
+                                <Grid container item xs={11} justifyContent='center'>
+                                    <Grid container item xs={9} justifyContent='flex-start'>
+                                        <LinearProgress variant='buffer' color='primary' value={(oneStarRate/fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)*100}/>
+                                        <Box paddingLeft={"5px"}>{oneStarRate}</Box>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                             <Grid container item xs={8} justifyContent='space-around' style={{paddingBottom:"15px"}}>
@@ -159,7 +236,7 @@ const EditUserAdmin = ({data, updatePackage, ...props}) =>{
                                     <CarroAutocomplete disabled size="small" label={t("City")} value={city} options={getCities(country)} onChange={(e, newValue)=>{handleChangeCity(newValue);}}/>
                                 </Grid>
                                 <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
-                                    <CarroDatePicker disabled value={dataCreated} onChange={(date) =>{ setDataCreated(date);}} format='dd/MM/yyyy' views={["year", "month", "date"]}
+                                    <CarroDatePicker disabled value={dateCreated} onChange={(date) =>{ setDateCreated(date);}} format='dd/MM/yyyy' views={["year", "month", "date"]}
                                                     maxDate={new Date()}
                                                     label={t("DataCreated")} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}} openTo="year" size={"small"}/>
                                 </Grid>
@@ -175,13 +252,13 @@ const EditUserAdmin = ({data, updatePackage, ...props}) =>{
                             </Grid>
                             <Grid container item xs={4} justifyContent='center' style={{paddingBottom:"15px"}}>
                                 <Grid container item xs={12} justifyContent='center'>
-                                    <img src={profileImage} className={classes.identityCardImg}  alt={""}/>
+                                    <img src={"data:image/png;base64,"+ identityCardImage} className={classes.identityCardImg}  alt={""}/>
                                 </Grid>
                                 <Grid container item sm={ 10 }>
                                     <CarroTextField disabled value={idNumber} onChange={(e)=>{setIdNumber(e.target.value);}} variant="outlined" label={t("IdNumber")} size="small" fullWidth/>
                                 </Grid>
                                 <Grid container item sm={ 10 }>
-                                    <CarroTextField disabled value={serial} onChange={(e)=>{setSerial(e.target.value);}} variant="outlined" label={t("Serial")} size="small" fullWidth />
+                                    <CarroTextField disabled value={numberSeries} onChange={(e)=>{setNumberSeries(e.target.value);}} variant="outlined" label={t("Serial")} size="small" fullWidth />
                                 </Grid>
                                 <Grid container item sm={ 10 } justifyContent='space-between' style={{marginBottom:"15px"}}>
                                     <Grid container item sm={5} justifyContent="center">
@@ -263,6 +340,17 @@ const EditUserAdmin = ({data, updatePackage, ...props}) =>{
                                         />
                                     </Grid>
                                 </Grid>
+                                <Grid container item xs={12} justifyContent='center'>
+                                    <Box fontSize={20} style={{textDecoration: 'underline', color:'#ff3333'}}>{t('ClosedAccount')}</Box>
+                                </Grid>
+                                <Grid container item xs={11} justifyContent='space-between'>
+                                    <Grid container item xs={9} justifyContent='flex-start'>
+                                        <Box fontSize={18}>{closeAccountReason.length > 0 ? closeAccountReason.toLocaleUpperCase() : t('NoCloseAccountReason')}</Box>
+                                    </Grid>
+                                    <Grid container item xs={3} justifyContent='flex-start'>
+                                        <Box fontSize={18}>{new Date(closeAccountCreated).getDate().toString()+'-'+(new Date(closeAccountCreated).getMonth()+1).toString()+'-'+new Date(closeAccountCreated).getFullYear().toString()}</Box>
+                                    </Grid>
+                                </Grid>
                                 
                             </Grid>
                         </Grid>
@@ -284,5 +372,5 @@ const EditUserAdmin = ({data, updatePackage, ...props}) =>{
 }
 
 const mapDispatchToProps = dispatch =>({updatePackage: (id, senderName, packageName, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token) =>dispatch(updatePackage(id, senderName, packageName, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token))})
-const mapStateToProps = state => ({data: state.userData})
+const mapStateToProps = state => ({data: state.userData, userClickedData: state.adminData.user})
 export default connect(mapStateToProps, mapDispatchToProps)(EditUserAdmin);
