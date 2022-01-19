@@ -605,6 +605,12 @@
     "Actions":"Actiuni",
     "NameOrEmail":"Nume ori email",
     "RidesDetails":"Detalii curse",
-    "PackagesDetails": "Detalii pachete"
+    "PackagesDetails": "Detalii pachete",
+    "IdNumber": "CNP",
+    "Serial": "Seria",
+    "Validate": "Valideaza",
+    "Reject": "Refuza",
+    "RejectIssue": "Motiv refuz",
+    "UserStatus": "STATUS USER"
 
 }

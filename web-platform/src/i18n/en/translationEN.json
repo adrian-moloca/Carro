@@ -292,5 +292,11 @@
     "Actions":"Actions",
     "NameOrEmail":"Name or email",
     "RidesDetails":"Rides details",
-    "PackagesDetails": "Packages details"
+    "PackagesDetails": "Packages details",
+    "IdNumber": "ID Number",
+    "Serial": "Serial number",
+    "Validate": "Validate",
+    "Reject": "Reject",
+    "RejectIssue": "Motiv refuz",
+    "UserStatus": "USER STATUS"
 }

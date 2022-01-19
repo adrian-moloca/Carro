@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@material-ui/core";
-import { DoneAll, PriorityHigh, AssignmentInd } from '@material-ui/icons';
+import { DoneAll, PriorityHigh } from '@material-ui/icons';
 import DeleteModal from '../modals/deleteModal/DeleteModal';
 import { useTranslation } from 'react-i18next';
-import IconButtonNoVerticalPadding from '../buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
+import EditUserAdmin from '../modals/edit-user-admin/edit-user-admin-modal';
 
 
 const users = [
@@ -144,9 +144,7 @@ export default function StickyHeadTable(props) {
           </Box>
         ),
         <Box>
-          <IconButtonNoVerticalPadding name='edit'>
-              <AssignmentInd style={{color:"#00B4D8"}} size="small"/>
-          </IconButtonNoVerticalPadding>
+          <EditUserAdmin/>
           <DeleteModal content={t('DeleteUser')} btn1Text={t('Back')} btn2Text={t('DeleteButton')} clickedBtn2={props.deleteUserClicked} size='small'/>
         </Box>
       ]
