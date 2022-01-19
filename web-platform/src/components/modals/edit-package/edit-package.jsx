@@ -18,7 +18,7 @@ const EditPackage = ({data, updatePackage, ...props}) =>{
 
     const [pickUpAddress, setPickUpAddress] = useState(props.pickUpAddress);
     const [departureDate, setDepartureDate] = useState(props.departureDate);
-    const [departureCountry, setDepartureCountry] = useState(String(props.departure).substring(String(props.departure).indexOf(',')+1, String(props.departure).length));
+    const [departureCountry, setDepartureCountry] = useState(String(props.departure).substring(String(props.departure).indexOf(',')+2, String(props.departure).length));
     const [departureCity, setDepartureCity] = useState(String(props.departure).substring(0, String(props.departure).indexOf(',')));
     const [destinataryName, setDestinataryName] = useState(props.destinataryName);
     const [destinationCountry, setDestinationCountry] = useState(String(props.destination).substring(String(props.destination).indexOf(',')+2, String(props.destination).length));
