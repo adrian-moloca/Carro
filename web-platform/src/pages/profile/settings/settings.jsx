@@ -52,7 +52,7 @@ const Settings = ({userData, fetchLogout})=>{
             headers:{
                 'Authorization': `Bearer ${userData.token}`,
             }
-        }).then(()=>{window.localStorage.clear();}).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)}).finally(()=>{})
+        }).then(()=>{window.localStorage.clear(); window.location.reload();}).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)}).finally(()=>{})
         if(!inUpdateDataHasErrors){ 
                 setChangePassword(false);
         } else {
