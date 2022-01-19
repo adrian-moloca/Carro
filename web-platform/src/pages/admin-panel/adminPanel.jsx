@@ -30,7 +30,7 @@ const AdminPanel = () => {
                     </PrimaryButton>
           </Grid>
           <Grid sm={3} container item justifyContent="flex-end">
-                    <PrimaryButton variant={selected === 1 ? 'contained' : 'outlined'} onClick={()=>setSelected(1)} style={{width: "250px"}}>
+                    <PrimaryButton variant={selected === 1 ? 'contained' : 'outlined'} onClick={()=>setSelected(1)} style={{width: "250px"}} disabled>
                         {tables[1]}
                     </PrimaryButton>
           </Grid>
