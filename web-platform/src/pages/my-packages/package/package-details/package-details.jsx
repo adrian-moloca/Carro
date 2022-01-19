@@ -60,7 +60,7 @@ const PackageDetails = (props)=>{
                 <Box>{t("CardName")}: {props.name}</Box>
             </Grid>
             <Grid container item xs={6} justifyContent='space-around'>
-                <img src={fragil} className={Boolean(props.specialMention.isFragile).valueOf() ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                <img src={fragil} className={Boolean(props.specialMention.isFragil).valueOf() ? classes.advStyle : classes.advNoneStyle} alt={""}/>
                 <img src={foodGrade} className={Boolean(props.specialMention.isFoodGrade).valueOf() ? classes.advStyle : classes.advNoneStyle} alt={""}/>
                 <img src={flammable} className={Boolean(props.specialMention.isFlammable).valueOf() ? classes.advStyle : classes.advNoneStyle} alt={""}/>
                 <img src={handleWithCare} className={Boolean(props.specialMention.isHandleWithCare).valueOf() ? classes.advStyle : classes.advNoneStyle} alt={""}/>

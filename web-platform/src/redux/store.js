@@ -8,7 +8,7 @@ const middleware = [thunk];
 const saveToStorage = (state) => {
     try {
         const serializedState = JSON.stringify(state);
-        state.userData.rememberMe ?  localStorage.setItem('state', serializedState) : sessionStorage.setItem('state', serializedState) 
+        state.userData.rememberMe ?  window.localStorage.setItem('state', serializedState) : window.sessionStorage.setItem('state', serializedState) 
     } catch(err) {
         console.log(err);
     }
@@ -16,7 +16,7 @@ const saveToStorage = (state) => {
 
 const loadFromStorage = () => {
     try {
-        const serializedState = localStorage.getItem('state') === null ? sessionStorage.getItem('state') : localStorage.getItem('state');
+        const serializedState = window.localStorage.getItem('state') === null ? window.sessionStorage.getItem('state') : window.localStorage.getItem('state');
         if(serializedState === null) return undefined
         return JSON.parse(serializedState);
     } catch(err) {

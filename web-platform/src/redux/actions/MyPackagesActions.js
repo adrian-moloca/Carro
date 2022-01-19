@@ -62,7 +62,7 @@ axios.post(data.baseUrl+"/packages",{
                 weight:weight
             },
             packageSpecialMention:{
-                isFragile:isFragile,
+                isFragil:isFragile,
                 isFoodGrade:isFoodGrade,
                 isFlammable:isFlammable,
                 isHandleWithCare:isHandleWithCare,
@@ -122,7 +122,7 @@ return(dispatch) => {
                 weight:weight
             },
             packageSpecialMention:{
-                isFragile:isFragile,
+                isFragil:isFragile,
                 isFoodGrade:isFoodGrade,
                 isFlammable:isFlammable,
                 isHandleWithCare:isHandleWithCare,
