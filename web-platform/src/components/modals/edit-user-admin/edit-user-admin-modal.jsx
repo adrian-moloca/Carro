@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import {Container, Grid, Box, Modal, Fade, FormControlLabel, MenuItem, LinearProgress} from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 import useStyles from './edit-user-admin-modal-style';
-import { Close, AssignmentInd } from '@material-ui/icons';
+import { Close, AssignmentInd, StarRate } from '@material-ui/icons';
 import CarroTextField from '../../textField/CarroTextField';
 import GreenCheckbox from '../../checkbox/GreenCheckbox';
 import PhoneTextField from '../../telephoneNumberField/PhoneTextField';
@@ -153,10 +153,10 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                     <Container className={classes.containerBackdrop}>
                         <Box borderBottom='2px' marginBottom={2} borderColor='black'>
                             <Grid container>
-                                <Grid container item xs={10} justifyContent='flex-start'>
+                                <Grid container item sm={10} justifyContent='flex-start'>
                                     <Box fontSize='18px' color='grey.500'>{t("EditButton")}</Box>
                                 </Grid>
-                                <Grid container item xs={2} justifyContent='flex-end'>
+                                <Grid container item sm={2} justifyContent='flex-end'>
                                     <IconButtonNoVerticalPadding onClick={handleClose}>
                                         <Close />
                                     </IconButtonNoVerticalPadding>
@@ -164,47 +164,57 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                             </Grid>
                         </Box>
                         <Grid container>
-                            <Grid container item xs={4} justifyContent='center' style={{paddingBottom:"15px"}}>
-                                <Grid container item xs={12} justifyContent='center'>
+                            <Grid container item sm={4} justifyContent='center' style={{paddingBottom:"15px"}}>
+                                <Grid container item sm={12} justifyContent='center'>
                                     <img src={"data:image/png;base64,"+ profileImage} className={classes.profileImg}  alt={""}/>
                                 </Grid>
-                                <Grid container item xs={12} justifyContent='center'>
+                                <Grid container item sm={12} justifyContent='center'>
                                     <Box marginTop='7%'>
                                         <Rating readOnly precision={0.1} value={rate}/>
                                     </Box>
                                 </Grid>
-                                <Grid container item xs={11} justifyContent='center'>
-                                    <Grid container item xs={9} justifyContent='flex-start'>
-                                        <LinearProgress variant='buffer' color='primary' value={(fiveStarRate/fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)*100}/>
-                                        <Box paddingLeft={"5px"}>{fiveStarRate}</Box>
+                                <Grid container item sm={11} justifyContent='space-between'>
+                                    <Grid item sm={7} style={{paddingTop:'7%'}}>
+                                        <LinearProgress variant='determinate' color={'primary'} value={fiveStarRate*100/(fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)}/>
+                                    </Grid>
+                                    <Grid container item sm={4} justifyContent='center' style={{paddingTop:'3%'}}>
+                                        <Box>{fiveStarRate}</Box><Box paddingLeft={"10px"} fontWeight={500}>5</Box><StarRate size='small' style={{color: '#ffb400'}}/>
                                     </Grid>
                                 </Grid>
-                                <Grid container item xs={11} justifyContent='center'>
-                                    <Grid container item xs={9} justifyContent='flex-start'>
-                                        <LinearProgress variant='buffer' color='primary' value={(fourStarRate/fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)*100}/>
-                                        <Box paddingLeft={"5px"}>{fourStarRate}</Box>
+                                <Grid container item sm={11} justifyContent='space-between'>
+                                    <Grid item sm={7} style={{paddingTop:'7%'}}>
+                                        <LinearProgress variant='determinate' color='primary' value={fourStarRate*100/(fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)}/>
+                                    </Grid>
+                                    <Grid container item sm={4} justifyContent='center' style={{paddingTop:'3%'}}>
+                                        <Box>{fourStarRate}</Box><Box paddingLeft={"10px"} fontWeight={500}>4</Box><StarRate size='small' style={{color: '#ffb400'}}/>
                                     </Grid>
                                 </Grid>
-                                <Grid container item xs={11} justifyContent='center'>
-                                    <Grid container item xs={9} justifyContent='flex-start'>
-                                        <LinearProgress variant='buffer' color='primary' value={(threeStarRate/fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)*100}/>
-                                        <Box paddingLeft={"5px"}>{threeStarRate}</Box>
+                                <Grid container item sm={11} justifyContent='space-between'>
+                                    <Grid item sm={7} style={{paddingTop:'7%'}}>
+                                        <LinearProgress variant='determinate' color='primary' value={threeStarRate*100/(fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)}/>
+                                    </Grid>
+                                    <Grid container item sm={4} justifyContent='center' style={{paddingTop:'3%'}}>
+                                        <Box>{threeStarRate}</Box><Box paddingLeft={"10px"} fontWeight={500}>3</Box><StarRate size='small' style={{color: '#ffb400'}}/>
                                     </Grid>
                                 </Grid>
-                                <Grid container item xs={11} justifyContent='center'>
-                                    <Grid container item xs={9} justifyContent='flex-start'>
-                                        <LinearProgress variant='buffer' color='primary' value={(twoStarRate/fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)*100}/>
-                                        <Box paddingLeft={"5px"}>{twoStarRate}</Box>
+                                <Grid container item sm={11} justifyContent='space-between'>
+                                    <Grid item sm={7} style={{paddingTop:'7%'}}>
+                                        <LinearProgress variant='determinate' color='primary' value={twoStarRate*100/(fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)}/>
+                                    </Grid>
+                                    <Grid container item sm={4} justifyContent='center' style={{paddingTop:'3%'}}>
+                                        <Box>{twoStarRate}</Box><Box paddingLeft={"10px"} fontWeight={500}>2</Box><StarRate size='small' style={{color: '#ffb400'}}/>
                                     </Grid>
                                 </Grid>
-                                <Grid container item xs={11} justifyContent='center'>
-                                    <Grid container item xs={9} justifyContent='flex-start'>
-                                        <LinearProgress variant='buffer' color='primary' value={(oneStarRate/fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)*100}/>
-                                        <Box paddingLeft={"5px"}>{oneStarRate}</Box>
+                                <Grid container item sm={11} justifyContent='space-between'>
+                                    <Grid item sm={7} style={{paddingTop:'7%'}}>
+                                        <LinearProgress variant='determinate' color='primary' value={oneStarRate*100/(fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)}/>
+                                    </Grid>
+                                    <Grid container item sm={4} justifyContent='center' style={{paddingTop:'3%'}}>
+                                        <Box>{oneStarRate}</Box><Box paddingLeft={"10px"} fontWeight={500}>1</Box><StarRate size='small' style={{color: '#ffb400'}}/>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid container item xs={8} justifyContent='space-around' style={{paddingBottom:"15px"}}>
+                            <Grid container item sm={8} justifyContent='space-around' style={{paddingBottom:"15px"}}>
                                 <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
                                     <CarroTextField disabled value={lastName} onChange={(e)=>{setLastName(e.target.value);}} variant="outlined" label={t("LastName")} size="small" fullWidth/>
                                 </Grid>
@@ -250,8 +260,8 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                                     </CarroTextField>
                                 </Grid>
                             </Grid>
-                            <Grid container item xs={4} justifyContent='center' style={{paddingBottom:"15px"}}>
-                                <Grid container item xs={12} justifyContent='center'>
+                            <Grid container item sm={4} justifyContent='center' style={{paddingBottom:"15px"}}>
+                                <Grid container item sm={12} justifyContent='center'>
                                     <img src={"data:image/png;base64,"+ identityCardImage} className={classes.identityCardImg}  alt={""}/>
                                 </Grid>
                                 <Grid container item sm={ 10 }>
@@ -264,7 +274,7 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                                     <Grid container item sm={5} justifyContent="center">
                                                 <SecondaryButton variant='contained' onClick={handleClose} fullWidth><Box fontSize={"12px"}>{t("Reject")}</Box></SecondaryButton>     
                                     </Grid>
-                                    <Grid container item xs={5} justifyContent="center">
+                                    <Grid container item sm={5} justifyContent="center">
                                                 <GreenCaroButton variant='contained' onClick={()=>{handleClose()}} fullWidth><Box fontSize={"12px"}>{t("Validate")}</Box></GreenCaroButton>
                                     </Grid>
                                 </Grid>
@@ -272,10 +282,10 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                                     <CarroTextField disabled value={rejectIssue} onChange={(e)=>{setRejectIssue(e.target.value);}} variant="outlined" label={t("RejectIssue")} size="small" fullWidth />
                                 </Grid>
                             </Grid>
-                            <Grid container item xs={8} justifyContent='center' style={{paddingBottom:"15px"}}>
-                                <Grid container item xs={12} justifyContent='center'>{t('UserStatus')}</Grid>
-                                <Grid container item xs={11} justifyContent='space-between'>
-                                    <Grid  container item xs={6} justifyContent='flex-start'>
+                            <Grid container item sm={8} justifyContent='center' style={{paddingBottom:"15px"}}>
+                                <Grid container item sm={12} justifyContent='center'>{t('UserStatus')}</Grid>
+                                <Grid container item sm={11} justifyContent='space-between'>
+                                    <Grid  container item sm={6} justifyContent='flex-start'>
                                         <FormControlLabel
                                                 checked={isCompany}
                                                 onChange={handleIsCompany}
@@ -283,7 +293,7 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                                                 label={t("Company")}
                                         />
                                     </Grid>
-                                    <Grid  container item xs={6} justifyContent='flex-start'>
+                                    <Grid  container item sm={6} justifyContent='flex-start'>
                                         <FormControlLabel
                                                 checked={personalInfo}
                                                 onChange={handlePersonalInfo}
@@ -291,7 +301,7 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                                                 label={t("PersonalInfo")}
                                         />
                                     </Grid>
-                                    <Grid  container item xs={6} justifyContent='flex-start'>
+                                    <Grid  container item sm={6} justifyContent='flex-start'>
                                         <FormControlLabel
                                                 checked={identityCardVerified}
                                                 onChange={handleIdentityCardVerified}
@@ -299,7 +309,7 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                                                 label={t("IdentityCard")}
                                         />
                                     </Grid>
-                                    <Grid  container item xs={6} justifyContent='flex-start'>
+                                    <Grid  container item sm={6} justifyContent='flex-start'>
                                         <FormControlLabel
                                                 checked={identityCardUploaded}
                                                 onChange={handleIdentityCardUploaded}
@@ -307,7 +317,7 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                                                 label={t("IdentityCardUploaded")}
                                         />
                                     </Grid>
-                                    <Grid  container item xs={6} justifyContent='flex-start'>
+                                    <Grid  container item sm={6} justifyContent='flex-start'>
                                         <FormControlLabel
                                                 checked={phoneNumber}
                                                 onChange={handlePhoneNumber}
@@ -315,7 +325,7 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                                                 label={t("PhoneNumber")}
                                         />
                                     </Grid>
-                                    <Grid  container item xs={6} justifyContent='flex-start'>
+                                    <Grid  container item sm={6} justifyContent='flex-start'>
                                         <FormControlLabel
                                                 checked={userValidated}
                                                 onChange={handleUserValidated}
@@ -323,7 +333,7 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                                                 label={t("UserValidated")}
                                         />
                                     </Grid>
-                                    <Grid  container item xs={6} justifyContent='flex-start'>
+                                    <Grid  container item sm={6} justifyContent='flex-start'>
                                         <FormControlLabel
                                                 checked={subscriptionPaid}
                                                 onChange={handleSubscriptionPaid}
@@ -331,7 +341,7 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                                                 label={t("SubscriptionPaid")}
                                         />
                                     </Grid>
-                                    <Grid  container item xs={6} justifyContent='flex-start'>
+                                    <Grid  container item sm={6} justifyContent='flex-start'>
                                         <FormControlLabel
                                                 checked={freeTrial}
                                                 onChange={handleFreeTrial}
@@ -340,14 +350,14 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                                         />
                                     </Grid>
                                 </Grid>
-                                <Grid container item xs={12} justifyContent='center'>
+                                <Grid container item sm={12} justifyContent='center'>
                                     <Box fontSize={20} style={{textDecoration: 'underline', color:'#ff3333'}}>{t('ClosedAccount')}</Box>
                                 </Grid>
-                                <Grid container item xs={11} justifyContent='space-between'>
-                                    <Grid container item xs={9} justifyContent='flex-start'>
+                                <Grid container item sm={11} justifyContent='space-between'>
+                                    <Grid container item sm={9} justifyContent='flex-start'>
                                         <Box fontSize={18}>{closeAccountReason.length > 0 ? closeAccountReason.toLocaleUpperCase() : t('NoCloseAccountReason')}</Box>
                                     </Grid>
-                                    <Grid container item xs={3} justifyContent='flex-start'>
+                                    <Grid container item sm={3} justifyContent='flex-start'>
                                         <Box fontSize={18}>{new Date(closeAccountCreated).getDate().toString()+'-'+(new Date(closeAccountCreated).getMonth()+1).toString()+'-'+new Date(closeAccountCreated).getFullYear().toString()}</Box>
                                     </Grid>
                                 </Grid>
@@ -355,10 +365,10 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                             </Grid>
                         </Grid>
                         <Grid container justifyContent='space-around'>
-                            <Grid container item xs={3} justifyContent="center">
+                            <Grid container item sm={3} justifyContent="center">
                                         <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("CloseButton")}</SecondaryButton>     
                             </Grid>
-                            <Grid container item xs={3} justifyContent="center">
+                            <Grid container item sm={3} justifyContent="center">
                                         <GreenCaroButton variant='contained' onClick={()=>{handleClose()}} fullWidth>{t("SaveButton")}</GreenCaroButton>
                             </Grid>
                         </Grid>
