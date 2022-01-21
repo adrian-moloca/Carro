@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Grid} from '@material-ui/core';
+import {Box, Grid, Avatar} from '@material-ui/core';
 import {Rating} from '@material-ui/lab';
 import useStyles from './driverProfileCardStyle';
 import { useTranslation } from 'react-i18next';
@@ -12,7 +12,7 @@ const DriverProfileCard =(props)=>{
       <Grid container justifyContent="center" alignItems="center">
         <Grid container item xs={6} justifyContent='center' direction="column">
           <Grid container item xs={12} justifyContent='center'>
-              <img src={props.image} className={classes.profileImg}  alt={""}/>
+            <Avatar className={classes.profileImg} src={props.image} style={{marginBottom: window.innerWidth <= 850 ? "20px" : 0 }}/>
           </Grid>
           <Grid container item xs={12} justifyContent='center'>
             <Box mb={2} fontWeight={500} fontSize={22} textAlign={'center'} marginTop={"20px"}>{props.name}</Box>

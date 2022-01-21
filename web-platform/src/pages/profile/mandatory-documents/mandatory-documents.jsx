@@ -82,7 +82,7 @@ const MandatoryDocuments = ({userData, getProfileStatus})=>{
                     )) : (
                         <Fragment>
                             <Grid container item sm={12}  justifyContent='center' style={{height: "50px", marginTop:"14%"}}>
-                                <Box color={"green"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}> {t('DocumentsValidated')}</Box>
+                                <Box color={"#34D02D"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}> {t('DocumentsValidated')}</Box>
                             </Grid>
                         </Fragment>
                     )  }

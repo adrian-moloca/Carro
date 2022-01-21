@@ -23,6 +23,7 @@ const CarroAutocomplete =(props)=>{
                     {...params}
                     label={props.label}
                     variant="outlined"
+                    error={props.error}
                     /* inputProps={{
                         ...params.inputProps, // disable autocomplete and autofill
                     }} */

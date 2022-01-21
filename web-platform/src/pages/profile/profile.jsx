@@ -46,7 +46,7 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
     async function setPhoto(file){
       const base64 = await getBase64Image(file)
       setProfilePhoto(base64)
-  }
+    }
 
     async function updateChangedData(){
       if(profilePhotoChanged){

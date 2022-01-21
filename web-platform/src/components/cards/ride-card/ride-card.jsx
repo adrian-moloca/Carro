@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {Box, Grid} from '@material-ui/core';
+import {Box, Grid, Avatar} from '@material-ui/core';
 import {Rating} from '@material-ui/lab';
 import ReactCardFlip from 'react-card-flip';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
@@ -195,7 +195,7 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                         </SeeProfileBtn>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center'>
-                        <img src={"data:image/png;base64," + props.image} className={classes.profileImg} alt={""}/>
+                        <Avatar className={classes.profileImg} src={"data:image/png;base64,"+props.image} style={{marginBottom: window.innerWidth <= 850 ? "20px" : 0 }}/>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center'>
                         <Box fontSize='20px' fontWeight='500'>{props.name}</Box>

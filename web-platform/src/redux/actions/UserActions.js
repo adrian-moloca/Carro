@@ -23,6 +23,7 @@ return (dispatch) => {
         password: password
     })
     .then(response => {
+        getProfileStatus(response.data.token)
         dispatch(fetchLoginSuccess(jwt_decode(response.data.token), response.data.token, response.data.refreshToken));
     }).catch(error => {
         const errorMsg = error;

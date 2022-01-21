@@ -56,9 +56,9 @@ const Register = ({createNewUser, data}) => {
             headers:{
               'Authorization': `Bearer ${data.token}`,
             }
-        }).then(()=>history.push('/register/phone-number-verification')).catch(error=>console.log(error))
+        }).then(()=>history.push('/profile')).catch(error=>console.log(error))
       } else {
-        history.push('/register/phone-number-verification')
+        history.push('/profile')
       }
     } 
   }

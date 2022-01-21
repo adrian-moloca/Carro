@@ -32,7 +32,7 @@ const AdminPanel = ({userData, adminData, adminGetUsers, adminGetUser}) => {
 
   useEffect(()=>{ 
     adminData.users && adminData.users.length > 0 ? setUsers(adminData.users) : setUsers([])  
-  }, [adminData])
+  }, [adminData.users])
 
   return (
     <Container className="Primary-container-style">
