@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import {Container, Grid, Box, Modal, Fade, FormControlLabel, MenuItem, LinearProgress, Avatar, ButtonBase} from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 import useStyles from './edit-user-admin-modal-style';
-import { Close, AssignmentInd, StarRate } from '@material-ui/icons';
+import { Close, AssignmentInd, StarRate, Publish } from '@material-ui/icons';
 import CarroTextField from '../../textField/CarroTextField';
 import GreenCheckbox from '../../checkbox/GreenCheckbox';
 import PhoneTextField from '../../telephoneNumberField/PhoneTextField';
@@ -19,6 +19,7 @@ import { getCountries, getCities } from '../../../utils/Functions/countries-city
 import axios from 'axios';
 import utilData from '../../../utils/constants';
 import { cleanUserPanel } from '../../../redux/types/AdminTypes';
+import { getBase64Image } from '../../../utils/Functions/base64Image';
 
 const EditUserAdmin = ({data, userClickedData, adminGetUser, adminGetUsers, cleanUserPanel, ...props}) =>{
     const { t } = useTranslation();
@@ -169,6 +170,13 @@ const EditUserAdmin = ({data, userClickedData, adminGetUser, adminGetUsers, clea
             w.document.getElementsByTagName("iframe")[0].style.height = '100%';
         }, 0);
     }
+
+    async function setIdCard(file){
+        const base64 = await getBase64Image(file)
+        setIdentityCardImage(base64.replace("data:image/jpeg;base64," || "data:image/png;base64," || "data:image/jpg;base64,", ""))
+    }
+
+    useEffect(()=>{},[identityCardImage])
 
     async function acceptID(){
         axios.put(utilData.adminUrl+'/users/'+userClickedData.id+'/accept', {}, {
@@ -360,13 +368,17 @@ const EditUserAdmin = ({data, userClickedData, adminGetUser, adminGetUsers, clea
                             </Grid>
                             <Grid container item sm={4} justifyContent='center' style={{paddingBottom:"15px"}}>
                                 <Grid container item sm={12} justifyContent='center'>
-                                    {userClickedData.identityCard.attachment && userClickedData.identityCard.attachment.length > 0 ?( 
+                                    {identityCardImage && identityCardImage.length > 0 ?( 
                                             <ButtonBase onClick={()=>openIdImage()} style={{marginBottom: '15px',}}>
                                                 <img src={"data:image/png;base64,"+ identityCardImage} className={classes.identityCardImg}  alt={""}/></ButtonBase>
                                         ) : (
-                                            <Box border={1} style={{ height: 120, width: 200, textAlign:'center', alignItems:'center', marginBottom:"15px", borderRadius:"15px"}}>
-                                                <Box marginTop={'45px'}>ID CARD</Box>
-                                            </Box>
+                                            <label style={{cursor: 'pointer', height:'120px', width: '200px', marginBottom:'15px'}}>
+                                                <input type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=>{setIdCard(e.target.files[0]);}}/>
+                                                    <Box border={1} style={{ height: 120, width: 200, textAlign:'center', alignItems:'center', marginBottom:"15px", borderRadius:"15px"}}>
+                                                        <Box marginTop={'45px'}>ID CARD</Box>
+                                                        <Publish fontSize='large'/>
+                                                    </Box>
+                                            </label>
                                         )}
                                 </Grid>
                                 <Grid container item sm={ 10 }>
