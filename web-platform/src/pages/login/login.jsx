@@ -31,8 +31,12 @@ const Login = ({fetchLogin, fetchNotifications, rememberMeToggle, data}) => {
 
   const redirectAfterLoginSuccess = () => {
     if(isLoggedIn === true) {
-        history.push('/home');
-        fetchNotifications(data.token)
+      if(data.profileStatus.isPhoneNumberValidated){ 
+            history.push('/home');
+            fetchNotifications(data.token)
+      } else{
+        history.push('/profile');
+      }
     } else {
         console.log('error auth')
     }

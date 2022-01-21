@@ -408,7 +408,7 @@ switch (action.type) {
                 isCompany: action.payload.isCompany,
                 isPersonalInfoCompleted: action.payload.isPersonalInfoCompleted,
                 isIdentityCardUploaded: action.payload.isIdentityCardUploaded,
-                isIdentityCardValidated: action.payload.isCompany.isIdentityCardValidated,
+                isIdentityCardValidated: action.payload.isIdentityCardValidated,
                 isPhoneNumberValidated: action.payload.isPhoneNumberValidated,
                 isUserValidated: action.payload.isUserValidated,
                 isSubscriptionPayed: action.payload.isSubscriptionPayed,

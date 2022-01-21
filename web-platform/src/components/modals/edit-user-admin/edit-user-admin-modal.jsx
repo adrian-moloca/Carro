@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import {Container, Grid, Box, Modal, Fade, FormControlLabel, MenuItem, LinearProgress} from '@material-ui/core';
+import {Container, Grid, Box, Modal, Fade, FormControlLabel, MenuItem, LinearProgress, Avatar, ButtonBase} from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 import useStyles from './edit-user-admin-modal-style';
 import { Close, AssignmentInd, StarRate } from '@material-ui/icons';
@@ -13,11 +13,14 @@ import CarroAutocomplete from '../../autocomplete/CarroAutocomplete';
 import IconButtonNoVerticalPadding from '../../buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 import { phoneValidator, mailValidator } from '../../../utils/Functions/input-validators';
 import { useTranslation } from "react-i18next";
-import { updatePackage } from '../../../redux/actions/MyPackagesActions';
+import { adminGetUser, adminGetUsers } from '../../../redux/actions/AdminActions';
 import { connect } from 'react-redux';
 import { getCountries, getCities } from '../../../utils/Functions/countries-city-functions';
+import axios from 'axios';
+import utilData from '../../../utils/constants';
+import { cleanUserPanel } from '../../../redux/types/AdminTypes';
 
-const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
+const EditUserAdmin = ({data, userClickedData, adminGetUser, adminGetUsers, cleanUserPanel, ...props}) =>{
     const { t } = useTranslation();
     const classes = useStyles();
 
@@ -55,7 +58,9 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [idNumber, setIdNumber] = useState('');
     const [numberSeries, setNumberSeries] = useState('');
+    const [invalidateReason, setInvalidateReason] = useState('');
     const [rejectIssue, setRejectIssue] = useState('');
+    const [isAccountClosed, setIsAccountClosed] = useState(false)
     const [isCompany, setIsCompany] = useState(false);
     const [personalInfo, setPersonalInfo] = useState(false);
     const [identityCardVerified, setIdentityCardVerified] = useState(false);
@@ -66,7 +71,9 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
     const [freeTrial, setFreeTrial] = useState(false);
     const [closeAccountCreated, setCloseAccountCreated] = useState('');
     const [closeAccountReason, setCloseAccountReason] = useState('');
-    const [hasErrors, setHasErrors] = useState(false);
+    const [hasErrorsCheck, setHasErrorsCheck] = useState('');
+
+    useEffect(()=>{}, [hasErrorsCheck])
 
     useEffect(()=>{
         userClickedData.dateCreated && userClickedData.dateCreated.length > 0 ? setDateCreated(userClickedData.dateCreated) : setDateCreated('')
@@ -90,13 +97,16 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
         userClickedData.identityCard.attachment && userClickedData.identityCard.attachment.length > 0 ? setIdentityCardImage(userClickedData.identityCard.attachment) : setIdentityCardImage('')
         userClickedData.identityCard.cnp && userClickedData.identityCard.cnp.length > 0 ? setIdNumber(userClickedData.identityCard.cnp) : setIdNumber('');
         userClickedData.identityCard.numberSeries && userClickedData.identityCard.numberSeries.length > 0 ? setNumberSeries(userClickedData.identityCard.numberSeries) : setNumberSeries('');
+        userClickedData.userStatus.isAccountClosed ? setIsAccountClosed(userClickedData.userStatus.isAccountClosed) : setIsAccountClosed(false);
         userClickedData.userStatus.isCompany ? setIsCompany(userClickedData.userStatus.isCompany) : setIsCompany(false);
         userClickedData.userStatus.isPersonalInfoCompleted ? setPersonalInfo(userClickedData.userStatus.isPersonalInfoCompleted) : setPersonalInfo(false);
-        userClickedData.userStatus.isIdentityCardValided ? setIdentityCardVerified(userClickedData.userStatus.isIdentityCardValided) : setIdentityCardVerified(false);
-        userClickedData.userStatus.isPhoneNumberVerified ? setPhoneNumber(userClickedData.userStatus.isPhoneNumberVerified) : setPhoneNumber(false);
+        userClickedData.userStatus.isIdentityCardValidated ? setIdentityCardVerified(userClickedData.userStatus.isIdentityCardValidated) : setIdentityCardVerified(false);
+        userClickedData.userStatus.isPhoneNumberValidated ? setPhoneNumber(userClickedData.userStatus.isPhoneNumberValidated) : setPhoneNumber(false);
         userClickedData.userStatus.isIdentityCardUploaded ? setIdentityCardUploaded(userClickedData.userStatus.isIdentityCardUploaded) : setIdentityCardUploaded(false);
         userClickedData.userStatus.isUserValidated ? setUserValidated(userClickedData.userStatus.isUserValidated) : setUserValidated(false);
         userClickedData.userStatus.isSubscriptionPaid ? setSubscriptionPaid(userClickedData.userStatus.isSubscriptionPaid) : setSubscriptionPaid(false);
+        userClickedData.userStatus.invalidateReason && userClickedData.userStatus.invalidateReason.length > 0 ? setInvalidateReason(userClickedData.userStatus.invalidateReason) : setInvalidateReason('')
+        userClickedData.userStatus.rejectReason && userClickedData.userStatus.rejectReason.length > 0 ? setRejectIssue(userClickedData.userStatus.rejectReason) : setRejectIssue('')
         userClickedData.userStatus.isTrial ? setFreeTrial(userClickedData.userStatus.isTrial) : setFreeTrial(false);
         userClickedData.closeAccount.dateCreated && userClickedData.closeAccount.dateCreated.length > 0 ? setCloseAccountCreated(userClickedData.closeAccount.dateCreated) : setCloseAccountCreated('');
         userClickedData.closeAccount.closeReason && userClickedData.closeAccount.closeReason.length > 0 ? setCloseAccountReason(userClickedData.closeAccount.closeReason) : setCloseAccountReason('');
@@ -113,14 +123,21 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
 
     const handleClose = ()=>{
         setOpen(false)
+        cleanUserPanel()
     }
+
+    const handleIsAccountClosed = (event) => {
+        event.target.checked ? setIsAccountClosed(true) : setIsAccountClosed(false);
+    };
 
     const handleIsCompany = (event) => {
         event.target.checked ? setIsCompany(true) : setIsCompany(false);
     };
+
     const handlePersonalInfo = (event) => {
         event.target.checked ? setPersonalInfo(true) : setPersonalInfo(false);
     };
+
     const handleIdentityCardVerified = (event) => {
         event.target.checked ? setIdentityCardVerified(true) : setIdentityCardVerified(false);
     };
@@ -143,9 +160,90 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
     const handleChangeCountry=(newValue)=> setCountry(newValue);
     const handleChangeCity=(newValue)=> setCity(newValue);
 
+    const openIdImage = ()=>{
+        var w = window.open('about:blank');
+        setTimeout(function(){ //FireFox seems to require a setTimeout for this to 
+            w.document.body.appendChild(w.document.createElement('iframe'))
+                .src = "data:image/png;base64,"+ identityCardImage;
+            w.document.getElementsByTagName("iframe")[0].style.width = '100%';
+            w.document.getElementsByTagName("iframe")[0].style.height = '100%';
+        }, 0);
+    }
+
+    async function acceptID(){
+        axios.put(utilData.adminUrl+'/users/'+userClickedData.id+'/accept', {}, {
+                headers:{
+                    'Authorization': `Bearer ${data.token}`,
+                }
+            }
+        ).then(()=>adminGetUser(userClickedData.id, data.token)).catch(error=>alert('error accepting id'))
+    }
+
+    async function checkID(){
+        axios.put(utilData.adminUrl+'/users/'+userClickedData.id+'/check-identity', {
+                personalNumber: idNumber,
+                numberSeries: numberSeries
+        }, {
+            headers:{
+                'Authorization': `Bearer ${data.token}`,
+            }
+        }).then(()=>acceptID()).catch((error)=>{setHasErrorsCheck(error.response.data.errors[0]); console.log(error.response.data.errors[0])})
+    }
+
+    async function rejectID(){
+        axios.put(utilData.adminUrl+'/users/'+userClickedData.id+'/reject', {
+                rejectReason: rejectIssue,
+                deleteIdentityCard: true
+            }, {
+                headers:{
+                    'Authorization': `Bearer ${data.token}`,
+                }
+            }
+        ).then(()=>adminGetUser(userClickedData.id, data.token)).catch(error=>alert('error rejecting id'))
+    }
+
+    async function updateUser(){
+        axios.put(utilData.adminUrl+'/users/'+userClickedData.id, {
+                email: email,
+                role: userRole,
+                termsAndConditions: true,
+                personalInfo: {
+                    firstName: firstName,
+                    lastName: lastName,
+                    address: address,
+                    city: city,
+                    country: country,
+                    phoneNumber: countryPhoneCode+inputValuePhoneNumber,
+                    dateOfBirth: dateOfBirth
+                },
+                identityCard: {
+                    attachment: identityCardImage,
+                    cnp: idNumber,
+                    numberSeries: numberSeries
+                },
+                userStatus: {
+                    isAccountClosed: isAccountClosed,
+                    isCompany: isCompany,
+                    isPersonalInfoCompleted: personalInfo,
+                    isIdentityCardValidated: identityCardVerified,
+                    isPhoneNumberValidated: phoneNumber,
+                    isIdentityCardUploaded: identityCardUploaded,
+                    isUserValidated: userValidated,
+                    isSubscriptionPaid: subscriptionPaid,
+                    rejectReason: rejectIssue,
+                    invalidateReason: invalidateReason
+                },   
+            }, {
+                headers:{
+                    'Authorization': `Bearer ${data.token}`,
+                }
+            }
+        ).then(()=>{handleClose(); setTimeout(()=>adminGetUsers(data.token), 500)}).catch(error=>alert('error update user'))
+    }
+
     return(
         <Fragment>
-            <IconButtonNoVerticalPadding name='edit' onClick={()=>{handleOpen(); props.userCardClicked()}}>
+            <IconButtonNoVerticalPadding name='edit' onClick={()=>{props.userCardClicked(); handleOpen()}}>
                 <AssignmentInd style={{color:"#00B4D8"}} size="small"/>
             </IconButtonNoVerticalPadding>
             <Modal open={open} onClose={handleClose}  className='modal'>
@@ -166,7 +264,7 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                         <Grid container>
                             <Grid container item sm={4} justifyContent='center' style={{paddingBottom:"15px"}}>
                                 <Grid container item sm={12} justifyContent='center'>
-                                    <img src={"data:image/png;base64,"+ profileImage} className={classes.profileImg}  alt={""}/>
+                                    <Avatar className={classes.profileImg} src={"data:image/png;base64,"+ profileImage} style={{marginBottom: window.innerWidth <= 850 ? "20px" : 0 }}/>
                                 </Grid>
                                 <Grid container item sm={12} justifyContent='center'>
                                     <Box marginTop='7%'>
@@ -174,87 +272,87 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                                     </Box>
                                 </Grid>
                                 <Grid container item sm={11} justifyContent='space-between'>
-                                    <Grid item sm={7} style={{paddingTop:'7%'}}>
+                                    <Grid item sm={8} style={{paddingTop:'7%', paddingRight:'10px'}}>
                                         <LinearProgress variant='determinate' color={'primary'} value={fiveStarRate*100/(fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)}/>
                                     </Grid>
-                                    <Grid container item sm={4} justifyContent='center' style={{paddingTop:'3%'}}>
+                                    <Grid container item sm={4} justifyContent='flex-end' style={{paddingTop:'3%'}}>
                                         <Box>{fiveStarRate}</Box><Box paddingLeft={"10px"} fontWeight={500}>5</Box><StarRate size='small' style={{color: '#ffb400'}}/>
                                     </Grid>
                                 </Grid>
                                 <Grid container item sm={11} justifyContent='space-between'>
-                                    <Grid item sm={7} style={{paddingTop:'7%'}}>
+                                    <Grid item sm={8} style={{paddingTop:'7%', paddingRight:'10px'}}>
                                         <LinearProgress variant='determinate' color='primary' value={fourStarRate*100/(fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)}/>
                                     </Grid>
-                                    <Grid container item sm={4} justifyContent='center' style={{paddingTop:'3%'}}>
+                                    <Grid container item sm={4} justifyContent='flex-end' style={{paddingTop:'3%'}}>
                                         <Box>{fourStarRate}</Box><Box paddingLeft={"10px"} fontWeight={500}>4</Box><StarRate size='small' style={{color: '#ffb400'}}/>
                                     </Grid>
                                 </Grid>
                                 <Grid container item sm={11} justifyContent='space-between'>
-                                    <Grid item sm={7} style={{paddingTop:'7%'}}>
+                                    <Grid item sm={8} style={{paddingTop:'7%', paddingRight:'10px'}}>
                                         <LinearProgress variant='determinate' color='primary' value={threeStarRate*100/(fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)}/>
                                     </Grid>
-                                    <Grid container item sm={4} justifyContent='center' style={{paddingTop:'3%'}}>
+                                    <Grid container item sm={4} justifyContent='flex-end' style={{paddingTop:'3%'}}>
                                         <Box>{threeStarRate}</Box><Box paddingLeft={"10px"} fontWeight={500}>3</Box><StarRate size='small' style={{color: '#ffb400'}}/>
                                     </Grid>
                                 </Grid>
                                 <Grid container item sm={11} justifyContent='space-between'>
-                                    <Grid item sm={7} style={{paddingTop:'7%'}}>
+                                    <Grid item sm={8} style={{paddingTop:'7%', paddingRight:'10px'}}>
                                         <LinearProgress variant='determinate' color='primary' value={twoStarRate*100/(fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)}/>
                                     </Grid>
-                                    <Grid container item sm={4} justifyContent='center' style={{paddingTop:'3%'}}>
+                                    <Grid container item sm={4} justifyContent='flex-end' style={{paddingTop:'3%'}}>
                                         <Box>{twoStarRate}</Box><Box paddingLeft={"10px"} fontWeight={500}>2</Box><StarRate size='small' style={{color: '#ffb400'}}/>
                                     </Grid>
                                 </Grid>
                                 <Grid container item sm={11} justifyContent='space-between'>
-                                    <Grid item sm={7} style={{paddingTop:'7%'}}>
+                                    <Grid item sm={8} style={{paddingTop:'7%', paddingRight:'10px'}}>
                                         <LinearProgress variant='determinate' color='primary' value={oneStarRate*100/(fiveStarRate+fourStarRate+threeStarRate+twoStarRate+oneStarRate)}/>
                                     </Grid>
-                                    <Grid container item sm={4} justifyContent='center' style={{paddingTop:'3%'}}>
+                                    <Grid container item sm={4} justifyContent='flex-end' style={{paddingTop:'3%'}}>
                                         <Box>{oneStarRate}</Box><Box paddingLeft={"10px"} fontWeight={500}>1</Box><StarRate size='small' style={{color: '#ffb400'}}/>
                                     </Grid>
                                 </Grid>
                             </Grid>
                             <Grid container item sm={8} justifyContent='space-around' style={{paddingBottom:"15px"}}>
                                 <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
-                                    <CarroTextField disabled value={lastName} onChange={(e)=>{setLastName(e.target.value);}} variant="outlined" label={t("LastName")} size="small" fullWidth/>
+                                    <CarroTextField value={lastName} onChange={(e)=>{setLastName(e.target.value);}} variant="outlined" label={t("LastName")} size="small" fullWidth/>
                                 </Grid>
                                 <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
-                                    <CarroTextField disabled value={firstName} onChange={(e)=>{setFirstName(e.target.value);}} variant="outlined" label={t("FirstName")} size="small" fullWidth />
+                                    <CarroTextField value={firstName} onChange={(e)=>{setFirstName(e.target.value);}} variant="outlined" label={t("FirstName")} size="small" fullWidth />
                                 </Grid>
                                 <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
-                                    <PhoneTextField disabled={true} size="small"
+                                    <PhoneTextField size="small"
                                                     value={inputValuePhoneNumber} countryPhoneCode={countryPhoneCode}
                                                     onChange = {(e) => {setInputValuePhoneNumber(e.target.value);}}
                                                     handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
                                                     error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}/>
                                 </Grid>
                                 <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
-                                    <CarroDatePicker disabled value={dateOfBirth} onChange={(date) =>{ setDateOfBirth(date);}} format='dd/MM/yyyy' views={["year", "month", "date"]}
+                                    <CarroDatePicker value={dateOfBirth} onChange={(date) =>{ setDateOfBirth(date);}} format='dd/MM/yyyy' views={["year", "month", "date"]}
                                                     maxDate={(new Date().getFullYear()-14).toString()+'-'+(new Date().getMonth()+1).toString()+'-'+new Date().getDate().toString()}
-                                                    label={t("Birthday")} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}} openTo="year" size={"small"}/>
+                                                    label={t("Birthday")} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }, shrink: true}} openTo="year" size={"small"}/>
                                 </Grid>
                                 <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
-                                    <CarroTextField disabled value={email} onChange={(e)=>{setEmail(e.target.value);}} error={mailValidator(email)} variant="outlined" label={t("Mail")} size="small" fullWidth/>
+                                    <CarroTextField value={email} onChange={(e)=>{setEmail(e.target.value);}} error={mailValidator(email)} variant="outlined" label={t("Mail")} size="small" fullWidth/>
                                 </Grid>
                                 <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
-                                    <CarroTextField disabled value={address} onChange={(e)=>{setAddress(e.target.value);}} variant="outlined" label={t("Address")} size="small" fullWidth/>
+                                    <CarroTextField value={address} onChange={(e)=>{setAddress(e.target.value);}} variant="outlined" label={t("Address")} size="small" fullWidth/>
                                 </Grid>
                                 <Grid container item sm={window.innerWidth <= 850 ? 10 : 5} justifyContent="center">
-                                    <CarroAutocomplete disabled label={t("Country")} size="small" value={country} options={getCountries()} onChange={(e, newValue)=>{handleChangeCountry(newValue);}}/>
+                                    <CarroAutocomplete label={t("Country")} size="small" value={country} options={getCountries()} onChange={(e, newValue)=>{handleChangeCountry(newValue);}}/>
                                 </Grid> 
                                 <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}  justifyContent="center">
-                                    <CarroAutocomplete disabled size="small" label={t("City")} value={city} options={getCities(country)} onChange={(e, newValue)=>{handleChangeCity(newValue);}}/>
+                                    <CarroAutocomplete size="small" label={t("City")} value={city} options={getCities(country)} onChange={(e, newValue)=>{handleChangeCity(newValue);}}/>
                                 </Grid>
                                 <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
-                                    <CarroDatePicker disabled value={dateCreated} onChange={(date) =>{ setDateCreated(date);}} format='dd/MM/yyyy' views={["year", "month", "date"]}
+                                    <CarroDatePicker value={dateCreated} onChange={(date) =>{ setDateCreated(date);}} format='dd/MM/yyyy' views={["year", "month", "date"]}
                                                     maxDate={new Date()}
-                                                    label={t("DataCreated")} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }}} openTo="year" size={"small"}/>
+                                                    label={t("DataCreated")} InputLabelProps={{style: { fontSize: "17px", marginTop: "3px" }, shrink: true}} openTo="year" size={"small"}/>
                                 </Grid>
                                 <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
                                     <CarroTextField variant ='outlined' label={t("UserRole")} fullWidth select value={userRole} onChange={(e)=>setUserRole(e.target.value)} size="small">
                                             {userRoles.map((option)=>(
                                                 <MenuItem key={option.value} value={option.value}>
-                                                {option.label}
+                                                    {option.label}
                                                 </MenuItem>
                                             ))}
                                     </CarroTextField>
@@ -262,28 +360,45 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                             </Grid>
                             <Grid container item sm={4} justifyContent='center' style={{paddingBottom:"15px"}}>
                                 <Grid container item sm={12} justifyContent='center'>
-                                    <img src={"data:image/png;base64,"+ identityCardImage} className={classes.identityCardImg}  alt={""}/>
+                                    {userClickedData.identityCard.attachment && userClickedData.identityCard.attachment.length > 0 ?( 
+                                            <ButtonBase onClick={()=>openIdImage()} style={{marginBottom: '15px',}}>
+                                                <img src={"data:image/png;base64,"+ identityCardImage} className={classes.identityCardImg}  alt={""}/></ButtonBase>
+                                        ) : (
+                                            <Box border={1} style={{ height: 120, width: 200, textAlign:'center', alignItems:'center', marginBottom:"15px", borderRadius:"15px"}}>
+                                                <Box marginTop={'45px'}>ID CARD</Box>
+                                            </Box>
+                                        )}
                                 </Grid>
                                 <Grid container item sm={ 10 }>
-                                    <CarroTextField disabled value={idNumber} onChange={(e)=>{setIdNumber(e.target.value);}} variant="outlined" label={t("IdNumber")} size="small" fullWidth/>
+                                    <CarroTextField value={idNumber} onChange={(e)=>{setIdNumber(e.target.value);}} variant="outlined" label={t("IdNumber")} size="small" fullWidth/>
                                 </Grid>
                                 <Grid container item sm={ 10 }>
-                                    <CarroTextField disabled value={numberSeries} onChange={(e)=>{setNumberSeries(e.target.value);}} variant="outlined" label={t("Serial")} size="small" fullWidth />
+                                    <CarroTextField value={numberSeries} onChange={(e)=>{setNumberSeries(e.target.value);}} variant="outlined" label={t("Serial")} size="small" fullWidth />
+                                </Grid>
+                                <Grid container item sm={ 10 } justifyContent='center' style={{marginBottom:"15px"}}>
+                                    <Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center"}}>{hasErrorsCheck}</Box>
                                 </Grid>
                                 <Grid container item sm={ 10 } justifyContent='space-between' style={{marginBottom:"15px"}}>
                                     <Grid container item sm={5} justifyContent="center">
-                                                <SecondaryButton variant='contained' onClick={handleClose} fullWidth><Box fontSize={"12px"}>{t("Reject")}</Box></SecondaryButton>     
+                                                <SecondaryButton variant='contained' onClick={()=>rejectID()} fullWidth><Box fontSize={"12px"}>{t("Reject")}</Box></SecondaryButton>     
                                     </Grid>
                                     <Grid container item sm={5} justifyContent="center">
-                                                <GreenCaroButton variant='contained' onClick={()=>{handleClose()}} fullWidth><Box fontSize={"12px"}>{t("Validate")}</Box></GreenCaroButton>
+                                                <GreenCaroButton disabled={userClickedData.userStatus.isIdentityCardValidated} variant='contained' onClick={()=>{checkID()}} fullWidth><Box fontSize={"12px"}>{t("Validate")}</Box></GreenCaroButton>
                                     </Grid>
                                 </Grid>
                                 <Grid container item sm={ 10 }>
-                                    <CarroTextField disabled value={rejectIssue} onChange={(e)=>{setRejectIssue(e.target.value);}} variant="outlined" label={t("RejectIssue")} size="small" fullWidth />
+                                    <CarroTextField value={rejectIssue} onChange={(e)=>{setRejectIssue(e.target.value);}} variant="outlined" label={t("RejectIssue")} size="small" fullWidth />
                                 </Grid>
+                                {userClickedData.userStatus.isIdentityCardValided ? (
+                                    <Grid container item sm={12} justifyContent='center'>
+                                        <Box fontSize={20} style={{color: '#34D02D', textDecoration:'underline'}}>
+                                            {t('IdValidated')}
+                                        </Box>
+                                    </Grid>
+                                ) : null}
                             </Grid>
                             <Grid container item sm={8} justifyContent='center' style={{paddingBottom:"15px"}}>
-                                <Grid container item sm={12} justifyContent='center'>{t('UserStatus')}</Grid>
+                                <Grid container item sm={12} justifyContent='center'><Box>{t('UserStatus')}</Box></Grid>
                                 <Grid container item sm={11} justifyContent='space-between'>
                                     <Grid  container item sm={6} justifyContent='flex-start'>
                                         <FormControlLabel
@@ -349,19 +464,34 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                                                 label={t("FreeTrial")}
                                         />
                                     </Grid>
-                                </Grid>
-                                <Grid container item sm={12} justifyContent='center'>
-                                    <Box fontSize={20} style={{textDecoration: 'underline', color:'#ff3333'}}>{t('ClosedAccount')}</Box>
-                                </Grid>
-                                <Grid container item sm={11} justifyContent='space-between'>
-                                    <Grid container item sm={9} justifyContent='flex-start'>
-                                        <Box fontSize={18}>{closeAccountReason.length > 0 ? closeAccountReason.toLocaleUpperCase() : t('NoCloseAccountReason')}</Box>
-                                    </Grid>
-                                    <Grid container item sm={3} justifyContent='flex-start'>
-                                        <Box fontSize={18}>{new Date(closeAccountCreated).getDate().toString()+'-'+(new Date(closeAccountCreated).getMonth()+1).toString()+'-'+new Date(closeAccountCreated).getFullYear().toString()}</Box>
+                                    <Grid  container item sm={11} justifyContent='center'>
+                                        <FormControlLabel
+                                                checked={isAccountClosed}
+                                                onChange={handleIsAccountClosed}
+                                                control={<GreenCheckbox/>}
+                                                label={t("IsAccountClosed")}
+                                        />
                                     </Grid>
                                 </Grid>
-                                
+                                <Grid container item sm={11} justifyContent='center'>
+                                    <CarroTextField value={invalidateReason} onChange={(e)=>{setInvalidateReason(e.target.value);}} variant="outlined" label={t("invalidateReason")} size="small" fullWidth/>
+                                </Grid>
+                                {closeAccountCreated && closeAccountCreated.length > 0 ? (
+                                    <Fragment>
+                                        <Grid container item sm={12} justifyContent='center'>
+                                            <Box fontSize={20} style={{textDecoration: 'underline', color:'#ff3333'}}>{t('ClosedAccount')}</Box>
+                                        </Grid>
+                                        <Grid container item sm={11} justifyContent='space-between'>
+                                            <Grid container item sm={9} justifyContent='flex-start'>
+                                                <Box fontSize={18}>{closeAccountReason.length > 0 ? closeAccountReason.toLocaleUpperCase() : t('NoCloseAccountReason')}</Box>
+                                            </Grid>
+                                            <Grid container item sm={3} justifyContent='flex-start'>
+                                                <Box fontSize={18}>{new Date(closeAccountCreated).getDate().toString()+'-'+(new Date(closeAccountCreated).getMonth()+1).toString()+'-'+new Date(closeAccountCreated).getFullYear().toString()}</Box>
+                                            </Grid>
+                                        </Grid>
+                                    </Fragment>
+                                    ) : null
+                                }
                             </Grid>
                         </Grid>
                         <Grid container justifyContent='space-around'>
@@ -369,7 +499,7 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
                                         <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("CloseButton")}</SecondaryButton>     
                             </Grid>
                             <Grid container item sm={3} justifyContent="center">
-                                        <GreenCaroButton variant='contained' onClick={()=>{handleClose()}} fullWidth>{t("SaveButton")}</GreenCaroButton>
+                                        <GreenCaroButton variant='contained' onClick={()=>{updateUser()}} fullWidth>{t("SaveButton")}</GreenCaroButton>
                             </Grid>
                         </Grid>
                     </Container>
@@ -381,6 +511,6 @@ const EditUserAdmin = ({data, userClickedData, updatePackage, ...props}) =>{
 
 }
 
-const mapDispatchToProps = dispatch =>({updatePackage: (id, senderName, packageName, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token) =>dispatch(updatePackage(id, senderName, packageName, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, packageType, weight, height, length, width, description, price, currency, destinataryName, phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token))})
+const mapDispatchToProps = dispatch =>({adminGetUser: (id, token) => dispatch(adminGetUser(id, token)), adminGetUsers: (token) => dispatch(adminGetUsers(token)), cleanUserPanel: () => dispatch(cleanUserPanel())})
 const mapStateToProps = state => ({data: state.userData, userClickedData: state.adminData.user})
 export default connect(mapStateToProps, mapDispatchToProps)(EditUserAdmin);

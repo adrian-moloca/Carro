@@ -8,6 +8,9 @@ export const ADMIN_GET_USER_REQUEST = 'ADMIN_GET_USER_REQUEST';
 export const ADMIN_GET_USER_SUCCESS = 'ADMIN_GET_USER_SUCCESS';
 export const ADMIN_GET_USER_FAILURE = 'ADMIN_GET_USER_FAILURE';
 
+// Clean user panel
+export const CLEAN_USER_PANEL = 'CLEAN_USER_PANEL';
+
 // admin get users functions 
 export const adminGetUsersRequest = () => {
     return {
@@ -47,5 +50,12 @@ export const adminGetUserFailure = error => {
     return {
         type: ADMIN_GET_USER_FAILURE,
         payload: error
+    }
+}
+
+//clean user panel action
+export const cleanUserPanel = () => {
+    return {
+        type: CLEAN_USER_PANEL,
     }
 }

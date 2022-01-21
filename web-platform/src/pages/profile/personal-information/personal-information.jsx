@@ -107,7 +107,7 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
     return(
         <Fragment>
           <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
-            <CarroTextField value={lastName} variant="outlined" label={t("LastName")} onChange={(e)=>{setLastName(e.target.value); setPersonalInfoChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
+            <CarroTextField value={lastName} variant="outlined" label={t("LastName")} error={onEditMode && lastName.length === 0} onChange={(e)=>{setLastName(e.target.value); setPersonalInfoChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
             <CarroTextField value={firstName} variant="outlined" label={t("FirstName")} onChange={(e)=>{setFirstName(e.target.value);  setPersonalInfoChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
@@ -136,17 +136,17 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
             <CarroTextField value={email} variant="outlined" error={mailValidator(email)} label={t("Mail")} size="small" onChange={(e)=>{setEmail(e.target.value); setPersonalInfoChanged(true)}} fullWidth disabled = {!onEditMode}/>
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
-            <CarroTextField value={address}variant="outlined" label={t("Address")} size="small" fullWidth onChange={(e)=>{setAddress(e.target.value); setPersonalInfoChanged(true)}} disabled = {!onEditMode}/>
+            <CarroTextField value={address}variant="outlined" label={t("Address")} size="small" fullWidth error={onEditMode && !address.length} onChange={(e)=>{setAddress(e.target.value); setPersonalInfoChanged(true)}} disabled = {!onEditMode}/>
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 10 : 5} justifyContent="center">
-            <CarroAutocomplete label={t("Country")} disabled = {!onEditMode} size="small" value={country} options={getCountries()} onChange={(e, newValue)=>{handleChangeCountry(newValue); setPersonalInfoChanged(true)}}/>
+            <CarroAutocomplete label={t("Country")} disabled = {!onEditMode} size="small" value={country} error={!onEditMode && country && country.length > 0 ? false : true} options={getCountries()} onChange={(e, newValue)=>{handleChangeCountry(newValue); setPersonalInfoChanged(true)}}/>
           </Grid> 
           <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}  justifyContent="center">
-            <CarroAutocomplete disabled = {!onEditMode} options={getCities(country)} size="small" label={t("City")} value={city} onChange={(e, newValue)=>{handleChangeCity(newValue); setPersonalInfoChanged(true)}}/>
+            <CarroAutocomplete disabled = {!onEditMode} options={getCities(country)} size="small" error={!onEditMode && city && city > 0 ? false : true} label={t("City")} value={city} onChange={(e, newValue)=>{handleChangeCity(newValue); setPersonalInfoChanged(true)}}/>
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}  justifyContent="center">
             {onEditMode ? (
-                    <PrimaryButton variant='contained' onClick={()=>updateChangedData()} style={{height:35, width:250, marginTop:"10px"}} fullWidth>
+                    <PrimaryButton variant='contained' onClick={()=>updateChangedData()} disabled ={firstName && lastName && inputValuePhoneNumber && dateOfBirth && email && address && country && city ? false : true} style={{height:35, width:250, marginTop:"10px"}} fullWidth>
                         <Box px='10px'>{t('SaveButton')}</Box>
                         <SaveAlt fontSize='small'/>
                     </PrimaryButton>
