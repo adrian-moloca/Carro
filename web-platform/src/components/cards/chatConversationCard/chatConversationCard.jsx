@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Grid, ButtonBase } from '@material-ui/core';
+import {Box, Grid, ButtonBase, Avatar } from '@material-ui/core';
 import DeleteModal from '../../modals/deleteModal/DeleteModal';
 import useStyles from './chatConversationCardStyle';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +13,7 @@ const ChatConversationCard = (props) => {
     <Box display='flex' width='1' mt='5%' p={1} borderRadius='10px' boxShadow={3}>
         <Grid container>
           <Grid container item xs={2} alignItems='center' justifyContent='center'>
-            <img src={props.profileImage} className={classes.profileImg}/>
+            <Avatar src={props.profileImage} className={classes.profileImg}/>
           </Grid>
           <Grid container item xs={8} justifyContent='center'>
             <ButtonBase disableRipple onClick={props.chatClicked}>
