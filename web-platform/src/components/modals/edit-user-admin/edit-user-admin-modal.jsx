@@ -498,7 +498,7 @@ const EditUserAdmin = ({data, userClickedData, adminGetUser, adminGetUsers, clea
                                                 <Box fontSize={18}>{closeAccountReason.length > 0 ? closeAccountReason.toLocaleUpperCase() : t('NoCloseAccountReason')}</Box>
                                             </Grid>
                                             <Grid container item sm={3} justifyContent='flex-start'>
-                                                <Box fontSize={18}>{new Date(closeAccountCreated).getDate().toString()+'-'+(new Date(closeAccountCreated).getMonth()+1).toString()+'-'+new Date(closeAccountCreated).getFullYear().toString()}</Box>
+                                                <Box fontSize={18}>{new Date(closeAccountCreated).getDate().toString()+'-'+(new Date(closeAccountCreated).getMonth()+1).toString()+'-'+new Date(closeAccountCreated).getFullYear().toString()+' '+new Date(closeAccountCreated).getHours()+':'+new Date(closeAccountCreated).getMinutes().toString()+':'+new Date(closeAccountCreated).getSeconds().toString()}</Box>
                                             </Grid>
                                         </Grid>
                                     </Fragment>

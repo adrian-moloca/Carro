@@ -41,6 +41,7 @@ const Register = ({createNewUser, data}) => {
   const [terms, setTerms] = useState(false);
   const [hasErrors, setHasErrors] = useState(false);
   const [clickedRegister, setClickedRegister] = useState(false);
+  const [hasErrorsRegister, setHasErrorsRegister] = useState({state: false, messages: []})
   /* const [legalPersonChecked, setLegalPersonChecked] = useState(false); */
 
   useLayoutEffect(()=>{
@@ -60,7 +61,9 @@ const Register = ({createNewUser, data}) => {
       } else {
         history.push('/profile')
       }
-    } 
+    } else {
+      setHasErrorsRegister({state: data.hasErrors.state, messages: data.hasErrors.messages})
+    }
   }
 
   async function setPhoto(file){
@@ -195,17 +198,22 @@ const Register = ({createNewUser, data}) => {
         </Grid>
       </Box>
       <Box display="flex" justifyContent="center" mt="3%" mb="5%">
-      <Grid container item xs={8}>
-      {/* <Link to="/register/phone-number-verification" style={{textDecoration: 'none', color: 'inherit', width: '100%'}}> */}
-        <PrimaryButton className="ButtonTextSize" fullWidth variant="contained" endIcon={<PersonAddIcon />} 
-          disabled={terms && lastName && firstName && phoneNumber && email && password && confirmPassword && dateOfBirth && password===confirmPassword && !hasErrors ? false : true}
-          onClick={() =>{createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, 'True'); setClickedRegister(true)}}
-        >
-          
-          {t("Register")}
-          
-        </PrimaryButton>
-        {/* </Link> */}
+      <Grid container justifyContent="center">
+        <Grid container item xs={8} justifyContent="center">
+        {/* <Link to="/register/phone-number-verification" style={{textDecoration: 'none', color: 'inherit', width: '100%'}}> */}
+          <PrimaryButton className="ButtonTextSize" fullWidth variant="contained" endIcon={<PersonAddIcon />} 
+            disabled={terms && lastName && firstName && phoneNumber && email && password && confirmPassword && dateOfBirth && password===confirmPassword && !hasErrors ? false : true}
+            onClick={() =>{createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, 'True'); setClickedRegister(true)}}
+          >
+            
+            {t("Register")}
+            
+          </PrimaryButton>
+          {/* </Link> */}
+        </Grid>
+        <Grid container item xs={ 10 } justifyContent='center' style={{marginBottom:"15px"}}>
+          {hasErrorsRegister.messages.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el}</Box>)})}
+        </Grid>
       </Grid>
       </Box>
       <Box display="flex" justifyContent="center" mb="3%">

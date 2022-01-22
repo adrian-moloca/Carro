@@ -1,5 +1,6 @@
 import React, {useState, Fragment} from "react";
 import { Box, Grid, Container} from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 import ChatConversationCard from '../../components/cards/chatConversationCard/chatConversationCard';
 import {Pagination} from '@material-ui/lab';
 import CarroTextField from '../../components/textField/CarroTextField';
@@ -64,6 +65,8 @@ const Conversations = () =>{
 
   const[chatsState, setChatsState] = useState(chats);
   const conversations = usePagination(chatsState, 3)
+
+  const history = useHistory();
   
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {setPage(value); conversations.jump(value)};
@@ -86,7 +89,7 @@ const Conversations = () =>{
         </Grid>
         {conversations.currentData().map((chat, index)=>
               <Grid container item xs={8} justifyContent='center'>
-                  <ChatConversationCard profileImage={chat.profileImg} name={chat.name} message={chat.lastMessage} date={chat.date} deleteConversation={()=>deleteChat(index)}/>
+                  <ChatConversationCard profileImage={chat.profileImg} name={chat.name} message={chat.lastMessage} date={chat.date} chatClicked={()=>history.push('/conversations/chat')} deleteConversation={()=>deleteChat(index)}/>
               </Grid>
         )}
         <Grid container item xs={8}>

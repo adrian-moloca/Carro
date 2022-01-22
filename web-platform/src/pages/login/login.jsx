@@ -23,7 +23,7 @@ const Login = ({fetchLogin, fetchNotifications, rememberMeToggle, data}) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [hasErrorsLogin, setHasErrorsLogin] = useState({state: false, messages: []})
 
   const classes = useStyles();
   const { t } = useTranslation();
@@ -31,14 +31,14 @@ const Login = ({fetchLogin, fetchNotifications, rememberMeToggle, data}) => {
 
   const redirectAfterLoginSuccess = () => {
     if(isLoggedIn === true) {
-      if(data.profileStatus.isPhoneNumberValidated){ 
+      if(data.isUserValidated){ 
             history.push('/home');
             fetchNotifications(data.token)
       } else{
         history.push('/profile');
       }
     } else {
-        console.log('error auth')
+        setHasErrorsLogin({state: data.hasErrors.state, messages: data.hasErrors.messages})
     }
   }
 
@@ -79,6 +79,9 @@ const Login = ({fetchLogin, fetchNotifications, rememberMeToggle, data}) => {
                 <PrimaryButton disabled={email && password && !mailValidator(email) ? false : true} onClick={() => {fetchLogin(email.toLowerCase(), password);}} className="ButtonTextSize" size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
                     {t("Login")}
                 </PrimaryButton>
+            </Grid>
+            <Grid container item xs={ 10 } justifyContent='center' style={{marginBottom:"15px"}}>
+              {hasErrorsLogin.messages.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el}</Box>)})}
             </Grid>
         </Grid>
         <Box display='flex' justifyContent='center' mt='4%'>

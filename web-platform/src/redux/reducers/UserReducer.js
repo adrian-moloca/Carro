@@ -28,7 +28,10 @@ let initialState = {
     phoneNumber: "",
     sub: "",
     loading: false,
-    hasErrors: false,
+    hasErrors: {
+        state: false,
+        messages: []
+    },
     token: "",
     refreshToken: "",
     isTokenValidated: false,
@@ -112,14 +115,17 @@ switch (action.type) {
     case USER_LOGIN_SUCCESS:
         return{
             ...state,
-            hasErrors:false,
+            hasErrors:{
+                state: false,
+                messages: []
+            },
             UserRole: action.payload.user.UserRole,
             email: action.payload.user.email,
             exp: action.payload.user.exp,
             iat: action.payload.user.iat,
             id: action.payload.user.id,
             isAdmin: action.payload.user.isAdmin,
-            isUserValidated: action.payload.isUserValidated,
+            isUserValidated: action.payload.user.isUserValidated,
             jti: action.payload.user.jti,
             name: action.payload.user.name,
             nbf: action.payload.user.nbf,
@@ -131,26 +137,31 @@ switch (action.type) {
     case USER_LOGIN_FAILURE:
         return{
             ...state,
-            hasErrors: true,
+            hasErrors: {
+                state: true,
+                messages: action.payload.response.data.errors
+            },
         }
     //Create New User    
     case USER_NEWUSER_REQUEST:
         return {
             ...state,
-            hasErrors: false,
             loading: true,
             }
     case USER_NEWUSER_SUCCESS:
         return{
             ...state,
-            hasErrors: false,
+            hasErrors:{
+                state: false,
+                messages: []
+            },
             UserRole: action.payload.user.UserRole,
             email: action.payload.user.email,
             exp: action.payload.user.exp,
             iat: action.payload.user.iat,
             id: action.payload.user.id,
             isAdmin: action.payload.user.isAdmin,
-            isUserValidated: action.payload.isUserValidated,
+            isUserValidated: action.payload.user.isUserValidated,
             jti: action.payload.user.jti,
             name: action.payload.user.name,
             nbf: action.payload.user.nbf,
@@ -162,7 +173,10 @@ switch (action.type) {
     case USER_NEWUSER_FAILURE:
         return{
             ...state,
-            hasErrors: true,
+            hasErrors:{
+                state: true,
+                messages: action.payload.response.data.errors
+            },
         }
     //Get all Users
     // case USER_GET_REQUEST:
@@ -191,12 +205,18 @@ switch (action.type) {
     case USER_UPDATE_SUCCESS:
         return{
             ...state,
-          
+            hasErrors:{
+                state: false,
+                messages: []
+            },
         }
     case USER_UPDATE_FAILURE:
         return{
             ...state,
-            hasErrors: true,
+            hasErrors:{
+                state: true,
+                messages: action.payload.response.data.errors
+            },
         }
 
     // ResetPassword user
@@ -208,12 +228,18 @@ switch (action.type) {
     case USER_RESET_SUCCESS:
         return{
             ...state,
-          
+            hasErrors:{
+                state: false,
+                messages: []
+            },
         }
     case USER_RESET_FAILURE:
         return{
             ...state,
-            hasErrors: true,
+            hasErrors:{
+                state: true,
+                messages: action.payload.response.data.errors
+            },
         }
     // Delete user
     case USER_DELETE_REQUEST:
@@ -224,12 +250,18 @@ switch (action.type) {
     case USER_DELETE_SUCCESS:
         return{
             ...state,
-        
+            hasErrors:{
+                state: false,
+                messages: []
+            },
         }
     case USER_DELETE_FAILURE:
         return{
             ...state,
-            hasErrors: true,
+            hasErrors:{
+                state: true,
+                messages: action.payload.response.data.errors
+            },
         }
     //Logout
     case USER_LOGOUT:
@@ -241,14 +273,17 @@ switch (action.type) {
             iat: 0,
             id: "",
             isAdmin: "",
-            isUserValidated: "",
+            isUserValidated: false,
             jti: "",
             name: "",
             nbf: 0,
             phoneNumber: "",
             sub: "",
             loading: false,
-            hasErrors: false,
+            hasErrors:{
+                state: true,
+                messages: action.payload.response.data.errors
+            },
             token: "",
             refreshToken: "",
             profileImage: "",
@@ -304,12 +339,20 @@ switch (action.type) {
     case USER_PROFILE_IMAGE_SUCCESS:{
         return {
             ...state,
-            profileImage: "data:image/png;base64," + action.payload.profileImage
+            profileImage: "data:image/png;base64," + action.payload.profileImage,
+            hasErrors:{
+                state: false,
+                messages: []
+            },
         }
     }
     case USER_PROFILE_IMAGE_FAILURE:{
         return {
             ...state,
+            hasErrors:{
+                state: true,
+                messages: action.payload.response.data.errors
+            },
         }
     }
     //Personal Info
@@ -331,12 +374,20 @@ switch (action.type) {
                 address: action.payload.address,
                 city: action.payload.city,
                 country: action.payload.country
-            }
+            },
+            hasErrors:{
+                state: false,
+                messages: []
+            },
         }
     }
     case USER_PERSONAL_INFO_FAILURE:{
         return {
             ...state,
+            hasErrors:{
+                state: true,
+                messages: action.payload.response.data.errors
+            },
         }
     }
     case USER_OPTIONAL_INFO_REQUEST:{
@@ -358,13 +409,19 @@ switch (action.type) {
                     brand: action.payload.car.brand
                 }
             },
-            hasErrors: false
+            hasErrors:{
+                state: false,
+                messages: []
+            },
         }
     }
     case USER_OPTIONAL_INFO_FAILURE:{
         return {
             ...state,
-            hasErrors: true
+            hasErrors:{
+                state: true,
+                messages: action.payload.response.data.errors
+            },
         }
     }
     case USER_COMPANY_REQUEST:{
@@ -386,13 +443,19 @@ switch (action.type) {
                 country: action.payload.country,
                 phoneNumber: action.payload.phoneNumber
             },
-            hasErrors: false
+            hasErrors:{
+                state: false,
+                messages: []
+            },
         }
     }
     case USER_COMPANY_FAILURE:{
         return {
             ...state,
-            hasErrors: true
+            hasErrors:{
+                state: true,
+                messages: action.payload.response.data.errors
+            },
         }
     }
     case PROFILE_STATUS_REQUEST:{
@@ -415,13 +478,19 @@ switch (action.type) {
                 rejectReason: action.payload.rejectReason,
                 invalidateReason: action.payload.invalidateReason
             },
-            hasErrors: false
+            hasErrors:{
+                state: false,
+                messages: []
+            },
         }
     }
     case PROFILE_STATUS_FAILURE:{
         return {
             ...state,
-            hasErrors: true
+            hasErrors:{
+                state: true,
+                messages: action.payload
+            },
         }
     }
     default: 

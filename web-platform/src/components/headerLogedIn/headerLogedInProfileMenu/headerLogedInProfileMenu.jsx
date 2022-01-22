@@ -3,7 +3,7 @@ import { Link, useHistory, /* Redirect */ } from "react-router-dom";
 import { ButtonBase, MenuItem, Menu, Grid, Box} from "@material-ui/core";
 import {LocalMallOutlined, LocalShippingOutlined, AccountCircleOutlined,
       /* CreditCardOutlined, */ CancelOutlined, AccountCircle,
-      /* Message, */ Security} from '@material-ui/icons';
+      Message, Security} from '@material-ui/icons';
 import { Fade } from "@material-ui/core";
 import useStyles from './headerLogedInProfileMenuStyle'
 import { useTranslation } from 'react-i18next';
@@ -119,7 +119,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
                     {t("PaymentMethod")}
                   </Box>
               </MenuItem>
-            </Link>
+            </Link> */}
             <Link to="/conversations" style={{textDecoration:'none' ,color:'inherit'}}>
               <MenuItem dense onClick={handleAccountMenuClose}>
                   <Box mr={2} className={"Primary-color"}>
@@ -129,7 +129,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
                     Chat
                   </Box>
               </MenuItem>
-            </Link> */}
+            </Link>
             <Link to="/" style={{textDecoration:'none' ,color:'inherit'}}>
               <MenuItem dense onClick={() => {setAnchorEl(null); window.localStorage.removeItem('state'); fetchLogout()}}>
                   <Box mr={2} className={"Pink-carro"}>

@@ -119,10 +119,10 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
                             handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
                             error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
                             disabled={!onEditMode} size="small"/>
-            {!Boolean(userData.profileStatus.isPhoneNumberValidated).valueOf()  ?  (
+            {!Boolean(userData.profileStatus.isPhoneNumberValidated).valueOf() && !onEditMode ?  (
                             <Box color={"red"} fontWeight={400} fontSize={18} textAlign={"left"} width={"100%"} marginBottom={"5px"}> 
                               {t('NumberNotValidated')+' '} 
-                              <Link to='/register/phone-number-verification' onClick={()=> getValidationCode()} style={{color:"red"}}>
+                              <Link to='/register/phone-number-verification' onClick={()=> getValidationCode()} style={{color:"red", fontWeight:500}}>
                                 {t('VerifyNow')}
                               </Link>
                             </Box>):null}
@@ -139,10 +139,10 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
             <CarroTextField value={address}variant="outlined" label={t("Address")} size="small" fullWidth error={onEditMode && !address.length} onChange={(e)=>{setAddress(e.target.value); setPersonalInfoChanged(true)}} disabled = {!onEditMode}/>
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 10 : 5} justifyContent="center">
-            <CarroAutocomplete label={t("Country")} disabled = {!onEditMode} size="small" value={country} error={!onEditMode && country && country.length > 0 ? false : true} options={getCountries()} onChange={(e, newValue)=>{handleChangeCountry(newValue); setPersonalInfoChanged(true)}}/>
+            <CarroAutocomplete label={t("Country")} disabled = {!onEditMode} size="small" value={country} error={onEditMode ? (country && country.length > 0 ? false : true) : false} options={getCountries()} onChange={(e, newValue)=>{handleChangeCountry(newValue); setPersonalInfoChanged(true)}}/>
           </Grid> 
           <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}  justifyContent="center">
-            <CarroAutocomplete disabled = {!onEditMode} options={getCities(country)} size="small" error={!onEditMode && city && city > 0 ? false : true} label={t("City")} value={city} onChange={(e, newValue)=>{handleChangeCity(newValue); setPersonalInfoChanged(true)}}/>
+            <CarroAutocomplete disabled = {!onEditMode} options={getCities(country)} size="small" error={onEditMode ? (city && city.length > 0 ? false : true) : false} label={t("City")} value={city} onChange={(e, newValue)=>{handleChangeCity(newValue); setPersonalInfoChanged(true)}}/>
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}  justifyContent="center">
             {onEditMode ? (
