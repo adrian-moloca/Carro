@@ -67,7 +67,7 @@ export const USER_COMPANY_REQUEST = 'USER_COMPANY_REQUEST';
 export const USER_COMPANY_SUCCESS = 'USER_COMPANY_SUCCESS';
 export const USER_COMPANY_FAILURE = 'USER_COMPANY_FAILURE';
 
-//
+// User Profile Status
 export const PROFILE_STATUS_REQUEST = 'PROFILE_STATUS_REQUEST';
 export const PROFILE_STATUS_SUCCESS = 'PROFILE_STATUS_SUCCESS';
 export const PROFILE_STATUS_FAILURE = 'PROFILE_STATUS_FAILURE';
@@ -332,4 +332,3 @@ export const getProfileStatusFailure = error => {
         payload: error
     }
 }
-

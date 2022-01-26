@@ -63,7 +63,7 @@ const CourierProfile = ({courierData, userData, resetCourierDataChanged}) =>{
   async function sendComment (){
       axios.post(data.baseUrl + '/reviews/' + courierId + '/comments', {
             comment: myComment,
-            rate: myRate
+            rate: parseInt(myRate)
       }, {
         headers:{
             Authorization: 'Bearer ' + userData.token,
