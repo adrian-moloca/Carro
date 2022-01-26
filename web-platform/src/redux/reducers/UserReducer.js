@@ -281,8 +281,8 @@ switch (action.type) {
             sub: "",
             loading: false,
             hasErrors:{
-                state: true,
-                messages: action.payload.response.data.errors
+                state: false,
+                messages: []
             },
             token: "",
             refreshToken: "",
@@ -351,7 +351,7 @@ switch (action.type) {
             ...state,
             hasErrors:{
                 state: true,
-                messages: action.payload.response.data.errors
+                messages: []
             },
         }
     }
@@ -386,7 +386,7 @@ switch (action.type) {
             ...state,
             hasErrors:{
                 state: true,
-                messages: action.payload.response.data.errors
+                messages: []
             },
         }
     }
@@ -420,7 +420,7 @@ switch (action.type) {
             ...state,
             hasErrors:{
                 state: true,
-                messages: action.payload.response.data.errors
+                messages: []
             },
         }
     }
@@ -454,7 +454,7 @@ switch (action.type) {
             ...state,
             hasErrors:{
                 state: true,
-                messages: action.payload.response.data.errors
+                messages: []
             },
         }
     }
@@ -489,7 +489,7 @@ switch (action.type) {
             ...state,
             hasErrors:{
                 state: true,
-                messages: action.payload
+                messages: []
             },
         }
     }

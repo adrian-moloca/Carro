@@ -13,14 +13,14 @@ import axios from "axios";
 import {Close, ErrorOutline} from '@material-ui/icons';
 import { getBase64Image } from "../../utils/Functions/base64Image";
 import utilData from '../../utils/constants';
-import { getUserProfileImage } from "../../redux/actions/UserActions";
+import { getUserCompany, getUserOptionalInfo, getUserProfileImage } from "../../redux/actions/UserActions";
 import PersonalInformation from "./personal-information/personal-information";
 import OptionalInformation from "./optional-information/optional-information";
 import Company from "./company/company";
 import Settings from "./settings/settings";
 import MandatoryDocuments from "./mandatory-documents/mandatory-documents";
 
-const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileImage}) => {
+const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileImage, getUserOptionalInfo, getUserCompany}) => {
 
     const history = useHistory();
     const classes = useStyles();
@@ -28,6 +28,7 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
   
     const [profileStatus, setProfileStatus] = useState({})
     const [personalInfo, setPersonalInfo] = useState({})
+    const [optionalInfo, setOptionalInfo] = useState({})
     const [profilePhoto, setProfilePhoto] = useState('');
     const [profilePhotoChanged, setProfilePhotoChanged] = useState(false);  
     const [currentSection, setCurrentSection] = useState(window.innerWidth <=850 ? -1 : 0);
@@ -65,6 +66,11 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
     }
 
     useEffect(()=>{
+        getUserOptionalInfo(userData.token)
+        getUserCompany(userData.token)
+    }, [])
+
+    useEffect(()=>{
         updateChangedData()
         getUserProfileImage(userData.token)
     }, [profilePhoto])
@@ -72,6 +78,10 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
     useEffect(()=>{
         setPersonalInfo(userData.personalInfo)
     }, [userData.personalInfo])
+
+    useEffect(()=>{
+        setOptionalInfo(userData.optionalInfo)
+    }, [userData.optionalInfo])
 
     useEffect(()=>{
         setProfileStatus(userData.profileStatus)
@@ -141,7 +151,7 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
                     <SeeProfileBtn onClick={()=>{
                             fetchCourierProfile(userData.id, userData.token)
                             setTimeout(()=>redirectAfterFetchCourierProfile(), 500)
-                    }} style={{marginTop: window.innerWidth <= 650 ? "40px" : 0}} disabled={userData.optionalInfo.car.brand && userData.optionalInfo.car.brand.length > 0 ? false : true}>
+                    }} style={{marginTop: window.innerWidth <= 650 ? "40px" : 0}} disabled={optionalInfo.car && optionalInfo.car.brand.length > 0 ? false : true}>
                             {t("ViewProfile")}
                     </SeeProfileBtn>
                 </Grid>
@@ -151,8 +161,8 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
                     <Grid container item xs={12} sm={window.innerWidth <= 850 ? 12 : 2} justifyContent="center">
                         {sections.map((section, index)=>{
                                 return(
-                                    <ButtonBase key={index+userData.id} style={{width:"100%", borderTopLeftRadius: index === 0 ? "15px" : 0,  borderBottomLeftRadius: index === sections.length-1 ? "15px" : 0, borderTopRightRadius: index === 0 && window.innerWidth <= 850 ? "15px" : 0, borderBottomRightRadius: index === sections.length-1 && window.innerWidth <= 850 ? "15px" : 0,}} onClick={()=>setCurrentSection(index)}>
-                                        <Box height={window.innerHeight*0.50/sections.length} style={{display:"flex", boxShadow: index === sections.length-1 ? '0' : '0px 4px 2px 0px rgba(0, 0, 0, 0.16)', backgroundColor: currentSection === index ? "#00b4d8" : "#ffffff", width: "100%", borderTopLeftRadius: index === 0 ? "15px" : 0, borderBottomLeftRadius: index === sections.length-1 ? "15px" : 0, borderTopRightRadius: index === 0 && window.innerWidth <= 850 ? "15px" : 0, borderBottomRightRadius: index === sections.length-1 && window.innerWidth <= 850 ? "15px" : 0, zIndex: sections.length-index+1}}>
+                                    <ButtonBase key={index+userData.id} style={{width:"100%", borderTopLeftRadius: index === 0 ? "15px" : 0,  borderBottomLeftRadius: index === sections.length-1 ? "15px" : 0, borderTopRightRadius: index === 0 && window.innerWidth <= 850 ? "15px" : 0, borderBottomRightRadius: index === sections.length-1 && window.innerWidth <= 850 ? "15px" : 0, zIndex: sections.length-index+1}} onClick={()=>setCurrentSection(index)}>
+                                        <Box height={window.innerHeight*0.50/sections.length} style={{display:"flex", boxShadow: index === sections.length-1 ? '0' : '0px 4px 2px 0px rgba(0, 0, 0, 0.16)', backgroundColor: currentSection === index ? "#00b4d8" : "#ffffff", width: "100%", borderTopLeftRadius: index === 0 ? "15px" : 0, borderBottomLeftRadius: index === sections.length-1 ? "15px" : 0, borderTopRightRadius: index === 0 && window.innerWidth <= 850 ? "15px" : 0, borderBottomRightRadius: index === sections.length-1 && window.innerWidth <= 850 ? "15px" : 0}}>
                                             <Box style={{color: currentSection === index ? "#ffffff" : "#00b4d8", fontSize:"20px", paddingLeft:"5%", paddingRight: "5%", width:"100%", textAlign:"center", paddingTop:"18px"}}>{section}</Box>
                                             {index === 0 && !Boolean(profileStatus.isPersonalInfoCompleted) ? <ErrorOutline color="error" fontSize='large' style={{paddingRight: '10px', paddingTop:'22px'}} /> : null}
                                             {index === 3 && !Boolean(profileStatus.isIdentityCardUploaded) ? <ErrorOutline color="error"  fontSize='large' style={{paddingRight: '10px', paddingTop:'22px'}} /> : null}
@@ -200,6 +210,6 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
 }
 
 const mapStateToProps = state =>({userData: state.userData, courierProfile: state.courierData})
-const mapDispatchToProps = dispatch =>({fetchCourierProfile: (userId, token) => dispatch(fetchCourierProfile(userId, token)), getUserProfileImage: (token) => dispatch(getUserProfileImage(token))})
+const mapDispatchToProps = dispatch =>({fetchCourierProfile: (userId, token) => dispatch(fetchCourierProfile(userId, token)), getUserProfileImage: (token) => dispatch(getUserProfileImage(token)), getUserOptionalInfo: (token)=> dispatch(getUserOptionalInfo(token)), getUserCompany: (token) => dispatch(getUserCompany(token))})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
