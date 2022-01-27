@@ -28,7 +28,7 @@ const PhoneNumberVerification = ({token})=>{
         })
         .then((res) => {
             console.log('response from phone validation :', res);
-            history.push("/home")
+            history.push("/profile")
         })
         .catch((err)=> {
             console.log('Error from phone vaidation: ', err);
@@ -64,7 +64,7 @@ const PhoneNumberVerification = ({token})=>{
                         </Link>
                     </Grid>
                     <Grid container item xs={5} xl={5}> 
-                            <PrimaryButton   className="ButtonTextSize"  variant='contained' onClick={() => selectPlanAction()} fullWidth>{t("ChoosePlan")}</PrimaryButton>
+                            <PrimaryButton   className="ButtonTextSize"  variant='contained' onClick={() => selectPlanAction()} fullWidth>{t("Validate")}</PrimaryButton>
                     </Grid>
                 </Grid>
             </MyGrid>
