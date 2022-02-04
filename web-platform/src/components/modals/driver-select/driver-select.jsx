@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import {Grid, Box, Container, FormControlLabel, RadioGroup, Modal, Fade} from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import { Rating } from '@material-ui/lab';
@@ -31,19 +31,23 @@ const SelectDriver=(props)=>{
     const { t } = useTranslation();
     const classes = useStyles();
 
-    const[payment, setPayment] = useState('cardOnline');
+    /* const[payment, setPayment] = useState('cardOnline');
     // state
     const [cardNumber, setCardNumber] = useState('');
     const [dateValue, setDateValue] = useState(new Date());
     const [completeName, setCompleteName] = useState('');
     const [CVV, setCVV] = useState('');
-    const[open, setOpen] = useState(false);
     // handlers
     const handleSetCompleteName = (event) => setCompleteName(event.target.value);
     const handleSetCardNumber = (event) => setCardNumber(event.target.value);
     const handleDateSelect = (event) => setDateValue(event);
     const handleSetCVV = (event) => setCVV(event.target.value);
     const handlePayment = (event)=> setPayment(event.target.value);
+     */
+
+
+    const[open, setOpen] = useState(false);
+
     const handleOpen = ()=>{
         setOpen(true)
     }
@@ -91,7 +95,7 @@ const SelectDriver=(props)=>{
                             <Grid container item xs={12} justifyContent='center'>
                                 <Box fontWeight='500'>{t("PaymentMethod")}</Box>
                             </Grid>
-                            <Grid container item xs={12} justifyContent='center'>
+    {/*                         <Grid container item xs={12} justifyContent='center'>
                                 <RadioGroup row value = {payment} onChange={handlePayment}>                   
                                     <FormControlLabel value = 'cardOnline' control={<CarroRadio/>} label={t("Card")}/>
                                     <FormControlLabel value = 'ordinDePlata' control={<CarroRadio/>} label={t("PaymentOrder")}/>
@@ -118,7 +122,7 @@ const SelectDriver=(props)=>{
                                                             </MyGrid>
 
                                                         </Fragment>
-                                                        ))  : ""}
+                                                        ))  : ""} */}
                             <Grid container item xs={6} justifyContent='flex-end'>
                                 <SecondaryButton variant='outlined' onClick={handleClose}>{t("Cancel")}</SecondaryButton>
                             </Grid>
