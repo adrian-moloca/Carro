@@ -27,12 +27,21 @@ const PackageCard = (props) =>{
         setIsFlipped(!temp);
     }
 
+    // filter - departureDate [interactions] - cel mai apropiat de departureDate [package]
+
+    // status - null - daca interactions length greater than 0 - cere
+    // status - null - interactions empty array - adauga transport
+    // prima interactiune avem post
+    // iar dupa update
+
+    // IMPLEMENTARE MODAL - ADAUGA PACHET SI ADAUGA TRANSPORT - DATE PREPOPULATE DIN SEARCH VALUES
+
     
 
     function getFrontButtons(status, rideExists){
         switch(status){
             case null:
-                if(rideExists)
+                if(!rideExists)
                     return(
                         <Grid container item xs={10} justifyContent = 'center'>
                             <PrimaryButton variant='contained' size='medium' fullWidth>{t("RequestPackage")}</PrimaryButton>
@@ -50,39 +59,6 @@ const PackageCard = (props) =>{
                             <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>{t("DriverCardWaitingStatus")}</Box>
                         </Grid>
                     );
-            case 8:
-                    return(
-                        <Grid container justifyContent = 'center' spacing={2}>
-                            <Grid container item xs={10} justifyContent = 'center'>
-                                <GreenCaroButton variant='contained' size='medium' fullWidth>
-                                    {t("TakeOver")}
-                                </GreenCaroButton>
-                            </Grid>
-                            <Grid container item xs={10} justifyContent = 'center'>
-                                <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
-                            </Grid>
-                        </Grid>
-                    );
-            case 10:
-                    return(
-                        <Grid container justifyContent = 'center'  spacing={2}>
-                            <DeliverPackage/>
-                            <Grid container item xs={10} justifyContent = 'center'>
-                                <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
-                            </Grid>
-                        </Grid>
-                    );
-            case 6:
-                return(
-                    <Grid container justifyContent = 'center'>
-                        <Grid container item xs={10} justifyContent = 'center'>
-                            <Box mt='5%' className='Secondary-color' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
-                        </Grid>
-                        <Grid container item xs={10} justifyContent = 'center'>
-                            <Box my='3%' className='Secondary-color' fontSize='18px' fontWeight='500'>Nu mai plec</Box>
-                        </Grid>
-                    </Grid>
-                );
             case 2:
                 return(
                     <Grid container justifyContent = 'center'  spacing={2}>
@@ -96,6 +72,89 @@ const PackageCard = (props) =>{
                         </Grid>
                     </Grid>
                 );
+
+            case 3:
+                return(
+                    <Grid container justifyContent = 'center'  spacing={2}>
+                        <Grid container item xs={10} sm={4} justifyContent = 'center'>
+                            <GreenCaroButton variant='contained' size='medium' fullWidth>
+                                {t("Approve")}
+                            </GreenCaroButton>
+                        </Grid>
+                        <Grid container item xs={10} sm={4} justifyContent = 'center'>
+                            <RejectModal rejectReason={props.rejectReason} setRejectReason={props.setRejectReason}/>
+                        </Grid>
+                    </Grid>
+                );
+            case 4:
+                return(
+                    <Grid container item xs={10} justifyContent = 'center'>
+                        <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>{t("DriverCardWaitingStatus")}</Box>
+                    </Grid>
+                );
+            case 5:
+                return(
+                    <Grid container justifyContent = 'center'  spacing={2}>
+                        <DeliverPackage/>
+                        <Grid container item xs={10} justifyContent = 'center'>
+                            <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                        </Grid>
+                    </Grid>
+                );
+            case 6:
+                return(
+                    <Grid container justifyContent = 'center'>
+                        <Grid container item xs={10} justifyContent = 'center'>
+                            <Box mt='5%' className='Secondary-color' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
+                        </Grid>
+                        <Grid container item xs={10} justifyContent = 'center'>
+                            <Box my='3%' className='Secondary-color' fontSize='18px' fontWeight='500'>Nu mai plec</Box>
+                        </Grid>
+                    </Grid>
+                );
+
+            case 7:
+                return(
+                    <Grid container justifyContent = 'center'  spacing={2}>
+                        <Grid container item xs={10} sm={4} justifyContent = 'center'>
+                            <GreenCaroButton variant='contained' size='medium' fullWidth>
+                                {t("Approve")}
+                            </GreenCaroButton>
+                        </Grid>
+                        <Grid container item xs={10} sm={4} justifyContent = 'center'>
+                            <RejectModal rejectReason={props.rejectReason} setRejectReason={props.setRejectReason}/>
+                        </Grid>
+                    </Grid>
+                );
+            case 8:
+                    return(
+                        <Grid container justifyContent = 'center' spacing={2}>
+                            <Grid container item xs={10} justifyContent = 'center'>
+                                <GreenCaroButton variant='contained' size='medium' fullWidth>
+                                    {t("TakeOver")}
+                                </GreenCaroButton>
+                            </Grid>
+                            <Grid container item xs={10} justifyContent = 'center'>
+                                <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                            </Grid>
+                        </Grid>
+                    );
+            case 9:
+                return(
+                    <Grid container item xs={10} justifyContent = 'center'>
+                        <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>{t("DriverCardWaitingStatus")}</Box>
+                    </Grid>
+                );
+            case 10:
+                    return(
+                        <Grid container justifyContent = 'center'  spacing={2}>
+                            <DeliverPackage/>
+                            <Grid container item xs={10} justifyContent = 'center'>
+                                <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                            </Grid>
+                        </Grid>
+                    );
+            
         }
 
     }
