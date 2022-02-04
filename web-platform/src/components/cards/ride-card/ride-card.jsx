@@ -125,6 +125,59 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
 
         }
     }
+    //interactions - array length is greater than 0
+    //statuses - empty array - toate pachetele din interactions nu au fost cerute sau nu au cerute ele nimic
+
+    // Waiting = 1, - apara soferului
+    // AcceptReject = 2, - butonul Accepta/respinge
+    // Details = 3, - butonul apare soferului ca a fost acceptat
+    // AcceptedDetails = 4, - butonul pentru cel care are pachetul
+    // Rejected = 5, - respins  -apare la ambii
+    // RejectedWithReason = 6, - respins cu un motiv
+    // PickUp = 7, - nu ma intereseaza aici
+    // WaitingPickUp = 8, - nu ma intereseaza aici
+    // YesNo = 9, - nu ma intereseaza aici
+    // Delivery = 10, - nu ma intereseaza aici
+    // Delivered = 11 - nu ma intereseaza aici
+
+
+    // In momentul in care cer transport sau pachet fac post 
+    // Post Method
+
+    // Route: domainName + "api/v1/packages/{packageId}/statuses"
+
+
+
+    // Request Object :{
+    // "rideId": "string",
+    // "packageUserId": "string"
+    // }
+
+    // Dupa ce am dat cere transport sau pachet fac doar update pt status 
+    // 
+    // Butoanele apar dupa ce se face update - statusul 
+    // PackageStatusRequest : {
+    //     enum PackRideRequestEnum
+    //         {
+    //             Accept = 1,
+    //             Reject = 2,
+    //             RejectWithReason = 3,
+    //             PickUp = 4,
+    //             Yes = 5,
+    //             No = 6
+    //         }
+    //     }
+        
+        
+    //     Put Method 
+        
+    //     Route: domainName + "api/v1/packages/{packageId}/statuses/{statusId}"
+        
+    //     Request Object:{
+    //       "status": 0,
+    //       "rejectReason": "string"
+    //     }
+        
 
     function getBackCardBtns(status, packageExists){
         

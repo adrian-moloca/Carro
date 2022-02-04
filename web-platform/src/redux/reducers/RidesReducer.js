@@ -53,7 +53,8 @@ let initialState = {
         destinationAddress: "",
         transportType: 0,
         phoneNumber: "",
-        statuses: []
+        statuses: [],
+        interactions: [],
     },
     loading: false,
     hasErrors: false,
