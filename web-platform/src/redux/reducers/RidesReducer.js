@@ -100,13 +100,8 @@ switch (action.type) {
                 destinationAddress: action.payload.destinationAddress,
                 transportType: action.payload.transportType,
                 phoneNumber: action.payload.phoneNumber,
-                status: {
-                    id: action.payload.status.id,
-                    status: action.payload.status.status,
-                    rejectReason: action.payload.status.rejectReason,
-                    packageId: action.payload.status.packageId,
-                },
-
+                statuses: action.payload.statuses,
+                interactions: action.payload.interactions
             }
         }
     case GET_RIDE_FAILURE:

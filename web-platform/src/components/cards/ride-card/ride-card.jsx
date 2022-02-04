@@ -10,14 +10,12 @@ import useStyles from './ride-card-style';
 import { useTranslation } from 'react-i18next';
 import RejectModal from '../../modals/reject-modal/reject-modal';
 import SeeProfileBtn from '../../buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn';
-import {fetchCourierProfile} from '../../../redux/actions/CourierActions';
+import { fetchCourierProfile} from '../../../redux/actions/CourierActions';
 import { connect } from 'react-redux';
 
 const RideCard =({userData, fetchCourierProfile, ...props})=>{
     const { t } = useTranslation();
     const classes = useStyles();
-
-    const status = {...props.status}
 
     const[isFlipped, setIsFlipped] = useState(false);
 
@@ -39,9 +37,38 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
         }
     }
 
-    function getFrontCardBtns(status){
-        
-        switch(status){
+    function getFrontCardBtns(){
+
+        if(props.statuses.length === 0 && props.interactions.length === 0){
+            return(
+                <Fragment>
+                    <Grid container item xs={8} justifyContent='center'>
+                        <Box mb='2%' width={1}>
+                            <Link to={'/add-package'} style={{color: 'inherit', textDecoration: 'none'}}>
+                                <PrimaryButton variant='contained' fullWidth>
+                                    Adauga Pachet
+                                </PrimaryButton>
+                            </Link>
+                        </Box>
+                    </Grid>
+                </Fragment>
+            )
+        } else {
+            if(props.statuses.length === 0 && props.interactions.length > 0){
+                props.interactions.map(pack => {
+                        return(
+                            <Fragment>
+                                {/* <Grid container item xs={8} justifyContent = 'center'>
+                                    <GreenCaroButton variant='contained' size='medium' fullWidth> */}
+                                    <Box> Cere transport {pack.name}</Box>                  
+                                    {/* </GreenCaroButton>
+                                </Grid>    */}
+                            </Fragment>         
+                        )}
+                )
+            }  
+        }
+        /* switch(statuses){
             case 0:
                 return (
                     <Fragment>
@@ -80,7 +107,7 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                             </GreenCaroButton>
                         </Grid>
                         <Grid container item xs={8} justifyContent = 'center'>
-                            <RejectModal rejectReason={status.rejectReason} setRejectReason={props.setRejectReason}/>
+                            <RejectModal /* rejectReason={status.rejectReason} setRejectReason={props.setRejectReason}/>
                         </Grid>
                     </Grid>
                 )
@@ -123,7 +150,7 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                 return('Unknown');
             }
 
-        }
+        } */
     }
     //interactions - array length is greater than 0
     //statuses - empty array - toate pachetele din interactions nu au fost cerute sau nu au cerute ele nimic
@@ -179,9 +206,9 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
     //     }
         
 
-    function getBackCardBtns(status, packageExists){
+    function getBackCardBtns(packageExists){
         
-        switch(status){
+        switch(props.statuses){
             case 1:{
                 if(packageExists)
                     return(
@@ -216,7 +243,7 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
             case 8:{
                 return(
                     <Grid container item xs={8} justifyContent='center'>
-                        <RejectModal rejectReason={status.rejectReason} setRejectReason={props.setRejectReason}/>
+                        <RejectModal /* rejectReason={status.rejectReason} */ setRejectReason={props.setRejectReason}/>
                     </Grid>
                 );
             
@@ -224,7 +251,7 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
             case 10:{
                 return(
                     <Grid container item xs={8} justifyContent='center'>
-                        <RejectModal diabled={true} rejectReason={status.rejectReason} setRejectReason={props.setRejectReason}/>
+                        <RejectModal diabled={true} /* rejectReason={status.rejectReason} */ setRejectReason={props.setRejectReason}/>
                     </Grid>
                 );
             }
@@ -265,7 +292,7 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                     <Grid container item xs={8} justifyContent='space-around'>
                         <Rating value={props.driverRate} readOnly precision={0.5}/>
                     </Grid>
-                    {getFrontCardBtns(status.status)}
+                    {getFrontCardBtns(props.statuses)}
                 </Grid>
             </Box>
                 
@@ -292,7 +319,7 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                     <Grid container item xs={12}>
                         <Box fontSize='15px' fontWeight='500' paddingBottom='4%'>{t('DriverCardEstimatedHours')} {props.estimatedTime}</Box>
                     </Grid>
-                    {getBackCardBtns(status.status, props.packageExists)}
+                    {getBackCardBtns(props.packageExists)}
                     <Grid container item xs={8} justifyContent='center'>
                         <Box mt='8%' mb='2%' width={1}>
                             <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>

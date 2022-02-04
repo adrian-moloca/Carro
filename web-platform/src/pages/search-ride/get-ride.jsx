@@ -4,7 +4,7 @@ import RideCard from '../../components/cards/ride-card/ride-card';
 import { getRide } from '../../redux/actions/RidesActions';
 import { connect } from 'react-redux';
 
-const GetRide = (props) =>{
+const GetRide = ({myPackagesData, ...props}) =>{
     const [image, setImage] = useState(props.image.length > 0 ? props.image : '');
     const [name, setName] = useState(props.name);
     const [id, setID] = useState(props.id);
@@ -16,8 +16,8 @@ const GetRide = (props) =>{
     const [destinationAddress, setDestinationAddress] = useState(props.destinationAddress);
     const [departureDate, setDepartureDate] = useState(props.departureDate);
     const [estimatedTime, setEstimatedTime] = useState(props.estimatedTime);
-    const [state, setState] = useState(props.state);
-    const [packageExists, setPackageExists] = useState(props.packageExists);
+    const [statuses, setStatuses] = useState(props.statuses);
+    const [interactions, setInteractions] = useState([]);
 
 
     useEffect(()=>{
@@ -32,10 +32,10 @@ const GetRide = (props) =>{
         setDestinationAddress(props.destinationAddress);
         setDepartureDate(props.departureDate);
         setEstimatedTime(props.estimatedTime);
-        setState(props.state);
-        setPackageExists(props.packageExists);
+        setStatuses(props.statuses);
+        setInteractions(props.interactions);
         setID(props.id)
-    }, [props.id, props.image, props.name, props.rate, props.transportType, props.departure, props.destination, props.departureAddress, props.destinationAddress, props.departureDate,props.estimatedTime, props.state, props.packageExists]);
+    }, [props.id, props.image, props.name, props.rate, props.transportType, props.departure, props.destination, props.departureAddress, props.destinationAddress, props.departureDate,props.estimatedTime, props.statuses, props.interactions]);
 
     return(
         <Grid key ={id} container item xs={12} sm={5}  md={4} lg={4}  xl={4} justifyContent='center'>
@@ -51,14 +51,14 @@ const GetRide = (props) =>{
                 departureAddress={departureAddress}
                 destinationAddress={destinationAddress}
                 estimatedTime={estimatedTime}
-                status={state}
-                packageExists= {packageExists}
+                statuses={statuses}
+                interactions= {interactions}
             />
           </Grid>
     );
 }
 
 const mapDispatchToProps = dispatch =>({getRide: (ride, token) => dispatch(getRide(ride, token))})
-const mapStateToProps = state => ({ridesData: state.ridesData})
+const mapStateToProps = state => ({ridesData: state.ridesData, myPackagesData: state.myPackagesData})
 
 export default connect(mapStateToProps, mapDispatchToProps)(GetRide);
