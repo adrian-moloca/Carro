@@ -199,32 +199,9 @@ const SearchRide = () => {
           </PrimaryButton>
         </Grid>
       </Box>
-      <Grid container xs={12}>
-        <DriverCard
-          image={profilePhotoMiddle}
-          name="Marius popescu"
-          plecare="Timisoara"
-          destinatie="Bucuresti"
-          telefon="0888888888"
-          dataPlecare="26/08/2021 02:00 AM"
-        ></DriverCard>
-        <DriverCard
-          image={profilePhotoMiddleSecond}
-          name="Marius popescu"
-          plecare="Timisoara"
-          destinatie="Bucuresti"
-          telefon="0888888888"
-          dataPlecare="26/08/2021 02:00 AM"
-        ></DriverCard>
-        <DriverCard
-          image={profilePhotoMiddle}
-          name="Marius popescu"
-          plecare="Timisoara"
-          destinatie="Bucuresti"
-          telefon="0888888888"
-          dataPlecare="26/08/2021 02:00 AM"
-        ></DriverCard>
-       
+      <Grid container justifyContent='space-around'>
+      { ridesData.rides.length > 0 ? 
+        rides.currentData().map((ride)=> <GetRide key={ride.id} name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses} interactions={ride.interactions}  {...ride}/>) : notFoundAnyRide()}
       </Grid>
 
       <Box display="flex" justifyContent="space-evenly" mt="3%">
