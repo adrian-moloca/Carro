@@ -21,7 +21,7 @@ const Rides = (props) =>{
     }, [])
 
     useEffect(()=>{}, [driversUnder]);
- 
+
     return(
         <Fragment>
             {loading ? (
@@ -44,7 +44,8 @@ const Rides = (props) =>{
                                         departureAddress={driver.departureAddress}
                                         destinationAddress={driver.destinationAddress}
                                         estimatedTime={driver.estimatedTime}
-                                        status={driver.status}
+                                        statuses={driver.status}
+                                        interactions={driver.interactions}
                                         packageExists= {true}
                                         rejectReason={driver.status}
                                     />

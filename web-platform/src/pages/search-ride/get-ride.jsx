@@ -8,6 +8,7 @@ const GetRide = ({myPackagesData, ...props}) =>{
     const [image, setImage] = useState(props.image.length > 0 ? props.image : '');
     const [name, setName] = useState(props.name);
     const [id, setID] = useState(props.id);
+    const [rideId, setRideId] = useState(props.rideId);
     const [transportType, setTransportType] = useState(props.transportType);
     const [rate, setRate] = useState(props.rate ? props.ride : 0);
     const [departure, setDeparture] = useState(props.departure);
@@ -24,6 +25,7 @@ const GetRide = ({myPackagesData, ...props}) =>{
         setImage(props.image.length > 0 ? props.image : '');
         setName(props.name);
         setID(props.id);
+        setRideId(props.rideId)
         setTransportType(props.transportType);
         setRate(props.rate ? props.rate : 0);
         setDeparture(props.departure);
@@ -35,12 +37,13 @@ const GetRide = ({myPackagesData, ...props}) =>{
         setStatuses(props.statuses);
         setInteractions(props.interactions);
         setID(props.id)
-    }, [props.id, props.image, props.name, props.rate, props.transportType, props.departure, props.destination, props.departureAddress, props.destinationAddress, props.departureDate,props.estimatedTime, props.statuses, props.interactions]);
+    }, [props.id, props.rideId, props.image, props.name, props.rate, props.transportType, props.departure, props.destination, props.departureAddress, props.destinationAddress, props.departureDate,props.estimatedTime, props.statuses, props.interactions]);
 
     return(
         <Grid key ={id} container item xs={12} sm={5}  md={4} lg={4}  xl={4} justifyContent='center'>
             <RideCard 
                 id={id}
+                rideId={rideId}
                 image={image} 
                 name={name}
                 transportType={transportType}

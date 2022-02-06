@@ -106,7 +106,7 @@ const SearchRide = ({ridesData, myPackagesData, userData, courierData, searchRid
       </Box>
       <Grid container justifyContent='space-around'>
       { ridesData.rides.length > 0 ? 
-        rides.currentData().map((ride)=> <GetRide key={ride.id} name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses} interactions={ride.interactions}  {...ride}/>) : notFoundAnyRide()}
+        rides.currentData().map((ride)=> <GetRide key={ride.id} name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses} interactions={ride.interactions}  {...ride}/>) : notFoundAnyRide()}
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">
           <Box width='1' mt='5%' display='flex' justifyContent='center'>

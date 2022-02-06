@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {Box, Grid, Avatar} from '@material-ui/core';
 import {Rating} from '@material-ui/lab';
@@ -12,17 +12,34 @@ import RejectModal from '../../modals/reject-modal/reject-modal';
 import SeeProfileBtn from '../../buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn';
 import { fetchCourierProfile} from '../../../redux/actions/CourierActions';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import data from '../../../utils/constants';
 
 const RideCard =({userData, fetchCourierProfile, ...props})=>{
     const { t } = useTranslation();
     const classes = useStyles();
 
+    const[loading, setLoading] = useState(false);
+    const[statuses, setStatuses] = useState(props.statuses)
     const[isFlipped, setIsFlipped] = useState(false);
 
+    const requestRide = (packageId, rideId, rideUserId) =>{
+        axios.post(data.baseUrl + '/rides/' + rideId + '/statuses', {
+            packageId: packageId,
+            rideUserId: rideUserId
+        }, {
+            headers:{
+                'Authorization': `Bearer ${userData.token}`,
+            }
+        } ).then((response)=>setStatuses(statuses.concat(response.data.data))).catch((error)=>console.log(error))
+    }
+    
     const handleClick = () => {
         const temp = isFlipped;
         setIsFlipped(!temp);
     }
+
+    useEffect(()=>{}, [statuses])
 
     function getTransportType(type){
         switch(type){
@@ -39,7 +56,7 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
 
     function getFrontCardBtns(){
 
-        if(props.statuses.length === 0 && props.interactions.length === 0){
+        if(statuses.length === 0 && props.interactions.length === 0){
             return(
                 <Fragment>
                     <Grid container item xs={8} justifyContent='center'>
@@ -54,18 +71,71 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                 </Fragment>
             )
         } else {
-            if(props.statuses.length === 0 && props.interactions.length > 0){
-                props.interactions.map(pack => {
-                        return(
-                            <Fragment>
-                                {/* <Grid container item xs={8} justifyContent = 'center'>
-                                    <GreenCaroButton variant='contained' size='medium' fullWidth> */}
-                                    <Box> Cere transport {pack.name}</Box>                  
-                                    {/* </GreenCaroButton>
-                                </Grid>    */}
-                            </Fragment>         
-                        )}
+            if(statuses.length === 0 && props.interactions.length > 0){
+                return(
+                    props.interactions.map(pack => {
+                            return(
+                                <Fragment>
+                                    <Grid container item xs={8} justifyContent = 'center'>
+                                        <GreenCaroButton variant='contained' size='small' fullWidth 
+                                                        onClick={()=>requestRide(pack.packageId, props.rideId, props.id)}>
+                                            Cere transport {pack.name}                  
+                                        </GreenCaroButton>
+                                    </Grid>   
+                                </Fragment>         
+                            )}
+                    )
                 )
+            } else {
+                if(statuses.length > 0 && Array.isArray(statuses)){
+                    return(
+                        <Fragment>
+                            {statuses.map((pack)=>{
+                                switch(pack.status){
+                                    case 1:
+                                        return(
+                                            <Grid container item xs={8} justifyContent='center'>
+                                                <Box my='10%' className='Secondary-color' fontSize='18px' fontWeight='500'>
+                                                    {t('DriverCardWaitingStatus')}
+                                                </Box>
+                                            </Grid>
+                                        )
+                                    default:
+                                        return 'default'
+                                }
+                            })}
+                            {props.interactions.map(pack => {
+                                    if(statuses.some(status => status.packageId === pack.packageId))
+                                        return null
+                                    else
+                                        return(
+                                            <Fragment>
+                                                <Grid container item xs={8} justifyContent = 'center'>
+                                                    <GreenCaroButton variant='contained' size='small' fullWidth 
+                                                                    onClick={()=>requestRide(pack.packageId, props.rideId, props.id)}>
+                                                        Cere transport {pack.name}                  
+                                                    </GreenCaroButton>
+                                                </Grid>   
+                                            </Fragment>         
+                                    )
+                            })}
+                        </Fragment>
+                    )
+                } else if(typeof props.statuses === 'object') {
+                            switch(props.statuses.status){
+                                case 1:
+                                    return(
+                                        <Grid container item xs={8} justifyContent='center'>
+                                            <Box my='10%' className='Secondary-color' fontSize='18px' fontWeight='500'>
+                                                {t('DriverCardWaitingStatus')}
+                                            </Box>
+                                        </Grid>
+                                    )
+                                default:
+                                    return 'default'
+                            }
+                }
+
             }  
         }
         /* switch(statuses){
@@ -149,7 +219,6 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
             default:{
                 return('Unknown');
             }
-
         } */
     }
     //interactions - array length is greater than 0
@@ -292,7 +361,7 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                     <Grid container item xs={8} justifyContent='space-around'>
                         <Rating value={props.driverRate} readOnly precision={0.5}/>
                     </Grid>
-                    {getFrontCardBtns(props.statuses)}
+                    {getFrontCardBtns()}
                 </Grid>
             </Box>
                 
