@@ -5,6 +5,8 @@ import {Rating} from '@material-ui/lab';
 import ReactCardFlip from 'react-card-flip';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';
+import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
+import SelectRide from '../../modals/select-ride/select-ride';
 import SelectDriver from '../../modals/driver-select/driver-select';
 import useStyles from './ride-card-style';
 import { useTranslation } from 'react-i18next';
@@ -19,9 +21,10 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
     const { t } = useTranslation();
     const classes = useStyles();
 
-    const[loading, setLoading] = useState(false);
-    const[statuses, setStatuses] = useState(props.statuses)
-    const[isFlipped, setIsFlipped] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [statuses, setStatuses] = useState(props.statuses)
+    const [isFlipped, setIsFlipped] = useState(false);
+    const [rejectReason, setRejectReason] = useState('');
 
     const requestRide = (packageId, rideId, rideUserId) =>{
         axios.post(data.baseUrl + '/rides/' + rideId + '/statuses', {
@@ -31,7 +34,18 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
             headers:{
                 'Authorization': `Bearer ${userData.token}`,
             }
-        } ).then((response)=>setStatuses(statuses.concat(response.data.data))).catch((error)=>console.log(error))
+        } ).then((response)=>typeof props.statuses === 'object' ? setStatuses(response.data.data) : setStatuses(statuses.concat(response.data.data))).catch((error)=>console.log(error))
+    }
+
+    const updateStatus = (newStatus, rideId, statusId) => {
+        axios.put(data.baseUrl + '/rides/' + rideId + '/statuses/' + statusId, {
+            status: newStatus,
+            rejectReason: rejectReason
+        }, {
+            headers:{
+                'Authorization': `Bearer ${userData.token}`,
+            }
+        }).then((response)=>typeof props.statuses === 'object' ?  setStatuses(response.data.data) : setStatuses(statuses.concat(response.data.data))).catch((error)=>console.log(error))
     }
     
     const handleClick = () => {
@@ -56,9 +70,14 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
 
     function getFrontCardBtns(){
 
-        if(statuses.length === 0 && props.interactions.length === 0){
+        if(props.interactions && props.interactions.length > 1 && props.interactions.length !== statuses.length){
+            return (
+                <SelectRide name={props.name} image={props.image} rate={props.rate ? props.rate : 0} id={props.id} rideId={props.rideId} departure={props.plecare} destination={props.destinatie} departureAddress={props.departureAddress} destinationaAddress={props.destinationaAddress} departureDate={props.departureDate} estimatedTime={props.estimatedTime} transportType={props.transportType} statuses={props.statuses} interactions={props.interactions} ridesUpdate={props.ridesUpdate}/>
+            )
+        }
+
+        if(props.interactions && props.interactions.length === 0 && statuses.length === 0){
             return(
-                <Fragment>
                     <Grid container item xs={8} justifyContent='center'>
                         <Box mb='2%' width={1}>
                             <Link to={'/add-package'} style={{color: 'inherit', textDecoration: 'none'}}>
@@ -68,21 +87,18 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                             </Link>
                         </Box>
                     </Grid>
-                </Fragment>
             )
         } else {
-            if(statuses.length === 0 && props.interactions.length > 0){
+            if(statuses.length === 0 && props.interactions.length === 1){
                 return(
                     props.interactions.map(pack => {
                             return(
-                                <Fragment>
                                     <Grid container item xs={8} justifyContent = 'center'>
                                         <GreenCaroButton variant='contained' size='small' fullWidth 
                                                         onClick={()=>requestRide(pack.packageId, props.rideId, props.id)}>
                                             Cere transport {pack.name}                  
                                         </GreenCaroButton>
-                                    </Grid>   
-                                </Fragment>         
+                                    </Grid>            
                             )}
                     )
                 )
@@ -100,6 +116,54 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                                                 </Box>
                                             </Grid>
                                         )
+                                    case 2:
+                                        return(
+                                            <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
+                                                <Grid container item xs={10} sm={4} justifyContent = 'center'>
+                                                    <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(1, props.rideId, pack.id)} fullWidth>
+                                                        {t("Approve")}
+                                                    </GreenCaroButton>
+                                                </Grid>
+                                                <Grid container item xs={10} sm={4} justifyContent = 'center'>
+                                                    <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(2, props.rideId, pack.id)} fullWidth>
+                                                        {t("Refuse")}
+                                                    </SecondaryButton>
+                                                </Grid>
+                                            </Grid>
+                                        )
+                                    case 3:
+                                        return(
+                                            <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
+                                                <Grid container item xs={10} justifyContent = 'center'>
+                                                    <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                                </Grid>
+                                            </Grid>
+                                        )
+                                    case 4:
+                                        return(
+                                            <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
+                                                <Grid container item xs={10} justifyContent = 'center'>
+                                                    <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                                </Grid>
+                                            </Grid>
+                                        )
+                                    case 5:
+                                        return(
+                                            <Grid container item xs={10} justifyContent = 'center'>
+                                                <Box my='10%' color='#F50057' fontSize='18px' fontWeight='500'>{t("Rejected")}</Box>
+                                            </Grid>
+                                        )
+                                    case 6:
+                                        return(
+                                            <Grid container item xs={10} justifyContent = 'center'  spacing={2}>
+                                                <Grid container item xs={12} justifyContent = 'center'>
+                                                    <Box my='10' color='#F50057' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
+                                                </Grid>
+                                                <Grid container item xs={12} justifyContent = 'center'>
+                                                    <Box my='5%' className='Secondary-color' fontSize='18px' fontWeight='500'>{pack.rejectReason}</Box>
+                                                </Grid>
+                                            </Grid>
+                                        )
                                     default:
                                         return 'default'
                                 }
@@ -113,7 +177,7 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                                                 <Grid container item xs={8} justifyContent = 'center'>
                                                     <GreenCaroButton variant='contained' size='small' fullWidth 
                                                                     onClick={()=>requestRide(pack.packageId, props.rideId, props.id)}>
-                                                        Cere transport {pack.name}                  
+                                                        Cere transport                   
                                                     </GreenCaroButton>
                                                 </Grid>   
                                             </Fragment>         
@@ -121,14 +185,58 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                             })}
                         </Fragment>
                     )
-                } else if(typeof props.statuses === 'object') {
-                            switch(props.statuses.status){
+                } else if(typeof statuses === 'object') {
+                            switch(statuses.status){
                                 case 1:
                                     return(
                                         <Grid container item xs={8} justifyContent='center'>
                                             <Box my='10%' className='Secondary-color' fontSize='18px' fontWeight='500'>
                                                 {t('DriverCardWaitingStatus')}
                                             </Box>
+                                        </Grid>
+                                    )
+                                case 2:
+                                    return(
+                                        <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
+                                            <Grid container item xs={10} sm={4} justifyContent = 'center'>
+                                                <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(1, props.rideId, props.statuses.id)} fullWidth>
+                                                    {t("Approve")}
+                                                </GreenCaroButton>
+                                            </Grid>
+                                            <Grid container item xs={10} sm={4} justifyContent = 'center'>
+                                                <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(2, props.rideId, props.statuses.id)} fullWidth>
+                                                    {t("Refuse")}
+                                                </SecondaryButton>
+                                            </Grid>
+                                        </Grid>
+                                    )
+                                case 3:
+                                    return(
+                                        <Grid container item xs={10} justifyContent = 'center'>
+                                            <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                        </Grid>
+                                    )
+                                case 4:
+                                    return(
+                                        <Grid container item xs={10} justifyContent = 'center'>
+                                            <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                        </Grid>
+                                    )
+                                case 5:
+                                    return(
+                                        <Grid container item xs={10} justifyContent = 'center'>
+                                            <Box my='10%' color='#F50057' fontSize='18px' fontWeight='500'>{t("Rejected")}</Box>
+                                        </Grid>
+                                    )
+                                case 6:
+                                    return(
+                                        <Grid container item xs={10} justifyContent = 'center'  spacing={2}>
+                                            <Grid container item xs={12} justifyContent = 'center'>
+                                                <Box my='10' color='#F50057' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
+                                            </Grid>
+                                            <Grid container item xs={12} justifyContent = 'center'>
+                                                <Box my='5%' className='Secondary-color' fontSize='18px' fontWeight='500'>{statuses.rejectReason}</Box>
+                                            </Grid>
                                         </Grid>
                                     )
                                 default:
@@ -138,88 +246,6 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
 
             }  
         }
-        /* switch(statuses){
-            case 0:
-                return (
-                    <Fragment>
-                        <SelectDriver 
-                            image = {props.image}
-                            name = {props.name}
-                            driverRate = {props.driverRate}
-                            plecare = {props.plecare}
-                            destinatie = {props.destinatie}
-                            tipTransport = {props.transportType}
-                            dataPlecare = {props.departureDate}
-                        />
-                        <Grid container item xs={8} justifyContent='center'>
-                            <Box mb='2%' width={1}>
-                                <PrimaryButton variant='contained'  onClick = {handleClick} fullWidth>
-                                    {t('DriverCardDetailsButton')}
-                                </PrimaryButton>
-                            </Box>
-                        </Grid>
-                    </Fragment>
-                )
-            case 9:
-                return(
-                    <Grid container item xs={8} justifyContent='center'>
-                        <Box my='31%' className='Secondary-color' fontSize='18px' fontWeight='500'>
-                            {t('DriverCardWaitingStatus')}
-                        </Box>
-                    </Grid>
-                );
-            case 2:{
-                return(
-                    <Grid container justifyContent = 'center'  spacing={2}>
-                        <Grid container item xs={8} justifyContent = 'center'>
-                            <GreenCaroButton variant='contained' size='medium' fullWidth>
-                                {t("Approve")}
-                            </GreenCaroButton>
-                        </Grid>
-                        <Grid container item xs={8} justifyContent = 'center'>
-                            <RejectModal /* rejectReason={status.rejectReason} setRejectReason={props.setRejectReason}/>
-                        </Grid>
-                    </Grid>
-                )
-            }
-            case 6:{
-                return(
-                    <Grid container item xs={8} justifyContent = 'center'  spacing={2}>
-                        <Grid container item xs={12} justifyContent = 'center'>
-                            <Box my='10' className='Secondary-color' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
-                        </Grid>
-                        <Grid container item xs={12} justifyContent = 'center'>
-                            <Box my='10%' className='Secondary-color' fontSize='18px' fontWeight='500'>Nu mai plec</Box>
-                        </Grid>
-                    </Grid>
-                );
-            }
-            case 8:{
-                    return(
-                        <Grid container item xs={8} justifyContent='center'>
-                            <Box mt ='52%' mb='2%' width={1}>
-                                <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
-                                {t('DriverCardDetailsButton')}
-                                </PrimaryButton>
-                            </Box>
-                        </Grid>
-                    )   
-                }
-            case 10:{
-                return(
-                    <Grid container item xs={8} justifyContent='center'>
-                        <Box mt ='52%' mb='2%' width={1}>
-                            <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
-                            {t('DriverCardDetailsButton')}
-                            </PrimaryButton>
-                        </Box>
-                    </Grid>
-                )   
-            }
-            default:{
-                return('Unknown');
-            }
-        } */
     }
     //interactions - array length is greater than 0
     //statuses - empty array - toate pachetele din interactions nu au fost cerute sau nu au cerute ele nimic
@@ -273,62 +299,6 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
     //       "status": 0,
     //       "rejectReason": "string"
     //     }
-        
-
-    function getBackCardBtns(packageExists){
-        
-        switch(props.statuses){
-            case 1:{
-                if(packageExists)
-                    return(
-                        <Fragment>
-                            <Grid container item xs={11} justifyContent='center'>
-                                <Box my='4%'>
-                                    <PrimaryButton variant='outlined' fullWidth>
-                                        <Box fontSize='14px'>CERE TRANSPORT - CEVA MIC</Box>
-                                    </PrimaryButton>
-                                </Box>
-                            </Grid>
-                            <Grid container item xs={11} justifyContent='center'>
-                                <Box my='2%'>
-                                    <PrimaryButton variant='outlined' fullWidth>
-                                        <Box fontSize='14px'>CERE TRANSPORT - CEVA MEDIU</Box>
-                                    </PrimaryButton>
-                                </Box>
-                            </Grid>
-                        </Fragment>
-                    );
-                else
-                    return(
-                        <Grid container item xs={8} justifyContent='center'>
-                            <Box mt='59%' width={1}>
-                                <Link to='/add-package' style={{textDecoration: 'none'}}>
-                                    <PrimaryButton variant='outlined' fullWidth>ADAUGA PACHET</PrimaryButton>
-                                </Link>
-                            </Box>
-                        </Grid>
-                    );
-            }
-            case 8:{
-                return(
-                    <Grid container item xs={8} justifyContent='center'>
-                        <RejectModal /* rejectReason={status.rejectReason} */ setRejectReason={props.setRejectReason}/>
-                    </Grid>
-                );
-            
-            }
-            case 10:{
-                return(
-                    <Grid container item xs={8} justifyContent='center'>
-                        <RejectModal diabled={true} /* rejectReason={status.rejectReason} */ setRejectReason={props.setRejectReason}/>
-                    </Grid>
-                );
-            }
-            default:{
-                return('Unknown');
-            }
-        }
-    }
    
     return(
         <Fragment>
@@ -337,11 +307,13 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
             <Box display='flex' width='1' height='400px' p={1} borderRadius='10px' boxShadow={3}>
                 <Grid container justifyContent='center'>
                     <Grid container item xs={12} justifyContent="flex-end">
-                        <SeeProfileBtn onClick={()=>{
-                                fetchCourierProfile(props.id, userData.token)
-                        }} style={{fontSize:"12px", height: "30px"}}>
-                                {t("ViewProfile")}
-                        </SeeProfileBtn>
+                        <Link to={'/courier-profile'} style={{textDecoration: 'none', color: 'inherit'}}>
+                            <SeeProfileBtn onClick={()=>{
+                                    fetchCourierProfile(props.id, userData.token)
+                            }} style={{fontSize:"12px", height: "30px"}}>
+                                    {t("ViewProfile")}
+                            </SeeProfileBtn>
+                        </Link>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center'>
                         <Avatar className={classes.profileImg} src={"data:image/png;base64,"+props.image} style={{marginBottom: window.innerWidth <= 850 ? "20px" : 0 }}/>
@@ -386,15 +358,12 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                         <Box fontSize='15px' fontWeight='500'>{t('DriverCardDepartureDate')}  {props.departureDate}</Box>
                     </Grid>
                     <Grid container item xs={12}>
-                        <Box fontSize='15px' fontWeight='500' paddingBottom='4%'>{t('DriverCardEstimatedHours')} {props.estimatedTime}</Box>
+                        <Box fontSize='15px' fontWeight='500'>{t('DriverCardEstimatedHours')} {props.estimatedTime}</Box>
                     </Grid>
-                    {getBackCardBtns(props.packageExists)}
                     <Grid container item xs={8} justifyContent='center'>
-                        <Box mt='8%' mb='2%' width={1}>
-                            <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
-                            {t('DriverCardBackButton')}
-                            </PrimaryButton>
-                        </Box>
+                        <PrimaryButton variant='contained' size='small' onClick={handleClick} fullWidth>
+                        {t('DriverCardBackButton')}
+                        </PrimaryButton>
                     </Grid>
                 </Grid>
             </Box>

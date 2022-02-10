@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Grid} from '@material-ui/core';
 import RideCard from '../../components/cards/ride-card/ride-card';
-import { getRide } from '../../redux/actions/RidesActions';
-import { connect } from 'react-redux';
 
-const GetRide = ({myPackagesData, ...props}) =>{
+const GetRide = (props) =>{
     const [image, setImage] = useState(props.image.length > 0 ? props.image : '');
     const [name, setName] = useState(props.name);
     const [id, setID] = useState(props.id);
@@ -18,7 +16,7 @@ const GetRide = ({myPackagesData, ...props}) =>{
     const [departureDate, setDepartureDate] = useState(props.departureDate);
     const [estimatedTime, setEstimatedTime] = useState(props.estimatedTime);
     const [statuses, setStatuses] = useState(props.statuses);
-    const [interactions, setInteractions] = useState([]);
+    const [interactions, setInteractions] = useState(props.interactions);
 
 
     useEffect(()=>{
@@ -56,12 +54,10 @@ const GetRide = ({myPackagesData, ...props}) =>{
                 estimatedTime={estimatedTime}
                 statuses={statuses}
                 interactions= {interactions}
+                ridesUpdate={props.ridesUpdate}
             />
           </Grid>
     );
 }
 
-const mapDispatchToProps = dispatch =>({getRide: (ride, token) => dispatch(getRide(ride, token))})
-const mapStateToProps = state => ({ridesData: state.ridesData, myPackagesData: state.myPackagesData})
-
-export default connect(mapStateToProps, mapDispatchToProps)(GetRide);
+export default GetRide;
