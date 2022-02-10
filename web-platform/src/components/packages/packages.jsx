@@ -33,12 +33,22 @@ const Packages = (props) =>{
             ) : (packagesUnder && packagesUnder.length > 0 ? ( 
                 packagesUnder.map((pack, index)=> 
                     <Grid key={index} container item xs={12}  md={5}  xl={4} justifyContent='space-around'>
-                        <PackageCard packageQuantity={pack.packageQuantity} packageDimensions={pack.packageDimensions} sender={pack.sender}
-                                    senderPhone={pack.senderPhone} destinatary={pack.destinatary} destinataryPhone={pack.destinataryPhone}
-                                    packageWeight={pack.packageWeight} departureDate={pack.departureDate} price={pack.price}
-                                    departureAddress={pack.departureAddress} destinationAddress={pack.destinationAddress} details={pack.details}
-                                    status= {pack.status} rideExists={pack.rideExists} specialMention={pack.packageSpecialMention}
-                                    rejectReason={rejectReason} setRejectReason={setRejectReason}/>
+                        <PackageCard 
+                            userId={pack.userId} 
+                            packageId={pack.id} 
+                            packageQuantity={pack.numberOfPackages} 
+                            dimensions={pack.dimensions}
+                            weight={pack.weight} 
+                            departureDate={pack.departureDate.substr(0, 10)} 
+                            price={pack.price}
+                            departure={pack.departure}
+                            destination={pack.destination}
+                            departureAddress={pack.departureAddress} 
+                            destinationAddress={pack.destinationAddress} 
+                            status= {pack.status} 
+                            interactions={pack.interactions} 
+                            packageSpecialMention={pack.packageSpecialMention}
+                            packageType={pack.packageType}/>
                     </Grid>
            )) : (
             <Grid container item xs={12} justifyContent='center' style={{height: '50px'}}>

@@ -611,6 +611,6 @@
     "Validate": "Valideaza",
     "Reject": "Refuza",
     "RejectIssue": "Motiv refuz",
-    "UserStatus": "STATUS USER"
-
+    "UserStatus": "STATUS USER",
+    "Rejected": "Refuzat"
 }

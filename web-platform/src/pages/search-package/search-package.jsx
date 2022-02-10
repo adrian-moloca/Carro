@@ -7,6 +7,7 @@ import PrimaryButton from "../../components/buttons/primaryButton/primaryButton"
 import PackageCard from '../../components/cards/package-card/package-card';
 import usePagination from '../../components/pagination/use-pagination/use-pagination';
 import CarroAutocomplete from '../../components/autocomplete/CarroAutocomplete';
+import GetPackage from "./get-package";
 import {getCountries, getCities} from '../../utils/Functions/countries-city-functions';
 import { connect } from "react-redux";
 import { searchPackages, clean } from "../../redux/actions/PackagesActions";
@@ -80,7 +81,7 @@ const SearchPackages = ({packagesData, userData, searchPackages, clean}) => {
           </Grid>
         </Grid>
       </Box>
-      <Box display="flex" justifyContent="space-evenly" mt="3%">
+      <Box display="flex" justifyContent="space-evenly" my="3%">
           <Grid item xs={11} md={5} xl={3}>
             <PrimaryButton onClick={()=>{
                                         searchPackages(departureCountry, departureCity, destinationCountry, destinationCity, userData.token)
@@ -92,17 +93,27 @@ const SearchPackages = ({packagesData, userData, searchPackages, clean}) => {
           </PrimaryButton>
         </Grid>
       </Box>
-      <Box display="flex" justifyContent="space-between" mt="3%">
+      <Grid container justifyContent='space-around'>
       { packagesData.packages.length > 0 ? packages.currentData().map((pack, index)=>
-          <Grid key={index} container item xs={12}  md={5}  xl={4} justifyContent='space-around'>
-            <PackageCard packageQuantity={pack.numberOfPackages} packageDimensions={pack.dimensions} sender={pack.sender}
-                        senderPhone={pack.senderPhone} destinatary={pack.name} destinataryPhone={'+'/* +pack.packageReceiver.phoneNumber */}
-                        packageWeight={pack.weight} departureDate={pack.departureDate.substr(0, 10)} price={pack.price}
-                        departureAddress={pack.departureAddress} destinationAddress={pack.destinationAddress} details={pack.description}
-                        status= {pack.status} rideExists={pack.rideExists} specialMention={pack.packageSpecialMention}/>
-          </Grid> ) : notFoundAnyRide()
+            <GetPackage 
+                      userId={pack.userId} 
+                      packageId={pack.id} 
+                      packageQuantity={pack.numberOfPackages} 
+                      dimensions={pack.dimensions}
+                      weight={pack.weight} 
+                      departureDate={pack.departureDate.substr(0, 10)} 
+                      price={pack.price}
+                      departure={pack.departure}
+                      destination={pack.destination}
+                      departureAddress={pack.departureAddress} 
+                      destinationAddress={pack.destinationAddress} 
+                      status= {pack.status} 
+                      interactions={pack.interactions} 
+                      packageSpecialMention={pack.packageSpecialMention}
+                      packageType={pack.packageType}/>
+           ) : notFoundAnyRide()
         }
-      </Box>
+      </Grid>  
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">
         <Box width='1' mt='5%' display='flex' justifyContent='center'>
             <Pagination 
@@ -120,10 +131,11 @@ const SearchPackages = ({packagesData, userData, searchPackages, clean}) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => {
+  return {
         searchPackages: (fromCountry, fromCity, toCountry, toCity, token) => dispatch(searchPackages(fromCountry, fromCity, toCountry, toCity, token)),
         clean: () => dispatch(clean())
-})
+}}
 
 const mapStateToProps = state => ({packagesData: state.packagesData, userData: state.userData})
 

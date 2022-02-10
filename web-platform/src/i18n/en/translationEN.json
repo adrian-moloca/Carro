@@ -297,6 +297,7 @@
     "Serial": "Serial number",
     "Validate": "Validate",
     "Reject": "Reject",
-    "RejectIssue": "Motiv refuz",
-    "UserStatus": "USER STATUS"
+    "RejectIssue": "Reject issue",
+    "UserStatus": "USER STATUS",
+    "Rejected": "Rejected"
 }

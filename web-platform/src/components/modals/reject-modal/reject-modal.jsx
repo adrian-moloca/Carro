@@ -24,7 +24,7 @@ const RejectModal=(props)=>{
     return(
         <Fragment>
            <Grid container item justifyContent = 'center'>
-                <SecondaryButton disabled={props.disabled} variant='contained' size='medium' onClick={handleOpen} fullWidth>
+                <SecondaryButton disabled={props.disabled} variant='contained' size='small' onClick={handleOpen} fullWidth>
                     {t("Refuse")}
                 </SecondaryButton>
             </Grid>

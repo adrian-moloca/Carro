@@ -1,5 +1,6 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {Box, Grid } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import ReactCardFlip from 'react-card-flip';
 import PrimaryButton from '../../buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
@@ -15,12 +16,41 @@ import useStyles from './package-card-style';
 import { useTranslation } from 'react-i18next';
 import DeliverPackage from '../../modals/deliver-package/deliver-package';
 import RejectModal from '../../modals/reject-modal/reject-modal';
+import axios from 'axios';
+import data from '../../../utils/constants';
+import { connect } from 'react-redux';
 
-const PackageCard = (props) =>{
+const PackageCard = ({userData, ...props}) =>{
 
     const classes = useStyles();
     const { t } = useTranslation();
-    const[isFlipped, setIsFlipped] = useState(false);
+    const [status, setStatus] = useState(props.status);
+    const [isFlipped, setIsFlipped] = useState(false);
+    const [rejectReason, setRejectReason] = useState('');
+
+    useEffect(()=>{}, [status])
+
+    const requestPackage = (rideId, packageId, packageUserId) =>{
+        axios.post(data.baseUrl + '/packages/' + packageId + '/statuses', {
+            rideId: rideId,
+            packageUserId: packageUserId
+        }, {
+            headers:{
+                'Authorization': `Bearer ${userData.token}`,
+            }
+        } ).then((response)=>setStatus(response.data.data)).catch((error)=>console.log(error))
+    }
+
+    const updateStatus = (newStatus, packageId, statusId) => {
+        axios.put(data.baseUrl + '/packages/' + packageId + '/statuses/' + statusId, {
+            status: newStatus,
+            rejectReason: rejectReason
+        }, {
+            headers:{
+                'Authorization': `Bearer ${userData.token}`,
+            }
+        }).then((response)=>setStatus(response.data.data)).catch((error)=>console.log(error))
+    }
 
     const handleClick = () => {
         const temp = isFlipped;
@@ -38,8 +68,88 @@ const PackageCard = (props) =>{
 
     
 
-    function getFrontButtons(status, rideExists){
-        switch(status){
+    function getFrontButtons(){
+
+        if(status === null && props.interactions && props.interactions.length === 0){
+            return(
+                <Grid container item xs={10} justifyContent = 'center'>
+                    <Link to={'/add-transport'} style={{color: 'inherit', textDecoration: 'none'}}>
+                        <PrimaryButton variant='contained' size='medium' fullWidth>{t("AddRide")}</PrimaryButton>
+                    </Link>
+                </Grid>
+            )
+        } else {
+            if(status === null && props.interactions && props.interactions.length > 0){
+                return(
+                    <Grid container item xs={10} justifyContent = 'center'>
+                        <PrimaryButton variant='contained' size='medium' fullWidth onClick={()=>requestPackage(props.interactions[0].rideId, props.packageId, props.userId)}>{t("RequestPackage")}</PrimaryButton>
+                    </Grid>
+                )
+            } else {
+                if(status){
+                    switch(status.status){
+                        case 1:
+                            return(
+                                <Grid container item xs={10} justifyContent = 'center'>
+                                    <Box my='10%' className='Secondary-color' fontSize='18px' fontWeight='500'>{t("DriverCardWaitingStatus")}</Box>
+                                </Grid>
+                            )
+                        case 2:
+                            return(
+                                <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
+                                    <Grid container item xs={10} sm={4} justifyContent = 'center'>
+                                        <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(1, props.packageId, status.id)} fullWidth>
+                                            {t("Approve")}
+                                        </GreenCaroButton>
+                                    </Grid>
+                                    <Grid container item xs={10} sm={4} justifyContent = 'center'>
+                                        <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(2, props.packageId, status.id)} fullWidth>
+                                            {t("Refuse")}
+                                        </SecondaryButton>
+                                    </Grid>
+                                </Grid>
+                            )
+                        case 3:
+                            return(
+                                <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
+                                    <Grid container item xs={10} justifyContent = 'center'>
+                                        <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                    </Grid>
+                                </Grid>
+                            )
+                        case 4:
+                            return(
+                                <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
+                                    <Grid container item xs={10} justifyContent = 'center'>
+                                        <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                    </Grid>
+                                </Grid>
+                            )
+                        case 5:
+                            return(
+                                <Grid container item xs={10} justifyContent = 'center'>
+                                    <Box my='10%' color='#F50057' fontSize='18px' fontWeight='500'>{t("Rejected")}</Box>
+                                </Grid>
+                            )
+                        case 6:
+                            return(
+                                <Grid container item xs={10} justifyContent = 'center'  spacing={2}>
+                                    <Grid container item xs={12} justifyContent = 'center'>
+                                        <Box my='10' color='#F50057' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
+                                    </Grid>
+                                    <Grid container item xs={12} justifyContent = 'center'>
+                                        <Box my='5%' className='Secondary-color' fontSize='18px' fontWeight='500'>{status.rejectReason}</Box>
+                                    </Grid>
+                                </Grid>
+                            )
+                        default:
+                            return 'default';
+                    }
+                }
+            }
+        }
+
+        /* switch(status){
             case null:
                 if(!rideExists)
                     return(
@@ -155,12 +265,12 @@ const PackageCard = (props) =>{
                         </Grid>
                     );
             
-        }
+        }*/
 
     }
 
     function getBackButtons(status){
-        switch(status){
+        /* switch(status){
             case 8:
                 return(
                     <Grid container justifyContent = 'center'  spacing={2}>
@@ -182,14 +292,14 @@ const PackageCard = (props) =>{
                         </Box>
                     </Grid>
                 );
-        }
+        } */ 
     }
 
     return (
         <Fragment>
             <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' containerClassName={'CardFlipContainer'}>
             
-            <Box paddingBottom='10%' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
+            <Box paddingBottom={1} height='500px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center' boxShadow={3}>
                 <Grid container spacing={2} justifyContent='center'>
                     <Grid container item xs={12} justifyContent = 'center'>
                         <img src={packageImg} className={classes.boxesImageStyle} alt={""}/>
@@ -199,8 +309,8 @@ const PackageCard = (props) =>{
                     </Grid>
                     <Grid container item xs={12} spacing={1} justifyContent = 'flex-start'>
                         <Box px={1} fontSize={14}>{t('Quantity')} {props.packageQuantity}</Box>
-                        <Box px={1} fontSize={14}>{t('Sizing')} {props.packageDimensions}</Box>
-                        <Box px={1} fontSize={14}>{t('Weight')} {props.packageWeight}</Box>
+                        <Box px={1} fontSize={14}>{t('Sizing')} {props.dimensions}</Box>
+                        <Box px={1} fontSize={14}>{t('Weight')} {props.weight}</Box>
                     </Grid>
                     <Grid container item xs={12} justifyContent = 'center'>
                         <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
@@ -218,17 +328,17 @@ const PackageCard = (props) =>{
                         <Box width='100%' textAlign='center' fontSize={22}>{props.price}</Box>
                     </Grid>
                     <Grid container item xs={12} xl={10} justifyContent = 'space-around' >
-                    <img src={fragil} className={props.specialMention.isFragile ? classes.advStyle : classes.advNoneStyle} alt={""}/>
-                    <img src={foodGrade} className={props.specialMention.isFoodGrade ? classes.advStyle : classes.advNoneStyle} alt={""}/>
-                    <img src={flammable} className={props.specialMention.isFlammable ? classes.advStyle : classes.advNoneStyle} alt={""}/>
-                    <img src={handleWithCare} className={props.specialMention.isHandleWithCare ? classes.advStyle : classes.advNoneStyle} alt={""}/>
-                    <img src={animal} className={props.specialMention.isAnimal ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                    <img src={fragil} className={props.packageSpecialMention.isFragil ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                    <img src={foodGrade} className={props.packageSpecialMention.isFoodGrade ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                    <img src={flammable} className={props.packageSpecialMention.isFlammable ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                    <img src={handleWithCare} className={props.packageSpecialMention.isHandleWithCare ? classes.advStyle : classes.advNoneStyle} alt={""}/>
+                    <img src={animal} className={props.packageSpecialMention.isAnimal ? classes.advStyle : classes.advNoneStyle} alt={""}/>
                     </Grid>
-                    {getFrontButtons(props.status, props.rideExists)}
+                    {getFrontButtons()}
                 </Grid>
             </Box>
 
-            <Box paddingBottom='10%' width='0.9' height='550px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center'>
+            <Box paddingBottom={1} height='500px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center' boxShadow={3}>
                 <Grid container justifyContent='center'>
                     <Grid container item xs={12} justifyContent = 'flex-start'>
                         <Box px={1} fontSize={14} marginTop='20px'>{t('Quantity')} {props.packageQuantity}</Box>
@@ -257,6 +367,11 @@ const PackageCard = (props) =>{
                         </Box>
                     </Grid>
                     {getBackButtons(props.status)}
+                    <Grid container item xs={8} justifyContent='center'>
+                            <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
+                            {t('DriverCardBackButton')}
+                            </PrimaryButton>
+                    </Grid>
                 </Grid>
             </Box>
             </ReactCardFlip>
@@ -264,4 +379,6 @@ const PackageCard = (props) =>{
     );
 };
 
-export default PackageCard;
+const mapStateToProps = (state) => ({userData: state.userData})
+
+export default connect(mapStateToProps, null)(PackageCard)
