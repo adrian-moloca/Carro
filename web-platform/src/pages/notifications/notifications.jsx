@@ -95,7 +95,7 @@ const Notifications =({notificationsData})=>{
                     return  <Grid key={index} container item xs={12}>
                                 <Notification type={not.type} name={not.name} action={not.action} 
                                             departure={not.departure} destination={not.destination} price={not.price} transportType={not.transportType} notificationId={not.id}
-                                            departureAddress={not.departureAddress} destinationAddress={not.destinationAddress} departureDate={not.departureDate} read={not.isRead}/>
+                                            departureAddress={not.departureAddress} destinationAddress={not.destinationAddress} departureDate={not.departureDate} /* read={not.isRead} *//>
                             </Grid>
                 })}
             </Grid>

@@ -89,16 +89,21 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                     </Grid>
             )
         } else {
-            if(statuses.length === 0 && props.interactions.length === 1){
+            if(statuses.length === 0 && props.interactions && props.interactions.length === 1){
                 return(
                     props.interactions.map(pack => {
                             return(
+                                <Grid container justifyContent='center'>
+                                    <Grid container item xs = {8} justifyContent='center'>
+                                        <Box fontSize={20} marginTop={5} className={'Secondary-color'} textAlign={'center'}>{pack.name}</Box>
+                                    </Grid>
                                     <Grid container item xs={8} justifyContent = 'center'>
                                         <GreenCaroButton variant='contained' size='small' fullWidth 
                                                         onClick={()=>requestRide(pack.packageId, props.rideId, props.id)}>
-                                            Cere transport {pack.name}                  
+                                            Cere transport                  
                                         </GreenCaroButton>
-                                    </Grid>            
+                                    </Grid>
+                                </Grid>
                             )}
                     )
                 )
