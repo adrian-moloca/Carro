@@ -26,7 +26,7 @@ export const markAsReadNotification = (token, notificationId) => {
 
     return (dispatch) => {
         dispatch(markAsReadNotificationRequest);
-        axios.patch(data.baseUrl + "/notifications/"+notificationId+"/is-read", {
+        axios.put(data.baseUrl + "/notifications/"+notificationId+"/is-read", {}, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                 }
