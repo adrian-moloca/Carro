@@ -1,62 +1,82 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useLayoutEffect} from "react";
 import {Box, Collapse} from '@material-ui/core';
 import NotificationsSummary from "./notification-summary/notifications-summary";
 import NotificationDetails from "./notification-details/notification-details";
 import useStyles from "./notification-style";
 import { useTranslation } from "react-i18next";
+import PrimaryButton from "../../../components/buttons/primaryButton/primaryButton";
+import { markAsReadNotification } from "../../../redux/actions/NotificationsActions";
+import axios from "axios";
+import data from "../../../utils/constants";
+import { connect } from "react-redux";
+import SecondaryButton from "../../../components/buttons/secondaryButton/secondaryButton";
 
-const Notification = (props) =>{
+const Notification = ({userData, markAsReadNotification, ...props}) =>{
 
     const classes = useStyles();
     const { t } = useTranslation();
     const[expanded, setExpanded] = useState(false)
-    const[read, setRead] = useState(props.read);
-    
 
-  
-
-  /* const handleMarkAsRead= (event)=>{
-    const r = read;
-    setRead(!r);
-    if(r)
-    {
-      setMarkAsRead('Marcheaza ca citit')
-      setMarkAsReadColor('Primary-color');
+    const detailsNotification = () => {
+      setExpanded(!expanded)
+      if(props.read === false) {
+        markAsReadNotification(userData.token, props.notificationId);
+      }
     }
-      else
-    {
-      setMarkAsRead('Marcheaza ca necitit');
-      setMarkAsReadColor('Secondary-color');
-    }
-  } */
-
     
 
     return(
-      <Box mb={1.5} borderRadius='12px' boxShadow={3} paddingX='20px' paddingY='12px'>
+      <Box mb={1.5} borderRadius='12px' width={'100%'} boxShadow={3} paddingX='20px' paddingY='12px'>
           <NotificationsSummary
+                  notificationId={props.notificationId}
+                  type={props.type}
                   name={props.name}
-                  actionText={props.action}
+                  packageName={props.packageName}
                   plecare={props.departure}
                   destinatie={props.destination}
-                  tipTransport={props.transportType}
                   dataPlecare={props.departureDate}
                   pickUpAdress={props.departureAddress}
                   dropOffAdress={props.destinationAddress}
                   price={props.price}
                   read={props.read}
                   expanded={expanded}
-                  clickedDetails={()=>{setExpanded(!expanded);  props.readNotification();}}
-                  clickedMarkAsRead={()=>{props.handleReadStatus();}}
-                  clickedDelete={props.clickedDelete}
           />
           <Collapse in={expanded} timeout={600}>
             <NotificationDetails
-                type={props.type}/>
+                token={userData.token}
+                notificationId={props.notificationId}
+                type={props.type}
+                name={props.name}
+                packageName={props.packageName}
+                plecare={props.departure}
+                destinatie={props.destination}
+                dataPlecare={props.departureDate}
+                pickUpAdress={props.departureAddress}
+                dropOffAdress={props.destinationAddress}
+                price={props.price}
+                packageId={props.packageId}
+                rideId={props.rideId}
+                interactionId={props.interactionid}
+            />
           </Collapse>
+          <Box width={'100%'} display={'flex'} justifyContent= 'center' mt={2}>
+          {!expanded ? (  
+            <PrimaryButton variant="contained" onClick={()=>detailsNotification()}>
+                 {t('Details')}
+            </PrimaryButton>) : (
+              <SecondaryButton variant="contained" onClick={()=>detailsNotification()}>
+                  {t('LessDetails')}
+              </SecondaryButton>
+          )}
+          </Box>
         </Box>
     );
 
 }
 
-export default Notification;
+const mapStateToProps = (state) => ({userData: state.userData})
+const mapDispatchToProps = dispatch => ({
+  markAsReadNotification: (token, notificationId) => dispatch(markAsReadNotification(token, notificationId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notification);

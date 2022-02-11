@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Box, Grid, Button } from '@material-ui/core';
 import PrimaryButton from '../../../../components/buttons/primaryButton/primaryButton';
 import DeleteModal from '../../../../components/modals/deleteModal/DeleteModal';
@@ -7,70 +7,50 @@ import i18n from "../../../../i18n/config";
 import { connect } from 'react-redux';
 import { markAsReadNotification, deleteNotification } from "../../../../redux/actions/NotificationsActions";
 
-const NotificationsSummary = ({userData, markAsReadNotification, deleteNotification, props}) => {
+const NotificationsSummary = ({userData, markAsReadNotification, deleteNotification, ...props}) => {
 
   const { t } = useTranslation();
 
-  const[markAsRead, setMarkAsRead] = useState('');
-  const[markAsReadColor, setMarkAsReadColor] = useState('');
-  const[detailsBtn, setDetailsBtn] = useState('');
-
-  useEffect(()=>{
-    if(props.read)
-    {
-      setMarkAsRead(t('MarkAsUnread'));
-      setMarkAsReadColor('Secondary-color');
-    }
-    else
-    {
-      setMarkAsRead(t('MarkAsRead'))
-      setMarkAsReadColor('Primary-color');
-    }
-  }, [props.read]);
-
-  useEffect(()=>{
-    if(props.expanded)
-      setDetailsBtn(t("DriverCardLessDetailsButton"))
-    else
-      setDetailsBtn(t("DriverCardDetailsButton"))
-  }, [props.expanded])
-
-  useEffect(()=>{
-    if(props.read)
-    {
-      setMarkAsRead(t('MarkAsUnread'));
-      setMarkAsReadColor('Secondary-color');
-    }
-    else
-    {
-      setMarkAsRead(t('MarkAsRead'))
-      setMarkAsReadColor('Primary-color');
-    }
-    if(props.expanded)
-      setDetailsBtn(t("DriverCardLessDetailsButton"))
-    else
-      setDetailsBtn(t("DriverCardDetailsButton"))
-
-  },[i18n.language])
-
-  const detailsNotification = () => {
-    props.clickedDetails();
-    if(props.read === false) {
-      markAsReadNotification(userData.token, props.notificationId);
+  const getActionText = () =>{
+    switch(props.type){
+      case 1:
+        return(t('PackageAsked') + ' ' +props.packageName)
+      case 2:
+        return(t('RideAsked'))
+      case 3:
+        return(t('PackageAccepted') + ' ' +props.packageName)
+      case 4:
+        return(t('RideAccepted'))
+      case 5:
+        return(t('PackageRejected')  + ' ' +props.packageName)
+      case 6:
+        return(t('RideRejected'))
+      case 7:
+        return(t('PackageRejectedWithReason')  + ' ' +props.packageName)
+      case 8:
+        return(t('RideRejectedWithReason'))
+      case 9:
+        return(t('PackageDelivered')  + ' ' +props.packageName)
+      case 10:
+        return(t('UserValidated'))
+      case 11:
+        return(t('UserInvalidated'))
+      default: 
+        return('default')
     }
   }
 
   return (
-    <Box>
+    <Fragment>
       <Grid container justifyContent="space-between" alignItems="center">
         <Grid item xs={12} sm={6}>
           <Box display="flex" justifyContent="flex-start" alignItems="center" fontWeight= {600} fontStyle='italic'>
-            {props.name} {props.actionText}
+            {props.name + ' ' + getActionText()}
           </Box>
         </Grid>
         <Grid container item xs={6} sm={3} justifyContent='center'>
-            <Button variant='text' onClick={() => markAsReadNotification(userData.token, props.notificationId)} className={markAsReadColor}>
-                {markAsRead}
+            <Button variant='text' onClick={() => markAsReadNotification(userData.token, props.notificationId)} className={props.read ? 'Secondary-color' : 'Primary-color'}>
+                {props.read ? t('MarkAsUnread') : t('MarkAsRead')}
             </Button>
         </Grid>
         <Grid container item xs={6} sm={3} justifyContent='flex-end'>
@@ -78,57 +58,42 @@ const NotificationsSummary = ({userData, markAsReadNotification, deleteNotificat
             content={t('DeleteNotification')}
             btn1Text={t('Back')}
             btn2Text={t('Delete')}
-            clickedBtn2={deleteNotification(userData.token, props.notificationId)}
+            clickedBtn2={()=>deleteNotification(userData.token, props.notificationId)}
           />
         </Grid>
       </Grid>
-      <Grid container justifyContent="space-between" alignItems="center" spacing={1}>
-        <Grid item xs={4} sm={3}>
-          <Box m={2} fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-            {t("Route")}: {props.plecare} - {props.destinatie}
+      <Grid container justifyContent="center">
+        <Grid container item xs={6} sm={4} justifyContent='center'>
+          <Box m={1} fontWeight= {400} fontStyle='italic' textAlign={'center'} className={'Secondary-color'}>
+            <Box fontWeight={500}>{t("Route")}:</Box> {props.plecare} - {props.destinatie}
           </Box>
         </Grid>
-        <Grid item xs={4} sm={3}>
-          <Box m={2} fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-            {t("PickupAddress")} {props.pickUpAdress}
+        <Grid container item xs={6} sm={4} justifyContent='center'>
+          <Box m={1} fontWeight= {400} fontStyle='italic' textAlign={'center'} className={'Secondary-color'}>
+            <Box fontWeight={500}>{t("PickupAddress")}:</Box> {props.pickUpAdress}
           </Box>
         </Grid>
-        <Grid item xs={4} sm={3}>
-          <Box m={2} fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-            {t("Price")}: {props.price}
+        <Grid container item xs={6} sm={4} justifyContent='center'>
+          <Box m={1} fontWeight= {400} fontStyle='italic' textAlign={'center'} className={'Secondary-color'}>
+            <Box fontWeight={500}>{t("Price")}:</Box> {props.price}
           </Box>
         </Grid>
-      </Grid>
-      <Grid container justifyContent="space-between" alignItems="center" spacing={1}>
-        <Grid item xs={4} sm={3}>
-          <Box m={2} fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-            {t("PickupDate")} {props.dataPlecare}
+        <Grid container item xs={6} sm={4} justifyContent='center'>
+          <Box m={1} fontWeight= {400} fontStyle='italic' textAlign={'center'} className={'Secondary-color'}>
+            <Box fontWeight={500}>{t("PickupDate")}: </Box> {props.dataPlecare}
           </Box>
         </Grid>
-        <Grid item xs={4} sm={3}>
-          <Box m={2} fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-            {t("DriverCardDestinationAddress")} {props.dropOffAdress}
-          </Box>
-        </Grid>
-        <Grid item xs={4} sm={3}>
-          <Box m={2} fontWeight= {400} fontStyle='italic' className={'Secondary-color'}>
-            {t("DriverCardType")} {props.tipTransport}
+        <Grid container item xs={12} sm={4} justifyContent='center'>
+          <Box m={1} fontWeight= {400} fontStyle='italic' textAlign={'center'} className={'Secondary-color'}>
+            <Box fontWeight={500}>{t("DriverCardDestinationAddress")}:</Box> {props.dropOffAdress}
           </Box>
         </Grid>
       </Grid>
-      <Grid  container  direction="row" justifyContent="center">
-        <Box mt={3}>
-          <PrimaryButton variant="contained" onClick={detailsNotification()} className={'details-button'}>
-            {detailsBtn}
-          </PrimaryButton>
-        </Box>
-      </Grid>
-    </Box>
+    </Fragment>
   );
 };
 
 const mapDispatchToProps = dispatch => ({
-  markAsReadNotification: (token, notificationId) => dispatch(markAsReadNotification(token, notificationId)),
   deleteNotification: (token, notificationId) => dispatch(deleteNotification(token, notificationId)),
 });
 

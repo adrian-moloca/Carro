@@ -56,46 +56,14 @@ const Notifications =({notificationsData})=>{
         setNotifications(notificationsData);
     },[notificationsData, t])
 
-    // const readNotification = (index) => {
-    //     const temp = [...notifications];
-    //     temp.map((el, i)=>{
-    //         if(i===index)
-    //         {
-    //             el.isRead = true;
-    //         }
-    //         return el;
-    //     })
-    //     setNotifications(temp);
-    // }
-
-    // const handleReadStatus = (index) => {
-    //     const temp = [...notifications];
-    //     temp.map((el, i)=>{
-    //         if(i===index)
-    //         {
-    //             const prevStatus = el.isRead;
-    //             el.isRead = !prevStatus;
-    //         }
-    //         return el;
-    //     })
-    //     setNotifications(temp);
-    // }
-
-    // const deleteNotification=(index)=>{
-    //     const temp=[...notifications] 
-    //     temp.splice(index, 1);
-    //     setNotifications(temp);
-    // }
-
     return(
         <Container className='Primary-container-style'>
             <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t('Notifications')}</Box>
             <Grid container justifyContent='center'>
                 {notifications.map((not, index)=>{ 
+                    const date =  new Date(not.departureDate)
                     return  <Grid key={index} container item xs={12}>
-                                <Notification type={not.type} name={not.name} action={not.action} 
-                                            departure={not.departure} destination={not.destination} price={not.price} transportType={not.transportType} notificationId={not.id}
-                                            departureAddress={not.departureAddress} destinationAddress={not.destinationAddress} departureDate={not.departureDate} /* read={not.isRead} *//>
+                                <Notification type={not.type} name={not.name.replace(',', '')} departure={not.departure} destination={not.destination} price={not.price} notificationId={not.id} departureAddress={not.departureAddress} destinationAddress={not.destinationAddress} departureDate={date.getDate().toString() + '/' + (date.getMonth() + 1).toString() + '/' +date.getFullYear().toString()} packageName={not.packageName} packageId={not.packageId} interactionId={not.interactionId} rideId={not.rideId} read={not.isRead}/>
                             </Grid>
                 })}
             </Grid>
