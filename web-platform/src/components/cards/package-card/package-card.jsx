@@ -52,6 +52,35 @@ const PackageCard = ({userData, ...props}) =>{
         }).then((response)=>setStatus(response.data.data)).catch((error)=>console.log(error))
     }
 
+    /* const deliverPackage = (newStatus, rideId, statusId) => {
+        axios.put(data.baseUrl + '/rides/' + rideId + '/statuses/' + statusId, {
+            status: newStatus,
+            rejectReason: rejectReason
+        }, {
+            headers:{
+                'Authorization': `Bearer ${userData.token}`,
+            }
+        }).catch((error)=>console.log(error))
+    } */
+
+    const verifyCode = (code) => {
+        axios.get(data.baseUrl + '/packages/' + props.packageId + '/deliver-validation/' + code, {
+            headers:{
+                'Authorization': `Bearer ${userData.token}`,
+            }
+        }).catch((error)=>console.log(error))
+    }
+
+    const createDeliveryCode = (packageId) =>{
+        axios.post(data.baseUrl + '/packages/' + packageId + '/deliver-validation', {
+            message: 'Code for delivery is '
+        }, {
+            headers:{
+                'Authorization': `Bearer ${userData.token}`,
+            }
+        }).catch((error)=>console.log(error))
+    }
+
     const handleClick = () => {
         const temp = isFlipped;
         setIsFlipped(!temp);
@@ -113,7 +142,10 @@ const PackageCard = ({userData, ...props}) =>{
                             return(
                                 <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
                                     <Grid container item xs={10} justifyContent = 'center'>
-                                        <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                        <GreenCaroButton variant='contained' size='medium' onClick={()=>updateStatus(4, props.packageId, status.id)} fullWidth>{t('PickUp')}</GreenCaroButton>
+                                    </Grid>
+                                    <Grid container item xs={10} justifyContent = 'center'>
+                                        <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
                                     </Grid>
                                 </Grid>
                             )
@@ -121,7 +153,10 @@ const PackageCard = ({userData, ...props}) =>{
                             return(
                                 <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
                                     <Grid container item xs={10} justifyContent = 'center'>
-                                        <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                        <GreenCaroButton variant='contained' size='medium' onClick={()=>updateStatus(4, props.packageId, status.id)} fullWidth>{t('PickUp')}</GreenCaroButton>
+                                    </Grid>
+                                    <Grid container item xs={10} justifyContent = 'center'>
+                                        <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
                                     </Grid>
                                 </Grid>
                             )
@@ -139,6 +174,46 @@ const PackageCard = ({userData, ...props}) =>{
                                     </Grid>
                                     <Grid container item xs={12} justifyContent = 'center'>
                                         <Box my='5%' className='Secondary-color' fontSize='18px' fontWeight='500'>{status.rejectReason}</Box>
+                                    </Grid>
+                                </Grid>
+                            )
+                        case 8:
+                            return(
+                                <Grid container item xs={10} justifyContent = 'center'  spacing={2}>
+                                    <Grid container item xs={10} justifyContent = 'center'>
+                                        <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                    </Grid>
+                                </Grid>
+                            )
+                        case 9:
+                            return(
+                                <Grid container justifyContent = 'center' style={{marginBottom: '10px'}} spacing={1}>
+                                    <Grid container item xs={10} justifyContent = 'center'>
+                                        <Box fontWeight={20}>{t('PackageWasDeliveredBySender')}</Box>
+                                    </Grid>
+                                    <Grid container item xs={10} justifyContent = 'space-between'>
+                                        <Grid container item xs={12} sm={5} justifyContent = 'center'>
+                                            <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(5, props.packageId, props.status.id)} fullWidth>
+                                                {t("Yes")}
+                                            </GreenCaroButton>
+                                        </Grid>
+                                        <Grid container item xs={12} sm={5} justifyContent = 'center'>
+                                            <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(6, props.packageId, props.status.id)} fullWidth>
+                                                {t("No")}
+                                            </SecondaryButton>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid container item xs={10} justifyContent = 'center'>
+                                        <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                    </Grid>
+                                </Grid>
+                            )
+                        case 10:
+                            return(
+                                <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
+                                    <DeliverPackage sendMessage={()=>{createDeliveryCode(props.packageId)}} deliver={(code)=> verifyCode(code)}/>
+                                    <Grid container item xs={10} justifyContent = 'center'>
+                                        <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
                                     </Grid>
                                 </Grid>
                             )

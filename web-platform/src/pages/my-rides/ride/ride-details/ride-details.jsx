@@ -17,7 +17,6 @@ const RideDetails = (props) =>{
       }
   }
 
-    const[rideExists, setRideExists] = useState(true);
     const { t } = useTranslation();
 
     return(
@@ -56,7 +55,7 @@ const RideDetails = (props) =>{
                     </Grid>
                 </Grid>
               <Box my='2%' fontSize={20} justifyContent={"center"}>{t("Packages")}</Box>
-              <Grid container justifyContent='center'>
+              <Grid container justifyContent='center' spacing={1}>
                 <Packages rideId={props.rideId} token={props.token}/> 
               </Grid>
               </Box>

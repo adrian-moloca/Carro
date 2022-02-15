@@ -30,8 +30,8 @@ const DeliverPackage=(props)=>{
     return(
         <Fragment>
             <Grid container item xs={10} justifyContent = 'center'>
-                <GreenCaroButton variant='contained' size='medium' onClick={handleOpen} fullWidth>
-                    {t("Delivery")}
+                <GreenCaroButton variant='contained' size='medium' onClick={()=>{handleOpen(); props.sendMessage()}} fullWidth>
+                    {t("Deliver")}
                 </GreenCaroButton>
             </Grid>
             <Modal open={open} onClose={handleClose} className='modal'>
@@ -63,7 +63,7 @@ const DeliverPackage=(props)=>{
                                     <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("CloseButton")}</SecondaryButton>
                                 </Grid>
                                 <Grid container item xs={5} justifyContent='flex-end'>
-                                    <GreenCaroButton variant='contained' fullWidth>{t("DeliverButton")}</GreenCaroButton>
+                                    <GreenCaroButton variant='contained' onClick={()=>props.deliver(sms)} fullWidth>{t("DeliverButton")}</GreenCaroButton>
                                 </Grid>
                             </Grid>
                         </Box> 

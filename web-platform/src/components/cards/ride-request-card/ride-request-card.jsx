@@ -15,7 +15,8 @@ const RideRequestCard = ({userData, ...props}) =>{
     const [rideUserId, setRideUserId] = useState(props.rideUserId)
     const [statuses, setStatuses] = useState(props.statuses)
     const [interactions, setInteractions] = useState(props.interactions)
-    const [statusRequested, setStatusRequested] = useState(0)
+    const [isFlipped, setIsFlipped] = useState(false)
+    const [statusRequested, setStatusRequested] = useState(props.statuses[0].status)
 
     const {t} = useTranslation()
 
@@ -26,6 +27,11 @@ const RideRequestCard = ({userData, ...props}) =>{
         setStatuses(props.statuses)
         setInteractions(props.interactions)
     }, [props.name, props.rideId, props.rideUserId, props.statuses, props.interactions])
+
+     const handleClick = () => {
+        const temp = isFlipped;
+        setIsFlipped(!temp);
+    }
 
     const requestRide = (packageId, rideId, rideUserId) =>{
         axios.post(data.baseUrl + '/rides/' + rideId + '/statuses', {
@@ -68,8 +74,7 @@ const RideRequestCard = ({userData, ...props}) =>{
             if(statuses.length > 0 && Array.isArray(statuses)){
                 return(
                     <Fragment>
-                        {interactions.map(pack => {
-                            if(statuses.some(status => status.packageId === pack.packageId))
+                        {statuses.map(pack => {
                                 switch(statusRequested){
                                     case 1:
                                         return(
@@ -83,12 +88,12 @@ const RideRequestCard = ({userData, ...props}) =>{
                                         return(
                                             <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
                                                 <Grid container item xs={10} sm={4} justifyContent = 'center'>
-                                                    <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(1, rideId, pack.id)} fullWidth>
+                                                    <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(1, props.rideId, pack.id)} fullWidth>
                                                         {t("Approve")}
                                                     </GreenCaroButton>
                                                 </Grid>
                                                 <Grid container item xs={10} sm={4} justifyContent = 'center'>
-                                                    <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(2, rideId, pack.id)} fullWidth>
+                                                    <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(2, props.rideId, pack.id)} fullWidth>
                                                         {t("Refuse")}
                                                     </SecondaryButton>
                                                 </Grid>
@@ -96,14 +101,24 @@ const RideRequestCard = ({userData, ...props}) =>{
                                         )
                                     case 3:
                                         return(
-                                            <Grid container item xs={10} justifyContent = 'center'>
-                                                <Box my='10%' color='#00B4D8' fontSize='18px' fontWeight='500'>{t("Accepted")}</Box>
+                                            <Grid container justifyContent = 'center' style={{marginBottom: '10px'}} spacing={1}>
+                                                <Grid container item xs={10} justifyContent = 'center'>
+                                                    <GreenCaroButton variant='contained' size='medium' onClick={()=>updateStatus(4, props.rideId, pack.id)} fullWidth>{t('Delivery')}</GreenCaroButton>
+                                                </Grid>
+                                                <Grid container item xs={10} justifyContent = 'center'>
+                                                    <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                                </Grid>
                                             </Grid>
                                         )
                                     case 4:
                                         return(
-                                            <Grid container item xs={10} justifyContent = 'center'>
-                                                <Box my='10%' color='#00B4D8' fontSize='18px' fontWeight='500'>{t("Accepted")}</Box>
+                                            <Grid container justifyContent = 'center' style={{marginBottom: '10px'}} spacing={1}>
+                                                <Grid container item xs={10} justifyContent = 'center'>
+                                                    <GreenCaroButton variant='contained' size='medium' onClick={()=>updateStatus(4, props.rideId, pack.id)} fullWidth>{t('Delivery')}</GreenCaroButton>
+                                                </Grid>
+                                                <Grid container item xs={10} justifyContent = 'center'>
+                                                    <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                                </Grid>
                                             </Grid>
                                         )
                                     case 5:
@@ -123,20 +138,48 @@ const RideRequestCard = ({userData, ...props}) =>{
                                                 </Grid>
                                             </Grid>
                                         )
+                                    case 8:
+                                        return(
+                                            <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
+                                                <Grid container item xs={10} justifyContent = 'center'>
+                                                    <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                                </Grid>
+                                            </Grid>
+                                        )
+                                    case 9:
+                                        return(
+                                            <Grid container justifyContent = 'center' style={{marginBottom: '10px'}} spacing={1}>
+                                                <Grid container item xs={10} justifyContent = 'center'>
+                                                    <Box fontWeight={20}>{t('PackageWasPicked')}</Box>
+                                                </Grid>
+                                                <Grid container item xs={10} justifyContent = 'space-between'>
+                                                    <Grid container item xs={12} sm={5} justifyContent = 'center'>
+                                                        <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(5, props.rideId, props.statuses.id)} fullWidth>
+                                                            {t("Yes")}
+                                                        </GreenCaroButton>
+                                                    </Grid>
+                                                    <Grid container item xs={12} sm={5} justifyContent = 'center'>
+                                                        <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(6, props.rideId, props.statuses.id)} fullWidth>
+                                                            {t("No")}
+                                                        </SecondaryButton>
+                                                    </Grid>
+                                                </Grid>
+                                                <Grid container item xs={10} justifyContent = 'center'>
+                                                    <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                                </Grid>
+                                            </Grid>
+                                        )
+                                    case 10:
+                                        return(
+                                            <Grid container justifyContent = 'center' style={{marginBottom: '10px'}} spacing={1}>
+                                                <Grid container item xs={10} justifyContent = 'center'>
+                                                    <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                                </Grid>
+                                            </Grid>
+                                        )
                                     default:
                                         return 'default'
                                 }
-                                else
-                                    return(
-                                        <Fragment>
-                                            <Grid container item xs={8} style={{height: '50px'}} justifyContent = 'center'>
-                                                <GreenCaroButton variant='contained' size='small' fullWidth 
-                                                                onClick={()=>requestRide(pack.packageId, rideId, rideUserId)}>
-                                                    Cere transport                
-                                                </GreenCaroButton>
-                                            </Grid>   
-                                        </Fragment>         
-                                )
                         })}
                     </Fragment>
                 )
