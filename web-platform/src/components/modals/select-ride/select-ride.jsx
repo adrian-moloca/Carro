@@ -88,16 +88,48 @@ const SelectRide=(props)=>{
                                 else
                                     return(
                                         <Grid key ={id} container item xs={12} sm={5}  md={4} lg={4}  xl={4} justifyContent='center'>
-                                            <RideRequestCard
-                                                rideUserId={id}
-                                                rideId={rideId} 
-                                                name={pack.name}
+                                            <RideCard 
+                                                id={id}
+                                                rideId={rideId}
+                                                image={image} 
+                                                name={name}
+                                                transportType={transportType}
+                                                driverRate={rate}
+                                                plecare={departure}
+                                                destinatie={destination}
+                                                departureDate={departureDate}
+                                                departureAddress={departureAddress}
+                                                destinationAddress={destinationAddress}
+                                                estimatedTime={estimatedTime}
                                                 statuses={[]}
                                                 interactions= {[pack]}
                                                 ridesUpdate={props.ridesUpdate}
                                             />
                                         </Grid>                           
                                     )
+                            })}
+                            {statuses.map(pack => {
+                                return(
+                                    <Grid key ={id} container item xs={12} sm={5}  md={4} lg={4}  xl={4} justifyContent='center'>
+                                        <RideCard 
+                                            id={id}
+                                            rideId={rideId}
+                                            image={image} 
+                                            name={name}
+                                            transportType={transportType}
+                                            driverRate={rate}
+                                            plecare={departure}
+                                            destinatie={destination}
+                                            departureDate={departureDate}
+                                            departureAddress={departureAddress}
+                                            destinationAddress={destinationAddress}
+                                            estimatedTime={estimatedTime}
+                                            statuses={[pack]}
+                                            interactions= {[]}
+                                            ridesUpdate={props.ridesUpdate}
+                                        />
+                                    </Grid>                           
+                                )
                             })}
                         </MyGrid>
                     </Container>
