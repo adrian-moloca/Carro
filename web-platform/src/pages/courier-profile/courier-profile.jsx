@@ -53,7 +53,7 @@ const CourierProfile = ({courierData, userData, resetCourierDataChanged}) =>{
             headers:{
                 Authorization: 'Bearer ' + userData.token,
             }
-    }).then((response)=>console.log(response.data.data)).catch((error)=>{setHasErrorsGettingReviews(true); setComments([])})
+    }).then((response)=>setComments(response.data.data)).catch((error)=>{setHasErrorsGettingReviews(true); setComments([])})
   }
 
   useEffect(()=>{
@@ -121,7 +121,7 @@ const CourierProfile = ({courierData, userData, resetCourierDataChanged}) =>{
 
               />
             </Box>
-        <Box mt={3} display='flex' justifyContent='center' paddingX={35}>
+        <Box mt={3} display='flex' justifyContent='center' paddingX={10}>
           <CarroTextField  
             disabled={courierId===userData.id ? true : false}
             value={myComment}
