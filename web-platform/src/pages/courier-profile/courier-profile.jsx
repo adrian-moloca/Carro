@@ -42,10 +42,10 @@ const CourierProfile = ({courierData, userData, resetCourierDataChanged}) =>{
     courierData.courier.rides && courierData.courier.rides > 0 ? setRides(courierData.courier.rides) : setRides(0)
     courierData.courier.profileImage && courierData.courier.profileImage.length > 0 ? setProfileImage("data:image/png;base64," + courierData.courier.profileImage) : setProfileImage('')
     courierData.courier.userId && courierData.courier.userId.length > 0 ? setCourierId(courierData.courier.userId) : setCourierId('')
-    courierData.courier.car.registrationNumber && courierData.courier.car.registrationNumber.length > 0 ? setCarNumber(courierData.courier.car.registrationNumber) : setCarNumber('')
-    courierData.courier.car.brand && courierData.courier.car.brand.length > 0 ? setCarBrand(courierData.courier.car.brand) : setCarBrand('')
-    courierData.courier.car.color && courierData.courier.car.color.length > 0 ? setCarColor(courierData.courier.car.color) : setCarColor('')
-    courierData.courier.car.model && courierData.courier.car.model.length > 0 ? setCarModel(courierData.courier.car.model) : setCarModel('')
+    courierData.courier.car && courierData.courier.car.registrationNumber && courierData.courier.car.registrationNumber.length > 0 ? setCarNumber(courierData.courier.car.registrationNumber) : setCarNumber('')
+    courierData.courier.car && courierData.courier.car.brand && courierData.courier.car.brand.length > 0 ? setCarBrand(courierData.courier.car.brand) : setCarBrand('')
+    courierData.courier.car && courierData.courier.car.color && courierData.courier.car.color.length > 0 ? setCarColor(courierData.courier.car.color) : setCarColor('')
+    courierData.courier.car && courierData.courier.car.model && courierData.courier.car.model.length > 0 ? setCarModel(courierData.courier.car.model) : setCarModel('')
   }, [courierData])
 
   async function getComments (){

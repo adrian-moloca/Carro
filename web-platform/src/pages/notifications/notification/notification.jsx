@@ -61,14 +61,14 @@ const Notification = ({userData, markAsReadNotification, ...props}) =>{
             />
           </Collapse>
           <Box width={'100%'} display={'flex'} justifyContent= 'center' mt={2}>
-          {!expanded ? (  
+          {props.type !== 10 && props.type !== 11 ? !expanded ? (  
             <PrimaryButton variant="contained" onClick={()=>detailsNotification()}>
                  {t('Details')}
             </PrimaryButton>) : (
               <SecondaryButton variant="contained" onClick={()=>detailsNotification()}>
                   {t('LessDetails')}
               </SecondaryButton>
-          )}
+          ) : null}
           </Box>
         </Box>
     );
