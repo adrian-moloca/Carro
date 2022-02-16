@@ -22,11 +22,13 @@ return (dispatch) => {
 }
 }
 
-export const markAsReadNotification = (token, notificationId) => {
+export const markAsReadNotification = (token, notificationId, notificationStatus) => {
 
     return (dispatch) => {
         dispatch(markAsReadNotificationRequest);
-        axios.put(data.baseUrl + "/notifications/"+notificationId+"/is-read", {}, {
+        axios.put(data.baseUrl + "/notifications/"+notificationId+"/is-read", {
+                notificationStatus: notificationStatus
+        }, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                 }

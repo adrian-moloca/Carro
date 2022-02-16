@@ -216,6 +216,12 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                                                 </Grid>
                                             </Grid>
                                         )
+                                    case 11:
+                                        return(
+                                            <Grid container item xs={10} justifyContent = 'center'>
+                                                <Box my='10%' color='#00b4d8' fontSize='18px' fontWeight='500'>{t("Delivered")}</Box>
+                                            </Grid>
+                                        )
                                     default:
                                         return 'default'
                                 }
@@ -333,13 +339,19 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                                         </Grid>
                                     )
                                 case 10:
-                                        return(
-                                            <Grid container justifyContent = 'center' style={{marginBottom: '10px'}} spacing={1}>
-                                                <Grid container item xs={10} justifyContent = 'center'>
-                                                    <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
-                                                </Grid>
+                                    return(
+                                        <Grid container justifyContent = 'center' style={{marginBottom: '10px'}} spacing={1}>
+                                            <Grid container item xs={10} justifyContent = 'center'>
+                                                <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
                                             </Grid>
-                                        )
+                                        </Grid>
+                                    )
+                                case 11:
+                                    return(
+                                        <Grid container item xs={10} justifyContent = 'center'>
+                                            <Box my='10%' color='#00b4d8' fontSize='18px' fontWeight='500'>{t("Delivered")}</Box>
+                                        </Grid>
+                                    )
                                 default:
                                     return 'default'
                             }

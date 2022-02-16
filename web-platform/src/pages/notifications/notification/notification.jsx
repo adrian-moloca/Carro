@@ -20,7 +20,7 @@ const Notification = ({userData, markAsReadNotification, ...props}) =>{
     const detailsNotification = () => {
       setExpanded(!expanded)
       if(props.read === false) {
-        markAsReadNotification(userData.token, props.notificationId);
+        markAsReadNotification(userData.token, props.notificationId, !props.read);
       }
     }
     
@@ -40,6 +40,7 @@ const Notification = ({userData, markAsReadNotification, ...props}) =>{
                   price={props.price}
                   read={props.read}
                   expanded={expanded}
+                  markAsReadNotification={()=>markAsReadNotification(userData.token, props.notificationId, !props.read)}
           />
           <Collapse in={expanded} timeout={600}>
             <NotificationDetails
@@ -76,7 +77,7 @@ const Notification = ({userData, markAsReadNotification, ...props}) =>{
 
 const mapStateToProps = (state) => ({userData: state.userData})
 const mapDispatchToProps = dispatch => ({
-  markAsReadNotification: (token, notificationId) => dispatch(markAsReadNotification(token, notificationId)),
+  markAsReadNotification: (token, notificationId, notificationStatus) => dispatch(markAsReadNotification(token, notificationId, notificationStatus)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Notification);

@@ -217,6 +217,12 @@ const PackageCard = ({userData, ...props}) =>{
                                     </Grid>
                                 </Grid>
                             )
+                        case 11:
+                            return(
+                                <Grid container item xs={10} justifyContent = 'center'>
+                                    <Box my='10%' color='#00b4d8' fontSize='18px' fontWeight='500'>{t("Delivered")}</Box>
+                                </Grid>
+                            )
                         default:
                             return 'default';
                     }

@@ -5,9 +5,9 @@ import DeleteModal from '../../../../components/modals/deleteModal/DeleteModal';
 import { useTranslation } from "react-i18next";
 import i18n from "../../../../i18n/config";
 import { connect } from 'react-redux';
-import { markAsReadNotification, deleteNotification } from "../../../../redux/actions/NotificationsActions";
+import { deleteNotification } from "../../../../redux/actions/NotificationsActions";
 
-const NotificationsSummary = ({userData, markAsReadNotification, deleteNotification, ...props}) => {
+const NotificationsSummary = ({userData, deleteNotification, ...props}) => {
 
   const { t } = useTranslation();
 
@@ -49,7 +49,7 @@ const NotificationsSummary = ({userData, markAsReadNotification, deleteNotificat
           </Box>
         </Grid>
         <Grid container item xs={6} sm={3} justifyContent='center'>
-            <Button variant='text' onClick={() => markAsReadNotification(userData.token, props.notificationId)} className={props.read ? 'Secondary-color' : 'Primary-color'}>
+            <Button variant='text' onClick={() => props.markAsReadNotification()} className={props.read ? 'Secondary-color' : 'Primary-color'}>
                 {props.read ? t('MarkAsUnread') : t('MarkAsRead')}
             </Button>
         </Grid>
