@@ -47,13 +47,17 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
             headers:{
                 'Authorization': `Bearer ${userData.token}`,
             }
-        }).then((response)=>typeof props.statuses === 'object' ?  setStatuses(response.data.data) : setStatuses(statuses.concat(response.data.data))).catch((error)=>console.log(error))
+        }).then(()=>{props.statusUpdated()}).catch((error)=>console.log(error))
     }
     
     const handleClick = (e) => {
         e.preventDefault();
         setIsFlipped(!isFlipped);
     }
+
+    useEffect(()=>{
+        setStatuses(props.statuses)
+    }, [props.statuses])
 
     useEffect(()=>{}, [statuses])
 
@@ -74,7 +78,7 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
 
         if((props.interactions && props.interactions.length > 1) || (Array.isArray(statuses) && statuses.length > 1) ){
             return (
-                <SelectRide name={props.name} image={props.image} rate={props.rate ? props.rate : 0} id={props.id} rideId={props.rideId} departure={props.plecare} destination={props.destinatie} departureAddress={props.departureAddress} destinationaAddress={props.destinationaAddress} departureDate={props.departureDate} estimatedTime={props.estimatedTime} transportType={props.transportType} statuses={statuses} interactions={props.interactions} ridesUpdate={props.ridesUpdate}/>
+                <SelectRide name={props.name} image={props.image} rate={props.rate ? props.rate : 0} id={props.id} rideId={props.rideId} departure={props.plecare} destination={props.destinatie} departureAddress={props.departureAddress} destinationaAddress={props.destinationaAddress} departureDate={props.departureDate} estimatedTime={props.estimatedTime} transportType={props.transportType} statuses={statuses} interactions={props.interactions} statusUpdated={props.statusUpdated}/>
             )
         }
 
@@ -114,6 +118,7 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                     return(
                         <Fragment>
                             {statuses.map((pack)=>{
+                                console.log(pack.id)
                                 switch(pack.status){
                                     case 1:
                                         return(
@@ -179,10 +184,10 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                                         )
                                     case 7:
                                         return(
-                                            <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
-                                                <Grid container item xs={10} justifyContent = 'center'>
-                                                    <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
-                                                </Grid>
+                                            <Grid container item xs={8} justifyContent='center'>
+                                                <Box my='10%' className='Secondary-color' fontSize='18px' fontWeight='500'>
+                                                    {t('WaitingPickUp')}
+                                                </Box>
                                             </Grid>
                                         )
                                     case 8:
@@ -201,12 +206,12 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                                                 </Grid>
                                                 <Grid container item xs={10} justifyContent = 'space-between'>
                                                     <Grid container item xs={12} sm={5} justifyContent = 'center'>
-                                                        <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(5, props.rideId, props.statuses.id)} fullWidth>
+                                                        <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(5, props.rideId, pack.id)} fullWidth>
                                                             {t("Yes")}
                                                         </GreenCaroButton>
                                                     </Grid>
                                                     <Grid container item xs={12} sm={5} justifyContent = 'center'>
-                                                        <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(6, props.rideId, props.statuses.id)} fullWidth>
+                                                        <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(6, props.rideId, pack.id)} fullWidth>
                                                             {t("No")}
                                                         </SecondaryButton>
                                                     </Grid>
@@ -265,12 +270,12 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                                     return(
                                         <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
                                             <Grid container item xs={10} sm={4} justifyContent = 'center'>
-                                                <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(1, props.rideId, props.statuses.id)} fullWidth>
+                                                <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(1, props.rideId, statuses.id)} fullWidth>
                                                     {t("Approve")}
                                                 </GreenCaroButton>
                                             </Grid>
                                             <Grid container item xs={10} sm={4} justifyContent = 'center'>
-                                                <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(2, props.rideId, props.statuses.id)} fullWidth>
+                                                <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(2, props.rideId, statuses.id)} fullWidth>
                                                     {t("Refuse")}
                                                 </SecondaryButton>
                                             </Grid>
@@ -280,7 +285,7 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                                     return(
                                         <Grid container justifyContent = 'center' style={{marginBottom: '10px'}} spacing={1}>
                                             <Grid container item xs={10} justifyContent = 'center'>
-                                                <GreenCaroButton variant='contained' size='medium' onClick={()=>updateStatus(4, props.rideId, props.statuses.id)} fullWidth>{t('Delivery')}</GreenCaroButton>
+                                                <GreenCaroButton variant='contained' size='medium' onClick={()=>updateStatus(4, props.rideId, statuses.id)} fullWidth>{t('Delivery')}</GreenCaroButton>
                                             </Grid>
                                             <Grid container item xs={10} justifyContent = 'center'>
                                                 <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
@@ -291,7 +296,7 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                                     return(
                                         <Grid container justifyContent = 'center' style={{marginBottom: '10px'}} spacing={1}>
                                             <Grid container item xs={10} justifyContent = 'center'>
-                                                <GreenCaroButton variant='contained' size='medium' onClick={()=>updateStatus(4, props.rideId, props.statuses.id)} fullWidth>{t('Delivery')}</GreenCaroButton>
+                                                <GreenCaroButton variant='contained' size='medium' onClick={()=>updateStatus(4, props.rideId, statuses.id)} fullWidth>{t('Delivery')}</GreenCaroButton>
                                             </Grid>
                                             <Grid container item xs={10} justifyContent = 'center'>
                                                 <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
@@ -317,10 +322,10 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                                     )
                                 case 7:
                                         return(
-                                            <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
-                                                <Grid container item xs={10} justifyContent = 'center'>
-                                                    <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
-                                                </Grid>
+                                            <Grid container item xs={8} justifyContent='center'>
+                                                <Box my='10%' className='Secondary-color' fontSize='18px' fontWeight='500'>
+                                                    {t('WaitingPickUp')}
+                                                </Box>
                                             </Grid>
                                         )
                                 case 8:
@@ -339,12 +344,12 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                                             </Grid>
                                             <Grid container item xs={10} justifyContent = 'space-between'>
                                                 <Grid container item xs={12} sm={5} justifyContent = 'center'>
-                                                    <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(5, props.rideId, props.statuses.id)} fullWidth>
+                                                    <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(5, props.rideId, statuses.id)} fullWidth>
                                                         {t("Yes")}
                                                     </GreenCaroButton>
                                                 </Grid>
                                                 <Grid container item xs={12} sm={5} justifyContent = 'center'>
-                                                    <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(6, props.rideId, props.statuses.id)} fullWidth>
+                                                    <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(6, props.rideId, statuses.id)} fullWidth>
                                                         {t("No")}
                                                     </SecondaryButton>
                                                 </Grid>

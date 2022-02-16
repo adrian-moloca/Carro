@@ -20,6 +20,8 @@ const MyPackages = ({myPackagesData, userData, deletePackage, closePackage}) => 
     myPackagesData.packages.length > 0 ? setPackagesState(myPackagesData.packages) : setPackagesState([])
   }, [myPackagesData])
 
+  useEffect(()=>{},[packagesState])
+
   return (
         <Container className='Primary-container-style'>
           <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t("MyPackages")}</Box>

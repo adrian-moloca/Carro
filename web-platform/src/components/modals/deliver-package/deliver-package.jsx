@@ -63,7 +63,7 @@ const DeliverPackage=(props)=>{
                                     <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("CloseButton")}</SecondaryButton>
                                 </Grid>
                                 <Grid container item xs={5} justifyContent='flex-end'>
-                                    <GreenCaroButton variant='contained' onClick={()=>props.deliver(sms)} fullWidth>{t("DeliverButton")}</GreenCaroButton>
+                                    <GreenCaroButton variant='contained' onClick={()=>{props.deliver(sms); handleClose()}} fullWidth>{t("DeliverButton")}</GreenCaroButton>
                                 </Grid>
                             </Grid>
                         </Box> 

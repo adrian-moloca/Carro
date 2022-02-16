@@ -54,7 +54,7 @@ const GetRide = (props) =>{
                 estimatedTime={estimatedTime}
                 statuses={statuses}
                 interactions= {interactions}
-                ridesUpdate={props.ridesUpdate}
+                statusUpdated={props.statusUpdated}
             />
           </Grid>
     );

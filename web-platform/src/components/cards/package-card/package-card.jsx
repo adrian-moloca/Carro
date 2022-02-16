@@ -30,6 +30,10 @@ const PackageCard = ({userData, ...props}) =>{
 
     useEffect(()=>{}, [status])
 
+    useEffect(()=>{
+        setStatus(props.status)
+    }, [props.status])
+
     const requestPackage = (rideId, packageId, packageUserId) =>{
         axios.post(data.baseUrl + '/packages/' + packageId + '/statuses', {
             rideId: rideId,
@@ -49,7 +53,7 @@ const PackageCard = ({userData, ...props}) =>{
             headers:{
                 'Authorization': `Bearer ${userData.token}`,
             }
-        }).then((response)=> {setStatus(response.data.data); props.setUpdateStatus(false)}).catch((error)=>console.log(error))
+        }).then((response)=> props.statusUpdated()).catch((error)=>console.log(error))
     } 
 
     /* const deliverPackage = (newStatus, rideId, statusId) => {
@@ -95,6 +99,7 @@ const PackageCard = ({userData, ...props}) =>{
 
     // IMPLEMENTARE MODAL - ADAUGA PACHET SI ADAUGA TRANSPORT - DATE PREPOPULATE DIN SEARCH VALUES
 
+    useEffect(()=>{}, [props])
     
 
     function getFrontButtons(){
@@ -179,10 +184,10 @@ const PackageCard = ({userData, ...props}) =>{
                             )
                         case 7:
                             return(
-                                <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
-                                    <Grid container item xs={10} justifyContent = 'center'>
-                                        <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
-                                    </Grid>
+                                <Grid container item xs={8} justifyContent='center'>
+                                    <Box my='10%' className='Secondary-color' fontSize='18px' fontWeight='500'>
+                                        {t('WaitingDelivery')}
+                                    </Box>
                                 </Grid>
                             )
                         case 8:
@@ -201,12 +206,12 @@ const PackageCard = ({userData, ...props}) =>{
                                     </Grid>
                                     <Grid container item xs={10} justifyContent = 'space-between'>
                                         <Grid container item xs={12} sm={5} justifyContent = 'center'>
-                                            <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(5, props.packageId, props.status.id)} fullWidth>
+                                            <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(5, props.packageId, status.id)} fullWidth>
                                                 {t("Yes")}
                                             </GreenCaroButton>
                                         </Grid>
                                         <Grid container item xs={12} sm={5} justifyContent = 'center'>
-                                            <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(6, props.packageId, props.status.id)} fullWidth>
+                                            <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(6, props.packageId, status.id)} fullWidth>
                                                 {t("No")}
                                             </SecondaryButton>
                                         </Grid>

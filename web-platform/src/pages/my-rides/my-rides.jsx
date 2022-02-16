@@ -18,6 +18,8 @@ const MyRides = ({myRidesData, userData, deleteRide, closeRide}) => {
     myRidesData.rides.length > 0 ? setRidesState(myRidesData.rides) : setRidesState([])
   }, [myRidesData])
 
+  useEffect(()=>{}, [ridesState])
+
   return (
     <Container className={'Primary-container-style'} >
       <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>
