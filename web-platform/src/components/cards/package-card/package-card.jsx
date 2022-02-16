@@ -49,8 +49,8 @@ const PackageCard = ({userData, ...props}) =>{
             headers:{
                 'Authorization': `Bearer ${userData.token}`,
             }
-        }).then((response)=>setStatus(response.data.data)).catch((error)=>console.log(error))
-    }
+        }).then((response)=> {setStatus(response.data.data); props.setUpdateStatus(false)}).catch((error)=>console.log(error))
+    } 
 
     /* const deliverPackage = (newStatus, rideId, statusId) => {
         axios.put(data.baseUrl + '/rides/' + rideId + '/statuses/' + statusId, {
