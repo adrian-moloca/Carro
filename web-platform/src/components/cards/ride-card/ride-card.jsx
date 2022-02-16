@@ -177,6 +177,14 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                                                 </Grid>
                                             </Grid>
                                         )
+                                    case 7:
+                                        return(
+                                            <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
+                                                <Grid container item xs={10} justifyContent = 'center'>
+                                                    <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                                </Grid>
+                                            </Grid>
+                                        )
                                     case 8:
                                         return(
                                             <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
@@ -307,6 +315,14 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                                             </Grid>
                                         </Grid>
                                     )
+                                case 7:
+                                        return(
+                                            <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
+                                                <Grid container item xs={10} justifyContent = 'center'>
+                                                    <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
+                                                </Grid>
+                                            </Grid>
+                                        )
                                 case 8:
                                         return(
                                             <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
