@@ -45,8 +45,9 @@ import CookiesPolicy from '../../pages/footer-pages/cookies-policy/cookiesPolicy
 import RidesDetails from '../../pages/admin-panel/rides-details/rides-details';
 import './Routing.css';
 import { connect } from 'react-redux';
+import { fetchNotifications } from '../../redux/actions/NotificationsActions';
 
-const Routes = ({data}) => {
+const Routes = ({data, fetchNotifications}) => {
     const [collapsed, setCollapsed] = useState(false);
     const onCollapse = () => {
         setCollapsed(!collapsed);
@@ -72,6 +73,10 @@ const Routes = ({data}) => {
             } 
         }
     }
+
+    useEffect(()=>{
+        fetchNotifications(data.token)
+    }, [window.location.pathname])
     
 
     // if(isLoggedIn === false) {
@@ -150,5 +155,6 @@ const Routes = ({data}) => {
 }
 
 const mapStateToProps = state => ({data: state.userData})
+const mapDispatchToProps = (dispatch) => ({fetchNotifications: (token) => dispatch(fetchNotifications(token))})
 
-export default connect(mapStateToProps, null)(Routes);
+export default connect(mapStateToProps, mapDispatchToProps)(Routes);
