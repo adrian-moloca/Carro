@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Grid} from '@material-ui/core';
+import {Avatar, Box, Grid} from '@material-ui/core';
 import {Rating} from '@material-ui/lab';
 import useStyles from './DriverCardNotificationsStyle';
 import { useTranslation } from "react-i18next";
@@ -12,9 +12,9 @@ const DriverCardNotifications =(props)=>{
         <Box display='flex' p={1} borderRadius='10px' boxShadow={3}>
             <Grid container justifyContent='center'>
                 <Grid container item xs={12} sm={6} justifyContent='center'>
-                    <img src={props.image} className={classes.profileImg} alt={""}/>
+                    <Avatar src={props.image} className={classes.profileImg} alt={""}/>
                 </Grid>
-                <Grid container item xs={12} sm={6} justifyContent='center'>
+                <Grid container item xs={12} sm={6} justifyContent='center' alignItems='center'>
                     <Box fontSize='20px' fontWeight='500'>{props.name}</Box>
                 </Grid>
                 <Grid container item xs={12} sm={6} justifyContent='center'>

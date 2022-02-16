@@ -151,7 +151,7 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
                     <SeeProfileBtn onClick={()=>{
                             fetchCourierProfile(userData.id, userData.token)
                             setTimeout(()=>redirectAfterFetchCourierProfile(), 500)
-                    }} style={{marginTop: window.innerWidth <= 650 ? "40px" : 0}} disabled={optionalInfo.car && optionalInfo.car.brand.length > 0 ? false : true}>
+                    }} style={{marginTop: window.innerWidth <= 650 ? "40px" : 0}}>
                             {t("ViewProfile")}
                     </SeeProfileBtn>
                 </Grid>
