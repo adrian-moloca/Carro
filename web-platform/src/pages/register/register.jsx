@@ -212,7 +212,7 @@ const Register = ({createNewUser, data}) => {
           {/* </Link> */}
         </Grid>
         <Grid container item xs={ 10 } justifyContent='center' style={{marginBottom:"15px"}}>
-          {hasErrorsRegister.messages.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el}</Box>)})}
+          {hasErrorsRegister.messages.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el.message}</Box>)})}
         </Grid>
       </Grid>
       </Box>

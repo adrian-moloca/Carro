@@ -79,7 +79,7 @@ const Login = ({fetchLogin, rememberMeToggle, data}) => {
                 </PrimaryButton>
             </Grid>
             <Grid container item xs={ 10 } justifyContent='center' style={{marginBottom:"15px"}}>
-              {hasErrorsLogin.messages.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el}</Box>)})}
+              {hasErrorsLogin.messages.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el.message}</Box>)})}
             </Grid>
         </Grid>
         <Box display='flex' justifyContent='center' mt='4%'>

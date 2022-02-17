@@ -23,7 +23,7 @@ const OptionalInformation = ({userData, getUserOptionalInfo})=>{
     const [onEditMode, setOnEditMode] = useState(false);
     const [inUpdateDataHasErrors, setInUpdateDataHasErrors] = useState(false);
     const [optionalInfoChanged, setOptionalInfoChanged] = useState(false);
-
+    const [errorsOnUpdate, setErrorsOnUpdate] = useState([])
 
     useEffect(()=>{
         userData.optionalInfo.languages && userData.optionalInfo.languages.length > 0 ? setLanguages(userData.optionalInfo.languages) : setLanguages('')
@@ -49,13 +49,7 @@ const OptionalInformation = ({userData, getUserOptionalInfo})=>{
                 headers:{
                     'Authorization': `Bearer ${userData.token}`,
                 }
-            }).then(()=>getUserOptionalInfo(userData.token)).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)})
-        }
-        if(!inUpdateDataHasErrors){ 
-                setOnEditMode(false);
-        } else {
-                alert('Update has errors, try later please.');
-                setInUpdateDataHasErrors(false);
+            }).then(()=>{getUserOptionalInfo(userData.token); setOnEditMode(false);}).catch((error)=>{setErrorsOnUpdate(error.response.data.errors)})
         }
     }
 
@@ -97,7 +91,10 @@ const OptionalInformation = ({userData, getUserOptionalInfo})=>{
                         <Create fontSize='small'/>
                     </PrimaryButton>
             )}
-          </Grid>  
+          </Grid>
+          <Grid container item xs={ 10 } xl={10} justifyContent='center' style={{marginBottom:"15px"}}>
+              {onEditMode ? errorsOnUpdate.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el.message}</Box>)}) : null}
+          </Grid>    
         </Fragment>
     );
 }

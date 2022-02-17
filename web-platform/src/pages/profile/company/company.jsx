@@ -29,8 +29,8 @@ const Company = ({userData, getUserCompany})=>{
     const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState(''); 
 
     const [onEditMode, setOnEditMode] = useState(false);
-    const [inUpdateDataHasErrors, setInUpdateDataHasErrors] = useState(false);
     const [companyChanged, setCompanyChanged] = useState(false);
+    const [errorsOnUpdate, setErrorsOnUpdate] = useState([]);
 
     useEffect(()=>{
         userData.company.isCompany ? setIsCompany(userData.company.isCompany) : setIsCompany(false)
@@ -71,13 +71,7 @@ const Company = ({userData, getUserCompany})=>{
                 headers:{
                     'Authorization': `Bearer ${userData.token}`,
                 }
-            }).then(()=>getUserCompany(userData.token)).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)})
-        }
-        if(!inUpdateDataHasErrors){ 
-                setOnEditMode(false);
-        } else {
-                alert('Update has errors, try later please.');
-                setInUpdateDataHasErrors(false); 
+            }).then(()=>{getUserCompany(userData.token); setOnEditMode(false)}).catch((error)=>{setErrorsOnUpdate(error.response.data.errors)})
         }
     }
 
@@ -98,13 +92,13 @@ const Company = ({userData, getUserCompany})=>{
             </Box>
           </Grid>
           <Grid container item sm={11}>
-            <CarroTextField value={name} variant="outlined" label={t("CompanyName")} onChange={(e)=>{setName(e.target.value); setCompanyChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
+            <CarroTextField required value={name} variant="outlined" label={t("CompanyName")} onChange={(e)=>{setName(e.target.value); setCompanyChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 11 : 5}>
-            <CarroTextField value={cui} variant="outlined" label={t("TaxIdentificationNumber")} onChange={(e)=>{setCUI(e.target.value); setCompanyChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
+            <CarroTextField required value={cui} variant="outlined" label={t("TaxIdentificationNumber")} onChange={(e)=>{setCUI(e.target.value); setCompanyChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 11 : 5}>
-            <CarroTextField value={address} variant="outlined" label={t("Address")} onChange={(e)=>{setAddress(e.target.value); setCompanyChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
+            <CarroTextField required value={address} variant="outlined" label={t("Address")} onChange={(e)=>{setAddress(e.target.value); setCompanyChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 11 : 5} justifyContent="center">
             <CarroAutocomplete label={t("Country")} disabled = {!onEditMode} size="small" value={country} options={getCountries()} onChange={(e, newValue)=>{handleChangeCountry(newValue); setCompanyChanged(true)}}/>
@@ -113,7 +107,7 @@ const Company = ({userData, getUserCompany})=>{
             <CarroAutocomplete disabled = {!onEditMode} options={getCities(country)} size="small" label={t("City")} value={city} onChange={(e, newValue)=>{handleChangeCity(newValue); setCompanyChanged(true)}}/>
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 11 : 5}>
-            <CarroTextField value={email} variant="outlined" label={t("CompanyEmail")} onChange={(e)=>{setEmail(e.target.value); setCompanyChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
+            <CarroTextField required value={email} variant="outlined" label={t("CompanyEmail")} onChange={(e)=>{setEmail(e.target.value); setCompanyChanged(true)}} size="small" fullWidth disabled = {!onEditMode}/>
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 11 : 5}>
             <PhoneTextField value={inputValuePhoneNumber}
@@ -125,7 +119,8 @@ const Company = ({userData, getUserCompany})=>{
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 11 : 5}  justifyContent="center"> 
             {onEditMode ? (
-                    <PrimaryButton variant='contained' onClick={()=>updateChangedData()} style={{height:35, width:250, marginTop:"10px"}} fullWidth>
+                    <PrimaryButton disabled={isCompany && name && cui && address && country && city && email && inputValuePhoneNumber && countryPhoneCode ? false : true}
+                        variant='contained' onClick={()=>updateChangedData()} style={{height:35, width:250, marginTop:"10px"}} fullWidth>
                         <Box px='10px'>{t('SaveButton')}</Box>
                         <SaveAlt fontSize='small'/>
                     </PrimaryButton>
@@ -135,7 +130,10 @@ const Company = ({userData, getUserCompany})=>{
                         <Create fontSize='small'/>
                     </PrimaryButton>
             )}
-          </Grid>  
+          </Grid>
+          <Grid container item xs={ 10 } xl={10} justifyContent='center' style={{marginBottom:"15px"}}>
+              {onEditMode ? errorsOnUpdate.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el.message}</Box>)}) : null}
+          </Grid>    
         </Fragment>
     );
 }
