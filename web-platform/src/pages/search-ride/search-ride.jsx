@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import GetRide from "./get-ride";
 import { useHistory } from "react-router-dom";
 
-const SearchRide = ({ridesData, myPackagesData, userData, courierData, searchRides, clean}) => {
+const SearchRide = ({ridesData,  userData, courierData, searchRides, clean}) => {
 
   const history = useHistory();
 
@@ -43,6 +43,8 @@ const SearchRide = ({ridesData, myPackagesData, userData, courierData, searchRid
     Array(ridesData.rides).length > 0 ? setRidesState(ridesData.rides) : setRidesState([])
     console.log(rides.currentData())
   }, [ridesData.rides])
+
+  useEffect(()=>{}, [ridesState])
 
 
   useEffect(()=>{    
@@ -106,7 +108,22 @@ const SearchRide = ({ridesData, myPackagesData, userData, courierData, searchRid
       </Box>
       <Grid container justifyContent='space-around'>
       { ridesData.rides.length > 0 ? 
-        rides.currentData().map((ride)=> <GetRide key={ride.rideId} name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses} interactions={ride.interactions.filter((el) => !ride.statuses.some(pack => pack.packageId === el.packageId))} ridesUpdate={()=>searchForRides()}/>) : notFoundAnyRide()}
+        rides.currentData().map((ride)=> <GetRide
+                                            key={ride.rideId}
+                                            name={ride.name}
+                                            image={ride.image}
+                                            rate={ride.rate ? ride.rate : 0}
+                                            id={ride.id} rideId={ride.rideId}
+                                            departure={ride.departure}
+                                            destination={ride.destination}
+                                            departureAddress={ride.departureAddress}
+                                            destinationaAddress={ride.destinationaAddress}
+                                            departureDate={ride.departureDate}
+                                            estimatedTime={ride.estimatedTime}
+                                            transportType={ride.transportType}
+                                            statuses={ride.statuses}
+                                            interactions={ride.interactions.filter((el) => !ride.statuses.some(pack => pack.packageId === el.packageId))}
+                                            statusUpdated={()=>searchRides(departureCountry, departureCity, destinationCountry, destinationCity, userData.token)}/>) : notFoundAnyRide()}
       </Grid>
       <Box display="flex" justifyContent="space-evenly" mt="3%" mb="3%">
           <Box width='1' mt='5%' display='flex' justifyContent='center'>
@@ -131,6 +148,6 @@ const mapDispatchToProps = (dispatch) => {
     clean: () => dispatch(clean()),
   }
 }
-const mapStateToProps = state => ({ridesData: state.ridesData, myPackagesData: state.myPackagesData, userData: state.userData, courierData: state.courierData})
+const mapStateToProps = state => ({ridesData: state.ridesData, userData: state.userData, courierData: state.courierData})
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchRide);

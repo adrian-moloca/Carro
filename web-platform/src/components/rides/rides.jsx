@@ -11,13 +11,16 @@ const Rides = (props) =>{
     const[loading, setLoading] = useState(true); 
     const {t} = useTranslation();
 
-    useEffect(()=>{
+    const getDrivers = () =>{
         axios.get(data.baseUrl+'/my-packages/'+props.packageId+"/drivers", {
             headers:{
                 'Authorization': `Bearer ${props.token}`,
             }
         }).then((response)=>{setDriversUnder(response.data.data); setLoading(false);}).catch((error)=>{setLoading(false);})
+    }
 
+    useEffect(()=>{
+        getDrivers()
     }, [])
 
     useEffect(()=>{}, [driversUnder]);
@@ -48,6 +51,7 @@ const Rides = (props) =>{
                                         interactions={driver.interactions}
                                         packageExists= {true}
                                         rejectReason={driver.status}
+                                        statusUpdated={()=>getDrivers()}
                                     />
                                 </Grid>
                     )) : (

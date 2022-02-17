@@ -61,6 +61,8 @@ const SelectRide=(props)=>{
         setID(props.id)
     }, [props.id, props.rideId, props.image, props.name, props.rate, props.transportType, props.departure, props.destination, props.departureAddress, props.destinationAddress, props.departureDate,props.estimatedTime, props.statuses, props.interactions]);
 
+    useEffect(()=>{}, [statuses, interactions])
+    
     const handleOpen = ()=>{
         setOpen(true)
     }
@@ -103,7 +105,7 @@ const SelectRide=(props)=>{
                                                 estimatedTime={estimatedTime}
                                                 statuses={[]}
                                                 interactions= {[pack]}
-                                                ridesUpdate={props.ridesUpdate}
+                                                statusUpdated={props.statusUpdated}
                                             />
                                         </Grid>                           
                                     )
@@ -126,7 +128,7 @@ const SelectRide=(props)=>{
                                             estimatedTime={estimatedTime}
                                             statuses={[pack]}
                                             interactions= {[]}
-                                            ridesUpdate={props.ridesUpdate}
+                                            statusUpdated={props.statusUpdated}
                                         />
                                     </Grid>                           
                                 )

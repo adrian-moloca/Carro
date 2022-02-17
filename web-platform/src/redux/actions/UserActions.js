@@ -65,21 +65,6 @@ axios.post(data.baseUrl+"/identity/register",{
 })
 .then(response => {
     dispatch(createNewUserSuccess(jwt_decode(response.data.token), response.data.token, response.data.refreshToken));
-    setTimeout(() => {
-        axios.post(data.baseUrl+"/phone-validation", {
-            message: "Codul pentru verificarea numarului de telefon"
-        },{
-            headers: {
-                'Authorization': `Bearer ${response.data.token}`,
-            }
-        })
-        .then(res => {
-            console.log('validation: ', res);
-        })
-        .catch(err => {
-            console.log('error from validation: ', err);
-        })
-    }, 500)
 }).catch(error => {
     const errorMsg = error;
     dispatch(createNewUserFailure(errorMsg))

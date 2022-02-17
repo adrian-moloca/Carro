@@ -40,12 +40,9 @@ const MandatoryDocuments = ({userData, getProfileStatus})=>{
     }
 
     useEffect(()=>{
-        uploadMandatoryDoc()
+        if(mandatoryDocuments.length > 0)
+            uploadMandatoryDoc()
     }, [mandatoryDocuments])
-
-    useEffect(()=> {
-        getProfileStatus(userData.token)
-    }, [])
 
     useEffect(()=>{}, [userData.profileStatus])
 

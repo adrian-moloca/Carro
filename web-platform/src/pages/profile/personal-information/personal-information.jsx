@@ -14,6 +14,7 @@ import { getCountries , getCities} from '../../../utils/Functions/countries-city
 import { phoneValidator, mailValidator } from '../../../utils/Functions/input-validators';
 import axios from 'axios';
 import utilData from '../../../utils/constants';
+import PhoneNumberValidation from '../../../components/modals/phone-number-validation/phone-number-validation';
 
 const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=>{
     
@@ -32,32 +33,6 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
     const [onEditMode, setOnEditMode] = useState(false);
     const [inUpdateDataHasErrors, setInUpdateDataHasErrors] = useState(false);
     const [personalInfoChanged, setPersonalInfoChanged] = useState(false);
-
-    async function getValidationCode(){
-        setTimeout(() => {
-          axios.post(utilData.baseUrl+"/phone-validation", {
-              message: "Codul pentru verificarea numarului de telefon"
-          },{
-              headers: {
-                  'Authorization': `Bearer ${userData.token}`,
-              }
-          })
-          .then(res => {
-              console.log('validation: ', res);
-          })
-          .catch(err => {
-              console.log('error from validation: ', err);
-          })
-      }, 500)
-    } 
-
-    useEffect(()=>{
-        getUserPersonalInfo(userData.token)
-    }, [onEditMode])
-
-    useEffect(()=>{
-        getProfileStatus(userData.token)      
-    }, [])
 
     useEffect(()=>{
         userData.personalInfo.email && userData.personalInfo.email.length > 0 ? setEmail(userData.personalInfo.email) : setEmail('')
@@ -93,7 +68,7 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
                 headers:{
                     'Authorization': `Bearer ${userData.token}`,
                 }
-            }).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)})
+            }).then(()=>getUserPersonalInfo(userData.token)).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)})
         }
         if(!inUpdateDataHasErrors){ 
                 setOnEditMode(false);
@@ -120,12 +95,8 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
                             error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
                             disabled={!onEditMode} size="small"/>
             {!Boolean(userData.profileStatus.isPhoneNumberValidated).valueOf() && !onEditMode ?  (
-                            <Box color={"red"} fontWeight={400} fontSize={18} textAlign={"left"} width={"100%"} marginBottom={"5px"}> 
-                              {t('NumberNotValidated')+' '} 
-                              <Link to='/register/phone-number-verification' onClick={()=> getValidationCode()} style={{color:"red", fontWeight:500}}>
-                                {t('VerifyNow')}
-                              </Link>
-                            </Box>):null}
+                            <PhoneNumberValidation/>
+                            ):null}
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 10 : 5}>
             <CarroDatePicker value={dateOfBirth} onChange={(date) =>{ setDateOfBirth(date); setPersonalInfoChanged(true) }} format='dd/MM/yyyy' views={["year", "month", "date"]}

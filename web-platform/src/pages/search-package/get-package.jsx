@@ -19,6 +19,8 @@ const GetPackage = (props) =>{
     const [status, setStatus] = useState(props.status);
     const [interactions, setInteractions] = useState(props.interactions);
 
+    useEffect(()=>{}, [props])
+
 
     useEffect(()=>{
         setDeparture(props.departure);
@@ -56,7 +58,9 @@ const GetPackage = (props) =>{
                 status= {status} 
                 interactions={interactions} 
                 packageSpecialMention={packageSpecialMention}
-                packageType={packageType}/>
+                packageType={packageType}
+                statusUpdated={props.statusUpdated}
+            />
           </Grid>
     );
 }

@@ -80,12 +80,12 @@ const AddPackage = ({data, packageData, createNewPackage}) => {
           return false
       case 2:
         if(packageSize===3)
-           if(packageSize && currency && weight && width && height && length && smallDescription && price && description && !hasErrors)
+           if(packageSize && currency && width && height && length && smallDescription && description && !hasErrors)
               return true
            else
               return false
         else
-           if(packageSize && currency && weight && smallDescription && price && description && !hasErrors)
+           if(packageSize && currency && smallDescription && description && !hasErrors)
               return true
            else
               return false

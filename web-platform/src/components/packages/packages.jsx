@@ -11,18 +11,19 @@ const Packages = (props) =>{
     const [rejectReason, setRejectReason] = useState('');
     const [packagesUnder, setPackagesUnder] = useState([]);
     const [loading, setLoading] = useState(true)
-    const [updateStatus, setUpdateStatus] = useState(false);
     const {t} = useTranslation();
 
-    useEffect(()=>{
-        if(updateStatus == false) {
-            axios.get(data.baseUrl+'/my-rides/'+props.rideId+"/packages", {
+    const getPackagesUnder = ( ) =>{
+        axios.get(data.baseUrl+'/my-rides/'+props.rideId+"/packages", {
                 headers:{
                     'Authorization': `Bearer ${props.token}`,
                 }
-            }).then((response)=>{setPackagesUnder(response.data.data); setLoading(false); setUpdateStatus(true)}).catch((error)=>{setLoading(false);})
-        }
-    }, [setUpdateStatus])
+            }).then((response)=>{setPackagesUnder(response.data.data); setLoading(false);}).catch((error)=>{setLoading(false);})
+    }
+
+    useEffect(()=>{
+        getPackagesUnder()    
+    }, [])
 
     useEffect(()=>{}, [packagesUnder])
 
@@ -48,10 +49,11 @@ const Packages = (props) =>{
                             departureAddress={pack.departureAddress} 
                             destinationAddress={pack.destinationAddress} 
                             status= {pack.status} 
-                            setUpdateStatus={setUpdateStatus}
                             interactions={pack.interactions} 
                             packageSpecialMention={pack.packageSpecialMention}
-                            packageType={pack.packageType}/>
+                            packageType={pack.packageType}
+                            statusUpdated={()=>getPackagesUnder()}
+                        />
                     </Grid>
            )) : (
             <Grid container item xs={12} justifyContent='center' style={{height: '50px'}}>

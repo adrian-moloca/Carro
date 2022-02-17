@@ -13,14 +13,14 @@ import axios from "axios";
 import {Close, ErrorOutline} from '@material-ui/icons';
 import { getBase64Image } from "../../utils/Functions/base64Image";
 import utilData from '../../utils/constants';
-import { getUserCompany, getUserOptionalInfo, getUserProfileImage } from "../../redux/actions/UserActions";
+import { getUserCompany, getUserOptionalInfo, getUserProfileImage, getUserPersonalInfo, getProfileStatus } from "../../redux/actions/UserActions";
 import PersonalInformation from "./personal-information/personal-information";
 import OptionalInformation from "./optional-information/optional-information";
 import Company from "./company/company";
 import Settings from "./settings/settings";
 import MandatoryDocuments from "./mandatory-documents/mandatory-documents";
 
-const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileImage, getUserOptionalInfo, getUserCompany}) => {
+const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileImage, getUserOptionalInfo, getUserCompany, getUserPersonalInfo, getProfileStatus}) => {
 
     const history = useHistory();
     const classes = useStyles();
@@ -68,10 +68,13 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
     useEffect(()=>{
         getUserOptionalInfo(userData.token)
         getUserCompany(userData.token)
+        getUserPersonalInfo(userData.token)
+        getProfileStatus(userData.token)
     }, [])
 
     useEffect(()=>{
-        updateChangedData()
+        if(profilePhoto.length>0)
+            updateChangedData()
         getUserProfileImage(userData.token)
     }, [profilePhoto])
 
@@ -90,6 +93,8 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
     useEffect(()=>{
 	    userData.profileImage && userData.profileImage.length > 0 ? setProfilePhoto(userData.profileImage) : setProfilePhoto('')
     }, [userData.profileImage])
+
+    useEffect(()=>{}, [profileStatus])
 
     useEffect(()=>{ 
         if(currentSection!=-1)
@@ -210,6 +215,6 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
 }
 
 const mapStateToProps = state =>({userData: state.userData, courierProfile: state.courierData})
-const mapDispatchToProps = dispatch =>({fetchCourierProfile: (userId, token) => dispatch(fetchCourierProfile(userId, token)), getUserProfileImage: (token) => dispatch(getUserProfileImage(token)), getUserOptionalInfo: (token)=> dispatch(getUserOptionalInfo(token)), getUserCompany: (token) => dispatch(getUserCompany(token))})
+const mapDispatchToProps = dispatch =>({fetchCourierProfile: (userId, token) => dispatch(fetchCourierProfile(userId, token)), getUserProfileImage: (token) => dispatch(getUserProfileImage(token)), getUserOptionalInfo: (token)=> dispatch(getUserOptionalInfo(token)), getUserCompany: (token) => dispatch(getUserCompany(token)), getUserPersonalInfo: (token) => dispatch(getUserPersonalInfo(token)), getProfileStatus: (token) => dispatch(getProfileStatus(token))})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -14,10 +14,9 @@ import { connect } from 'react-redux';
 import {fetchLogin} from '../../redux/actions/UserActions';
 import { useHistory } from 'react-router-dom';
 import { mailValidator } from '../../utils/Functions/input-validators';
-import { fetchNotifications } from '../../redux/actions/NotificationsActions';
 import { rememberMeToggle } from '../../redux/types/UserTypes';
 
-const Login = ({fetchLogin, fetchNotifications, rememberMeToggle, data}) => {
+const Login = ({fetchLogin, rememberMeToggle, data}) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(String(data.email).length > 0 ? true : false);
 
@@ -33,7 +32,6 @@ const Login = ({fetchLogin, fetchNotifications, rememberMeToggle, data}) => {
     if(isLoggedIn === true) {
       if(data.isUserValidated){ 
             history.push('/home');
-            fetchNotifications(data.token)
       } else{
         history.push('/profile');
       }
@@ -108,7 +106,7 @@ const Login = ({fetchLogin, fetchNotifications, rememberMeToggle, data}) => {
   )
 }
 
-const mapDispatchToProps = dispatch => ({fetchLogin: (email,password) => dispatch(fetchLogin(email, password)), fetchNotifications: (token) => dispatch(fetchNotifications(token)), rememberMeToggle: () => dispatch(rememberMeToggle())})
+const mapDispatchToProps = dispatch => ({fetchLogin: (email,password) => dispatch(fetchLogin(email, password)), rememberMeToggle: () => dispatch(rememberMeToggle())})
 const mapStateToProps = state => ({data: state.userData})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

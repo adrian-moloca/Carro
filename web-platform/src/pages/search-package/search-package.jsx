@@ -57,6 +57,10 @@ const SearchPackages = ({packagesData, userData, searchPackages, clean}) => {
     return unlisten;
   }, []);
 
+  useEffect(()=>{
+
+  }, [packagesState])
+
   // render
   return (
     <Container className={"Primary-container-style"}>
@@ -110,7 +114,9 @@ const SearchPackages = ({packagesData, userData, searchPackages, clean}) => {
                       status= {pack.status} 
                       interactions={pack.interactions} 
                       packageSpecialMention={pack.packageSpecialMention}
-                      packageType={pack.packageType}/>
+                      packageType={pack.packageType}
+                      statusUpdated={()=>searchPackages(departureCountry, departureCity, destinationCountry, destinationCity, userData.token)}
+              />
            ) : notFoundAnyRide()
         }
       </Grid>  

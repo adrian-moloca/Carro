@@ -24,9 +24,6 @@ const OptionalInformation = ({userData, getUserOptionalInfo})=>{
     const [inUpdateDataHasErrors, setInUpdateDataHasErrors] = useState(false);
     const [optionalInfoChanged, setOptionalInfoChanged] = useState(false);
 
-    useEffect(()=>{
-        getUserOptionalInfo(userData.token)
-    }, [onEditMode])
 
     useEffect(()=>{
         userData.optionalInfo.languages && userData.optionalInfo.languages.length > 0 ? setLanguages(userData.optionalInfo.languages) : setLanguages('')
@@ -52,7 +49,7 @@ const OptionalInformation = ({userData, getUserOptionalInfo})=>{
                 headers:{
                     'Authorization': `Bearer ${userData.token}`,
                 }
-            }).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)})
+            }).then(()=>getUserOptionalInfo(userData.token)).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)})
         }
         if(!inUpdateDataHasErrors){ 
                 setOnEditMode(false);

@@ -9,20 +9,12 @@ import { Container, Box, Grid } from "@material-ui/core";
 import useStyles from "./home-pageStyles";
 import "./home-pageStyles.jsx";
 import { useTranslation } from 'react-i18next';
-import { getUserPersonalInfo, getProfileStatus } from "../../redux/actions/UserActions";
 import { connect } from "react-redux";
 
-const HomePage = ({userData, getUserPersonalInfo, getProfileStatus}) => {
+const HomePage = ({userData}) => {
   
   const classes = useStyles();
   const { t } = useTranslation();
-
-  useEffect(()=>{
-      if(userData.token && userData.token.length > 0){
-        getUserPersonalInfo(userData.token)
-        getProfileStatus(userData.token)
-      }
-  }, [])
 
   return (
     <Container className={classes.FirstSection}>
@@ -101,5 +93,4 @@ const HomePage = ({userData, getUserPersonalInfo, getProfileStatus}) => {
   );
 };
 const mapStateToProps = (state) =>({userData: state.userData})
-const mapDispatchToProps = (dispatch) =>({getUserPersonalInfo: (token) => dispatch(getUserPersonalInfo(token)), getProfileStatus: (token) => dispatch(getProfileStatus(token))})
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, null)(HomePage);

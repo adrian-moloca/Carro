@@ -48,7 +48,7 @@ const Register = ({createNewUser, data}) => {
     setPhoneNumber(countryPhoneCode + inputValuePhoneNumber)
   }, [inputValuePhoneNumber, countryPhoneCode])
 
-  async function redirectPhoneNumberVerification(){
+  async function redirectToProfile(){
     if(userCreated === true) {
       if(profilePhoto.length > 20) {
         axios.put(utilData.baseUrl + '/users/profile-images', {
@@ -91,7 +91,7 @@ const Register = ({createNewUser, data}) => {
   useEffect(() => {
     if(clickedRegister){
         setUserCreated(data.email === email ? true : false);
-        setTimeout(() => {redirectPhoneNumberVerification()}, 500);
+        setTimeout(() => {redirectToProfile()}, 500);
     }
   }, [data])
 
