@@ -89,7 +89,7 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
                             handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
                             error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
                             disabled={!onEditMode} size="small"/>
-            {!Boolean(userData.profileStatus.isPhoneNumberValidated).valueOf() && !onEditMode ?  (
+            {!Boolean(userData.profileStatus.isPhoneNumberValidated).valueOf() && onEditMode ?  (
                             <PhoneNumberValidation/>
                             ):null}
           </Grid>
