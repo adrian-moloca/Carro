@@ -15,7 +15,7 @@ const MandatoryDocuments = ({userData, getProfileStatus})=>{
 
     const [mandatoryDocuments, setMandatoryDocuments] = useState(''); 
 
-    const [inUpdateDataHasErrors, setInUpdateDataHasErrors] = useState(false);
+    const [errorsOnUpdate, setErrorsOnUpdate] = useState([{message: ''}]);
 
     async function setMandatory(file){
         const base64 = await getBase64Image(file)
@@ -31,11 +31,7 @@ const MandatoryDocuments = ({userData, getProfileStatus})=>{
                 headers:{
                     'Authorization': `Bearer ${userData.token}`,
                 }
-            }).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)}).then(()=>{getProfileStatus(userData.token)}).finally(()=>{})
-        }
-        if(inUpdateDataHasErrors){ 
-                alert('Upload has errors, try later please.');
-                setInUpdateDataHasErrors(false); 
+            }).then(()=>{getProfileStatus(userData.token)}).catch((error)=>{setErrorsOnUpdate(error.response.data.errors)})
         }
     }
 
@@ -71,6 +67,9 @@ const MandatoryDocuments = ({userData, getProfileStatus})=>{
                                         </PrimaryButton>
                                     </label>
                                 </Grid>
+                                <Grid container item xs={ 10 } xl={10} justifyContent='center' style={{marginBottom:"15px"}}>
+                                    {errorsOnUpdate.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el.message}</Box>)})}
+                                </Grid> 
                                 <Grid container item sm={12} justifyContent='center' style={{height: "50px", marginTop:"3%"}}>
                                     <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('AcceptedDocuments')}</Box>
                                     <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('IdDriveLicenseBirthCert')}</Box>

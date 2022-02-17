@@ -87,13 +87,13 @@ const Settings = ({userData, fetchLogout})=>{
             {changePassword ? (
                     <Fragment>
                         <Grid container item sm={11}>
-                            <CarroTextField required type='password' value={oldPassword} variant="outlined" label={t("OldPassword")} error={passwordValidator(oldPassword)} onChange={(e)=>{setOldPassword(e.target.value);}} size="small" fullWidth/>
+                            <CarroTextField required type='password' value={oldPassword} variant="outlined" label={t("OldPassword")} onChange={(e)=>{setOldPassword(e.target.value);}} size="small" fullWidth/>
                         </Grid> 
                         <Grid container item sm={11}>
-                            <CarroTextField required type='password' value={newPassword} variant="outlined" label={t("NewPassword")} error={passwordValidator(newPassword)} onChange={(e)=>{setNewPassword(e.target.value);}} size="small" fullWidth/>
+                            <CarroTextField required type='password' value={newPassword} variant="outlined" label={t("NewPassword")} helperText={t('PasswordMustContain')} error={passwordValidator(newPassword)} onChange={(e)=>{setNewPassword(e.target.value);}} size="small" fullWidth/>
                         </Grid> 
                         <Grid container item sm={11}>
-                            <CarroTextField required type='password' value={confirmNewPassword} variant="outlined" label={t("ConfirmNewPassword")} error={passwordValidator(confirmNewPassword)} onChange={(e)=>{setConfirmNewPassword(e.target.value); }} size="small" fullWidth/>
+                            <CarroTextField required type='password' value={confirmNewPassword} variant="outlined" label={t("ConfirmNewPassword")} error={newPassword === confirmNewPassword ? false : true} helperText={newPassword === confirmNewPassword ? '' : t('PasswordsMustBeEqual')} onChange={(e)=>{setConfirmNewPassword(e.target.value); }} size="small" fullWidth/>
                         </Grid> 
                         <Grid container item sm={12}  justifyContent="center">
                             <PrimaryButton variant='contained' onClick={async ()=>updatePassword()} style={{height:35, width:250, marginTop:"10px"}} disabled={!fieldsComplete} fullWidth>

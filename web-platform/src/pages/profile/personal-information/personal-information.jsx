@@ -29,7 +29,7 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState(new Date(new Date().getFullYear()-14, new Date().getMonth(),new Date().getDate(), 0));
-
+    const [errorsOnUpdate, setErrorsOnUpdate] = useState([])
     const [onEditMode, setOnEditMode] = useState(false);
     const [inUpdateDataHasErrors, setInUpdateDataHasErrors] = useState(false);
     const [personalInfoChanged, setPersonalInfoChanged] = useState(false);
@@ -51,6 +51,8 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
         userData.personalInfo.country && userData.personalInfo.country.length > 0 ? setCountry(userData.personalInfo.country) : setCountry('')
     }, [userData.personalInfo])
 
+
+
     const handleChangeCountry=(newValue)=> setCountry(newValue);
     const handleChangeCity=(newValue)=> setCity(newValue);
     async function updateChangedData(){
@@ -68,16 +70,9 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
                 headers:{
                     'Authorization': `Bearer ${userData.token}`,
                 }
-            }).then(()=>getUserPersonalInfo(userData.token)).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)})
-        }
-        if(!inUpdateDataHasErrors){ 
-                setOnEditMode(false);
-        } else {
-                alert('Update has errors, try later please.');
-                setInUpdateDataHasErrors(false);
+            }).then(()=>{getUserPersonalInfo(userData.token); getProfileStatus(userData.token); setOnEditMode(false)}).catch((error)=>{setInUpdateDataHasErrors(true); setErrorsOnUpdate(error.response.data.errors)})
         }
     }
-
 
     return(
         <Fragment>
@@ -127,6 +122,9 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
                         <Create fontSize='small'/>
                     </PrimaryButton>
             )}
+          </Grid>
+          <Grid container item xs={ 10 } xl={10} justifyContent='center' style={{marginBottom:"15px"}}>
+              {onEditMode ? errorsOnUpdate.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el.message}</Box>)}) : null}
           </Grid>  
         </Fragment>
     );

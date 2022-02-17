@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Box, Grid, Fade, Modal } from '@material-ui/core';
 import Timer from '../../../components/timer/timer';
@@ -18,7 +18,8 @@ const PhoneNumberValidation = ({userData})=>{
     const { t } = useTranslation();
     const[sms, setSMS] = useState('');
     const[open, setOpen] = useState(false);
-    const[errorValidation, setErrorValidation] = useState({messages: []});
+    const [millis, setMillis] = useState(300000);
+    const[errorValidation, setErrorValidation] = useState([]);
     const time = new Date();
     const classes = useStyles()
 
@@ -34,9 +35,10 @@ const PhoneNumberValidation = ({userData})=>{
             console.log('validation: ', res);
         })
         .catch(err => {
+            setMillis(err.response.data.errors[0].message)
             console.log('error from validation: ', err);
-        })
-        setOpen(true)
+        }).finally(()=>setOpen(true))
+
     }
 
     const validateNumber = () => {
@@ -54,7 +56,9 @@ const PhoneNumberValidation = ({userData})=>{
         });
     }
 
-    time.setSeconds(time.getSeconds() + 300);
+    time.setMilliseconds(millis);
+
+    useEffect(()=>{}, [millis])
 
     return(
         <Fragment>
@@ -93,7 +97,7 @@ const PhoneNumberValidation = ({userData})=>{
                                 </Grid>
                             </Grid>
                             <Grid container item xs={ 10 } xl={10} justifyContent='center' style={{marginBottom:"15px"}}>
-                                {errorValidation.messages.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el}</Box>)})}
+                                {errorValidation.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el.message}</Box>)})}
                             </Grid>
                         </MyGrid>
                     </Container>
