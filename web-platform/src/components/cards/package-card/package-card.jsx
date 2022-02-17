@@ -15,7 +15,6 @@ import greyLine from '../../../assets/images/greyLine.png';
 import useStyles from './package-card-style';
 import { useTranslation } from 'react-i18next';
 import DeliverPackage from '../../modals/deliver-package/deliver-package';
-import RejectModal from '../../modals/reject-modal/reject-modal';
 import axios from 'axios';
 import data from '../../../utils/constants';
 import { connect } from 'react-redux';

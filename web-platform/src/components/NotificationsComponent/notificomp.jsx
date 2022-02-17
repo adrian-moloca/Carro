@@ -3,16 +3,11 @@ import { Link } from 'react-router-dom';
 import { Badge, Box, IconButton } from '@material-ui/core';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import {connect} from 'react-redux';
-import { fetchNotifications } from '../../redux/actions/NotificationsActions';
 
- const BadgeVisibility = ({notificationsData, userData, fetchNotifications}) => {
+ const BadgeVisibility = ({notificationsData, userData}) => {
 
   const [hideBadge, setHideBadge] = useState(false)
   const [unreadNotifications, setUnreadNotifications] = useState(notificationsData.notifications && notificationsData.notifications.length > 0 ? notificationsData.notifications.filter(el => el.isRead === false) : []);
-
-  useEffect(()=>{
-    fetchNotifications(userData.token);
-  }, [])
 
   useEffect(()=>{
     const unread = notificationsData.notifications && notificationsData.notifications.length > 0 ? notificationsData.notifications.filter(el => el.isRead === false) : [];
@@ -30,7 +25,7 @@ import { fetchNotifications } from '../../redux/actions/NotificationsActions';
     <Box display='flex' alignSelf='center' flexDirection='column' className={"Primary-color"}>
       <Box mr={1}>
         <Link to='/notifications' style={{textDecoration:'none'}}>
-          <IconButton className={"Primary-color"} onClick={()=>fetchNotifications(userData.token)}>
+          <IconButton className={"Primary-color"}>
             <Badge color="secondary" badgeContent={unreadNotifications.length} invisible={hideBadge}>
               <NotificationsNoneIcon/>
             </Badge>
@@ -63,5 +58,4 @@ const mapStateToProps = state => ({
               notificationsData: state.notificationsData,
               userData : state.userData
             })
-const mapDispatchToProps = dispatch => ({fetchNotifications: (token) => dispatch(fetchNotifications(token))})
-export default connect(mapStateToProps, mapDispatchToProps)(BadgeVisibility);
+export default connect(mapStateToProps, null)(BadgeVisibility);

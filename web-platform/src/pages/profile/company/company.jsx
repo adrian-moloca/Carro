@@ -33,10 +33,6 @@ const Company = ({userData, getUserCompany})=>{
     const [companyChanged, setCompanyChanged] = useState(false);
 
     useEffect(()=>{
-        getUserCompany(userData.token)
-    }, [onEditMode])
-
-    useEffect(()=>{
         userData.company.isCompany ? setIsCompany(userData.company.isCompany) : setIsCompany(false)
         userData.company.name && userData.company.name.length > 0 && isCompany ? setName(userData.company.name) : setName('')
         userData.company.email && userData.company.email.length > 0 && isCompany ? setEmail(userData.company.email) : setEmail('')
@@ -75,7 +71,7 @@ const Company = ({userData, getUserCompany})=>{
                 headers:{
                     'Authorization': `Bearer ${userData.token}`,
                 }
-            }).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)})
+            }).then(()=>getUserCompany(userData.token)).catch((error)=>{console.log(error); setInUpdateDataHasErrors(true)})
         }
         if(!inUpdateDataHasErrors){ 
                 setOnEditMode(false);

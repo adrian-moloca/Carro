@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
 import HeaderLogedOut from '../../components/headerLogedOut/HeaderLogedOut';
 import HeaderLogedIn from '../../components/headerLogedIn/HeaderLogedIn';
 import Footer from '../../components/footer/footer';
@@ -10,7 +9,6 @@ import EmailSent from '../../pages/login/forgot-password/email-sent/email-sent';
 import ResetPassword from '../../pages/login/reset-password/reset-password';
 import Register from '../../pages/register/register';
 import SelectPlan from '../../pages/register/select-plan/select-plan';
-import PhoneNumberVerification from '../../pages/register/phone-number-verification/phone-number-verification';
 import PremiumPlanPayment from '../../pages/register/select-plan/add-card/add-card';
 import HomePage from '../../pages/home-page/home-page';
 import AddPackage from '../../pages/add-package/add-package';
@@ -75,7 +73,8 @@ const Routes = ({data, fetchNotifications}) => {
     }
 
     useEffect(()=>{
-        fetchNotifications(data.token)
+        if(data.token && data.token.length > 0)
+            fetchNotifications(data.token)
     }, [window.location.pathname])
     
 
@@ -124,7 +123,6 @@ const Routes = ({data, fetchNotifications}) => {
                                 <Route path="/reset-password" exact component={ResetPassword}/>
                                 <Route path="/login/forgot-password/email-sent" exact component={EmailSent}/>
                                 <Route path="/register" exact component={Register}/>
-                                <Route path="/register/phone-number-verification" exact component={PhoneNumberVerification}/>
                                 <Route path="/register/select-plan" exact component={SelectPlan}/>
                                 <Route path="/register/select-plan/add-card" exact component={PremiumPlanPayment}/>
                                 <Route path="/how-it-works" exact component={HowItWorks}/>
