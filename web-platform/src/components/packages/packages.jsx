@@ -39,19 +39,25 @@ const Packages = (props) =>{
                         <PackageCard 
                             userId={pack.userId} 
                             packageId={pack.id} 
-                            packageQuantity={pack.numberOfPackages} 
-                            dimensions={pack.dimensions}
-                            weight={pack.weight} 
+                            name={pack.packageInfo.name}
+                            packageQuantity={pack.packageInfo.numberOfPackages} 
+                            dimensions={pack.packageInfo.dimensions}
+                            weight={pack.packageInfo.weight} 
                             departureDate={pack.departureDate.substr(0, 10)} 
-                            price={pack.price}
-                            departure={pack.departure}
-                            destination={pack.destination}
-                            departureAddress={pack.departureAddress} 
-                            destinationAddress={pack.destinationAddress} 
+                            price={pack.packageInfo.price}
+                            departure={pack.packageSender.departure}
+                            destination={pack.packageReceiver.destination}
+                            departureAddress={pack.packageSender.departureAddress} 
+                            destinationAddress={pack.packageReceiver.destinationAddress} 
                             status= {pack.status} 
                             interactions={pack.interactions} 
                             packageSpecialMention={pack.packageSpecialMention}
-                            packageType={pack.packageType}
+                            packageType={pack.packageInfo.packageType}
+                            sender={pack.packageSender.senderName}
+                            senderPhone={pack.packageSender.phoneNumber}
+                            destinatary={pack.packageReceiver.receiverName}
+                            destinataryPhone={pack.packageReceiver.phoneNumber}
+                            details={pack.packageInfo.description}
                             statusUpdated={()=>getPackagesUnder()}
                         />
                     </Grid>

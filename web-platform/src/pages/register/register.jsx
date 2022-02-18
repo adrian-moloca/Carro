@@ -202,7 +202,7 @@ const Register = ({createNewUser, data}) => {
         <Grid container item xs={8} justifyContent="center">
         {/* <Link to="/register/phone-number-verification" style={{textDecoration: 'none', color: 'inherit', width: '100%'}}> */}
           <PrimaryButton className="ButtonTextSize" fullWidth variant="contained" endIcon={<PersonAddIcon />} 
-            disabled={terms && lastName && firstName && phoneNumber && email && password && confirmPassword && dateOfBirth && password===confirmPassword && !hasErrors ? false : true}
+            disabled={terms && lastName && firstName && inputValuePhoneNumber && countryPhoneCode && email && password && confirmPassword && dateOfBirth && password===confirmPassword && !hasErrors ? false : true}
             onClick={() =>{createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, 'True'); setClickedRegister(true)}}
           >
             

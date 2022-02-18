@@ -26,7 +26,7 @@ export function mailValidator(mail){
 
 export function nameValidator(name){
     const nameFormat = /^[a-zA-Z ]+$/
-    if(nameFormat.test(name) || String(name).length==0)
+    if(nameFormat.test(name) && String(name).length>=2)
     {
         return false;
     }
