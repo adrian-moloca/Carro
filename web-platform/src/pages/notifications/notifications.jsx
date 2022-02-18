@@ -13,6 +13,8 @@ const Notifications =({notificationsData})=>{
         setNotifications(notificationsData);
     },[notificationsData, t])
 
+    useEffect(()=>{}, [notifications])
+
     return(
         <Container className='Primary-container-style'>
             <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t('Notifications')}</Box>

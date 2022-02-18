@@ -94,52 +94,6 @@ const NotificationDetails = (props) =>{
     }, [])
 
     useEffect(()=>{}, [ride, packageN, driver, commentSent])
-
-    const Package ={
-        sender: 'George Micu',
-        senderPhone: '0888888888',
-        destinatary: 'George Mare',
-        destinataryPhone: '0999999999',
-        packageQuantity: 1,
-        packageDimensions: '0x0x0',
-        packageWeight: '1 Kg',
-        departureDate: '26/08/2021 02:00 AM',
-        departureAddress: 'Lorem Ipsium Street',
-        destinationAddress: 'Lorem Ipsium Street',
-        details: 'ceva de trimis',
-        price: '15 RON',
-        status: 6, 
-        packageSpecialMention: {
-            isFragil: true,
-            isFoodGrade: false,
-            isFlammable: false,
-            isHandleWithCare: true,
-            isAnimal: true,
-          },
-    }
-
-    const Package2 ={
-        sender: 'George Micu',
-        senderPhone: '0888888888',
-        destinatary: 'George Mare',
-        destinataryPhone: '0999999999',
-        packageQuantity: 1,
-        packageDimensions: '0x0x0',
-        packageWeight: '1 Kg',
-        departureDate: '26/08/2021 02:00 AM',
-        departureAddress: 'Lorem Ipsium Street',
-        destinationAddress: 'Lorem Ipsium Street',
-        details: 'ceva de trimis',
-        price: '15 RON',
-        status: 2, 
-        packageSpecialMention: {
-            isFragil: true,
-            isFoodGrade: false,
-            isFlammable: false,
-            isHandleWithCare: true,
-            isAnimal: true,
-        },
-    }
     
     
     function getNotificationContent(type){

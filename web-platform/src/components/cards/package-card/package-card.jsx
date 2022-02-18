@@ -272,12 +272,15 @@ const PackageCard = ({userData, ...props}) =>{
 
     return (
         <Fragment>
-            <ReactCardFlip isFlipped={!isFlipped} flipDirection='horizontal' containerClassName={'CardFlipContainer'}>
+            <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' cardZIndex='auto'  containerClassName={'CardFlipContainer'}>
             
-            <Box paddingBottom={1} height='500px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center' boxShadow={3}>
+            <Box paddingBottom={1} height='520px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center' boxShadow={3}>
                 <Grid container spacing={2} justifyContent='center'>
                     <Grid container item xs={12} justifyContent = 'center'>
                         <img src={packageImg} className={classes.boxesImageStyle} alt={""}/>
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'center'>
+                        <Box marginTop={1} fontSize={18}>{props.name}</Box>
                     </Grid>
                     <Grid container item xs={12} justifyContent = 'center'>
                         <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
@@ -313,29 +316,45 @@ const PackageCard = ({userData, ...props}) =>{
                 </Grid>
             </Box>
 
-            <Box paddingBottom={1} height='500px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center' boxShadow={3}>
+            <Box paddingBottom={1} height='520px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center' boxShadow={3}>
                 <Grid container justifyContent='center'>
                     <Grid container item xs={12} justifyContent = 'flex-start'>
                         <Box px={1} fontSize={14} marginTop='20px'>{t('Quantity')} {props.packageQuantity}</Box>
-                        <Box px={1} fontSize={14}>{t('Sizing')} {props.packageDimensions}</Box>
-                        <Box px={1} fontSize={14}>{t('Weight')} {props.packageWeight}</Box>
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'flex-start'>
+                        <Box px={1} fontSize={14}>{t('Sizing')} {props.dimensions}</Box>
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'flex-start'>
+                        <Box px={1} fontSize={14}>{t('Weight')} {props.weight}</Box>
                     </Grid>
                     <Grid container item xs={12} justifyContent = 'center'>
                         <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
                     </Grid>
-                    <Grid container item xs={12} spacing={1}justifyContent = 'flex-start'>
-                        <Box px={1} fontSize={14}>{t("User")} {props.sender}</Box>   
-                        <Box px={1} fontSize={14}>Telefon: {props.senderPhone}</Box>   
+                    <Grid container item xs={12} justifyContent = 'flex-start'>
+                        <Box px={1} fontSize={14}>{t("User")}: {props.sender}</Box>   
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'flex-start'>
+                        <Box px={1} fontSize={14}>Telefon: {props.senderPhone}</Box>
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'flex-start'>
                         <Box px={1} fontSize={14}>{t('PickupAddress')} {props.departureAddress}</Box>
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'flex-start'>
                         <Box px={1} fontSize={14}>{t('PickupDate')} {props.departureDate}</Box>   
                     </Grid>
                     <Grid container item xs={12} justifyContent = 'center'>
                         <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
                     </Grid>
-                    <Grid container item xs={12} spacing={1} justifyContent = 'flex-start' >
+                    <Grid container item xs={12} justifyContent = 'flex-start' >
                         <Box px={1} fontSize={14}>{t('DriverCardDestinationAddress')} {props.destinationAddress}</Box>   
-                        <Box px={1} fontSize={14}>{t("ContactPerson")} {props.destinatary}</Box>   
-                        <Box px={1} fontSize={14}>{t("PhoneNumber")} {props.destinataryPhone}</Box>
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'flex-start' >
+                        <Box px={1} fontSize={14}>{t("ContactPerson")}: {props.destinatary}</Box>   
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'flex-start' >
+                        <Box px={1} fontSize={14}>{t("PhoneNumber")}: {props.destinataryPhone}</Box>
+                    </Grid>
+                    <Grid container item xs={12} justifyContent = 'flex-start' >
                         <Box width='1' px={1} fontSize={14} paddingRight='25px'>
                            {t("DriverCardDetailsButton")}
                             <Box width='1' borderRadius='15px' height='90px' marginY='10px' padding='8px' className={classes.detailsBox}> {props.details}</Box>

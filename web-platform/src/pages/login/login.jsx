@@ -54,7 +54,7 @@ const Login = ({fetchLogin, rememberMeToggle, data}) => {
             </Grid>  
             <Grid container item xs={10} xl={8} >
               <CarroTextField required error={mailValidator(email)} helperText={mailValidator(email) ? t('ValidMail') : ''} 
-                              label={t("Mail")} variant='outlined' fullWidth value={email} onChange={(e) => setEmail(e.target.value)}/>
+                              label={t("Mail")} variant='outlined' fullWidth value={email} onChange={(e) => setEmail(e.target.value.trim())}/>
             </Grid>
             <Grid container item xs={10} xl={8}>
               <CarroTextField required type='password' 

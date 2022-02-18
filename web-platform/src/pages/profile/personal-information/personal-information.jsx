@@ -30,8 +30,7 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
     const [city, setCity] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState(new Date(new Date().getFullYear()-14, new Date().getMonth(),new Date().getDate(), 0));
     const [errorsOnUpdate, setErrorsOnUpdate] = useState([])
-    const [onEditMode, setOnEditMode] = useState(false);
-    const [inUpdateDataHasErrors, setInUpdateDataHasErrors] = useState(false);
+    const [onEditMode, setOnEditMode] = useState(!userData.profileStatus.isPersonalInfoCompleted || !userData.profileStatus.isPhoneNumberValidated ? true : false);
     const [personalInfoChanged, setPersonalInfoChanged] = useState(false);
 
     useEffect(()=>{
@@ -70,7 +69,7 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
                 headers:{
                     'Authorization': `Bearer ${userData.token}`,
                 }
-            }).then(()=>{getUserPersonalInfo(userData.token); getProfileStatus(userData.token); setOnEditMode(false)}).catch((error)=>{setInUpdateDataHasErrors(true); setErrorsOnUpdate(error.response.data.errors)})
+            }).then(()=>{getUserPersonalInfo(userData.token); getProfileStatus(userData.token); setOnEditMode(false)}).catch((error)=>{setErrorsOnUpdate(error.response.data.errors)})
         }
     }
 
