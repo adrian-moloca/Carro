@@ -65,6 +65,7 @@ const AddPackage = ({data, packageData, createNewPackage}) => {
   const [paymentMethod, setPaymentMethod] = useState(0);
   const [hasErrors, setHasErrors] = useState(false);
   const [requestSent, setRequestSent] = useState(false);
+  const [errorsOnAdd, setErrorsOnAdd] = useState([])
 
   function formsComplete(step){
     switch(step){

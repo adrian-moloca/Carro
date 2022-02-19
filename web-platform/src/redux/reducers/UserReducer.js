@@ -14,6 +14,7 @@ import {USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE,
 
 
 let initialState = {
+    toggle: 0,
     rememberMe: false,
     UserRole: "",
     email: "",
@@ -111,6 +112,11 @@ switch (action.type) {
         return {
             ...state,
             loading: true,
+            hasErrors:{
+                state: false,
+                messages: []
+            },
+            toggle: state.toggle + 1
         }
     case USER_LOGIN_SUCCESS:
         return{
@@ -132,7 +138,8 @@ switch (action.type) {
             phoneNumber: action.payload.user.phoneNumber,
             sub: action.payload.user.sub,
             token: action.payload.token,
-            refreshToken: action.payload.refreshToken
+            refreshToken: action.payload.refreshToken,
+            toggle: state.toggle + 1
         }
     case USER_LOGIN_FAILURE:
         return{
@@ -141,12 +148,14 @@ switch (action.type) {
                 state: true,
                 messages: action.payload.response.data.errors
             },
+            toggle: state.toggle + 1
         }
     //Create New User    
     case USER_NEWUSER_REQUEST:
         return {
             ...state,
             loading: true,
+            toggle: state.toggle + 1
             }
     case USER_NEWUSER_SUCCESS:
         return{
@@ -168,7 +177,8 @@ switch (action.type) {
             phoneNumber: action.payload.user.phoneNumber,
             sub: action.payload.user.sub,
             token: action.payload.token,
-            refreshToken: action.payload.refreshToken
+            refreshToken: action.payload.refreshToken,
+            toggle: state.toggle + 1
         }
     case USER_NEWUSER_FAILURE:
         return{
@@ -177,6 +187,7 @@ switch (action.type) {
                 state: true,
                 messages: action.payload.response.data.errors
             },
+            toggle: state.toggle + 1
         }
     //Get all Users
     // case USER_GET_REQUEST:
@@ -201,6 +212,7 @@ switch (action.type) {
         return {
             ...state,
             loading: true,
+            toggle: state.toggle + 1
             }
     case USER_UPDATE_SUCCESS:
         return{
@@ -209,6 +221,7 @@ switch (action.type) {
                 state: false,
                 messages: []
             },
+            toggle: state.toggle + 1
         }
     case USER_UPDATE_FAILURE:
         return{
@@ -217,6 +230,7 @@ switch (action.type) {
                 state: true,
                 messages: action.payload.response.data.errors
             },
+            toggle: state.toggle + 1
         }
 
     // ResetPassword user
@@ -224,6 +238,7 @@ switch (action.type) {
         return {
             ...state,
             loading: true,
+            toggle: state.toggle + 1
             }
     case USER_RESET_SUCCESS:
         return{
@@ -232,6 +247,7 @@ switch (action.type) {
                 state: false,
                 messages: []
             },
+            toggle: state.toggle + 1
         }
     case USER_RESET_FAILURE:
         return{
@@ -240,12 +256,14 @@ switch (action.type) {
                 state: true,
                 messages: action.payload.response.data.errors
             },
+            toggle: state.toggle + 1
         }
     // Delete user
     case USER_DELETE_REQUEST:
         return {
             ...state,
             loading: true,
+            toggle: state.toggle + 1
             }
     case USER_DELETE_SUCCESS:
         return{
@@ -254,6 +272,7 @@ switch (action.type) {
                 state: false,
                 messages: []
             },
+            toggle: state.toggle + 1
         }
     case USER_DELETE_FAILURE:
         return{
@@ -262,6 +281,7 @@ switch (action.type) {
                 state: true,
                 messages: action.payload.response.data.errors
             },
+            toggle: state.toggle + 1
         }
     //Logout
     case USER_LOGOUT:
@@ -327,13 +347,15 @@ switch (action.type) {
                 isSubscriptionPayed: false,
                 rejectReason: "",
                 invalidateReason: ""
-            }
+            },
+            toggle: 0
         }
     //Profile Image
     case USER_PROFILE_IMAGE_REQUEST:{
         return {
             ...state,
-            loading: true
+            loading: true,
+            toggle: state.toggle + 1
         }
     }
     case USER_PROFILE_IMAGE_SUCCESS:{
@@ -344,7 +366,9 @@ switch (action.type) {
                 state: false,
                 messages: []
             },
+            toggle: state.toggle + 1
         }
+
     }
     case USER_PROFILE_IMAGE_FAILURE:{
         return {
@@ -353,6 +377,7 @@ switch (action.type) {
                 state: true,
                 messages: []
             },
+            toggle: state.toggle + 1
         }
     }
     //Personal Info
@@ -379,6 +404,7 @@ switch (action.type) {
                 state: false,
                 messages: []
             },
+            toggle: state.toggle + 1
         }
     }
     case USER_PERSONAL_INFO_FAILURE:{
@@ -388,12 +414,14 @@ switch (action.type) {
                 state: true,
                 messages: []
             },
+            toggle: state.toggle + 1
         }
     }
     case USER_OPTIONAL_INFO_REQUEST:{
         return {
             ...state,
-            loading: true
+            loading: true,
+            toggle: state.toggle + 1
         }
     }
     case USER_OPTIONAL_INFO_SUCCESS:{
@@ -413,6 +441,7 @@ switch (action.type) {
                 state: false,
                 messages: []
             },
+            toggle: state.toggle + 1
         }
     }
     case USER_OPTIONAL_INFO_FAILURE:{
@@ -422,12 +451,14 @@ switch (action.type) {
                 state: true,
                 messages: []
             },
+            toggle: state.toggle + 1
         }
     }
     case USER_COMPANY_REQUEST:{
         return {
             ...state,
-            loading: true
+            loading: true,
+            toggle: state.toggle + 1
         }
     }
     case USER_COMPANY_SUCCESS:{
@@ -447,6 +478,7 @@ switch (action.type) {
                 state: false,
                 messages: []
             },
+            toggle: state.toggle + 1
         }
     }
     case USER_COMPANY_FAILURE:{
@@ -456,12 +488,14 @@ switch (action.type) {
                 state: true,
                 messages: []
             },
+            toggle: state.toggle + 1
         }
     }
     case PROFILE_STATUS_REQUEST:{
         return {
             ...state,
-            loading: true
+            loading: true,
+            toggle: state.toggle + 1
         }
     }
     case PROFILE_STATUS_SUCCESS:{
@@ -482,6 +516,7 @@ switch (action.type) {
                 state: false,
                 messages: []
             },
+            toggle: state.toggle + 1
         }
     }
     case PROFILE_STATUS_FAILURE:{
@@ -491,6 +526,7 @@ switch (action.type) {
                 state: true,
                 messages: []
             },
+            toggle: state.toggle + 1
         }
     }
     default: 

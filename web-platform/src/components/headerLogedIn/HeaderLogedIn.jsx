@@ -23,7 +23,7 @@ export default function PrimarySearchAppBar() {
               </Link>
           </Grid>
           {/* render desktop btns */}
-          <Grid container item md={7} spacing={2}  className={classes.sectionDesktop}>
+          <Grid container item md={5} spacing={2}  className={classes.sectionDesktop}>
               <RenderMenuSBD/>
           </Grid>
           {/* render right btns: notifications, my account, language */}

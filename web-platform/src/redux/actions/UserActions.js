@@ -33,19 +33,21 @@ return (dispatch) => {
 }
 
 
-export const fetchUsers = () => {
+export async function fetchUsers () {
 
-return (dispatch) => {
-    dispatch(fetchUsersRequest);
-    axios.get(data.baseUrl + "/catalin/admin/users/")
-    .then(response => {
-        const user = response.data;
-        dispatch(fetchUsersSuccess(user));
-    }).catch(error => {
-        const errorMsg = error;
-        dispatch(fetchUsersFailure(errorMsg))
-    })
-}
+    return (dispatch) => {
+        dispatch(fetchUsersRequest);
+        axios.get(data.baseUrl + "/catalin/admin/users/")
+        .then(response => {
+            const user = response.data;
+            dispatch(fetchUsersSuccess(user));
+            return true
+        }).catch(error => {
+            const errorMsg = error;
+            dispatch(fetchUsersFailure(errorMsg))
+            return false
+        })
+    }
 }
 
 

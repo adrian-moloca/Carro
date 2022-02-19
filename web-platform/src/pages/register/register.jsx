@@ -40,16 +40,17 @@ const Register = ({createNewUser, data}) => {
   const [dateOfBirth, setDateOfBirth] = useState(new Date(new Date().getFullYear()-14, new Date().getMonth(),new Date().getDate(), 0));
   const [terms, setTerms] = useState(false);
   const [hasErrors, setHasErrors] = useState(false);
-  const [clickedRegister, setClickedRegister] = useState(false);
   const [hasErrorsRegister, setHasErrorsRegister] = useState({state: false, messages: []})
+  const [clickedRegister, setClickedRegister] = useState(0)
   /* const [legalPersonChecked, setLegalPersonChecked] = useState(false); */
+
 
   useLayoutEffect(()=>{
     setPhoneNumber(countryPhoneCode + inputValuePhoneNumber)
   }, [inputValuePhoneNumber, countryPhoneCode])
 
   async function redirectToProfile(){
-    if(userCreated === true) {
+    if(data.email === email) {
       if(profilePhoto.length > 20) {
         axios.put(utilData.baseUrl + '/users/profile-images', {
             profileImage: profilePhoto.replace("data:image/jpeg;base64," || "data:image/png;base64," || "data:image/jpg;base64,", ""),
@@ -61,15 +62,25 @@ const Register = ({createNewUser, data}) => {
       } else {
         history.push('/profile')
       }
-    } else {
-      setHasErrorsRegister({state: data.hasErrors.state, messages: data.hasErrors.messages})
     }
   }
 
+    useEffect(()=>{
+      if(clickedRegister>0)
+        createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, 'True');
+    }, [clickedRegister])
+
+    useEffect(() => {
+    if(clickedRegister>0 && data.email === email){
+        redirectToProfile()
+    } else if(clickedRegister>0)
+      setHasErrorsRegister({state: data.hasErrors.state, messages: data.hasErrors.messages})
+    }, [data])
+
   async function setPhoto(file){
-    const base64 = await getBase64Image(file)
-    setProfilePhoto(base64)
-}
+      const base64 = await getBase64Image(file)
+      setProfilePhoto(base64)
+  }
 
   useEffect(()=>{
     setHasErrors(nameValidator(firstName))
@@ -87,13 +98,6 @@ const Register = ({createNewUser, data}) => {
   useEffect(()=>{
     setHasErrors(phoneValidator(inputValuePhoneNumber))
   }, [inputValuePhoneNumber])
-  
-  useEffect(() => {
-    if(clickedRegister){
-        setUserCreated(data.email === email ? true : false);
-        setTimeout(() => {redirectToProfile()}, 500);
-    }
-  }, [data])
 
   /* const handleLegalPersonCheckboxClick = (event) => {
     event.target.checked ? setLegalPersonChecked(true) : setLegalPersonChecked(false);
@@ -203,7 +207,7 @@ const Register = ({createNewUser, data}) => {
         {/* <Link to="/register/phone-number-verification" style={{textDecoration: 'none', color: 'inherit', width: '100%'}}> */}
           <PrimaryButton className="ButtonTextSize" fullWidth variant="contained" endIcon={<PersonAddIcon />} 
             disabled={terms && lastName && firstName && inputValuePhoneNumber && countryPhoneCode && email && password && confirmPassword && dateOfBirth && password===confirmPassword && !hasErrors ? false : true}
-            onClick={() =>{createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, 'True'); setClickedRegister(true)}}
+            onClick={() =>{setClickedRegister(clickedRegister+1)}}
           >
             
             {t("Register")}
