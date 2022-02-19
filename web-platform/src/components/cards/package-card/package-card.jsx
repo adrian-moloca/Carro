@@ -360,11 +360,11 @@ const PackageCard = ({userData, ...props}) =>{
                             <Box width='1' borderRadius='15px' height='90px' marginY='10px' padding='8px' className={classes.detailsBox}> {props.details}</Box>
                         </Box>
                     </Grid>
-                    {getBackButtons(props.status)}
+                    {/* {getBackButtons(props.status)} */}
                     <Grid container item xs={8} justifyContent='center'>
-                            <PrimaryButton variant='contained'  onClick={handleClick} fullWidth>
+                        <PrimaryButton variant='contained' onClick={handleClick} fullWidth>
                             {t('DriverCardBackButton')}
-                            </PrimaryButton>
+                        </PrimaryButton>
                     </Grid>
                 </Grid>
             </Box>
