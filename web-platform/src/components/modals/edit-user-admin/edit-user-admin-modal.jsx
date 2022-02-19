@@ -195,7 +195,7 @@ const EditUserAdmin = ({data, userClickedData, adminGetUser, adminGetUsers, clea
             headers:{
                 'Authorization': `Bearer ${data.token}`,
             }
-        }).then(()=>acceptID()).catch((error)=>{setHasErrorsCheck(error.response.data.errors[0]); console.log(error.response.data.errors[0])})
+        }).then(()=>acceptID()).catch((error)=>{setHasErrorsCheck(error.response.data.errors[0].message)})
     }
 
     async function rejectID(){

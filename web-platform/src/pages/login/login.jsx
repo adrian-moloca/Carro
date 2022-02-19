@@ -18,32 +18,29 @@ import { rememberMeToggle } from '../../redux/types/UserTypes';
 
 const Login = ({fetchLogin, rememberMeToggle, data}) => {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(String(data.email).length > 0 ? true : false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hasErrorsLogin, setHasErrorsLogin] = useState({state: false, messages: []})
+  const [clickedLogin, setClickedLogin] = useState(0)
 
   const classes = useStyles();
   const { t } = useTranslation();
   const history = useHistory();
 
-  const redirectAfterLoginSuccess = () => {
-    if(isLoggedIn === true) {
-      if(data.isUserValidated){ 
-            history.push('/home');
-      } else{
-        history.push('/profile');
-      }
-    } else {
-        setHasErrorsLogin({state: data.hasErrors.state, messages: data.hasErrors.messages})
-    }
-  }
+  useEffect(()=>{
+    if(clickedLogin>0)
+      fetchLogin(email.toLowerCase(), password)
+  }, [clickedLogin])
 
-  useEffect(() => {
-    setIsLoggedIn(String(data.email).length > 0 ? true : false);
-    setTimeout(() => {redirectAfterLoginSuccess()}, 500)
-  }, [data])
+useEffect(()=>{
+  if(clickedLogin > 0 && data.token && data.token.length > 0)
+    history.push('/home')
+  else 
+    if(clickedLogin>0)
+      setHasErrorsLogin({state: data.hasErrors.state, messages: data.hasErrors.messages})
+}, [data])
+
 
   return (
     <Container className={'Primary-container-style'}>
@@ -74,7 +71,7 @@ const Login = ({fetchLogin, rememberMeToggle, data}) => {
             </Box>
             </Grid>
             <Grid container item xs={10} xl={8} justifyContent='center'>  
-                <PrimaryButton disabled={email && password && !mailValidator(email) ? false : true} onClick={() => {fetchLogin(email.toLowerCase(), password);}} className="ButtonTextSize" size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
+                <PrimaryButton disabled={email && password && !mailValidator(email) ? false : true} onClick={() => setClickedLogin(clickedLogin+1)} className="ButtonTextSize" size = 'large' variant='contained' fullWidth endIcon={<ExitToAppIcon />}>
                     {t("Login")}
                 </PrimaryButton>
             </Grid>

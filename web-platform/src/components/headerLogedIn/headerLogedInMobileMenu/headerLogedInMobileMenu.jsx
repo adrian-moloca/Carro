@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IconButton, List, ListItem, Drawer, Box } from "@material-ui/core";
 import BasicSelect from '../../buttons/languageButton/languageButton';
+import { Queue } from '@material-ui/icons';
 import SearchIcon from '@material-ui/icons/Search';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -29,6 +30,22 @@ const LogedInMobileMenu = () => {
     return (
       <Drawer anchor={'right'} open={mobileMoreAnchorEl} onClose={() => handleSliderMenu(false)}>
         <List>
+            <Link to="/add-package" className={classes.linkBtn}>
+                    <ListItem onClick={() => handleSliderMenu(false)}>
+                      <Queue/>
+                      <Box  fontSize={18} marginLeft='10px'>
+                        {t("HomePageLeftButtonText")}
+                      </Box>
+                    </ListItem>
+            </Link>
+            <Link to="/add-transport" className={classes.linkBtn}>
+                    <ListItem onClick={() => handleSliderMenu(false)}>
+                      <Queue/>
+                      <Box  fontSize={18} marginLeft='10px'>
+                        {t("HomePageRightButtonText")}
+                      </Box>
+                    </ListItem>
+            </Link>
             <Link to="/search-package" className={classes.linkBtn}>  
                 <ListItem onClick={() => handleSliderMenu(false)}>
                   <SearchIcon/>
