@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 const RadioGroupPersonalized = withStyles({
     root:{
           width:'60%',
-          justifyContent:'space-between',
+          justifyContent:'center',
       },
   
   })(RadioGroup);
@@ -24,11 +24,11 @@ const StepFour = (props) =>{
                 <CreditCardsManager cardSelected={true} showSaveButtonAddCard={true}/>
               );
           } */
-          case 2:{
+          /* case 2:{
             return(
                 <Box>Here the data for the payment order</Box>
             );
-          }
+          } */
           case 3:{
             return(
                 <Grid container item xs={12} justifyContent="center">
@@ -51,7 +51,7 @@ const StepFour = (props) =>{
                 <Grid container item xs={12} justifyContent="center">
                     <RadioGroupPersonalized row value = {props.paymentMethod} onChange={(e)=>props.setPaymentMethod(parseInt(e.target.value))} >                   
                         {/* <FormControlLabel value = {1} control={<CarroRadio/>} label={t("Card")}/> */}
-                        <FormControlLabel value = {2} control={<CarroRadio/>} label={t("PaymentOrder")}/>
+                        {/* <FormControlLabel value = {2} control={<CarroRadio/>} label={t("PaymentOrder")}/> */}
                         <FormControlLabel value = {3} control={<CarroRadio/>} label={t("CashOnDelivery")}/>
                     </RadioGroupPersonalized>
                 </Grid>
