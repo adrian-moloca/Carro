@@ -10,6 +10,13 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
     [theme.breakpoints.up('md')]: { display: 'flex'},
   },
+  zoomIn:{
+    display: 'none',
+    [theme.breakpoints.up('md')]: { display: 'flex'},
+    '&:hover':{
+      transform: 'scale(1.1)',
+    }
+  },
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {display: 'none'},

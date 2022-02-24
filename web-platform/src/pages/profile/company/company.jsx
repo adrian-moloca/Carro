@@ -87,7 +87,7 @@ const Company = ({userData, getUserCompany})=>{
             />
           </Grid>
           <Grid container item sm={11}>
-            <Box color={"#A0A0A0"} fontWeight={500} fontSize={15} marginBottom={"15px"} textAlign={"center"}>
+            <Box color={"#A0A0A0"} fontWeight={500} fontSize={15} marginBottom={"8px"} textAlign={"center"}>
               {t("OnlyCompany")}
             </Box>
           </Grid>
@@ -131,7 +131,7 @@ const Company = ({userData, getUserCompany})=>{
                     </PrimaryButton>
             )}
           </Grid>
-          <Grid container item xs={ 10 } xl={10} justifyContent='center' style={{marginBottom:"15px"}}>
+          <Grid container item xs={ 10 } xl={10} justifyContent='center' /* style={{marginBottom:"10px"}} */>
               {onEditMode ? errorsOnUpdate.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el.message}</Box>)}) : null}
           </Grid>    
         </Fragment>

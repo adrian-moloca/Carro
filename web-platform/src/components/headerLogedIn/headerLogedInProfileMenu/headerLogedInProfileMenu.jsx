@@ -120,16 +120,6 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
                   </Box>
               </MenuItem>
             </Link> */}
-            <Link to="/conversations" style={{textDecoration:'none' ,color:'inherit'}}>
-              <MenuItem dense onClick={handleAccountMenuClose}>
-                  <Box mr={2} className={"Primary-color"}>
-                    <Message/>
-                  </Box>
-                  <Box>
-                    Chat
-                  </Box>
-              </MenuItem>
-            </Link>
             <Link to="/" style={{textDecoration:'none' ,color:'inherit'}}>
               <MenuItem dense onClick={() => {setAnchorEl(null); window.localStorage.removeItem('state'); fetchLogout()}}>
                   <Box mr={2} className={"Pink-carro"}>

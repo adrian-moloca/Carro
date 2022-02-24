@@ -49,7 +49,7 @@ const AddPackage = ({data, packageData, createNewPackage}) => {
   const [destinataryAddress, setDestinataryAddress] = useState('');
   const [destinataryPhoneNumber, setDestinataryPhoneNumber] = useState('');
   const [packageSize, setPackageSize] = useState(0);
-  const [currency, setCurrency] = useState('');
+  const [currency, setCurrency] = useState('ron');
   const [weight, setWeight] = useState(0);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);

@@ -42,6 +42,7 @@ const Register = ({createNewUser, data}) => {
   const [hasErrors, setHasErrors] = useState(false);
   const [hasErrorsRegister, setHasErrorsRegister] = useState({state: false, messages: []})
   const [clickedRegister, setClickedRegister] = useState(0)
+  const [fileTooLarge, setFileTooLarge] = useState(false)
   /* const [legalPersonChecked, setLegalPersonChecked] = useState(false); */
 
 
@@ -53,7 +54,7 @@ const Register = ({createNewUser, data}) => {
     if(data.email === email) {
       if(profilePhoto.length > 20) {
         axios.put(utilData.baseUrl + '/users/profile-images', {
-            profileImage: profilePhoto.replace("data:image/jpeg;base64," || "data:image/png;base64," || "data:image/jpg;base64,", ""),
+            profileImage: profilePhoto.slice(profilePhoto.indexOf(',')+1),
         }, {
             headers:{
               'Authorization': `Bearer ${data.token}`,
@@ -79,7 +80,12 @@ const Register = ({createNewUser, data}) => {
 
   async function setPhoto(file){
       const base64 = await getBase64Image(file)
-      setProfilePhoto(base64)
+      if(file.size > 1024000)
+        setFileTooLarge(true)
+      else{
+        setFileTooLarge(false)
+        setProfilePhoto(base64)
+      }
   }
 
   useEffect(()=>{
@@ -114,7 +120,7 @@ const Register = ({createNewUser, data}) => {
         <Grid container spacing={3} display="flex" justifyContent="center">
           <Grid container item xs={12} justifyContent="center">
             <label style={{cursor: 'pointer', height:'60px', width: '60px', justifyContent:'center'}}>
-              <input type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=> setPhoto(e.target.files[0])}/>
+              <input type="file" accept=".jpg, .jpeg, .png, .heic" style={{display: 'none'}} onChange={(e)=> setPhoto(e.target.files[0])}/>
               <Avatar className={classes.profilePhotoEdit} src={profilePhoto && profilePhoto.length > 0 ? profilePhoto : AvatarImage}/>
             </label>
           </Grid>
@@ -123,6 +129,12 @@ const Register = ({createNewUser, data}) => {
               Apasati poza pentru a edita
             </Box>
           </Grid>
+          {fileTooLarge ? (
+              <Grid container item xs={12} justifyContent="center">
+                  <Box style={{color: "#ff3333", fontSize:"12px", textAlign:"center"}}>{t('FileTooLarge')}</Box>
+                  <Box style={{color: "#ff3333", fontSize:"12px", textAlign:"center"}}>(Max Size 1MB)</Box>
+              </Grid>
+          ) : null}
           <Grid container item xs={12} xl={6} justifyContent="center">
             <CarroTextField type='text' error={nameValidator(lastName)} helperText={nameValidator(lastName) ? t('LastNameOnlyLetters') : ''}
                            variant="outlined" label={t("LastName")} fullWidth value={lastName} onChange={(e) => setLastName(e.target.value)}/>

@@ -4,7 +4,7 @@ const useStyles = makeStyles({
 
   MyProfileStyle:{
     backgroundColor: '#fff',
-    margin: '5% 0',
+    margin: '3% 0',
     height: '50vh',
     borderRadius: '15px',
     boxShadow: '2px 6px 8px 4px rgba(0, 0, 0, 0.31)',
