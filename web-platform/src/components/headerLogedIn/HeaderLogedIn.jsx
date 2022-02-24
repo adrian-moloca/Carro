@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Box, Grid} from "@material-ui/core";
 import CaroLogo from '../../assets/logo/CaroLogo.png';
 import BadgeVisibility from '../NotificationsComponent/notificomp';
+import ChatButtonVisibility from '../ChatComponent/chatcomp';
 import BasicSelect from '../buttons/languageButton/languageButton'
 import RenderMenuSBD from './headerLogedInMenu/headerLogedInMenu';
 import LogedInMobileMenu from './headerLogedInMobileMenu/headerLogedInMobileMenu';
@@ -29,10 +30,14 @@ export default function PrimarySearchAppBar() {
           {/* render right btns: notifications, my account, language */}
           <Grid container item md={3} justifyContent="flex-end"> 
             {/* notifications */}
-            <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
+            <Box className={[classes.sectionDesktop, classes.zoomIn]} justifyContent="center" alignItems="center">
               {/* <Link to="/notifications" style={{underline:'none'}}> */}
                 <BadgeVisibility />
               {/* </Link> */}
+            </Box>
+            {/* conversations */}
+            <Box className={[classes.sectionDesktop, classes.zoomIn]} style={{paddingLeft: 0}} justifyContent="center" alignItems="center">
+                <ChatButtonVisibility />
             </Box>
             {/* profile menu */}
             <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
@@ -47,6 +52,9 @@ export default function PrimarySearchAppBar() {
         {/* mobile */}
         <Box className={classes.sectionMobile} display="flex">
             <BadgeVisibility/>
+        </Box>
+        <Box className={classes.sectionMobile} display="flex">
+            <ChatButtonVisibility/>
           <LogedInMobileMenu/>
         </Box>
       </Toolbar>

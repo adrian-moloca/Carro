@@ -30,7 +30,8 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
     const [personalInfo, setPersonalInfo] = useState({})
     const [optionalInfo, setOptionalInfo] = useState({})
     const [profilePhoto, setProfilePhoto] = useState('');
-    const [profilePhotoChanged, setProfilePhotoChanged] = useState(false);  
+    const [profilePhotoChanged, setProfilePhotoChanged] = useState(false);
+    const [fileTooLarge, setFileTooLarge] = useState(false);  
     const [currentSection, setCurrentSection] = useState(window.innerWidth <=850 ? -1 : 0);
     const [open, setOpen] = useState(false);
 
@@ -48,18 +49,23 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
 
     async function setPhoto(file){
       const base64 = await getBase64Image(file)
-      setProfilePhoto(base64)
+      if(file.size > 1024000)
+        setFileTooLarge(true)
+      else{
+        setFileTooLarge(false)
+        setProfilePhoto(base64)
+      }
     }
 
     async function updateChangedData(){
       if(profilePhotoChanged){
             axios.put(utilData.baseUrl + '/users/profile-images', {
-                profileImage: profilePhoto.replace("data:image/jpeg;base64," || "data:image/png;base64," || "data:image/jpg;base64,", ""),
+                profileImage: profilePhoto.slice(profilePhoto.indexOf(',')+1),
             }, {
           headers:{
           'Authorization': `Bearer ${userData.token}`,
           }
-        }).catch((error)=>{console.log(error); alert('profile photo changes failed')})
+        }).catch((error)=>{getUserProfileImage(userData.token)})
         setProfilePhotoChanged(false) 
       }
       
@@ -94,7 +100,7 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
 	    userData.profileImage && userData.profileImage.length > 0 ? setProfilePhoto(userData.profileImage) : setProfilePhoto('')
     }, [userData.profileImage])
 
-    useEffect(()=>{}, [profileStatus])
+    useEffect(()=>{}, [profileStatus, fileTooLarge])
 
     useEffect(()=>{ 
         if(currentSection!=-1)
@@ -148,18 +154,24 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
                 </Grid>
                 <Grid container item xs={12} sm={3} justifyContent="center">
                     <label style={{cursor: 'pointer', height:'60px', width: '60px'}}>
-                        <input type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=>{setPhoto(e.target.files[0]); setProfilePhotoChanged(true)}}/>
+                        <input type="file" accept=".jpg, .jpeg, .png, .heic" style={{display: 'none'}} onChange={(e)=>{setPhoto(e.target.files[0]); setProfilePhotoChanged(true)}}/>
                             <Avatar className={classes.profilePhotoEdit} src={profilePhoto && profilePhoto.length > 0 ? profilePhoto : AvatarImage} style={{marginBottom: window.innerWidth <= 850 ? "20px" : 0 }}/>
                     </label>
                 </Grid>
                 <Grid container item xs={12} sm={3} justifyContent="center">
                     <SeeProfileBtn onClick={()=>{
-                            fetchCourierProfile(userData.id, userData.token)
-                            setTimeout(()=>redirectAfterFetchCourierProfile(), 500)
+                        fetchCourierProfile(userData.id, userData.token)
+                        setTimeout(()=>redirectAfterFetchCourierProfile(), 500)
                     }} style={{marginTop: window.innerWidth <= 650 ? "40px" : 0}}>
                             {t("ViewProfile")}
                     </SeeProfileBtn>
                 </Grid>
+                {fileTooLarge ? (
+                    <Grid container item xs={12} justifyContent="center">
+                        <Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop: '1%'}}>{t('FileTooLarge')}</Box>
+                        <Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop: '1%'}}>(Max Size 1MB)</Box>
+                    </Grid>
+                ) : null}
             </Grid>
             <Box className={classes.MyProfileStyle}>
                 <Grid container>

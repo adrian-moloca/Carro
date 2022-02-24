@@ -41,35 +41,6 @@ const HomePage = ({userData}) => {
           </Link> 
         </Grid>
       </Grid>
-      <Grid container justifyContent="center">
-        <Grid container item xs={12} justifyContent='center'>
-            <Box px={2} m={1} fontSize={25} color={'grey.700'} fontWeight={700} fontStyle='italic' textAlign=''>{t('subtitle')}</Box>
-        </Grid>
-        <Grid container item xs={12} sm={12} md={6} lg={3} xl={3} justifyContent='center'>
-            <Box m={2} minWidth='310px' display ='flex'  flexDirection='row' boxShadow={4} borderRadius='8px' 
-            className={classes.BgColorBtnBlue} justifyContent='center' alignItems='center' p={2}>
-              <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center' mx={2}><img src={BoxHome} alt={""}></img></Box> 
-              <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center'>Bucuresti - Constanta</Box>
-              {/* <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center'>20 RON</Box> */}
-            </Box>
-        </Grid>
-        <Grid container item xs={12} sm={12} md={6} lg={3} xl={3} justifyContent='center'>
-            <Box m={2} minWidth='310px' display ='flex' flexDirection='row' boxShadow={4} borderRadius='8px' 
-            className={classes.BgColorBtnBlue} justifyContent='center' alignItems='center' p={2}>
-              <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center' mx={2}><img src={BoxHome} alt={""}></img></Box> 
-              <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center'>Cluj-Napoca - Brasov</Box>
-              {/* <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center'>35 RON</Box> */}
-            </Box>
-        </Grid>
-        <Grid container item xs={12} sm={12} md={6} lg={3} xl={3} justifyContent='center'>
-            <Box m={2} minWidth='310px' display ='flex'  flexDirection='row' boxShadow={4} borderRadius='8px' 
-            className={classes.BgColorBtnBlue} justifyContent='center' alignItems='center' p={2}>
-              <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center' mx={2}><img src={BoxHome} alt={""}></img></Box> 
-              <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center'>Timisoara - Sibiu</Box>
-              {/* <Box display='flex' fontSize={20} fontWeight={600} color='white' textAlign='center'>30 RON</Box> */}
-            </Box>
-        </Grid>
-      </Grid>
       <br/>
       <Grid container justifyContent="center">
       <Grid container item xs={12} md={4} lg={4} xl={4} justifyContent='center'>

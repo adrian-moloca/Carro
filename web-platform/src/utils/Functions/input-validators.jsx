@@ -1,7 +1,7 @@
 import React from 'react';
 
 export function addressValidator(address){
-    const addressFormat = /^[a-zA-Z0-9].{3,20}$/
+    const addressFormat = /^[a-zA-Z0-9ĂăÂâÎîȘșȚț].{3,20}$/
     if(addressFormat.test(address) || String(address).length==0)
     {
         return false;
@@ -25,7 +25,7 @@ export function mailValidator(mail){
 }
 
 export function nameValidator(name){
-    const nameFormat = /^[a-zA-Z ].{2,50}$/
+    const nameFormat = /^[a-zA-ZĂăÂâÎîȘșȚț].{2,50}$/
     if(nameFormat.test(name) || String(name).length==0)
     {
         return false;
