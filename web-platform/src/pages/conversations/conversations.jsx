@@ -1,69 +1,19 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Box, Grid, Container} from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import ChatConversationCard from '../../components/cards/chatConversationCard/chatConversationCard';
 import {Pagination} from '@material-ui/lab';
 import CarroTextField from '../../components/textField/CarroTextField';
-import profileImg from '../../assets/images/photoprofile1.png';
 import usePagination from "../../components/pagination/use-pagination/use-pagination";
+import { connect } from "react-redux";
+import { getChatMessages } from "../../redux/actions/UserChatActions";
 // import SearchIcon from '@material-ui/icons/Search';
 // import useStyles from './conversationsStyle';
 
 
-const Conversations = () =>{
-  
-  const chats=[
-    {
-      profileImg: profileImg,
-      name: 'Marius Popescu',
-      lastMessage: 'Lorem Ipsium dolor sit amet.',
-      date: '15/10/2021 16:35',
-    },
-    {
-      profileImg: profileImg,
-      name: 'Grigore Iancu',
-      lastMessage: 'Lorem Ipsium dolor sit amet.',
-      date: '16/10/2021 18:30',
-    },
-    {
-      profileImg: profileImg,
-      name: 'Marius Popescu',
-      lastMessage: 'Lorem Ipsium dolor sit amet.',
-      date: '15/10/2021 16:35',
-    },
-    {
-      profileImg: profileImg,
-      name: 'Grigore Iancu',
-      lastMessage: 'Lorem Ipsium dolor sit amet.',
-      date: '16/10/2021 18:30',
-    },
-    {
-      profileImg: profileImg,
-      name: 'Marius Popescu',
-      lastMessage: 'Lorem Ipsium dolor sit amet.',
-      date: '15/10/2021 16:35',
-    },
-    {
-      profileImg: profileImg,
-      name: 'Grigore Iancu',
-      lastMessage: 'Lorem Ipsium dolor sit amet.',
-      date: '16/10/2021 18:30',
-    },
-    {
-      profileImg: profileImg,
-      name: 'Marius Popescu',
-      lastMessage: 'Lorem Ipsium dolor sit amet.',
-      date: '15/10/2021 16:35',
-    },
-    {
-      profileImg: profileImg,
-      name: 'Grigore Iancu',
-      lastMessage: 'Lorem Ipsium dolor sit amet.',
-      date: '16/10/2021 18:30',
-    },
-  ]
+const Conversations = ({chatsData, userData, getChatMessages}) =>{
 
-  const[chatsState, setChatsState] = useState(chats);
+  const[chatsState, setChatsState] = useState(chatsData.chats);
   const conversations = usePagination(chatsState, 3)
 
   const history = useHistory();
@@ -72,10 +22,17 @@ const Conversations = () =>{
   const handleChange = (event, value) => {setPage(value); conversations.jump(value)};
   // const classes = useStyles();
 
+  useEffect(()=>{}, [chatsData])
+
   const deleteChat=(index)=>{
     const temp = [...chatsState];
     temp.splice(index, 1);
     setChatsState(temp);
+  }
+
+  const goToChat = (chatId) =>{
+    getChatMessages(chatId, userData.token);
+    history.push('/conversations/chat')
   }
 
   return(
@@ -89,7 +46,8 @@ const Conversations = () =>{
         </Grid>
         {conversations.currentData().map((chat, index)=>
               <Grid container item xs={8} justifyContent='center'>
-                  <ChatConversationCard profileImage={chat.profileImg} name={chat.name} message={chat.lastMessage} date={chat.date} chatClicked={()=>history.push('/conversations/chat')} deleteConversation={()=>deleteChat(index)}/>
+                  <ChatConversationCard profileImage={"data:image/png;base64," + chat.profileImage} name={chat.driverName === userData.name ? chat.packageUserName : chat.driverName}
+                                        message={chat.packageName} date={chat.date} chatClicked={()=>goToChat(chat.id)} deleteConversation={()=>deleteChat(index)}/>
               </Grid>
         )}
         <Grid container item xs={8}>
@@ -110,4 +68,7 @@ const Conversations = () =>{
   );
 };
 
-export default Conversations;
+const mapStateToProps = state =>({chatsData: state.chatsData, userData: state.userData})
+const mapDispatchToProps = (dispatch) =>({getChatMessages: (chatId, token) => dispatch(getChatMessages(chatId, token))})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Conversations);

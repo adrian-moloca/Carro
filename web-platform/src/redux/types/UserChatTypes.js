@@ -23,7 +23,7 @@ export const getUserChatsRequest = () => {
 export const getUserChatsSuccess = chats => {
     return {
         type: USER_CHATS_SUCCESS,
-        payload: chats
+        payload: [...chats]
     }
 }
 
@@ -65,7 +65,7 @@ export const getChatMessagesRequest = () => {
 export const getChatMessagesSuccess = messages => {
     return {
         type: CHAT_MESSAGES_SUCCESS,
-        payload: messages
+        payload: [...messages]
     }
 }
 

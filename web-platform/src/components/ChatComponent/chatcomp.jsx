@@ -3,30 +3,31 @@ import { Link } from 'react-router-dom';
 import { Badge, Box, IconButton } from '@material-ui/core';
 import { Message } from '@material-ui/icons';
 import {connect} from 'react-redux';
+import { getUserChats } from '../../redux/actions/UserChatActions';
 
- const ChatButtonVisibility = ({notificationsData, userData}) => {
+ const ChatButtonVisibility = ({userData, chatsData, getUserChats}) => {
 
   const [hideBadge, setHideBadge] = useState(false)
-  const [unreadNotifications, setUnreadNotifications] = useState(notificationsData.notifications && notificationsData.notifications.length > 0 ? notificationsData.notifications.filter(el => el.isRead === false) : []);
+  const [unreadMessages, setUnreadMessages] = useState(chatsData.chats && chatsData.chats.length > 0 ? chatsData.chats.filter(el => el.isRead === false) : []);
 
   useEffect(()=>{
-    const unread = notificationsData.notifications && notificationsData.notifications.length > 0 ? notificationsData.notifications.filter(el => el.isRead === false) : [];
-    setUnreadNotifications(unread)
-  }, [notificationsData])
+    const unread = chatsData.chats && chatsData.chats.length > 0 ? chatsData.chats.filter(el => el.isRead === false) : [];
+    setUnreadMessages(unread)
+  }, [chatsData])
   
   useEffect(()=>{
-    if(unreadNotifications.length>0)
+    if(unreadMessages.length>0)
       setHideBadge(false)
     else
       setHideBadge(true)
-  }, [unreadNotifications])
+  }, [unreadMessages])
 
   return (
     <Box display='flex' alignSelf='center' flexDirection='column' className={"Primary-color"}>
       <Box mr={1}>
         <Link to='/conversations' style={{textDecoration:'none'}}>
-          <IconButton className={"Primary-color"}>
-            <Badge color="secondary" badgeContent={unreadNotifications.length} invisible={hideBadge}>
+          <IconButton className={"Primary-color"} onClick={()=>getUserChats(userData.token)}>
+            <Badge color="secondary" badgeContent={unreadMessages.length} invisible={hideBadge}>
               <Message/>
             </Badge>
           </IconButton>
@@ -37,7 +38,10 @@ import {connect} from 'react-redux';
 }
 
 const mapStateToProps = state => ({
-              notificationsData: state.notificationsData,
+              chatsData: state.chatsData,
               userData : state.userData
             })
-export default connect(mapStateToProps, null)(ChatButtonVisibility);
+const mapDispatchToProps = (dispatch) =>({
+            getUserChats: (token) => dispatch(getUserChats(token))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(ChatButtonVisibility);
