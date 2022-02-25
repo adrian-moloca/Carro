@@ -28,7 +28,7 @@ const userChatReducer = (state = initialState, action) => {
         case USER_CHATS_SUCCESS:
             return{
                 ...state,
-                chats: action.payload.chats,
+                chats: action.payload,
                 hasErrors: false
             }
         case USER_CHATS_FAILURE:
@@ -66,7 +66,7 @@ const userChatReducer = (state = initialState, action) => {
         case CHAT_MESSAGES_SUCCESS:
             return{
                 ...state,
-                messages: action.payload.messages,
+                messages: action.payload,
                 hasErrors: false
             }
         case CHAT_MESSAGES_FAILURE:

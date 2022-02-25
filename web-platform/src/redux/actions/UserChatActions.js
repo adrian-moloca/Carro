@@ -26,10 +26,10 @@ export const getUserChat = (id, token) =>{
     }
 }
 
-export const getChatMessages = (id, token) =>{
+export const getChatMessages = (chatId, token) =>{
     return (dispatch) => {
         dispatch(getChatMessagesRequest);
-        axios.get(data.baseUrl+'/chats/'+id+'/messages', {
+        axios.get(data.baseUrl+'/chats/'+chatId+'/messages', {
             headers:{
                 'Authorization': `Bearer ${token}`,
         }}).then((response)=>dispatch(getChatMessagesSuccess(response.data.data))).catch((error)=>dispatch(getChatMessagesFailure(error)))

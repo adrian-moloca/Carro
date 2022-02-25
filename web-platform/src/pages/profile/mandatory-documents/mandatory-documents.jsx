@@ -17,9 +17,16 @@ const MandatoryDocuments = ({userData, getProfileStatus})=>{
 
     const [errorsOnUpdate, setErrorsOnUpdate] = useState([{message: ''}]);
 
+    const [fileTooLarge, setFileTooLarge] = useState(false);
+
     async function setMandatory(file){
         const base64 = await getBase64Image(file)
-        setMandatoryDocuments(base64)
+        if(file.size > 1024000)
+            setFileTooLarge(true)
+        else{
+            setFileTooLarge(false)
+            setMandatoryDocuments(base64)
+        }
     }
 
 
@@ -40,7 +47,7 @@ const MandatoryDocuments = ({userData, getProfileStatus})=>{
             uploadMandatoryDoc()
     }, [mandatoryDocuments])
 
-    useEffect(()=>{}, [userData.profileStatus])
+    useEffect(()=>{}, [userData.profileStatus, fileTooLarge])
 
     return(
         <Fragment>
@@ -60,7 +67,7 @@ const MandatoryDocuments = ({userData, getProfileStatus})=>{
                                 </Grid>
                                 <Grid container item sm={12} justifyContent='center'>
                                     <label style={{cursor: 'pointer', height:'35px', width: '250px'}}>
-                                        <input id='myFileInput' type="file" accept=".jpg, .jpeg, .png" style={{display: 'none'}} onChange={(e)=> setMandatory(e.target.files[0])}/>
+                                        <input id='myFileInput' type="file" accept=".jpg, .jpeg, .png, .heic, .pdf" style={{display: 'none'}} onChange={(e)=> setMandatory(e.target.files[0])}/>
                                         <PrimaryButton variant='contained' onClick={()=>{document.getElementById('myFileInput').click()}} style={{height:35, width:250, marginTop: "5%"}}>
                                             <Box px='10px'>{t('UploadId')}</Box>
                                             <AttachFile fontSize='small'/>
@@ -72,7 +79,8 @@ const MandatoryDocuments = ({userData, getProfileStatus})=>{
                                 </Grid> 
                                 <Grid container item sm={12} justifyContent='center' style={{height: "50px", marginTop:"3%"}}>
                                     <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('AcceptedDocuments')}</Box>
-                                    <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('IdDriveLicenseBirthCert')}</Box>
+                                    <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('IdPassportDriveLicense')}</Box>
+                                    <Box color={fileTooLarge ? "#FF3333" : "#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>(Max size 1MB)</Box>
                                 </Grid>
                             </Fragment>
                     )) : (

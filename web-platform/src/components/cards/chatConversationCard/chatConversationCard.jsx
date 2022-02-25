@@ -19,7 +19,7 @@ const ChatConversationCard = (props) => {
             <ButtonBase disableRipple onClick={props.chatClicked}>
               <Grid container>
                 <Grid container item xs={12} alignItems='flex-end' justifyContent='center'>
-                  <Box fontWeight='700' fontSize='16px' textAlign='center'>{props.name}</Box>
+                  <Box fontWeight='700' fontSize='16px' textAlign='center'>{props.name.replace(',', '')}</Box>
                 </Grid>
                 <Grid container item xs={12} justifyContent='center'>
                   <Box fontWeight='200'  fontSize='18px' textAlign='center'>{props.message}</Box>
