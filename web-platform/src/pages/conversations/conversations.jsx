@@ -7,11 +7,12 @@ import CarroTextField from '../../components/textField/CarroTextField';
 import usePagination from "../../components/pagination/use-pagination/use-pagination";
 import { connect } from "react-redux";
 import { getChatMessages } from "../../redux/actions/UserChatActions";
+import { setCurrentUserChat } from "../../redux/types/UserChatTypes";
 // import SearchIcon from '@material-ui/icons/Search';
 // import useStyles from './conversationsStyle';
 
 
-const Conversations = ({chatsData, userData, getChatMessages}) =>{
+const Conversations = ({chatsData, userData, getChatMessages, setCurrentUserChat}) =>{
 
   const[chatsState, setChatsState] = useState(chatsData.chats);
   const conversations = usePagination(chatsState, 3)
@@ -30,8 +31,9 @@ const Conversations = ({chatsData, userData, getChatMessages}) =>{
     setChatsState(temp);
   }
 
-  const goToChat = (chatId) =>{
+  const goToChat = (chatId, name, profileImage) =>{
     getChatMessages(chatId, userData.token);
+    setCurrentUserChat(name, profileImage, chatId)
     history.push('/conversations/chat')
   }
 
@@ -47,7 +49,7 @@ const Conversations = ({chatsData, userData, getChatMessages}) =>{
         {conversations.currentData().map((chat, index)=>
               <Grid container item xs={8} justifyContent='center'>
                   <ChatConversationCard profileImage={"data:image/png;base64," + chat.profileImage} name={chat.driverName === userData.name ? chat.packageUserName : chat.driverName}
-                                        message={chat.packageName} date={chat.date} chatClicked={()=>goToChat(chat.id)} deleteConversation={()=>deleteChat(index)}/>
+                                        message={chat.packageName} date={chat.date} chatClicked={()=>goToChat(chat.id,chat.driverName === userData.name ? chat.packageUserName : chat.driverName, chat.profileImage)} deleteConversation={()=>deleteChat(index)}/>
               </Grid>
         )}
         <Grid container item xs={8}>
@@ -69,6 +71,6 @@ const Conversations = ({chatsData, userData, getChatMessages}) =>{
 };
 
 const mapStateToProps = state =>({chatsData: state.chatsData, userData: state.userData})
-const mapDispatchToProps = (dispatch) =>({getChatMessages: (chatId, token) => dispatch(getChatMessages(chatId, token))})
+const mapDispatchToProps = (dispatch) =>({getChatMessages: (chatId, token) => dispatch(getChatMessages(chatId, token)), setCurrentUserChat: (name, profileImage, chatId)=> dispatch(setCurrentUserChat(name, profileImage, chatId))})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Conversations);

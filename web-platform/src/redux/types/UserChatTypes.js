@@ -13,6 +13,9 @@ export const CHAT_MESSAGES_REQUEST = 'CHAT_MESSAGES_REQUEST';
 export const CHAT_MESSAGES_SUCCESS = 'CHAT_MESSAGES_SUCCESS';
 export const CHAT_MESSAGES_FAILURE = 'CHAT_MESSAGES_FAILURE';
 
+//Current user chat
+export const SET_CURRENT_USER_CHAT = 'SET_CURRENT_USER_CHAT';
+
 //get User Chats
 export const getUserChatsRequest = () => {
     return {
@@ -75,3 +78,11 @@ export const getChatMessagesFailure = error => {
         payload: error
     }
 } 
+
+//set Current user chat
+export const setCurrentUserChat = (name, profileImage, chatId) =>{
+    return{
+        type: SET_CURRENT_USER_CHAT,
+        payload: {name, profileImage, chatId}
+    }
+}

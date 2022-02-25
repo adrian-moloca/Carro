@@ -1,7 +1,9 @@
+import { ChatOutlined } from '@material-ui/icons';
 import { 
     USER_CHATS_REQUEST, USER_CHATS_SUCCESS, USER_CHATS_FAILURE,
     USER_CHAT_REQUEST, USER_CHAT_SUCCESS, USER_CHAT_FAILURE,
     CHAT_MESSAGES_REQUEST, CHAT_MESSAGES_SUCCESS, CHAT_MESSAGES_FAILURE,
+    SET_CURRENT_USER_CHAT
  } from '../types/UserChatTypes';
 
 let initialState = {
@@ -11,6 +13,11 @@ let initialState = {
         packageName: "",
         driverName: "",
         isValid: false
+     },
+     currentChat:{
+        name: '',
+        profileImage: '',
+        chatId: ''
      },
      chats: [],
      messages: [],
@@ -74,6 +81,16 @@ const userChatReducer = (state = initialState, action) => {
                 ...state,
                 hasErrors: true
             }
+        case SET_CURRENT_USER_CHAT:{
+            return{
+                ...state,
+                currentChat:{
+                    name: action.payload.name,
+                    profileImage: action.payload.profileImage,
+                    chatId: action.payload.chatId
+                }
+            }
+        }
         default:
             return{
                 ...state
