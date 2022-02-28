@@ -7,7 +7,7 @@ import data from '../../utils/constants';
 export const fetchNotifications = (token) => {
 
 return (dispatch) => {
-    dispatch(fetchNotificationsRequest);
+    dispatch(fetchNotificationsRequest());
     axios.get(data.baseUrl + "/notifications", {
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -25,7 +25,7 @@ return (dispatch) => {
 export const markAsReadNotification = (token, notificationId, notificationStatus) => {
 
     return (dispatch) => {
-        dispatch(markAsReadNotificationRequest);
+        dispatch(markAsReadNotificationRequest());
         axios.put(data.baseUrl + "/notifications/"+notificationId+"/is-read", {
                 notificationStatus: notificationStatus
         }, {
@@ -47,7 +47,7 @@ export const markAsReadNotification = (token, notificationId, notificationStatus
 export const deleteNotification = (token, notificationId) => {
 
 return(dispatch) => {
-    dispatch(deleteNotificationRequest);
+    dispatch(deleteNotificationRequest());
     axios.delete(data.baseUrl+"/notifications/"+notificationId ,{
             headers: {
                 "Authorization": `Bearer ${token}`,

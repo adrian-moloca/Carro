@@ -18,13 +18,13 @@ const Company = ({userData, getUserCompany})=>{
     
     const {t} = useTranslation();
 
-    const [isCompany, setIsCompany] = useState(false)
-    const [name, setName] = useState('')
-    const [cui, setCUI] = useState('');
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [country, setCountry] = useState('');
-    const [email, setEmail] = useState('');
+    const [isCompany, setIsCompany] = useState(userData.company.isCompany)
+    const [name, setName] = useState(userData.company.name)
+    const [cui, setCUI] = useState(userData.company.taxIdentificationNumber);
+    const [address, setAddress] = useState(userData.company.address);
+    const [city, setCity] = useState(userData.company.city);
+    const [country, setCountry] = useState(userData.company.country);
+    const [email, setEmail] = useState(userData.company.email);
     const [countryPhoneCode, setCountryPhoneCode] = useState('');
     const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState(''); 
 

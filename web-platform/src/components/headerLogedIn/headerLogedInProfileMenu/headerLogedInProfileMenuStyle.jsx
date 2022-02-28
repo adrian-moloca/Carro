@@ -8,7 +8,12 @@ const useStyles = makeStyles((theme) => ({
     transform: 'rotate(-180deg);',
     width:'100%',
   },
-
+  zoomIn:{
+    transition: 'transform 0.1s',
+    '&:hover':{
+      transform: 'scale(1.05)',
+    }
+  },
   widthMenu:{
     width: '20%',
     minWidth:'250px',

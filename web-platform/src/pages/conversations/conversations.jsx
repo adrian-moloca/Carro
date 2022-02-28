@@ -23,7 +23,11 @@ const Conversations = ({chatsData, userData, getChatMessages, setCurrentUserChat
   const handleChange = (event, value) => {setPage(value); conversations.jump(value)};
   // const classes = useStyles();
 
-  useEffect(()=>{}, [chatsData])
+  useEffect(()=>{
+    setChatsState(chatsData.chats)
+  }, [chatsData.chats])
+
+  useEffect(()=>{}, [chatsState])
 
   const deleteChat=(index)=>{
     const temp = [...chatsState];

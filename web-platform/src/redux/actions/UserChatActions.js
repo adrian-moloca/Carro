@@ -8,7 +8,7 @@ import data from "../../utils/constants";
 
 export const getUserChats = (token) =>{
     return (dispatch) => {
-        dispatch(getUserChatsRequest);
+        dispatch(getUserChatsRequest());
         axios.get(data.baseUrl+'/chats', {
             headers:{
                 'Authorization': `Bearer ${token}`,
@@ -18,7 +18,7 @@ export const getUserChats = (token) =>{
 
 export const getUserChat = (id, token) =>{
     return (dispatch) => {
-        dispatch(getUserChatRequest);
+        dispatch(getUserChatRequest());
         axios.get(data.baseUrl+'/chats/'+id, {
             headers:{
                 'Authorization': `Bearer ${token}`,
@@ -28,7 +28,7 @@ export const getUserChat = (id, token) =>{
 
 export const getChatMessages = (chatId, token) =>{
     return (dispatch) => {
-        dispatch(getChatMessagesRequest);
+        dispatch(getChatMessagesRequest());
         axios.get(data.baseUrl+'/chats/'+chatId+'/messages', {
             headers:{
                 'Authorization': `Bearer ${token}`,

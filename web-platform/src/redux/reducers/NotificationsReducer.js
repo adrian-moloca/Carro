@@ -20,11 +20,13 @@ const notificationsReducer = (state = initialState, action) => {
             return{
                 ...state,
                 notifications: action.payload,
+                loading: false
             }
         case NOTIFICATIONS_FAILURE:
             return{
                 ...state,
                 hasErrors: true,
+                loading: false
             }
         case NOTIFICATIONS_AS_READ_REQUEST: 
             return{
@@ -35,11 +37,13 @@ const notificationsReducer = (state = initialState, action) => {
             return{
                 ...state,
                 hasErrors: false,
+                loading: false
             }
         case NOTIFICATIONS_AS_READ_FAILURE: 
             return{
                 ...state,
                 hasErrors: true,
+                loading: false
             }
         case NOTIFICATION_DELETE_REQUEST:
             return {
@@ -49,11 +53,14 @@ const notificationsReducer = (state = initialState, action) => {
         case NOTIFICATION_DELETE_SUCCESS:
             return{
                 ...state,
+                loading: false
             }
         case NOTIFICATION_DELETE_FAILURE:
             return{
                 ...state,
                 hasErrors: true,
+                loading: false
+            
             }
         default: 
             return  {

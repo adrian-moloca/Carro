@@ -127,6 +127,8 @@ const EditUserAdmin = ({data, userClickedData, adminGetUser, adminGetUsers, clea
         cleanUserPanel()
     }
 
+    useEffect(()=>{}, [dateCreated, userRole, email, firstName, lastName, dateOfBirth, countryPhoneCode, inputValuePhoneNumber, address, city, country, profileImage, rate, identityCardImage,idNumber, numberSeries,isAccountClosed, isCompany, personalInfo, identityCardVerified, phoneNumber,identityCardUploaded, userValidated, subscriptionPaid, rejectIssue, freeTrial, closeAccountCreated, closeAccountReason])
+
     const handleIsAccountClosed = (event) => {
         event.target.checked ? setIsAccountClosed(true) : setIsAccountClosed(false);
     };
@@ -246,7 +248,30 @@ const EditUserAdmin = ({data, userClickedData, adminGetUser, adminGetUsers, clea
                     'Authorization': `Bearer ${data.token}`,
                 }
             }
-        ).then(()=>{handleClose(); setTimeout(()=>adminGetUsers(data.token), 500)}).catch(error=>alert('error update user'))
+        ).then(()=>{handleClose(); adminGetUsers(data.token)}).catch(error=>alert('error update user'))
+    }
+
+    const saveUserData = () =>{
+        if(userValidated !== userClickedData.userStatus.isUserValidated){
+            if(userValidated)
+                axios.put(utilData.adminUrl + '/users/'+userClickedData.id + '/validate', {}, {
+                    headers:{
+                        Authorization: `Bearer ${data.token}`,
+                    }
+                }).then(()=>updateUser()).catch(()=>setUserValidated(!userValidated))
+            else
+                axios.put(utilData.adminUrl + '/users/'+userClickedData.id + '/invalidate', {
+                    invalidateReason
+                }, {
+                    headers:{
+                        Authorization: `Bearer ${data.token}`,
+                    }
+                }).then(()=>updateUser()).catch(()=>setUserValidated(!userValidated))
+                
+        }
+        else
+         updateUser()
+
     }
 
     return(
@@ -511,7 +536,7 @@ const EditUserAdmin = ({data, userClickedData, adminGetUser, adminGetUsers, clea
                                         <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("CloseButton")}</SecondaryButton>     
                             </Grid>
                             <Grid container item sm={3} justifyContent="center">
-                                        <GreenCaroButton variant='contained' onClick={()=>{updateUser()}} fullWidth>{t("SaveButton")}</GreenCaroButton>
+                                        <GreenCaroButton variant='contained' onClick={()=>{saveUserData()}} fullWidth>{t("SaveButton")}</GreenCaroButton>
                             </Grid>
                         </Grid>
                     </Container>

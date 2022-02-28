@@ -72,11 +72,14 @@ switch (action.type) {
         return{
             ...state,
             rides: action.payload,
+            loading: false
+
         }
     case SEARCH_RIDES_FAILURE:
         return{
             ...state,
             hasErrors: true,
+            loading: false
         }
     case GET_RIDE_REQUEST:
         return {
@@ -102,12 +105,16 @@ switch (action.type) {
                 phoneNumber: action.payload.phoneNumber,
                 statuses: action.payload.statuses,
                 interactions: action.payload.interactions
-            }
+            },
+            loading: false
+
         }
     case GET_RIDE_FAILURE:
         return{
             ...state,
             hasErrors: true,
+            loading: false
+
         }
     case DRIVERS_UNDER_PACKAGE_REQUEST:
         return{
@@ -117,17 +124,23 @@ switch (action.type) {
     case DRIVERS_UNDER_PACKAGE_SUCCESS:
         return{
             ...state,
-            rides: action.payload.rides
+            rides: action.payload.rides,
+            loading: false
+
         }
     case DRIVERS_UNDER_PACKAGE_FAILURE:
         return{
             ...state,
-            hasErrors: true
+            hasErrors: true,
+            loading: false
+        
         }
     case CLEAN_RIDES_DATA:
         return{
             ...state,
             rides: [],
+            loading: false
+
         }
 
     default: 

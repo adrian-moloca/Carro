@@ -10,7 +10,7 @@ const DriverProfileCard =(props)=>{
   return(
     <Box display='flex' justifyContent='center' p={2}>
       <Grid container justifyContent="center" alignItems="center">
-        <Grid container item xs={6} justifyContent='center' direction="column">
+        <Grid container item xs={window.innerWidth <= 590 ? 12 : 6} justifyContent='center' direction="column">
           <Grid container item xs={12} justifyContent='center'>
             <Avatar className={classes.profileImg} src={props.image} style={{marginBottom: window.innerWidth <= 850 ? "20px" : 0 }}/>
           </Grid>
@@ -26,21 +26,29 @@ const DriverProfileCard =(props)=>{
               <Box marginTop='7%' className={'Secondary-color'} marginBottom='5%' fontSize='20px' fontWeight='300'> {t("TotalRides")}: {props.totalCurse}</Box>
           </Grid>
         </Grid>
-        <Grid container item xs={6} justifyContent='center' direction="column">
-          <Grid container item xs={12} justifyContent='flex-start'>
+        <Grid container item xs={window.innerWidth <= 590 ? 12 : 6} justifyContent='center' direction="column">
+          <Grid container item xs={window.innerWidth <= 590 ? 12 : 6} justifyContent='flex-start'>
               <Box className={'Secondary-color'} marginTop='3%' fontSize='20px' fontWeight='300' width={"200px"} >{t("Car") + ": "}</Box>
+          </Grid>
+          <Grid container item xs={window.innerWidth <= 590 ? 12 : 6} justifyContent='flex-start'>
               <Box marginTop='3%' fontSize='20px' style={{fontWeight:400, textAlign:"left", marginLeft:"15px"}}>{props.masina}</Box>
           </Grid>
-          <Grid container item xs={12} justifyContent='flex-start'>
+          <Grid container item xs={window.innerWidth <= 590 ? 12 : 6} justifyContent='flex-start'>
               <Box className={'Secondary-color'} marginTop='3%' fontSize='20px' fontWeight='300' width={"200px"} >{t("Model") + ": "}</Box>
+          </Grid>
+          <Grid container item xs={window.innerWidth <= 590 ? 12 : 6} justifyContent='flex-start'>
               <Box marginTop='3%' fontSize='20px' style={{fontWeight:400, textAlign:"left", marginLeft:"15px"}}>{props.model}</Box>
           </Grid>
-          <Grid container item xs={12} justifyContent='flex-start'>
+          <Grid container item xs={window.innerWidth <= 590 ? 12 : 6} justifyContent='flex-start'>
               <Box className={'Secondary-color'} marginTop='3%' fontSize='20px' fontWeight='300' width={"200px"} >{t("Color") + ": "}</Box>
+          </Grid>
+          <Grid container item xs={window.innerWidth <= 590 ? 12 : 6} justifyContent='flex-start'>
               <Box marginTop='3%' fontSize='20px' style={{fontWeight:400, textAlign:"left", marginLeft:"15px"}}>{props.color}</Box>
           </Grid>
-          <Grid container item xs={12} justifyContent='flex-start'>
+          <Grid container item xs={window.innerWidth <= 590 ? 12 : 6} justifyContent='flex-start'>
               <Box className={'Secondary-color'} marginTop='3%' fontSize='20px' fontWeight='300' width={"200px"} >{t("RegistrationNumber") + ": "}</Box>
+          </Grid>
+          <Grid container item xs={window.innerWidth <= 590 ? 12 : 6} justifyContent='flex-start'>
               <Box marginTop='3%' fontSize='20px' style={{fontWeight:400, textAlign:"left", marginLeft:"15px"}}>{props.carNumber}</Box>
           </Grid>
         </Grid>

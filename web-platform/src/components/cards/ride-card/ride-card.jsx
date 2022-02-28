@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {Box, Grid, Avatar} from '@material-ui/core';
+import {Box, Grid, Avatar, Modal, Fade} from '@material-ui/core';
 import {Rating} from '@material-ui/lab';
 import ReactCardFlip from 'react-card-flip';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
@@ -16,8 +16,11 @@ import { fetchCourierProfile} from '../../../redux/actions/CourierActions';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import data from '../../../utils/constants';
+import AddPackage from '../../../pages/add-package/add-package';
+import IconButtonNoVerticalPadding from '../../buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
+import { Close } from '@material-ui/icons';
 
-const RideCard =({userData, fetchCourierProfile, ...props})=>{
+const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
     const { t } = useTranslation();
     const classes = useStyles();
 
@@ -25,8 +28,10 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
     const [statuses, setStatuses] = useState(props.statuses)
     const [isFlipped, setIsFlipped] = useState(false);
     const [rejectReason, setRejectReason] = useState('');
+    const [addingPackage, setAddingPackage] = useState(false);
 
     useEffect(()=>{}, [isFlipped])
+    useEffect(()=>{}, [addingPackage])
     
     const requestRide = (packageId, rideId, rideUserId) =>{
         axios.post(data.baseUrl + '/rides/' + rideId + '/statuses', {
@@ -36,7 +41,13 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
             headers:{
                 'Authorization': `Bearer ${userData.token}`,
             }
-        } ).then((response)=>typeof props.statuses === 'object' ? setStatuses(response.data.data) : setStatuses(statuses.concat(response.data.data))).catch((error)=>console.log(error))
+        } ).then((response)=>{
+            typeof props.statuses === 'object' ? setStatuses(response.data.data) : setStatuses(statuses.concat(response.data.data))
+            if(addingPackage){
+                props.statusUpdated()
+                setAddingPackage(false)
+            } 
+        }).catch((error)=>console.log(error))
     }
 
     const updateStatus = (newStatus, rideId, statusId) => {
@@ -87,8 +98,8 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
                     <Grid container item xs={8} justifyContent='center'>
                         <Box mb='2%' width={1}>
                             <Link to={'/add-package'} style={{color: 'inherit', textDecoration: 'none'}}>
-                                <PrimaryButton variant='contained' fullWidth>
-                                    Adauga Pachet
+                                <PrimaryButton variant='contained' /* onClick={()=>setAddingPackage(true)} */ fullWidth>
+                                    {t('AddPackage')}
                                 </PrimaryButton>
                             </Link>
                         </Box>
@@ -503,11 +514,19 @@ const RideCard =({userData, fetchCourierProfile, ...props})=>{
             </Box>
             
             </ReactCardFlip>
+            <Modal open={addingPackage} onClose={()=>setAddingPackage(false)} className={'modal'}>
+                <Fade in={addingPackage} timeout={1000}>
+                    <AddPackage modal={true} close={()=>setAddingPackage(false)} departureDate={props.departureDate} 
+                                departureCity={props.plecare.slice(0, props.plecare.indexOf(','))} departureCountry={props.plecare.slice(props.plecare.indexOf(',')+2)}
+                                destinationCity={props.destinatie.slice(0, props.destinatie.indexOf(','))} destinationCountry={props.destinatie.slice(props.destinatie.indexOf(',')+2)}
+                                packageCreated={()=> requestRide( packages.data.pop().id , props.rideId, props.rideUserId)}/>
+                </Fade>
+            </Modal>
         </Fragment>
     );
 };
 
-const mapStateToProps = (state) => ({userData: state.userData})
+const mapStateToProps = (state) => ({userData: state.userData, packages: state.myPackagesData.packages})
 const mapDispatchToProps = (dispatch) =>({fetchCourierProfile: (userId, token) => dispatch(fetchCourierProfile(userId, token))})
 
 export default connect(mapStateToProps, mapDispatchToProps)(RideCard);

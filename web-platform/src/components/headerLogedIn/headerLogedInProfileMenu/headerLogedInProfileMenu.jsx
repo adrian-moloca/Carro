@@ -78,7 +78,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
                         handleAccountMenuClose();
                         setTimeout(()=>redirectAfterFetchMyPackagesSuccess(), 500)
                         fetchMyPackages(userData.token);
-                }}>
+                }} className={classes.zoomIn}>
                   <Box mr={2} className={"Primary-color"}>
                     <LocalMallOutlined/>
                   </Box>
@@ -91,7 +91,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
                         handleAccountMenuClose();
                         redirectAfterFetchMyRidesSuccess()
                         fetchMyRides(userData.token);
-                }}>
+                }} className={classes.zoomIn}>
                   <Box mr={2} className={"Primary-color"}>
                     <LocalShippingOutlined/>
                   </Box>
@@ -101,7 +101,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
               </MenuItem>
             </Link>
             <Link to="/profile" style={{textDecoration:'none' ,color:'inherit'}}>
-              <MenuItem dense onClick={handleAccountMenuClose}>
+              <MenuItem dense onClick={handleAccountMenuClose} className={classes.zoomIn}>
                 <Box mr={2} className={"Primary-color"}>
                   <AccountCircleOutlined/>
                 </Box>
@@ -121,7 +121,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
               </MenuItem>
             </Link> */}
             <Link to="/" style={{textDecoration:'none' ,color:'inherit'}}>
-              <MenuItem dense onClick={() => {setAnchorEl(null); window.localStorage.removeItem('state'); fetchLogout()}}>
+              <MenuItem dense onClick={() => {setAnchorEl(null); window.localStorage.removeItem('state'); fetchLogout()}} className={classes.zoomIn}>
                   <Box mr={2} className={"Pink-carro"}>
                     <CancelOutlined/>
                   </Box>
@@ -134,7 +134,7 @@ const HeaderLogedInProfileMenu = ({userData, fetchLogout, fetchMyPackages, fetch
               <Box className={classes.borderForAdmin}></Box>
             </Grid>
               <Link to="/admin-panel" style={{textDecoration:'none' ,color:'inherit'}}>
-                <MenuItem dense onClick={()=>{handleAccountMenuClose(); adminGetUsers(userData.token)}}>
+                <MenuItem dense onClick={()=>{handleAccountMenuClose(); adminGetUsers(userData.token)}} className={classes.zoomIn}>
                       <Box mr={2} className={"Primary-color"}>
                         <Security/>
                       </Box>

@@ -62,11 +62,14 @@ switch (action.type) {
         return{
             ...state,
             packages: action.payload,
+            loading: false  
         }
     case SEARCH_PACKAGES_FAILURE:
         return{
             ...state,
             hasErrors: true,
+            loading: false
+
         }
     case PACKAGES_UNDER_RIDE_REQUEST:
         return {
@@ -77,16 +80,21 @@ switch (action.type) {
         return{
             ...state,
             packages: action.payload.packages,
+            loading: false
+        
         }
     case PACKAGES_UNDER_RIDE_FAILURE:
         return{
             ...state,
             hasErrors: true,
+            loading: false
+        
         }
     case CLEAN_PACKAGES_DATA:
         return{
             ...state,
             packages: [],
+            loading: false
         }    
     default: 
         return  {

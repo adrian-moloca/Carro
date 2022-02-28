@@ -133,6 +133,25 @@ const SelectRide=(props)=>{
                                     </Grid>                           
                                 )
                             })}
+                            <Grid key ={id} container item xs={12} sm={5}  md={4} lg={4}  xl={4} justifyContent='center'>
+                                <RideCard 
+                                    id={id}
+                                    rideId={rideId}
+                                    image={image} 
+                                    name={name}
+                                    transportType={transportType}
+                                    driverRate={rate}
+                                    plecare={departure}
+                                    destinatie={destination}
+                                    departureDate={departureDate}
+                                    departureAddress={departureAddress}
+                                    destinationAddress={destinationAddress}
+                                    estimatedTime={estimatedTime}
+                                    statuses={[]}
+                                    interactions= {[]}
+                                    statusUpdated={props.statusUpdated}
+                                />
+                            </Grid>
                         </MyGrid>
                     </Container>
                 </Fade>

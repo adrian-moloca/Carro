@@ -36,12 +36,14 @@ const userChatReducer = (state = initialState, action) => {
             return{
                 ...state,
                 chats: action.payload,
-                hasErrors: false
+                hasErrors: false,
+                loading: false
             }
         case USER_CHATS_FAILURE:
             return{
                 ...state,
-                hasErrors: true
+                hasErrors: true,
+                loading: false
             }
         case USER_CHAT_REQUEST:
             return{
@@ -58,12 +60,15 @@ const userChatReducer = (state = initialState, action) => {
                     driverName: action.payload.driverName,
                     isValid: action.payload.isValid
                 },
-                hasErrors: false
+                hasErrors: false,
+                loading: false
             }
         case USER_CHAT_FAILURE:
             return{
                 ...state,
-                hasErrors: true
+                hasErrors: true,
+                loading: false
+
             }
         case CHAT_MESSAGES_REQUEST:
             return{
@@ -74,12 +79,14 @@ const userChatReducer = (state = initialState, action) => {
             return{
                 ...state,
                 messages: action.payload,
-                hasErrors: false
+                hasErrors: false,
+                loading: false
             }
         case CHAT_MESSAGES_FAILURE:
             return{
                 ...state,
-                hasErrors: true
+                hasErrors: true,
+                loading: false
             }
         case SET_CURRENT_USER_CHAT:{
             return{

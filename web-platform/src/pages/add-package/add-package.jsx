@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container, Box, Stepper, Step, StepLabel, Grid,} from '@material-ui/core';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';
-import {ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
+import {ArrowBackIos, ArrowForwardIos, Close } from '@material-ui/icons';
 import StepOne from './step1/step1';
 import StepTwo from './step2/step2';
 import StepThree from './step3/step3';
@@ -13,6 +13,7 @@ import { withStyles } from '@material-ui/styles';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { createNewPackage } from '../../redux/actions/MyPackagesActions';
+import IconButtonNoVerticalPadding from '../../components/buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 
 const StepLabelPersonalized = withStyles({
       root:{
@@ -33,19 +34,19 @@ const StepLabelPersonalized = withStyles({
 
 })(StepLabel);
 
-const AddPackage = ({data, packageData, createNewPackage}) => {  
+const AddPackage = ({data, packageData, createNewPackage, ...props}) => {  
 
   const { t } = useTranslation();
   const history = useHistory();
   
   const [activeStep, setActiveStep] = useState(0);
   const [pickUpAddress, setPickUpAddress] = useState('');
-  const [departureDate, setDepartureDate] = useState(new Date());
-  const [departureCountry, setDepartureCountry] = useState('');
-  const [departureCity, setDepartureCity] = useState('');
+  const [departureDate, setDepartureDate] = useState(props.departureDate ? props.departureDate : new Date());
+  const [departureCountry, setDepartureCountry] = useState(props.departureCountry ? props.departureCountry : '');
+  const [departureCity, setDepartureCity] = useState(props.departureCity ? props.departureCity : '');
   const [destinataryName, setDestinataryName] = useState('');
-  const [destinationCountry, setDestinationCountry] = useState('');
-  const [destinationCity, setDestinationCity] = useState('');
+  const [destinationCountry, setDestinationCountry] = useState(props.destinationCountry ? props.destinationCountry : '');
+  const [destinationCity, setDestinationCity] = useState(props.destinationCity ? props.destinationCity : '');
   const [destinataryAddress, setDestinataryAddress] = useState('');
   const [destinataryPhoneNumber, setDestinataryPhoneNumber] = useState('');
   const [packageSize, setPackageSize] = useState(0);
@@ -130,8 +131,11 @@ const AddPackage = ({data, packageData, createNewPackage}) => {
 
   useEffect(()=>{
 
-    if(requestSent)
+    if(requestSent && !props.modal)
       setTimeout(() => {redirectAfterPackageCreated()}, 500);
+    else
+      if(requestSent && props.modal)
+        props.packageCreated()
 
   }, [packageData, requestSent])
 
@@ -169,6 +173,13 @@ const AddPackage = ({data, packageData, createNewPackage}) => {
 
   return (
     <Container className={'Primary-container-style'}>
+      {props.modal ? (
+              <Box width= '100%' display={'flex'} justifyContent={'flex-end'}>
+                <IconButtonNoVerticalPadding onClick={()=>{props.close()}}>
+                    <Close />
+                </IconButtonNoVerticalPadding>
+              </Box>
+      ) : null}
       <Box display='flex' justifyContent='center' fontSize={22} fontWeight={400}>{t('AddPackageTitle')}</Box>
       <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (

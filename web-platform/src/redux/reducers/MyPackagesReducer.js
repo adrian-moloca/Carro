@@ -25,11 +25,13 @@ const myPackagesReducer = (state = initialState, action) => {
                 ...state,
                 packages: action.payload,
                 hasErrors: false,
+                loading: false
             }
         case MY_PACKAGES_FAILURE:
             return{
                 ...state,
                 hasErrors: true,
+                loading: false
             }    
         case NEW_PACKAGE_REQUEST:
             return {
@@ -39,13 +41,15 @@ const myPackagesReducer = (state = initialState, action) => {
         case NEW_PACKAGE_SUCCESS:
             return{
                 ...state,
-                packages: action.payload,
-                hasErrors: false
+                packages: [action.payload],
+                hasErrors: false,
+                loading: false
             }
         case NEW_PACKAGE_FAILURE:
             return{
                 ...state,
                 hasErrors: true,
+                loading: false
             }
         case PACKAGE_UPDATE_REQUEST:
             return {
@@ -55,12 +59,14 @@ const myPackagesReducer = (state = initialState, action) => {
         case PACKAGE_UPDATE_SUCCESS:
             return{
                 ...state,
-                hasErrors: false
+                hasErrors: false,
+                loading: false
             }
         case PACKAGE_UPDATE_FAILURE:
             return{
                 ...state,
                 hasErrors: true,
+                loading: false
             }
         case PACKAGE_DELETE_REQUEST:
             return {
@@ -70,11 +76,13 @@ const myPackagesReducer = (state = initialState, action) => {
         case PACKAGE_DELETE_SUCCESS:
             return{
                 ...state,
+                loading: false
             }
         case PACKAGE_DELETE_FAILURE:
             return{
                 ...state,
                 hasErrors: true,
+                loading: false
             }
         case PACKAGE_CLOSE_REQUEST:
             return {
@@ -84,11 +92,13 @@ const myPackagesReducer = (state = initialState, action) => {
         case PACKAGE_CLOSE_SUCCESS:
             return{
                 ...state,
+                loading: false
             }
         case PACKAGE_CLOSE_FAILURE:
             return{
                 ...state,
                 hasErrors: true,
+                loading: false
             }
         case CLEAN_MY_PACKAGES_DATA:
             return{

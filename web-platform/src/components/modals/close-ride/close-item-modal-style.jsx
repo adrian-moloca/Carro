@@ -3,8 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
+    overflow: 'scroll',
+    paddingBottom: 60,
+    paddingTop: 60
   },
   paper: {
     backgroundColor: theme.palette.background.paper,

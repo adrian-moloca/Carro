@@ -12,8 +12,9 @@ const useStyles = makeStyles({
     height:'120px',
     minWidth:'220px',
     borderRadius: '15px',
+    transition: 'transform 0.1s',
     '&:hover':{
-        fontWeight: '500',
+        transform: 'scale(1.05)',
       },
     '@media(max-width: 500px)' : {
       height:'80px',

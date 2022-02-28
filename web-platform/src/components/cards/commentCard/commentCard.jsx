@@ -9,10 +9,10 @@ const CommentCard = (props) => {
   return(
     <Box display='flex' width='1' mt='30px' p={1} borderRadius='10px' boxShadow={3}>
         <Grid container>
-          <Grid container item xs={2} alignItems='center' justifyContent='center'>
+          <Grid container item xs={12} sm={2} alignItems='center' justifyContent='center'>
             <Avatar src={props.profileImage} className={classes.profileImg} alt="profile"/>
           </Grid>
-          <Grid container item xs={8} justifyContent='center'>
+          <Grid container item xs={12} sm={8} justifyContent='center'>
                 <Grid container item xs={12} alignItems='flex-end' justifyContent='center'>
                   <Box fontWeight='700' fontSize='16px' textAlign='center'>{props.name}</Box>
                 </Grid>

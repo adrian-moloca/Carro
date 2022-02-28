@@ -6,7 +6,7 @@ import data from '../../utils/constants';
 export const searchPackages = (fromCountry, fromCity, toCountry, toCity, token) => {
 
     return (dispatch) => {
-        dispatch(searchPackagesRequest);
+        dispatch(searchPackagesRequest());
         axios.get(data.baseUrl + "/packages?FromCountry="+fromCountry+"&FromCity="+fromCity+"&ToCountry="+toCountry+"&ToCity="+toCity+"&PageNumber=1&PageSize=25",
         {
             headers: {
@@ -26,7 +26,7 @@ export const searchPackages = (fromCountry, fromCity, toCountry, toCity, token) 
 export const packagesUnderRide = (rideId, token) => {
     
     return(dispatch)=> {
-        dispatch(packagesUnderRideRequest);
+        dispatch(packagesUnderRideRequest());
         axios.get(data.baseUrl+'/my-packages/'+rideId+"/packages", {
             headers:{
                 'Authorization': `Bearer ${token}`,
