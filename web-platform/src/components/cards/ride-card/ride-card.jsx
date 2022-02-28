@@ -44,7 +44,7 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
         } ).then((response)=>{
             typeof props.statuses === 'object' ? setStatuses(response.data.data) : setStatuses(statuses.concat(response.data.data))
             if(addingPackage){
-                props.statusUpdated()
+                /* props.statusUpdated() */
                 setAddingPackage(false)
             } 
         }).catch((error)=>console.log(error))
@@ -516,10 +516,10 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
             </ReactCardFlip>
             <Modal open={addingPackage} onClose={()=>setAddingPackage(false)} className={'modal'}>
                 <Fade in={addingPackage} timeout={1000}>
-                    <AddPackage modal={true} close={()=>setAddingPackage(false)} departureDate={props.departureDate} 
+                    <AddPackage /* modal={true} close={()=>setAddingPackage(false)} departureDate={props.departureDate} 
                                 departureCity={props.plecare.slice(0, props.plecare.indexOf(','))} departureCountry={props.plecare.slice(props.plecare.indexOf(',')+2)}
                                 destinationCity={props.destinatie.slice(0, props.destinatie.indexOf(','))} destinationCountry={props.destinatie.slice(props.destinatie.indexOf(',')+2)}
-                                packageCreated={()=> requestRide( packages.data.pop().id , props.rideId, props.rideUserId)}/>
+                                packageCreated={()=> requestRide( packages.data.pop().id , props.rideId, props.rideUserId)} *//>
                 </Fade>
             </Modal>
         </Fragment>
