@@ -121,7 +121,7 @@ const CourierProfile = ({courierData, userData, resetCourierDataChanged}) =>{
 
               />
             </Box>
-        <Box mt={3} display='flex' justifyContent='center' paddingX={10}>
+        <Box mt={3} display='flex' justifyContent='center' paddingX={1}>
           <CarroTextField  
             disabled={courierId===userData.id ? true : false}
             value={myComment}

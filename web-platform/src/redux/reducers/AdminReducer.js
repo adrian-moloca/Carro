@@ -72,11 +72,14 @@ const adminReducer = (state = initialState, action) => {
                 ...state,
                 users: action.payload,
                 hasErrors: false
+                ,
+                loading: false
             }
         case ADMIN_GET_USERS_FAILURE:
             return{
                 ...state,
-                hasErrors:true
+                hasErrors:true,
+                loading: false
             }
         case ADMIN_GET_USER_REQUEST:
             return{
@@ -136,12 +139,14 @@ const adminReducer = (state = initialState, action) => {
                         closeReason: action.payload.closeAccount && action.payload.closeAccount.closeReason ? action.payload.closeAccount.closeReason : ''
                     }
                 },
-                hasErrors:false
+                hasErrors:false,
+                loading: false
             }
         case ADMIN_GET_USER_FAILURE:
             return{
                 ...state,
-                hasErrors:true
+                hasErrors:true,
+                loading: false
             }
         case CLEAN_USER_PANEL:
             return{
@@ -196,7 +201,8 @@ const adminReducer = (state = initialState, action) => {
                         closeReason: ""
                     }
                 },
-                hasErrors:false
+                hasErrors:false,
+                loading: false
             }
         default:
             return{

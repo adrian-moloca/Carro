@@ -33,7 +33,10 @@
 .modal {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  overflow: scroll;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .searchPackageContainerStyle {

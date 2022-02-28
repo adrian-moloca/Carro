@@ -8,6 +8,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
     [theme.breakpoints.up('md')]: { display: 'flex'},
   },
+  zoomIn:{
+    display: 'none',
+    transition: 'transform 0.1s',
+    [theme.breakpoints.up('md')]: { display: 'flex'},
+    '&:hover':{
+      transform: 'scale(1.05)',
+    }
+  },
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {display: 'none'},
@@ -17,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     maxWidth:'250px',
     color:'inherit',
+    transition: 'transform 0.1s',
     '&:hover':{
-      fontWeight: '500',
+      transform: 'scale(1.05)',
     }
   },
 }));

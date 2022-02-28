@@ -26,12 +26,14 @@ switch (action.type) {
         return{
             ...state,
             rides: action.payload,
-            hasErrors: false
+            hasErrors: false,
+            loading: false
         }
     case MY_RIDES_FAILURE:
         return{
             ...state,
             hasErrors: true,
+            loading: false
         }    
     case NEW_RIDE_REQUEST:
         return {
@@ -42,12 +44,14 @@ switch (action.type) {
         return{
             ...state,
             rides: action.payload,
-            hasErrors: false
+            loading: false,
+            hasErrors: false,
         }
     case NEW_RIDE_FAILURE:
         return{
             ...state,
             hasErrors: true,
+            loading: false
         }
     case RIDE_UPDATE_REQUEST:
         return {
@@ -57,11 +61,13 @@ switch (action.type) {
     case RIDE_UPDATE_SUCCESS:
         return{
             ...state,
+            loading: false,
             hasErrors: false
         }
     case RIDE_UPDATE_FAILURE:
         return{
             ...state,
+            loading: false,
             hasErrors: true,
         }
     case RIDE_DELETE_REQUEST:
@@ -72,11 +78,13 @@ switch (action.type) {
     case RIDE_DELETE_SUCCESS:
         return{
             ...state,
+            loading: false,
             hasErrors: false
         }
     case RIDE_DELETE_FAILURE:
         return{
             ...state,
+            loading: false,
             hasErrors: true,
         }
     case RIDE_CLOSE_REQUEST:
@@ -87,11 +95,13 @@ switch (action.type) {
     case RIDE_CLOSE_SUCCESS:
         return{
             ...state,
+            loading: false,
             hasErrors: false
         }
     case RIDE_CLOSE_FAILURE:
         return{
             ...state,
+            loading: false,
             hasErrors: true,
         }    
     case CLEAN_MY_RIDES_DATA:

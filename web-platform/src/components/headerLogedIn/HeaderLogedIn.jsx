@@ -40,22 +40,24 @@ export default function PrimarySearchAppBar() {
                 <ChatButtonVisibility />
             </Box>
             {/* profile menu */}
-            <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
+            <Box className={[classes.sectionDesktop, classes.zoomIn]} justifyContent="center" alignItems="center">
               <HeaderLogedInProfileMenu/>
             </Box>
             {/* language btn */}
-            <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
+            <Box className={[classes.sectionDesktop, classes.zoomIn]} justifyContent="center" alignItems="center">
               <BasicSelect/>
             </Box>
           </Grid>
         </Grid>
         {/* mobile */}
-        <Box className={classes.sectionMobile} display="flex">
+        <Box className={[classes.sectionMobile, classes.zoomIn]} display="flex">
             <BadgeVisibility/>
         </Box>
-        <Box className={classes.sectionMobile} display="flex">
+        <Box className={[classes.sectionMobile, classes.zoomIn]} display="flex">
             <ChatButtonVisibility/>
-          <LogedInMobileMenu/>
+        </Box>
+        <Box className={[classes.sectionMobile, classes.zoomIn]} display="flex">
+            <LogedInMobileMenu/>
         </Box>
       </Toolbar>
     </AppBar>

@@ -5,6 +5,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'scroll',
+    paddingTop: 60,
+    paddingBottom: 60
   },
   paper: {
     backgroundColor: theme.palette.background.paper,

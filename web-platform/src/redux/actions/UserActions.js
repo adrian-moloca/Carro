@@ -17,7 +17,7 @@ import jwt_decode from "jwt-decode";
 export const fetchLogin = (email, password) => {
 
 return (dispatch) => {
-    dispatch(fetchLoginRequest);
+    dispatch(fetchLoginRequest());
     axios.post(data.baseUrl + "/identity/login", {
         email: email, 
         password: password
@@ -36,7 +36,7 @@ return (dispatch) => {
 export async function fetchUsers () {
 
     return (dispatch) => {
-        dispatch(fetchUsersRequest);
+        dispatch(fetchUsersRequest());
         axios.get(data.baseUrl + "/catalin/admin/users/")
         .then(response => {
             const user = response.data;
@@ -77,7 +77,7 @@ axios.post(data.baseUrl+"/identity/register",{
 export const changePasswordUser = (newPassword, confirmNewPassword, id) => {
 
 return(dispatch) => {
-    dispatch(changePasswordUserRequest);
+    dispatch(changePasswordUserRequest());
     axios.patch(data.baseUrl + "/catalin/admin/users/recoverPass/" + id,{
         newPassword                 : newPassword,
         confirm_newPassword         : confirmNewPassword,
@@ -96,7 +96,7 @@ return(dispatch) => {
 export const updateUser = (newName, id, newCarNumber ) => {
 
 return(dispatch) => {
-    dispatch(updateUserRequest);
+    dispatch(updateUserRequest());
     axios.patch(data.baseUrl+"/catalin/admin/users/" + id,{
         name     : newName,
         carNumber: newCarNumber,
@@ -115,7 +115,7 @@ return(dispatch) => {
 export const deleteUser = (id) => {
 
 return(dispatch) => {
-dispatch(deleteUserRequest);
+dispatch(deleteUserRequest());
 axios.delete(data.baseUrl+"/catalin/admin/users/" +id ,{
     
 })
@@ -133,7 +133,7 @@ axios.delete(data.baseUrl+"/catalin/admin/users/" +id ,{
 export const getUserProfileImage = (token) => {
 
     return (dispatch) => {
-        dispatch(getUserProfileImageRequest);
+        dispatch(getUserProfileImageRequest());
         axios.get(data.baseUrl + "/users/profile-images", {
             headers:{
               'Authorization': `Bearer ${token}`,
@@ -150,7 +150,7 @@ export const getUserProfileImage = (token) => {
 export const getUserPersonalInfo = (token) => {
 
     return (dispatch) => {
-        dispatch(getUserPersonalInfoRequest);
+        dispatch(getUserPersonalInfoRequest());
         axios.get(data.baseUrl + "/users/personal-infos", {
             headers:{
               'Authorization': `Bearer ${token}`,
@@ -167,7 +167,7 @@ export const getUserPersonalInfo = (token) => {
 export const getUserOptionalInfo = (token) => {
 
     return (dispatch) => {
-        dispatch(getUserOptionalInfoRequest);
+        dispatch(getUserOptionalInfoRequest());
         axios.get(data.baseUrl + "/users/optional-infos", {
             headers:{
               'Authorization': `Bearer ${token}`,
@@ -184,7 +184,7 @@ export const getUserOptionalInfo = (token) => {
 export const getUserCompany = (token) => {
 
     return (dispatch) => {
-        dispatch(getUserCompanyRequest);
+        dispatch(getUserCompanyRequest());
         axios.get(data.baseUrl + "/users/companies", {
             headers:{
               'Authorization': `Bearer ${token}`,
@@ -201,7 +201,7 @@ export const getUserCompany = (token) => {
 export const getProfileStatus = (token) => {
 
     return (dispatch) => {
-        dispatch(getProfileStatusRequest);
+        dispatch(getProfileStatusRequest());
         axios.get(data.baseUrl + "/users/user-statuses", {
             headers:{
               'Authorization': `Bearer ${token}`,

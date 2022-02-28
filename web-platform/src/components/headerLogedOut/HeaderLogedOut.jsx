@@ -27,13 +27,13 @@ export default function PrimarySearchAppBar() {
           </Grid>
           {/* render language select */}
           <Grid container item md={3} justifyContent='flex-end'>
-            <Box className={classes.sectionDesktop} justifyContent="center" alignItems="center">
+            <Box className={[classes.sectionDesktop, classes.zoomIn]} justifyContent="center" alignItems="center">
               <BasicSelect/>
             </Box>
           </Grid>
         </Grid>
         {/* render mobile menu btns*/}
-        <Box className={classes.sectionMobile}>
+        <Box className={[classes.sectionMobile, classes.zoomIn]}>
           <LogedOutMobileMenu/>
         </Box>
       </Toolbar>

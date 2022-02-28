@@ -10,7 +10,7 @@ import data from '../../utils/constants';
 export const fetchMyPackages = (token) => {
 
 return (dispatch) => {
-    dispatch(fetchMyPackagesRequest);
+    dispatch(fetchMyPackagesRequest());
     axios.get(data.baseUrl + "/my-packages",{
         headers:{
             'Authorization': `Bearer ${token}`,
@@ -31,7 +31,7 @@ export const createNewPackage = (departureDate, fromCountry, fromCity, toCountry
                                  phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, senderName, token) => {
 
 return(dispatch) => {
-dispatch(createNewPackageRequest);
+dispatch(createNewPackageRequest());
 axios.post(data.baseUrl+"/packages",{
         packageSender: {
             fromCountry: fromCountry,
@@ -91,7 +91,7 @@ export const updatePackage = (id, senderName, packageName, departureDate, fromCo
                                 phoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, token) => {
 
 return(dispatch) => {
-    dispatch(updatePackageRequest);
+    dispatch(updatePackageRequest());
     axios.put(data.baseUrl+"/packages/" + id,{
         packageSender: {
             fromCountry: fromCountry,
@@ -147,7 +147,7 @@ return(dispatch) => {
 export const deletePackage = (id, token) => {
 
     return(dispatch) => {
-        dispatch(deletePackageRequest);
+        dispatch(deletePackageRequest());
         axios.delete(data.baseUrl+"/packages/"+id,{
             headers:{
                 'Authorization': `Bearer ${token}`,
@@ -167,7 +167,7 @@ export const deletePackage = (id, token) => {
 export const closePackage = (id, token) => {
 
     return(dispatch) => {
-        dispatch(closePackageRequest);
+        dispatch(closePackageRequest());
         axios.patch(data.baseUrl+"/packages/"+id,[{
                 path: "/mainStatus",
                 op: "replace",

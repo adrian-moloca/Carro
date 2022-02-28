@@ -42,16 +42,20 @@ const courierReducer = (state = initialState, action) => {
                 courier: action.payload,
                 courierDataChanged: true,
                 hasErrors: false,
+                loading: false
             }
         case COURIER_PROFILE_FAILURE:
             return{
                 ...state,
                 hasErrors: true,
+                loading: false
             }   
         case RESET_COURIER_DATA_CHANGED:
             return{
                 ...state,
                 courierDataChanged: false
+                ,
+                loading: false
             }
         default: 
             return  {

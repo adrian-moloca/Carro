@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Container, Box, Grid, Avatar, ButtonBase, Modal, Fade} from "@material-ui/core";
 import SeeProfileBtn from "../../components/buttons/textOnlyButtons/seeProfileBtn/seeProfileBtn"
@@ -157,6 +157,12 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
                         <input type="file" accept=".jpg, .jpeg, .png, .heic" style={{display: 'none'}} onChange={(e)=>{setPhoto(e.target.files[0]); setProfilePhotoChanged(true)}}/>
                             <Avatar className={classes.profilePhotoEdit} src={profilePhoto && profilePhoto.length > 0 ? profilePhoto : AvatarImage} style={{marginBottom: window.innerWidth <= 850 ? "20px" : 0 }}/>
                     </label>
+                    {fileTooLarge ? (
+                            <Fragment>
+                                <Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop: '1%'}}>{t('FileTooLarge')}</Box>
+                                <Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop: '1%'}}>(Max Size 1MB)</Box>
+                            </Fragment>
+                    ) : null}
                 </Grid>
                 <Grid container item xs={12} sm={3} justifyContent="center">
                     <SeeProfileBtn onClick={()=>{
@@ -166,13 +172,10 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
                             {t("ViewProfile")}
                     </SeeProfileBtn>
                 </Grid>
-                {fileTooLarge ? (
-                    <Grid container item xs={12} justifyContent="center">
-                        <Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop: '1%'}}>{t('FileTooLarge')}</Box>
-                        <Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop: '1%'}}>(Max Size 1MB)</Box>
-                    </Grid>
-                ) : null}
             </Grid>
+            {!profileStatus.isUserValidated ? (
+                <Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop: '3%'}}>{t('AccountInvalidated')}</Box>
+            ): null}
             <Box className={classes.MyProfileStyle}>
                 <Grid container>
                     <Grid container item xs={12} sm={window.innerWidth <= 850 ? 12 : 2} justifyContent="center">

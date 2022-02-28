@@ -44,14 +44,17 @@ import RidesDetails from '../../pages/admin-panel/rides-details/rides-details';
 import './Routing.css';
 import { connect } from 'react-redux';
 import { fetchNotifications } from '../../redux/actions/NotificationsActions';
+import { Modal } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 
 const Routes = ({data, fetchNotifications}) => {
     const [collapsed, setCollapsed] = useState(false);
+    const [loading, setLoading] = useState(false)
     const onCollapse = () => {
         setCollapsed(!collapsed);
       };
 
-    const[isLoggedIn, setIsLoggedIn] = useState(String(data.email).length > 0 ? true : false)
+    const[isLoggedIn, setIsLoggedIn] = useState(String(data.userData.email).length > 0 ? true : false)
 
     function renderHeader(){
         if(isLoggedIn)
@@ -61,21 +64,30 @@ const Routes = ({data, fetchNotifications}) => {
     }
 
     useEffect(()=>{
-        setIsLoggedIn(String(data.email).length > 0 ? true : false)
-    }, [data.email])
+        setIsLoggedIn(String(data.userData.email).length > 0 ? true : false)
+    }, [data.userData.email])
 
     if(isLoggedIn){
-        if(!data.rememberMe){
+        if(!data.userData.rememberMe){
             window.onbeforeunload = function(){
               window.localStorage.removeItem('state')
             } 
         }
     }
 
+    useEffect(()=>{}, [loading])
+
     useEffect(()=>{
-        if(data.token && data.token.length > 0)
-            fetchNotifications(data.token)
+        if(data.userData.token && data.userData.token.length > 0)
+            fetchNotifications(data.userData.token)
     }, [window.location.pathname])
+
+    useEffect(()=>{
+        if(data.userData.loading || data.adminData.loading || data.courierData.loading || data.myRidesData.loading || data.myPackagesData.loading || data.packagesData.loading, data.ridesData.loading || data.notificationsData.loading || data.chatsData.loading)
+            setLoading(true)
+        else
+            setLoading(false)
+    },[data.userData.loading, data.adminData.loading, data.courierData.loading, data.myRidesData.loading, data.myPackagesData.loading, data.packagesData.loading, data.ridesData.loading, data.notificationsData.loading, data.chatsData.loading, ])
     
 
     // if(isLoggedIn === false) {
@@ -141,6 +153,9 @@ const Routes = ({data, fetchNotifications}) => {
                                 <Route path="/cookies-policy" exact component={CookiesPolicy}/>
                                 <Route component={HomePage} />
                             </Switch>
+                                <Modal open={loading} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                    <CircularProgress style={{color: '#ffffff'}}/>
+                                </Modal>
                         </div>
                         <div className='sbd-footer'>
                             <Footer />
@@ -152,7 +167,7 @@ const Routes = ({data, fetchNotifications}) => {
     )
 }
 
-const mapStateToProps = state => ({data: state.userData})
+const mapStateToProps = state => ({data: state})
 const mapDispatchToProps = (dispatch) => ({fetchNotifications: (token) => dispatch(fetchNotifications(token))})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Routes);

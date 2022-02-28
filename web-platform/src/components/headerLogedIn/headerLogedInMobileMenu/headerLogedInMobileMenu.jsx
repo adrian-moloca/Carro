@@ -63,7 +63,7 @@ const LogedInMobileMenu = () => {
                 </ListItem>
             </Link>
                 <HeaderLogedInProfileMenuMobile handler={handleSliderMenu}/>
-            <ListItem>
+            <ListItem className={[classes.sectionMobile, classes.zoomIn]}>
                 <BasicSelect handler={handleSliderMenu}/>
             </ListItem>
           </List>

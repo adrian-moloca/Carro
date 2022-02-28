@@ -4,7 +4,7 @@ const useStyles = makeStyles({
 
     containerBackdrop:{
         backgroundColor: '#fff',
-        margin: '1% 0',
+        margin: '0 0',
         padding: '20px',
         cursor: 'default',
         width: '40%',

@@ -8,7 +8,7 @@ import data from "../../utils/constants";
 export const adminGetUsers = (token) => {
 
     return (dispatch) => {
-        dispatch(adminGetUsersRequest);
+        dispatch(adminGetUsersRequest());
         axios.get(data.adminUrl + "/users", {
             headers:{
                 'Authorization': `Bearer ${token}`,
@@ -27,7 +27,7 @@ export const adminGetUsers = (token) => {
 export const adminGetUser = (id, token) => {
 
     return (dispatch) => {
-        dispatch(adminGetUserRequest);
+        dispatch(adminGetUserRequest());
         axios.get(data.adminUrl + "/users/"+ id, {
             headers:{
                 'Authorization': `Bearer ${token}`,

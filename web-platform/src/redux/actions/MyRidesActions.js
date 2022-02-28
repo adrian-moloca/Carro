@@ -10,7 +10,7 @@ import data from '../../utils/constants';
 export const fetchMyRides = (token) => {
 
     return (dispatch) => {
-        dispatch(fetchMyRidesRequest);
+        dispatch(fetchMyRidesRequest());
         axios.get(data.baseUrl + "/my-rides",{
             headers:{
                 'Authorization': `Bearer ${token}`,
@@ -29,7 +29,7 @@ export const fetchMyRides = (token) => {
 export const createNewRide = (departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token) => {
 
 return(dispatch) => {
-dispatch(createNewRideRequest);
+dispatch(createNewRideRequest());
 axios.post(data.baseUrl+"/rides", {
     departureDate: departureDate,
     fromCountry: fromCountry,
@@ -58,7 +58,7 @@ axios.post(data.baseUrl+"/rides", {
 export const updateRide = (id, departureDate, fromCountry, fromCity, toCountry, toCity, departureAddress, destinationAddress, estimatedTime, trasportType, token) => {
 
 return(dispatch) => {
-    dispatch(updateRideRequest);
+    dispatch(updateRideRequest());
     axios.put(data.baseUrl+"/rides/" + id,{
         departureDate: departureDate,
         fromCountry: fromCountry,
@@ -87,7 +87,7 @@ return(dispatch) => {
 export const deleteRide = (id, token) => {
 
     return(dispatch) => {
-        dispatch(deleteRideRequest);
+        dispatch(deleteRideRequest());
         axios.delete(data.baseUrl+"/rides/"+id,{
             headers:{
                 'Authorization': `Bearer ${token}`,
@@ -107,7 +107,7 @@ export const deleteRide = (id, token) => {
 export const closeRide = (id, token) => {
 
     return(dispatch) => {
-        dispatch(closeRideRequest);
+        dispatch(closeRideRequest());
         axios.patch(data.baseUrl+"/rides/"+id,[{
                 path: "/mainStatus",
                 op: "replace",

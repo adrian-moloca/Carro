@@ -125,6 +125,7 @@ switch (action.type) {
                 state: false,
                 messages: []
             },
+            loading: false,
             UserRole: action.payload.user.UserRole,
             email: action.payload.user.email,
             exp: action.payload.user.exp,
@@ -148,6 +149,7 @@ switch (action.type) {
                 state: true,
                 messages: action.payload.response.data.errors
             },
+            loading: false,
             toggle: state.toggle + 1
         }
     //Create New User    
@@ -164,6 +166,7 @@ switch (action.type) {
                 state: false,
                 messages: []
             },
+            loading: false,
             UserRole: action.payload.user.UserRole,
             email: action.payload.user.email,
             exp: action.payload.user.exp,
@@ -183,6 +186,7 @@ switch (action.type) {
     case USER_NEWUSER_FAILURE:
         return{
             ...state,
+            loading: false,
             hasErrors:{
                 state: true,
                 messages: action.payload.response.data.errors
@@ -217,6 +221,7 @@ switch (action.type) {
     case USER_UPDATE_SUCCESS:
         return{
             ...state,
+            loading: false,
             hasErrors:{
                 state: false,
                 messages: []
@@ -226,6 +231,7 @@ switch (action.type) {
     case USER_UPDATE_FAILURE:
         return{
             ...state,
+            loading: false,
             hasErrors:{
                 state: true,
                 messages: action.payload.response.data.errors
@@ -243,6 +249,7 @@ switch (action.type) {
     case USER_RESET_SUCCESS:
         return{
             ...state,
+            loading: false,
             hasErrors:{
                 state: false,
                 messages: []
@@ -252,6 +259,7 @@ switch (action.type) {
     case USER_RESET_FAILURE:
         return{
             ...state,
+            loading: false,
             hasErrors:{
                 state: true,
                 messages: action.payload.response.data.errors
@@ -268,6 +276,7 @@ switch (action.type) {
     case USER_DELETE_SUCCESS:
         return{
             ...state,
+            loading: false,
             hasErrors:{
                 state: false,
                 messages: []
@@ -277,6 +286,7 @@ switch (action.type) {
     case USER_DELETE_FAILURE:
         return{
             ...state,
+            loading: false,
             hasErrors:{
                 state: true,
                 messages: action.payload.response.data.errors
@@ -361,6 +371,7 @@ switch (action.type) {
     case USER_PROFILE_IMAGE_SUCCESS:{
         return {
             ...state,
+            loading: false,
             profileImage: "data:image/png;base64," + action.payload.profileImage,
             hasErrors:{
                 state: false,
@@ -373,6 +384,7 @@ switch (action.type) {
     case USER_PROFILE_IMAGE_FAILURE:{
         return {
             ...state,
+            loading: false,
             hasErrors:{
                 state: true,
                 messages: []
@@ -400,6 +412,7 @@ switch (action.type) {
                 city: action.payload.city,
                 country: action.payload.country
             },
+            loading: false,
             hasErrors:{
                 state: false,
                 messages: []
@@ -410,6 +423,7 @@ switch (action.type) {
     case USER_PERSONAL_INFO_FAILURE:{
         return {
             ...state,
+            loading: false,
             hasErrors:{
                 state: true,
                 messages: []
@@ -427,6 +441,7 @@ switch (action.type) {
     case USER_OPTIONAL_INFO_SUCCESS:{
         return {
             ...state,
+            loading: false,
             optionalInfo:{
                 languages: action.payload.languages,
                 description: action.payload.description,
@@ -447,6 +462,7 @@ switch (action.type) {
     case USER_OPTIONAL_INFO_FAILURE:{
         return {
             ...state,
+            loading: false,
             hasErrors:{
                 state: true,
                 messages: []
@@ -464,6 +480,7 @@ switch (action.type) {
     case USER_COMPANY_SUCCESS:{
         return {
             ...state,
+            loading: false,
             company:{
                 isCompany:  action.payload.isCompany,
                 name: action.payload.name,
@@ -484,6 +501,7 @@ switch (action.type) {
     case USER_COMPANY_FAILURE:{
         return {
             ...state,
+            loading: false,
             hasErrors:{
                 state: true,
                 messages: []
@@ -501,6 +519,7 @@ switch (action.type) {
     case PROFILE_STATUS_SUCCESS:{
         return {
             ...state,    
+            loading: false,
             profileStatus:{
                 isCompany: action.payload.isCompany,
                 isPersonalInfoCompleted: action.payload.isPersonalInfoCompleted,
@@ -522,6 +541,7 @@ switch (action.type) {
     case PROFILE_STATUS_FAILURE:{
         return {
             ...state,
+            loading: false,
             hasErrors:{
                 state: true,
                 messages: []

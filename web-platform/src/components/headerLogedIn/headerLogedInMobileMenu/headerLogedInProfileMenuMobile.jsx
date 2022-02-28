@@ -75,7 +75,7 @@ const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages,
 
     return(
         <Fragment>
-            <ListItem button onClick={handleClick}>
+            <ListItem button onClick={handleClick} className={classes.zoomIn}>
                 <AccountCircle/>
                 <Box fontSize={18} marginLeft='10px'>{t("MyAccount")}</Box>
                 {open ? <ExpandLess /> : <ExpandMore />}
@@ -83,7 +83,7 @@ const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages,
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     <Link to="/my-rides" style={{textDecoration:'none' ,color:'inherit'}}>
-                        <ListItem dense onClick={() => myPackageLinkAction()}>
+                        <ListItem dense onClick={() => myPackageLinkAction()} className={classes.zoomIn}>
                             <Box mr={2} className={"Primary-color"}>
                                 <LocalMallOutlined/>
                             </Box>
@@ -93,7 +93,7 @@ const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages,
                         </ListItem>
                     </Link>
                     <Link to="/my-rides" style={{textDecoration:'none' ,color:'inherit'}}>
-                        <ListItem dense onClick={() => myRideLinkAction()}>
+                        <ListItem dense onClick={() => myRideLinkAction()} className={classes.zoomIn}>
                             <Box mr={2} className={"Primary-color"}>
                                 <LocalShippingOutlined/>
                             </Box>
@@ -103,7 +103,7 @@ const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages,
                         </ListItem>
                     </Link>
                     <Link to="/profile" style={{textDecoration:'none' ,color:'inherit'}}>
-                        <ListItem dense onClick={() => handler(false)}>
+                        <ListItem dense onClick={() => handler(false)} className={classes.zoomIn}>
                             <Box mr={2} className={"Primary-color"}>
                                 <AccountCircleOutlined/>
                             </Box>
@@ -133,7 +133,7 @@ const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages,
                     </ListItem>
                     </Link> */}
                     <Link to="/" style={{textDecoration:'none' ,color:'inherit'}}>
-                        <ListItem dense onClick={() => logOutAction()}>
+                        <ListItem dense onClick={() => logOutAction()} className={classes.zoomIn}>
                             <Box mr={2} className={"Pink-carro"}>
                                 <CancelOutlined/>
                             </Box>
@@ -148,7 +148,7 @@ const HeaderLogedInProfileMenuMobile = ({userData, fetchLogout, fetchMyPackages,
                                 <Box className={classes.borderForAdmin}></Box>
                             </Grid>
                             <Link to="/admin-panel" style={{textDecoration:'none' ,color:'inherit'}}>
-                                <ListItem dense onClick={() => handler(false)}>
+                                <ListItem dense onClick={() => handler(false)} className={classes.zoomIn}>
                                     <Box mr={2} className={"Primary-color"}>
                                         <Security/>
                                     </Box>
