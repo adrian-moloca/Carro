@@ -442,7 +442,7 @@
     "InTransit": "In tranzit",
     "Closed": "Inchis",
     "Delivered": "Livrat",
-    "MyRides": "Cursele mele",
+    "MyRides": "Transporturile mele",
     "ClosedForReceiving": "Inchis pentru primire",
     "PackageDetails": "Detalii pachet",
     "PackageType": "Tipul coletului:",
@@ -612,5 +612,14 @@
     "Reject": "Refuza",
     "RejectIssue": "Motiv refuz",
     "UserStatus": "STATUS USER",
-    "Rejected": "Refuzat"
+    "Rejected": "Refuzat",
+    "ValidEstimatedTime": "Va rugam sa folositi doar numere",
+    "PickUp": "Preluare",
+    "Yes": "Da",
+    "No": "Nu",
+    "Deliver": "Livreaza",
+    "PackageWasPicked": "Pachetul a fost preluat?",
+    "WaitingPickUpAccept": "In asteptarea unui raspuns...",
+    "AddPackage": "Adauga pachet"
+
 }

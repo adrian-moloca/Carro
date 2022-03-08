@@ -25,8 +25,6 @@ const Packages = (props) =>{
         getPackagesUnder()    
     }, [])
 
-    useEffect(()=>{}, [packagesUnder])
-
     return (
         <Fragment>
             {loading ? (

@@ -58,7 +58,7 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
             headers:{
                 'Authorization': `Bearer ${userData.token}`,
             }
-        }).then(()=>{props.statusUpdated()}).catch((error)=>console.log(error))
+        }).then(()=>{props.statusUpdated()}).catch((error)=>props.statusUpdated())
     }
     
     const handleClick = (e) => {
@@ -87,7 +87,8 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
 
     function getFrontCardBtns(){
 
-        if((props.interactions && props.interactions.length > 1) || (Array.isArray(statuses) && statuses.length > 1) ){
+        if((props.interactions && props.interactions.length >= 1) || (Array.isArray(statuses) && statuses.length >= 1) ){
+            if(props.fromSelectModal && props.fromSelectModal!== true)
             return (
                 <SelectRide name={props.name} image={props.image} rate={props.rate ? props.rate : 0} id={props.id} rideId={props.rideId} departure={props.plecare} destination={props.destinatie} departureAddress={props.departureAddress} destinationaAddress={props.destinationaAddress} departureDate={props.departureDate} estimatedTime={props.estimatedTime} transportType={props.transportType} statuses={statuses} interactions={props.interactions} statusUpdated={props.statusUpdated}/>
             )
@@ -444,10 +445,10 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
     //       "status": 0,
     //       "rejectReason": "string"
     //     }
-   
+
     return(
         <Fragment>
-            <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' cardZIndex='auto' containerClassName={'CardFlipContainer'}>
+            <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' cardStyles={{back: {transformStyle: 'unset'}}} containerClassName={'CardFlipContainer'}>
 
             <Box display='flex' width='1' height='400px' p={1} borderRadius='10px' boxShadow={3}>
                 <Grid container justifyContent='center'>

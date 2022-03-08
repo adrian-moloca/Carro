@@ -27,7 +27,7 @@ const MyPackages = ({myPackagesData, userData, deletePackage, closePackage}) => 
           <Box mb={2} fontWeight={400} fontSize={21} textAlign={'center'}>{t("MyPackages")}</Box>
           {packagesState.length > 0 ? (
             packagesState.map((packageinf, index) => {
-                    return <Package key={index} package={packageinf} packageIndex={index + 1} packageId={packageinf.id} departureDate={packageinf.departureDate.substr(0, 10)} departure={packageinf.packageSender.departure} destination={packageinf.packageReceiver.destination}
+                    return <Package key={index} package={packageinf} packageIndex={index + 1} packageId={packageinf.id} departureDate={String(packageinf.departureDate).substring(0, 10)} departure={packageinf.packageSender.departure} destination={packageinf.packageReceiver.destination}
                          departureAddress={packageinf.packageSender.departureAddress} destinationAddress={packageinf.packageReceiver.destinationAddress} packageType={packageinf.packageInfo.packageType}
                          weight={packageinf.packageInfo.weight} description={packageinf.packageInfo.description} dimensions={packageinf.packageInfo.dimensions} price={packageinf.packageInfo.price} name={packageinf.packageInfo.name}
                          status={packageinf.mainStatus} deletePackageClicked={()=>deletePackage(packageinf.id, userData.token)} packageLocation={packageinf.location}

@@ -1,10 +1,10 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import {Grid, Box, Container, Modal, Fade} from '@material-ui/core';
 import GreenCaroButton from '../../buttons/GreenCaroButton/GreenCaroButton';
 import SecondaryButton from '../../buttons/secondaryButton/secondaryButton';
 import Timer from '../../timer/timer';
 import CarroTextField from '../../textField/CarroTextField';
-import { Close } from '@material-ui/icons';
+import { Close, PortraitSharp } from '@material-ui/icons';
 import IconButtonNoVerticalPadding from '../../buttons/icon-button/icon-button-no-vertical-padding/icon-button-no-vertical-padding';
 import useStyles from './deliver-package-style';
 import { useTranslation } from "react-i18next";
@@ -13,8 +13,6 @@ const DeliverPackage=(props)=>{
     const { t } = useTranslation();
     const [sms, setSMS] = useState('');
     const [open, setOpen] = useState(false);
-    const time = new Date();
-    time.setMinutes(time.getMinutes() + 5);
 
     const handleOpen = ()=>{
         setOpen(true)
@@ -23,7 +21,6 @@ const DeliverPackage=(props)=>{
     const handleClose = ()=>{
         setOpen(false)
     }
-    
 
     const classes = useStyles();
 
@@ -54,7 +51,7 @@ const DeliverPackage=(props)=>{
                                 <CarroTextField  value = {sms} onChange={(e)=>setSMS(e.target.value)} variant ='outlined' label={t("CodeReceived")} fullWidth/>
                             </Grid>
                             <Grid container item xs={8} justifyContent='center'>
-                                <Timer expiryTimestamp={time}/>
+                                <Timer expiryTimestamp={props.codeExpiryTime} newCode={()=>props.sendMessage()}/>
                             </Grid>
                         </Grid>
                         <Box width='100%' display='flex' justifyContent='center'>
@@ -63,7 +60,7 @@ const DeliverPackage=(props)=>{
                                     <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("CloseButton")}</SecondaryButton>
                                 </Grid>
                                 <Grid container item xs={5} justifyContent='flex-end'>
-                                    <GreenCaroButton variant='contained' onClick={()=>{props.deliver(sms); handleClose()}} fullWidth>{t("DeliverButton")}</GreenCaroButton>
+                                    <GreenCaroButton variant='contained' onClick={()=>{props.deliver(sms);}} fullWidth>{t("DeliverButton")}</GreenCaroButton>
                                 </Grid>
                             </Grid>
                         </Box> 

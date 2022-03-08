@@ -20,7 +20,6 @@ const PhoneNumberValidation = ({userData})=>{
     const[open, setOpen] = useState(false);
     const [millis, setMillis] = useState(300000);
     const[errorValidation, setErrorValidation] = useState([]);
-    const time = new Date();
     const classes = useStyles()
 
     async function getValidationCode(){
@@ -56,10 +55,6 @@ const PhoneNumberValidation = ({userData})=>{
         });
     }
 
-    time.setMilliseconds(millis);
-
-    useEffect(()=>{}, [millis])
-
     return(
         <Fragment>
             <Box color={"red"} fontWeight={400} display='inline-flex' fontSize={18} textAlign={"left"} width={"100%"} marginBottom={"5px"}> 
@@ -86,7 +81,7 @@ const PhoneNumberValidation = ({userData})=>{
                                     <CarroTextField value = {sms} onChange={(e)=>setSMS(e.target.value)} variant ='outlined' label= {t("PhoneSMS")} fullWidth/>
                             </Grid>
                             <Grid container item xs={10} justifyContent='center'>
-                               <Timer expiryTimestamp={time} token={userData.token}/>
+                               <Timer expiryTimestamp={millis} token={userData.token} newCode={()=>getValidationCode()}/>
                             </Grid>
                             <Grid container item xs={10} xl={10} justifyContent='space-between'>
                                 <Grid container item xs={5} xl={5}>

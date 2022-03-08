@@ -106,6 +106,7 @@ const SelectRide=(props)=>{
                                                 statuses={[]}
                                                 interactions= {[pack]}
                                                 statusUpdated={props.statusUpdated}
+                                                fromSelectModal={true}
                                             />
                                         </Grid>                           
                                     )
@@ -129,6 +130,7 @@ const SelectRide=(props)=>{
                                             statuses={[pack]}
                                             interactions= {[]}
                                             statusUpdated={props.statusUpdated}
+                                            fromSelectModal={true}
                                         />
                                     </Grid>                           
                                 )
@@ -150,6 +152,7 @@ const SelectRide=(props)=>{
                                     statuses={[]}
                                     interactions= {[]}
                                     statusUpdated={props.statusUpdated}
+                                    fromSelectModal={true}
                                 />
                             </Grid>
                         </MyGrid>

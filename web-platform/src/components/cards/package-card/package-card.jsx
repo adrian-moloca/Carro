@@ -18,6 +18,7 @@ import DeliverPackage from '../../modals/deliver-package/deliver-package';
 import axios from 'axios';
 import data from '../../../utils/constants';
 import { connect } from 'react-redux';
+import RejectModal from '../../modals/reject-modal/reject-modal';
 
 const PackageCard = ({userData, ...props}) =>{
 
@@ -25,7 +26,9 @@ const PackageCard = ({userData, ...props}) =>{
     const { t } = useTranslation();
     const [status, setStatus] = useState(props.status);
     const [isFlipped, setIsFlipped] = useState(false);
-    const [rejectReason, setRejectReason] = useState('');
+    const [millis, setMillis] = useState(300000);
+    const [errorInVerifyCode, setErrorInVerifyCode] = useState(false);
+
 
     useEffect(()=>{}, [status])
 
@@ -44,15 +47,15 @@ const PackageCard = ({userData, ...props}) =>{
         } ).then((response)=>setStatus(response.data.data)).catch((error)=>console.log(error))
     }
 
-    const updateStatus = (newStatus, packageId, statusId) => {
+    const updateStatus = (newStatus, packageId, statusId, reasonForReject) => {
         axios.put(data.baseUrl + '/packages/' + packageId + '/statuses/' + statusId, {
             status: newStatus,
-            rejectReason: rejectReason
+            rejectReason: reasonForReject ? reasonForReject : ''
         }, {
             headers:{
                 'Authorization': `Bearer ${userData.token}`,
             }
-        }).then((response)=> props.statusUpdated()).catch((error)=>console.log(error))
+        }).then((response)=> props.statusUpdated()).catch((error)=>props.statusUpdated())
     } 
 
     /* const deliverPackage = (newStatus, rideId, statusId) => {
@@ -71,7 +74,7 @@ const PackageCard = ({userData, ...props}) =>{
             headers:{
                 'Authorization': `Bearer ${userData.token}`,
             }
-        }).catch((error)=>console.log(error))
+        }).then(()=>props.statusUpdated()).catch((error)=>setErrorInVerifyCode(true))
     }
 
     const createDeliveryCode = (packageId) =>{
@@ -81,7 +84,10 @@ const PackageCard = ({userData, ...props}) =>{
             headers:{
                 'Authorization': `Bearer ${userData.token}`,
             }
-        }).catch((error)=>console.log(error))
+        }).catch((error)=>{
+            setMillis(error.response.data.errors[0].message)
+            console.log('error from creating code for delivery: ', error);
+        }).finally(()=>console.log(millis))
     }
 
     const handleClick = () => {
@@ -191,7 +197,12 @@ const PackageCard = ({userData, ...props}) =>{
                             )
                         case 8:
                             return(
-                                <Grid container item xs={10} justifyContent = 'center'  spacing={2}>
+                                <Grid container item xs={10} justifyContent = 'center'>
+                                    <Grid container item xs={10} justifyContent='center'>
+                                        <Box mb='5%' className='Secondary-color' fontSize='18px' fontWeight='500'>
+                                            {t('WaitingPickUpAccept')}
+                                        </Box>
+                                    </Grid>
                                     <Grid container item xs={10} justifyContent = 'center'>
                                         <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
                                     </Grid>
@@ -201,7 +212,7 @@ const PackageCard = ({userData, ...props}) =>{
                             return(
                                 <Grid container justifyContent = 'center' style={{marginBottom: '10px'}} spacing={1}>
                                     <Grid container item xs={10} justifyContent = 'center'>
-                                        <Box fontWeight={20}>{t('PackageWasDeliveredBySender')}</Box>
+                                        <Box fontWeight={20}>{t('PackageWasPicked')}</Box>
                                     </Grid>
                                     <Grid container item xs={10} justifyContent = 'space-between'>
                                         <Grid container item xs={12} sm={5} justifyContent = 'center'>
@@ -223,7 +234,7 @@ const PackageCard = ({userData, ...props}) =>{
                         case 10:
                             return(
                                 <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
-                                    <DeliverPackage sendMessage={()=>{createDeliveryCode(props.packageId)}} deliver={(code)=> verifyCode(code)}/>
+                                    <DeliverPackage codeExpiryTime={millis} sendMessage={()=>{createDeliveryCode(props.packageId)}} deliver={(code)=> verifyCode(code)} deliveryHadErrors={errorInVerifyCode}/>
                                     <Grid container item xs={10} justifyContent = 'center'>
                                         <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
                                     </Grid>
@@ -244,35 +255,18 @@ const PackageCard = ({userData, ...props}) =>{
 
     }
 
-    function getBackButtons(status){
-        /* switch(status){
-            case 8:
-                return(
-                    <Grid container justifyContent = 'center'  spacing={2}>
-                        <Grid container item xs={10} justifyContent = 'center'>
-                            <SecondaryButton variant='contained' size='medium' fullWidth>
-                                {t("Reason")}
-                            </SecondaryButton>
-                        </Grid>
-                        <Grid container item xs={10} justifyContent = 'center'>
-                            <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t("DriverCardBackButton")}</PrimaryButton>
-                        </Grid>
-                    </Grid>
-                );
-            case 10:
-                return(
-                    <Grid container item xs={10} justifyContent = 'center'>
-                        <Box width='1'marginTop='20%'>
-                            <PrimaryButton variant='contained' size='medium' onClick={handleClick} fullWidth>{t("DriverCardBackButton")}</PrimaryButton>
-                        </Box>
-                    </Grid>
-                );
-        } */ 
+    function getBackButtons(){
+        if(status && status.status >= 3)
+        return(
+            <Grid container item xs={8} justifyContent = 'center' >
+                <RejectModal rejectWithReason={(reason)=>updateStatus(3, props.packageId, status.id, reason)}/>
+            </Grid>
+        )  
     }
 
     return (
         <Fragment>
-            <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' cardZIndex='auto'  containerClassName={'CardFlipContainer'}>
+            <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' cardStyles={{back: {transformStyle: 'unset'}}} containerClassName={'CardFlipContainer'}>
             
             <Box paddingBottom={1} height='520px' border={2} borderColor='grey.400' borderRadius='10px' display='flex' justifyContent='center' boxShadow={3}>
                 <Grid container spacing={2} justifyContent='center'>
@@ -360,9 +354,9 @@ const PackageCard = ({userData, ...props}) =>{
                             <Box width='1' borderRadius='15px' height='90px' marginY='10px' padding='8px' className={classes.detailsBox}> {props.details}</Box>
                         </Box>
                     </Grid>
-                    {/* {getBackButtons(props.status)} */}
-                    <Grid container item xs={8} justifyContent='center'>
-                        <PrimaryButton variant='contained' onClick={handleClick} fullWidth>
+                    {getBackButtons()}
+                    <Grid container item xs={8} style={{marginTop:'5px'}} justifyContent='center'>
+                        <PrimaryButton variant='contained' size='small' onClick={handleClick} fullWidth>
                             {t('DriverCardBackButton')}
                         </PrimaryButton>
                     </Grid>
