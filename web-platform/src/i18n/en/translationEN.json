@@ -306,5 +306,15 @@
     "Deliver": "Deliver",
     "PackageWasPicked": "Was the package picked?",
     "WaitingPickUpAccept": "Waiting a response...",
-    "AddPackage": "Add package"
+    "AddPackage": "Add package",
+    "PackageAsked": "asked for your package",
+    "RideAsked": "asked for your ride",
+    "PackageAccepted": "accepted your package",
+    "RideAccepted": "accepted your ride",
+    "PackageRejected": "rejected your package",
+    "RideRejected": "rejected your ride",
+    "PackageRejectedWithReason": "rejected with reason your package",
+    "RideRejectedWithReason": "rejected with reason your ride",
+    "PackageDelivered": "delivered with success your package",
+    "UserValidated": "your user profile is validated"
 }

@@ -129,7 +129,7 @@ const NotificationDetails = (props) =>{
                     </Grid>      
                 );
             case 4:
-                return(
+                return( 
                     <Grid container justifyContent='center'>
                         {!(packageN.id && packageN.id.length) > 0 ? (
                             <Box>Error on getting package</Box>
