@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Box, Grid, MenuItem, Container} from "@material-ui/core";
+import { Box, Grid, MenuItem, Container, Modal} from "@material-ui/core";
+import { CircularProgress } from "@material-ui/core";
 import CarroTextField from "../../components/textField/CarroTextField";
 import CarroDatePicker from "../../components/datePicker/CarroDatePicker";
 import { getCountries, getCities} from "../../utils/Functions/countries-city-functions";
@@ -44,6 +45,7 @@ const AddRide = ({userData, ridesData ,createNewRide}) =>{
   const [estimatedTime, setEstimatedTime] = useState(0);
   const [hasErrors, setHasErrors] = useState(false);
   const [requestSent, setRequestSent] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // event lisenters
   const handleChangeDepartureDate=(date)=> setDepartureDate(date);
@@ -80,7 +82,7 @@ const AddRide = ({userData, ridesData ,createNewRide}) =>{
 
   const redirectAfterRideCreated= () => {
       if(ridesData.hasErrors === true) {
-          alert('Crearea cursei a esuat');
+          console.log('error')
       } else {
           history.push('/my-rides');
       }
@@ -88,9 +90,10 @@ const AddRide = ({userData, ridesData ,createNewRide}) =>{
 
   useEffect(()=>{
 
-    if(requestSent)
-      setTimeout(() => {redirectAfterRideCreated()}, 500);
-
+    if(requestSent){
+      setLoading(true)
+      setTimeout(() => {redirectAfterRideCreated()}, 500);  
+    }
   }, [ridesData])
 
   return(
@@ -147,6 +150,9 @@ const AddRide = ({userData, ridesData ,createNewRide}) =>{
             </Grid>
         </Grid>
       </Box>
+      <Modal open={loading} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <CircularProgress style={{color: '#ffffff'}}/>
+      </Modal>
     </Container>
   );
 };

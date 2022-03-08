@@ -29,10 +29,6 @@ const Package = (props) => {
     props.setHasErrors(props.smallDescription.length <= 3 && props.smallDescription!='')
   }, [props.smallDescription])
 
-  useEffect(()=>{
-    props.setHasErrors(props.description.length < 25 && props.description!='')
-  }, [props.description])
-
   const packageSizes = [
     {
       value: 1,
@@ -121,9 +117,8 @@ const Package = (props) => {
       <Grid container item xs={6} justifyContent="center">
         <CarroTextField
           variant="outlined"
-          type='number'
           value={props.price}
-          onChange={(e)=>props.setPrice(parseInt(e.target.value))}
+          onChange={(e)=>props.setPrice(e.target.value)}
           error={numberValidator(props.price)}
           helperText={numberValidator(props.price) ? t('ValidNumber') : ''}
           label={t("Price")}

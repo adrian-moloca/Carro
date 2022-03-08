@@ -299,5 +299,12 @@
     "Reject": "Reject",
     "RejectIssue": "Reject issue",
     "UserStatus": "USER STATUS",
-    "Rejected": "Rejected"
+    "Rejected": "Rejected",
+    "PickUp": "Pickup",
+    "Yes": "Yes",
+    "No": "No",
+    "Deliver": "Deliver",
+    "PackageWasPicked": "Was the package picked?",
+    "WaitingPickUpAccept": "Waiting a response...",
+    "AddPackage": "Add package"
 }

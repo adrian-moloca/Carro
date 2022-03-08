@@ -61,7 +61,7 @@ export function phoneValidator(phone){
 }
 
 export function numberValidator(number){
-    const numberFormat = /^[0-9].{0,5}$/
+    const numberFormat = /^[0-9,].{0,5}$/
     if(numberFormat.test(number) || String(number)==='')
     {
         return false;

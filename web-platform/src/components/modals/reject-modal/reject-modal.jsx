@@ -10,6 +10,8 @@ import { useTranslation } from "react-i18next";
 const RejectModal=(props)=>{
     const { t } = useTranslation();
     const [open, setOpen] = useState(false);
+    const [rejectReason, setRejectReason] = useState('')
+    
     const handleOpen = ()=>{
         setOpen(true)
     }
@@ -45,10 +47,13 @@ const RejectModal=(props)=>{
                         </Box>
                         <Grid container justifyContent='center' spacing={5}>
                             <Grid container item xs={8} justifyContent='center'>
-                                <CarroTextField  value = {props.rejectReason} onChange={(e)=>props.setRejectReason(e.target.value)} variant ='outlined' label={t("WriteHereYourReason")} fullWidth/>
+                                <CarroTextField  value = {rejectReason} onChange={(e)=>setRejectReason(e.target.value)} variant ='outlined' label={t("WriteHereYourReason")} fullWidth/>
                             </Grid>
                             <Grid container item xs={5} justifyContent='center'>
-                                <SecondaryButton variant='outlined' onClick={handleClose} fullWidth>{t("Refuse")}</SecondaryButton>
+                                <SecondaryButton variant='outlined' onClick={()=>{
+                                                                            props.rejectWithReason(rejectReason);
+                                                                            setTimeout(()=>handleClose(), 500)}}
+                                                fullWidth>{t("Refuse")}</SecondaryButton>
                             </Grid>
                         </Grid>
                     </Container>

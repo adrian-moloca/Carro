@@ -76,7 +76,6 @@ axios.post(data.baseUrl+"/packages",{
 })
 .then(response => {
     const Msg = response.data;
-    alert("Adaugarea pachetului reusita");
     dispatch(createNewPackageSuccess(Msg));
     dispatch(fetchMyPackages(token))
 }).catch(error => {

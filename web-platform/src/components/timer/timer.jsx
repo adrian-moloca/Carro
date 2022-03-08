@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useTimer} from 'react-timer-hook';
 import {Box, ButtonBase} from '@material-ui/core';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
 import data from '../../utils/constants.js';
 
-const Timer = ({expiryTimestamp, token}) =>{
+const Timer = ({expiryTimestamp, token, ...props}) =>{
     const { t } = useTranslation();
     const[timerColor, setTimerColor] = useState('Secondary-color');
 
@@ -16,28 +16,12 @@ const Timer = ({expiryTimestamp, token}) =>{
         restart,
     } = useTimer({ expiryTimestamp, onExpire: () => setTimerColor('Pink-carro') });
 
-    const resendCode = () => {
-
+    useEffect(()=>{
         const time = new Date();
-        time.setSeconds(time.getSeconds() + 30);
+        time.setMilliseconds( expiryTimestamp);
         setTimerColor('Secondary-color');
         restart(time);
-
-        axios.post(data.baseUrl+"/phone-validation", {
-            message: "Codul pentru verificarea numarului de telefon"
-        },{
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            }
-        })
-        .then(res => {
-            console.log('validation: ', res);
-        })
-        .catch(err => {
-            alert("Codul a fost trimis")
-            console.log('error from validation: ', err);
-        })
-    }
+    }, [expiryTimestamp])
     
 
     return(
@@ -46,7 +30,7 @@ const Timer = ({expiryTimestamp, token}) =>{
             {t("ValidationTimeCode")} <Box paddingX='10px' fontWeight='500'>{minutes}:{seconds.toString().padStart(2, '0')}</Box>
             </Box>
             {!isRunning ? 
-               <ButtonBase onClick={() => resendCode()}>
+               <ButtonBase onClick={() => {props.newCode()}}>
                    <Box className={'Primary-color'} fontSize='17px'>
                    {t("ResendCode")}
                     </Box>

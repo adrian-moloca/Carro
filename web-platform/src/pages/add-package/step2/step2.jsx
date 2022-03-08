@@ -26,6 +26,10 @@ const StepTwo = (props) =>{
     }, [inputValuePhoneNumber])
 
     useEffect(()=>{
+        props.setHasErrors(countryPhoneCode)
+    }, [countryPhoneCode])
+
+    useEffect(()=>{
         props.setHasErrors(addressValidator(props.destinataryAddress))
     }, [props.destinataryAddress])
 

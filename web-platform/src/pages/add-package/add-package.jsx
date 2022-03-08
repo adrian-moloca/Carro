@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Box, Stepper, Step, StepLabel, Grid,} from '@material-ui/core';
+import { Container, Box, Stepper, Step, StepLabel, Grid, Modal} from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 import PrimaryButton from '../../components/buttons/primaryButton/primaryButton';
 import SecondaryButton from '../../components/buttons/secondaryButton/secondaryButton';
 import {ArrowBackIos, ArrowForwardIos, Close } from '@material-ui/icons';
@@ -66,6 +67,7 @@ const AddPackage = ({data, packageData, createNewPackage, ...props}) => {
   const [paymentMethod, setPaymentMethod] = useState(0);
   const [hasErrors, setHasErrors] = useState(false);
   const [requestSent, setRequestSent] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [errorsOnAdd, setErrorsOnAdd] = useState([])
 
   function formsComplete(step){
@@ -82,12 +84,12 @@ const AddPackage = ({data, packageData, createNewPackage, ...props}) => {
           return false
       case 2:
         if(packageSize===3)
-           if(packageSize && currency && width && height && length && smallDescription && description && !hasErrors)
+           if(packageSize && currency && width && height && length && smallDescription && !hasErrors)
               return true
            else
               return false
         else
-           if(packageSize && currency && smallDescription && description && !hasErrors)
+           if(packageSize && currency && smallDescription && !hasErrors)
               return true
            else
               return false
@@ -131,8 +133,10 @@ const AddPackage = ({data, packageData, createNewPackage, ...props}) => {
 
   useEffect(()=>{
 
-    if(requestSent && !props.modal)
-      setTimeout(() => {redirectAfterPackageCreated()}, 500);
+    if(requestSent && !props.modal){
+      setLoading(true)
+      setTimeout(() => {redirectAfterPackageCreated()}, 1000);
+    }
     else
       if(requestSent && props.modal)
         props.packageCreated()
@@ -228,7 +232,9 @@ const AddPackage = ({data, packageData, createNewPackage, ...props}) => {
               </Box>
         )}
       </Box>
-
+      <Modal open={loading} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <CircularProgress style={{color: '#ffffff'}}/>
+      </Modal>
     </Container>
   );
 };

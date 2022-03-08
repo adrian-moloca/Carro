@@ -3,7 +3,7 @@ import {Grid} from '@material-ui/core';
 import RideCard from '../../components/cards/ride-card/ride-card';
 
 const GetRide = (props) =>{
-    const [image, setImage] = useState(props.image.length > 0 ? props.image : '');
+    const [image, setImage] = useState(String(props.image).length > 0 ? props.image : '');
     const [name, setName] = useState(props.name);
     const [id, setID] = useState(props.id);
     const [rideId, setRideId] = useState(props.rideId);
@@ -20,7 +20,7 @@ const GetRide = (props) =>{
 
 
     useEffect(()=>{
-        setImage(props.image.length > 0 ? props.image : '');
+        setImage(String(props.image).length > 0 ? props.image : '');
         setName(props.name);
         setID(props.id);
         setRideId(props.rideId)

@@ -51,6 +51,7 @@
 
 .CardFlipContainer {
   width: 87%;
+  transform: translateZ(0) !important;
 }
 
 .addPackagesContainer {
