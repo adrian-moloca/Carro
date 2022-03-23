@@ -104,7 +104,7 @@ const NotificationDetails = (props) =>{
                         {!(ride.rideId && ride.rideId.length) > 0 ? (
                             <Box>Error on getting ride</Box>
                         ) : (
-                            <GetRide name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} ridesUpdate={()=>getRide()}/>
+                            <GetRide name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} statusUpdated={()=>getRide()}/>
                         )}
                     </Grid>      
                 );
@@ -114,7 +114,7 @@ const NotificationDetails = (props) =>{
                         {!(packageN.id && packageN.id.length) > 0 ? (
                             <Box>Error on getting package</Box>
                         ) : (
-                            <GetPackage userId={packageN.userId} packageId={packageN.id} packageQuantity={packageN.numberOfPackages} dimensions={packageN.dimensions} weight={packageN.weight} departureDate={packageN.departureDate.substr(0, 10)} price={packageN.price} departure={packageN.departure} destination={packageN.destination} departureAddress={packageN.departureAddress}  destinationAddress={packageN.destinationAddress} status= {packageN.status}  interactions={packageN.interactions} packageSpecialMention={packageN.packageSpecialMention} packageType={packageN.packageType}/>
+                            <GetPackage userId={packageN.userId} packageId={packageN.id} packageQuantity={packageN.numberOfPackages} dimensions={packageN.dimensions} weight={packageN.weight} departureDate={packageN.departureDate.substr(0, 10)} price={packageN.price} departure={packageN.departure} destination={packageN.destination} departureAddress={packageN.departureAddress}  destinationAddress={packageN.destinationAddress} status= {packageN.status}  interactions={packageN.interactions} packageSpecialMention={packageN.packageSpecialMention} packageType={packageN.packageType} statusUpdated={()=>getPackage()}/>
                         )}
                     </Grid>      
                 );
@@ -124,17 +124,17 @@ const NotificationDetails = (props) =>{
                         {!(ride.rideId && ride.rideId.length > 0) ? (
                             <Box>Error on getting ride</Box>
                         ) : (
-                            <GetRide name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} ridesUpdate={()=>getRide()}/>
+                            <GetRide name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} statusUpdated={()=>getRide()}/>
                         )}
                     </Grid>      
                 );
             case 4:
-                return(
+                return( 
                     <Grid container justifyContent='center'>
                         {!(packageN.id && packageN.id.length) > 0 ? (
                             <Box>Error on getting package</Box>
                         ) : (
-                            <GetPackage userId={packageN.userId} packageId={packageN.id} packageQuantity={packageN.numberOfPackages} dimensions={packageN.dimensions} weight={packageN.weight} departureDate={packageN.departureDate.substr(0, 10)} price={packageN.price} departure={packageN.departure} destination={packageN.destination} departureAddress={packageN.departureAddress}  destinationAddress={packageN.destinationAddress} status= {packageN.status}  interactions={packageN.interactions} packageSpecialMention={packageN.packageSpecialMention} packageType={packageN.packageType}/>
+                            <GetPackage userId={packageN.userId} packageId={packageN.id} packageQuantity={packageN.numberOfPackages} dimensions={packageN.dimensions} weight={packageN.weight} departureDate={packageN.departureDate.substr(0, 10)} price={packageN.price} departure={packageN.departure} destination={packageN.destination} departureAddress={packageN.departureAddress}  destinationAddress={packageN.destinationAddress} status= {packageN.status}  interactions={packageN.interactions} packageSpecialMention={packageN.packageSpecialMention} packageType={packageN.packageType} statusUpdated={()=>getPackage()}/>
                         )}
                     </Grid>      
                 );
@@ -144,7 +144,7 @@ const NotificationDetails = (props) =>{
                         {!(ride.rideId && ride.rideId.length > 0) ? (
                             <Box>Error on getting ride</Box>
                         ) : (
-                            <GetRide name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} ridesUpdate={()=>getRide()}/>
+                            <GetRide name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} statusUpdated={()=>getRide()}/>
                         )}
                     </Grid>      
                 );
@@ -154,7 +154,7 @@ const NotificationDetails = (props) =>{
                         {!(packageN.id && packageN.id.length) > 0 ? (
                             <Box>Error on getting package</Box>
                         ) : (
-                            <GetPackage userId={packageN.userId} packageId={packageN.id} packageQuantity={packageN.numberOfPackages} dimensions={packageN.dimensions} weight={packageN.weight} departureDate={packageN.departureDate.substr(0, 10)} price={packageN.price} departure={packageN.departure} destination={packageN.destination} departureAddress={packageN.departureAddress}  destinationAddress={packageN.destinationAddress} status= {packageN.status}  interactions={packageN.interactions} packageSpecialMention={packageN.packageSpecialMention} packageType={packageN.packageType}/>
+                            <GetPackage userId={packageN.userId} packageId={packageN.id} packageQuantity={packageN.numberOfPackages} dimensions={packageN.dimensions} weight={packageN.weight} departureDate={packageN.departureDate.substr(0, 10)} price={packageN.price} departure={packageN.departure} destination={packageN.destination} departureAddress={packageN.departureAddress}  destinationAddress={packageN.destinationAddress} status= {packageN.status}  interactions={packageN.interactions} packageSpecialMention={packageN.packageSpecialMention} packageType={packageN.packageType} statusUpdated={()=>getPackage()}/>
                         )}
                     </Grid>      
                 );
@@ -164,7 +164,7 @@ const NotificationDetails = (props) =>{
                         {!(ride.rideId && ride.rideId.length > 0) ? (
                             <Box>Error on getting ride</Box>
                         ) : (
-                            <GetRide name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} ridesUpdate={()=>getRide()}/>
+                            <GetRide name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} statusUpdated={()=>getRide()}/>
                         )}
                     </Grid>      
                 );
@@ -174,7 +174,7 @@ const NotificationDetails = (props) =>{
                         {!(packageN.id && packageN.id.length) > 0 ? (
                             <Box>Error on getting package</Box>
                         ) : (
-                            <GetPackage userId={packageN.userId} packageId={packageN.id} packageQuantity={packageN.numberOfPackages} dimensions={packageN.dimensions} weight={packageN.weight} departureDate={packageN.departureDate.substr(0, 10)} price={packageN.price} departure={packageN.departure} destination={packageN.destination} departureAddress={packageN.departureAddress}  destinationAddress={packageN.destinationAddress} status= {packageN.status}  interactions={packageN.interactions} packageSpecialMention={packageN.packageSpecialMention} packageType={packageN.packageType}/>
+                            <GetPackage userId={packageN.userId} packageId={packageN.id} packageQuantity={packageN.numberOfPackages} dimensions={packageN.dimensions} weight={packageN.weight} departureDate={packageN.departureDate.substr(0, 10)} price={packageN.price} departure={packageN.departure} destination={packageN.destination} departureAddress={packageN.departureAddress}  destinationAddress={packageN.destinationAddress} status= {packageN.status}  interactions={packageN.interactions} packageSpecialMention={packageN.packageSpecialMention} packageType={packageN.packageType} statusUpdated={()=>getPackage()}/>
                         )}
                     </Grid>      
                 );

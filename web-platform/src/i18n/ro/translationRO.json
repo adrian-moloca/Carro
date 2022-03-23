@@ -620,6 +620,16 @@
     "Deliver": "Livreaza",
     "PackageWasPicked": "Pachetul a fost preluat?",
     "WaitingPickUpAccept": "In asteptarea unui raspuns...",
-    "AddPackage": "Adauga pachet"
+    "AddPackage": "Adauga pachet",
+    "PackageAsked": "a cerut pachetul",
+    "RideAsked": "a cerut un transport",
+    "PackageAccepted": "a acceptat pachetul",
+    "RideAccepted": "a acceptat transportul",
+    "PackageRejected": "a refuzat pachetul",
+    "RideRejected": "a refuzat transportul",
+    "PackageRejectedWithReason": "a refuzat cu motiv pachetul",
+    "RideRejectedWithReason": "a refuzat cu motiv transportul",
+    "PackageDelivered": "a livrat pachetul",
+    "UserValidated": "profilul dumneavoastra e validat"
 
 }

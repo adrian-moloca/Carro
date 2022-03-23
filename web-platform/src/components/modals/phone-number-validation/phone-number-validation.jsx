@@ -11,10 +11,11 @@ import axios from 'axios';
 import data from '../../../utils/constants';
 import { connect } from "react-redux";
 import useStyles from './phone-number-validation-style';
+import { getProfileStatus } from '../../../redux/actions/UserActions';
 
 const MyGrid = withStyles({'spacing-xs-4':{margin: 0}})(Grid)
 
-const PhoneNumberValidation = ({userData})=>{
+const PhoneNumberValidation = ({userData, getProfileStatus})=>{
     const { t } = useTranslation();
     const[sms, setSMS] = useState('');
     const[open, setOpen] = useState(false);
@@ -34,7 +35,10 @@ const PhoneNumberValidation = ({userData})=>{
             console.log('validation: ', res);
         })
         .catch(err => {
-            setMillis(err.response.data.errors[0].message)
+            if(err.response.data.errors[0].message.includes('a'))
+                setErrorValidation(err.response.data.errors)
+            else
+                setMillis(err.response.data.errors[0].message)
             console.log('error from validation: ', err);
         }).finally(()=>setOpen(true))
 
@@ -48,10 +52,11 @@ const PhoneNumberValidation = ({userData})=>{
             }
         })
         .then((res) => {
-            setOpen(false)
+            getProfileStatus(userData.token);
+            setOpen(false);
         })
         .catch((err)=> {
-            setErrorValidation(err.response.data.errors)
+            setErrorValidation([{message: 'Invalid validation code entered'}])
         });
     }
 
@@ -102,6 +107,7 @@ const PhoneNumberValidation = ({userData})=>{
     );
 };
 
-const mapStateToProps = state => ({userData: state.userData})
+const mapStateToProps = state => ({userData: state.userData});
+const mapDispatchToProps = (dispatch) => ({getProfileStatus: (token) => dispatch(getProfileStatus(token))})
 
-export default connect(mapStateToProps, null)(PhoneNumberValidation);
+export default connect(mapStateToProps, mapDispatchToProps)(PhoneNumberValidation);

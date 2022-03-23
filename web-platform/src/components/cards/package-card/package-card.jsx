@@ -280,17 +280,17 @@ const PackageCard = ({userData, ...props}) =>{
                         <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
                     </Grid>
                     <Grid container item xs={12} spacing={1} justifyContent = 'flex-start'>
-                        <Box px={1} fontSize={14}>{t('Quantity')} {props.packageQuantity}</Box>
-                        <Box px={1} fontSize={14}>{t('Sizing')} {props.dimensions}</Box>
-                        <Box px={1} fontSize={14}>{t('Weight')} {props.weight}</Box>
+                        <Box px={1} fontSize={14} width={'100%'}>{t('Quantity')} {props.packageQuantity}</Box>
+                        <Box px={1} fontSize={14} width={'100%'}>{t('Sizing')} {props.dimensions}</Box>
+                        <Box px={1} fontSize={14} width={'100%'}>{t('Weight')} {props.weight}</Box>
                     </Grid>
                     <Grid container item xs={12} justifyContent = 'center'>
                         <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
                     </Grid>
-                    <Grid container item xs={12} spacing={1}justifyContent = 'flex-start'>
-                        <Box px={1} fontSize={14}>{t('PickupDate')}: {props.departureDate}</Box>   
-                        <Box px={1} fontSize={14}>{t('PickupAddress')}: {props.departureAddress}</Box>
-                        <Box px={1} fontSize={14}>{t('DriverCardDestinationAddress')} {props.destinationAddress}</Box>
+                    <Grid container item xs={12} spacing={1} justifyContent = 'flex-start'>
+                        <Box px={1} fontSize={14} width={'100%'}>{t('PickupDate')}: {props.departureDate}</Box>   
+                        <Box px={1} fontSize={14} width={'100%'}>{t('PickupAddress')}: {props.departureAddress}</Box>
+                        <Box px={1} fontSize={14} width={'100%'}>{t('DriverCardDestinationAddress')} {props.destinationAddress}</Box>
                     </Grid>
                     <Grid container item xs={12} justifyContent = 'center'>
                         <img src={greyLine} className={classes.greyLinesStyle} alt={""}/>
