@@ -119,7 +119,7 @@ const Company = ({userData, getUserCompany})=>{
           </Grid>
           <Grid container item sm={window.innerWidth <= 850 ? 11 : 5}  justifyContent="center"> 
             {onEditMode ? (
-                    <PrimaryButton disabled={isCompany && name && cui && address && country && city && email && inputValuePhoneNumber && countryPhoneCode ? false : true}
+                    <PrimaryButton disabled={ name && cui && address && country && city && email && inputValuePhoneNumber && countryPhoneCode ? false : true}
                         variant='contained' onClick={()=>updateChangedData()} style={{height:35, width:250, marginTop:"10px"}} fullWidth>
                         <Box px='10px'>{t('SaveButton')}</Box>
                         <SaveAlt fontSize='small'/>
