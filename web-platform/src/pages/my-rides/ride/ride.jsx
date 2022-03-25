@@ -7,6 +7,7 @@ import RideDetails from './ride-details/ride-details';
 import DeleteModal from '../../../components/modals/deleteModal/DeleteModal';
 import CloseItemModal from '../../../components/modals/close-ride/close-item-modal';
 import { useTranslation } from "react-i18next";
+import CloseForReceivingModal from '../../../components/modals/close-for-receiving/close-for-receiving-modal';
 
 const Ride = (props) =>{
 
@@ -68,6 +69,7 @@ const Ride = (props) =>{
                              departureCountry={String(props.departure).substring(String(props.departure).indexOf(',')+2)} departureCity={String(props.departure).substring(0, String(props.departure).indexOf(','))}
                              destinationCountry={String(props.destination).substring(String(props.destination).indexOf(',')+2)} destinationCity={String(props.destination).substring(0, String(props.destination).indexOf(','))} 
                              departureAddress={props.departureAddress} destinationAddress={props.destinationAddress} transportType={props.transportType} estimatedTime={props.estimatedTime}/>
+              <CloseForReceivingModal content={t('CloseForReceiving')} btn1Text={t('Back')}  btn2Text={t('CloseButton')} clickedBtn2={props.closeForReceivingClicked} size='small'/>
               <CloseItemModal content={t('CloseRide')} btn1Text={t('Back')}  btn2Text={t('CloseButton')} clickedBtn2={props.closeRideClicked} size='small'/>
               <DeleteModal content={t('VerifyDeleteRide')} btn1Text={t('Back')} btn2Text={t('DeleteButton')} clickedBtn2={props.deleteRideClicked} size='small'/>
             </Fragment>

@@ -29,6 +29,13 @@ export const RIDE_CLOSE_REQUEST = 'RIDE_CLOSE_REQUEST';
 export const RIDE_CLOSE_SUCCESS = 'RIDE_CLOSE_SUCCESS';
 export const RIDE_CLOSE_FAILURE = 'RIDE_CLOSE_FAILURE';
 
+// Close for receiving
+
+export const CLOSE_FOR_RECEIVING_REQUEST = 'CLOSE_FOR_RECEIVING_REQUEST';
+export const CLOSE_FOR_RECEIVING_SUCCESS = 'CLOSE_FOR_RECEIVING_SUCCESS';
+export const CLOSE_FOR_RECEIVING_FAILURE = 'CLOSE_FOR_RECEIVING_FAILURE';
+
+
 // Clean rides
 
 export const CLEAN_MY_RIDES_DATA = 'CLEAN_MY_RIDES_DATA';
@@ -133,6 +140,25 @@ export const closeRideSuccess = () => {
 export const closeRideFailure = error => {
     return {
         type: RIDE_CLOSE_FAILURE,
+        payload: error
+    }
+}
+
+export const closeForReceivingRequest = () => {
+    return {
+        type: CLOSE_FOR_RECEIVING_REQUEST,
+    }
+}
+
+export const closeForReceivingSuccess = () => {
+    return {
+        type: CLOSE_FOR_RECEIVING_SUCCESS,
+    }
+}
+
+export const closeForReceivingFailure = error => {
+    return {
+        type: CLOSE_FOR_RECEIVING_FAILURE,
         payload: error
     }
 }
