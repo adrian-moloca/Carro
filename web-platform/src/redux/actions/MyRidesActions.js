@@ -2,7 +2,8 @@ import {fetchMyRidesRequest, fetchMyRidesSuccess, fetchMyRidesFailure,
     createNewRideRequest, createNewRideSuccess, createNewRideFailure,
     updateRideRequest, updateRideSuccess, updateRideFailure,
     deleteRideRequest, deleteRideSuccess, deleteRideFailure,
-    closeRideRequest, closeRideSuccess, closeRideFailure, cleanMyRidesData
+    closeRideRequest, closeRideSuccess, closeRideFailure, cleanMyRidesData,
+    closeForReceivingRequest, closeForReceivingSuccess, closeForReceivingFailure
 } from '../types/MyRidesTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
@@ -122,6 +123,29 @@ export const closeRide = (id, token) => {
         }).catch(error => {
             const errorMsg = error;
             dispatch(closeRideFailure(errorMsg))
+        })
+    }
+}
+
+export const closeForReceiving = (id, token) => {
+
+    return(dispatch) => {
+        dispatch(closeForReceivingRequest());
+        axios.patch(data.baseUrl+"/rides/"+id,[{
+                path: "/mainStatus",
+                op: "replace",
+                value: "3"
+        }],{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            }
+        })
+        .then(response => {
+            dispatch(closeForReceivingSuccess());
+            dispatch(fetchMyRides(token))
+        }).catch(error => {
+            const errorMsg = error;
+            dispatch(closeForReceivingFailure(errorMsg))
         })
     }
 }
