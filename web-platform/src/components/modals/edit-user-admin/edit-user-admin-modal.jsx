@@ -213,7 +213,7 @@ const EditUserAdmin = ({data, userClickedData, adminGetUser, adminGetUsers, clea
     }
 
     async function updateUser(){
-        axios.put(utilData.adminUrl+'/users/'+userClickedData.id, {
+        axios.put(utilData.adminUrl+'/users/'+userClickedData.id, {data: {
                 email: email,
                 role: userRole,
                 termsAndConditions: true,
@@ -243,7 +243,7 @@ const EditUserAdmin = ({data, userClickedData, adminGetUser, adminGetUsers, clea
                     rejectReason: rejectIssue,
                     invalidateReason: invalidateReason
                 },   
-            }, {
+            }}, {
                 headers:{
                     'Authorization': `Bearer ${data.token}`,
                 }

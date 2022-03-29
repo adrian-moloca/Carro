@@ -316,5 +316,6 @@
     "PackageRejectedWithReason": "rejected with reason your package",
     "RideRejectedWithReason": "rejected with reason your ride",
     "PackageDelivered": "delivered with success your package",
-    "UserValidated": "your user profile is validated"
+    "UserValidated": "your user profile is validated",
+    "AccountInvalidated": "The user isn't validated"
 }

@@ -176,14 +176,17 @@ const Profile = ({userData, courierProfile, fetchCourierProfile, getUserProfileI
             {!profileStatus.isUserValidated ? (
                 <Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop: '3%'}}>{t('AccountInvalidated')}</Box>
             ): null}
+            {profileStatus.invalidateReason ? (
+                <Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop: '3%'}}>{profileStatus.invalidateReason}</Box>
+            ): null}
             <Box className={classes.MyProfileStyle}>
                 <Grid container>
                     <Grid container item xs={12} sm={window.innerWidth <= 850 ? 12 : 2} justifyContent="center">
                         {sections.map((section, index)=>{
                                 return(
                                     <ButtonBase key={index+userData.id} style={{width:"100%", borderTopLeftRadius: index === 0 ? "15px" : 0,  borderBottomLeftRadius: index === sections.length-1 ? "15px" : 0, borderTopRightRadius: index === 0 && window.innerWidth <= 850 ? "15px" : 0, borderBottomRightRadius: index === sections.length-1 && window.innerWidth <= 850 ? "15px" : 0, zIndex: sections.length-index+1}} onClick={()=>setCurrentSection(index)}>
-                                        <Box height={window.innerHeight*0.50/sections.length} style={{display:"flex", boxShadow: index === sections.length-1 ? '0' : '0px 4px 2px 0px rgba(0, 0, 0, 0.16)', backgroundColor: currentSection === index ? "#00b4d8" : "#ffffff", width: "100%", borderTopLeftRadius: index === 0 ? "15px" : 0, borderBottomLeftRadius: index === sections.length-1 ? "15px" : 0, borderTopRightRadius: index === 0 && window.innerWidth <= 850 ? "15px" : 0, borderBottomRightRadius: index === sections.length-1 && window.innerWidth <= 850 ? "15px" : 0}}>
-                                            <Box style={{color: currentSection === index ? "#ffffff" : "#00b4d8", fontSize:"20px", paddingLeft:"5%", paddingRight: "5%", width:"100%", textAlign:"center", paddingTop:"18px"}}>{section}</Box>
+                                        <Box  style={{height: '100%', display:"flex", boxShadow: index === sections.length-1 ? '0' : '0px 4px 2px 0px rgba(0, 0, 0, 0.16)', backgroundColor: currentSection === index ? "#00b4d8" : "#ffffff", width: "100%", borderTopLeftRadius: index === 0 ? "15px" : 0, borderBottomLeftRadius: index === sections.length-1 ? "15px" : 0, borderTopRightRadius: index === 0 && window.innerWidth <= 850 ? "15px" : 0, borderBottomRightRadius: index === sections.length-1 && window.innerWidth <= 850 ? "15px" : 0}}>
+                                            <Box style={{color: currentSection === index ? "#ffffff" : "#00b4d8", fontSize:"20px", padding: '20px', width:"100%", textAlign:"center", paddingTop:"18px"}}>{section}</Box>
                                             {index === 0 && !Boolean(profileStatus.isPersonalInfoCompleted) ? <ErrorOutline color="error" fontSize='large' style={{paddingRight: '10px', paddingTop:'22px'}} /> : null}
                                             {index === 3 && !Boolean(profileStatus.isIdentityCardUploaded) ? <ErrorOutline color="error"  fontSize='large' style={{paddingRight: '10px', paddingTop:'22px'}} /> : null}
                                         </Box>

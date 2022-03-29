@@ -14,7 +14,7 @@ const PhoneTextField = (props) =>{
                 <CarroTextField disabled={props.disabled} select value={props.countryPhoneCode} onChange={props.handleSelectCountry} label={t('CountryPhonecode')} InputLabelProps={{style: {fontSize: "13px"}}}  style={{width: "85%"}} size={props.size}>
                     {Object.keys(phoneCodes).map((key, index)=>(
                         <MenuItem key={phoneCodes[key].name} value={phoneCodes[key].code} style={{fontSize: 'smaller'}}>
-                            {phoneCodes[key].name} {phoneCodes[key].code}
+                            {phoneCodes[key].name} ({phoneCodes[key].code})
                         </MenuItem> 
                     ))}
                 </CarroTextField>
