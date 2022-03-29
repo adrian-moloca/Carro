@@ -3,7 +3,6 @@ import SecondaryButton from '../../buttons/secondaryButton/secondaryButton'
 import { Modal, IconButton, Box, Fade } from '@material-ui/core';
 import { Lock } from '@material-ui/icons';
 import useStyles from './close-for-receiving-modal-style';
-import { useTranslation } from "react-i18next";
 
 const CloseForReceivingModal = (props) =>  {
   const classes = useStyles();

@@ -1,5 +1,5 @@
 import React, {useState, useLayoutEffect, useEffect} from "react";
-import { Container, Box, Grid, StepConnector, Avatar } from "@material-ui/core";
+import { Container, Box, Grid, StepConnector, Avatar, ButtonBase } from "@material-ui/core";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import GoogleIcon from "../../assets/images/GoogleIcon.png";
 import FacebookIcon from "../../assets/images/facebook-icon.png";
@@ -20,6 +20,8 @@ import { useHistory } from "react-router";
 import { getBase64Image } from "../../utils/Functions/base64Image";
 import axios from "axios";
 import utilData from '../../utils/constants';
+import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react17-facebook-login/dist/facebook-login-render-props';
 
 const Register = ({createNewUser, data}) => {
   
@@ -29,7 +31,7 @@ const Register = ({createNewUser, data}) => {
 
   const [userCreated, setUserCreated] = useState(false);
   const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState('');
-  const [countryPhoneCode, setCountryPhoneCode] = useState('');
+  const [countryPhoneCode, setCountryPhoneCode] = useState('+40');
   const [profilePhoto, setProfilePhoto] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -169,7 +171,7 @@ const Register = ({createNewUser, data}) => {
               onChange = {(e) => setInputValuePhoneNumber(e.target.value)}
               countryPhoneCode={countryPhoneCode} 
               handleSelectCountry = {(e)=>setCountryPhoneCode(e.target.value)}
-              error={phoneValidator(inputValuePhoneNumber)} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
+              error={phoneValidator(inputValuePhoneNumber) && countryPhoneCode} helperText={phoneValidator(inputValuePhoneNumber) ? t('ValidPhoneNumber') : ''}
             />
           </Grid>
         {/* <Grid item xs={6} justifyContent='right'>
@@ -243,12 +245,31 @@ const Register = ({createNewUser, data}) => {
       </Box>
       <Box display="flex" justifyContent="center" mb="1%">
       <Grid container  justifyContent="space-evenly" mx="auto">
-        <Box display="flex" justifyContent="center">
-          <Avatar alt="Google" src={GoogleIcon} className={classes.large} />
-        </Box>
-        <Box display="flex" justifyContent="center">
-          <Avatar alt="Facebook" src={FacebookIcon} className={classes.large} />
-        </Box>
+        <GoogleLogin
+              clientId={utilData.clientIdGoogle}
+              render={(props) => (
+                <ButtonBase onClick={props.onClick}>
+                  <Box display="flex" justifyContent="center">
+                    <Avatar alt="Google" src={GoogleIcon} className={classes.large} />
+                  </Box>
+                </ButtonBase>
+              )}
+              onSuccess={(response)=>console.log(response)}
+              onFailure={(error)=>console.log(error)}
+        />
+        <FacebookLogin
+              appId="424152906125439"
+              render={(renderProps) => (
+                <ButtonBase onClick={renderProps.onClick}>
+                  <Box display="flex" justifyContent="center">
+                    <Avatar alt="Facebook" src={FacebookIcon} className={classes.large} />
+                  </Box>
+                </ButtonBase>
+              )}  
+              callback={(response)=>console.log(response)}
+              xfbml={true}
+              /* cookie={true}  */
+        />
       </Grid>
       </Box>
     </Container>

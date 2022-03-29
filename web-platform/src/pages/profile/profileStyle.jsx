@@ -5,11 +5,11 @@ const useStyles = makeStyles({
   MyProfileStyle:{
     backgroundColor: '#fff',
     margin: '3% 0',
-    height: '50vh',
+    height: 'auto',
     borderRadius: '15px',
     boxShadow: '2px 6px 8px 4px rgba(0, 0, 0, 0.31)',
     borderWidth: 3,
-    borderColor: "#00000070"
+    borderColor: "#00000070",
   },
   AccordionBorderRadius: {
     border: 'none',

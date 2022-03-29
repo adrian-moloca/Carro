@@ -88,10 +88,10 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
     function getFrontCardBtns(){
 
         if((props.interactions && props.interactions.length >= 1) || (Array.isArray(statuses) && statuses.length >= 1) ){
-            if(props.fromSelectModal && props.fromSelectModal!== true)
-            return (
-                <SelectRide name={props.name} image={props.image} rate={props.rate ? props.rate : 0} id={props.id} rideId={props.rideId} departure={props.plecare} destination={props.destinatie} departureAddress={props.departureAddress} destinationaAddress={props.destinationaAddress} departureDate={props.departureDate} estimatedTime={props.estimatedTime} transportType={props.transportType} statuses={statuses} interactions={props.interactions} statusUpdated={props.statusUpdated}/>
-            )
+            if(!props.fromSelectModal)
+                return (
+                    <SelectRide name={props.name} image={props.image} rate={props.rate ? props.rate : 0} id={props.id} rideId={props.rideId} departure={props.plecare} destination={props.destinatie} departureAddress={props.departureAddress} destinationaAddress={props.destinationaAddress} departureDate={props.departureDate} estimatedTime={props.estimatedTime} transportType={props.transportType} statuses={statuses} interactions={props.interactions} statusUpdated={props.statusUpdated}/>
+                )
         }
 
         if(props.interactions && props.interactions.length === 0 && Array.isArray(statuses) && statuses.length === 0){
