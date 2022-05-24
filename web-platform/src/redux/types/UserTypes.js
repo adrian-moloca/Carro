@@ -72,6 +72,9 @@ export const PROFILE_STATUS_REQUEST = 'PROFILE_STATUS_REQUEST';
 export const PROFILE_STATUS_SUCCESS = 'PROFILE_STATUS_SUCCESS';
 export const PROFILE_STATUS_FAILURE = 'PROFILE_STATUS_FAILURE';
 
+// Google Login
+export const GOOGLE_LOGIN_SUCCESS = 'GOOGLE_LOGIN_SUCCESS';
+
 // remember me toggle
 export const rememberMeToggle = () => {
     return {
@@ -332,3 +335,12 @@ export const getProfileStatusFailure = error => {
         payload: error
     }
 }
+
+// login Google
+export const googleLoginSucces = payload => {
+    return {
+        type: GOOGLE_LOGIN_SUCCESS,
+        payload: payload
+    }
+}
+

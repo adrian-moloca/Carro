@@ -8,7 +8,8 @@ import {fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure,
     getUserOptionalInfoRequest, getUserOptionalInfoSuccess, getUserOptionalInfoFailure, 
     getUserCompanyRequest, getUserCompanySuccess, getUserCompanyFailure,
     getProfileStatusRequest, getProfileStatusSuccess, getProfileStatusFailure,
-    changePasswordUserRequest, changePasswordUserSuccess, changePasswordUserFailure, updateNotifications, 
+    changePasswordUserRequest, changePasswordUserSuccess, changePasswordUserFailure,
+    googleLoginSucces
 } from '../types/UserTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
@@ -212,5 +213,11 @@ export const getProfileStatus = (token) => {
             const errorMsg = error;
             dispatch(getProfileStatusFailure(errorMsg))
         })
+    }
+}
+
+export const googleLogin = (token) => {
+    return (dispatch) => {
+        dispatch(googleLoginSucces(jwt_decode(token), token))
     }
 }

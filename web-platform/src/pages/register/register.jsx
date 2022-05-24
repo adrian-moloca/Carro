@@ -12,8 +12,8 @@ import useStyles from "./registerStyles";
 import AvatarImage from "../../assets/images/avatarImg.png";
 import "../../App.css";
 import { useTranslation } from "react-i18next";
-import { connect } from 'react-redux';
-import {createNewUser} from '../../redux/actions/UserActions';
+import { connect, useDispatch } from 'react-redux';
+import {createNewUser, googleLogin} from '../../redux/actions/UserActions';
 import CarroCheckbox from "../../components/checkbox/CarroCheckbox";
 import {mailValidator, nameValidator, passwordValidator, phoneValidator} from "../../utils/Functions/input-validators";
 import { useHistory } from "react-router";
@@ -23,13 +23,14 @@ import utilData from '../../utils/constants';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react17-facebook-login/dist/facebook-login-render-props';
 
-const Register = ({createNewUser, data}) => {
+const Register = ({createNewUser, googleLogin, data}) => {
   
   const { t } = useTranslation();
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const [userCreated, setUserCreated] = useState(false);
+  const [fbglogin, setFBGlogin] = useState(false);
   const [inputValuePhoneNumber, setInputValuePhoneNumber] = useState('');
   const [countryPhoneCode, setCountryPhoneCode] = useState('+40');
   const [profilePhoto, setProfilePhoto] = useState('');
@@ -52,7 +53,7 @@ const Register = ({createNewUser, data}) => {
     setPhoneNumber(countryPhoneCode + inputValuePhoneNumber)
   }, [inputValuePhoneNumber, countryPhoneCode])
 
-  async function redirectToProfile(){
+  async function redirectToProfile() {
     if(data.email === email) {
       if(profilePhoto.length > 20) {
         axios.put(utilData.baseUrl + '/users/profile-images', {
@@ -75,7 +76,8 @@ const Register = ({createNewUser, data}) => {
 
     useEffect(() => {
     if(clickedRegister>0 && data.email === email){
-        redirectToProfile()
+      redirectToProfile()
+      console.log('Login!')
     } else if(clickedRegister>0)
       setHasErrorsRegister({state: data.hasErrors.state, messages: data.hasErrors.messages})
     }, [data])
@@ -88,6 +90,11 @@ const Register = ({createNewUser, data}) => {
         setFileTooLarge(false)
         setProfilePhoto(base64)
       }
+  }
+
+  async function go_to_profile_by_fbglogin(token) {
+    googleLogin(token)
+    history.push('/profile')
   }
 
   useEffect(()=>{
@@ -254,7 +261,7 @@ const Register = ({createNewUser, data}) => {
                   </Box>
                 </ButtonBase>
               )}
-              onSuccess={(response)=>console.log(response)}
+              onSuccess={(response) => go_to_profile_by_fbglogin(response.tokenId)}
               onFailure={(error)=>console.log(error)}
         />
         <FacebookLogin
@@ -276,7 +283,10 @@ const Register = ({createNewUser, data}) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({createNewUser: (email, password, phoneNumber, firstName, lastName, dateOfBirth, termsAndConditions) => dispatch(createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, termsAndConditions))})
+const mapDispatchToProps = dispatch => ({
+  createNewUser: (email, password, phoneNumber, firstName, lastName, dateOfBirth, termsAndConditions) => dispatch(createNewUser(email, password, phoneNumber, firstName, lastName, dateOfBirth, termsAndConditions)),
+  googleLogin: (token) => dispatch(googleLogin(token))
+})
 const mapStateToProps = state => ({data: state.userData});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
