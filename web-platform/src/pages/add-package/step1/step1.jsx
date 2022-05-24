@@ -30,7 +30,7 @@ const StepOne = (props) =>{
                                           variant ='outlined' label={t('PickupAddress')} fullWidth/>
                 </Grid>
                 <Grid container item xs={12}  md ={6} xl={6} justifyContent='center'>
-                            <CarroDatePicker label={t('PickupDate')} format='dd/MM/yyyy'
+                            <CarroDatePicker label={t('PickupDate')} format='dd/MM/yyyy hh:mm'
                                         value={props.departureDate} onChange={(date)=>props.setDepartureDate(date)} disablePast/>
                 </Grid>
             </Grid>
