@@ -123,7 +123,7 @@ const PersonalInformation = ({userData, getUserPersonalInfo, getProfileStatus})=
             )}
           </Grid>
           <Grid container item xs={ 10 } xl={10} justifyContent='center' style={{marginBottom:"15px"}}>
-              {onEditMode ? errorsOnUpdate.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el.message}</Box>)}) : null}
+              {onEditMode ? errorsOnUpdate?.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el.message}</Box>)}) : null}
           </Grid>  
         </Fragment>
     );

@@ -218,6 +218,6 @@ export const getProfileStatus = (token) => {
 
 export const googleLogin = (token) => {
     return (dispatch) => {
-        dispatch(googleLoginSucces(jwt_decode(token), token))
+        dispatch(googleLoginSucces({...jwt_decode(token), token: token}))
     }
 }
