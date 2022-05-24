@@ -9,7 +9,7 @@ import {USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE,
     USER_OPTIONAL_INFO_REQUEST, USER_OPTIONAL_INFO_SUCCESS, USER_OPTIONAL_INFO_FAILURE,
     USER_COMPANY_REQUEST, USER_COMPANY_SUCCESS, USER_COMPANY_FAILURE,
     PROFILE_STATUS_REQUEST, PROFILE_STATUS_SUCCESS, PROFILE_STATUS_FAILURE,
-    REMEMBER_ME, REFRESH_TOKEN, TOKEN_VALIDATED_TOGGLE
+    REMEMBER_ME, REFRESH_TOKEN, TOKEN_VALIDATED_TOGGLE, GOOGLE_LOGIN_SUCCESS
 } from '../types/UserTypes';
 
 
@@ -547,6 +547,20 @@ switch (action.type) {
                 messages: []
             },
             toggle: state.toggle + 1
+        }
+    }
+    case GOOGLE_LOGIN_SUCCESS: {
+        return {
+            ...state,
+            email: action.payload.email,
+            name: action.payload.name,
+            profileImage: action.payload.picture,
+            token: action.payload.token,
+            personalInfo: {
+                firstName: action.payload.given_name,
+                lastName: action.payload.family_name,
+                email: action.payload.email
+            }
         }
     }
     default: 
