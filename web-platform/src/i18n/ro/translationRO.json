@@ -631,6 +631,7 @@
     "RideRejectedWithReason": "a refuzat cu motiv transportul",
     "PackageDelivered": "a livrat pachetul",
     "UserValidated": "profilul dumneavoastra e validat",
-    "AccountInvalidated": "User-ul nu este validat"
+    "AccountInvalidated": "User-ul nu este validat",
+    "RejectedDocuments": "Documente refuzate"
 
 }

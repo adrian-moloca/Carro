@@ -62,10 +62,9 @@ const MandatoryDocuments = ({userData, getProfileStatus})=>{
                         ) : (
                             <Fragment>
                                 {userData.profileStatus.rejectReason ? (
-                                    <Grid container item sm={12} justifyContent='center' style={{height: "50px", marginTop:"3%"}}>
+                                    <Grid container item sm={12} justifyContent='center' style={{height: "50px"}}>
                                         <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('RejectedDocuments')}</Box>
-                                        <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('Rejectedreason')}</Box>
-                                        <Box color={fileTooLarge ? "#FF3333" : "#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{userData.profileStatus.rejectReason}</Box>
+                                        <Box color={"#FF3333"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{userData.profileStatus.rejectReason}</Box>
                                     </Grid>) : null}
                                 <Grid container item sm={12} justifyContent='center' style={{height: "50px", marginTop:"3%"}}>
                                     <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('NoDocumentsUploaded')}</Box>
