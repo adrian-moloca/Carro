@@ -9,7 +9,8 @@ import {fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure,
     getUserCompanyRequest, getUserCompanySuccess, getUserCompanyFailure,
     getProfileStatusRequest, getProfileStatusSuccess, getProfileStatusFailure,
     changePasswordUserRequest, changePasswordUserSuccess, changePasswordUserFailure,
-    googleLoginSucces
+    googleLoginSucces,
+    refreshTokens
 } from '../types/UserTypes';
 import axios from 'axios';
 import data from '../../utils/constants';
@@ -219,5 +220,11 @@ export const getProfileStatus = (token) => {
 export const googleLogin = (token) => {
     return (dispatch) => {
         dispatch(googleLoginSucces({...jwt_decode(token), token: token}))
+    }
+}
+
+export const refreshToken = (token, refreshToken) => {
+    return (dispatch) => {
+        dispatch(refreshTokens({token: token, refreshToken: refreshToken}))   
     }
 }
