@@ -552,15 +552,26 @@ switch (action.type) {
     case GOOGLE_LOGIN_SUCCESS: {
         return {
             ...state,
+            loading: false,
+            hasErrors:{
+                state: false,
+                messages: []
+            },
+            UserRole: action.payload.UserRole,
             email: action.payload.email,
+            exp: action.payload.exp,
+            iat: action.payload.iat,
+            id: action.payload.id,
+            isAdmin: action.payload.isAdmin,
+            isUserValidated: action.payloadisUserValidated,
+            jti: action.payload.jti,
             name: action.payload.name,
-            profileImage: action.payload.picture,
+            nbf: action.payload.nbf,
+            phoneNumber: action.payload.phoneNumber,
+            sub: action.payload.sub,
             token: action.payload.token,
-            personalInfo: {
-                firstName: action.payload.given_name,
-                lastName: action.payload.family_name,
-                email: action.payload.email
-            }
+            refreshToken: action.payload.refreshToken,
+            toggle: state.toggle + 1
         }
     }
     default: 
