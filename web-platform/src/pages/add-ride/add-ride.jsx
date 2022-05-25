@@ -82,10 +82,19 @@ const AddRide = ({userData, ridesData ,createNewRide}) =>{
 
   const redirectAfterRideCreated= () => {
       if(ridesData.hasErrors === true) {
-          console.log('error')
+         console.log('error creating ride')
       } else {
           history.push('/my-rides');
       }
+  }
+
+  const handleCreateRide = () => {
+    if(userData.isUserValidated === 'True'){
+      createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, userData.token); 
+      setRequestSent(true) 
+    } else {
+      history.push('/profile')
+    }
   }
 
   useEffect(()=>{
@@ -143,9 +152,7 @@ const AddRide = ({userData, ridesData ,createNewRide}) =>{
             </Link>
             </Grid>
             <Grid container item xs  justifyContent='center'>
-              <PrimaryButton onClick={()=>{createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, userData.token); 
-                                           setRequestSent(true) 
-                                          }} 
+              <PrimaryButton onClick={()=>handleCreateRide()} 
                             disabled={!isFormComplete()} endIcon={<ArrowForwardIos/>} variant='contained' fullWidth>{t('Add')}</PrimaryButton>
             </Grid>
         </Grid>

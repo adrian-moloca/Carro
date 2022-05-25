@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HeaderLogedOut from '../../components/headerLogedOut/HeaderLogedOut';
 import HeaderLogedIn from '../../components/headerLogedIn/HeaderLogedIn';
 import Footer from '../../components/footer/footer';
@@ -46,59 +46,84 @@ import { connect } from 'react-redux';
 import { fetchNotifications } from '../../redux/actions/NotificationsActions';
 import { Modal } from '@material-ui/core';
 import { CircularProgress } from '@material-ui/core';
+import axios from 'axios';
+import { refreshToken } from '../../redux/actions/UserActions';
+import utilData from '../../utils/constants';
+import { fetchLogout } from '../../redux/types/UserTypes';
 
-const Routes = ({data, fetchNotifications}) => {
+const Routes = ({ data, fetchNotifications, refreshToken, fetchLogout }) => {
     const [collapsed, setCollapsed] = useState(false);
     const [loading, setLoading] = useState(false)
+
     const onCollapse = () => {
         setCollapsed(!collapsed);
-      };
+    };
 
-    const[isLoggedIn, setIsLoggedIn] = useState(String(data.userData.email).length > 0 ? true : false)
+    const [isLoggedIn, setIsLoggedIn] = useState(String(data.userData.email).length > 0 ? true : false)
 
-    function renderHeader(){
-        if(isLoggedIn)
-            return <HeaderLogedIn/>  
+    function renderHeader() {
+        if (isLoggedIn)
+            return <HeaderLogedIn />
         else
-            return <HeaderLogedOut/>
+            return <HeaderLogedOut />
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setIsLoggedIn(String(data.userData.email).length > 0 ? true : false)
     }, [data.userData.email])
 
-    if(isLoggedIn){
-        if(!data.userData.rememberMe){
-            window.onbeforeunload = function(){
-              window.localStorage.removeItem('state')
-            } 
+    if (isLoggedIn) {
+        if (!data.userData.rememberMe) {
+            window.onbeforeunload = function () {
+                window.localStorage.removeItem('state')
+            }
         }
     }
 
-    useEffect(()=>{}, [loading])
+    useEffect(() => { }, [loading])
 
-    useEffect(()=>{
-        if(data.userData.token && data.userData.token.length > 0)
+    useEffect(() => {
+        if (data.userData.token && data.userData.token.length > 0)
             fetchNotifications(data.userData.token)
     }, [window.location.pathname])
 
-    useEffect(()=>{
-        if(data.userData.loading || data.adminData.loading || data.courierData.loading || data.myRidesData.loading || data.myPackagesData.loading || data.packagesData.loading, data.ridesData.loading || data.notificationsData.loading || data.chatsData.loading)
+    useEffect(() => {
+        if (data.userData.loading || data.adminData.loading || data.courierData.loading || data.myRidesData.loading || data.myPackagesData.loading || data.packagesData.loading, data.ridesData.loading || data.notificationsData.loading || data.chatsData.loading)
             setLoading(true)
         else
             setLoading(false)
-    },[data.userData.loading, data.adminData.loading, data.courierData.loading, data.myRidesData.loading, data.myPackagesData.loading, data.packagesData.loading, data.ridesData.loading, data.notificationsData.loading, data.chatsData.loading, ])
-    
+    }, [data.userData.loading, data.adminData.loading, data.courierData.loading, data.myRidesData.loading, data.myPackagesData.loading, data.packagesData.loading, data.ridesData.loading, data.notificationsData.loading, data.chatsData.loading,])
 
-    // if(isLoggedIn === false) {
-    //     history.push('/login');
-    // }
-    
-    // useEffect(() => {
-    //     setIsLoggedIn(false)
-    // }, [isLoggedIn])
+    axios.interceptors.response.use(
+        (res) => {
+            return res;
+        },
+        async (err) => {
+            const originalConfig = err.config;
+            if ((originalConfig.url !== "/auth/signin" && err.response)) {
+                // Access Token was expired
+                if ((err.response.status === 401 || err.response.status === 403) && !originalConfig._retry) {
+                    originalConfig._retry = true;
+                    console.log('WE ARE IN')
+                    try {
+                        const rs = await axios.post(utilData.baseUrl + "/identity/refresh", {
+                            token: data.userData.token,
+                            refreshToken: data.userData.refreshToken
+                        });
+                        const { token, refreshToken } = rs.data;
+                        refreshToken(token, refreshToken);
+                        return axios(originalConfig);
+                    } catch (_error) {
+                        fetchLogout();
+                        return Promise.reject(_error);
+                    }
+                }
+            }
+            return Promise.reject(err);
+        }
+    )
 
-    return(
+    return (
         <Router>
             {
                 // history.location.pathname === '/login' ||  history.location.pathname === '/forgotpassword' && isLoggedIn === false ? (
@@ -107,67 +132,67 @@ const Routes = ({data, fetchNotifications}) => {
                 //         {/* <Route path="/forgotpassword" exact component={ForgotPassword}/> */}
                 //     </Switch>
                 // ) : (
-                    <div className="sbd-container">
-                        <div className="sbd-header">
-                            {renderHeader()}
-                        </div>
-                        <div className="sbd-container-content">
-                            <Switch>
-                                <ProtectedRoute path="/add-package" exact component={AddPackage}/>  {/* checked */}
-                                <ProtectedRoute path="/my-packages" exact component={MyPackages}/>  {/* checked */}
-                                <ProtectedRoute path="/my-rides" exact component={MyRides}/>  {/* checked */}
-                                <ProtectedRoute path="/notifications" exact component={Notifications}/>  {/* checked */}
-                                <ProtectedRoute path="/payment-method" exact component={PaymentMethod}/>
-                                <ProtectedRoute path="/payment-method/add-payment-method" exact component={AddPaymentMethod}/>
-                                <ProtectedRoute path="/profile" exact component={Profile}/>
-                                <ProtectedRoute path="/search-package" exact component={SearchPackage}/>
-                                <ProtectedRoute path="/search-ride" exact component={SearchRide}/>
-                                <ProtectedRoute path="/conversations" exact component={Conversations}/>
-                                <ProtectedRoute path="/conversations/chat" exact component={Chat}/>
-                                <ProtectedRoute path="/add-transport" exact component={AddRide}/>  {/* checked */}
-                                <ProtectedRoute path="/courier-profile" exact component={CourierProfile}/>
-                                <ProtectedRoute path="/admin-panel" exact component={adminPanel}/>
-                                <ProtectedRoute path="/admin-panel/rides-details" exact component={RidesDetails}/>
-                                <Route path="/" exact component={HomePage}/>
-                                <Route path="/home" exact component={HomePage}/>
-                                <Route path="/login" exact component={Login}/>
-                                <Route path="/login/forgot-password" exact component={ForgotPassword}/>
-                                <Route path="/reset-password" exact component={ResetPassword}/>
-                                <Route path="/login/forgot-password/email-sent" exact component={EmailSent}/>
-                                <Route path="/register" exact component={Register}/>
-                                <Route path="/register/select-plan" exact component={SelectPlan}/>
-                                <Route path="/register/select-plan/add-card" exact component={PremiumPlanPayment}/>
-                                <Route path="/how-it-works" exact component={HowItWorks}/>
-                                <Route path="/about-us" exact component={AboutUs}/>
-                                <Route path="/frequent-questions" exact component={FrequentQuestions}/>
-                                <Route path="/news-and-future-plans" exact component={NewsAndFuturePlans}/>
-                                <Route path="/contact" exact component={Contact}/>
-                                <Route path="/terms-and-conditions" exact component={TermsAndConditions}/>
-                                <Route path="/press" exact component={Press}/>
-                                <Route path="/reviews" exact component={Reviews}/>
-                                <Route path="/career" exact component={Career}/>
-                                <Route path="/mobile-application" exact component={MobileApplication}/>
-                                <Route path="/why-use-our-services" exact component={WhyUseOurServices}/>
-                                <Route path="/vouchers" exact component={Vouchers}/>
-                                <Route path="/privacy-policy" exact component={PrivacyPolicy}/>
-                                <Route path="/cookies-policy" exact component={CookiesPolicy}/>
-                                <Route component={HomePage} />
-                            </Switch>
-                                <Modal open={loading} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                                    <CircularProgress style={{color: '#ffffff'}}/>
-                                </Modal>
-                        </div>
-                        <div className='sbd-footer'>
-                            <Footer />
-                        </div>
+                <div className="sbd-container">
+                    <div className="sbd-header">
+                        {renderHeader()}
                     </div>
+                    <div className="sbd-container-content">
+                        <Switch>
+                            <ProtectedRoute path="/add-package" exact component={AddPackage} />  {/* checked */}
+                            <ProtectedRoute path="/my-packages" exact component={MyPackages} />  {/* checked */}
+                            <ProtectedRoute path="/my-rides" exact component={MyRides} />  {/* checked */}
+                            <ProtectedRoute path="/notifications" exact component={Notifications} />  {/* checked */}
+                            <ProtectedRoute path="/payment-method" exact component={PaymentMethod} />
+                            <ProtectedRoute path="/payment-method/add-payment-method" exact component={AddPaymentMethod} />
+                            <ProtectedRoute path="/profile" exact component={Profile} />
+                            <ProtectedRoute path="/search-package" exact component={SearchPackage} />
+                            <ProtectedRoute path="/search-ride" exact component={SearchRide} />
+                            <ProtectedRoute path="/conversations" exact component={Conversations} />
+                            <ProtectedRoute path="/conversations/chat" exact component={Chat} />
+                            <ProtectedRoute path="/add-transport" exact component={AddRide} />  {/* checked */}
+                            <ProtectedRoute path="/courier-profile" exact component={CourierProfile} />
+                            <ProtectedRoute path="/admin-panel" exact component={adminPanel} />
+                            <ProtectedRoute path="/admin-panel/rides-details" exact component={RidesDetails} />
+                            <Route path="/" exact component={HomePage} />
+                            <Route path="/home" exact component={HomePage} />
+                            <Route path="/login" exact component={Login} />
+                            <Route path="/login/forgot-password" exact component={ForgotPassword} />
+                            <Route path="/reset-password" exact component={ResetPassword} />
+                            <Route path="/login/forgot-password/email-sent" exact component={EmailSent} />
+                            <Route path="/register" exact component={Register} />
+                            <Route path="/register/select-plan" exact component={SelectPlan} />
+                            <Route path="/register/select-plan/add-card" exact component={PremiumPlanPayment} />
+                            <Route path="/how-it-works" exact component={HowItWorks} />
+                            <Route path="/about-us" exact component={AboutUs} />
+                            <Route path="/frequent-questions" exact component={FrequentQuestions} />
+                            <Route path="/news-and-future-plans" exact component={NewsAndFuturePlans} />
+                            <Route path="/contact" exact component={Contact} />
+                            <Route path="/terms-and-conditions" exact component={TermsAndConditions} />
+                            <Route path="/press" exact component={Press} />
+                            <Route path="/reviews" exact component={Reviews} />
+                            <Route path="/career" exact component={Career} />
+                            <Route path="/mobile-application" exact component={MobileApplication} />
+                            <Route path="/why-use-our-services" exact component={WhyUseOurServices} />
+                            <Route path="/vouchers" exact component={Vouchers} />
+                            <Route path="/privacy-policy" exact component={PrivacyPolicy} />
+                            <Route path="/cookies-policy" exact component={CookiesPolicy} />
+                            <Route component={HomePage} />
+                        </Switch>
+                        <Modal open={loading} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <CircularProgress style={{ color: '#ffffff' }} />
+                        </Modal>
+                    </div>
+                    <div className='sbd-footer'>
+                        <Footer />
+                    </div>
+                </div>
                 // )
             }
         </Router>
     )
 }
 
-const mapStateToProps = state => ({data: state})
-const mapDispatchToProps = (dispatch) => ({fetchNotifications: (token) => dispatch(fetchNotifications(token))})
+const mapStateToProps = state => ({ data: state })
+const mapDispatchToProps = (dispatch) => ({ fetchNotifications: (token) => dispatch(fetchNotifications(token)), refreshToken: (token) => dispatch(refreshToken(token)), fetchLogout: () => dispatch(fetchLogout()) })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Routes);
