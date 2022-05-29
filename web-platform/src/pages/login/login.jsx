@@ -45,8 +45,8 @@ const Login = ({ fetchLogin, googleLogin, rememberMeToggle, data }) => {
   }, [data])
 
   async function go_to_profile_by_fbglogin(token) {
-    googleLogin(token)
     history.push('/profile')
+    googleLogin(token)
   }
 
   return (
