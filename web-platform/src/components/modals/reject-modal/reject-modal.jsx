@@ -18,6 +18,7 @@ const RejectModal=(props)=>{
 
     const handleClose = ()=>{
         setOpen(false)
+        props.flipCard()
     }
     
 

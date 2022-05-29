@@ -27,7 +27,6 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
     const [loading, setLoading] = useState(false);
     const [statuses, setStatuses] = useState(props.statuses)
     const [isFlipped, setIsFlipped] = useState(false);
-    const [rejectReason, setRejectReason] = useState('');
     const [addingPackage, setAddingPackage] = useState(false);
 
     useEffect(()=>{}, [isFlipped])
@@ -50,7 +49,7 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
         }).catch((error)=>console.log(error))
     }
 
-    const updateStatus = (newStatus, rideId, statusId) => {
+    const updateStatus = (newStatus, rideId, statusId, rejectReason) => {
         axios.put(data.baseUrl + '/rides/' + rideId + '/statuses/' + statusId, {
             status: newStatus,
             rejectReason: rejectReason
@@ -393,6 +392,21 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
             }  
         }
     }
+
+    function getBackButtons(){
+        if (Array.isArray(statuses) && statuses.length >= 0 && statuses[0].status >= 3)
+            return(
+                <Grid container item xs={8} justifyContent = 'center' >
+                    <RejectModal rejectWithReason={(reason) => updateStatus(3, props.rideId, statuses[0].id, reason)} flipCard={() => setIsFlipped(false)}/>
+                </Grid>
+            )
+        else if (typeof (statuses) === 'object' && statuses.status >= 3)
+            return (
+                <Grid container item xs={8} justifyContent = 'center' >
+                    <RejectModal rejectWithReason={(reason) => updateStatus(3, props.rideId, statuses.id, reason)} flipCard={() => setIsFlipped(false)}/>
+                </Grid>
+            )
+    }
     //interactions - array length is greater than 0
     //statuses - empty array - toate pachetele din interactions nu au fost cerute sau nu au cerute ele nimic
 
@@ -506,7 +520,8 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
                     <Grid container item xs={12}>
                         <Box fontSize='15px' fontWeight='500'>{t('DriverCardEstimatedHours')} {props.estimatedTime}</Box>
                     </Grid>
-                    <Grid container item xs={8} justifyContent='center'>
+                    {getBackButtons()}    
+                    <Grid container item xs={8} justifyContent='center'>    
                         <PrimaryButton variant='contained' size='small' onClick={handleClick} fullWidth>
                         {t('DriverCardBackButton')}
                         </PrimaryButton>
