@@ -50,7 +50,7 @@ const NotificationDetails = (props) =>{
                     'Authorization': `Bearer ${props.token}`,
                 }
             }).then((response)=> {
-                setDriver(response.data.data[0]); 
+                setDriver(response.data.data); 
             }).catch(()=>setDriver({}))
     }
 
@@ -104,7 +104,7 @@ const NotificationDetails = (props) =>{
                         {!(ride.rideId && ride.rideId.length) > 0 ? (
                             <Box>Error on getting ride</Box>
                         ) : (
-                            <GetRide name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} statusUpdated={()=>getRide()}/>
+                                <GetRide notification={true} packageNotification={props.packageId} name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter<((status)=>status.packageId===props.packageId)} interactions={[]} statusUpdated={()=>getRide()}/>
                         )}
                     </Grid>      
                 );
@@ -124,7 +124,7 @@ const NotificationDetails = (props) =>{
                         {!(ride.rideId && ride.rideId.length > 0) ? (
                             <Box>Error on getting ride</Box>
                         ) : (
-                            <GetRide name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} statusUpdated={()=>getRide()}/>
+                                <GetRide notification={true}  packageNotification={props.packageId} name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} statusUpdated={()=>getRide()}/>
                         )}
                     </Grid>      
                 );
@@ -144,7 +144,7 @@ const NotificationDetails = (props) =>{
                         {!(ride.rideId && ride.rideId.length > 0) ? (
                             <Box>Error on getting ride</Box>
                         ) : (
-                            <GetRide name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} statusUpdated={()=>getRide()}/>
+                                <GetRide notification={true} packageNotification={props.packageId} name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} statusUpdated={()=>getRide()}/>
                         )}
                     </Grid>      
                 );
@@ -164,7 +164,7 @@ const NotificationDetails = (props) =>{
                         {!(ride.rideId && ride.rideId.length > 0) ? (
                             <Box>Error on getting ride</Box>
                         ) : (
-                            <GetRide name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} statusUpdated={()=>getRide()}/>
+                                <GetRide notification={true} packageNotification={props.packageId} name={ride.name} image={ride.image} rate={ride.rate ? ride.rate : 0} id={ride.id} rideId={ride.rideId} departure={ride.departure} destination={ride.destination} departureAddress={ride.departureAddress} destinationaAddress={ride.destinationaAddress} departureDate={ride.departureDate} estimatedTime={ride.estimatedTime} transportType={ride.transportType} statuses={ride.statuses.filter((status)=>status.packageId===props.packageId)} interactions={[]} statusUpdated={()=>getRide()}/>
                         )}
                     </Grid>      
                 );

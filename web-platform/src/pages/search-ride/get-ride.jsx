@@ -52,9 +52,10 @@ const GetRide = (props) =>{
                 departureAddress={departureAddress}
                 destinationAddress={destinationAddress}
                 estimatedTime={estimatedTime}
-                statuses={statuses}
+                statuses={props.notification ? statuses.find(el => el.packageId === props.packageNotification) : statuses }
                 interactions= {interactions}
                 statusUpdated={props.statusUpdated}
+                notification={props.notification}
             />
           </Grid>
     );
