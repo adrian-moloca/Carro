@@ -41,8 +41,8 @@ const AddRide = ({userData, ridesData ,createNewRide}) =>{
   const [destinationCity, setDestinationCity] = useState('');
   const [departureAddress, setDepartureAddress] = useState('');
   const [destinationAddress, setDestinationAddress] = useState('');
-  const [transportType, setTransportType] = useState(0);
-  const [estimatedTime, setEstimatedTime] = useState(0);
+  const [transportType, setTransportType] = useState(2);
+  const [estimatedTime, setEstimatedTime] = useState(1);
   const [hasErrors, setHasErrors] = useState(false);
   const [requestSent, setRequestSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -135,7 +135,7 @@ const AddRide = ({userData, ridesData ,createNewRide}) =>{
             </Grid>
             <Grid container item xs={12} md ={6} xl={6}  justifyContent='center'>
               <CarroTextField select variant ='outlined' label={t("RideType")} fullWidth value={transportType} onChange={handleChangeTransportType}>
-                 {transports.map((transport, index)=>(<MenuItem key={index*371} value={transport.type}>{transport.label}</MenuItem>))}
+                 {transports.map((transport, index)=>(<MenuItem key={`${index}${Date.now}`.toString()} value={transport.type}>{transport.label}</MenuItem>))}
               </CarroTextField>
             </Grid>
             <Grid container item xs={12}  md ={12} xl={12}  justifyContent='center'>

@@ -30,33 +30,33 @@ export default function PrimarySearchAppBar() {
           {/* render right btns: notifications, my account, language */}
           <Grid container item md={3} justifyContent="flex-end"> 
             {/* notifications */}
-            <Box className={[classes.sectionDesktop, classes.zoomIn]} justifyContent="center" alignItems="center">
+            <Box className={[classes.sectionDesktop, classes.zoomIn].join(' ')} justifyContent="center" alignItems="center">
               {/* <Link to="/notifications" style={{underline:'none'}}> */}
                 <BadgeVisibility />
               {/* </Link> */}
             </Box>
             {/* conversations */}
-            <Box className={[classes.sectionDesktop, classes.zoomIn]} style={{paddingLeft: 0}} justifyContent="center" alignItems="center">
+            <Box className={[classes.sectionDesktop, classes.zoomIn].join(' ')} style={{paddingLeft: 0}} justifyContent="center" alignItems="center">
                 <ChatButtonVisibility />
             </Box>
             {/* profile menu */}
-            <Box className={[classes.sectionDesktop, classes.zoomIn]} justifyContent="center" alignItems="center">
+            <Box className={[classes.sectionDesktop, classes.zoomIn].join(' ')} justifyContent="center" alignItems="center">
               <HeaderLogedInProfileMenu/>
             </Box>
             {/* language btn */}
-            <Box className={[classes.sectionDesktop, classes.zoomIn]} justifyContent="center" alignItems="center">
+            <Box className={[classes.sectionDesktop, classes.zoomIn].join(' ')} justifyContent="center" alignItems="center">
               <BasicSelect/>
             </Box>
           </Grid>
         </Grid>
         {/* mobile */}
-        <Box className={[classes.sectionMobile, classes.zoomIn]} display="flex">
+        <Box className={[classes.sectionMobile, classes.zoomIn].join(' ')} display="flex">
             <BadgeVisibility/>
         </Box>
-        <Box className={[classes.sectionMobile, classes.zoomIn]} display="flex">
+        <Box className={[classes.sectionMobile, classes.zoomIn].join(' ')} display="flex">
             <ChatButtonVisibility/>
         </Box>
-        <Box className={[classes.sectionMobile, classes.zoomIn]} display="flex">
+        <Box className={[classes.sectionMobile, classes.zoomIn].join(' ')} display="flex">
             <LogedInMobileMenu/>
         </Box>
       </Toolbar>

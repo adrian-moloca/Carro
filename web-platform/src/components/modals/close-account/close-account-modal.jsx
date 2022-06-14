@@ -24,7 +24,7 @@ const CloseAccountModal=(props)=>{
     return(
         <Fragment>
            <Grid container item sm={12}  justifyContent="center">
-                <ButtonBase onClick={handleOpen} style={{height: 25, width: 250, fontSize: "16px", fontWeight: 400, color: "#00000075", marginTop: "12px", textDecoration:"underline"}} fullWidth>
+                <ButtonBase onClick={handleOpen} style={{height: 25, width: 250, fontSize: "16px", fontWeight: 400, color: "#00000075", marginTop: "12px", textDecoration:"underline"}}>
                     <Box px='10px'>{t('CloseAccount')}</Box>
                 </ButtonBase>
             </Grid>

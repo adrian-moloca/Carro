@@ -13,6 +13,7 @@ const CarroAutocomplete =(props)=>{
             autoComplete
             autoSelect
             getOptionLabel={(option) => option}
+            getOptionSelected={(option) => option}
             renderOption={(option, index) => (
                         <Fragment key={index}>
                             {option} 
