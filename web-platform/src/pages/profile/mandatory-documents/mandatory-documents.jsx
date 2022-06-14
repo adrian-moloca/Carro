@@ -80,7 +80,7 @@ const MandatoryDocuments = ({userData, getProfileStatus})=>{
                                     </label>
                                 </Grid>
                                 <Grid container item xs={ 10 } xl={10} justifyContent='center' style={{marginBottom:"15px"}}>
-                                    {errorsOnUpdate.map((el)=>{return(<Box style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el.message}</Box>)})}
+                                    {errorsOnUpdate.map((el, index) => {return(<Box key={index.toString() + Date.now().toString()} style={{color: "#ff3333", fontSize:"16px", textAlign:"center", marginTop:"2%"}}>{el.message}</Box>)})}
                                 </Grid> 
                                 <Grid container item sm={12} justifyContent='center' style={{height: "50px", marginTop:"3%"}}>
                                     <Box color={"#A0A0A0"} fontWeight={500} fontSize={18} textAlign={"center"} width={"100%"}>{t('AcceptedDocuments')}</Box>
