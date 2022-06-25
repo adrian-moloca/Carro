@@ -131,7 +131,7 @@ const AddPackage = ({ data, packageData, createNewPackage, ...props }) => {
   }
 
   const handleCreateNewPackage = () => {
-    if (data.isUserValidated === 'True') {
+    if (data.profileStatus.isUserValidated === true) {
       createNewPackage(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, pickUpAddress, destinataryAddress, packageSize, weight, height, length, width, smallDescription, description, price, currency, destinataryName, destinataryPhoneNumber, isFragile, isFoodGrade, isFlammable, isHandleWithCare, isAnimal, data.name, data.token);
       setRequestSent(true)
     } else {
