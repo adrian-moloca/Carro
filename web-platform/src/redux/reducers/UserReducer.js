@@ -563,7 +563,7 @@ switch (action.type) {
             iat: action.payload.iat,
             id: action.payload.id,
             isAdmin: action.payload.isAdmin,
-            isUserValidated: action.payloadisUserValidated,
+            isUserValidated: action.payload.isUserValidated,
             jti: action.payload.jti,
             name: action.payload.name,
             nbf: action.payload.nbf,
