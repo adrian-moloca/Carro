@@ -256,7 +256,7 @@ const PackageCard = ({userData, ...props}) =>{
     }
 
     function getBackButtons(){
-        if(status && status.status >= 3)
+        if(status && status?.status >= 3)
         return(
             <Grid container item xs={8} justifyContent = 'center' >
                 <RejectModal rejectWithReason={(reason)=>updateStatus(3, props.packageId, status.id, reason)} flipCard={() => setIsFlipped(false)}/>

@@ -29,7 +29,7 @@ const PhoneTextField = (props) =>{
                     fullWidth
                     value={props.value}
                     onChange={props.onChange}
-                    error={props.error}
+                    error={props.error ? true :  false}
                     helperText={props.helperText}/>
             </Grid>
         </Grid>

@@ -222,7 +222,7 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
                                                         </GreenCaroButton>
                                                     </Grid>
                                                     <Grid container item xs={12} sm={5} justifyContent = 'center'>
-                                                        <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(6, props.rideId, pack.id)} fullWidth>
+                                                        <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(6, props?.rideId, pack?.id)} fullWidth>
                                                             {t("No")}
                                                         </SecondaryButton>
                                                     </Grid>
@@ -281,12 +281,12 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
                                     return(
                                         <Grid container justifyContent = 'center'  spacing={2} style={{marginBottom: '10px'}}>
                                             <Grid container item xs={10} sm={4} justifyContent = 'center'>
-                                                <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(1, props.rideId, statuses.id)} fullWidth>
+                                                <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(1, props?.rideId, statuses?.id)} fullWidth>
                                                     {t("Approve")}
                                                 </GreenCaroButton>
                                             </Grid>
                                             <Grid container item xs={10} sm={4} justifyContent = 'center'>
-                                                <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(2, props.rideId, statuses.id)} fullWidth>
+                                                <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(2, props?.rideId, statuses?.id)} fullWidth>
                                                     {t("Refuse")}
                                                 </SecondaryButton>
                                             </Grid>
@@ -296,7 +296,7 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
                                     return(
                                         <Grid container justifyContent = 'center' style={{marginBottom: '10px'}} spacing={1}>
                                             <Grid container item xs={10} justifyContent = 'center'>
-                                                <GreenCaroButton variant='contained' size='medium' onClick={()=>updateStatus(4, props.rideId, statuses.id)} fullWidth>{t('Delivery')}</GreenCaroButton>
+                                                <GreenCaroButton variant='contained' size='medium' onClick={()=>updateStatus(4, props?.rideId, statuses?.id)} fullWidth>{t('Delivery')}</GreenCaroButton>
                                             </Grid>
                                             <Grid container item xs={10} justifyContent = 'center'>
                                                 <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
@@ -307,7 +307,7 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
                                     return(
                                         <Grid container justifyContent = 'center' style={{marginBottom: '10px'}} spacing={1}>
                                             <Grid container item xs={10} justifyContent = 'center'>
-                                                <GreenCaroButton variant='contained' size='medium' onClick={()=>updateStatus(4, props.rideId, statuses.id)} fullWidth>{t('Delivery')}</GreenCaroButton>
+                                                <GreenCaroButton variant='contained' size='medium' onClick={()=>updateStatus(4, props?.rideId, statuses?.id)} fullWidth>{t('Delivery')}</GreenCaroButton>
                                             </Grid>
                                             <Grid container item xs={10} justifyContent = 'center'>
                                                 <PrimaryButton variant='contained' size='medium' onClick={handleClick}fullWidth>{t('DriverCardDetailsButton')}</PrimaryButton>
@@ -327,7 +327,7 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
                                                 <Box my='10' color='#F50057' fontSize='18px' fontWeight='500' textAlign='center'>{t('DeclinedWithReason')}</Box>
                                             </Grid>
                                             <Grid container item xs={12} justifyContent = 'center'>
-                                                <Box my='5%' className='Secondary-color' fontSize='18px' fontWeight='500'>{statuses.rejectReason}</Box>
+                                                <Box my='5%' className='Secondary-color' fontSize='18px' fontWeight='500'>{statuses?.rejectReason}</Box>
                                             </Grid>
                                         </Grid>
                                     )
@@ -355,12 +355,12 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
                                             </Grid>
                                             <Grid container item xs={10} justifyContent = 'space-between'>
                                                 <Grid container item xs={12} sm={5} justifyContent = 'center'>
-                                                    <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(5, props.rideId, statuses.id)} fullWidth>
+                                                    <GreenCaroButton variant='contained' size='small' onClick={()=>updateStatus(5, props?.rideId, statuses?.id)} fullWidth>
                                                         {t("Yes")}
                                                     </GreenCaroButton>
                                                 </Grid>
                                                 <Grid container item xs={12} sm={5} justifyContent = 'center'>
-                                                    <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(6, props.rideId, statuses.id)} fullWidth>
+                                                    <SecondaryButton variant='contained' size='small' onClick={()=>updateStatus(6, props?.rideId, statuses?.id)} fullWidth>
                                                         {t("No")}
                                                     </SecondaryButton>
                                                 </Grid>
@@ -394,16 +394,16 @@ const RideCard =({userData, packages, fetchCourierProfile, ...props})=>{
     }
 
     function getBackButtons(){
-        if (Array.isArray(statuses) && statuses.length >= 0 && statuses[0].status >= 3)
+        if (Array.isArray(statuses) && statuses?.length >= 0 && statuses[0]?.status >= 3)
             return(
                 <Grid container item xs={8} justifyContent = 'center' >
-                    <RejectModal rejectWithReason={(reason) => updateStatus(3, props.rideId, statuses[0].id, reason)} flipCard={() => setIsFlipped(false)}/>
+                    <RejectModal rejectWithReason={(reason) => updateStatus(3, props?.rideId, statuses[0]?.id, reason)} flipCard={() => setIsFlipped(false)}/>
                 </Grid>
             )
-        else if (typeof (statuses) === 'object' && statuses.status >= 3)
+        else if (typeof (statuses) === 'object' && statuses?.status >= 3)
             return (
                 <Grid container item xs={8} justifyContent = 'center' >
-                    <RejectModal rejectWithReason={(reason) => updateStatus(3, props.rideId, statuses.id, reason)} flipCard={() => setIsFlipped(false)}/>
+                    <RejectModal rejectWithReason={(reason) => updateStatus(3, props?.rideId, statuses?.id, reason)} flipCard={() => setIsFlipped(false)}/>
                 </Grid>
             )
     }

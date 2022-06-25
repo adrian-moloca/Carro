@@ -15,7 +15,7 @@ const GetRide = (props) =>{
     const [destinationAddress, setDestinationAddress] = useState(props.destinationAddress);
     const [departureDate, setDepartureDate] = useState(props.departureDate);
     const [estimatedTime, setEstimatedTime] = useState(props.estimatedTime);
-    const [statuses, setStatuses] = useState(props.statuses);
+    const [statuses, setStatuses] = useState(props?.statuses);
     const [interactions, setInteractions] = useState(props.interactions);
 
 
@@ -52,7 +52,7 @@ const GetRide = (props) =>{
                 departureAddress={departureAddress}
                 destinationAddress={destinationAddress}
                 estimatedTime={estimatedTime}
-                statuses={props.notification ? statuses.find(el => el.packageId === props.packageNotification) : statuses }
+                statuses={props.notification && (typeof statuses === Array) ? statuses?.find(el => el.packageId === props.packageNotification) : statuses }
                 interactions= {interactions}
                 statusUpdated={props.statusUpdated}
                 notification={props.notification}

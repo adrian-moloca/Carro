@@ -22,8 +22,12 @@ const Chat = ({chatsData, userData, getChatMessages}) =>{
   useEffect(()=>{}, [chatsData])
 
   const sendMessage=(mymessage)=>{
-    axios.post(data.baseUrl + '/' + chatsData.currentChat.chatId + '/messages', {
+    axios.post(data.baseUrl + '/chats/' + chatsData.currentChat.chatId + '/messages', {
       message: mymessage
+    }, {
+      headers: {
+        'Authorization': `Bearer ${userData.token}`,
+    }
     }).then(()=>{setMessage(''); getChatMessages(chatsData.currentChat.chatId, userData.token)}).catch((error)=>alert('error sending message'))
   }
 
@@ -51,7 +55,9 @@ const Chat = ({chatsData, userData, getChatMessages}) =>{
                 </Grid>
                 <Grid sm={11} container item justifyContent="center" style={{paddingTop:'14px'}}>
                   <CarroTextField  
-                      label='Mesajul dumneavoastra'
+                    label='Mesajul dumneavoastra'
+                    value={message}
+                    onChange={e => setMessage(e.target.value)}
                       InputProps={{
                         endAdornment: 
                           <InputAdornment position="end">
