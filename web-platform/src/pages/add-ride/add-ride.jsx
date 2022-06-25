@@ -89,7 +89,7 @@ const AddRide = ({userData, ridesData ,createNewRide}) =>{
   }
 
   const handleCreateRide = () => {
-    if(userData.isUserValidated === 'True'){
+    if(userData.profileStatus.isUserValidated  === true){
       createNewRide(departureDate, departureCountry, departureCity, destinationCountry, destinationCity, departureAddress, destinationAddress, estimatedTime, transportType, userData.token); 
       setRequestSent(true) 
     } else {
